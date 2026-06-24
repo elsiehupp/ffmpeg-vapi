@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cprefix="AV_HWDEVICE_TYPE_",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
+[CCode (cname="enum ",cprefix="AV_HWDEVICE_TYPE_",cheader_filename="subprojects/ffmpeg/libavutil/hwcontext.h")]
 public enum HardwareDeviceType {
     NONE,
     VDPAU,

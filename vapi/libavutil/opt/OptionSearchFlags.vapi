@@ -32,7 +32,7 @@ public enum OptionSearchFlags {
     /***********************************************************
     @brief Search in possible children of the given object first.
     ***********************************************************/
-    [CCode (cname="AV_OPT_SEARCH_CHILDREN")]
+    [CCode (cname="OptionSearchFlags.SEARCH_CHILDREN")]
     SEARCH_CHILDREN,
 
     /***********************************************************
@@ -42,23 +42,23 @@ public enum OptionSearchFlags {
         for searching for options without needing to allocate
         the corresponding object.
     ***********************************************************/
-    [CCode (cname="AV_OPT_SEARCH_FAKE_OBJ")]
+    [CCode (cname="OptionSearchFlags.FAKE_OBJECT_PARAMETER")]
     FAKE_OBJECT_PARAMETER,
 
     /***********************************************************
     @description In av_opt_get, return null if the option has a pointer type and is set to null,
         rather than returning an empty string.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_OPT_ALLOW_NULL,
+    [CCode (cname="OptionSearchFlags.ALLOW_NULL")]
+    ALLOW_NULL,
 
     /***********************************************************
     @description Allows av_opt_query_ranges and av_opt_query_ranges_default to return more than
         one component for certain option types.
     @see @link OptionRangeList for details.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_OPT_MULTI_COMPONENT_RANGE;
+    [CCode (cname="OptionSearchFlags.MULTI_COMPONENT_RANGE")]
+    MULTI_COMPONENT_RANGE;
 }
 
 } // namespace LibAVUtil

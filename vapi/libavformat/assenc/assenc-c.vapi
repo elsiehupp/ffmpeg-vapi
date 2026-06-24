@@ -22,21 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "ignore_readorder",
         short_help_text = "write events immediately, even if they're out-of-order",
-        offsetof (
+        offset = offsetof (
             ASSContext,
             ignore_readorder
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -156,7 +154,7 @@ public class ASSMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/assenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GLOBALHEADER | AVFMT_NOTIMESTAMPS | AVFMT_TS_NONSTRICT;
+            return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.NO_TIMESTAMPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

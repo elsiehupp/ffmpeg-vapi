@@ -33,7 +33,7 @@ public enum GetBufferFlags {
     @brief The decoder will keep a reference to the frame and may reuse it later.
     ***********************************************************/
     [CCode (cname="AV_GET_BUFFER_FLAG_REF")]
-    KEEP_REFERENCE
+    KEEP_REFERENCE;
 }
 
 } // namespace LibAVCodec

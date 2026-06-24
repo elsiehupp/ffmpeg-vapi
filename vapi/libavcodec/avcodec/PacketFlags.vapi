@@ -27,24 +27,24 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="AV_PKT_FLAG_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum PacketFlags {
     /***********************************************************
     @brief The packet contains a keyframe
     ***********************************************************/
-    AV_PKT_FLAG_KEY,
+    KEY,
 
     /***********************************************************
     @brief The packet content is corrupted
     ***********************************************************/
-    AV_PKT_FLAG_CORRUPT,
+    CORRUPT,
 
     /***********************************************************
     @brief Flag is used to discard packets which are required to maintain valid
     decoder state but are not required for output and should be dropped
     after decoding.
     ***********************************************************/
-    AV_PKT_FLAG_DISCARD,
+    DISCARD,
 
     /***********************************************************
     @brief The packet comes from a trusted source.
@@ -52,13 +52,13 @@ public enum PacketFlags {
     Otherwise-unsafe constructs such as arbitrary pointers to data
     outside the packet may be followed.
     ***********************************************************/
-    AV_PKT_FLAG_TRUSTED,
+    TRUSTED,
 
     /***********************************************************
     @brief Flag is used to indicate packets that contain frames that can
     be discarded by the decoder. I.e. Non-reference frames.
     ***********************************************************/
-    AV_PKT_FLAG_DISPOSABLE;
+    DISPOSABLE;
 }
 
 } // namespace LibAVCodec

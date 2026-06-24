@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 public internal API functions
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
+[CCode (cname="struct AVFilterCommand",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
 public class AVFilterCommand {
     /***********************************************************
@@ -61,7 +61,7 @@ public void ff_avfilter_graph_update_heap (
 /***********************************************************
 A filter pad used for either input or output.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
+[CCode (cname="struct AVFilterPad",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
 public class AVFilterPad {
     /***********************************************************
@@ -195,7 +195,7 @@ public class AVFilterPad {
     public int needs_writable;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
+[CCode (cname="struct AVFilterGraphInternal",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
 public class AVFilterGraphInternal {
     [CCode (cname="")]
@@ -208,7 +208,7 @@ public class AVFilterGraphInternal {
     public FFFrameQueueGlobal frame_queues;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
+[CCode (cname="struct AVFilterInternal",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
 public class AVFilterInternal {
     [CCode (cname="")]
@@ -582,13 +582,14 @@ public void ff_filter_graph_remove_filter (
 );
 
 [Flags]
-public enum FooBar {
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
+public enum FilterFlags {
     /***********************************************************
     The filter is aware of hardware frames, and any hardware frame context
     should not be automatically propagated through it.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
-    FF_FILTER_FLAG_HWFRAME_AWARE; // (1 << 0)
+    [CCode (cname="FF_FILTER_FLAG_HWFRAME_AWARE")]
+    HARDWARE_FRAME_AWARE; // (1 << 0)
 }
 
 /***********************************************************

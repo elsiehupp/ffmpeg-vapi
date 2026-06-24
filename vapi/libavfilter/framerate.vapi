@@ -40,8 +40,8 @@ public delegate void BlendDelegate (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framerate.h")]
 [Compact]
 public class FrameRateContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     // parameters
 

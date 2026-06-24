@@ -26,13 +26,13 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="FF_PROFILE_MJPEG_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum ProfileMJPEG {
-    FF_PROFILE_MJPEG_HUFFMAN_BASELINE_DCT,
-    FF_PROFILE_MJPEG_HUFFMAN_EXTENDED_SEQUENTIAL_DCT,
-    FF_PROFILE_MJPEG_HUFFMAN_PROGRESSIVE_DCT,
-    FF_PROFILE_MJPEG_HUFFMAN_LOSSLESS,
-    FF_PROFILE_MJPEG_JPEG_LS;
+    HUFFMAN_BASELINE_DCT,
+    HUFFMAN_EXTENDED_SEQUENTIAL_DCT,
+    HUFFMAN_PROGRESSIVE_DCT,
+    HUFFMAN_LOSSLESS,
+    JPEG_LS;
 }
 
 } // namespace LibAVCodec

@@ -16,10 +16,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_nlmeans.h")]
+[CCode (cname="NLMeansDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_nlmeans.h")]
 [Compact]
 public class NLMeansDSPContext {
-    [CCode (cname="")]
     public delegate void ComputeSafeSsdIntegralImageDelegate (
         uint32[] dst,
         ptrdiff_t dst_linesize_32,
@@ -35,12 +34,12 @@ public class NLMeansDSPContext {
     public ComputeSafeSsdIntegralImageDelegate compute_safe_ssd_integral_image;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_nlmeans.h")]
+[CCode (cname="ff_nlmeans_init",cheader_filename="subprojects/ffmpeg/libavfilter/vf_nlmeans.h")]
 public void ff_nlmeans_init (
     NLMeansDSPContext? dsp
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_nlmeans.h")]
+[CCode (cname="ff_nlmeans_init_aarch64",cheader_filename="subprojects/ffmpeg/libavfilter/vf_nlmeans.h")]
 public void ff_nlmeans_init_aarch64 (
     NLMeansDSPContext? dsp
 );

@@ -29,28 +29,28 @@ namespace LibAVFormat {
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
 public const string SMJPEG_MAGIC;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
 public enum SMJPEGTag {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
-    SMJPEG_DONE, // (uint32)MKTAG ('D', 'O', 'N', 'E')
+    [CCode (cname="SMJPEG_DONE")]
+    DONE, // (uint32)MKTAG ('D', 'O', 'N', 'E')
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
-    SMJPEG_HEND, // (uint32)MKTAG ('H', 'E', 'N', 'D')
+    [CCode (cname="SMJPEG_HEND")]
+    HEND, // (uint32)MKTAG ('H', 'E', 'N', 'D')
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
-    SMJPEG_SND, // (uint32)MKTAG ('_', 'S', 'N', 'D')
+    [CCode (cname="SMJPEG_SND")]
+    SND, // (uint32)MKTAG ('_', 'S', 'N', 'D')
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
-    SMJPEG_SNDD, // (uint32)MKTAG ('s', 'n', 'd', 'D')
+    [CCode (cname="SMJPEG_SNDD")]
+    SNDD, // (uint32)MKTAG ('s', 'n', 'd', 'D')
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
-    SMJPEG_TXT, // (uint32)MKTAG ('_', 'T', 'X', 'T')
+    [CCode (cname="SMJPEG_TXT")]
+    TXT, // (uint32)MKTAG ('_', 'T', 'X', 'T')
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
-    SMJPEG_VID, // (uint32)MKTAG ('_', 'V', 'I', 'D')
+    [CCode (cname="SMJPEG_VID")]
+    VID, // (uint32)MKTAG ('_', 'V', 'I', 'D')
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
-    SMJPEG_VIDD; // (uint32)MKTAG ('v', 'i', 'd', 'D')
+    [CCode (cname="SMJPEG_VIDD")]
+    VIDD; // (uint32)MKTAG ('v', 'i', 'd', 'D')
 }
 
 //  extern const AVCodecTag ff_codec_smjpeg_video_tags[];

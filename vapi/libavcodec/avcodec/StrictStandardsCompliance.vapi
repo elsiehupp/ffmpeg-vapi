@@ -26,30 +26,30 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="FF_COMPLIANCE_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum StrictStandardsCompliance {
     /***********************************************************
     @brief Strictly conform to an older more strict version of the spec
     or reference software.
     ***********************************************************/
-    FF_COMPLIANCE_VERY_STRICT,
+    VERY_STRICT,
 
     /***********************************************************
     @brief Strictly conform to all the things in the spec no matter
     what consequences.
     ***********************************************************/
-    FF_COMPLIANCE_STRICT,
-    FF_COMPLIANCE_NORMAL,
+    STRICT,
+    NORMAL,
 
     /***********************************************************
     @brief Allow unofficial extensions
     ***********************************************************/
-    FF_COMPLIANCE_UNOFFICIAL,
+    UNOFFICIAL,
 
     /***********************************************************
     @brief Allow nonstandardized experimental things.
     ***********************************************************/
-    FF_COMPLIANCE_EXPERIMENTAL;
+    EXPERIMENTAL;
 }
 
 } // namespace LibAVCodec

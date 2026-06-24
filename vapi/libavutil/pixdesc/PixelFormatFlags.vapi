@@ -23,37 +23,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 [Flags]
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavutil/pixdesc.h")]
+[CCode (cprefix="AV_PIX_FMT_FLAG_",cheader_filename="subprojects/ffmpeg/libavutil/pixdesc.h")]
 public enum PixelFormatFlags {
     /***********************************************************
     @brief Pixel format is big-endian.
     ***********************************************************/
-    AV_PIX_FMT_FLAG_BE,
+    [CCode (cname="AV_PIX_FMT_FLAG_BE")]
+    BIG_ENDIAN,
 
     /***********************************************************
     @brief Pixel format has a palette in data[1], values are indexes in this palette.
     ***********************************************************/
-    AV_PIX_FMT_FLAG_PAL,
+    [CCode (cname="AV_PIX_FMT_FLAG_PAL")]
+    PALETTE,
 
     /***********************************************************
     @brief All values of a component are bit-wise packed end to end.
     ***********************************************************/
-    AV_PIX_FMT_FLAG_BITSTREAM,
+    BITSTREAM,
 
     /***********************************************************
     @brief Pixel format is a hardware accelerated format.
     ***********************************************************/
-    AV_PIX_FMT_FLAG_HWACCEL,
+    [CCode (cname="AV_PIX_FMT_FLAG_HWACCEL")]
+    HARDWARE_ACCELERATED,
 
     /***********************************************************
     @brief At least one pixel component is not in the first data plane.
     ***********************************************************/
-    AV_PIX_FMT_FLAG_PLANAR,
+    PLANAR,
 
     /***********************************************************
     @brief The pixel format contains RGB-like data (as opposed to YUV/grayscale).
     ***********************************************************/
-    AV_PIX_FMT_FLAG_RGB,
+    RGB,
 
     /***********************************************************
     @brief The pixel format is "pseudo-paletted". This means that it contains a
@@ -71,7 +74,8 @@ public enum PixelFormatFlags {
     allocate a palette for AV_PIX_FMT_FLAG_PSEUDOPAL formats (it was required
     before the deprecation, though).
     ***********************************************************/
-    AV_PIX_FMT_FLAG_PSEUDOPAL,
+    [CCode (cname="AV_PIX_FMT_FLAG_PSEUDOPAL")]
+    PSEUDO_PALETTE,
 
     /***********************************************************
     @brief The pixel format has an alpha channel. This is set on all formats that
@@ -82,18 +86,18 @@ public enum PixelFormatFlags {
     opaque, or use the equivalent pixel formats without alpha component, e.g.
     PixelFormat.RGB0 (or PixelFormat.RGB24 etc.) instead of PixelFormat.RGBA.
     ***********************************************************/
-    AV_PIX_FMT_FLAG_ALPHA,
+    ALPHA,
 
     /***********************************************************
     @brief The pixel format is following a Bayer pattern
     ***********************************************************/
-    AV_PIX_FMT_FLAG_BAYER,
+    BAYER,
 
     /***********************************************************
     @brief The pixel format contains IEEE-754 floating point values. Precision (double,
     single, or half) should be determined by the pixel size (64, 32, or 16 bits).
     ***********************************************************/
-    AV_PIX_FMT_FLAG_FLOAT;
+    FLOAT;
 }
 
 } // namespace LibAVUtil

@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum CodecHardwareConfigMethod {
     /***********************************************************
     @brief The codec supports this format via the hw_device_ctx interface.
@@ -35,7 +35,8 @@ public enum CodecHardwareConfigMethod {
     have been set to a device of the specified type before calling
     avcodec_open2 ().
     ***********************************************************/
-    AV_CODEC_HW_CONFIG_METHOD_HW_DEVICE_CTX,
+    [CCode (cname="AV_CODEC_HW_CONFIG_METHOD_HW_DEVICE_CTX")]
+    HARDWARE_DEVICE_CONTEXT,
 
     /***********************************************************
     @brief The codec supports this format via the hw_frames_ctx interface.
@@ -45,7 +46,8 @@ public enum CodecHardwareConfigMethod {
     context inside the get_format () callback. The frames context
     must have been created on a device of the specified type.
     ***********************************************************/
-    AV_CODEC_HW_CONFIG_METHOD_HW_FRAMES_CTX,
+    [CCode (cname="AV_CODEC_HW_CONFIG_METHOD_HW_FRAMES_CTX")]
+    HARDWARE_FRAMES_CONTEXT,
 
     /***********************************************************
     @brief The codec supports this format by some internal method.
@@ -53,7 +55,8 @@ public enum CodecHardwareConfigMethod {
     This format can be selected without any additional configuration -
     no device or frames context is required.
     ***********************************************************/
-    AV_CODEC_HW_CONFIG_METHOD_INTERNAL,
+    [CCode (cname="AV_CODEC_HW_CONFIG_METHOD_INTERNAL")]
+    INTERNAL,
 
     /***********************************************************
     @brief The codec supports this format by some ad-hoc method.
@@ -63,7 +66,8 @@ public enum CodecHardwareConfigMethod {
     this sort of configuration are deprecated and others should be
     used in preference.)
     ***********************************************************/
-    AV_CODEC_HW_CONFIG_METHOD_AD_HOC;
+    [CCode (cname="AV_CODEC_HW_CONFIG_METHOD_AD_HOC")]
+    AD_HOC;
 }
 
 } // namespace LibAVCodec

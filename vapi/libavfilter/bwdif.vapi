@@ -16,10 +16,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bwdif.h")]
+[CCode (cname="BWDIFContext",cheader_filename="subprojects/ffmpeg/libavfilter/bwdif.h")]
 [Compact]
 public class BWDIFContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bwdif.h")]
+    [CCode (cname="yadif",cheader_filename="subprojects/ffmpeg/libavfilter/bwdif.h")]
     public YADIFContext yadif;
 
     public delegate void FilterIntraDelegate (
@@ -78,7 +78,7 @@ public class BWDIFContext {
 
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bwdif.h")]
+[CCode (cname="ff_bwdif_init_x86",cheader_filename="subprojects/ffmpeg/libavfilter/bwdif.h")]
 public void ff_bwdif_init_x86 (
     BWDIFContext? bwdif
 );

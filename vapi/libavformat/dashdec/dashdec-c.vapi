@@ -23,21 +23,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="dash_options",cheader_filename="")]
 static const LibAVUtil.Option dash_options[] = {
     new LibAVUtil.StringOption () {
         name = "allowed_extensions",
         short_help_text = "List of file extensions that dash is allowed to access"
-        offsetof (
+        offset = offsetof (
             DASHContext,
             allowed_extensions
         ),
-        {
-            .str = "aac,m4a,m4s,m4v,mov,mp4,webm"
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "aac,m4a,m4s,m4v,mov,mp4,webm",
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -142,7 +140,7 @@ public class DashDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/dashdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NO_BYTE_SEEK;
+            return AVFormatFlags1.NO_BYTE_SEEK;
 
         }
 

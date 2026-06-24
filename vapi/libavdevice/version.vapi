@@ -22,16 +22,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Libavdevice version macros
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
+[CCode (cname="LIBAVDEVICE_VERSION_MAJOR",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
 public const int LIBAVDEVICE_VERSION_MAJOR; // 58
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
+[CCode (cname="LIBAVDEVICE_VERSION_MINOR",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
 public const int LIBAVDEVICE_VERSION_MINOR; // 8
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
+[CCode (cname="LIBAVDEVICE_VERSION_MICRO",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
 public const int LIBAVDEVICE_VERSION_MICRO; // 100
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
+[CCode (cname="LIBAVDEVICE_VERSION_INT",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
 public const int LIBAVDEVICE_VERSION_INT;
 //  AV_VERSION_INT (
 //      LIBAVDEVICE_VERSION_MAJOR,
@@ -39,7 +39,7 @@ public const int LIBAVDEVICE_VERSION_INT;
 //      LIBAVDEVICE_VERSION_MICRO
 //  );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
+[CCode (cname="LIBAVDEVICE_VERSION",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
 public const string LIBAVDEVICE_VERSION;
 //  AV_VERSION (
 //      LIBAVDEVICE_VERSION_MAJOR,
@@ -47,10 +47,10 @@ public const string LIBAVDEVICE_VERSION;
 //      LIBAVDEVICE_VERSION_MICRO
 //  );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
+[CCode (cname="LIBAVDEVICE_BUILD",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
 public const int LIBAVDEVICE_BUILD; // LIBAVDEVICE_VERSION_INT
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
+[CCode (cname="LIBAVDEVICE_IDENT",cheader_filename="subprojects/ffmpeg/libavdevice/version.h")]
 public const string LIBAVDEVICE_IDENT; // "Lavd" AV_STRINGIFY (LIBAVDEVICE_VERSION)
 
 /***********************************************************

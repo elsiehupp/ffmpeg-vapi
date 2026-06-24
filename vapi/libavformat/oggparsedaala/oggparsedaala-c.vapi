@@ -34,7 +34,7 @@ public class DaalaCodec : OggCodec {
 
     }
 
-    [CCode (cname="")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "200daala".data;
@@ -42,7 +42,14 @@ public class DaalaCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 6,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 6;
+        }
+
+    }
 
     [CCode (cname="daala_header",cheader_filename="")]
     public override int header (
@@ -63,8 +70,23 @@ public class DaalaCodec : OggCodec {
         uint64 arg2,
         out int64 dts
     );
-    //  .granule_is_start = 1,
-    //  .nb_header = 3;
+
+    [CCode (cname="granule_is_start")]
+    public override bool granule_is_start {
+        public get {
+            return true;
+        }
+
+    }
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 3;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

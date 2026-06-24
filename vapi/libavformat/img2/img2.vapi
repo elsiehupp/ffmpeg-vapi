@@ -22,22 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+[CCode (cname="enum PatternType",cprefix="PT_",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
 public enum PatternType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
-    PT_GLOB_SEQUENCE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
-    PT_GLOB,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
-    PT_SEQUENCE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
-    PT_NONE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
-    PT_DEFAULT;
+    GLOB_SEQUENCE,
+    GLOB,
+    SEQUENCE,
+    NONE,
+    DEFAULT;
 }
 
 [CCode (cname="struct VideoDemuxData",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
@@ -46,97 +37,97 @@ public class VideoDemuxData {
     /***********************************************************
     @brief Class for private options.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public LibAVUtil.Class class;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int img_first;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int img_last;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int img_number;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int64 pts;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int img_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int is_pipe;
 
     /***********************************************************
     use independent file for each Y, U, V plane
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int split_planes;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public char path[1024];
 
     /***********************************************************
     @brief Set by a private option.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public string pixel_format;
 
     /***********************************************************
     @brief Set by a private option.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int width;
 
     /***********************************************************
     @brief Set by a private option.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int height;
 
     /***********************************************************
     @brief Set by a private option.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public LibAVUtil.Rational framerate;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int loop;
 
     /***********************************************************
     @brief PatternType
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int pattern_type;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int use_glob;
 
 #if HAVE_GLOB
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public glob_t globstate;
 #endif
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int start_number;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int start_number_range;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int frame_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public int ts_from_file;
 }
 
 [CCode (cname="struct IdStrMap",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
 [Compact]
 public class IdStrMap {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public LibAVCodec.CodecID id;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+    [CCode (cname="")]
     public string str;
 }
 

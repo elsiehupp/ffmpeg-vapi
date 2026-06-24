@@ -50,8 +50,8 @@ public const size_t ALSA_BUFFER_SIZE_MAX; // 131072
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/alsa.h")]
 [Compact]
 public class AlsaData {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public snd_pcm_t? h;

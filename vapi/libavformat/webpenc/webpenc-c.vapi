@@ -22,21 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "loop",
         short_help_text = "Number of times to loop the output: 0 - infinite loop",
-        offsetof (
+        offset = offsetof (
             WebpContext,
             loop
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        65535,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 65535,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -148,7 +146,7 @@ public class WebPMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/webpenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS;
 
         }
 

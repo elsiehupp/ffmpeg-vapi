@@ -30,7 +30,7 @@ namespace LibAVFormat {
 //      .audio_codec = codec, \
 //      .video_codec = LibAVCodec.CodecID.NONE, \
 //      .write_packet = ff_raw_write_packet, \
-//      .flags = AVFMT_NOTIMESTAMPS, \
+//      flags = AVFormatFlags1.NO_TIMESTAMPS, \
 //  };
 
 //  PCMDEF (f64be, "PCM 64-bit floating-point big-endian",

@@ -39,34 +39,26 @@ public const int DIFFELEM_SIZE; // 348
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
 public const int COARSE_SIZE; // 90
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
-public enum lookup_mode {
-    [CCode (cname="")]
-    MODE_OFF,
+[CCode (cname="enum lookup_mode",cprefix="MODE_",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
+public enum LookupMode {
+    OFF,
+    FULL,
+    FAST,
 
-    [CCode (cname="")]
-    MODE_FULL,
-
-    [CCode (cname="")]
-    MODE_FAST,
-
-    [CCode (cname="")]
-    NB_LOOKUP_MODE
+    [CCode (cname="NB_LOOKUP_MODE")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
-public enum formats {
-    [CCode (cname="")]
-    FORMAT_BINARY,
+[CCode (cname="enum formats",cprefix="FORMAT_",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
+public enum SignatureFormat {
+    BINARY,
+    XML,
 
-    [CCode (cname="")]
-    FORMAT_XML,
-
-    [CCode (cname="")]
-    NB_FORMATS
+    [CCode (cname="NB_FORMATS")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
+[CCode (cname="struct Point",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
 [Compact]
 public class Point {
     [CCode (cname="")]
@@ -76,7 +68,7 @@ public class Point {
     public uint8 y;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
+[CCode (cname="struct Block",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
 [Compact]
 public class Block {
     [CCode (cname="")]
@@ -86,7 +78,7 @@ public class Block {
     public Point to;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
+[CCode (cname="struct ElemCat",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
 [Compact]
 public class ElemCat {
     /***********************************************************
@@ -114,7 +106,7 @@ public class ElemCat {
     public Block[] blocks;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
+[CCode (cname="struct FineSignature",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
 [Compact]
 public class FineSignature {
     [CCode (cname="")]
@@ -142,7 +134,7 @@ public class FineSignature {
     public uint8 framesig[SIGELEM_SIZE/5];
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
+[CCode (cname="struct CoarseSignature",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
 [Compact]
 public class CoarseSignature {
     /***********************************************************
@@ -167,7 +159,7 @@ public class CoarseSignature {
 /***********************************************************
 lookup types
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
+[CCode (cname="struct MatchingInfo",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
 [Compact]
 public class MatchingInfo {
     [CCode (cname="")]
@@ -204,7 +196,7 @@ public class MatchingInfo {
     public MatchingInfo* next;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
+[CCode (cname="struct StreamContext",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
 [Compact]
 public class StreamContext {
     /***********************************************************
@@ -283,11 +275,11 @@ public class StreamContext {
     public int exported;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
+[CCode (cname="struct SignatureContext",cheader_filename="subprojects/ffmpeg/libavfilter/signature.h")]
 [Compact]
 public class SignatureContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     /***********************************************************
     input parameters

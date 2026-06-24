@@ -40,10 +40,13 @@ VC-2 Specification ->
 10.4.1 Table 10.1
 ***********************************************************/
 
-[CCode (cprefix="DIRAC_PCODE_",cheader_filename="subprojects/ffmpeg/libavcodec/dirac.h")]
+[CCode (cname="enum DiracParseCodes",cprefix="DIRAC_PCODE_",cheader_filename="subprojects/ffmpeg/libavcodec/dirac.h")]
 public enum DiracParseCodes {
-    SEQ_HEADER,
-    END_SEQ,
+    [CCode (cname="DIRAC_PCODE_SEQ_HEADER")]
+    SEQUENCE_HEADER,
+
+    [CCode (cname="DIRAC_PCODE_END_SEQ")]
+    END_SEQUENCE,
     AUX,
     PAD,
     PICTURE_CODED,

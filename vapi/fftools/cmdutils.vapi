@@ -61,7 +61,8 @@ Wraps exit with a program-specific cleanup routine.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void exit_program (
     int ret
-) av_noreturn;
+);
+//  av_noreturn;
 
 /***********************************************************
 Initialize dynamic library loading
@@ -163,7 +164,7 @@ parsed or the corresponding value is invalid.
 @param context the context of the value to be set (e.g. the
 corresponding command line option name)
 @param numstr the string to be parsed
-@param type the type (OPT_INT64 or OPT_FLOAT) as which the
+@param type the type (OptionDef.Flags.INT64 or OptionDef.Flags.FLOAT) as which the
 string should be parsed
 @param min the minimum valid accepted value
 @param max the maximum valid accepted value
@@ -198,7 +199,7 @@ public int64 parse_time_or_die (
     int is_duration
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
+[CCode (cname="struct SpecifierOpt",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class SpecifierOpt {
     /***********************************************************
@@ -207,7 +208,7 @@ public class SpecifierOpt {
     [CCode (cname="")]
     public string specifier;
 
-    union {
+    //  union {
         [CCode (cname="")]
         public uint8[] str;
 
@@ -226,90 +227,90 @@ public class SpecifierOpt {
         [CCode (cname="")]
         public double dbl;
 
-    } u;
+    //  } u;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
+[CCode (cname="struct OptionDef",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class OptionDef {
     [CCode (cname="")]
     public string name;
 
-    [CCode (cname="")]
-    public int flags;
-
-    public enum FooBar {
-        [CCode (cname="")]
+    public enum Flags {
+        [CCode (cname="HAS_ARG")]
         HAS_ARG, // 0x0001
 
-        [CCode (cname="")]
-        OPT_BOOL, // 0x0002
+        [CCode (cname="OPT_BOOL")]
+        BOOL, // 0x0002
 
-        [CCode (cname="")]
-        OPT_EXPERT, // 0x0004
+        [CCode (cname="OPT_EXPERT")]
+        EXPERT, // 0x0004
 
-        [CCode (cname="")]
-        OPT_STRING, // 0x0008
+        [CCode (cname="OPT_STRING")]
+        STRING, // 0x0008
 
-        [CCode (cname="")]
-        OPT_VIDEO, // 0x0010
+        [CCode (cname="OPT_VIDEO")]
+        VIDEO, // 0x0010
 
-        [CCode (cname="")]
-        OPT_AUDIO, // 0x0020
+        [CCode (cname="OPT_AUDIO")]
+        AUDIO, // 0x0020
 
-        [CCode (cname="")]
-        OPT_INT, // 0x0080
+        [CCode (cname="OPT_INT")]
+        INT, // 0x0080
 
-        [CCode (cname="")]
-        OPT_FLOAT, // 0x0100
+        [CCode (cname="OPT_FLOAT")]
+        FLOAT, // 0x0100
 
-        [CCode (cname="")]
-        OPT_SUBTITLE, // 0x0200
+        [CCode (cname="OPT_SUBTITLE")]
+        SUBTITLE, // 0x0200
 
-        [CCode (cname="")]
-        OPT_INT64, // 0x0400
+        [CCode (cname="OPT_INT64")]
+        INT64, // 0x0400
 
-        [CCode (cname="")]
-        OPT_EXIT, // 0x0800
+        [CCode (cname="OPT_EXIT")]
+        EXIT, // 0x0800
 
-        [CCode (cname="")]
-        OPT_DATA, // 0x1000
+        [CCode (cname="OPT_DATA")]
+        DATA, // 0x1000
 
         /***********************************************************
         the option is per-file (currently ffmpeg-only).
-        implied by OPT_OFFSET or OPT_SPEC
+        implied by OptionDef.Flags.OFFSET or OptionDef.Flags.SPECIFIER
         ***********************************************************/
-        [CCode (cname="")]
-        OPT_PERFILE, // 0x2000
+        [CCode (cname="OPT_PERFILE")]
+        PER_FILE, // 0x2000
 
         /***********************************************************
         option is specified as an offset in a passed optctx
         ***********************************************************/
-        [CCode (cname="")]
-        OPT_OFFSET, // 0x4000
+        [CCode (cname="OPT_OFFSET")]
+        OFFSET, // 0x4000
 
         /***********************************************************
         option is to be stored in an array of SpecifierOpt.
-        Implies OPT_OFFSET. Next element after the offset is
+        Implies OptionDef.Flags.OFFSET. Next element after the offset is
         an int containing element count in the array.
         ***********************************************************/
-        [CCode (cname="")]
-        OPT_SPEC, // 0x8000
+        [CCode (cname="OPT_SPEC")]
+        SPECIFIER, // 0x8000
 
-        [CCode (cname="")]
-        OPT_TIME, // 0x10000
+        [CCode (cname="OPT_TIME")]
+        TIME, // 0x10000
 
-        [CCode (cname="")]
-        OPT_DOUBLE, // 0x20000
+        [CCode (cname="OPT_DOUBLE")]
+        DOUBLE, // 0x20000
 
-        [CCode (cname="")]
-        OPT_INPUT, // 0x40000
+        [CCode (cname="OPT_INPUT")]
+        INPUT, // 0x40000
 
-        [CCode (cname="")]
-        OPT_OUTPUT; // 0x80000
+        [CCode (cname="OPT_OUTPUT")]
+        OUTPUT; // 0x80000
     }
 
-    union {
+    [CCode (cname="flags")]
+    public OptionDef.Flags option_def_flags;
+
+    //  union {
         [CCode (cname="")]
         public void *dst_ptr;
 
@@ -325,13 +326,13 @@ public class OptionDef {
         [CCode (cname="")]
         public size_t off;
 
-    } u;
+    //  } u;
 
-    [CCode (cname="")]
+    [CCode (cname="help")]
     public string help;
 
-    [CCode (cname="")]
-    public string argname;
+    [CCode (cname="argname")]
+    public string argument_name;
 }
 
 /***********************************************************
@@ -355,23 +356,29 @@ public void show_help_options (
 #if CONFIG_AVDEVICE
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define CMDUTILS_COMMON_OPTIONS_AVDEVICE
-    {
-        "sources",
-        OPT_EXIT | HAS_ARG,
+    new OptionDef () {
+        name = "sources",
+        option_def_flags = (
+            OptionDef.Flags.EXIT |
+            OptionDef.Flags.HAS_ARG
+        ),
         {
             .func_arg = show_sources
         },
-        "list sources of the input device",
-        "device"
+        help = "list sources of the input device",
+        argument_name = "device"
     },
-    {
-        "sinks",
-        OPT_EXIT | HAS_ARG,
+    new OptionDef () {
+        name = "sinks",
+        option_def_flags = (
+            OptionDef.Flags.EXIT |
+            OptionDef.Flags.HAS_ARG
+        )
         {
             .func_arg = show_sinks
         },
-        "list sinks of the output device",
-        "device"
+        help = "list sinks of the output device",
+        argument_name = "device"
     },
 
 #else
@@ -380,230 +387,236 @@ public define CMDUTILS_COMMON_OPTIONS_AVDEVICE
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public define CMDUTILS_COMMON_OPTIONS
-    {
-        "L",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "L",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_license
         },
-        "show license"
+        help = "show license"
     },
-    {
-        "h",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "h",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_help
         },
-        "show help",
-        "topic"
+        help = "show help",
+        argument_name = "topic"
     },
-    {
-        "?",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "?",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_help
         },
-        "show help",
-        "topic"
+        help = "show help",
+        argument_name = "topic"
     },
-    {
-        "help",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "help",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_help
         },
-        "show help",
-        "topic"
+        help = "show help",
+        argument_name = "topic"
     },
-    {
-        "-help",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "-help",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_help
         },
-        "show help",
-        "topic"
+        help = "show help",
+        argument_name = "topic"
     },
-    {
-        "version",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "version",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_version
         },
-        "show version"
+        help = "show version"
     },
-    {
-        "buildconf",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "buildconf",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_buildconf
         },
-        "show build configuration"
+        help = "show build configuration"
     },
-    {
-        "formats",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "formats",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_formats
         },
-        "show available formats"
+        help = "show available formats"
     },
-    {
-        "muxers",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "muxers",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_muxers
         },
-        "show available muxers"
+        help = "show available muxers"
     },
-    {
-        "demuxers",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "demuxers",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_demuxers
         },
-        "show available demuxers"
+        help = "show available demuxers"
     },
-    {
-        "devices",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "devices",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_devices
         },
-        "show available devices"
+        help = "show available devices"
     },
-    {
-        "codecs",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "codecs",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_codecs
         },
-        "show available codecs"
+        help = "show available codecs"
     },
-    {
-        "decoders",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "decoders",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_decoders
         },
-        "show available decoders"
+        help = "show available decoders"
     },
-    {
-        "encoders",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "encoders",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_encoders
         },
-        "show available encoders"
+        help = "show available encoders"
     },
-    {
-        "bsfs",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "bsfs",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_bsfs
         },
-        "show available bit stream filters"
+        help = "show available bit stream filters"
     },
-    {
-        "protocols",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "protocols",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_protocols
         },
-        "show available protocols"
+        help = "show available protocols"
     },
-    {
-        "filters",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "filters",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_filters
         },
-        "show available filters"
+        help = "show available filters"
     },
-    {
-        "pix_fmts",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "pix_fmts",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_pix_fmts
         },
-        "show available pixel formats"
+        help = "show available pixel formats"
     },
-    {
-        "layouts",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "layouts",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_layouts
         },
-        "show standard channel layouts"
+        help = "show standard channel layouts"
     },
-    {
-        "sample_fmts",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "sample_fmts",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_sample_fmts
         },
-        "show available audio sample formats"
+        help = "show available audio sample formats"
     },
-    {
-        "colors",
-        OPT_EXIT,
+    new OptionDef () {
+        name = "colors",
+        option_def_flags = OptionDef.Flags.EXIT,
         {
             .func_arg = show_colors
         },
-        "show available color names"
+        help = "show available color names"
     },
-    {
-        "loglevel",
-        HAS_ARG,
+    new OptionDef () {
+        name = "loglevel",
+        option_def_flags = OptionDef.Flags.HAS_ARG,
         {
             .func_arg = opt_loglevel
         },
-        "set logging level",
-        "loglevel"
+        help = "set logging level",
+        argument_name = "loglevel"
     },
-    {
-        "v",
-        HAS_ARG,
+    new OptionDef () {
+        name = "v",
+        option_def_flags = OptionDef.Flags.HAS_ARG,
         {
             .func_arg = opt_loglevel
         },
-        "set logging level",
-        "loglevel"
+        help = "set logging level",
+        argument_name = "loglevel"
     },
-    {
-        "report",
-        0,
+    new OptionDef () {
+        name = "report",
+        option_def_flags = 0,
         {
             (void*)opt_report
         },
-        "generate a report"
+        help = "generate a report"
     },
-    {
-        "max_alloc",
-        HAS_ARG,
+    new OptionDef () {
+        name = "max_alloc",
+        option_def_flags = OptionDef.Flags.HAS_ARG,
         {
             .func_arg = opt_max_alloc
         },
-        "set maximum size of a single allocated block",
-        "bytes"
+        help = "set maximum size of a single allocated block",
+        argument_name = "bytes"
     },
-    {
-        "cpuflags",
-        HAS_ARG | OPT_EXPERT,
+    new OptionDef () {
+        name = "cpuflags",
+        (
+            OptionDef.Flags.HAS_ARG |
+            OptionDef.Flags.EXPERT
+        ),
         {
             .func_arg = opt_cpuflags
         },
-        "force specific cpu flags",
-        "flags"
+        help = "force specific cpu flags",
+        argument_name = "flags"
     },
-    {
-        "hide_banner",
-        OPT_BOOL | OPT_EXPERT,
+    new OptionDef () {
+        name = "hide_banner",
+        (
+            OptionDef.Flags.BOOL |
+            OptionDef.Flags.EXPERT
+        ),
         {
             &hide_banner
         },
-        "do not show program banner",
-        "hide_banner"
+        help = "do not show program banner",
+        argument_name = "hide_banner"
     },
     CMDUTILS_COMMON_OPTIONS_AVDEVICE
 
@@ -682,7 +695,7 @@ An option extracted from the commandline.
 Cannot use AVDictionary because of options like -map which can be
 used multiple times.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
+[CCode (cname="struct Option",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class Option {
     [CCode (cname="")]
@@ -695,7 +708,7 @@ public class Option {
     public string val;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
+[CCode (cname="struct OptionGroupDef",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class OptionGroupDef {
     /***********************************************************
@@ -720,7 +733,7 @@ public class OptionGroupDef {
     public int flags;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
+[CCode (cname="struct OptionGroup",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class OptionGroup {
     [CCode (cname="")]
@@ -755,7 +768,7 @@ public class OptionGroup {
 A list of option groups that all have the same group type
 (e.g. input files or output files)
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
+[CCode (cname="struct OptionGroupList",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class OptionGroupList {
     [CCode (cname="")]
@@ -768,7 +781,7 @@ public class OptionGroupList {
     public int nb_groups;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
+[CCode (cname="struct OptionParseContext",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 [Compact]
 public class OptionParseContext {
     [CCode (cname="")]
@@ -803,7 +816,7 @@ Split the commandline into an intermediate form convenient for further
 processing.
 
 The commandline is assumed to be composed of options which either belong to a
-group (those with OPT_SPEC, OPT_OFFSET or OPT_PERFILE) or are global
+group (those with OptionDef.Flags.SPECIFIER, OptionDef.Flags.OFFSET or OptionDef.Flags.PER_FILE) or are global
 (everything else).
 
 A group (defined by an OptionGroupDef struct) is a sequence of options

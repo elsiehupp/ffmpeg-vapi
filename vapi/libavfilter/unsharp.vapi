@@ -26,7 +26,7 @@ public const size_t MIN_MATRIX_SIZE; // 3
 public const size_t MAX_MATRIX_SIZE; // 63
 
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/unsharp.h")]
+[CCode (cname="struct UnsharpFilterParam",cheader_filename="subprojects/ffmpeg/libavfilter/unsharp.h")]
 [Compact]
 public class UnsharpFilterParam {
     /***********************************************************
@@ -84,11 +84,11 @@ public class UnsharpFilterParam {
     public uint32[][] sc;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/unsharp.h")]
+[CCode (cname="struct UnsharpContext",cheader_filename="subprojects/ffmpeg/libavfilter/unsharp.h")]
 [Compact]
 public class UnsharpContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public int lmsize_x;

@@ -26,25 +26,19 @@ namespace LibAVFormat {
 @file UDP protocol
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "buffer_size",
         short_help_text = "System data size (in bytes)",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             buffer_size
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )|
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -52,17 +46,15 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.Int64Option () {
         name = "bitrate",
         short_help_text = "Bits to send per second",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             bitrate
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int64.MAX,
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int64.MAX,
         .flags =
-        .flags = (
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -70,17 +62,15 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.Int64Option () {
         name = "burst_bits",
         short_help_text = "Max length of bursts in bits (when using bitrate)",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             burst_bits
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int64.MAX,
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int64.MAX,
         .flags =
-        .flags = (
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -88,17 +78,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "localport",
         short_help_text = "Local port",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             local_port
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -106,20 +93,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "local_port",
         short_help_text = "Local port",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             local_port
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )|
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -127,15 +108,13 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "localaddr",
         short_help_text = "Local address",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             localaddr
         ),
-        {
-            .str = NULL
-        },
-        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = "",
+        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -143,17 +122,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "udplite_coverage",
         short_help_text = "choose UDPLite head size which should be validated by checksum",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             udplite_coverage
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -161,16 +137,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "pkt_size",
         short_help_text = "Maximum UDP packet size",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             pkt_size
         ),
-        {
-            .i64 = 1472
-        },
-        -1,
-        int.MAX,
-        .flags = (
+        default_value = 1472,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -178,16 +152,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "reuse",
         short_help_text = "explicitly allow reusing UDP sockets",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             reuse_socket
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        1,
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = 1,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -195,17 +167,15 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "reuse_socket",
         short_help_text = "explicitly allow reusing UDP sockets",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             reuse_socket
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        1,
-        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = 1,
+        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -213,17 +183,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "broadcast",
         short_help_text = "explicitly allow or disallow broadcast destination",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             is_broadcast
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-
-        .flags = (
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -231,16 +198,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "ttl",
         short_help_text = "Time to live (multicast only)",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             ttl
         ),
-        {
-            .i64 = 16
-        },
-        0,
-        int.MAX,
-        .flags = (
+        default_value = 16,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -248,17 +213,15 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "connect",
         short_help_text = "set if connect () should be called on socket",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             is_connected
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -266,57 +229,49 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "fifo_size",
         short_help_text = "set the UDP receiving circular buffer size, expressed as a number of packets with size of 188 bytes",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             circular_buffer_size
         ),
-        {
-            .i64 = 7*4096
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 7*4096,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "overrun_nonfatal",
         short_help_text = "survive in case of UDP receiving circular buffer overrun",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             overrun_nonfatal
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "timeout",
         short_help_text = "set raise error timeout (only in read mode)",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             timeout
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "sources",
         short_help_text = "Source list",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             sources
         ),
-        {
-            .str = NULL
-        },
-        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = "",
+        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -324,15 +279,13 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "block",
         short_help_text = "Block list",
-        offsetof (
+        offset = offsetof (
             UDPContext,
             block
         ),
-        {
-            .str = NULL
-        },
-        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = "",
+        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -465,7 +418,7 @@ public class UDPURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/udp.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 
@@ -527,7 +480,7 @@ public class UDPLiteURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/udp.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 

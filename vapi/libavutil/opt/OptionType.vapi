@@ -26,7 +26,7 @@ namespace LibAVUtil {
 @file LibAVUtil.Options
 ***********************************************************/
 
-[CCode (cprefix="AV_OPT_TYPE_",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
+[CCode (cprefix="OptionSearchFlags.TYPE_",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
 public enum OptionType {
     FLAGS,
     INT,
@@ -50,10 +50,10 @@ public enum OptionType {
     ***********************************************************/
     IMAGE_SIZE,
 
-    [CCode (cname="AV_OPT_TYPE_PIXEL_FMT")]
+    [CCode (cname="OptionSearchFlags.TYPE_PIXEL_FMT")]
     PIXEL_FORMAT,
 
-    [CCode (cname="AV_OPT_TYPE_SAMPLE_FMT")]
+    [CCode (cname="OptionSearchFlags.TYPE_SAMPLE_FMT")]
     SAMPLE_FORMAT,
 
     /***********************************************************

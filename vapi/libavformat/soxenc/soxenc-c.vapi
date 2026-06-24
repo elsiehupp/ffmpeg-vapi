@@ -110,7 +110,7 @@ public class SoXMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

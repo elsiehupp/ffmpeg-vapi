@@ -29,26 +29,27 @@ Memory buffer source API.
 ***********************************************************/
 
 [Flags]
-public enum FooBar {
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
+public enum BufferSourceFlags {
     /***********************************************************
     Do not check for format changes.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
-    AV_BUFFERSRC_FLAG_NO_CHECK_FORMAT, // = 1,
+    [CCode (cname="AV_BUFFERSRC_FLAG_NO_CHECK_FORMAT")]
+    DO_NOT_CHECK_FORMAT, // = 1,
 
     /***********************************************************
     Immediately push the frame to the output.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
-    AV_BUFFERSRC_FLAG_PUSH, // = 4,
+    [CCode (cname="AV_BUFFERSRC_FLAG_PUSH")]
+    PUSH, // = 4,
 
     /***********************************************************
     Keep a reference to the frame.
     If the frame if reference-counted, create a new reference;
     otherwise copy the frame data.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
-    AV_BUFFERSRC_FLAG_KEEP_REF; // = 8,
+    [CCode (cname="AV_BUFFERSRC_FLAG_KEEP_REF")]
+    KEEP_REFERENCE; // = 8,
 
 }
 
@@ -75,8 +76,8 @@ av_free (). All the allocated fields in it remain owned by the caller.
 [Compact]
 public class AVBufferSrcParameters {
     /***********************************************************
-    video: the pixel format, value corresponds to enum AVPixelFormat
-    audio: the sample format, value corresponds to enum AVSampleFormat
+    video: the pixel format, value corresponds to AVPixelFormat
+    audio: the sample format, value corresponds to AVSampleFormat
     ***********************************************************/
     [CCode (cname="")]
     public int format;
@@ -172,7 +173,7 @@ copied.
 @return 0 on success, a negative AVERROR on error
 
 This function is equivalent to av_buffersrc_add_frame_flags () with the
-AV_BUFFERSRC_FLAG_KEEP_REF flag.
+BufferSourceFlags.KEEP_REFERENCE flag.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 //  av_warn_unused_result
@@ -197,7 +198,7 @@ that av_buffersrc_write_frame () creates a new reference to the input frame,
 while this function takes ownership of the reference passed to it.
 
 This function is equivalent to av_buffersrc_add_frame_flags () without the
-AV_BUFFERSRC_FLAG_KEEP_REF flag.
+BufferSourceFlags.KEEP_REFERENCE flag.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersrc.h")]
 //  av_warn_unused_result
@@ -217,7 +218,7 @@ If this function returns an error, the input frame is not touched.
 
 @param buffer_src  pointer to a buffer source context
 @param frame       a frame, or NULL to mark EOF
-@param flags       a combination of AV_BUFFERSRC_FLAG_*
+@param flags       a combination of BufferSourceFlags
 @return            >= 0 in case of success, a negative AVERROR code
                    in case of failure
 ***********************************************************/
@@ -226,7 +227,7 @@ If this function returns an error, the input frame is not touched.
 public int av_buffersrc_add_frame_flags (
     AVFilterContext? buffer_src,
     AVFrame frame,
-    int flags
+    BufferSourceFlags flags
 );
 
 /***********************************************************

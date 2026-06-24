@@ -25,22 +25,22 @@ namespace LibAVUtil {
 @file byte swapping routines
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/bswap.h")]
+[CCode (cname="AV_BSWAP16C",cheader_filename="subprojects/ffmpeg/libavutil/bswap.h")]
 public uint16 AV_BSWAP16C (
     uint16 x
 ); // (((x) << 8 & 0xff00)  | ((x) >> 8 & 0x00ff))
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/bswap.h")]
+[CCode (cname="AV_BSWAP32C",cheader_filename="subprojects/ffmpeg/libavutil/bswap.h")]
 public uint32 AV_BSWAP32C (
     uint32 x
 ); // (AV_BSWAP16C (x) << 16 | AV_BSWAP16C ((x) >> 16))
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/bswap.h")]
+[CCode (cname="AV_BSWAP64C",cheader_filename="subprojects/ffmpeg/libavutil/bswap.h")]
 public uint64 AV_BSWAP64C (
     uint64 x
 ); // (AV_BSWAP32C (x) << 32 | AV_BSWAP32C ((x) >> 32))
 
-//  [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/bswap.h")]
+//  [CCode (cname="AV_BSWAPC",cheader_filename="subprojects/ffmpeg/libavutil/bswap.h")]
 //  public uint AV_BSWAPC (s, x) AV_BSWAP##s##C (x)
 
 [CCode (cname="av_bswap16",cheader_filename="subprojects/ffmpeg/libavutil/bswap.h")]

@@ -26,16 +26,14 @@ static const LibAVUtil.Option asf_options[] = {
     new LibAVUtil.IntOption () {
         name = "packet_size",
         short_help_text = "Packet size",
-        offsetof (
+        offset = offsetof (
             ASFContext,
             packet_size
         ),
-        {
-            .i64 = 3200
-        },
-        PACKET_SIZE_MIN,
-        PACKET_SIZE_MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 3200,
+        minimum_value = PACKET_SIZE_MIN,
+        maximum_value = PACKET_SIZE_MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -161,7 +159,7 @@ public class AsfMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/asfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GLOBALHEADER;
+            return AVFormatFlags1.WANTS_GLOBAL_HEADER;
 
         }
 
@@ -302,7 +300,7 @@ public class AsfStreamMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/asfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GLOBALHEADER;
+            return AVFormatFlags1.WANTS_GLOBAL_HEADER;
 
         }
 

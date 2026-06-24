@@ -31,44 +31,38 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "ignore_loop",
         short_help_text = "ignore loop setting",
-        offsetof (
+        offset = offsetof (
             APNGDemuxContext,
             ignore_loop
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "max_fps",
         short_help_text = "maximum framerate (0 is no limit)",
-        offsetof (
+        offset = offsetof (
             APNGDemuxContext,
             max_fps
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "default_fps",
         short_help_text = "default framerate (0 is as fast as possible)",
-        offsetof (
+        offset = offsetof (
             APNGDemuxContext,
             default_fps
         ),
-        {
-            .i64 = DEFAULT_APNG_FPS
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = DEFAULT_APNG_FPS,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -162,7 +156,7 @@ public class APNGDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/apngdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

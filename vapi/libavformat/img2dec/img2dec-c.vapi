@@ -25,7 +25,7 @@ namespace LibAVFormat {
 
 //  #define IMAGEAUTO_DEMUXER (imgname, codecid)
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cheader_filename="ffmpeg/libformat/img2dec.c")]
 public abstract class ImageClass : LibAVUtil.Class {
     [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/img2dec.c")]
     public override string item_name (
@@ -47,7 +47,7 @@ public abstract class ImageClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/img2dec.c")]
+[CCode (cheader_filename="ffmpeg/libformat/img2dec.c")]
 public abstract class ImageDemuxer : AVInputFormat {
     [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/img2dec.c")]
     public override size_t priv_data_size {
@@ -72,7 +72,7 @@ public abstract class ImageDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/img2dec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

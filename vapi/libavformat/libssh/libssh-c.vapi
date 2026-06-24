@@ -21,22 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "timeout",
         short_help_text = "set timeout of socket I/O operations",
-        offsetof (
+        offset = offsetof (
             LIBSSHContext,
             rw_timeout
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -44,17 +41,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "truncate",
         short_help_text = "Truncate existing files on write",
-        offsetof (
+        offset = offsetof (
             LIBSSHContext,
             trunc
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-
-        .flags = (
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -62,17 +56,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "private_key",
         short_help_text = "set path to private key",
-        offsetof (
+        offset = offsetof (
             LIBSSHContext,
             priv_key
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -202,7 +193,7 @@ public class LibSSHURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/libssh.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 

@@ -32,16 +32,14 @@ static const LibAVUtil.Option ffrtmpcrypt_options[] = {
     new LibAVUtil.IntOption () {
         name = "ffrtmpcrypt_tunneling",
         short_help_text = "Use a HTTP tunneling connection (RTMPTE).",
-        offsetof (
+        offset = offsetof (
             RTMPEContext,
             tunneling
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -133,7 +131,7 @@ public class RTMPCryptURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rtmpcrypt.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 

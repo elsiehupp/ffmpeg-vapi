@@ -16,7 +16,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/limiter.h")]
+[CCode (cname="LimiterDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/limiter.h")]
 [Compact]
 public class LimiterDSPContext {
     public delegate void LimiterDelegate (
@@ -35,7 +35,7 @@ public class LimiterDSPContext {
 
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/limiter.h")]
+[CCode (cname="ff_limiter_init_x86",cheader_filename="subprojects/ffmpeg/libavfilter/limiter.h")]
 public void ff_limiter_init_x86 (
     LimiterDSPContext? dsp,
     int bpp

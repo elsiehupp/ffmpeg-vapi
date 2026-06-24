@@ -119,7 +119,7 @@ public class RTSPMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rtspenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOFILE | AVFMT_GLOBALHEADER;
+            return AVFormatFlags1.NO_FILE | AVFormatFlags1.WANTS_GLOBAL_HEADER;
 
         }
 

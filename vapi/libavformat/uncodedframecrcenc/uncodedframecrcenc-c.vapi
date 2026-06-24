@@ -81,7 +81,7 @@ public class UncodedFrameCRCMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
 
         }
 

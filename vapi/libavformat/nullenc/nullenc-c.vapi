@@ -71,7 +71,7 @@ public class NullMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS | AVFMT_NOFILE | AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.NO_FILE | AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

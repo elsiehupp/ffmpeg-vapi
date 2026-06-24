@@ -26,16 +26,14 @@ static const LibAVUtil.Option tedcaptions_options[] = {
     new LibAVUtil.Int64Option () {
         name = "start_time",
         short_help_text = "set the start time (offset) of the subtitles, in ms",
-        offsetof (
+        offset = offsetof (
             TEDCaptionsDemuxer,
             start_time
         ),
-        {
-            .i64 = 15000
-        },
-        int64.MIN,
-        int64.MAX,
-        .flags = LibAVUtil.OptionFlags.SUBTITLE_PARAM | LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 15000,
+        minimum_value = int64.MIN,
+        maximum_value = int64.MAX,
+        option_flags = LibAVUtil.OptionFlags.SUBTITLE_PARAM | LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

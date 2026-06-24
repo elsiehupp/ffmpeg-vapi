@@ -131,7 +131,7 @@ public class AADemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/aadec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NO_BYTE_SEEK | AVFMT_NOGENSEARCH;
+            return AVFormatFlags1.NO_BYTE_SEEK | AVFormatFlags1.NO_GENERIC_SEARCH;
 
         }
 

@@ -22,8 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/sndio.h")]
 [Compact]
 public class SndioData {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public sio_hdl? hdl;

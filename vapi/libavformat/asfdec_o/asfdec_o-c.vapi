@@ -95,7 +95,7 @@ public class ASFODemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH;
+            return AVFormatFlags1.NO_BINARY_SEARCH | AVFormatFlags1.NO_GENERIC_SEARCH;
 
         }
 

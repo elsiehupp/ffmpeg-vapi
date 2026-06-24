@@ -45,8 +45,8 @@ public class CodecHardwareConfig {
     /***********************************************************
     @brief The device type associated with the configuration.
 
-    Must be set for AV_CODEC_HW_CONFIG_METHOD_HW_DEVICE_CTX and
-    AV_CODEC_HW_CONFIG_METHOD_HW_FRAMES_CTX, otherwise unused.
+    Must be set for CodecHardwareConfigMethod.HARDWARE_DEVICE_CONTEXT and
+    CodecHardwareConfigMethod.HARDWARE_FRAMES_CONTEXT, otherwise unused.
     ***********************************************************/
     [CCode (cname="device_type")]
     public LibAVUtil.HardwareDeviceType device_type;

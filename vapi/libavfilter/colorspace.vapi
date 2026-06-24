@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public const float REFERENCE_WHITE; // 100.0f
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
+[CCode (cname="struct LumaCoefficients",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 [Compact]
 public class LumaCoefficients {
     [CCode (cname="")]
@@ -33,7 +33,7 @@ public class LumaCoefficients {
     public double cb;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
+[CCode (cname="struct PrimaryCoefficients",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 [Compact]
 public class PrimaryCoefficients {
     [CCode (cname="")]
@@ -55,7 +55,7 @@ public class PrimaryCoefficients {
     public double yb;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
+[CCode (cname="struct WhitepointCoefficients",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 [Compact]
 public class WhitepointCoefficients {
     [CCode (cname="")]

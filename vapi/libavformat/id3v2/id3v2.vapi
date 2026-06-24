@@ -31,38 +31,38 @@ public const size_t ID3v2_HEADER_SIZE; // 10
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public const string ID3v2_DEFAULT_MAGIC; // "ID3"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public enum ID3v2Flags {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
-    ID3v2_FLAG_DATALEN,
+    [CCode (cname="ID3v2_FLAG_DATALEN")]
+    DATA_LENGTH,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
-    ID3v2_FLAG_UNSYNCH,
+    [CCode (cname="ID3v2_FLAG_UNSYNCH")]
+    UNSYNCH,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
-    ID3v2_FLAG_ENCRYPTION,
+    [CCode (cname="ID3v2_FLAG_ENCRYPTION")]
+    ENCRYPTION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
-    ID3v2_FLAG_COMPRESSION;
+    [CCode (cname="ID3v2_FLAG_COMPRESSION")]
+    COMPRESSION;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public const string ID3v2_PRIV_METADATA_PREFIX;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+[CCode (cname="enum ID3v2Encoding",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public enum ID3v2Encoding {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
-    ID3v2_ENCODING_ISO8859,
+    [CCode (cname="ID3v2_ENCODING_ISO8859")]
+    ISO8859,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
-    ID3v2_ENCODING_UTF16BOM,
+    [CCode (cname="ID3v2_ENCODING_UTF16BOM")]
+    UTF16BOM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
-    ID3v2_ENCODING_UTF16BE,
+    [CCode (cname="ID3v2_ENCODING_UTF16BE")]
+    UTF16BE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
-    ID3v2_ENCODING_UTF8;
+    [CCode (cname="ID3v2_ENCODING_UTF8")]
+    UTF8;
 }
 
 [CCode (cname="struct ID3v2EncContext",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
@@ -71,96 +71,96 @@ public class ID3v2EncContext {
     /***********************************************************
     @brief ID3v2 minor version, either 3 or 4
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public int version;
 
     /***********************************************************
     @brief Offset of the tag total size
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public int64 size_pos;
 
     /***********************************************************
     @brief Size of the tag written so far
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public int len;
 }
 
 [CCode (cname="struct ID3v2ExtraMeta",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2ExtraMeta {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public string tag;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public void *data;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public ID3v2ExtraMeta? next;
 }
 
 [CCode (cname="struct ID3v2ExtraMetaGEOB",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2ExtraMetaGEOB {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint32 datasize;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint8[] mime_type;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint8[] file_name;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint8[] description;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint8[] data;
 }
 
 [CCode (cname="struct ID3v2ExtraMetaAPIC",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2ExtraMetaAPIC {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public LibAVUtil.BufferRef buffer;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public string type;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public string description;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public LibAVCodec.CodecID id;
 }
 
 [CCode (cname="struct ID3v2ExtraMetaPRIV",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2ExtraMetaPRIV {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint8[] owner;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint8[] data;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint32 datasize;
 }
 
 [CCode (cname="struct ID3v2ExtraMetaCHAP",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 [Compact]
 public class ID3v2ExtraMetaCHAP {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint8[] element_id;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint32 start;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public uint32 end;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
+    [CCode (cname="")]
     public LibAVUtil.Dictionary meta;
 }
 

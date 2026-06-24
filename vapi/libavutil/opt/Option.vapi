@@ -69,7 +69,7 @@ public const Option test_options[] = {
     {
         "test_int",
         short_help_text = "This is a test Option of int type.",
-        offsetof (
+        offset = offsetof (
             test_struct,
             int_opt
         ),
@@ -83,7 +83,7 @@ public const Option test_options[] = {
     {
         "test_str",
         short_help_text = "This is a test Option of string type.",
-        offsetof (
+        offset = offsetof (
             test_struct,
             str_opt
         ),
@@ -92,7 +92,7 @@ public const Option test_options[] = {
     {
         "test_bin",
         short_help_text = "This is a test Option of binary type.",
-        offsetof (
+        offset = offsetof (
             test_struct, bin_opt
         ),
         LibAVUtil.OptionType.BINARY
@@ -168,7 +168,7 @@ public void free_test_struct (out test_struct foo) {
     child_struct field:
 
     @code
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
+    [CCode (cname="struct ",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public struct child_struct {
         Class class;
 
@@ -176,12 +176,12 @@ public void free_test_struct (out test_struct foo) {
 
     } child_struct;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
+    [CCode (cname="child_opts ",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public const Option child_opts[] = {
         {
             "test_flags",
             "This is a test Option of flags type.",
-            offsetof (
+            offset = offsetof (
                 child_struct,
                 flags_opt
             ),
@@ -197,7 +197,7 @@ public void free_test_struct (out test_struct foo) {
         },
     }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
+    [CCode (cname="child_class",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public const Class child_class = {
         //  .class_name = "child class";
         //  .item_name = base.item_name,
@@ -242,21 +242,23 @@ public void free_test_struct (out test_struct foo) {
     {
         "test_flags",
         short_help_text = "This is a test Option of flags type.",
-        offsetof (child_struct, flags_opt),
+        offset = offsetof (
+            child_struct,
+            flags_opt
+        ),
         LibAVUtil.OptionType.FLAGS,
-        {
-            .i64 = 0
+        default_value = 0
         },
         int.MIN,
-        int.MAX, "test_unit"
+        int.MAX,
+        "test_unit"
     },
     {
         "flag1",
         short_help_text = "This is a flag with value 16",
         0,
         LibAVUtil.OptionType.CONST,
-        {
-            .i64 = 16
+        default_value = 16
         },
         0,
         0,
@@ -305,12 +307,14 @@ that cannot be set otherwise, since e.g. the input file format is not known
 before the file is actually opened.
 ***********************************************************/
 
-//  new LibAVUtil.Option () {
-//      name = ,
-//      short_help_text = ,
-//      offset = ,
-//      option_type = ,
-//  }
+new LibAVUtil.Option () {
+    name = ,
+    short_help_text = ,
+    offset = ,
+    option_type = ,
+    default_val = ,
+    unit =
+}
 
 /***********************************************************
 @brief Option
@@ -356,19 +360,22 @@ public class Option {
     //      ***********************************************************/
     //      [CCode (cname="")]
     //      public Rational q;
-    //  } default_val;
+    //  }
+
+    //  [CCode (cname="default_val")]
+    //  union default_value;
 
     /***********************************************************
     @brief Minimum valid value for the Option
     ***********************************************************/
     [CCode (cname="min")]
-    public double minimum;
+    public double minimum_value;
 
     /***********************************************************
     @brief Maximum valid value for the Option
     ***********************************************************/
     [CCode (cname="max")]
-    public double maximum;
+    public double maximum_value;
 
     [CCode (cname="flags")]
     public OptionFlags option_flags;
@@ -392,7 +399,7 @@ public class Option {
     @param[in] name The name of the Option to look for.
     @param[in] unit When searching for named constants, name of the unit
         it belongs to.
-    @param opt_flags Find only options with all the specified flags set (AV_OPT_FLAG).
+    @param opt_flags Find only options with all the specified flags set (OptionSearchFlags.FLAG).
     @param search_flags A combination of OptionSearchFlags.
 
     @return A pointer to the Option found, or null if no Option
@@ -423,7 +430,7 @@ public class Option {
     @param[in] name The name of the Option to look for.
     @param[in] unit When searching for named constants, name of the unit
         it belongs to.
-    @param opt_flags Find only options with all the specified flags set (AV_OPT_FLAG).
+    @param opt_flags Find only options with all the specified flags set (OptionSearchFlags.FLAG).
     @param search_flags A combination of OptionSearchFlags.
     @param[out] target_obj if non-null, an object to which the Option belongs will be
     written here. It may be different from obj if OptionSearchFlags.SEARCH_CHILDREN is present
@@ -547,7 +554,8 @@ public class Option {
 
     [CCode (cname="av_opt_set_pixel_fmt",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
     public int av_opt_set_pixel_fmt (
-        void *obj, string name,
+        void *obj,
+        string name,
         PixelFormat fmt,
         int search_flags
     );
@@ -622,7 +630,7 @@ public class Option {
     /***********************************************************
     @note the returned string will be av_malloc ()ed and must be av_free ()ed by the caller
 
-    @note if AV_OPT_ALLOW_NULL is set in search_flags in av_opt_get, and the Option has
+    @note if OptionSearchFlags.ALLOW_NULL is set in search_flags in av_opt_get, and the Option has
     LibAVUtil.OptionType.STRING or OptionType.BINARY and is set to null,? out_val will be set
     to null instead of an allocated empty string.
     ***********************************************************/
@@ -741,7 +749,7 @@ public class Option {
 
     @param flags is a bitmask of flags, undefined flags should not be set and should be ignored
         OptionSearchFlags.FAKE_OBJECT_PARAMETER indicates that the obj is a double pointer to a Class instead of a full instance
-        AV_OPT_MULTI_COMPONENT_RANGE indicates that function may return more than one component, @see @link OptionRangeList
+        OptionSearchFlags.MULTI_COMPONENT_RANGE indicates that function may return more than one component, @see @link OptionRangeList
 
     The result must be freed with av_opt_freep_ranges.
 
@@ -779,7 +787,7 @@ public class Option {
 
     @param flags is a bitmask of flags, undefined flags should not be set and should be ignored
         OptionSearchFlags.FAKE_OBJECT_PARAMETER indicates that the obj is a double pointer to a Class instead of a full instance
-        AV_OPT_MULTI_COMPONENT_RANGE indicates that function may return more than one component, @see @link OptionRangeList
+        OptionSearchFlags.MULTI_COMPONENT_RANGE indicates that function may return more than one component, @see @link OptionRangeList
 
     The result must be freed with av_opt_free_ranges.
 
@@ -1107,6 +1115,17 @@ public class LibAVUtil.IntOption : LibAVUtil.Int64Option {
 
     }
 
+    public int64 default_value {
+        public get {
+            return this.default_val.i64;
+        }
+
+        public set {
+            this.default_val.i64 = value;
+        }
+
+    }
+
 }
 
 public class LibAVUtil.Int64Option : LibAVUtil.Option {
@@ -1127,6 +1146,17 @@ public class LibAVUtil.DoubleOption : LibAVUtil.Option {
 
     }
 
+    public double default_value {
+        public get {
+            return this.default_val.dbl;
+        }
+
+        public set {
+            this.default_val.dbl = value;
+        }
+
+    }
+
 }
 
 public class LibAVUtil.FloatOption : LibAVUtil.DoubleOption {
@@ -1143,6 +1173,17 @@ public class LibAVUtil.StringOption : LibAVUtil.Option {
     public override OptionType option_type {
         public get {
             return LibAVUtil.OptionType.STRING;
+        }
+
+    }
+
+    public string default_value {
+        public get {
+            return this.default_val.str;
+        }
+
+        public set {
+            this.default_val.str = value;
         }
 
     }

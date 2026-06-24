@@ -55,67 +55,67 @@ public const uint PADDING_STREAM;
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
 public const uint PRIVATE_STREAM_2;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
 public enum MpegID {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    AUDIO_ID,
+    [CCode (cname="AUDIO_ID")]
+    AUDIO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    VIDEO_ID,
+    [CCode (cname="VIDEO_ID")]
+    VIDEO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    H264_ID,
+    [CCode (cname="H264_ID")]
+    H264,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    AC3_ID,
+    [CCode (cname="AC3_ID")]
+    AC3,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    DTS_ID,
+    [CCode (cname="DTS_ID")]
+    DTS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    LPCM_ID,
+    [CCode (cname="LPCM_ID")]
+    LPCM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    SUB_ID;
+    [CCode (cname="SUB_ID")]
+    SUB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-public enum StreamType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_VIDEO_MPEG1,
+[CCode (cname="enum StreamType",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+public enum MpegStreamType {
+    [CCode (cname="STREAM_TYPE_VIDEO_MPEG1")]
+    VIDEO_MPEG1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_VIDEO_MPEG2,
+    [CCode (cname="STREAM_TYPE_VIDEO_MPEG2")]
+    VIDEO_MPEG2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_AUDIO_MPEG1,
+    [CCode (cname="STREAM_TYPE_AUDIO_MPEG1")]
+    AUDIO_MPEG1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_AUDIO_MPEG2,
+    [CCode (cname="STREAM_TYPE_AUDIO_MPEG2")]
+    AUDIO_MPEG2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_PRIVATE_SECTION,
+    [CCode (cname="STREAM_TYPE_PRIVATE_SECTION")]
+    PRIVATE_SECTION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_PRIVATE_DATA,
+    [CCode (cname="STREAM_TYPE_PRIVATE_DATA")]
+    PRIVATE_DATA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_AUDIO_AAC,
+    [CCode (cname="STREAM_TYPE_AUDIO_AAC")]
+    AUDIO_AAC,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_VIDEO_MPEG4,
+    [CCode (cname="STREAM_TYPE_VIDEO_MPEG4")]
+    VIDEO_MPEG4,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_VIDEO_H264,
+    [CCode (cname="STREAM_TYPE_VIDEO_H264")]
+    VIDEO_H264,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_VIDEO_HEVC,
+    [CCode (cname="STREAM_TYPE_VIDEO_HEVC")]
+    VIDEO_HEVC,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_VIDEO_CAVS,
+    [CCode (cname="STREAM_TYPE_VIDEO_CAVS")]
+    VIDEO_CAVS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
-    STREAM_TYPE_AUDIO_AC3;
+    [CCode (cname="STREAM_TYPE_AUDIO_AC3")]
+    AUDIO_AC3;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]

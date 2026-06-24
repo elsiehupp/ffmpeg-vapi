@@ -26,58 +26,50 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "playlist",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             BlurayContext,
             playlist
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        99999,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = 99999,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "angle",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             BlurayContext,
             angle
         ),
-        {
-            .i64=0
-        },
-        0,
-        0xfe,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 0xfe,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "chapter",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             BlurayContext,
             chapter
         ),
-        {
-            .i64=1
-        },
-        1,
-        0xfffe,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 1,
+        minimum_value = 1,
+        maximum_value = 0xfffe,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     /*{
         "region",
         short_help_text = "bluray player region code (1 = region A, 2 = region B, 4 = region C)",
-        offsetof (
+        offset = offsetof (
             BlurayContext,
             region
         ),
-        {
-            .i64=0
-        },
-        0,
+        default_value = 0,
+        minimum_value = 0,
         3,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },*/
     {
         NULL

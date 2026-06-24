@@ -1,5 +1,4 @@
 [submodule "subprojects/ffmpeg"]
 	path = subprojects/ffmpeg
 	url = https://gitlab.freedesktop.org/gstreamer/meson-ports/ffmpeg.git
-[submodule "ffmpeg"]
 	branch = meson-8.1

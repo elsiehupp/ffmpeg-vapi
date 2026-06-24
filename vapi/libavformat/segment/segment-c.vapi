@@ -27,481 +27,413 @@ M3U8 specification can be find here:
 @url {http://tools.ietf.org/id/draft-pantos-http-live-streaming}
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "reference_stream",
         short_help_text = "set reference stream",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             reference_stream_specifier
         ),
-        {
-            .str = "auto"
-        },
-        char.MIN,
-        char.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "auto",
+        minimum_value = char.MIN,
+        maximum_value = char.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "segment_format",
         short_help_text = "set container format used for the segments",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             format
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "segment_format_options",
         short_help_text = "set list of options for the container format used for the segments",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             format_options_str
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "segment_list",
         short_help_text = "set the segment list filename",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             list
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "segment_header_filename",
         short_help_text = "write a single file containing the header",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             header_filename
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.FlagsOption () {
         name = "segment_list_flags","set flags affecting segment list generation",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             list_flags
         ),
-        {
-            .i64 = SEGMENT_LIST_FLAG_CACHE
-        },
-        0,
-        uint.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "list_flags"
+        default_value = SEGMENT_LIST_FLAG_CACHE,
+        minimum_value = 0,
+        maximum_value = uint.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "list_flags"
     },
     new LibAVUtil.ConstOption () {
         name = "cache",
         short_help_text = "allow list caching",
-        0,
-        {
-            .i64 = SEGMENT_LIST_FLAG_CACHE
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "list_flags"
+        offset = 0,
+        default_value = SEGMENT_LIST_FLAG_CACHE,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "list_flags"
     },
     new LibAVUtil.ConstOption () {
         name = "live",
         short_help_text = "enable live-friendly list generation (useful for HLS)",
-        0,
-        {
-            .i64 = SEGMENT_LIST_FLAG_LIVE
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "list_flags"
+        offset = 0,
+        default_value = SEGMENT_LIST_FLAG_LIVE,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "list_flags"
     },
     new LibAVUtil.IntOption () {
         name = "segment_list_size",
         short_help_text = "set the maximum number of playlist entries",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             list_size
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "segment_list_type",
         short_help_text = "set the segment list type",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             list_type
         ),
-        {
-            .i64 = LIST_TYPE_UNDEFINED
-        },
-        -1,
-        LIST_TYPE_NB - 1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "list_type"
+        default_value = LIST_TYPE_UNDEFINED,
+        minimum_value = -1,
+        maximum_value = (
+            LIST_TYPE_NB - 1
+        ),
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "list_type"
     },
     new LibAVUtil.ConstOption () {
         name = "flat",
         short_help_text = "flat format",
-        0,
-        {
-            .i64 = LIST_TYPE_FLAT
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "list_type"
+        offset = 0,
+        default_value = LIST_TYPE_FLAT,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "list_type"
     },
     new LibAVUtil.ConstOption () {
         name = "csv",
         short_help_text = "csv format",
-        0,
-        {
-            .i64 = LIST_TYPE_CSV
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "list_type"
+        offset = 0,
+        default_value = LIST_TYPE_CSV,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "list_type"
     },
     new LibAVUtil.ConstOption () {
         name = "ext",
         short_help_text = "extended format",
-        0,
-        {
-            .i64 = LIST_TYPE_EXT
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "list_type"
+        offset = 0,
+        default_value = LIST_TYPE_EXT,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "list_type"
     },
     new LibAVUtil.ConstOption () {
         name = "ffconcat",
         short_help_text = "ffconcat format",
-        0,
-        {
-            .i64 = LIST_TYPE_FFCONCAT
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "list_type"
+        offset = 0,
+        default_value = LIST_TYPE_FFCONCAT,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "list_type"
     },
     new LibAVUtil.ConstOption () {
         name = "m3u8",
         short_help_text = "M3U8 format",
-        0,
-        {
-            .i64 = LIST_TYPE_M3U8
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "list_type"
+        offset = 0,
+        default_value = LIST_TYPE_M3U8,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "list_type"
     },
     new LibAVUtil.ConstOption () {
         name = "hls",
         short_help_text = "Apple HTTP Live Streaming compatible",
-        0,
-        {
-            .i64 = LIST_TYPE_M3U8
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "list_type"
+        offset = 0,
+        default_value = LIST_TYPE_M3U8,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "list_type"
     },
     new LibAVUtil.BoolOption () {
         name = "segment_atclocktime",
         short_help_text = "set segment to be cut at clocktime",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             use_clocktime
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.DurationOption () {
         name = "segment_clocktime_offset",
         short_help_text = "set segment clocktime offset",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             clocktime_offset
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        86400000000LL,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 86400000000LL,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.DurationOption () {
         name = "segment_clocktime_wrap_duration",
         short_help_text = "set segment clocktime wrapping duration",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             clocktime_wrap_duration
         ),
-        {
-            .i64 = int64.MAX
-        },
-        0,
-        int64.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = int64.MAX,
+        minimum_value = 0,
+        maximum_value = int64.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "segment_time",
         short_help_text = "set segment duration",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             time_str
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.DurationOption () {
         name = "segment_time_delta","set approximation value used for the segment times",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             time_delta
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int64.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int64.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "segment_times",
         short_help_text = "set segment split time points",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             times_str
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "segment_frames",
         short_help_text = "set segment split frame numbers",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             frames_str
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "segment_wrap",
         short_help_text = "set number after which the index wraps",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             segment_idx_wrap
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "segment_list_entry_prefix",
         short_help_text = "set base url prefix for segments",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             entry_prefix
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "segment_start_number",
         short_help_text = "set the sequence number of the first segment",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             segment_idx
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "segment_wrap_number",
         short_help_text = "set the number of wrap before the first segment",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             segment_idx_wrap_nb
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "strftime",
         short_help_text = "set filename expansion with strftime at segment creation",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             use_strftime
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "increment_tc",
         short_help_text = "increment timecode between each segment",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             increment_tc
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "break_non_keyframes",
         short_help_text = "allow breaking segments on non-keyframes",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             break_non_keyframes
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "individual_header_trailer",
         short_help_text = "write header/trailer to each segment",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             individual_header_trailer
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "write_header_trailer",
         short_help_text = "write a header to the first segment and a trailer to the last one",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             write_header_trailer
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "reset_timestamps",
         short_help_text = "reset timestamps at the beginning of each segment",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             reset_timestamps
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.DurationOption () {
         name = "initial_offset",
         short_help_text = "set initial timestamp offset",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             initial_offset
         ),
-        {
-            .i64 = 0
-        },
-        -int64.MAX,
-        int64.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = -int64.MAX,
+        maximum_value = int64.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "write_empty_segments",
         short_help_text = "allow writing empty 'filler' segments",
-        offsetof (
+        offset = offsetof (
             SegmentContext,
             write_empty
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -576,7 +508,7 @@ public class SegmentMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/segment.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOFILE | AVFMT_GLOBALHEADER;
+            return AVFormatFlags1.NO_FILE | AVFormatFlags1.WANTS_GLOBAL_HEADER;
 
         }
 
@@ -685,7 +617,7 @@ public class StreamSegmentMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/segment.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOFILE;
+            return AVFormatFlags1.NO_FILE;
 
         }
 

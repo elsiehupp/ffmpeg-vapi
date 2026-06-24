@@ -122,26 +122,26 @@ public int ff_network_sleep_interruptible (
 
 #if !HAVE_STRUCT_SOCKADDR_STORAGE
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="struct sockaddr_storage",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
 [Compact]
 public class sockaddr_storage {
 #if HAVE_STRUCT_SOCKADDR_SA_LEN
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public uint8 ss_len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public uint8 ss_family;
 #else
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public uint16 ss_family;
 #endif // HAVE_STRUCT_SOCKADDR_SA_LEN
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public char ss_pad1[6];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public int64 ss_align;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public char ss_pad2[112];
 }
 #endif // !HAVE_STRUCT_SOCKADDR_STORAGE
@@ -149,14 +149,14 @@ public class sockaddr_storage {
 [CCode (cname="struct sockaddr_union",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
 [Compact]
 public class sockaddr_union {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public sockaddr_storage storage;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public Posix.SockAddrIn in;
 
 #if HAVE_STRUCT_SOCKADDR_IN6
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public Posix.SockAddrIn6 in6;
 #endif
 }
@@ -169,125 +169,126 @@ public const int MSG_NOSIGNAL, // 0
 
 #if !HAVE_STRUCT_ADDRINFO
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="struct addrinfo",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
 [Compact]
 public class addrinfo {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public int ai_flags;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public int ai_family;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public int ai_socktype;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public int ai_protocol;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public int ai_addrlen;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public Posix.SockAddr ai_addr;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public string ai_canonname;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     public addrinfo? ai_next;
 }
 #endif // !HAVE_STRUCT_ADDRINFO
 
 [Flags]
-public enum FooBar {
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+public enum AddrInfoError {
     /***********************************************************
     @brief ff_getaddrinfo constants
     ***********************************************************/
 #if !EAI_AGAIN
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     EAI_AGAIN, // 2
 #endif
 
 #if !EAI_BADFLAGS
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     EAI_BADFLAGS, // 3
 #endif
 
 #if !EAI_FAIL
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     EAI_FAIL, // 4
 #endif
 
 #if !EAI_FAMILY
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     EAI_FAMILY, // 5
 #endif
 
 #if !EAI_MEMORY
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     EAI_MEMORY, // 6
 #endif
 
 #if !EAI_NODATA
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     EAI_NODATA, // 7
 #endif
 
 #if !EAI_NONAME
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     EAI_NONAME, // 8
 #endif
 
 #if !EAI_SERVICE
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     EAI_SERVICE, // 9
 #endif
 
 #if !EAI_SOCKTYPE
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     EAI_SOCKTYPE; // 10
 #endif
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
-public enum FooBar {
+public enum AddrInfoFlags {
 #if !AI_PASSIVE
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     AI_PASSIVE, // 1
 #endif
 
 #if !AI_CANONNAME
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     AI_CANONNAME, // 2
 #endif
 
 #if !AI_NUMERICHOST
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     AI_NUMERICHOST, // 4
 #endif
 
 #if !NI_NOFQDN
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     NI_NOFQDN, // 1
 #endif
 
 #if !NI_NUMERICHOST
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     NI_NUMERICHOST, // 2
 #endif
 
 #if !NI_NAMERQD
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     NI_NAMERQD, // 4
 #endif
 
 #if !NI_NUMERICSERV
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     NI_NUMERICSERV, // 8
 #endif
 
 #if !NI_DGRAM
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+    [CCode (cname="")]
     NI_DGRAM; // 16
 #endif
 }

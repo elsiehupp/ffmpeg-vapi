@@ -66,7 +66,7 @@ public enum CPUCapabilityFlags {
     /***********************************************************
     @brief AMD 3DNowExt
     ***********************************************************/
-    3DNOWEXT,
+    @3DNOWEXT,
 
     /***********************************************************
     @brief Prescott SSE3 functions
@@ -77,7 +77,8 @@ public enum CPUCapabilityFlags {
     @brief SSE3 supported, but usually not faster than regular MMX/SSE
     (e.g. Core1)
     ***********************************************************/
-    SSE3SLOW,
+    [CCode (cname="AV_CPU_FLAG_SSE3SLOW")]
+    SSE3_SLOW,
 
     /***********************************************************
     @brief Conroe SSSE3 functions
@@ -87,7 +88,8 @@ public enum CPUCapabilityFlags {
     /***********************************************************
     @brief SSSE3 supported, but usually not faster
     ***********************************************************/
-    SSSE3SLOW,
+    [CCode (cname="AV_CPU_FLAG_SSSE3SLOW")]
+    SSSE3_SLOW,
 
     /***********************************************************
     @brief Atom processor, some SSSE3 instructions are slower
@@ -119,7 +121,8 @@ public enum CPUCapabilityFlags {
     @brief AVX supported, but slow when using YMM registers (e.g.
     Bulldozer)
     ***********************************************************/
-    AVXSLOW,
+    [CCode (cname="AV_CPU_FLAG_AVXSLOW")]
+    AVX_SLOW,
 
     /***********************************************************
     @brief Bulldozer XOP functions
@@ -191,23 +194,25 @@ public enum CPUCapabilityFlags {
     various CPUs implementations
     ***********************************************************/
     VFP_VM,
-    SETEND;
+
+    [CCode (cname="AV_CPU_FLAG_SETEND")]
+    SET_END;
 
     /***********************************************************
     @brief Return the flags which specify extensions supported by the CPU.
-    The returned value is affected by av_force_cpu_flags () if that was used
-    before. So av_get_cpu_flags () can easily be used in an application to
+    The returned value is affected by CPUCapabilityFlags.force () if that was used
+    before. So CPUCapabilityFlags.for_this_device () can easily be used in an application to
     detect the enabled cpu flags.
     ***********************************************************/
     [CCode (cname="av_get_cpu_flags",cheader_filename="subprojects/ffmpeg/libavutil/cpu.h")]
-    public static CPUCapabilityFlags av_get_cpu_flags ();
+    public static CPUCapabilityFlags for_this_device ();
 
     /***********************************************************
     @brief Disables cpu detection and forces the specified flags.
     -1 is a special case that disables forcing of specific flags.
     ***********************************************************/
     [CCode (cname="av_force_cpu_flags",cheader_filename="subprojects/ffmpeg/libavutil/cpu.h")]
-    public static void av_force_cpu_flags (
+    public static void force (
         CPUCapabilityFlags flags
     );
 
@@ -217,7 +222,7 @@ public enum CPUCapabilityFlags {
     @return negative on error.
     ***********************************************************/
     [CCode (cname="av_parse_cpu_caps",cheader_filename="subprojects/ffmpeg/libavutil/cpu.h")]
-    public static int av_parse_cpu_caps (
+    public static int parse_from_string (
         out CPUCapabilityFlags flags,
         string s
     );

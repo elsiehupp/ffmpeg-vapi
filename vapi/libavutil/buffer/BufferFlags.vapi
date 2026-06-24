@@ -24,17 +24,15 @@ refcounted data buffer API
 ***********************************************************/
 
 [Flags]
-[CCode (cname="enum AVBufferFlags",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
+[CCode (cname="enum AVBufferFlags",cprefix="AV_BUFFER_FLAG_",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public enum BufferFlags {
     /***********************************************************
     @brief Always treat the buffer as read-only, even when it has only one
     reference.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_BUFFER_FLAG_READONLY;
+    READONLY;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/buffer.h")]
 public delegate void FreeDelegate (
     void *opaque,
     uint8[] data

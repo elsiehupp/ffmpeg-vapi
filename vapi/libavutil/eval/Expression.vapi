@@ -25,13 +25,13 @@ namespace LibAVUtil {
 @file simple arithmetic expression evaluator
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/eval.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavutil/eval.h")]
 public delegate double OneArgumentDelegate (
     void *arg0,
     double arg1
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/eval.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavutil/eval.h")]
 public delegate double TwoArgumentDelegate (
     void *arg0,
     double arg1,

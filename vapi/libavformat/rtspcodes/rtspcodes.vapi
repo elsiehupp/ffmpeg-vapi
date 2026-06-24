@@ -27,139 +27,62 @@ namespace LibAVFormat {
 /***********************************************************
 @brief RTSP handling
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
+[CCode (cname="enum RTSPStatusCode",cprefix="RTSP_STATUS_",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
 public enum RTSPStatusCode {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_CONTINUE,
+    CONTINUE,
+    OK,
+    CREATED,
+    LOW_ON_STORAGE_SPACE,
+    MULTIPLE_CHOICES,
+    MOVED_PERMANENTLY,
+    MOVED_TEMPORARILY,
+    SEE_OTHER,
+    NOT_MODIFIED,
+    USE_PROXY,
+    BAD_REQUEST,
+    UNAUTHORIZED,
+    PAYMENT_REQUIRED,
+    FORBIDDEN,
+    NOT_FOUND,
+    METHOD,
+    NOT_ACCEPTABLE,
+    PROXY_AUTH_REQUIRED,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_OK,
+    [CCode (cname="RTSP_STATUS_REQ_TIME_OUT")]
+    REQUEST_TIME_OUT,
+    GONE,
+    LENGTH_REQUIRED,
+    PRECONDITION_FAILED,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_CREATED,
+    [CCode (cname="RTSP_STATUS_REQ_ENTITY_2LARGE")]
+    REQUEST_ENTITY_TOO_LARGE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_LOW_ON_STORAGE_SPACE,
+    [CCode (cname="RTSP_STATUS_REQ_URI_2LARGE")]
+    REQUEST_URI_TOO_LARGE,
+    UNSUPPORTED_MTYPE,
+    PARAM_NOT_UNDERSTOOD,
+    CONFERENCE_NOT_FOUND,
+    BANDWIDTH,
+    SESSION,
+    STATE,
+    INVALID_HEADER_FIELD,
+    INVALID_RANGE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_MULTIPLE_CHOICES,
+    [CCode (cname="RTSP_STATUS_RONLY_PARAMETER")]
+    READ_ONLY_PARAMETER,
+    AGGREGATE,
+    ONLY_AGGREGATE,
+    TRANSPORT,
+    UNREACHABLE,
+    INTERNAL,
+    NOT_IMPLEMENTED,
+    BAD_GATEWAY,
+    SERVICE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_MOVED_PERMANENTLY,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_MOVED_TEMPORARILY,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_SEE_OTHER,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_NOT_MODIFIED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_USE_PROXY,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_BAD_REQUEST,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_UNAUTHORIZED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_PAYMENT_REQUIRED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_FORBIDDEN,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_NOT_FOUND,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_METHOD,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_NOT_ACCEPTABLE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_PROXY_AUTH_REQUIRED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_REQ_TIME_OUT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_GONE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_LENGTH_REQUIRED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_PRECONDITION_FAILED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_REQ_ENTITY_2LARGE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_REQ_URI_2LARGE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_UNSUPPORTED_MTYPE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_PARAM_NOT_UNDERSTOOD,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_CONFERENCE_NOT_FOUND,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_BANDWIDTH,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_SESSION,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_STATE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_INVALID_HEADER_FIELD,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_INVALID_RANGE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_RONLY_PARAMETER,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_AGGREGATE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_ONLY_AGGREGATE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_TRANSPORT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_UNREACHABLE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_INTERNAL,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_NOT_IMPLEMENTED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_BAD_GATEWAY,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_SERVICE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_GATEWAY_TIME_OUT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_VERSION,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
-    RTSP_STATUS_UNSUPPORTED_OPTION;
+    [CCode (cname="RTSP_STATUS_GATEWAY_TIME_OUT")]
+    GATEWAY_TIMEOUT,
+    VERSION,
+    UNSUPPORTED_OPTION;
 }
 
 //  public const av_unused string const rtsp_status_strings[] = {
@@ -214,42 +137,19 @@ public static string RTSP_STATUS_CODE2STRING (
     RTSPStatusCode x
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
+[CCode (cname="enum RTSPMethod",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
 public enum RTSPMethod {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     DESCRIBE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     ANNOUNCE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     OPTIONS,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     SETUP,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     PLAY,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     PAUSE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     TEARDOWN,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     GET_PARAMETER,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     SET_PARAMETER,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     REDIRECT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     RECORD,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
     UNKNOWN;
 }
 

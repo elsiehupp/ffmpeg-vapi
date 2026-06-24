@@ -62,20 +62,20 @@ public void ff_put_bmp_header (
     int ignore_extradata
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public enum PutWAVHeaderFlags {
     /***********************************************************
     @brief Tell ff_put_wav_header () to use WAVEFORMATEX even for PCM codecs.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
-    FF_PUT_WAV_HEADER_FORCE_WAVEFORMATEX,
+    [CCode (cname="FF_PUT_WAV_HEADER_FORCE_WAVEFORMATEX")]
+    FORCE_WAVE_FORMAT_EX,
 
     /***********************************************************
     @brief Tell ff_put_wav_header () to write an empty channel mask.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
-    FF_PUT_WAV_HEADER_SKIP_CHANNELMASK;
+    [CCode (cname="FF_PUT_WAV_HEADER_SKIP_CHANNELMASK")]
+    SKIP_CHANNEL_MASK;
 }
 
 /***********************************************************
@@ -152,10 +152,10 @@ public class ff_asf_guid { }
 [CCode (cname="struct AVCodecGuid",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 [Compact]
 public class AVCodecGuid {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
+    [CCode (cname="")]
     public LibAVCodec.CodecID id;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
+    [CCode (cname="")]
     public ff_asf_guid guid;
 }
 

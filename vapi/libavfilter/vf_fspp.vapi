@@ -42,44 +42,41 @@ public define THRESHOLD (r,x,t)                         \
     else r = 0;
 public define DESCALE (x,n)  (((x) + (1 << ((n) - 1))) >> n)
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-public typedef int32 int_simd16_t;
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
+public enum Fix { // int16
+    [CCode (cname="FIX_0_382683433")]
+    @0_382683433, // = FIX (0.382683433, 14);
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-public enum FooBar { // int16
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-    FIX_0_382683433, // = FIX (0.382683433, 14);
+    [CCode (cname="FIX_0_541196100")]
+    @0_541196100, // = FIX (0.541196100, 14);
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-    FIX_0_541196100, // = FIX (0.541196100, 14);
+    [CCode (cname="FIX_0_707106781")]
+    @0_707106781, // = FIX (M_SQRT1_2, 14);
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-    FIX_0_707106781, // = FIX (M_SQRT1_2, 14);
+    [CCode (cname="FIX_1_306562965")]
+    @1_306562965, // = FIX (1.306562965, 14);
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-    FIX_1_306562965, // = FIX (1.306562965, 14);
+    [CCode (cname="FIX_1_414213562_A")]
+    @1_414213562_A, // = FIX (M_SQRT2, 14);
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-    FIX_1_414213562_A, // = FIX (M_SQRT2, 14);
+    [CCode (cname="FIX_1_847759065")]
+    @1_847759065, // = FIX (1.847759065, 13);
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-    FIX_1_847759065, // = FIX (1.847759065, 13);
+    [CCode (cname="FIX_2_613125930")]
+    @2_613125930, // = FIX (-2.613125930, 13);
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-    FIX_2_613125930, // = FIX (-2.613125930, 13);
+    [CCode (cname="FIX_1_414213562")]
+    @1_414213562, // = FIX (M_SQRT2, 13);
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-    FIX_1_414213562, // = FIX (M_SQRT2, 13);
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
-    FIX_1_082392200; // = FIX (1.082392200, 13);
+    [CCode (cname="FIX_1_082392200")]
+    @1_082392200; // = FIX (1.082392200, 13);
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_fspp.h")]
 [Compact]
 public class FSPPContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public uint64 threshold_mtx_noq[8 * 2];

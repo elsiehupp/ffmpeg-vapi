@@ -34,7 +34,7 @@ Get a frame with filtered data from sink and put it in frame.
 @param av_filter_context    pointer to a buffersink or abuffersink filter context.
 @param frame  pointer to an allocated frame that will be filled with data.
               The data must be freed using av_frame_unref () / av_frame_free ()
-@param flags  a combination of AV_BUFFERSINK_FLAG_* flags
+@param flags  a combination of AVBufferSinkFlags flags
 
 @return  >= 0 in for success, a negative AVERROR code for failure.
 ***********************************************************/
@@ -42,26 +42,27 @@ Get a frame with filtered data from sink and put it in frame.
 public int av_buffersink_get_frame_flags (
     AVFilterContext? av_filter_context,
     AVFrame? frame,
-    int flags
+    AVBufferSinkFlags flags
 );
 
 [Flags]
-public enum FooBar {
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
+public enum AVBufferSinkFlags {
     /***********************************************************
     Tell av_buffersink_get_buffer_ref () to read video/samples buffer
     reference, but not remove it from the buffer. This is useful if you
     need only to read a video/samples buffer, without to fetch it.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
-    AV_BUFFERSINK_FLAG_PEEK, // 1
+    [CCode (cname="AV_BUFFERSINK_FLAG_PEEK")]
+    PEEK, // 1
 
     /***********************************************************
     Tell av_buffersink_get_buffer_ref () not to request a frame from its input.
     If a frame is already buffered, it is read (and removed from the buffer),
     but if no frame is present, return AVERROR (EAGAIN).
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
-    AV_BUFFERSINK_FLAG_NO_REQUEST; // 2
+    [CCode (cname="AV_BUFFERSINK_FLAG_NO_REQUEST")]
+    NO_REQUEST; // 2
 }
 
 /***********************************************************

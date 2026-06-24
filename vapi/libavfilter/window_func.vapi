@@ -18,72 +18,73 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
+[CCode (cname="enum WindowFunc",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
 public enum WindowFunc {
-    WFUNC_RECT,
+    [CCode (cname="WFUNC_RECT")]
+    RECT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_HANNING,
+    [CCode (cname="WFUNC_HANNING")]
+    HANNING,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_HAMMING,
+    [CCode (cname="WFUNC_HAMMING")]
+    HAMMING,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_BLACKMAN,
+    [CCode (cname="WFUNC_BLACKMAN")]
+    BLACKMAN,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_BARTLETT,
+    [CCode (cname="WFUNC_BARTLETT")]
+    BARTLETT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_WELCH,
+    [CCode (cname="WFUNC_WELCH")]
+    WELCH,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_FLATTOP,
+    [CCode (cname="WFUNC_FLATTOP")]
+    FLATTOP,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_BHARRIS,
+    [CCode (cname="WFUNC_BHARRIS")]
+    BHARRIS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_BNUTTALL,
+    [CCode (cname="WFUNC_BNUTTALL")]
+    BNUTTALL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_SINE,
+    [CCode (cname="WFUNC_SINE")]
+    SINE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_NUTTALL,
+    [CCode (cname="WFUNC_NUTTALL")]
+    NUTTALL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_BHANN,
+    [CCode (cname="WFUNC_BHANN")]
+    BHANN,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_LANCZOS,
+    [CCode (cname="WFUNC_LANCZOS")]
+    LANCZOS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_GAUSS,
+    [CCode (cname="WFUNC_GAUSS")]
+    GAUSS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_TUKEY,
+    [CCode (cname="WFUNC_TUKEY")]
+    TUKEY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_DOLPH,
+    [CCode (cname="WFUNC_DOLPH")]
+    DOLPH,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_CAUCHY,
+    [CCode (cname="WFUNC_CAUCHY")]
+    CAUCHY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_PARZEN,
+    [CCode (cname="WFUNC_PARZEN")]
+    PARZEN,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_POISSON,
+    [CCode (cname="WFUNC_POISSON")]
+    POISSON,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    WFUNC_BOHMAN,
+    [CCode (cname="WFUNC_BOHMAN")]
+    BOHMAN,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
-    NB_WFUNC;
+    [CCode (cname="NB_WFUNC")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
+[CCode (cname="generate_window_func",cheader_filename="subprojects/ffmpeg/libavfilter/window_func.h")]
 public static inline void generate_window_func (
     float[] lut,
     int N,

@@ -62,7 +62,7 @@ public class ACMDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOBINSEARCH | AVFMT_NOGENSEARCH | AVFMT_NO_BYTE_SEEK | AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_BINARY_SEARCH | AVFormatFlags1.NO_GENERIC_SEARCH | AVFormatFlags1.NO_BYTE_SEEK | AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

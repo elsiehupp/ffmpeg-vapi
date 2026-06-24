@@ -27,11 +27,16 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum ErrorConcealmentFlags {
-    FF_EC_GUESS_MVS,
-    FF_EC_DEBLOCK,
-    FF_EC_FAVOR_INTER;
+    [CCode (cname="FF_EC_GUESS_MVS")]
+    GUESS_MVS,
+
+    [CCode (cname="FF_EC_DEBLOCK")]
+    DEBLOCK,
+
+    [CCode (cname="FF_EC_FAVOR_INTER")]
+    FAVOR_INTER;
 }
 
 } // namespace LibAVCodec

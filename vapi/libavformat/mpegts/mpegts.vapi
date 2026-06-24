@@ -43,91 +43,91 @@ public const size_t MAX_SECTION_SIZE;
 /***********************************************************
 @brief Pids
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
 public enum MpegTransportStreamPID {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    PAT_PID,
+    [CCode (cname="PAT_PID")]
+    PAT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    SDT_PID;
+    [CCode (cname="SDT_PID")]
+    SDT;
 }
 
 /***********************************************************
 @brief Table ids
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
 public enum MpegTransportStreamTableID {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    PAT_TID,
+    [CCode (cname="PAT_TID")]
+    PAT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    PMT_TID,
+    [CCode (cname="PMT_TID")]
+    PMT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    M4OD_TID,
+    [CCode (cname="M4OD_TID")]
+    M4OD,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    SDT_TID;
+    [CCode (cname="SDT_TID")]
+    SDT;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
 public enum MpegTransportStreamType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_VIDEO_MPEG1,
+    [CCode (cname="STREAM_TYPE_VIDEO_MPEG1")]
+    VIDEO_MPEG1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_VIDEO_MPEG2,
+    [CCode (cname="STREAM_TYPE_VIDEO_MPEG2")]
+    VIDEO_MPEG2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_AUDIO_MPEG1,
+    [CCode (cname="STREAM_TYPE_AUDIO_MPEG1")]
+    AUDIO_MPEG1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_AUDIO_MPEG2,
+    [CCode (cname="STREAM_TYPE_AUDIO_MPEG2")]
+    AUDIO_MPEG2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_PRIVATE_SECTION,
+    [CCode (cname="STREAM_TYPE_PRIVATE_SECTION")]
+    PRIVATE_SECTION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_PRIVATE_DATA,
+    [CCode (cname="STREAM_TYPE_PRIVATE_DATA")]
+    PRIVATE_DATA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_AUDIO_AAC,
+    [CCode (cname="STREAM_TYPE_AUDIO_AAC")]
+    AUDIO_AAC,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_AUDIO_AAC_LATM,
+    [CCode (cname="STREAM_TYPE_AUDIO_AAC_LATM")]
+    AUDIO_AAC_LATM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_VIDEO_MPEG4,
+    [CCode (cname="STREAM_TYPE_VIDEO_MPEG4")]
+    VIDEO_MPEG4,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_METADATA,
+    [CCode (cname="STREAM_TYPE_METADATA")]
+    METADATA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_VIDEO_H264,
+    [CCode (cname="STREAM_TYPE_VIDEO_H264")]
+    VIDEO_H264,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_VIDEO_HEVC,
+    [CCode (cname="STREAM_TYPE_VIDEO_HEVC")]
+    VIDEO_HEVC,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_VIDEO_CAVS,
+    [CCode (cname="STREAM_TYPE_VIDEO_CAVS")]
+    VIDEO_CAVS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_VIDEO_VC1,
+    [CCode (cname="STREAM_TYPE_VIDEO_VC1")]
+    VIDEO_VC1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_VIDEO_DIRAC,
+    [CCode (cname="STREAM_TYPE_VIDEO_DIRAC")]
+    VIDEO_DIRAC,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_AUDIO_AC3,
+    [CCode (cname="STREAM_TYPE_AUDIO_AC3")]
+    AUDIO_AC3,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_AUDIO_DTS,
+    [CCode (cname="STREAM_TYPE_AUDIO_DTS")]
+    AUDIO_DTS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_AUDIO_TRUEHD,
+    [CCode (cname="STREAM_TYPE_AUDIO_TRUEHD")]
+    AUDIO_TRUEHD,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
-    STREAM_TYPE_AUDIO_EAC3;
+    [CCode (cname="STREAM_TYPE_AUDIO_EAC3")]
+    AUDIO_EAC3;
 }
 
 [CCode (cname="struct MpegTSContext",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
@@ -156,62 +156,62 @@ public class MpegTSContext {
 [CCode (cname="struct SLConfigDescr",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
 [Compact]
 public class SLConfigDescr {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int use_au_start;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int use_au_end;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int use_rand_acc_pt;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int use_padding;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int use_timestamps;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int use_idle;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int timestamp_res;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int timestamp_len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int ocr_len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int au_len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int inst_bitrate_len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int degr_prior_len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int au_seq_num_len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int packet_seq_num_len;
 }
 
 [CCode (cname="struct Mp4Descr",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
 [Compact]
 public class Mp4Descr {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int es_id;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public int dec_config_descr_len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public uint8[] dec_config_descr;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="")]
     public SLConfigDescr sl;
 }
 
@@ -219,7 +219,7 @@ public class Mp4Descr {
 @brief Parse an MPEG-2 descriptor
 @param[in] fc Format context (used for logging only)
 @param st Stream
-@param stream_type STREAM_TYPE_xxx
+@param stream_type MpegTransportStreamType
 @param pp Descriptor buffer pointer
 @param desc_list_end End of buffer
 @return <0 to stop processing
@@ -228,7 +228,7 @@ public class Mp4Descr {
 public int ff_parse_mpeg2_descriptor (
     AVFormatContext fc,
     AVStream st,
-    int stream_type,
+    MpegTransportStreamType stream_type,
     out uint8[] pp,
     out uint8 desc_list_end,
     Mp4Descr mp4_descr,

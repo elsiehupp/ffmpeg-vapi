@@ -33,7 +33,7 @@ public class OpusCodec : OggCodec {
 
     }
 
-    [CCode (cname="")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "OpusHead".data;
@@ -41,7 +41,14 @@ public class OpusCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 8,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 8;
+        }
+
+    }
 
     [CCode (cname="opus_header",cheader_filename="")]
     public override int header (
@@ -54,7 +61,15 @@ public class OpusCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
-    //  .nb_header = 1;
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 1;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

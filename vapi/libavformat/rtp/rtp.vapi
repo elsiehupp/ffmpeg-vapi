@@ -118,57 +118,59 @@ public const uint32 RTP_XIPH_IDENT; // 0xfecdba
 /***********************************************************
 @brief RTCP packet types
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+[CCode (cname="enum RTCPType",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
 public enum RTCPType {
-    RTCP_FIR, // 192
+    [CCode (cname="RTCP_FIR")]
+    FIR, // 192
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_NACK, // 193
+    [CCode (cname="RTCP_NACK")]
+    NACK, // 193
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_SMPTETC,// 194
+    [CCode (cname="RTCP_SMPTETC")]
+    SMPTETC, // 194
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_IJ, // 195
+    [CCode (cname="RTCP_IJ")]
+    IJ, // 195
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_SR, // 200
+    [CCode (cname="RTCP_SR")]
+    SR, // 200
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_RR, // 201
+    [CCode (cname="RTCP_RR")]
+    RR, // 201
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_SDES, // 202
+    [CCode (cname="RTCP_SDES")]
+    SDES, // 202
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_BYE, // 203
+    [CCode (cname="RTCP_BYE")]
+    BYE, // 203
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_APP, // 204
+    [CCode (cname="RTCP_APP")]
+    APP, // 204
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_RTPFB, // 205
+    [CCode (cname="RTCP_RTPFB")]
+    RTPFB, // 205
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_PSFB, // 206
+    [CCode (cname="RTCP_PSFB")]
+    PSFB, // 206
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_XR, // 207
+    [CCode (cname="RTCP_XR")]
+    XR, // 207
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_AVB, // 208
+    [CCode (cname="RTCP_AVB")]
+    AVB, // 208
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_RSI, // 209
+    [CCode (cname="RTCP_RSI")]
+    RSI, // 209
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-    RTCP_TOKEN,// 210
+    [CCode (cname="RTCP_TOKEN")]
+    TOKEN; // 210
+
+    [CCode (cname="RTP_PT_IS_RTCP",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+    public static bool is_rtcp (
+        RTCPType x
+    );
+
 }
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
-public static bool RTP_PT_IS_RTCP (
-    RTCPType x
-);
 
 //  #define NTP_TO_RTP_FORMAT (x) av_rescale ((x), INT64_C (1) << 32, 1000000)
 

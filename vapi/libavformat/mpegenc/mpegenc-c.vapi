@@ -22,37 +22,39 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "muxrate",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             MpegMuxContext,
             user_mux_rate
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        (
-            (1<<22) - 1) * (8 * 50
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = (
+            (
+                (
+                    1 << 22
+                ) - 1
+            ) * (
+                8 * 50
+            )
         ),
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "preload",
         short_help_text = "Initial demux-decode delay in microseconds.",
-        offsetof (
+        offset = offsetof (
             MpegMuxContext,
             preload
         ),
-        {
-            .i64 = 500000
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 500000,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL

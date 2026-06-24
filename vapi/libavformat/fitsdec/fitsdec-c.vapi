@@ -30,16 +30,14 @@ static const LibAVUtil.Option fits_options[] = {
     new LibAVUtil.VideoRateOption () {
         name = "framerate",
         short_help_text = "set the framerate",
-        offsetof (
+        offset = offsetof (
             FITSContext,
             framerate
         ),
-        {
-            .str = "1"
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "1",
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

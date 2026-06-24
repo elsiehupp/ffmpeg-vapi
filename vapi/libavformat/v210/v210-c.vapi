@@ -22,35 +22,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="v210_options",cheader_filename="")]
 static const LibAVUtil.Option v210_options[] = {
     new LibAVUtil.ImageSizeOption () {
         name = "video_size",
         short_help_text = "set frame size",
-        offsetof (
+        offset = offsetof (
             V210DemuxerContext,
             width
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.VideoRateOption () {
         name = "framerate",
         short_help_text = "set frame rate",
-        offsetof (
+        offset = offsetof (
             V210DemuxerContext,
             framerate
         ),
-        {
-            .str = "25"
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "25",
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -134,7 +130,7 @@ public class V210Demuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/v210.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 
@@ -237,7 +233,7 @@ public class V210XDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/v210.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

@@ -21,22 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "timeout",
         short_help_text = "set timeout in ms of socket I/O operations",
-        offsetof (
+        offset = offsetof (
             LIBSMBContext,
             timeout
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -44,17 +41,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "truncate",
         short_help_text = "truncate existing files on write",
-        offsetof (
+        offset = offsetof (
             LIBSMBContext,
             trunc
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-
-        .flags = (
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -62,17 +56,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "workgroup",
         short_help_text = "set the workgroup used for making connections",
-        offsetof (
+        offset = offsetof (
             LIBSMBContext,
             workgroup
         ),
-        {
-            0
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -202,7 +193,7 @@ public class LibSMBClientURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/libsmbclient.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 

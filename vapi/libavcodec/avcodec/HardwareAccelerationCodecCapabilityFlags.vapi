@@ -30,9 +30,10 @@ LibAVCodec external API header
 @brief HWAccel is experimental and is thus avoided in favor of non experimental
 codecs
 ***********************************************************/
+[Flags]
 [CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public enum HardwareAccelerationCapabilities {
-    [CCode (cname="AV_HWACCEL_CODEC_CAP_EXPERIMENTAL",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+public enum HardwareAccelerationCodecCapabilityFlags {
+    [CCode (cname="AV_HWACCEL_CODEC_CAP_EXPERIMENTAL")]
     EXPERIMENTAL;
 }
 

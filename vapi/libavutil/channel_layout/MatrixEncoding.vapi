@@ -30,16 +30,26 @@ namespace LibAVUtil {
 @addtogroup LibAVUtil.Audio
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavutil/channel_layout.h")]
+[CCode (cprefix="AV_MATRIX_ENCODING_",cheader_filename="subprojects/ffmpeg/libavutil/channel_layout.h")]
 public enum MatrixEncoding {
-    AV_MATRIX_ENCODING_NONE,
-    AV_MATRIX_ENCODING_DOLBY,
-    AV_MATRIX_ENCODING_DPLII,
-    AV_MATRIX_ENCODING_DPLIIX,
-    AV_MATRIX_ENCODING_DPLIIZ,
-    AV_MATRIX_ENCODING_DOLBYEX,
-    AV_MATRIX_ENCODING_DOLBYHEADPHONE,
-    AV_MATRIX_ENCODING_NB
+    NONE,
+    DOLBY,
+
+    [CCode (cname="AV_MATRIX_ENCODING_DPLII")]
+    DOLBY_PRO_LOGIC_II,
+
+    [CCode (cname="AV_MATRIX_ENCODING_DPLIIX")]
+    DOLBY_PRO_LOGIC_II_X,
+
+    [CCode (cname="AV_MATRIX_ENCODING_DPLIIZ")]
+    DOLBY_PRO_LOGIC_II_Z,
+
+    [CCode (cname="AV_MATRIX_ENCODING_DOLBYEX")]
+    DOLBY_EX,
+
+    [CCode (cname="AV_MATRIX_ENCODING_DOLBYHEADPHONE")]
+    DOLBY_HEADPHONE,
+    NB;
 }
 
 } // namespace LibAVUtil

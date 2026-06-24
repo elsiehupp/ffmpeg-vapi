@@ -22,8 +22,8 @@ public const size_t OSS_AUDIO_BLOCK_SIZE; // 4096
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/oss.h")]
 [Compact]
 public class OSSAudioData {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public int fd;

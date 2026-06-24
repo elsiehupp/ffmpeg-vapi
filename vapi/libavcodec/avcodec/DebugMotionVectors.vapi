@@ -28,22 +28,25 @@ LibAVCodec external API header
 
 #if !FF_API_DEBUG_MV
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum DebugMotionVectors {
     /***********************************************************
     @brief Visualize forward predicted MVs of P frames
     ***********************************************************/
-    FF_DEBUG_VIS_MV_P_FOR,
+    [CCode (cname="FF_DEBUG_VIS_MV_P_FOR")]
+    P_FRAME_PREDICTED_FORWARD,
 
     /***********************************************************
     @brief Visualize forward predicted MVs of B frames
     ***********************************************************/
-    FF_DEBUG_VIS_MV_B_FOR,
+    [CCode (cname="FF_DEBUG_VIS_MV_B_FOR")]
+    B_FRAME_PREDICTED_FORWARD,
 
     /***********************************************************
     @brief Visualize backward predicted MVs of B frames
     ***********************************************************/
-    FF_DEBUG_VIS_MV_B_BACK;
+    [CCode (cname="FF_DEBUG_VIS_MV_B_BACK")]
+    B_FRAME_PREDICTED_BACKWARD;
 }
 #endif
 

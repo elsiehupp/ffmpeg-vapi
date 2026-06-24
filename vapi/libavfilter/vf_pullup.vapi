@@ -16,7 +16,7 @@ with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
+[CCode (cname="struct PullupBuffer",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
 [Compact]
 public class PullupBuffer {
     [CCode (cname="")]
@@ -26,7 +26,7 @@ public class PullupBuffer {
     public uint8[] planes[4];
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
+[CCode (cname="struct PullupField",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
 [Compact]
 public class PullupField {
     [CCode (cname="")]
@@ -60,7 +60,7 @@ public class PullupField {
     public PullupField? next;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
+[CCode (cname="struct PullupFrame",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
 [Compact]
 public class PullupFrame {
     [CCode (cname="")]
@@ -82,11 +82,11 @@ public class PullupFrame {
     public PullupBuffer? buffer;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
+[CCode (cname="struct PullupContext",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pullup.h")]
 [Compact]
 public class PullupContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public int junk_left;

@@ -26,26 +26,26 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="SUBTITLE_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum SubtitleType {
-    SUBTITLE_NONE,
+    NONE,
 
     /***********************************************************
     @brief A bitmap, pict will be set
     ***********************************************************/
-    SUBTITLE_BITMAP,
+    BITMAP,
 
     /***********************************************************
     @brief Plain text, the text field must be set by the decoder and is
     authoritative. ass and pict fields may contain approximations.
     ***********************************************************/
-    SUBTITLE_TEXT,
+    TEXT,
 
     /***********************************************************
     @brief Formatted text, the ass field must be set by the decoder and is
     authoritative. pict and text fields may contain approximations.
     ***********************************************************/
-    SUBTITLE_ASS;
+    ASS;
 }
 
 } // namespace LibAVCodec

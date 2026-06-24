@@ -22,35 +22,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "reserve_index_space",
         short_help_text = "reserve space (in bytes) at the beginning of the file for each stream index",
-        offsetof (
+        offset = offsetof (
             AVIContext,
             reserve_index_space
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "write_channel_mask",
         short_help_text = "write channel mask into wave format header",
-        offsetof (
+        offset = offsetof (
             AVIContext,
             write_channel_mask
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL

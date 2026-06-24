@@ -18,10 +18,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/stereo3d.h")]
+[CCode (cname="Stereo3DDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/stereo3d.h")]
 [Compact]
 public class Stereo3DDSPContext {
-    [CCode (cname="")]
     public delegate void AnaglyphDelegate (
         uint8[] dst,
         uint8[] lsrc,
@@ -36,12 +35,12 @@ public class Stereo3DDSPContext {
         int[] ana_matrix_b
     );
 
-    [CCode (cname="")]
+    [CCode (cname="anaglyph")]
     public AnaglyphDelegate anaglyph;
 
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/stereo3d.h")]
+[CCode (cname="ff_stereo3d_init_x86",cheader_filename="subprojects/ffmpeg/libavfilter/stereo3d.h")]
 public void ff_stereo3d_init_x86 (
     Stereo3DDSPContext? dsp
 );

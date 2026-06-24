@@ -30,22 +30,22 @@ static string const var_names[] = {
     NULL
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
-public enum var_name {
-    [CCode (cname="")]
-    VAR_N,
+[CCode (cname="enum var_name",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
+public enum VarName {
+    [CCode (cname="VAR_N")]
+    N,
 
-    [CCode (cname="")]
-    VAR_POS,
+    [CCode (cname="VAR_POS")]
+    POS,
 
-    [CCode (cname="")]
-    VAR_R,
+    [CCode (cname="VAR_R")]
+    R,
 
-    [CCode (cname="")]
-    VAR_T,
+    [CCode (cname="VAR_T")]
+    T,
 
-    [CCode (cname="")]
-    VAR_NB;
+    [CCode (cname="VAR_NB")]
+    NB;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
@@ -84,23 +84,18 @@ public class EQParameters {
 
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
+[CCode (cname="enum EvalMode",cprefix="EVAL_MODE_",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
 public enum EvalMode {
-    [CCode (cname="")]
-    EVAL_MODE_INIT,
-
-    [CCode (cname="")]
-    EVAL_MODE_FRAME,
-
-    [CCode (cname="")]
-    EVAL_MODE_NB
+    INIT,
+    FRAME,
+    NB;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_eq.h")]
 [Compact]
 public class EQContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public EQParameters param[3];
@@ -178,7 +173,7 @@ public class EQContext {
     public double gamma_b;
 
     [CCode (cname="")]
-    public double var_values[VAR_NB];
+    public double var_values[VarName.NB];
 
     public delegate void ProcessDelegate (
         EQParameters? par,

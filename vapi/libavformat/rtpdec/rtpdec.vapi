@@ -84,78 +84,78 @@ public class RTPStatistics {
     /***********************************************************
     @brief Highest sequence number seen
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint16 max_seq;
 
     /***********************************************************
     @brief Shifted count of sequence number cycles
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 cycles;
 
     /***********************************************************
     @brief Base sequence number
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 base_seq;
 
     /***********************************************************
     @brief Last bad sequence number + 1
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 bad_seq;
 
     /***********************************************************
     @brief Sequence packets till source is valid
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int probation;
 
     /***********************************************************
     @brief Packets received
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 received;
 
     /***********************************************************
     @brief Packets expected in last interval
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 expected_prior;
 
     /***********************************************************
     @brief Packets received in last interval
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 received_prior;
 
     /***********************************************************
     @brief Relative transit time for previous packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 transit;
 
     /***********************************************************
     @brief Estimated jitter
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 jitter;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
 public enum RTPDecoderFlags {
     /***********************************************************
     @brief RTP packet contains a keyframe
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
-    RTP_FLAG_KEY,
+    [CCode (cname="RTP_FLAG_KEY")]
+    KEY,
 
     /***********************************************************
     @brief RTP marker bit was set for this packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
-    RTP_FLAG_MARKER;
+    [CCode (cname="RTP_FLAG_MARKER")]
+    MARKER;
 }
 
 /***********************************************************
@@ -187,16 +187,16 @@ public delegate int DynamicPayloadPacketHandlerProc (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
 public abstract class RTPDynamicProtocolHandler {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public abstract string enc_name { public get; }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public abstract LibAVUtil.MediaType codec_type { public get; }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public abstract LibAVCodec.CodecID codec_id { public get; }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public abstract AVStreamParseType need_parsing { public get; }
 
     /***********************************************************
@@ -204,16 +204,16 @@ public abstract class RTPDynamicProtocolHandler {
     payload ID (PCMU), too, but that format doesn't
     require any custom depacketization code.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int static_payload_id;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public abstract size_t priv_data_size { public get; }
 
     /***********************************************************
     @brief Initialize dynamic protocol handler, called after the full rtpmap line is parsed, may be null
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public abstract int init (
         AVFormatContext format_context,
         int st_index,
@@ -223,7 +223,7 @@ public abstract class RTPDynamicProtocolHandler {
     /***********************************************************
     @brief Parse the a= line from the sdp field
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public abstract int parse_sdp_a_line (
         AVFormatContext format_context,
         int st_index,
@@ -236,7 +236,7 @@ public abstract class RTPDynamicProtocolHandler {
     Don't free the protocol_data pointer itself, that is freed by the
     caller. This is called even if the init method failed.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public abstract void close (
         PayloadContext protocol_data
     );
@@ -255,7 +255,7 @@ public abstract class RTPDynamicProtocolHandler {
     @param seq RTP sequence number of the packet
     @param flags flags from the RTP packet header (RTP_FLAG_*)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public abstract int parse_packet (
         AVFormatContext format_context,
         PayloadContext payload_context,
@@ -268,83 +268,83 @@ public abstract class RTPDynamicProtocolHandler {
         int flags
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public abstract int need_keyframe (
         PayloadContext context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public RTPDynamicProtocolHandler next;
 }
 
 [CCode (cname="struct RTPPacket",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
 [Compact]
 public class RTPPacket {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint16 seq;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint8[] buffer;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int64 recvtime;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public RTPPacket? next;
 }
 
 [CCode (cname="struct RTPDemuxContext",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
 [Compact]
 public class RTPDemuxContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public AVFormatContext ic;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public AVStream st;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int payload_type;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 ssrc;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint16 seq;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 timestamp;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 base_timestamp;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int64 unwrapped_timestamp;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int64 range_start_offset;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int max_payload_size;
 
     /***********************************************************
     used to send back RTCP RR
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public char hostname[256];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int srtp_enabled;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public SRTPContext srtp;
 
     /***********************************************************
     @brief Statistics for this stream (used by RTCP receiver reports)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public RTPStatistics statistics;
 
     /***********************************************************
@@ -353,68 +353,68 @@ public class RTPDemuxContext {
     /***********************************************************
     @brief The return value of the actual parsing of the previous packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int prev_ret;
 
     /***********************************************************
     @brief A sorted queue of buffered packets not yet returned
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public RTPPacket[] queue;
 
     /***********************************************************
     @brief The number of packets in queue
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int queue_len;
 
     /***********************************************************
     @brief The size of queue, or 0 if reordering is disabled
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int queue_size;
     /*@}*/
 
     /***********************************************************
     @brief Rtcp sender statistics receive
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint64 last_rtcp_ntp_time;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int64 last_rtcp_reception_time;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint64 first_rtcp_ntp_time;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint32 last_rtcp_timestamp;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int64 rtcp_ts_offset;
 
     /***********************************************************
     @brief Rtcp sender statistics
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint packet_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint octet_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public uint last_octet_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public int64 last_feedback_time;
 
     /***********************************************************
     @brief Dynamic payload stuff
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public RTPDynamicProtocolHandler handler;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="")]
     public PayloadContext dynamic_protocol_context;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]

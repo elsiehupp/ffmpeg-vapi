@@ -877,7 +877,7 @@ public class CodecContext {
 
     - encoding: set by LibAVCodec in avcodec_open2 (). Each submitted frame
         except the last must contain exactly frame_size samples per channel.
-        May be 0 when the codec has AV_CODEC_CAP_VARIABLE_FRAME_SIZE set, then the
+        May be 0 when the codec has CodecCapabilityFlags.VARIABLE_FRAME_SIZE set, then the
         frame size is not restricted.
     - decoding: may be set by some decoders to indicate constant frame size
     ***********************************************************/
@@ -985,7 +985,7 @@ public class CodecContext {
         buffers than buffer[] can hold. extended_buf will be freed in
         av_frame_unref ().
 
-        If AV_CODEC_CAP_DR1 is not set then get_buffer2 () must call
+        If CodecCapabilityFlags.DR1 is not set then get_buffer2 () must call
         avcodec_default_get_buffer2 () instead of providing buffers allocated by
         some other means.
 
@@ -1240,7 +1240,7 @@ public class CodecContext {
     - encoding: Set by LibAVCodec to the reordered_opaque of the input
         frame corresponding to the last returned packet. Only
         supported by encoders with the
-        AV_CODEC_CAP_ENCODER_REORDERED_OPAQUE capability.
+        CodecCapabilityFlags.ENCODER_REORDERED_OPAQUE capability.
     - decoding: Set by user.
     ***********************************************************/
     [CCode (cname="reordered_opaque")]
@@ -1273,7 +1273,7 @@ public class CodecContext {
     /***********************************************************
     @brief Error
 
-    - encoding: Set by LibAVCodec if flags & AV_CODEC_FLAG_PSNR.
+    - encoding: Set by LibAVCodec if flags & CodecFlags1.PSNR.
     - decoding: unused
     ***********************************************************/
     [CCode (cname="error")]
@@ -1340,7 +1340,7 @@ public class CodecContext {
     /***********************************************************
     @brief Which multithreading methods to use.
 
-    @description Use of FF_THREAD_FRAME will increase decoding delay by one frame per thread,
+    @description Use of ThreadType.FRAME will increase decoding delay by one frame per thread,
         so clients which cannot provide future frames should not use it.
 
     - encoding: Set by user, otherwise the default is used.
@@ -1466,7 +1466,7 @@ public class CodecContext {
 
     /***********************************************************
     @description Header containing style information for text subtitles.
-        For SUBTITLE_ASS subtitle type, it should contain the whole ASS
+        For SubtitleType.ASS subtitle type, it should contain the whole ASS
         [Script Info] and [V4+ Styles] section, plus the [Events] line and
         the Format line following. It shouldn't include any Dialogue line.
 
@@ -1793,7 +1793,7 @@ public class CodecContext {
         When set to 1 (the default), LibAVCodec will apply cropping internally.
         I.e. it will modify the output frame width/height fields and offset the
         data pointers (only by as much as possible while preserving alignment, or
-        by the full amount if the AV_CODEC_FLAG_UNALIGNED flag is set) so that
+        by the full amount if the CodecFlags1.UNALIGNED flag is set) so that
         the frames output by the decoder refer only to the cropped area. The
         crop_* fields of the output frames will be zero.
 
@@ -1931,7 +1931,7 @@ public class CodecContext {
     /***********************************************************
     @description The default callback for CodecContext.get_buffer2 (). It is made public so
         it can be called by custom get_buffer2 () implementations for decoders without
-        AV_CODEC_CAP_DR1 set.
+        CodecCapabilityFlags.DR1 set.
     ***********************************************************/
     [CCode (cname="avcodec_default_get_buffer2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_default_get_buffer2 (
@@ -1945,7 +1945,7 @@ public class CodecContext {
         buffer that is acceptable for the codec if you do not use any horizontal
         padding.
 
-        May only be used if a codec with AV_CODEC_CAP_DR1 has been opened.
+        May only be used if a codec with CodecCapabilityFlags.DR1 has been opened.
     ***********************************************************/
     [CCode (cname="avcodec_align_dimensions",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_align_dimensions (
@@ -1959,7 +1959,7 @@ public class CodecContext {
         buffer that is acceptable for the codec if you also ensure that all
         line sizes are a multiple of the respective linesize_align[i].
 
-        May only be used if a codec with AV_CODEC_CAP_DR1 has been opened.
+        May only be used if a codec with CodecCapabilityFlags.DR1 has been opened.
     ***********************************************************/
     [CCode (cname="avcodec_align_dimensions2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_align_dimensions2 (
@@ -1983,18 +1983,18 @@ public class CodecContext {
     @description Return a negative value on error, otherwise return the number of bytes used.
         If no subtitle could be decompressed, got_sub_ptr is zero.
         Otherwise, the subtitle is stored in sub.
-        Note that AV_CODEC_CAP_DR1 is not available for subtitle codecs. This is for
+        Note that CodecCapabilityFlags.DR1 is not available for subtitle codecs. This is for
         simplicity, because the performance difference is expect to be negligible
         and reusing a get_buffer written for video codecs would probably perform badly
         due to a potentially very different allocation pattern.
 
-        Some decoders (those marked with AV_CODEC_CAP_DELAY) have a delay between input
+        Some decoders (those marked with CodecCapabilityFlags.DELAY) have a delay between input
         and output. This means that for some packets they will not immediately
         produce decoded output and need to be flushed at the end of decoding to get
         all the decoded data. Flushing is done by calling this function with packets
         with avpkt->data set to null and avpkt->size set to 0 until it stops
         returning subtitles. It is safe to flush even those decoders that are not
-        marked with AV_CODEC_CAP_DELAY, then no subtitles will be returned.
+        marked with CodecCapabilityFlags.DELAY, then no subtitles will be returned.
 
     @note The CodecContext MUST have been opened with @link avcodec_open2 ()
         before packets may be fed to the decoder.
@@ -2088,7 +2088,7 @@ public class CodecContext {
         LibAVUtil.ErrorCode (EINVAL): codec not opened, or it is an encoder
         LibAVUtil.ErrorCode.INPUT_CHANGED: current decoded frame has changed parameters
             with respect to first decoded frame. Applicable
-            when flag AV_CODEC_FLAG_DROPCHANGED is set.
+            when flag CodecFlags1.DROPCHANGED is set.
         other negative values: legitimate decoding errors
     ***********************************************************/
     [CCode (cname="avcodec_receive_frame",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
@@ -2115,7 +2115,7 @@ public class CodecContext {
         LibAVUtil.ErrorCode.END_OF_FILE.
 
         For audio:
-        If AV_CODEC_CAP_VARIABLE_FRAME_SIZE is set, then each frame
+        If CodecCapabilityFlags.VARIABLE_FRAME_SIZE is set, then each frame
         can have any number of samples.
         If it is not set, frame->nb_samples must be equal to
         codec_context->frame_size for all frames except the last.

@@ -26,11 +26,11 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="FF_SUB_TEXT_FMT_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum SubtitleTextFormatAssignment {
-    FF_SUB_TEXT_FMT_ASS,
+    ASS,
 #if FF_API_ASS_TIMING
-    FF_SUB_TEXT_FMT_ASS_WITH_TIMINGS,
+    ASS_WITH_TIMINGS,
 #endif
 }
 

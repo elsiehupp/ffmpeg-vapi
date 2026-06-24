@@ -23,7 +23,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_dirac_codec",cheader_filename="")]
 public class DiracCodec : OggCodec {
-    [CCode (cname="")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "BBCD\0".data;
@@ -31,7 +31,14 @@ public class DiracCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 5,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 5;
+        }
+
+    }
 
     [CCode (cname="dirac_header",cheader_filename="")]
     public override int header (
@@ -46,13 +53,28 @@ public class DiracCodec : OggCodec {
         uint64 arg2,
         out int64 dts
     );
-    //  .granule_is_start = 1,
-    //  .nb_header = 1;
+
+    [CCode (cname="granule_is_start")]
+    public override bool granule_is_start {
+        public get {
+            return true;
+        }
+
+    }
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 1;
+        }
+
+    }
+
 }
 
 [CCode (cname="ff_old_dirac_codec",cheader_filename="")]
 public class OldDiracCodec : OggCodec {
-    [CCode (cname="")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "KW-DIRAC".data;
@@ -60,7 +82,14 @@ public class OldDiracCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 8,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 8;
+        }
+
+    }
 
     [CCode (cname="old_dirac_header",cheader_filename="")]
     public override int header (
@@ -75,8 +104,23 @@ public class OldDiracCodec : OggCodec {
         uint64 arg2,
         out int64 dts
     );
-    //  .granule_is_start = 1,
-    //  .nb_header = 1;
+
+    [CCode (cname="granule_is_start")]
+    public override bool granule_is_start {
+        public get {
+            return true;
+        }
+
+    }
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 1;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

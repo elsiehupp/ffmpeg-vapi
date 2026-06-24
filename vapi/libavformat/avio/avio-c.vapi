@@ -27,49 +27,43 @@ namespace LibAVFormat {
 ***********************************************************/
 /*@{*/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "protocol_whitelist",
         short_help_text = "List of protocols that are allowed to be used",
-        offsetof (
+        offset = offsetof (
             URLContext,
             protocol_whitelist
         ),
-        {
-            .str = NULL
-        },
-        char.MIN,
-        char.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "",
+        minimum_value = char.MIN,
+        maximum_value = char.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "protocol_blacklist",
         short_help_text = "List of protocols that are not allowed to be used",
-        offsetof (
+        offset = offsetof (
             URLContext,
             protocol_blacklist
         ),
-        {
-            .str = NULL
-        },
-        char.MIN,
-        char.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "",
+        minimum_value = char.MIN,
+        maximum_value = char.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.Int64Option () {
         name = "rw_timeout",
         short_help_text = "Timeout for IO operations (in microseconds)",
-        offsetof (
+        offset = offsetof (
             URLContext,
             rw_timeout
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int64.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM | LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int64.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM | LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

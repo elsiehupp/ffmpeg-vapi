@@ -127,21 +127,19 @@ public class AsyncURLProtocol : URLProtocol {
 
 #if 0
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="async_test_options",cheader_filename="")]
 static const LibAVUtil.Option async_test_options[] = {
     new LibAVUtil.IntOption () {
         name = "async-test-read-error",
         short_help_text = "cause read fail",
-        offsetof (
+        offset = offsetof (
             TestContext,
             opt_read_error
         ),
-        {
-            .i64 = 0
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

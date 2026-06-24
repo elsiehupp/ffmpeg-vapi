@@ -22,8 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/removegrain.h")]
 [Compact]
 public class RemoveGrainContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public int mode[4];

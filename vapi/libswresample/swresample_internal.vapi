@@ -64,7 +64,7 @@ public delegate void MixAnyDelegate (
     integer len
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+[CCode (cname="struct AudioData",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 [Compact]
 public class AudioData {
     /***********************************************************
@@ -110,7 +110,7 @@ public class AudioData {
     public AVSampleFormat fmt;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+[CCode (cname="struct DitherContext",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 [Compact]
 public class DitherContext {
     [CCode (cname="")]
@@ -190,7 +190,7 @@ public delegate ResampleContext ResampleInitDelegate (
     int linear,
     double cutoff,
     AVSampleFormat format,
-    SwrFilterType filter_type,
+    SoftwareResampleFilterType filter_type,
     double kaiser_beta,
     double precision,
     int cheby,
@@ -246,38 +246,38 @@ public delegate int64 GetOutSamplesDelegate (
     int in_samples
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+[CCode (cname="struct Resampler",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 [Compact]
 public class Resampler {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+    [CCode (cname="")]
     public resample_init_func init;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+    [CCode (cname="")]
     public resample_free_func free;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+    [CCode (cname="")]
     public multiple_resample_func multiple_resample;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+    [CCode (cname="")]
     public resample_flush_func flush;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+    [CCode (cname="")]
     public set_compensation_func set_compensation;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+    [CCode (cname="")]
     public get_delay_func get_delay;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+    [CCode (cname="")]
     public invert_initial_buffer_func invert_initial_buffer;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+    [CCode (cname="")]
     public get_out_samples_func get_out_samples;
-};
+}
 
 //  extern struct Resampler const swri_resampler;
 //  extern struct Resampler const swri_soxr_resampler;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
+[CCode (cname="struct SwrContext",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
 [Compact]
 public class SwrContext {
     /***********************************************************

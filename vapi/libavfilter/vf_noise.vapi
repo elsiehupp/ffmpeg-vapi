@@ -29,18 +29,19 @@ public const size_t MAX_SHIFT; // 1024
 public const size_t MAX_RES; // (MAX_NOISE - MAX_SHIFT)
 
 [Flags]
-public enum FooBar {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
-    NOISE_UNIFORM, // 1
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
+public enum NoiseType {
+    [CCode (cname="NOISE_UNIFORM")]
+    UNIFORM, // 1
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
-    NOISE_TEMPORAL, // 2
+    [CCode (cname="NOISE_TEMPORAL")]
+    TEMPORAL, // 2
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
-    NOISE_AVERAGED, // 8
+    [CCode (cname="NOISE_AVERAGED")]
+    AVERAGED, // 8
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
-    NOISE_PATTERN; // 16
+    [CCode (cname="NOISE_PATTERN")]
+    PATTERN; // 16
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
@@ -74,8 +75,8 @@ public class FilterParams {
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_noise.h")]
 [Compact]
 public class NoiseContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public int nb_planes;

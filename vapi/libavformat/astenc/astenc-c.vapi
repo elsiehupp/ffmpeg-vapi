@@ -22,35 +22,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.Int64Option () {
         name = "loopstart",
         short_help_text = "Loopstart position in milliseconds.",
-        offsetof (
+        offset = offsetof (
             ASTMuxContext,
             loopstart
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.Int64Option () {
         name = "loopend",
         short_help_text = "Loopend position in milliseconds.",
-        offsetof (
+        offset = offsetof (
             ASTMuxContext,
             loopend
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL

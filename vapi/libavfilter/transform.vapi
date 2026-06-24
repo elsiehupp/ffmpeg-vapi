@@ -31,88 +31,75 @@ example, the identity matrix would be:
                      0, 0, 1}
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
+[CCode (cname="enum InterpolateMethod",cprefix="INTERPOLATE_",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
 public enum InterpolateMethod {
     /***********************************************************
     Nearest-neighbor (fast)
     ***********************************************************/
-    [CCode (cname="")]
-    INTERPOLATE_NEAREST,
+    NEAREST,
 
     /***********************************************************
     Bilinear
     ***********************************************************/
-    [CCode (cname="")]
-    INTERPOLATE_BILINEAR,
+    BILINEAR,
 
     /***********************************************************
     Biquadratic (best)
     ***********************************************************/
-    [CCode (cname="")]
-    INTERPOLATE_BIQUADRATIC,
+    BIQUADRATIC,
 
     /***********************************************************
     Number of interpolation methods
     ***********************************************************/
-    [CCode (cname="")]
-    INTERPOLATE_COUNT,
+    COUNT,
 
     /***********************************************************
     Shortcut for the default interpolation method
     ***********************************************************/
-    [CCode (cname="")]
-    INTERPOLATE_DEFAULT, // INTERPOLATE_BILINEAR
+    DEFAULT, // INTERPOLATE_BILINEAR
 
     /***********************************************************
     Shortcuts for the fastest interpolation method
     ***********************************************************/
-    [CCode (cname="")]
-    INTERPOLATE_FAST, // INTERPOLATE_NEAREST
+    FAST, // INTERPOLATE_NEAREST
 
     /***********************************************************
     Shortcuts for the best interpolation method
     ***********************************************************/
-    [CCode (cname="")]
-    INTERPOLATE_BEST; // INTERPOLATE_BIQUADRATIC
+    BEST; // INTERPOLATE_BIQUADRATIC
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
+[CCode (cname="enum FillMethod",cprefix="FILL_",cheader_filename="subprojects/ffmpeg/libavfilter/transform.h")]
 public enum FillMethod {
     /***********************************************************
     Fill zeroes at blank locations
     ***********************************************************/
-    [CCode (cname="")]
-    FILL_BLANK,
+    BLANK,
 
     /***********************************************************
     Original image at blank locations
     ***********************************************************/
-    [CCode (cname="")]
-    FILL_ORIGINAL,
+    ORIGINAL,
 
     /***********************************************************
     Extruded edge value at blank locations
     ***********************************************************/
-    [CCode (cname="")]
-    FILL_CLAMP,
+    CLAMP,
 
     /***********************************************************
     Mirrored edge at blank locations
     ***********************************************************/
-    [CCode (cname="")]
-    FILL_MIRROR,
+    MIRROR,
 
     /***********************************************************
     Number of edge fill methods
     ***********************************************************/
-    [CCode (cname="")]
-    FILL_COUNT,
+    COUNT,
 
     /***********************************************************
     Shortcuts for fill methods
     ***********************************************************/
-    [CCode (cname="")]
-    FILL_DEFAULT; // FILL_ORIGINAL;
+    DEFAULT; // FillMethod.ORIGINAL;
 }
 
 /***********************************************************

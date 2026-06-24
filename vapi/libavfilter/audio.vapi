@@ -19,30 +19,32 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
-public static const enum AVSampleFormat ff_packed_sample_fmts_array[] = {
-    AV_SAMPLE_FMT_U8,
-    AV_SAMPLE_FMT_S16,
-    AV_SAMPLE_FMT_S32,
-    AV_SAMPLE_FMT_FLT,
-    AV_SAMPLE_FMT_DBL,
-    AV_SAMPLE_FMT_NONE
-}
+[CCode (cname="ff_packed_sample_fmts_array",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
+public static const AVSampleFormat ff_packed_sample_fmts_array[];
+//  = {
+//      AV_SAMPLE_FMT_U8,
+//      AV_SAMPLE_FMT_S16,
+//      AV_SAMPLE_FMT_S32,
+//      AV_SAMPLE_FMT_FLT,
+//      AV_SAMPLE_FMT_DBL,
+//      AV_SAMPLE_FMT_NONE
+//  };
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
-public static const enum AVSampleFormat ff_planar_sample_fmts_array[] = {
-    AV_SAMPLE_FMT_U8P,
-    AV_SAMPLE_FMT_S16P,
-    AV_SAMPLE_FMT_S32P,
-    AV_SAMPLE_FMT_FLTP,
-    AV_SAMPLE_FMT_DBLP,
-    AV_SAMPLE_FMT_NONE
-}
+[CCode (cname="ff_planar_sample_fmts_array",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
+public static const AVSampleFormat ff_planar_sample_fmts_array[];
+//   = {
+//      AV_SAMPLE_FMT_U8P,
+//      AV_SAMPLE_FMT_S16P,
+//      AV_SAMPLE_FMT_S32P,
+//      AV_SAMPLE_FMT_FLTP,
+//      AV_SAMPLE_FMT_DBLP,
+//      AV_SAMPLE_FMT_NONE
+//  };
 
 /***********************************************************
 default handler for get_audio_buffer () for audio inputs
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
+[CCode (cname="ff_default_get_audio_buffer",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
 public AVFrame? ff_default_get_audio_buffer (
     AVFilterLink? link,
     int nb_samples
@@ -51,7 +53,7 @@ public AVFrame? ff_default_get_audio_buffer (
 /***********************************************************
 get_audio_buffer () handler for filters which simply pass audio along
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
+[CCode (cname="ff_null_get_audio_buffer",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
 public AVFrame? ff_null_get_audio_buffer (
     AVFilterLink? link,
     int nb_samples
@@ -66,7 +68,7 @@ Request an audio samples buffer with a specific set of permissions.
 @return               A reference to the samples. This must be unreferenced with
                       avfilter_unref_buffer when you are finished with it.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
+[CCode (cname="ff_get_audio_buffer",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
 public AVFrame? ff_get_audio_buffer (
     AVFilterLink? link,
     int nb_samples

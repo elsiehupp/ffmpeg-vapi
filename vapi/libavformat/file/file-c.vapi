@@ -26,58 +26,50 @@ static const LibAVUtil.Option file_options[] = {
     new LibAVUtil.BoolOption () {
         name = "truncate",
         short_help_text = "truncate existing files on write",
-        offsetof (
+        offset = offsetof (
             FileContext,
             trunc
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "blocksize",
         short_help_text = "set I/O operation maximum block size",
-        offsetof (
+        offset = offsetof (
             FileContext,
             blocksize
         ),
-        {
-            .i64 = int.MAX
-        },
-        1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = int.MAX,
+        minimum_value = 1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "follow",
         short_help_text = "Follow a file as it is being written",
-        offsetof (
+        offset = offsetof (
             FileContext,
             follow
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "seekable",
         short_help_text = "Sets if the file is seekable",
-        offsetof (
+        offset = offsetof (
             FileContext,
             seekable
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        0,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -88,16 +80,14 @@ static const LibAVUtil.Option pipe_options[] = {
     new LibAVUtil.IntOption () {
         name = "blocksize",
         short_help_text = "set I/O operation maximum block size",
-        offsetof (
+        offset = offsetof (
             FileContext,
             blocksize
         ),
-        {
-            .i64 = int.MAX
-        },
-        1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = int.MAX,
+        minimum_value = 1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL

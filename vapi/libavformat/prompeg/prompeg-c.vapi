@@ -85,44 +85,38 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "ttl",
         short_help_text = "Time to live (in milliseconds, multicast only)",
-        offsetof (
+        offset = offsetof (
             PrompegContext,
             ttl
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "l",
         short_help_text = "FEC L",
-        offsetof (
+        offset = offsetof (
             PrompegContext,
             l
         ),
-        {
-            .i64 = 5
-        },
-        4,
-        20,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 5,
+        minimum_value = 4,
+        maximum_value = 20,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "d",
         short_help_text = "FEC D",
-        offsetof (
+        offset = offsetof (
             PrompegContext,
             d
         ),
-        {
-            .i64 = 5
-        },
-        4,
-        20,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 5,
+        minimum_value = 4,
+        maximum_value = 20,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -208,7 +202,7 @@ public class ProMpegURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/prompeg.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 

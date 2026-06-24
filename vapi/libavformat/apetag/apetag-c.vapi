@@ -22,8 +22,8 @@ based upon libdemac from Dave Chapman.
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cprefix="APE_TAG_FLAG_",cheader_filename="ffmpeg/libformat/apetag.c")]
 [Flags]
+[CCode (cprefix="APE_TAG_FLAG_",cheader_filename="ffmpeg/libformat/apetag.c")]
 public enum ApeTagFlags {
     CONTAINS_HEADER,
     LACKS_FOOTER,

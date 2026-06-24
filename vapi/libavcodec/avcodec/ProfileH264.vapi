@@ -26,33 +26,33 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="FF_PROFILE_H264_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum ProfileH264 {
     /***********************************************************
     @note 8+1; constraint_set1_flag
     ***********************************************************/
-    FF_PROFILE_H264_CONSTRAINED,
+    CONSTRAINED,
 
     /***********************************************************
     @note 8+3; constraint_set3_flag
     ***********************************************************/
-    FF_PROFILE_H264_INTRA,
+    INTRA,
 
-    FF_PROFILE_H264_BASELINE,
-    FF_PROFILE_H264_CONSTRAINED_BASELINE,
-    FF_PROFILE_H264_MAIN,
-    FF_PROFILE_H264_EXTENDED,
-    FF_PROFILE_H264_HIGH,
-    FF_PROFILE_H264_HIGH_10,
-    FF_PROFILE_H264_HIGH_10_INTRA,
-    FF_PROFILE_H264_MULTIVIEW_HIGH,
-    FF_PROFILE_H264_HIGH_422,
-    FF_PROFILE_H264_HIGH_422_INTRA,
-    FF_PROFILE_H264_STEREO_HIGH,
-    FF_PROFILE_H264_HIGH_444,
-    FF_PROFILE_H264_HIGH_444_PREDICTIVE,
-    FF_PROFILE_H264_HIGH_444_INTRA,
-    FF_PROFILE_H264_CAVLC_444;
+    BASELINE,
+    CONSTRAINED_BASELINE,
+    MAIN,
+    EXTENDED,
+    HIGH,
+    HIGH_10,
+    HIGH_10_INTRA,
+    MULTIVIEW_HIGH,
+    HIGH_422,
+    HIGH_422_INTRA,
+    STEREO_HIGH,
+    HIGH_444,
+    HIGH_444_PREDICTIVE,
+    HIGH_444_INTRA,
+    CAVLC_444;
 }
 
 } // namespace LibAVCodec

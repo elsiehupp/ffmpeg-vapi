@@ -85,7 +85,7 @@ public class DownMixInfo {
 
 
     /***********************************************************
-    @brief Get a frame's AV_FRAME_DATA_DOWNMIX_INFO side data for editing.
+    @brief Get a frame's FrameSideDataType.DOWNMIX_INFO side data for editing.
 
     If the side data is absent, it is created and added to the frame.
 

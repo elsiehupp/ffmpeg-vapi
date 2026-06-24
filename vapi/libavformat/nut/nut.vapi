@@ -52,256 +52,258 @@ public const int NUT_STABLE_VERSION; // 3
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
 public const int NUT_MIN_VERSION; // 2
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-public enum Flag {
+[Flags]
+[CCode (cname="enum Flag",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+public enum NUTFrameFlags {
     /***********************************************************
     @brief If set, frame is keyframe
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_KEY,
+    [CCode (cname="FLAG_KEY")]
+    KEY,
 
     /***********************************************************
     @brief If set, stream has no relevance on presentation. (EOR)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_EOR,
+    [CCode (cname="FLAG_EOR")]
+    EOR,
 
     /***********************************************************
     @brief If set, coded_pts is in the frame header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_CODED_PTS,
+    [CCode (cname="FLAG_CODED_PTS")]
+    CODED_PTS,
 
     /***********************************************************
     @brief If set, stream_id is coded in the frame header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_STREAM_ID,
+    [CCode (cname="FLAG_STREAM_ID")]
+    STREAM_ID,
 
     /***********************************************************
     @brief If set, data_size_msb is at frame header, otherwise data_size_msb is 0
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_SIZE_MSB,
+    [CCode (cname="FLAG_SIZE_MSB")]
+    SIZE_MSB,
 
     /***********************************************************
     @brief If set, the frame header contains a checksum
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_CHECKSUM,
+    [CCode (cname="FLAG_CHECKSUM")]
+    CHECKSUM,
 
     /***********************************************************
     @brief If set, reserved_count is coded in the frame header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_RESERVED,
+    [CCode (cname="FLAG_RESERVED")]
+    RESERVED,
 
     /***********************************************************
     @brief If set, side / meta data is stored in the frame header.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_SM_DATA,
+    [CCode (cname="FLAG_SM_DATA")]
+    SIDE_METADATA,
 
     /***********************************************************
     @brief If set, header_idx is coded in the frame header.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_HEADER_IDX,
+    [CCode (cname="FLAG_HEADER_IDX")]
+    HEADER_INDEX,
 
     /***********************************************************
     @brief If set, match_time_delta is coded in the frame header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_MATCH_TIME,
+    [CCode (cname="FLAG_MATCH_TIME")]
+    MATCH_TIME,
 
     /***********************************************************
     @brief If set, coded_flags are stored in the frame header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_CODED,
+    [CCode (cname="FLAG_CODED")]
+    CODED,
 
     /***********************************************************
     @brief If set, frame_code is invalid
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    FLAG_INVALID;
+    [CCode (cname="FLAG_INVALID")]
+    INVALID;
 }
 
 [CCode (cname="struct Syncpoint",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
 [Compact]
 public class Syncpoint {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint64 pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint64 back_ptr;
 
+    //  [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
     //  public uint64 global_key_pts;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int64 ts;
 }
 
 [CCode (cname="struct FrameCode",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
 [Compact]
 public class FrameCode {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint16 flags;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint8 stream_id;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint16 size_mul;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint16 size_lsb;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int16 pts_delta;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint8 reserved_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint8 header_idx;
 }
 
 [CCode (cname="struct StreamContext",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
 [Compact]
 public class StreamContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int last_flags;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int skip_until_key_frame;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int64 last_pts;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int time_base_id;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public LibAVUtil.Rational time_base;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int msb_pts_shift;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int max_pts_distance;
 
     /***********************************************************
     @brief FIXME duplicate of has_b_frames
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int decode_delay;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int64[] keyframe_pts;
 }
 
 [CCode (cname="struct ChapterContext",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
 [Compact]
 public class ChapterContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public LibAVUtil.Rational time_base;
 }
 
 [CCode (cname="struct NUTContext",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
 [Compact]
 public class NUTContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public LibAVUtil.Class av_class;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public AVFormatContext avf;
 
     //  public int written_packet_size;
 
     //  public int64 packet_start;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public FrameCode frame_code[256];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint8 header_len[128];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint8[] header[128];
 
     /***********************************************************
     @brief Stores the next startcode if it has already been parsed but the stream is not seekable
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint64 next_startcode;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public StreamContext stream;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public ChapterContext chapter;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint max_distance;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public uint time_base_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int64 last_syncpoint_pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int64 last_resync_pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int header_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public LibAVUtil.Rational time_base;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public LibAVUtil.TreeNode syncpoints;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int sp_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int write_index;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int64 max_pts;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public LibAVUtil.Rational max_pts_tb;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public NUTFlags flags;
 
     /***********************************************************
     @brief Version currently in use
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int version;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int minor_version;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
 public enum NUTFlags {
     /***********************************************************
     Use extended syncpoints.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    NUT_BROADCAST,
+    [CCode (cname="NUT_BROADCAST")]
+    BROADCAST,
 
     /***********************************************************
     @brief Do not write syncpoints.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
-    NUT_PIPE;
+    [CCode (cname="NUT_PIPE")]
+    PIPE;
 }
 
 //  extern const AVCodecTag ff_nut_subtitle_tags[];
@@ -315,10 +317,10 @@ public enum NUTFlags {
 [CCode (cname="struct Dispositions",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
 [Compact]
 public class Dispositions {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public char str[9];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    [CCode (cname="")]
     public int flag;
 }
 

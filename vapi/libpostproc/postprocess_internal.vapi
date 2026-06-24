@@ -154,7 +154,7 @@ public enum FooBar {
     FORCE_QUANT, // 0x200000
 
     [CCode (cname="")]
-    BITEXACT, // 0x1000000
+    BIT_EXACT, // 0x1000000
 
     [CCode (cname="")]
     VISUALIZE; // 0x2000000
@@ -174,7 +174,7 @@ except turning the here selected filters on
 /***********************************************************
 Postprocessing filter.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
+[CCode (cname="struct PPFilter",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
 [Compact]
 public class PPFilter {
     [CCode (cname="")]
@@ -211,7 +211,7 @@ public class PPFilter {
 /***********************************************************
 Postprocessing mode.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
+[CCode (cname="struct PPMode",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
 [Compact]
 public class PPMode {
     /***********************************************************
@@ -272,7 +272,7 @@ public class PPMode {
 /***********************************************************
 postprocess context.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
+[CCode (cname="struct PPContext",cheader_filename="subprojects/ffmpeg/libpostproc/postprocess_internal.h")]
 [Compact]
 public class PPContext {
     /***********************************************************

@@ -30,58 +30,54 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "min_delay",
         short_help_text = "minimum valid delay between frames (in hundredths of second)",
-        offsetof (
+        offset = offsetof (
             GIFDemuxContext,
             min_delay
         ),
-        {
-            .i64 = GIF_MIN_DELAY
-        },
-        0,
-        100 * 60,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = GIF_MIN_DELAY,
+        minimum_value = 0,
+        maximum_value = (
+            100 * 60
+        ),
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "max_gif_delay",
         short_help_text = "maximum valid delay between frames (in hundredths of seconds)",
-        offsetof (
+        offset = offsetof (
             GIFDemuxContext,
             max_delay
         ),
-        {
-            .i64 = 65535
-        },
-        0,
-        65535,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 65535,
+        minimum_value = 0,
+        maximum_value = 65535,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "default_delay",
         short_help_text = "default delay between frames (in hundredths of second)",
-        offsetof (
+        offset = offsetof (
             GIFDemuxContext,
             default_delay
         ),
-        {
-            .i64 = GIF_DEFAULT_DELAY
-        },
-        0,
-        100 * 60,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = GIF_DEFAULT_DELAY,
+        minimum_value = 0,
+        maximum_value = (
+            100 * 60
+        ),
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "ignore_loop",
         short_help_text = "ignore loop setting (netscape extension)",
-        offsetof (
+        offset = offsetof (
             GIFDemuxContext,
             ignore_loop
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -175,7 +171,7 @@ public class GIFDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/gifdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

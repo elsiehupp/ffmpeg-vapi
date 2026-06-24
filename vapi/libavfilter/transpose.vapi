@@ -16,41 +16,36 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transpose.h")]
+[CCode (cname="enum PassthroughType",cprefix="TRANSPOSE_PT_TYPE_",cheader_filename="subprojects/ffmpeg/libavfilter/transpose.h")]
 public enum PassthroughType {
-    [CCode (cname="")]
-    TRANSPOSE_PT_TYPE_NONE,
-
-    [CCode (cname="")]
-    TRANSPOSE_PT_TYPE_LANDSCAPE,
-
-    [CCode (cname="")]
-    TRANSPOSE_PT_TYPE_PORTRAIT;
+    NONE,
+    LANDSCAPE,
+    PORTRAIT;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/transpose.h")]
-public enum TransposeDir {
-    [CCode (cname="")]
-    TRANSPOSE_CCLOCK_FLIP,
+[CCode (cname="enum TransposeDir",cheader_filename="subprojects/ffmpeg/libavfilter/transpose.h")]
+public enum TransposeDirection {
+    [CCode (cname="TRANSPOSE_CCLOCK_FLIP")]
+    COUNTER_CLOCKWISE_FLIP,
 
-    [CCode (cname="")]
-    TRANSPOSE_CLOCK,
+    [CCode (cname="TRANSPOSE_CLOCK")]
+    CLOCKWISE,
 
-    [CCode (cname="")]
-    TRANSPOSE_CCLOCK,
+    [CCode (cname="TRANSPOSE_CCLOCK")]
+    COUNTER_CLOCKWISE,
 
-    [CCode (cname="")]
-    TRANSPOSE_CLOCK_FLIP,
+    [CCode (cname="TRANSPOSE_CLOCK_FLIP")]
+    CLOCKWISE_FLIP,
 
     /***********************************************************
     rotate by half-turn
     ***********************************************************/
-    [CCode (cname="")]
-    TRANSPOSE_REVERSAL,
+    [CCode (cname="TRANSPOSE_REVERSAL")]
+    REVERSAL,
 
-    [CCode (cname="")]
-    TRANSPOSE_HFLIP,
+    [CCode (cname="TRANSPOSE_HFLIP")]
+    HORIZONTAL_FLIP,
 
-    [CCode (cname="")]
-    TRANSPOSE_VFLIP;
+    [CCode (cname="TRANSPOSE_VFLIP")]
+    VERTICAL_FLIP;
 }

@@ -32,19 +32,19 @@ public class FFBigNum { }
 [CCode (cname="struct FF_DH",cheader_filename="subprojects/ffmpeg/libformat/rtmpdh.h")]
 [Compact]
 public class FF_DH {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmpdh.h")]
+    [CCode (cname="")]
     public FFBigNum p;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmpdh.h")]
+    [CCode (cname="")]
     public FFBigNum g;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmpdh.h")]
+    [CCode (cname="")]
     public FFBigNum pub_key;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmpdh.h")]
+    [CCode (cname="")]
     public FFBigNum priv_key;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmpdh.h")]
+    [CCode (cname="")]
     public long length;
 }
 

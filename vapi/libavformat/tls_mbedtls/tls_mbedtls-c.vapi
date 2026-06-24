@@ -30,9 +30,10 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "key_password",
         short_help_text = "Password for the private key file",
-        OFFSET (priv_key_pw
+        offset = OFFSET (
+            priv_key_pw
         ),
-        .flags = TLS_OPTFL
+        option_flags = TLS_OPTFL
     },
     {
         NULL
@@ -131,7 +132,7 @@ public class MbedTLSURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/tls_mbedtls.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 

@@ -107,7 +107,7 @@ public class OMADemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

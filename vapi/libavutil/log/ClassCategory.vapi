@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVUtil {
 
-[CCode (cprefix="AV_CLASS_CATEGORY_",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+[CCode (cname="enum ClassCategory",cprefix="AV_CLASS_CATEGORY_",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public enum ClassCategory {
     [CCode (cname="AV_CLASS_CATEGORY_NA")]
     NOT_APPLICABLE,
@@ -36,7 +36,9 @@ public enum ClassCategory {
 
     [CCode (cname="AV_CLASS_CATEGORY_SWSCALER")]
     SOFTWARE_SCALER,
-    SOFTWARE_ESAMPLER,
+
+    [CCode (cname="AV_CLASS_CATEGORY_SWRESAMPLER")]
+    SOFTWARE_RESAMPLER,
     DEVICE_VIDEO_OUTPUT,
     DEVICE_VIDEO_INPUT,
     DEVICE_AUDIO_OUTPUT,

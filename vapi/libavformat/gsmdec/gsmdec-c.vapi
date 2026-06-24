@@ -26,16 +26,16 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "sample_rate",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             GSMDemuxerContext,
             sample_rate
         ),
-        {
-            .i64 = GSM_SAMPLE_RATE
-        },
-        1,
-        int.MAX / GSM_BLOCK_SIZE,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = GSM_SAMPLE_RATE,
+        minimum_value = 1,
+        maximum_value = (
+            int.MAX / GSM_BLOCK_SIZE
+        ),
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -128,7 +128,7 @@ public class GSMDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/gsmdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

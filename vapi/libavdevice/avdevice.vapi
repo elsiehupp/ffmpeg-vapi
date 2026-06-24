@@ -29,7 +29,7 @@ Special devices muxing/demuxing library.
 Libavdevice is a complementary library to @ref libavf "libavformat". It
 provides various "special" platform-specific muxers and demuxers, e.g. for
 grabbing devices, audio capture and playback etc. As a consequence, the
-(de)muxers in libavdevice are of the AVFMT_NOFILE type (they use their own
+(de)muxers in libavdevice are of the AVFormatFlags1.NO_FILE type (they use their own
 I/O functions). The filename passed to avformat_open_input () often does not
 refer to an actually existing file, but has some special device-specific
 meaning - e.g. for xcbgrab it is the display name.
@@ -112,7 +112,7 @@ public AVOutputFormat? av_output_video_device_next (
     AVOutputFormat? d
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
+[CCode (cname="struct AVDeviceRect",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 [Compact]
 public class AVDeviceRect {
     /***********************************************************
@@ -143,13 +143,13 @@ public class AVDeviceRect {
 /***********************************************************
 Message types used by avdevice_app_to_dev_control_message ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
+[CCode (cname="enum AVAppToDevMessageType",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 public enum AVAppToDevMessageType {
     /***********************************************************
     Dummy message.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_APP_TO_DEV_NONE,
+    [CCode (cname="AV_APP_TO_DEV_NONE")]
+    NONE,
     //  MKBETAG (
     //      'N',
     //      'O',
@@ -166,8 +166,8 @@ public enum AVAppToDevMessageType {
 
     data: AVDeviceRect: new window size.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_APP_TO_DEV_WINDOW_SIZE,
+    [CCode (cname="AV_APP_TO_DEV_WINDOW_SIZE")]
+    WINDOW_SIZE,
     //  MKBETAG (
     //      'G',
     //      'E',
@@ -183,8 +183,8 @@ public enum AVAppToDevMessageType {
     data: AVDeviceRect: area required to be repainted.
           NULL: whole area is required to be repainted.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_APP_TO_DEV_WINDOW_REPAINT,
+    [CCode (cname="AV_APP_TO_DEV_WINDOW_REPAINT")]
+    WINDOW_REPAINT,
     //  MKBETAG (
     //      'R',
     //      'E',
@@ -201,8 +201,8 @@ public enum AVAppToDevMessageType {
 
     data: NULL
     ***********************************************************/
-    [CCode (cname="")]
-    AV_APP_TO_DEV_PAUSE,
+    [CCode (cname="AV_APP_TO_DEV_PAUSE")]
+    PAUSE,
     //  MKBETAG (
     //      'P',
     //      'A',
@@ -210,8 +210,8 @@ public enum AVAppToDevMessageType {
     //      ' '
     //  ),
 
-    [CCode (cname="")]
-    AV_APP_TO_DEV_PLAY,
+    [CCode (cname="AV_APP_TO_DEV_PLAY")]
+    PLAY,
     //  MKBETAG (
     //      'P',
     //      'L',
@@ -219,8 +219,8 @@ public enum AVAppToDevMessageType {
     //      'Y'
     //  ),
 
-    [CCode (cname="")]
-    AV_APP_TO_DEV_TOGGLE_PAUSE,
+    [CCode (cname="AV_APP_TO_DEV_TOGGLE_PAUSE")]
+    TOGGLE_PAUSE,
     //  MKBETAG (
     //      'P',
     //      'A',
@@ -237,8 +237,8 @@ public enum AVAppToDevMessageType {
 
     data: double: new volume with range of 0.0 - 1.0.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_APP_TO_DEV_SET_VOLUME,
+    [CCode (cname="AV_APP_TO_DEV_SET_VOLUME")]
+    SET_VOLUME,
     //  MKBETAG (
     //      'S',
     //      'V',
@@ -255,8 +255,8 @@ public enum AVAppToDevMessageType {
 
     data: NULL.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_APP_TO_DEV_MUTE,
+    [CCode (cname="AV_APP_TO_DEV_MUTE")]
+    MUTE,
     //  MKBETAG (
     //      ' ',
     //      'M',
@@ -264,8 +264,8 @@ public enum AVAppToDevMessageType {
     //      'T'
     //  ),
 
-    [CCode (cname="")]
-    AV_APP_TO_DEV_UNMUTE,
+    [CCode (cname="AV_APP_TO_DEV_UNMUTE")]
+    UNMUTE,
     //  MKBETAG (
     //      'U',
     //      'M',
@@ -273,8 +273,8 @@ public enum AVAppToDevMessageType {
     //      'T'
     //  ),
 
-    [CCode (cname="")]
-    AV_APP_TO_DEV_TOGGLE_MUTE,
+    [CCode (cname="AV_APP_TO_DEV_TOGGLE_MUTE")]
+    TOGGLE_MUTE,
     //  MKBETAG (
     //      'T',
     //      'M',
@@ -285,13 +285,13 @@ public enum AVAppToDevMessageType {
     /***********************************************************
     Get volume/mute messages.
 
-    Force the device to send AV_DEV_TO_APP_VOLUME_LEVEL_CHANGED or
-    AV_DEV_TO_APP_MUTE_STATE_CHANGED command respectively.
+    Force the device to send AVDevToAppMessageType.VOLUME_LEVEL_CHANGED or
+    AVDevToAppMessageType.MUTE_STATE_CHANGED command respectively.
 
     data: NULL.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_APP_TO_DEV_GET_VOLUME,
+    [CCode (cname="AV_APP_TO_DEV_GET_VOLUME")]
+    GET_VOLUME,
     //  MKBETAG (
     //      'G',
     //      'V',
@@ -299,8 +299,8 @@ public enum AVAppToDevMessageType {
     //      'L'
     //  ),
 
-    [CCode (cname="")]
-    AV_APP_TO_DEV_GET_MUTE,
+    [CCode (cname="AV_APP_TO_DEV_GET_MUTE")]
+    GET_MUTE,
     //  MKBETAG (
     //      'G',
     //      'M',
@@ -313,13 +313,13 @@ public enum AVAppToDevMessageType {
 /***********************************************************
 Message types used by avdevice_dev_to_app_control_message ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
+[CCode (cname="enum AVDevToAppMessageType",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 public enum AVDevToAppMessageType {
     /***********************************************************
     Dummy message.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_DEV_TO_APP_NONE,
+    [CCode (cname="AV_DEV_TO_APP_NONE")]
+    NONE,
     //  MKBETAG (
     //      'N',
     //      'O',
@@ -336,13 +336,13 @@ public enum AVDevToAppMessageType {
     Application is allowed to ignore preferred window buffer size.
 
     @note: Application is obligated to inform about window buffer size
-        with AV_APP_TO_DEV_WINDOW_SIZE message.
+        with AVAppToDevMessageType.WINDOW_SIZE message.
 
     data: AVDeviceRect: preferred size of the window buffer.
           NULL: no preferred size of the window buffer.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_DEV_TO_APP_CREATE_WINDOW_BUFFER,
+    [CCode (cname="AV_DEV_TO_APP_CREATE_WINDOW_BUFFER")]
+    CREATE_WINDOW_BUFFER,
     //  MKBETAG (
     //      'B',
     //      'C',
@@ -359,8 +359,8 @@ public enum AVDevToAppMessageType {
 
     data: NULL.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_DEV_TO_APP_PREPARE_WINDOW_BUFFER,
+    [CCode (cname="AV_DEV_TO_APP_PREPARE_WINDOW_BUFFER")]
+    PREPARE_WINDOW_BUFFER,
     //  MKBETAG (
     //      'B',
     //      'P',
@@ -377,8 +377,8 @@ public enum AVDevToAppMessageType {
 
     data: NULL.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_DEV_TO_APP_DISPLAY_WINDOW_BUFFER,
+    [CCode (cname="AV_DEV_TO_APP_DISPLAY_WINDOW_BUFFER")]
+    DISPLAY_WINDOW_BUFFER,
     //  MKBETAG (
     //      'B',
     //      'D',
@@ -395,8 +395,8 @@ public enum AVDevToAppMessageType {
 
     data: NULL.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_DEV_TO_APP_DESTROY_WINDOW_BUFFER,
+    [CCode (cname="AV_DEV_TO_APP_DESTROY_WINDOW_BUFFER")]
+    DESTROY_WINDOW_BUFFER,
     //  MKBETAG (
     //      'B',
     //      'D',
@@ -411,8 +411,8 @@ public enum AVDevToAppMessageType {
 
     data: NULL.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_DEV_TO_APP_BUFFER_OVERFLOW,
+    [CCode (cname="AV_DEV_TO_APP_BUFFER_OVERFLOW")]
+    BUFFER_OVERFLOW,
     //  MKBETAG (
     //      'B',
     //      'O',
@@ -420,8 +420,8 @@ public enum AVDevToAppMessageType {
     //      'L'
     //  ),
 
-    [CCode (cname="")]
-    AV_DEV_TO_APP_BUFFER_UNDERFLOW,
+    [CCode (cname="AV_DEV_TO_APP_BUFFER_UNDERFLOW")]
+    BUFFER_UNDERFLOW,
     //  MKBETAG (
     //      'B',
     //      'U',
@@ -440,8 +440,8 @@ public enum AVDevToAppMessageType {
     data: int64: amount of bytes available to read/write.
           NULL: amount of bytes available to read/write is not known.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_DEV_TO_APP_BUFFER_READABLE,
+    [CCode (cname="AV_DEV_TO_APP_BUFFER_READABLE")]
+    BUFFER_READABLE,
     //  MKBETAG (
     //      'B',
     //      'R',
@@ -449,8 +449,8 @@ public enum AVDevToAppMessageType {
     //      ' '
     //  ),
 
-    [CCode (cname="")]
-    AV_DEV_TO_APP_BUFFER_WRITABLE,
+    [CCode (cname="AV_DEV_TO_APP_BUFFER_WRITABLE")]
+    BUFFER_WRITABLE,
     //  MKBETAG (
     //      'B',
     //      'W',
@@ -465,8 +465,8 @@ public enum AVDevToAppMessageType {
 
     data: int: 0 for not muted state, non-zero for muted state.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_DEV_TO_APP_MUTE_STATE_CHANGED,
+    [CCode (cname="AV_DEV_TO_APP_MUTE_STATE_CHANGED")]
+    MUTE_STATE_CHANGED,
     //  MKBETAG (
     //      'C',
     //      'M',
@@ -481,8 +481,8 @@ public enum AVDevToAppMessageType {
 
     data: double: new volume with range of 0.0 - 1.0.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_DEV_TO_APP_VOLUME_LEVEL_CHANGED,
+    [CCode (cname="AV_DEV_TO_APP_VOLUME_LEVEL_CHANGED")]
+    VOLUME_LEVEL_CHANGED,
     //  MKBETAG (
     //      'C',
     //      'V',
@@ -578,13 +578,13 @@ Example of the usage basing on opengl output device:
      goto fail;
 
  // query codecs
- if (av_opt_query_ranges (&ranges, caps, "codec", AV_OPT_MULTI_COMPONENT_RANGE)) < 0)
+ if (av_opt_query_ranges (&ranges, caps, "codec", OptionSearchFlags.MULTI_COMPONENT_RANGE)) < 0)
      goto fail;
  // pick codec here and set it
  av_opt_set (caps, "codec", AV_CODEC_ID_RAWVIDEO, 0);
 
  // query format
- if (av_opt_query_ranges (&ranges, caps, "pixel_format", AV_OPT_MULTI_COMPONENT_RANGE)) < 0)
+ if (av_opt_query_ranges (&ranges, caps, "pixel_format", OptionSearchFlags.MULTI_COMPONENT_RANGE)) < 0)
      goto fail;
  // pick format here and set it
  av_opt_set (caps, "pixel_format", AV_PIX_FMT_YUV420P, 0);
@@ -604,7 +604,7 @@ Structure describes device capabilities.
 It is used by devices in conjunction with av_device_capabilities AVOption table
 to implement capabilities probing API based on AVOption API. Should not be used directly.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
+[CCode (cname="struct AVDeviceCapabilitiesQuery",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 [Compact]
 public class AVDeviceCapabilitiesQuery {
     [CCode (cname="")]
@@ -691,7 +691,7 @@ public void avdevice_capabilities_free (
 /***********************************************************
 Structure describes basic parameters of the device.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
+[CCode (cname="struct AVDeviceInfo",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 [Compact]
 public class AVDeviceInfo {
     /***********************************************************
@@ -710,7 +710,7 @@ public class AVDeviceInfo {
 /***********************************************************
 List of devices.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
+[CCode (cname="struct AVDeviceInfoList",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 [Compact]
 public class AVDeviceInfoList {
     /***********************************************************

@@ -28,8 +28,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gblur.h")]
 [Compact]
 public class GBlurContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public float sigma;

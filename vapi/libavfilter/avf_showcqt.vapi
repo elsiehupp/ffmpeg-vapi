@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avf_showcqt.h")]
+[CCode (cname="struct Coeffs",cheader_filename="subprojects/ffmpeg/libavfilter/avf_showcqt.h")]
 [Compact]
 public class Coeffs {
     [CCode (cname="")]
@@ -31,7 +31,7 @@ public class Coeffs {
     public int len;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avf_showcqt.h")]
+[CCode (cname="struct RGBFloat",cheader_filename="subprojects/ffmpeg/libavfilter/avf_showcqt.h")]
 [Compact]
 public class RGBFloat {
     [CCode (cname="")]
@@ -44,7 +44,7 @@ public class RGBFloat {
     public float b;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avf_showcqt.h")]
+[CCode (cname="struct YUVFloat",cheader_filename="subprojects/ffmpeg/libavfilter/avf_showcqt.h")]
 [Compact]
 public class YUVFloat {
     [CCode (cname="")]
@@ -66,11 +66,11 @@ public typedef union ColorFloat {
     YUVFloat yuv;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avf_showcqt.h")]
+[CCode (cname="struct ShowCQTContext",cheader_filename="subprojects/ffmpeg/libavfilter/avf_showcqt.h")]
 [Compact]
 public class ShowCQTContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public AVFilterContext? ctx;

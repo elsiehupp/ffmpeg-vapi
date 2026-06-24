@@ -30,15 +30,13 @@ static const LibAVUtil.Option flacenc_options[] = {
     new LibAVUtil.BoolOption () {
         name = "write_header",
         short_help_text = "Write the file header",
-        offsetof (
+        offset = offsetof (
             FlacMuxerContext, write_header
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -166,7 +164,7 @@ public class FLACMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/flacenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

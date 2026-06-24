@@ -18,41 +18,41 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
+[CCode (cname="struct AudioData",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
 [Compact]
 public class AudioData { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
+[CCode (cname="struct AudioConvert",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
 [Compact]
 public class AudioConvert { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
+[CCode (cname="struct AudioMix",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
 [Compact]
 public class AudioMix { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
+[CCode (cname="struct ResampleContext",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
 [Compact]
 public class ResampleContext { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
 public enum RemapPoint {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
-    REMAP_NONE,
+    [CCode (cname="REMAP_NONE")]
+    NONE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
-    REMAP_IN_COPY,
+    [CCode (cname="REMAP_IN_COPY")]
+    INPUT_COPY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
-    REMAP_IN_CONVERT,
+    [CCode (cname="REMAP_IN_CONVERT")]
+    INPUT_CONVERT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
-    REMAP_OUT_COPY,
+    [CCode (cname="REMAP_OUT_COPY")]
+    OUTPUT_COPY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
-    REMAP_OUT_CONVERT;
+    [CCode (cname="REMAP_OUT_CONVERT")]
+    OUTPUT_CONVERT;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
+[CCode (cname="struct ChannelMapInfo",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
 [Compact]
 public class ChannelMapInfo {
     /***********************************************************
@@ -98,7 +98,7 @@ public class ChannelMapInfo {
     public int input_map[AVRESAMPLE_MAX_CHANNELS];
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
+[CCode (cname="struct AVAudioResampleContext",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
 [Compact]
 public class AVAudioResampleContext {
     /***********************************************************

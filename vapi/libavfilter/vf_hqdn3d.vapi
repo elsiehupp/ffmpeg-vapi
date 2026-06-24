@@ -23,8 +23,8 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
 [Compact]
 public class HQDN3DContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public int16[] coefs[4];
@@ -64,17 +64,17 @@ public class HQDN3DContext {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
 public enum FooBar {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
+    [CCode (cname="LUMA_SPATIAL")]
     LUMA_SPATIAL, // 0
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
-    LUMA_TMP, // 1
+    [CCode (cname="LUMA_TMP")]
+    LUMA_TEMPORAL, // 1
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
+    [CCode (cname="CHROMA_SPATIAL")]
     CHROMA_SPATIAL, // 2
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]
-    CHROMA_TMP; // 3
+    [CCode (cname="CHROMA_TMP")]
+    CHROMA_TEMPORAL; // 3
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_hqdn3d.h")]

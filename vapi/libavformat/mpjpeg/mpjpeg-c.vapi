@@ -22,21 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
+[CCode (cname="BOUNDARY_TAG",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
 public const string BOUNDARY_TAG; // "ffmpeg"
 
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "boundary_tag",
         short_help_text = "Boundary tag",
-        offsetof (
+        offset = offsetof (
             MPJPEGContext,
             boundary_tag
         ),
-        {
-            .str = BOUNDARY_TAG
-        },
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = BOUNDARY_TAG,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -165,7 +163,7 @@ public class MultipartJpegMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mpjpeg.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

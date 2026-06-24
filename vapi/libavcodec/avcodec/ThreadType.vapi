@@ -26,17 +26,17 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="FF_THREAD_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum ThreadType {
     /***********************************************************
     @brief Decode more than one frame at once
     ***********************************************************/
-    FF_THREAD_FRAME,
+    FRAME,
 
     /***********************************************************
     @brief Decode more than one part of a single frame at once
     ***********************************************************/
-    FF_THREAD_SLICE;
+    SLICE;
 }
 
 } // namespace LibAVCodec

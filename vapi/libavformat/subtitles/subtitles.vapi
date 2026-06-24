@@ -22,54 +22,49 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="enum sub_sort")]
-public enum sub_sort {
+public enum SubSort {
     /***********************************************************
     @brief Sort by timestamps, then position
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
-    SUB_SORT_TS_POS,
+    [CCode (cname="SUB_SORT_TS_POS")]
+    TIMESTAMPS_THEN_POSITION,
 
     /***********************************************************
     @brief Sort by position, then timestamps
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
-    SUB_SORT_POS_TS;
+    [CCode (cname="SUB_SORT_POS_TS")]
+    POSITION_THEN_TIMESTAMP;
 }
 
-[CCode (cname="enum ff_utf_type")]
-public enum ff_utf_type {
+[CCode (cname="enum ff_utf_type",cprefix="FF_")]
+public enum UTFType {
     /***********************************************************
     @brief Or other 8 bit encodings
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
-    FF_UTF_8,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
-    FF_UTF16LE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
-    FF_UTF16BE;
+    UTF_8,
+    UTF16LE,
+    UTF16BE;
 }
 
 [CCode (cname="struct FFTextReader",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
 [Compact]
 public class FFTextReader {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public int type;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public AVIOContext pb;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public uchar buffer[8];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public int buf_pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public int buf_len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public AVIOContext buf_pb;
 }
 
@@ -160,37 +155,37 @@ public class FFDemuxSubtitlesQueue {
     /***********************************************************
     @brief Array of subtitles packets
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public LibAVCodec.Packet[] subs;
 
     /***********************************************************
     @brief Number of subtitles packets
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public int nb_subs;
 
     /***********************************************************
     @brief Allocated size for subs
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public int allocated_size;
 
     /***********************************************************
     @brief Current position for the read packet callback
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public int current_sub_idx;
 
     /***********************************************************
     @brief Sort method to use when finalizing subtitles
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public sub_sort sort;
 
     /***********************************************************
     @brief Set to 1 to keep duplicated subtitle events
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
+    [CCode (cname="")]
     public int keep_duplicates;
 }
 

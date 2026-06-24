@@ -92,7 +92,7 @@ public class TYDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_TS_DISCONT;
+            return AVFormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES;
 
         }
 

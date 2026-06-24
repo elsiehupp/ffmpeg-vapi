@@ -70,7 +70,7 @@ public class DCSTRDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX | AVFMT_NO_BYTE_SEEK | AVFMT_NOBINSEARCH;
+            return AVFormatFlags1.USE_GENERIC_INDEX | AVFormatFlags1.NO_BYTE_SEEK | AVFormatFlags1.NO_BINARY_SEARCH;
 
         }
 

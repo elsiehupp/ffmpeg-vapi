@@ -45,26 +45,26 @@ public const size_t FLV_VIDEO_FRAMETYPE_OFFSET;
 /***********************************************************
 @brief Bitmasks to isolate specific values
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 [Flags]
-public enum FLVAudioMask {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_AUDIO_CHANNEL_MASK,
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
+public enum FLVMask {
+    [CCode (cname="FLV_AUDIO_CHANNEL_MASK")]
+    AUDIO_CHANNEL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_AUDIO_SAMPLESIZE_MASK,
+    [CCode (cname="FLV_AUDIO_SAMPLESIZE_MASK")]
+    AUDIO_SAMPLE_SIZE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_AUDIO_SAMPLERATE_MASK,
+    [CCode (cname="FLV_AUDIO_SAMPLERATE_MASK")]
+    AUDIO_SAMPLE_RATE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_AUDIO_CODECID_MASK,
+    [CCode (cname="FLV_AUDIO_CODECID_MASK")]
+    AUDIO_CODEC_ID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_VIDEO_CODECID_MASK,
+    [CCode (cname="FLV_VIDEO_CODECID_MASK")]
+    VIDEO_CODEC_ID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_VIDEO_FRAMETYPE_MASK;
+    [CCode (cname="FLV_VIDEO_FRAMETYPE_MASK")]
+    VIDEO_FRAME_TYPE;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
@@ -79,219 +79,219 @@ public const string KEYFRAMES_TIMESTAMP_TAG;
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public const string KEYFRAMES_BYTEOFFSET_TAG;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public enum FLVHeaderFlags {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_HEADER_FLAG_HASVIDEO,
+    [CCode (cname="FLV_HEADER_FLAG_HASVIDEO")]
+    HAS_VIDEO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_HEADER_FLAG_HASAUDIO;
+    [CCode (cname="FLV_HEADER_FLAG_HASAUDIO")]
+    HAS_AUDIO;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="enum FlvTagType",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public enum FlvTagType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_TAG_TYPE_AUDIO,
+    [CCode (cname="FLV_TAG_TYPE_AUDIO")]
+    AUDIO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_TAG_TYPE_VIDEO,
+    [CCode (cname="FLV_TAG_TYPE_VIDEO")]
+    VIDEO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_TAG_TYPE_META;
+    [CCode (cname="FLV_TAG_TYPE_META")]
+    META;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public enum FLVStreamType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_STREAM_TYPE_VIDEO,
+    [CCode (cname="FLV_STREAM_TYPE_VIDEO")]
+    VIDEO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_STREAM_TYPE_AUDIO,
+    [CCode (cname="FLV_STREAM_TYPE_AUDIO")]
+    AUDIO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_STREAM_TYPE_SUBTITLE,
+    [CCode (cname="FLV_STREAM_TYPE_SUBTITLE")]
+    SUBTITLE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_STREAM_TYPE_DATA,
+    [CCode (cname="FLV_STREAM_TYPE_DATA")]
+    DATA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_STREAM_TYPE_NB;
+    [CCode (cname="FLV_STREAM_TYPE_NB")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public enum FLVAudioMode {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_MONO = 0,
+    [CCode (cname="FLV_MONO")]
+    MONO, // = 0,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_STEREO = 1;
+    [CCode (cname="FLV_STEREO")]
+    STEREO; // = 1;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public enum FLVSampleSize {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_SAMPLESSIZE_8BIT = 0,
+    [CCode (cname="FLV_SAMPLESSIZE_8BIT")]
+    @8BIT, // = 0,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_SAMPLESSIZE_16BIT = 1 << FLV_AUDIO_SAMPLESSIZE_OFFSET;
+    [CCode (cname="FLV_SAMPLESSIZE_16BIT")]
+    @16BIT; // = 1 << FLV_AUDIO_SAMPLESSIZE_OFFSET;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public enum FLVSampleRate {
     /***********************************************************
     @brief Signifies 5512Hz and 8000Hz in the case of NELLYMOSER
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_SAMPLERATE_SPECIAL = 0,
+    [CCode (cname="FLV_SAMPLERATE_SPECIAL")]
+    SPECIAL, // = 0,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_SAMPLERATE_11025HZ = 1 << FLV_AUDIO_SAMPLERATE_OFFSET,
+    [CCode (cname="FLV_SAMPLERATE_11025HZ")]
+    @11025HZ, // = 1 << FLV_AUDIO_SAMPLERATE_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_SAMPLERATE_22050HZ = 2 << FLV_AUDIO_SAMPLERATE_OFFSET,
+    [CCode (cname="FLV_SAMPLERATE_22050HZ")]
+    @22050HZ, // = 2 << FLV_AUDIO_SAMPLERATE_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_SAMPLERATE_44100HZ = 3 << FLV_AUDIO_SAMPLERATE_OFFSET;
+    [CCode (cname="FLV_SAMPLERATE_44100HZ")]
+    @44100HZ; // = 3 << FLV_AUDIO_SAMPLERATE_OFFSET;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public enum FLVVCodecIDWithOffset {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_PCM = 0,
+    [CCode (cname="FLV_CODECID_PCM")]
+    PCM, // = 0,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_ADPCM = 1 << FLV_AUDIO_CODECID_OFFSET,
+    [CCode (cname="FLV_CODECID_ADPCM")]
+    ADPCM, // = 1 << FLV_AUDIO_CODECID_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_MP3 = 2 << FLV_AUDIO_CODECID_OFFSET,
+    [CCode (cname="FLV_CODECID_MP3")]
+    MP3, // = 2 << FLV_AUDIO_CODECID_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_PCM_LE = 3 << FLV_AUDIO_CODECID_OFFSET,
+    [CCode (cname="FLV_CODECID_PCM_LE")]
+    PCM_LE, // = 3 << FLV_AUDIO_CODECID_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_NELLYMOSER_16KHZ_MONO = 4 << FLV_AUDIO_CODECID_OFFSET,
+    [CCode (cname="FLV_CODECID_NELLYMOSER_16KHZ_MONO")]
+    NELLY_MOSER_16KHZ_MONO, // = 4 << FLV_AUDIO_CODECID_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_NELLYMOSER_8KHZ_MONO = 5 << FLV_AUDIO_CODECID_OFFSET,
+    [CCode (cname="FLV_CODECID_NELLYMOSER_8KHZ_MONO")]
+    NELLY_MOSER_8KHZ_MONO, // = 5 << FLV_AUDIO_CODECID_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_NELLYMOSER = 6 << FLV_AUDIO_CODECID_OFFSET,
+    [CCode (cname="FLV_CODECID_NELLYMOSER")]
+    NELLY_MOSER, // = 6 << FLV_AUDIO_CODECID_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_PCM_ALAW = 7 << FLV_AUDIO_CODECID_OFFSET,
+    [CCode (cname="FLV_CODECID_PCM_ALAW")]
+    PCM_ALAW, // = 7 << FLV_AUDIO_CODECID_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_PCM_MULAW = 8 << FLV_AUDIO_CODECID_OFFSET,
+    [CCode (cname="FLV_CODECID_PCM_MULAW")]
+    PCM_MULAW, // = 8 << FLV_AUDIO_CODECID_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_AAC = 10<< FLV_AUDIO_CODECID_OFFSET,
+    [CCode (cname="FLV_CODECID_AAC")]
+    AAC, // = 10 << FLV_AUDIO_CODECID_OFFSET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_SPEEX = 11<< FLV_AUDIO_CODECID_OFFSET;
+    [CCode (cname="FLV_CODECID_SPEEX")]
+    SPEEX; // = 11 << FLV_AUDIO_CODECID_OFFSET;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public enum FLVVCodecID {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_H263 = 2,
+    [CCode (cname="FLV_CODECID_H263")]
+    H263, // = 2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_SCREEN = 3,
+    [CCode (cname="FLV_CODECID_SCREEN")]
+    SCREEN, // = 3,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_VP6 = 4,
+    [CCode (cname="FLV_CODECID_VP6")]
+    VP6, // = 4,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_VP6A = 5,
+    [CCode (cname="FLV_CODECID_VP6A")]
+    VP6A, // = 5,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_SCREEN2 = 6,
+    [CCode (cname="FLV_CODECID_SCREEN2")]
+    SCREEN2, // = 6,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_H264 = 7,
+    [CCode (cname="FLV_CODECID_H264")]
+    H264, // = 7,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_REALH263= 8,
+    [CCode (cname="FLV_CODECID_REALH263")]
+    REAL_H263, // = 8,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_CODECID_MPEG4 = 9;
+    [CCode (cname="FLV_CODECID_MPEG4")]
+    MPEG4; // = 9;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public enum FLVVideoFrameType {
     /***********************************************************
     @brief Key frame (for AVC, a seekable frame)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_FRAME_KEY,
+    [CCode (cname="FLV_FRAME_KEY")]
+    KEY,
 
     /***********************************************************
     @brief Inter frame (for AVC, a non-seekable frame)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_FRAME_INTER,
+    [CCode (cname="FLV_FRAME_INTER")]
+    INTER,
 
     /***********************************************************
     @brief Disposable inter frame (H.263 only)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_FRAME_DISP_INTER,
+    [CCode (cname="FLV_FRAME_DISP_INTER")]
+    DISP_INTER,
 
     /***********************************************************
     @brief Generated key frame (reserved for server use only)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_FRAME_GENERATED_KEY,
+    [CCode (cname="FLV_FRAME_GENERATED_KEY")]
+    GENERATED_KEY,
 
     /***********************************************************
     @brief Video info/command frame
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    FLV_FRAME_VIDEO_INFO_CMD;
+    [CCode (cname="FLV_FRAME_VIDEO_INFO_CMD")]
+    VIDEO_INFO_CMD;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="enum AMFDataType",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
 public enum AMFDataType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_NUMBER,
+    [CCode (cname="AMF_DATA_TYPE_NUMBER")]
+    NUMBER,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_BOOL,
+    [CCode (cname="AMF_DATA_TYPE_BOOL")]
+    BOOL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_STRING,
+    [CCode (cname="AMF_DATA_TYPE_STRING")]
+    STRING,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_OBJECT,
+    [CCode (cname="AMF_DATA_TYPE_OBJECT")]
+    OBJECT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_NULL,
+    [CCode (cname="AMF_DATA_TYPE_NULL")]
+    NULL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_UNDEFINED,
+    [CCode (cname="AMF_DATA_TYPE_UNDEFINED")]
+    UNDEFINED,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_REFERENCE,
+    [CCode (cname="AMF_DATA_TYPE_REFERENCE")]
+    REFERENCE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_MIXEDARRAY,
+    [CCode (cname="AMF_DATA_TYPE_MIXEDARRAY")]
+    MIXED_ARRAY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_OBJECT_END,
+    [CCode (cname="AMF_DATA_TYPE_OBJECT_END")]
+    OBJECT_END,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_ARRAY,
+    [CCode (cname="AMF_DATA_TYPE_ARRAY")]
+    ARRAY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_DATE,
+    [CCode (cname="AMF_DATA_TYPE_DATE")]
+    DATE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_LONG_STRING,
+    [CCode (cname="AMF_DATA_TYPE_LONG_STRING")]
+    LONG_STRING,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
-    AMF_DATA_TYPE_UNSUPPORTED;
+    [CCode (cname="AMF_DATA_TYPE_UNSUPPORTED")]
+    UNSUPPORTED;
 }
 
 } // namespace LibAVFormat

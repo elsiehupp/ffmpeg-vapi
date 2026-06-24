@@ -21,92 +21,80 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 audio volume filter
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
+[CCode (cname="enum PrecisionType",cprefix="PRECISION_",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 public enum PrecisionType {
-    [CCode (cname="")]
-    PRECISION_FIXED = 0,
-
-    [CCode (cname="")]
-    PRECISION_FLOAT,
-
-    [CCode (cname="")]
-    PRECISION_DOUBLE;
+    FIXED, // = 0,
+    FLOAT,
+    DOUBLE;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
+[CCode (cname="enum EvalMode",cprefix="EVAL_MODE_",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 public enum EvalMode {
     [CCode (cname="")]
-    EVAL_MODE_ONCE,
+    ONCE,
 
     [CCode (cname="")]
-    EVAL_MODE_FRAME,
+    FRAME,
 
     [CCode (cname="")]
-    EVAL_MODE_NB
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
+[CCode (cname="enum VolumeVarName",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 public enum VolumeVarName {
-    [CCode (cname="")]
-    VAR_N,
+    [CCode (cname="VAR_N")]
+    N,
 
-    [CCode (cname="")]
-    VAR_NB_CHANNELS,
+    [CCode (cname="VAR_NB_CHANNELS")]
+    CHANNEL_COUNT,
 
-    [CCode (cname="")]
-    VAR_NB_CONSUMED_SAMPLES,
+    [CCode (cname="VAR_NB_CONSUMED_SAMPLES")]
+    CONSUMED_SAMPLE_COUNT,
 
-    [CCode (cname="")]
-    VAR_NB_SAMPLES,
+    [CCode (cname="VAR_NB_SAMPLES")]
+    SAMPLE_COUNT,
 
-    [CCode (cname="")]
-    VAR_POS,
+    [CCode (cname="VAR_POS")]
+    POS,
 
-    [CCode (cname="")]
-    VAR_PTS,
+    [CCode (cname="VAR_PTS")]
+    PTS,
 
-    [CCode (cname="")]
-    VAR_SAMPLE_RATE,
+    [CCode (cname="VAR_SAMPLE_RATE")]
+    SAMPLE_RATE,
 
-    [CCode (cname="")]
-    VAR_STARTPTS,
+    [CCode (cname="VAR_STARTPTS")]
+    START_PTS,
 
-    [CCode (cname="")]
-    VAR_STARTT,
+    [CCode (cname="VAR_STARTT")]
+    START_T,
 
-    [CCode (cname="")]
-    VAR_T,
+    [CCode (cname="VAR_T")]
+    T,
 
-    [CCode (cname="")]
-    VAR_TB,
+    [CCode (cname="VAR_TB")]
+    TB,
 
-    [CCode (cname="")]
-    VAR_VOLUME,
+    [CCode (cname="VAR_VOLUME")]
+    VOLUME,
 
-    [CCode (cname="")]
-    VAR_VARS_NB;
+    [CCode (cname="VAR_VARS_NB")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
+[CCode (cname="enum ReplayGainType",cprefix="REPLAYGAIN_",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 public enum ReplayGainType {
-    [CCode (cname="")]
-    REPLAYGAIN_DROP,
-
-    [CCode (cname="")]
-    REPLAYGAIN_IGNORE,
-
-    [CCode (cname="")]
-    REPLAYGAIN_TRACK,
-
-    [CCode (cname="")]
-    REPLAYGAIN_ALBUM;
+    DROP,
+    IGNORE,
+    TRACK,
+    ALBUM;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_volume.h")]
 [Compact]
 public class VolumeContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     public AVFloatDSPContext? fdsp;
 
@@ -123,7 +111,7 @@ public class VolumeContext {
     public AVExpr? volume_pexpr;
 
     [CCode (cname="")]
-    public double var_values[VAR_VARS_NB];
+    public double var_values[VolumeVarName.NB];
 
     [CCode (cname="")]
     public int replaygain;

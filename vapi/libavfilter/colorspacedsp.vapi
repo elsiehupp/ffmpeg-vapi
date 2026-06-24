@@ -67,7 +67,7 @@ public delegate void Yuv2YuvDelegate (
     int16 yuv_offset[2][8]
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
+[CCode (cname="enum BitDepthIndex",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public enum BitDepthIndex {
     [CCode (cname="")]
     BPP_8,
@@ -82,7 +82,7 @@ public enum BitDepthIndex {
     NB_BPP;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
+[CCode (cname="enum ChromaSubsamplingIndex",cheader_filename="subprojects/ffmpeg/libavfilter/colorspacedsp.h")]
 public enum ChromaSubsamplingIndex {
     [CCode (cname="")]
     SS_444,

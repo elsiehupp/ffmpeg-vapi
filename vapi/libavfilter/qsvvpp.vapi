@@ -64,11 +64,11 @@ public static bool QSV_RUNTIME_VERSION_ATLEAST (
 //      );
 //  }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
+[CCode (cname="struct QSVVPPContext",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 [Compact]
 public class QSVVPPContext { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
+[CCode (cname="struct QSVVPPCrop",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 [Compact]
 public class QSVVPPCrop {
     /***********************************************************
@@ -102,7 +102,7 @@ public class QSVVPPCrop {
     public int h;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
+[CCode (cname="struct QSVVPPParam",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 [Compact]
 public class QSVVPPParam {
     public delegate int FilterFrameDelegate (

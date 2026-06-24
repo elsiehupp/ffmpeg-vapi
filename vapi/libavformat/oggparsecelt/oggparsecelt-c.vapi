@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_celt_codec",cheader_filename="ffmpeg/libformat/oggparsecelt.c")]
 public class CELTCodec : OggCodec {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparsecelt.c")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "CELT    ".data;
@@ -32,14 +32,29 @@ public class CELTCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 8,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 8;
+        }
+
+    }
 
     [CCode (cname="celt_header",cheader_filename="ffmpeg/libformat/oggparsecelt.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    //  .nb_header = 2;
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 2;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

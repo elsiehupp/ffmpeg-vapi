@@ -26,7 +26,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_theora_codec",cheader_filename="")]
 public class TheoraCodec : OggCodec {
-    [CCode (cname="")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "200theora".data;
@@ -34,7 +34,14 @@ public class TheoraCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 7,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 7;
+        }
+
+    }
 
     [CCode (cname="theora_header",cheader_filename="")]
     public override int header (
@@ -55,7 +62,15 @@ public class TheoraCodec : OggCodec {
         uint64 arg2,
         out int64 dts
     );
-    //  .nb_header = 3;
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 3;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

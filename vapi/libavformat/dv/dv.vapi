@@ -32,18 +32,18 @@ namespace LibAVFormat {
 [Compact]
 public class DVDemuxContext {
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
+    [CCode (cname="avpriv_dv_init_demux",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
     public DVDemuxContext avpriv_dv_init_demux (
         AVFormatContext format_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
+    [CCode (cname="avpriv_dv_get_packet",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
     public int avpriv_dv_get_packet (
         DVDemuxContext demux_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
+    [CCode (cname="avpriv_dv_produce_packet",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
     public int avpriv_dv_produce_packet (
         DVDemuxContext demux_context,
         LibAVCodec.Packet packet,
@@ -52,7 +52,7 @@ public class DVDemuxContext {
         int64 arg_
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
+    [CCode (cname="ff_dv_offset_reset",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
     public void ff_dv_offset_reset (
         DVDemuxContext demux_context,
         int64 frame_offset

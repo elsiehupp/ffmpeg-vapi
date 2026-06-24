@@ -27,63 +27,55 @@ The chunk muxer enables writing WebM Live chunks where there is a header
 chunk, followed by data chunks where each Cluster is written out as a Chunk.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "chunk_start_index",
         short_help_text = "start index of the chunk",
-        offsetof (
+        offset = offsetof (
             WebMChunkContext,
             chunk_start_index
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "header",
         short_help_text = "filename of the header where the initialization data will be written",
-        offsetof (
+        offset = offsetof (
             WebMChunkContext,
             header_filename
         ),
-        {
-            0
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "audio_chunk_duration",
         short_help_text = "duration of each chunk in milliseconds",
-        offsetof (
+        offset = offsetof (
             WebMChunkContext,
             chunk_duration
         ),
-        {
-            .i64 = 5000
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 5000,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "method",
         short_help_text = "set the HTTP method",
-        offsetof (
+        offset = offsetof (
             WebMChunkContext,
             http_method
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -167,7 +159,7 @@ public class WebMChunkMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/webm_chunk.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOFILE | AVFMT_GLOBALHEADER | AVFMT_NEEDNUMBER | AVFMT_TS_NONSTRICT;
+            return AVFormatFlags1.NO_FILE | AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.NEED_NUMBER | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

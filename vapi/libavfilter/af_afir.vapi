@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
+[CCode (cname="struct AudioFIRSegment",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
 [Compact]
 public class AudioFIRSegment {
     [CCode (cname="")]
@@ -73,7 +73,7 @@ public class AudioFIRSegment {
     public RDFTContext **irdft;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
+[CCode (cname="struct AudioFIRDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
 [Compact]
 public class AudioFIRDSPContext {
     public delegate void FcmulAddDelegate (
@@ -87,11 +87,11 @@ public class AudioFIRDSPContext {
     public FcmulAddDelegate fcmul_add;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
+[CCode (cname="struct AudioFIRContext",cheader_filename="subprojects/ffmpeg/libavfilter/af_afir.h")]
 [Compact]
 public class AudioFIRContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public float wet_gain;

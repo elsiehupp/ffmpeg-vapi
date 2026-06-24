@@ -109,7 +109,7 @@ public class Codec {
 
     /***********************************************************
     @brief Array of recognized profiles, or null if unknown, array is
-    terminated by {FF_PROFILE_UNKNOWN}
+    terminated by {ProfileType.UNKNOWN}
     ***********************************************************/
     [CCode (cname="profiles")]
     public Profile[] profiles;

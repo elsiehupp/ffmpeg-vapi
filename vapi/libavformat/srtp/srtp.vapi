@@ -25,52 +25,52 @@ namespace LibAVFormat {
 [CCode (cname="struct SRTPContext",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
 [Compact]
 public class SRTPContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public LibAVUtil.Crypto.AESContext aes;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public LibAVUtil.Crypto.HMACContext hmac;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public int rtp_hmac_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public int rtcp_hmac_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public uint8 master_key[16];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public uint8 master_salt[14];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public uint8 rtp_key[16];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public uint8 rtcp_key[16];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public uint8 rtp_salt[14];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public uint8 rtcp_salt[14];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public uint8 rtp_auth[20];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public uint8 rtcp_auth[20];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public int seq_largest;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public int seq_initialized;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public uint32 roc;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/srtp.h")]
+    [CCode (cname="")]
     public uint32 rtcp_index;
 }
 

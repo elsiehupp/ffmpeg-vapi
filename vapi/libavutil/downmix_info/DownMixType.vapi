@@ -56,12 +56,13 @@ public enum DownMixType {
     /***********************************************************
     @brief Lt/Rt 2-channel downmix, Dolby Pro Logic II compatible.
     ***********************************************************/
-    DPLII,
+    [CCode (cname="AV_DOWNMIX_TYPE_DPLII")]
+    DOLBY_PRO_LOGIC_II,
 
     /***********************************************************
     @brief Number of downmix types. Not part of ABI.
     ***********************************************************/
-    //  DownMixType.NB
+    //  DownMixType.NB;
 }
 
 } // namespace LibAVUtil

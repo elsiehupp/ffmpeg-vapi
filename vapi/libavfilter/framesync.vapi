@@ -18,16 +18,15 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
+[CCode (cname="enum EOFAction",cprefix="EOF_ACTION_",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public enum EOFAction {
-    [CCode (cname="")]
-    EOF_ACTION_REPEAT,
+    REPEAT,
+
+    [CCode (cname="EOF_ACTION_ENDALL")]
+    END_ALL,
 
     [CCode (cname="")]
-    EOF_ACTION_ENDALL,
-
-    [CCode (cname="")]
-    EOF_ACTION_PASS
+    PASS
 }
 
 /***********************************************************
@@ -58,25 +57,22 @@ Stream extrapolation mode
 Describe how the frames of a stream are extrapolated before the first one
 and after EOF to keep sync with possibly longer other streams.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
-public enum FFFrameSyncExtMode {
+[CCode (cname="enum FFFrameSyncExtMode",cprefix="EXT_",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
+public enum FFFrameSyncExtrapolationMode {
     /***********************************************************
     Completely stop all streams with this one.
     ***********************************************************/
-    [CCode (cname="")]
-    EXT_STOP,
+    STOP,
 
     /***********************************************************
     Ignore this stream and continue processing the other ones.
     ***********************************************************/
-    [CCode (cname="")]
-    EXT_NULL,
+    NULL,
 
     /***********************************************************
     Extend the frame to infinity.
     ***********************************************************/
-    [CCode (cname="")]
-    EXT_INFINITY;
+    INFINITY;
 }
 
 /***********************************************************
@@ -160,8 +156,8 @@ Frame sync structure.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 [Compact]
 public class FFFrameSync {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     /***********************************************************
     Parent filter context.

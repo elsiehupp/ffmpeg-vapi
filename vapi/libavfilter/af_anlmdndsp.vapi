@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/libavfilter.h")]
+[CCode (cname="AudioNLMDNDSPContext",cheader_filename="subprojects/ffmpeg/libavfilter/libavfilter.h")]
 [Compact]
 public class AudioNLMDNDSPContext {
     public delegate float ComputeDistanceSsdDelegate (
@@ -44,12 +44,12 @@ public class AudioNLMDNDSPContext {
 
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/libavfilter.h")]
+[CCode (cname="ff_anlmdn_init",cheader_filename="subprojects/ffmpeg/libavfilter/libavfilter.h")]
 public void ff_anlmdn_init (
     AudioNLMDNDSPContext? s
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/libavfilter.h")]
+[CCode (cname="ff_anlmdn_init_x86",cheader_filename="subprojects/ffmpeg/libavfilter/libavfilter.h")]
 public void ff_anlmdn_init_x86 (
     AudioNLMDNDSPContext? s
 );

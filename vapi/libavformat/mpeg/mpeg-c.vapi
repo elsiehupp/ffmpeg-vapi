@@ -82,7 +82,7 @@ public class MPEGPSDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mpeg.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_SHOW_IDS | AVFMT_TS_DISCONT;
+            return AVFormatFlags1.SHOW_IDS | AVFormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES;
 
         }
 
@@ -94,16 +94,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "sub_name",
         short_help_text = "URI for .sub file",
-        offsetof (
+        offset = offsetof (
             MpegDemuxContext,
             sub_name
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -206,7 +204,7 @@ public class VobSubDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mpeg.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_SHOW_IDS;
+            return AVFormatFlags1.SHOW_IDS;
 
         }
 

@@ -23,35 +23,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 #if CONFIG_HASH_MUXER || CONFIG_FRAMEHASH_MUXER
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="hash_options",cheader_filename="")]
 static const LibAVUtil.Option hash_options[] = {
     new LibAVUtil.StringOption () {
         name = "hash",
         short_help_text = "set hash to use",
-        offsetof (
+        offset = offsetof (
             HashContext,
             hash_name
         ),
-        {
-            .str = "sha256"
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "sha256",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "format_version",
         short_help_text = "file format version",
-        offsetof (
+        offset = offsetof (
             HashContext,
             format_version
         ),
-        {
-            .i64 = 2
-        },
-        1,
-        2,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 2,
+        minimum_value = 1,
+        maximum_value = 2,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -65,30 +61,26 @@ static const LibAVUtil.Option md5_options[] = {
     new LibAVUtil.StringOption () {
         name = "hash",
         short_help_text = "set hash to use",
-        offsetof (
+        offset = offsetof (
             HashContext,
             hash_name
         ),
-        {
-            .str = "md5"
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "md5",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "format_version",
         short_help_text = "file format version",
-        offsetof (
+        offset = offsetof (
             HashContext,
             format_version
         ),
-        {
-            .i64 = 2
-        },
-        1,
-        2,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 2,
+        minimum_value = 1,
+        maximum_value = 2,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -197,7 +189,7 @@ public class HashMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hashenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
 
         }
 
@@ -306,7 +298,7 @@ public class MD5Muxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hashenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
 
         }
 
@@ -415,7 +407,7 @@ public class FrameHashMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hashenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
 
         }
 
@@ -524,7 +516,7 @@ public class FrameMD5Muxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/hashenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT | AVFMT_TS_NEGATIVE;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
 
         }
 

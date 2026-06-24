@@ -26,26 +26,44 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="FF_IDCT_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum IDCTAlgorithm {
-    FF_IDCT_AUTO,
-    FF_IDCT_INT,
-    FF_IDCT_SIMPLE,
-    FF_IDCT_SIMPLEMMX,
-    FF_IDCT_ARM,
-    FF_IDCT_ALTIVEC,
-    FF_IDCT_SIMPLEARM,
-    FF_IDCT_XVID,
-    FF_IDCT_SIMPLEARMV5TE,
-    FF_IDCT_SIMPLEARMV6,
-    FF_IDCT_FAAN,
-    FF_IDCT_SIMPLENEON,
+    AUTO,
+
+    [CCode (cname="FF_IDCT_INT")]
+    INT,
+
+    [CCode (cname="FF_IDCT_SIMPLE")]
+    SIMPLE,
+
+    [CCode (cname="FF_IDCT_SIMPLEMMX")]
+    SIMPLE_MMX,
+    ARM,
+    ALTIVEC,
+
+    [CCode (cname="FF_IDCT_SIMPLEARM")]
+    SIMPLE_ARM,
+    XVID,
+
+    [CCode (cname="FF_IDCT_SIMPLEARMV5TE")]
+    SIMPLE_ARM_V5_TE,
+
+    [CCode (cname="FF_IDCT_SIMPLEARMV6")]
+    SIMPLE_ARM_V6,
+
+    [CCode (cname="FF_IDCT_FAAN")]
+    FAAN,
+
+    [CCode (cname="FF_IDCT_SIMPLENEON")]
+    SIMPLE_NEON,
 
     /***********************************************************
     @brief Used by XvMC to extract IDCT coefficients with FF_IDCT_PERM_NONE
     ***********************************************************/
-    FF_IDCT_NONE,
-    FF_IDCT_SIMPLEAUTO;
+    NONE,
+
+    [CCode (cname="FF_IDCT_SIMPLEAUTO")]
+    SIMPLE_AUTO;
 }
 
 } // namespace LibAVCodec

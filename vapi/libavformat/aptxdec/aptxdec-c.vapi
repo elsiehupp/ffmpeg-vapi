@@ -26,16 +26,14 @@ static const LibAVUtil.Option aptx_options[] = {
     new LibAVUtil.IntOption () {
         name = "sample_rate",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             AptXDemuxerContext,
             sample_rate
         ),
-        {
-            .i64 = 48000
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 48000,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -126,7 +124,7 @@ public class APTXDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/aptxdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 
@@ -220,7 +218,7 @@ public class APTXDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/aptxdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

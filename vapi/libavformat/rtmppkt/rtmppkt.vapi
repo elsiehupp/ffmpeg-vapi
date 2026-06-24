@@ -32,181 +32,169 @@ public const size_t RTMP_CHANNELS;
 @brief Channels used to for RTMP packets with different purposes (i.e. data, network
 control, remote procedure calls, etc.)
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="enum RTMPChannel",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public enum RTMPChannel {
     /***********************************************************
     @brief Channel for network-related messages (bandwidth report, ping, etc)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_NETWORK_CHANNEL,
+    [CCode (cname="RTMP_NETWORK_CHANNEL")]
+    NETWORK,
 
     /***********************************************************
     @brief Channel for sending server control messages
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_SYSTEM_CHANNEL,
+    [CCode (cname="RTMP_SYSTEM_CHANNEL")]
+    SYSTEM,
 
     /***********************************************************
     @brief Channel for audio data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_AUDIO_CHANNEL,
+    [CCode (cname="RTMP_AUDIO_CHANNEL")]
+    AUDIO,
 
     /***********************************************************
     @brief Channel for video data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_VIDEO_CHANNEL,
+    [CCode (cname="RTMP_VIDEO_CHANNEL")]
+    VIDEO,
 
     /***********************************************************
     @brief Channel for a/v invokes
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_SOURCE_CHANNEL;
+    [CCode (cname="RTMP_SOURCE_CHANNEL")]
+    SOURCE;
 }
 
 /***********************************************************
 @brief Known RTMP packet types
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="enum RTMPPacketType",cprefix="RTMP_PT_",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public enum RTMPPacketType {
     /***********************************************************
     @brief Chunk size change
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_CHUNK_SIZE,
+    CHUNK_SIZE,
 
     /***********************************************************
     @brief Number of bytes read
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_BYTES_READ,
+    BYTES_READ,
 
     /***********************************************************
     User control
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_USER_CONTROL,
+    USER_CONTROL,
 
     /***********************************************************
     @brief Window acknowledgement size
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_WINDOW_ACK_SIZE,
+    WINDOW_ACK_SIZE,
 
     /***********************************************************
     @brief Peer bandwidth
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_SET_PEER_BW,
+    [CCode (cname="RTMP_PT_SET_PEER_BW")]
+    SET_PEER_BANDWIDTH,
 
     /***********************************************************
     @brief Audio packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_AUDIO,
+    AUDIO,
 
     /***********************************************************
     @brief Video packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_VIDEO,
+    VIDEO,
 
     /***********************************************************
     @brief Flex shared stream
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_FLEX_STREAM,
+    FLEX_STREAM,
 
     /***********************************************************
     @brief Flex shared object
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_FLEX_OBJECT,
+    FLEX_OBJECT,
 
     /***********************************************************
     @brief Flex shared message
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_FLEX_MESSAGE,
+    FLEX_MESSAGE,
 
     /***********************************************************
     @brief Some notification
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_NOTIFY,
+    NOTIFY,
 
     /***********************************************************
     @brief Shared object
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_SHARED_OBJ,
+    [CCode (cname="RTMP_PT_SHARED_OBJ")]
+    SHARED_OBJECT,
 
     /***********************************************************
     @brief Invoke some stream action
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_INVOKE,
+    INVOKE,
 
     /***********************************************************
     @brief FLV metadata
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PT_METADATA;
+    METADATA;
 }
 
 /***********************************************************
 @brief Possible RTMP packet header sizes
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="enum RTMPPacketSize",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 public enum RTMPPacketSize {
     /***********************************************************
     @brief Packet has 12-byte header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PS_TWELVEBYTES,
+    [CCode (cname="RTMP_PS_TWELVEBYTES")]
+    TWELVE_BYTES,
 
     /***********************************************************
     @brief Packet has 8-byte header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PS_EIGHTBYTES,
+    [CCode (cname="RTMP_PS_EIGHTBYTES")]
+    EIGHT_BYTES,
 
     /***********************************************************
     @brief Packet has 4-byte header
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PS_FOURBYTES,
+    [CCode (cname="RTMP_PS_FOURBYTES")]
+    FOUR_BYTES,
 
     /***********************************************************
     @brief Packet is really a next chunk of a packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
-    RTMP_PS_ONEBYTE;
+    [CCode (cname="RTMP_PS_ONEBYTE")]
+    ONE_BYTE;
 }
 
 /***********************************************************
 @brief Structure for holding RTMP packets
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="struct RTMPPacket",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
 [Compact]
 public class RTMPPacket {
     /***********************************************************
     @brief RTMP channel ID (nothing to do with audio/video channels though)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="")]
     public int channel_id;
 
     /***********************************************************
     @brief Packet payload type
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="")]
     public RTMPPacketType type;
 
     /***********************************************************
     @brief Packet full timestamp
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="")]
     public uint32 timestamp;
 
     /***********************************************************
@@ -214,37 +202,37 @@ public class RTMPPacket {
     milliseconds (latter only for media packets). Clipped to a
     maximum of 0xFFFFFF, indicating an extended timestamp field.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="")]
     public uint32 ts_field;
 
     /***********************************************************
     @brief Probably an additional channel ID used during streaming data
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="")]
     public uint32 extra;
 
     /***********************************************************
     @brief Packet payload
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="")]
     public uint8[] data;
 
     /***********************************************************
     @brief Packet payload size
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="")]
     public int size;
 
     /***********************************************************
     @brief Amount of data read so far
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="")]
     public int offset;
 
     /***********************************************************
     @brief Amount read, including headers
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+    [CCode (cname="")]
     public int read;
 }
 

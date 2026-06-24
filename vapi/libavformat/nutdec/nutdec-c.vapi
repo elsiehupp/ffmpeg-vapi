@@ -46,7 +46,7 @@ public class NUTDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_SEEK_TO_PTS;
+            return AVFormatFlags1.SEEK_TO_PTS;
 
         }
 

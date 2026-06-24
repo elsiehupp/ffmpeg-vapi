@@ -21,49 +21,43 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "safe",
         short_help_text = "enable safe mode",
-        offsetof (
+        offset = offsetof (
             ConcatContext,
             safe
         ),
-        {
-            .i64 = 1
-        },
-        -1,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 1,
+        minimum_value = -1,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "auto_convert",
         short_help_text = "automatically convert bitstream format",
-        offsetof (
+        offset = offsetof (
             ConcatContext,
             auto_convert
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "segment_time_metadata",
         short_help_text = "output file segment start time and duration as packet metadata",
-        offsetof (
+        offset = offsetof (
             ConcatContext,
             segment_time_metadata
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

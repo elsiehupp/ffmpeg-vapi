@@ -26,7 +26,7 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum FieldOrder {
     [CCode (cname="AV_FIELD_UNKNOWN")]
     UNKNOWN,

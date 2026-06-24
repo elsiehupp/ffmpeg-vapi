@@ -35,90 +35,95 @@ These flags can be passed in CodecContext.flags before initialization.
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="AV_CODEC_FLAG_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum CodecFlags1 {
     /***********************************************************
     @brief Allow decoders to produce frames with data planes that are not aligned
     to CPU requirements (e.g. due to cropping).
     ***********************************************************/
-    AV_CODEC_FLAG_UNALIGNED,
+    UNALIGNED,
 
     /***********************************************************
     @brief Use fixed qscale.
     ***********************************************************/
-    AV_CODEC_FLAG_QSCALE,
+    QSCALE,
 
     /***********************************************************
     @brief 4 MV per MB allowed / advanced prediction for H.263.
     ***********************************************************/
-    AV_CODEC_FLAG_4MV,
+    4MV,
 
     /***********************************************************
     @brief Output even those frames that might be corrupted.
     ***********************************************************/
-    AV_CODEC_FLAG_OUTPUT_CORRUPT,
+    OUTPUT_CORRUPT,
 
     /***********************************************************
     @brief Use qpel MC.
     ***********************************************************/
-    AV_CODEC_FLAG_QPEL,
+    QPEL,
 
     /***********************************************************
     @brief Don't output frames whose parameters differ from first
     decoded frame in stream.
     ***********************************************************/
-    AV_CODEC_FLAG_DROPCHANGED,
+    [CCode (cname="AV_CODEC_FLAG_DROPCHANGED")]
+    DROP_CHANGED,
 
     /***********************************************************
     @brief Use internal 2pass ratecontrol in first pass mode.
     ***********************************************************/
-    AV_CODEC_FLAG_PASS1,
+    [CCode (cname="AV_CODEC_FLAG_PASS1")]
+    PASS_1,
 
     /***********************************************************
     @brief Use internal 2pass ratecontrol in second pass mode.
     ***********************************************************/
-    AV_CODEC_FLAG_PASS2,
+    [CCode (cname="AV_CODEC_FLAG_PASS2")]
+    PASS_2,
 
     /***********************************************************
     @brief Loop filter.
     ***********************************************************/
-    AV_CODEC_FLAG_LOOP_FILTER,
+    LOOP_FILTER,
 
     /***********************************************************
     @brief Only decode/encode grayscale.
     ***********************************************************/
-    AV_CODEC_FLAG_GRAY,
+    GRAY,
 
     /***********************************************************
     @brief Error[?] variables will be set during encoding.
     ***********************************************************/
-    AV_CODEC_FLAG_PSNR,
+    [CCode (cname="AV_CODEC_FLAG_PSNR")]
+    PSNR,
 
     /***********************************************************
     @brief Input bitstream might be truncated at a random location
     instead of only at frame boundaries.
     ***********************************************************/
-    AV_CODEC_FLAG_TRUNCATED,
+    TRUNCATED,
 
     /***********************************************************
     @brief Use interlaced DCT.
     ***********************************************************/
-    AV_CODEC_FLAG_INTERLACED_DCT,
+    INTERLACED_DCT,
 
     /***********************************************************
     @brief Force low delay.
     ***********************************************************/
-    AV_CODEC_FLAG_LOW_DELAY,
+    LOW_DELAY,
 
     /***********************************************************
     @brief Place global headers in extradata instead of every keyframe.
     ***********************************************************/
-    AV_CODEC_FLAG_GLOBAL_HEADER,
+    GLOBAL_HEADER,
 
     /***********************************************************
     @brief Use only bitexact stuff (except (I)DCT).
     ***********************************************************/
-    AV_CODEC_FLAG_BITEXACT,
+    [CCode (cname="AV_CODEC_FLAG_BITEXACT")]
+    BITEXACT,
 
     /***********************************************************
     @brief Fx : Flag for H.263+ extra options
@@ -127,13 +132,17 @@ public enum CodecFlags1 {
     /***********************************************************
     @brief H.263 advanced intra coding / MPEG-4 AC prediction
     ***********************************************************/
-    AV_CODEC_FLAG_AC_PRED,
+    [CCode (cname="AV_CODEC_FLAG_AC_PRED")]
+    AC_PREDICTION,
 
     /***********************************************************
     @brief Interlaced motion estimation
     ***********************************************************/
-    AV_CODEC_FLAG_INTERLACED_M,
-    AV_CODEC_FLAG_CLOSED_GOP;
+    [CCode (cname="AV_CODEC_FLAG_INTERLACED_M")]
+    INTERLACED_MOTION_ESTIMATION,
+
+    [CCode (cname="AV_CODEC_FLAG_CLOSED_GOP")]
+    CLOSED_GOP;
 }
 
 } // namespace LibAVCodec

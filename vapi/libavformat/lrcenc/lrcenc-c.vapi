@@ -74,7 +74,7 @@ public class LRCMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS | AVFMT_GLOBALHEADER | AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

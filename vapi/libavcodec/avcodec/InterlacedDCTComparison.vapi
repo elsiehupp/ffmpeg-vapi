@@ -26,25 +26,58 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum InterlacedDCTComparison {
-    FF_CMP_SAD,
-    FF_CMP_SSE,
-    FF_CMP_SATD,
-    FF_CMP_DCT,
-    FF_CMP_PSNR,
-    FF_CMP_BIT,
-    FF_CMP_RD,
-    FF_CMP_ZERO,
-    FF_CMP_VSAD,
-    FF_CMP_VSSE,
-    FF_CMP_NSSE,
-    FF_CMP_W53,
-    FF_CMP_W97,
-    FF_CMP_DCTMAX,
-    FF_CMP_DCT264,
-    FF_CMP_MEDIAN_SAD,
-    FF_CMP_CHROMA;
+    [CCode (cname="FF_CMP_SAD")]
+    SAD,
+
+    [CCode (cname="FF_CMP_SSE")]
+    SSE,
+
+    [CCode (cname="FF_CMP_SATD")]
+    SATD,
+
+    [CCode (cname="FF_CMP_DCT")]
+    DCT,
+
+    [CCode (cname="FF_CMP_PSNR")]
+    PSNR,
+
+    [CCode (cname="FF_CMP_BIT")]
+    BIT,
+
+    [CCode (cname="FF_CMP_RD")]
+    RD,
+
+    [CCode (cname="FF_CMP_ZERO")]
+    ZERO,
+
+    [CCode (cname="FF_CMP_VSAD")]
+    VSAD,
+
+    [CCode (cname="FF_CMP_VSSE")]
+    VSSE,
+
+    [CCode (cname="FF_CMP_NSSE")]
+    NSSE,
+
+    [CCode (cname="FF_CMP_W53")]
+    W53,
+
+    [CCode (cname="FF_CMP_W97")]
+    W97,
+
+    [CCode (cname="FF_CMP_DCTMAX")]
+    DCTMAX,
+
+    [CCode (cname="FF_CMP_DCT264")]
+    DCT264,
+
+    [CCode (cname="FF_CMP_MEDIAN_SAD")]
+    MEDIAN_SAD,
+
+    [CCode (cname="FF_CMP_CHROMA")]
+    CHROMA;
 }
 
 } // namespace LibAVCodec

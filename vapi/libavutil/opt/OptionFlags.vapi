@@ -66,7 +66,8 @@ public enum OptionFlags {
     @brief A generic parameter which can be set by the user for bit
     stream filtering
     ***********************************************************/
-    BSF_PARAM,
+    [CCode (cname="AV_OPT_FLAG_BSF_PARAM")]
+    BIT_STREAM_FILTERING_PARAM,
 
     /***********************************************************
     @brief A generic parameter which can be set by the user for filtering

@@ -16,12 +16,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/thread.h")]
+[CCode (cname="ff_graph_thread_init",cheader_filename="subprojects/ffmpeg/libavfilter/thread.h")]
 public int ff_graph_thread_init (
     AVFilterGraph? graph
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/thread.h")]
+[CCode (cname="ff_graph_thread_free",cheader_filename="subprojects/ffmpeg/libavfilter/thread.h")]
 public void ff_graph_thread_free (
     AVFilterGraph? graph
 );

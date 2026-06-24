@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_vp8_codec",cheader_filename="")]
 public class VP8Codec : OggCodec {
-    [CCode (cname="")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "OVP80".data;
@@ -32,7 +32,14 @@ public class VP8Codec : OggCodec {
         }
 
     }
-    //  .magicsize = 5,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 5;
+        }
+
+    }
 
     [CCode (cname="vp8_header",cheader_filename="")]
     public override int header (
@@ -53,7 +60,15 @@ public class VP8Codec : OggCodec {
         uint64 arg2,
         out int64 dts
     );
-    //  .nb_header = 1;
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 1;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

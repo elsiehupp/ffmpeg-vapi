@@ -22,194 +22,180 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct RTPMuxContext",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="struct RTPMuxContext",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 [Compact]
 public class RTPMuxContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public LibAVUtil.Class av_class;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public AVFormatContext ic;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public AVStream st;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int payload_type;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public uint32 ssrc;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public string cname;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int seq;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public uint32 timestamp;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public uint32 base_timestamp;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public uint32 cur_timestamp;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int max_payload_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int num_frames;
 
     /***********************************************************
     @brief Rtcp sender statistics
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int64 last_rtcp_ntp_time;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int64 first_rtcp_ntp_time;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public uint packet_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public uint octet_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public uint last_octet_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int first_packet;
 
     /***********************************************************
     @brief Buffer for output
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public uint8[] buffer;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public uint8[] buf_ptr;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int max_frames_per_packet;
 
     /***********************************************************
     @brief Number of bytes used for H.264 NAL length, if the MP4 syntax is used
     (1, 2 or 4)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int nal_length_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int buffered_nals;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public int flags;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+    [CCode (cname="")]
     public uint frame_count;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptenc.h")]
 [Flags]
+[CCode (cprefix="FF_RTP_FLAG_",cheader_filename="subprojects/ffmpeg/libavformat/rptenc.h")]
 public enum RTPEncoderFlags {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptenc.h")]
-    FF_RTP_FLAG_MP4A_LATM,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptenc.h")]
-    FF_RTP_FLAG_RFC2190,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptenc.h")]
-    FF_RTP_FLAG_SKIP_RTCP,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptenc.h")]
-    FF_RTP_FLAG_H264_MODE0,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptenc.h")]
-    FF_RTP_FLAG_SEND_BYE;
+    MP4A_LATM,
+    RFC2190,
+    SKIP_RTCP,
+    H264_MODE0,
+    SEND_BYE;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rptenc.h")]
-public define FF_RTP_FLAG_OPTS (
-    context,
-    fieldname
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rptenc.h")]
+public static LibAVUtil.Option[] FF_RTP_FLAG_OPTS (
+    void *context,
+    void *fieldname
 ) {
     return {
         new LibAVUtil.FlagsOption () {
-            "rtpflags",
-            "RTP muxer flags",
-            offsetof (
-                context, fieldname
+            name = "rtpflags",
+            short_help_text = "RTP muxer flags",
+            offset = offsetof (
+                context,
+                fieldname
             ),
-            {
-                .i64 = 0
-            },
-            int.MIN,
-            int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
-            "rtpflags"
+            default_value = 0,
+            minimum_value = int.MIN,
+            maximum_value = int.MIN,
+            option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+            unit = "rtpflags"
         },
         new LibAVUtil.ConstOption () {
-            "latm",
-            "Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC",
-            0,
-            {
-                .i64 = FF_RTP_FLAG_MP4A_LATM
-            },
-            int.MIN,
-            int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
-            "rtpflags"
+            name = "latm",
+            short_help_text = "Use MP4A-LATM packetization instead of MPEG4-GENERIC for AAC",
+            offset = 0,
+            default_value = RTPEncoderFlags.MP4A_LATM,
+            minimum_value = int.MIN,
+            maximum_value = int.MIN,
+            option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+            unit = "rtpflags"
         },
         new LibAVUtil.ConstOption () {
-            "rfc2190",
-            "Use RFC 2190 packetization instead of RFC 4629 for H.263",
-            0,
-            {
-                .i64 = FF_RTP_FLAG_RFC2190
-            },
-            int.MIN,
-            int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
-            "rtpflags"
+            name = "rfc2190",
+            short_help_text = "Use RFC 2190 packetization instead of RFC 4629 for H.263",
+            offset = 0,
+            default_value = RTPEncoderFlags.RFC2190,
+            minimum_value = int.MIN,
+            maximum_value = int.MIN,
+            option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+            unit = "rtpflags"
         },
         new LibAVUtil.ConstOption () {
-            "skip_rtcp",
-            "Don't send RTCP sender reports",
-            0,
-            {
-                .i64 = FF_RTP_FLAG_SKIP_RTCP
-            },
-            int.MIN,
-            int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
-            "rtpflags"
+            name = "skip_rtcp",
+            short_help_text = "Don't send RTCP sender reports",
+            offset = 0,
+            default_value = RTPEncoderFlags.SKIP_RTCP,
+            minimum_value = int.MIN,
+            maximum_value = int.MIN,
+            option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+            unit = "rtpflags"
         },
         new LibAVUtil.ConstOption () {
-            "h264_mode0",
-            "Use mode 0 for H.264 in RTP",
-            0,
-            {
-                .i64 = FF_RTP_FLAG_H264_MODE0
-            },
-            int.MIN,
-            int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
-            "rtpflags"
+            name = "h264_mode0",
+            short_help_text = "Use mode 0 for H.264 in RTP",
+            offset = 0,
+            default_value = RTPEncoderFlags.H264_MODE0,
+            minimum_value = int.MIN,
+            maximum_value = int.MIN,
+            option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+            unit = "rtpflags"
         },
         new LibAVUtil.ConstOption () {
-            "send_bye",
-            "Send RTCP BYE packets when finishing",
-            0,
-            {
-                .i64 = FF_RTP_FLAG_SEND_BYE
-            },
-            int.MIN,
-            int.MAX, LibAVUtil.OptionFlags.ENCODING_PARAM,
-            "rtpflags"
+            name = "send_bye",
+            short_help_text = "Send RTCP BYE packets when finishing",
+            offset = 0,
+            default_value = RTPEncoderFlags.SEND_BYE,
+            minimum_value = int.MIN,
+            maximum_value = int.MIN,
+            option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+            unit = "rtpflags"
         }
 
     };
 
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_data (
     AVFormatContext s1,
     uint8[] buf1,
@@ -217,28 +203,28 @@ public void ff_rtp_send_data (
     int m
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_h264_hevc (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_h261 (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_h263 (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_h263_rfc2190 (
     AVFormatContext s1,
     uint8[] buf1,
@@ -247,42 +233,42 @@ public void ff_rtp_send_h263_rfc2190 (
     int mb_info_size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_aac (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_latm (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_amr (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_mpegvideo (
     AVFormatContext s1,
     uint8[] buf1,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_xiph (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_vc2hq (
     AVFormatContext s1,
     uint8[] buffer,
@@ -290,28 +276,28 @@ public void ff_rtp_send_vc2hq (
     int interlaced
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_vp8 (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_vp9 (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_jpeg (
     AVFormatContext s1,
     uint8[] buff,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public uint8[] ff_h263_find_resync_marker_reverse (
     uint8[] start, // av_restrict
     uint8[] end // av_restrict

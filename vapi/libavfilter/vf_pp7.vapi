@@ -22,8 +22,8 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_pp7.h")]
 [Compact]
 public class PP7Context {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public int thres2[99][16];

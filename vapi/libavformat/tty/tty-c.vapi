@@ -26,48 +26,43 @@ namespace LibAVFormat {
 @file Tele-typewriter demuxer
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "chars_per_frame",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             TtyDemuxContext,
             chars_per_frame
         ),
-        {
-            .i64 = 6000
-        },
-        1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 6000,
+        minimum_value = 1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.ImageSizeOption () {
         name = "video_size",
         short_help_text = "A string describing frame size, such as 640x480 or hd720.",
-        offsetof (
+        offset = offsetof (
             TtyDemuxContext,
             width
         ),
-        .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.VideoRateOption () {
         name = "framerate",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             TtyDemuxContext,
             framerate
         ),
-        {
-            .str = "25"
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "25",
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

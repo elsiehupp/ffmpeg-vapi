@@ -23,7 +23,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_flac_codec",cheader_filename="")]
 public class FlacCodec : OggCodec {
-    [CCode (cname="")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "177FLAC".data;
@@ -31,19 +31,34 @@ public class FlacCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 5,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 5;
+        }
+
+    }
 
     [CCode (cname="flac_header",cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    //  .nb_header = 2;
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 2;
+        }
+
+    }
+
 }
 
 [CCode (cname="ff_old_flac_codec",cheader_filename="")]
 public class OldFlacCodec : OggCodec {
-    [CCode (cname="")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "fLaC".data;
@@ -51,14 +66,29 @@ public class OldFlacCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 4,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 4;
+        }
+
+    }
 
     [CCode (cname="old_flac_header",cheader_filename="")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    //  .nb_header = 0;
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 0;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

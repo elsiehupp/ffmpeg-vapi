@@ -26,30 +26,26 @@ static const LibAVUtil.Option pcm_options[] = {
     new LibAVUtil.IntOption () {
         name = "sample_rate",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             PCMAudioDemuxerContext,
             sample_rate
         ),
-        {
-            .i64 = 44100
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 44100,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "channels",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             PCMAudioDemuxerContext,
             channels
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -61,7 +57,7 @@ static const LibAVUtil.Option pcm_options[] = {
 [Compact]
 public class PCMDemuxerPrivateData { }
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cheader_filename="ffmpeg/libformat/pcmdec.c")]
 public abstract class PCMDemuxerClass : LibAVUtil.Class {
     [CCode (cname="item_name",cheader_filename="ffmpeg/libformat/pcmdec.c")]
     public override string item_name (
@@ -83,7 +79,7 @@ public abstract class PCMDemuxerClass : LibAVUtil.Class {
     }
 }
 
-[CCode (cname="",cheader_filename="ffmpeg/libformat/pcmdec.c")]
+[CCode (cheader_filename="ffmpeg/libformat/pcmdec.c")]
 public abstract class PCMDemuxer : AVInputFormat {
     [CCode (cname="priv_data_size",cheader_filename="ffmpeg/libformat/pcmdec.c")]
     public override size_t priv_data_size {
@@ -116,7 +112,7 @@ public abstract class PCMDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/pcmdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 
@@ -1250,30 +1246,26 @@ static const LibAVUtil.Option sln_options[] = {
     new LibAVUtil.IntOption () {
         name = "sample_rate",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             PCMAudioDemuxerContext,
             sample_rate
         ),
-        {
-            .i64 = 8000
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 8000,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "channels",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             PCMAudioDemuxerContext,
             channels
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

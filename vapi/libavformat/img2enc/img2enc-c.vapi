@@ -23,77 +23,67 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="muxoptions",cheader_filename="")]
 static const LibAVUtil.Option muxoptions[] = {
     new LibAVUtil.BoolOption () {
         name = "update",
         short_help_text = "continuously overwrite one file",
-        offsetof (
+        offset = offsetof (
             VideoMuxData,
             update
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "start_number",
         short_help_text = "set first number in the sequence",
-        offsetof (
+        offset = offsetof (
             VideoMuxData,
             img_number
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "strftime",
         short_help_text = "use strftime for filename",
-        offsetof (
+        offset = offsetof (
             VideoMuxData,
             use_strftime
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "frame_pts",
         short_help_text = "use current frame pts for filename",
-        offsetof (
+        offset = offsetof (
             VideoMuxData,
             frame_pts
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "atomic_writing",
         short_help_text = "write files atomically (using temporary files and renames)",
-        offsetof (
+        offset = offsetof (
             VideoMuxData,
             use_rename
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -204,7 +194,7 @@ public class Image2Muxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/img2enc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS | AVFMT_NOFILE;
+            return AVFormatFlags1.NO_TIMESTAMPS | AVFormatFlags1.NO_DIMENSIONS | AVFormatFlags1.NO_FILE;
 
         }
 
@@ -274,7 +264,7 @@ public class Image2PipeMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/img2enc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS | AVFMT_NODIMENSIONS;
+            return AVFormatFlags1.NO_TIMESTAMPS | AVFormatFlags1.NO_DIMENSIONS;
 
         }
 

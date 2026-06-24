@@ -147,16 +147,14 @@ public class HTTPURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/http.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 
     }
     //  .default_whitelist = "http,https,tls,rtp,tcp,udp,crypto,httpproxy";
 }
-#endif /***********************************************************
-    CONFIG_HTTP_PROTOCOL
-***********************************************************/
+#endif /* CONFIG_HTTP_PROTOCOL */
 
 #if CONFIG_HTTPS_PROTOCOL
 
@@ -267,16 +265,14 @@ public class HTTPSURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/http.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 
     }
     //  .default_whitelist = "http,https,tls,rtp,tcp,udp,crypto,httpproxy";
 }
-#endif /***********************************************************
-    CONFIG_HTTPS_PROTOCOL
-***********************************************************/
+#endif /* CONFIG_HTTPS_PROTOCOL */
 
 #if CONFIG_HTTPPROXY_PROTOCOL
 
@@ -334,14 +330,12 @@ public class HttpProxyURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/http.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 
     }
 }
-#endif /***********************************************************
-    CONFIG_HTTPPROXY_PROTOCOL
-***********************************************************/
+#endif /* CONFIG_HTTPPROXY_PROTOCOL */
 
 } // namespace LibAVFormat

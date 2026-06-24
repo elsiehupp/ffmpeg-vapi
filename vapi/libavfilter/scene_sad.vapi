@@ -32,7 +32,7 @@ public delegate void FfSceneSadDelegate (
     uint64[] sum
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/scene_sad.h")]
+[CCode (cname="ff_scene_sad_c",cheader_filename="subprojects/ffmpeg/libavfilter/scene_sad.h")]
 public void ff_scene_sad_c (
     uint8[] src1,
     ptrdiff_t stride1,
@@ -43,7 +43,7 @@ public void ff_scene_sad_c (
     uint64[] sum
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/scene_sad.h")]
+[CCode (cname="ff_scene_sad16_c",cheader_filename="subprojects/ffmpeg/libavfilter/scene_sad.h")]
 public void ff_scene_sad16_c (
     uint8[] src1,
     ptrdiff_t stride1,
@@ -54,12 +54,12 @@ public void ff_scene_sad16_c (
     uint64[] sum
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/scene_sad.h")]
+[CCode (cname="ff_scene_sad_get_fn_x86",cheader_filename="subprojects/ffmpeg/libavfilter/scene_sad.h")]
 public FfSceneSadDelegate ff_scene_sad_get_fn_x86 (
     int depth
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/scene_sad.h")]
+[CCode (cname="ff_scene_sad_get_fn",cheader_filename="subprojects/ffmpeg/libavfilter/scene_sad.h")]
 public FfSceneSadDelegate ff_scene_sad_get_fn (
     int depth
 );

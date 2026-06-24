@@ -28,28 +28,28 @@ public class FFRawVideoDemuxerContext {
     /***********************************************************
     @brief Class for private options.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+    [CCode (cname="")]
     public LibAVUtil.Class class;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+    [CCode (cname="")]
     public int raw_packet_size;
 
     /***********************************************************
     @brief String describing video size, set by a private option.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+    [CCode (cname="")]
     public string video_size;
 
     /***********************************************************
     @brief Set by a private option.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+    [CCode (cname="")]
     public string pixel_format;
 
     /***********************************************************
     @brief LibAVUtil.Rational describing framerate, set by a private option.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+    [CCode (cname="")]
     public LibAVUtil.Rational framerate;
 }
 
@@ -59,10 +59,10 @@ public class FFRawDemuxerContext {
     /***********************************************************
     @brief Class for private options.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+    [CCode (cname="")]
     public LibAVUtil.Class class;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+    [CCode (cname="")]
     public int raw_packet_size;
 }
 
@@ -127,7 +127,7 @@ public int ff_raw_data_read_header (
 //  }
 
 //  #define FF_DEF_RAWVIDEO_DEMUXER (shortname, longname, probe, ext, id)\
-//  FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, AVFMT_GENERIC_INDEX)
+//  FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, AVFormatFlags1.USE_GENERIC_INDEX)
 
 //  #define FF_RAWSUB_DEMUXER_CLASS (name)\
 //  public const LibAVUtil.Class name ## _demuxer_class = {

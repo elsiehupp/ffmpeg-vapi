@@ -34,35 +34,31 @@ namespace LibAVFormat {
 [Compact]
 public class MatroskaDemuxerPrivateData { }
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "live",
         short_help_text = "flag indicating that the input is a live file that only has the headers.",
-        offsetof (
+        offset = offsetof (
             MatroskaDemuxContext,
             is_live
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "bandwidth",
         short_help_text = "bandwidth of this stream to be specified in the DASH manifest.",
-        offsetof (
+        offset = offsetof (
             MatroskaDemuxContext,
             bandwidth
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

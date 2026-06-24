@@ -24,14 +24,11 @@ namespace LibAVFormat {
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
 public const size_t WV_HEADER_SIZE; // 32
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
 [Flags]
+[CCode (cprefix="WV_FLAG_",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
 public enum BlockFlags {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
-    WV_FLAG_INITIAL_BLOCK,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
-    WV_FLAG_FINAL_BLOCK;
+    INITIAL_BLOCK,
+    FINAL_BLOCK;
 }
 
 /***********************************************************
@@ -46,43 +43,43 @@ public class WvHeader {
     /***********************************************************
     @brief Size of the block data (excluding the header)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+    [CCode (cname="")]
     public uint32 blocksize;
 
     /***********************************************************
     @brief Bitstream version
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+    [CCode (cname="")]
     public uint16 version;
 
     /***********************************************************
     @brief Total number of samples in the stream
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+    [CCode (cname="")]
     public uint32 total_samples;
 
     /***********************************************************
     @brief Index of the first sample in this block
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+    [CCode (cname="")]
     public uint32 block_idx;
 
     /***********************************************************
     @brief Number of samples in this block
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+    [CCode (cname="")]
     public uint32 samples;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+    [CCode (cname="")]
     public BlockFlags flags;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+    [CCode (cname="")]
     public uint32 crc;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+    [CCode (cname="")]
     public int initial;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+    [CCode (cname="")]
     public int final;
 }
 

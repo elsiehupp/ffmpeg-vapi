@@ -26,44 +26,38 @@ static const LibAVUtil.Option sbg_options[] = {
     new LibAVUtil.IntOption () {
         name = "sample_rate",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             sbg_demuxer,
             sample_rate
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "frame_size",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             sbg_demuxer,
             frame_size
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "max_file_size",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             sbg_demuxer,
             max_file_size
         ),
-        {
-            .i64 = 5000000
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 5000000,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

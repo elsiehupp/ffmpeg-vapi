@@ -26,7 +26,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_ogm_video_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
 public class OGMVideoCodec : OggCodec {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="magic",)]
     public override uint8[] magic {
         public get {
             return "\001video".data;
@@ -34,7 +34,14 @@ public class OGMVideoCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 6,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 6;
+        }
+
+    }
 
     [CCode (cname="ogm_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int header (
@@ -47,13 +54,28 @@ public class OGMVideoCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
-    //  .granule_is_start = 1,
-    //  .nb_header = 2;
+
+    [CCode (cname="granule_is_start")]
+    public override bool granule_is_start {
+        public get {
+            return true;
+        }
+
+    }
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 2;
+        }
+
+    }
+
 }
 
 [CCode (cname="ff_ogm_audio_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
 public class OGMAudioCodec : OggCodec {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="magic",)]
     public override uint8[] magic {
         public get {
             return "\001audio".data;
@@ -61,7 +83,14 @@ public class OGMAudioCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 6,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 6;
+        }
+
+    }
 
     [CCode (cname="ogm_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int header (
@@ -74,13 +103,28 @@ public class OGMAudioCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
-    //  .granule_is_start = 1,
-    //  .nb_header = 2;
+
+    [CCode (cname="granule_is_start")]
+    public override bool granule_is_start {
+        public get {
+            return true;
+        }
+
+    }
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 2;
+        }
+
+    }
+
 }
 
 [CCode (cname="ff_ogm_text_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
 public class OGMTextCodec : OggCodec {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="magic",)]
     public override uint8[] magic {
         public get {
             return "\001text".data;
@@ -88,7 +132,14 @@ public class OGMTextCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 5,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 5;
+        }
+
+    }
 
     [CCode (cname="ogm_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int header (
@@ -101,13 +152,28 @@ public class OGMTextCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
-    //  .granule_is_start = 1,
-    //  .nb_header = 2;
+
+    [CCode (cname="granule_is_start")]
+    public override bool granule_is_start {
+        public get {
+            return true;
+        }
+
+    }
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 2;
+        }
+
+    }
+
 }
 
 [CCode (cname="ff_ogm_old_codec",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
 public class OGMOldCodec : OggCodec {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
+    [CCode (cname="magic",)]
     public override uint8[] magic {
         public get {
             return "\001Direct Show Samples embedded in Ogg".data;
@@ -115,7 +181,14 @@ public class OGMOldCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 35,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 35;
+        }
+
+    }
 
     [CCode (cname="ogm_dshow_header",cheader_filename="ffmpeg/libformat/oggparseogm.c")]
     public override int header (
@@ -128,8 +201,23 @@ public class OGMOldCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
-    //  .granule_is_start = 1,
-    //  .nb_header = 1;
+
+    [CCode (cname="granule_is_start")]
+    public override bool granule_is_start {
+        public get {
+            return true;
+        }
+
+    }
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 1;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

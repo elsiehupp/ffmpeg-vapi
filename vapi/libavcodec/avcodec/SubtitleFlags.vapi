@@ -27,9 +27,9 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="AV_SUBTITLE_FLAG_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum SubtitleFlags {
-    AV_SUBTITLE_FLAG_FORCED;
+    FORCED;
 }
 
 } // namespace LibAVCodec

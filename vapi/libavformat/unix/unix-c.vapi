@@ -27,21 +27,19 @@ namespace LibAVFormat {
 Unix socket url_protocol
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="unix_options",cheader_filename="")]
 static const LibAVUtil.Option unix_options[] = {
     new LibAVUtil.BoolOption () {
         name = "listen",
         short_help_text = "Open socket for listening",
-        offsetof (
+        offset = offsetof (
             UnixContext,
             listen
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        (
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -49,16 +47,14 @@ static const LibAVUtil.Option unix_options[] = {
     new LibAVUtil.IntOption () {
         name = "timeout",
         short_help_text = "Timeout in ms",
-        offsetof (
+        offset = offsetof (
             UnixContext,
             timeout
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -66,65 +62,57 @@ static const LibAVUtil.Option unix_options[] = {
     new LibAVUtil.IntOption () {
         name = "type",
         short_help_text = "Socket type",
-        offsetof (
+        offset = offsetof (
             UnixContext,
             type
         ),
-        {
-            .i64 = SOCK_STREAM
-        },
-        int.MIN,
-        int.MAX,
-        (
+        default_value = SOCK_STREAM,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         ),
-        "type"
+        unit = "type"
     },
     new LibAVUtil.ConstOption () {
         name = "stream",
         short_help_text = "Stream (reliable stream-oriented)",
-        0,
-        {
-            .i64 = SOCK_STREAM
-        },
-        int.MIN,
-        int.MAX,
-        (
+        offset = 0,
+        default_value = SOCK_STREAM,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         ),
-        "type"
+        unit = "type"
     },
     new LibAVUtil.ConstOption () {
         name = "datagram",
         short_help_text = "Datagram (unreliable packet-oriented)",
-        0,
-        {
-            .i64 = SOCK_DGRAM
-        },
-        int.MIN,
-        int.MAX,
-        (
+        offset = 0,
+        default_value = SOCK_DGRAM,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         ),
-        "type"
+        unit = "type"
     },
     new LibAVUtil.ConstOption () {
         name = "seqpacket",
         short_help_text = "Seqpacket (reliable packet-oriented",
-        0,
-        {
-            .i64 = SOCK_SEQPACKET
-        },
-        int.MIN,
-        int.MAX,
-        (
+        offset = 0,
+        default_value = SOCK_SEQPACKET,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         ),
-        "type"
+        unit = "type"
     },
     {
         NULL
@@ -221,7 +209,7 @@ public class UnixURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/unix.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 

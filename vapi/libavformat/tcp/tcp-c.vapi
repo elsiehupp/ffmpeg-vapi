@@ -22,22 +22,20 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "listen",
         short_help_text = "Listen for incoming connections",
-        offsetof (
+        offset = offsetof (
             TCPContext,
             listen
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        2,
-        //  .flags = LibAVUtil.OptionFlags.DECODING_PARAM|
-        .flags = (
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 2,
+        //  option_flags = LibAVUtil.OptionFlags.DECODING_PARAM|
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -45,20 +43,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "timeout",
         short_help_text = "set timeout (in microseconds) of socket I/O operations",
-        offsetof (
+        offset = offsetof (
             TCPContext,
             rw_timeout
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )|
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -66,20 +58,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "listen_timeout",
         short_help_text = "Connection awaiting timeout (in milliseconds)",
-        offsetof (
+        offset = offsetof (
             TCPContext,
             listen_timeout
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )|
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -87,20 +73,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "send_buffer_size",
         short_help_text = "Socket send buffer size (in bytes)",
-        offsetof (
+        offset = offsetof (
             TCPContext,
             send_buffer_size
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )|
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -108,20 +88,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "recv_buffer_size",
         short_help_text = "Socket receive buffer size (in bytes)",
-        offsetof (
+        offset = offsetof (
             TCPContext,
             recv_buffer_size
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        )|
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -129,47 +103,35 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "tcp_nodelay",
         short_help_text = "Use TCP_NODELAY to disable nagle's algorithm",
-        offsetof (
+        offset = offsetof (
             TCPContext,
             tcp_nodelay
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = (
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
-        )|
-        .flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        ) },
+        )
+    },
 #if !HAVE_WINSOCK2_H
     new LibAVUtil.IntOption () {
         name = "tcp_mss",
         short_help_text = "Maximum segment size for outgoing TCP packets",
-        offsetof (
+        offset = offsetof (
             TCPContext,
             tcp_mss
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        int.MAX,
-        .flags = (
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
-        )|
-        .flags = (
-            LibAVUtil.OptionFlags.DECODING_PARAM |
-            LibAVUtil.OptionFlags.ENCODING_PARAM
-        ) },
-#endif /***********************************************************
-!HAVE_WINSOCK2_H
-***********************************************************/
+        )
+    },
+#endif /* !HAVE_WINSOCK2_H */
     {
         NULL
     }
@@ -283,7 +245,7 @@ public class TCPURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/tcp.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 

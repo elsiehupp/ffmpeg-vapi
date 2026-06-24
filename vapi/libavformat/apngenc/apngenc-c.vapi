@@ -23,35 +23,31 @@ first version by Donny Yang <work@kota.moe>
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "plays",
         short_help_text = "Number of times to play the output: 0 - infinite loop, 1 - no loop",
-        offsetof (
+        offset = offsetof (
             APNGMuxContext,
             plays
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        uint.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = uint.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.RationalOption () {
         name = "final_delay",
         short_help_text = "Force delay after the last frame",
-        offsetof (
+        offset = offsetof (
             APNGMuxContext,
             last_delay
         ),
-        {
-            .dbl = 0
-        },
-        0,
-        ushort.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = ushort.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -186,7 +182,7 @@ public class APNGMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/apngenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS;
 
         }
 

@@ -22,35 +22,31 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "use_fifo",
         short_help_text = "Use fifo pseudo-muxer to separate actual muxers from encoder",
-        offsetof (
+        offset = offsetof (
             TeeContext,
             use_fifo
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "fifo_options",
         short_help_text = "fifo pseudo-muxer options",
-        offsetof (
+        offset = offsetof (
             TeeContext,
             fifo_options_str
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -142,7 +138,7 @@ public class TeeMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOFILE | AVFMT_ALLOW_FLUSH;
+            return AVFormatFlags1.NO_FILE | AVFormatFlags1.ALLOWS_FLUSH;
 
         }
 

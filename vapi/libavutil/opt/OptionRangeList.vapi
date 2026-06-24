@@ -44,7 +44,7 @@ public class OptionRangeList {
     component index 2: range of height.
 
     @note To obtain multi-component version of this structure, user must
-    provide AV_OPT_MULTI_COMPONENT_RANGE to av_opt_query_ranges or
+    provide OptionSearchFlags.MULTI_COMPONENT_RANGE to av_opt_query_ranges or
     av_opt_query_ranges_default function.
 
     Multi-component range can be read as in following example:
@@ -53,7 +53,7 @@ public class OptionRangeList {
     public int range_index, component_index;
     OptionRangeList ranges;
     OptionRange range[3]; // may require more than 3 in the future.
-    av_opt_query_ranges (&ranges, obj, key, AV_OPT_MULTI_COMPONENT_RANGE);
+    av_opt_query_ranges (&ranges, obj, key, OptionSearchFlags.MULTI_COMPONENT_RANGE);
     for (range_index = 0; range_index < ranges.nb_ranges; range_index++) {
     for (component_index = 0; component_index < ranges.nb_components; component_index++)
     range[component_index] = ranges.range[ranges.nb_ranges * component_index + range_index];

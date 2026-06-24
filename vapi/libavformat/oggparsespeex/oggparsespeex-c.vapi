@@ -26,7 +26,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_speex_codec",cheader_filename="ffmpeg/libformat/oggparsespeex.c")]
 public class SpeexCodec : OggCodec {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparsespeex.c")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "Speex   ".data;
@@ -34,7 +34,14 @@ public class SpeexCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 8,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 8;
+        }
+
+    }
 
     [CCode (cname="speex_header",cheader_filename="ffmpeg/libformat/oggparsespeex.c")]
     public override int header (
@@ -47,7 +54,15 @@ public class SpeexCodec : OggCodec {
         AVFormatContext context,
         int arg
     );
-    //  .nb_header = 2;
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 2;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

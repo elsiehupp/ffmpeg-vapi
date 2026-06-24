@@ -30,16 +30,14 @@ static const LibAVUtil.Option ffrtmphttp_options[] = {
     new LibAVUtil.BoolOption () {
         name = "ffrtmphttp_tls",
         short_help_text = "Use a HTTPS tunneling connection (RTMPTS).",
-        offsetof (
+        offset = offsetof (
             RTMP_HTTPContext,
             tls
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -131,7 +129,7 @@ public class RTMPHTTPURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rtmphttp.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 

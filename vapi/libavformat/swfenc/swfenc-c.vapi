@@ -110,7 +110,7 @@ public class SWFMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/swfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_TS_NONSTRICT;
+            return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 
@@ -196,7 +196,7 @@ public class AVM2Muxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/swfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_TS_NONSTRICT;
+            return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

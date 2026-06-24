@@ -35,202 +35,202 @@ public const size_t DUMMY_FILE_SIZE;
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
 public int DUMMY_DURATION;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
 public enum SWFTag {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_END,
+    [CCode (cname="TAG_END")]
+    END,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_SHOWFRAME,
+    [CCode (cname="TAG_SHOWFRAME")]
+    SHOW_FRAME,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINESHAPE,
+    [CCode (cname="TAG_DEFINESHAPE")]
+    DEFINE_SHAPE_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_FREECHARACTER,
+    [CCode (cname="TAG_FREECHARACTER")]
+    FREE_CHARACTER,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_PLACEOBJECT,
+    [CCode (cname="TAG_PLACEOBJECT")]
+    PLACE_OBJECT_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_REMOVEOBJECT,
+    [CCode (cname="TAG_REMOVEOBJECT")]
+    REMOVE_OBJECT_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEBITS,
+    [CCode (cname="TAG_DEFINEBITS")]
+    DEFINE_BITS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEBUTTON,
+    [CCode (cname="TAG_DEFINEBUTTON")]
+    DEFINE_BUTTON_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_JPEGTABLES,
+    [CCode (cname="TAG_JPEGTABLES")]
+    JPEG_TABLES,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_SETBACKGROUNDCOLOR,
+    [CCode (cname="TAG_SETBACKGROUNDCOLOR")]
+    SET_BACKGROUND_COLOR,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEFONT,
+    [CCode (cname="TAG_DEFINEFONT")]
+    DEFINE_FONT_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINETEXT,
+    [CCode (cname="TAG_DEFINETEXT")]
+    DEFINE_TEXT_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DOACTION,
+    [CCode (cname="TAG_DOACTION")]
+    DO_ACTION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEFONTINFO,
+    [CCode (cname="TAG_DEFINEFONTINFO")]
+    DEFINE_FONT_INFO_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINESOUND,
+    [CCode (cname="TAG_DEFINESOUND")]
+    DEFINE_SOUND,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_STARTSOUND,
+    [CCode (cname="TAG_STARTSOUND")]
+    START_SOUND_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEBUTTONSOUND,
+    [CCode (cname="TAG_DEFINEBUTTONSOUND")]
+    DEFINE_BUTTON_SOUND,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_STREAMHEAD,
+    [CCode (cname="TAG_STREAMHEAD")]
+    STREAM_HEAD_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_STREAMBLOCK,
+    [CCode (cname="TAG_STREAMBLOCK")]
+    STREAM_BLOCK,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEBITSLOSSLESS,
+    [CCode (cname="TAG_DEFINEBITSLOSSLESS")]
+    DEFINE_BITS_LOSSLESS_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_JPEG2,
+    [CCode (cname="TAG_JPEG2")]
+    JPEG2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINESHAPE2,
+    [CCode (cname="TAG_DEFINESHAPE2")]
+    DEFINE_SHAPE_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEBUTTONCXFORM,
+    [CCode (cname="TAG_DEFINEBUTTONCXFORM")]
+    DEFINE_BUTTON_CX_FORM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_PROTECT,
+    [CCode (cname="TAG_PROTECT")]
+    PROTECT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_PLACEOBJECT2,
+    [CCode (cname="TAG_PLACEOBJECT2")]
+    PLACE_OBJECT_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_REMOVEOBJECT2,
+    [CCode (cname="TAG_REMOVEOBJECT2")]
+    REMOVE_OBJECT_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINESHAPE3,
+    [CCode (cname="TAG_DEFINESHAPE3")]
+    DEFINE_SHAPE_3,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINETEXT2,
+    [CCode (cname="TAG_DEFINETEXT2")]
+    DEFINE_TEXT_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEBUTTON2,
+    [CCode (cname="TAG_DEFINEBUTTON2")]
+    DEFINE_BUTTON_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEBITSJPEG3,
+    [CCode (cname="TAG_DEFINEBITSJPEG3")]
+    DEFINE_BITS_JPEG_3,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEBITSLOSSLESS2,
+    [CCode (cname="TAG_DEFINEBITSLOSSLESS2")]
+    DEFINE_BITS_LOSSLESS_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEEDITTEXT,
+    [CCode (cname="TAG_DEFINEEDITTEXT")]
+    DEFINE_EDIT_TEXT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINESPRITE,
+    [CCode (cname="TAG_DEFINESPRITE")]
+    DEFINE_SPRITE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_FRAMELABEL,
+    [CCode (cname="TAG_FRAMELABEL")]
+    FRAME_LABEL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_STREAMHEAD2,
+    [CCode (cname="TAG_STREAMHEAD2")]
+    STREAM_HEAD_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEMORPHSHAPE,
+    [CCode (cname="TAG_DEFINEMORPHSHAPE")]
+    DEFINE_MORPH_SHAPE_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEFONT2,
+    [CCode (cname="TAG_DEFINEFONT2")]
+    DEFINE_FONT_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_EXPORTASSETS,
+    [CCode (cname="TAG_EXPORTASSETS")]
+    EXPORT_ASSETS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_IMPORTASSETS,
+    [CCode (cname="TAG_IMPORTASSETS")]
+    IMPORT_ASSETS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_ENABLEDEBUGGER,
+    [CCode (cname="TAG_ENABLEDEBUGGER")]
+    ENABLE_DEBUGGER_1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DOINITACTION,
+    [CCode (cname="TAG_DOINITACTION")]
+    DO_INIT_ACTION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_VIDEOSTREAM,
+    [CCode (cname="TAG_VIDEOSTREAM")]
+    VIDEO_STREAM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_VIDEOFRAME,
+    [CCode (cname="TAG_VIDEOFRAME")]
+    VIDEO_FRAME,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEFONTINFO2,
+    [CCode (cname="TAG_DEFINEFONTINFO2")]
+    DEFINE_FONT_INFO_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_ENABLEDEBUGGER2,
+    [CCode (cname="TAG_ENABLEDEBUGGER2")]
+    ENABLE_DEBUGGER_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_SCRIPTLIMITS,
+    [CCode (cname="TAG_SCRIPTLIMITS")]
+    SCRIPT_LIMITS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_SETTABINDEX,
+    [CCode (cname="TAG_SETTABINDEX")]
+    SET_TAB_INDEX,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_FILEATTRIBUTES,
+    [CCode (cname="TAG_FILEATTRIBUTES")]
+    FILE_ATTRIBUTES,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_PLACEOBJECT3,
+    [CCode (cname="TAG_PLACEOBJECT3")]
+    PLACE_OBJECT_3,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_IMPORTASSETS2,
+    [CCode (cname="TAG_IMPORTASSETS2")]
+    IMPORT_ASSETS_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEFONTALIGNZONES,
+    [CCode (cname="TAG_DEFINEFONTALIGNZONES")]
+    DEFINE_FONT_ALIGN_ZONES,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_CSMTEXTSETTINGS,
+    [CCode (cname="TAG_CSMTEXTSETTINGS")]
+    CSM_TEXT_SETTINGS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEFONT3,
+    [CCode (cname="TAG_DEFINEFONT3")]
+    DEFINE_FONT_3,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_SYMBOLCLASS,
+    [CCode (cname="TAG_SYMBOLCLASS")]
+    SYMBOL_CLASS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_METADATA,
+    [CCode (cname="TAG_METADATA")]
+    METADATA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINESCALINGGRID,
+    [CCode (cname="TAG_DEFINESCALINGGRID")]
+    DEFINE_SCALING_GRID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DOABC,
+    [CCode (cname="TAG_DOABC")]
+    DO_ABC,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINESHAPE4,
+    [CCode (cname="TAG_DEFINESHAPE4")]
+    DEFINE_SHAPE_4,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEMORPHSHAPE2,
+    [CCode (cname="TAG_DEFINEMORPHSHAPE2")]
+    DEFINE_MORPH_SHAPE_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINESCENEANDFRAMELABELDATA,
+    [CCode (cname="TAG_DEFINESCENEANDFRAMELABELDATA")]
+    DEFINE_SCENE_AND_FRAME_LABEL_DATA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEBINARYDATA,
+    [CCode (cname="TAG_DEFINEBINARYDATA")]
+    DEFINE_BINARY_DATA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEFONTNAME,
+    [CCode (cname="TAG_DEFINEFONTNAME")]
+    DEFINE_FONT_NAME,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_STARTSOUND2,
+    [CCode (cname="TAG_STARTSOUND2")]
+    START_SOUND_2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEBITSJPEG4,
+    [CCode (cname="TAG_DEFINEBITSJPEG4")]
+    DEFINE_BITS_JPEG_4,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    TAG_DEFINEFONT4;
+    [CCode (cname="TAG_DEFINEFONT4")]
+    DEFINE_FONT_4;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
@@ -239,17 +239,17 @@ public const int TAG_LONG;
 /***********************************************************
 @brief Flags for shape definition
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
 public enum ShapeDefinitionFlags {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    FLAG_MOVETO,
+    [CCode (cname="FLAG_MOVETO")]
+    MOVE_TO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    FLAG_SETFILL0,
+    [CCode (cname="FLAG_SETFILL0")]
+    SET_FILL_0,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
-    FLAG_SETFILL1;
+    [CCode (cname="FLAG_SETFILL1")]
+    SET_FILL_1;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
@@ -270,59 +270,59 @@ public const int SHAPE_ID;
 [CCode (cname="struct SWFContext",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
 [Compact]
 public class SWFContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public int64 duration_pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public int64 tag_pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public int64 vframes_pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public int samples_per_frame;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public int sound_samples;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public int swf_frame_number;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public int video_frame_number;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public int frame_rate;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public int tag;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public LibAVUtil.FifoBuffer audio_fifo;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public LibAVCodec.CodecParameters audio_par;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public LibAVCodec.CodecParameters video_par;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public AVStream video_st;
 
 #if CONFIG_ZLIB
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public const size_t ZBUF_SIZE;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public AVIOContext zpb;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public uint8[] zbuf_in;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public uint8[] zbuf_out;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+    [CCode (cname="")]
     public z_stream zstream;
 #endif
 }

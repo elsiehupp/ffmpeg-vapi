@@ -20,28 +20,28 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
+[CCode (cname="enum DecklinkPtsSource",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
 public enum DecklinkPtsSource {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
-    PTS_SRC_AUDIO, // = 1,
+    [CCode (cname="PTS_SRC_AUDIO")]
+    AUDIO, // = 1,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
-    PTS_SRC_VIDEO, // = 2,
+    [CCode (cname="PTS_SRC_VIDEO")]
+    VIDEO, // = 2,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
-    PTS_SRC_REFERENCE, // = 3,
+    [CCode (cname="PTS_SRC_REFERENCE")]
+    REFERENCE, // = 3,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
-    PTS_SRC_WALLCLOCK, // = 4,
+    [CCode (cname="PTS_SRC_WALLCLOCK")]
+    WALL_CLOCK, // = 4,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
-    PTS_SRC_ABS_WALLCLOCK, // = 5,
+    [CCode (cname="PTS_SRC_ABS_WALLCLOCK")]
+    ABSOLUTE_WALL_CLOCK, // = 5,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
-    PTS_SRC_NB;
+    [CCode (cname="PTS_SRC_NB")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
+[CCode (cname="struct decklink_cctx",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
 [Compact]
 public class decklink_cctx {
     [CCode (cname="")]

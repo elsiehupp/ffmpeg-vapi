@@ -29,16 +29,14 @@ public define FRAMES_PER_PACKET
     new LibAVUtil.IntOption () {
         name = "frames_per_packet",
         short_help_text = "Number of frames to read at a time. Higher = faster decoding, lower granularity",
-        offsetof (
+        offset = offsetof (
             Codec2Context,
             frames_per_packet
         ),
-        {
-            .i64 = 1
-        },
-        1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 1,
+        minimum_value = 1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     }
 
 };
@@ -57,7 +55,7 @@ static const LibAVUtil.Option codec2raw_options[] = {
         Codec2Context,
         -1,
         -1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     ),
     FRAMES_PER_PACKET,
     {
@@ -228,7 +226,7 @@ public class Codec2Demuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/codec2.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 
@@ -319,7 +317,7 @@ public class Codec2Muxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/codec2.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -381,7 +379,7 @@ public class Codec2RawDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/codec2.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

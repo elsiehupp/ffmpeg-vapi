@@ -70,7 +70,7 @@ public class JacoSubMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_TS_NONSTRICT;
+            return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

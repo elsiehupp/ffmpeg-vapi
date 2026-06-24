@@ -36,7 +36,7 @@ srcs = files ([
     './vapi/libavcodec/avcodec/FieldOrder.vapi',
     './vapi/libavcodec/avcodec/GetBufferFlags.vapi',
     './vapi/libavcodec/avcodec/HardwareAcceleration.vapi',
-    './vapi/libavcodec/avcodec/HardwareAccelerationCapabilities.vapi',
+    './vapi/libavcodec/avcodec/HardwareAccelerationCodecCapabilityFlags.vapi',
     './vapi/libavcodec/avcodec/HardwareAccelerationFlags.vapi',
     './vapi/libavcodec/avcodec/Packet.vapi',
     './vapi/libavcodec/avcodec/PacketFlags.vapi',

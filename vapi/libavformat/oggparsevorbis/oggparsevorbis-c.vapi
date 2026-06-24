@@ -26,7 +26,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_vorbis_codec",cheader_filename="")]
 public class VorbisCodec : OggCodec {
-    [CCode (cname="")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "\001vorbis".data;
@@ -34,7 +34,14 @@ public class VorbisCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 7,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 7;
+        }
+
+    }
 
     [CCode (cname="vorbis_header",cheader_filename="")]
     public override int header (
@@ -53,7 +60,15 @@ public class VorbisCodec : OggCodec {
         AVFormatContext format_context,
         int idx
     );
-    //  .nb_header = 3;
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 3;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

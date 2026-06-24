@@ -28,37 +28,37 @@ public const size_t CENC_KID_SIZE;
 [CCode (cname="struct MOVMuxCencContext",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
 [Compact]
 public class MOVMuxCencContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+    [CCode (cname="")]
     public LibAVUtil.AESCTRContext aes_ctr;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+    [CCode (cname="")]
     public uint8[] auxiliary_info;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+    [CCode (cname="")]
     public size_t auxiliary_info_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+    [CCode (cname="")]
     public size_t auxiliary_info_alloc_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+    [CCode (cname="")]
     public uint32 auxiliary_info_entries;
 
     /***********************************************************
     @brief Subsample support
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+    [CCode (cname="")]
     public int use_subsamples;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+    [CCode (cname="")]
     public uint16 subsample_count;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+    [CCode (cname="")]
     public size_t auxiliary_info_subsample_start;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+    [CCode (cname="")]
     public uint8[] auxiliary_info_sizes;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+    [CCode (cname="")]
     public size_t auxiliary_info_sizes_alloc_size;
 }
 

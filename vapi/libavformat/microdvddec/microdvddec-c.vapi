@@ -23,21 +23,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="microdvd_options",cheader_filename="")]
 static const LibAVUtil.Option microdvd_options[] = {
     new LibAVUtil.RationalOption () {
         name = "subfps",
         short_help_text = "set the movie frame rate fallback",
-        offsetof (
+        offset = offsetof (
             MicroDVDContext,
             frame_rate
         ),
-        {
-            .dbl = 0
-        },
-        0,
-        int.MAX,
-        (
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.SUBTITLE_PARAM |
             LibAVUtil.OptionFlags.DECODING_PARAM
         )

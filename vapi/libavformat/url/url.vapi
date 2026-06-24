@@ -21,20 +21,20 @@ namespace LibAVFormat {
 /***********************************************************
 @file unbuffered private I/O API
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/url.h")]
 public enum URLProtocolFlags {
     /***********************************************************
     @brief The protocol name can be the first part of a nested protocol scheme
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
-    URL_PROTOCOL_FLAG_NESTED_SCHEME,
+    [CCode (cname="URL_PROTOCOL_FLAG_NESTED_SCHEME")]
+    NESTED_SCHEME,
 
     /***********************************************************
     @brief The protocol uses network
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
-    URL_PROTOCOL_FLAG_NETWORK;
+    [CCode (cname="URL_PROTOCOL_FLAG_NETWORK")]
+    NETWORK;
 }
 
 //  extern const LibAVUtil.Class ffurl_context_class;
@@ -45,67 +45,67 @@ public class URLContext {
     /***********************************************************
     @brief Information for av_log (). Set by url_open ().
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public LibAVUtil.Class av_class;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public URLProtocol prot;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public void *priv_data;
 
     /***********************************************************
     @brief Specified URL
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public string filename;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public int flags;
 
     /***********************************************************
     @brief If non zero, the stream is packetized with this max packet size
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public int max_packet_size;
 
     /***********************************************************
     @brief True if streamed (no seek possible), default = false
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public int is_streamed;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public int is_connected;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public AVIOInterruptCB interrupt_callback;
 
     /***********************************************************
     @brief Maximum time to wait for (network) read/write operation completion, in mcs
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public int64 rw_timeout;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public string protocol_whitelist;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public string protocol_blacklist;
 
     /***********************************************************
     @brief If non zero, the stream is packetized with this min packet size
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public int min_packet_size;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
 public abstract class URLProtocol {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract string name { public get; }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_open (
         URLContext url_context,
         string url,
@@ -117,7 +117,7 @@ public abstract class URLProtocol {
     protocols. options are then to be passed to ffurl_open ()/ffurl_connect ()
     for those nested protocols.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_open2 (
         URLContext url_context,
         string url,
@@ -125,13 +125,13 @@ public abstract class URLProtocol {
         out LibAVUtil.Dictionary options
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_accept (
         URLContext server_url_context,
         out URLContext client_url_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_handshake (
         URLContext client_url_context
     );
@@ -148,39 +148,39 @@ public abstract class URLProtocol {
     enough data has been read is left to the calling function; see
     retry_transfer_wrapper in avio.c.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_read (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_write (
         URLContext url_context,
         uchar[] buffer,
         int size
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int64 url_seek (
         URLContext url_context,
         int64 pos,
         int whence
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_close (
         URLContext url_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_read_pause (
         URLContext url_context,
         int pause
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int64 url_read_seek (
         URLContext url_context,
         int stream_index,
@@ -188,72 +188,72 @@ public abstract class URLProtocol {
         int flags
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_get_file_handle (
         URLContext url_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_get_multi_file_handle (
         URLContext url_context,
         out int[] handles,
         out int numhandles
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_get_short_seek (
         URLContext url_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_shutdown (
         URLContext url_context,
         int flags
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract size_t priv_data_size { public get; }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract LibAVUtil.Class priv_data_class { public get; }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract URLProtocolFlags flags { public get; }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_check (
         URLContext url_context,
         int mask
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_open_dir (
         URLContext url_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_read_dir (
         URLContext url_context,
         out AVIODirEntry next
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_close_dir (
         URLContext url_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_delete (
         URLContext url_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public abstract int url_move (
         URLContext h_src,
         URLContext h_dst
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="")]
     public string default_whitelist;
 }
 
@@ -411,7 +411,7 @@ operation on the resource accessed by h.
 @param pos specifies the new position to set
 @param whence specifies how pos should be interpreted, it must be
 one of SEEK_SET (seek from the beginning), SEEK_CUR (seek from the
-current position), SEEK_END (seek from the end), or AVSEEK_SIZE
+current position), SEEK_END (seek from the end), or AVSeekWhence.SIZE
 (return the filesize of the requested resource, pos is ignored).
 @return a negative value corresponding to an LibAVUtil.ErrorCode code in case
 of failure, or the resulting file position, measured in bytes from

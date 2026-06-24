@@ -30,28 +30,28 @@ public const string ID3v2_EA3_MAGIC;
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
 public const size_t OMA_ENC_HEADER_SIZE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
 public enum OMACodecID {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
-    OMA_CODECID_ATRAC3,
+    [CCode (cname="OMA_CODECID_ATRAC3")]
+    ATRAC3,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
-    OMA_CODECID_ATRAC3P,
+    [CCode (cname="OMA_CODECID_ATRAC3P")]
+    ATRAC3_P,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
-    OMA_CODECID_MP3,
+    [CCode (cname="OMA_CODECID_MP3")]
+    MP3,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
-    OMA_CODECID_LPCM,
+    [CCode (cname="OMA_CODECID_LPCM")]
+    LPCM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
-    OMA_CODECID_WMA,
+    [CCode (cname="OMA_CODECID_WMA")]
+    WMA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
-    OMA_CODECID_ATRAC3PAL,
+    [CCode (cname="OMA_CODECID_ATRAC3PAL")]
+    ATRAC3_PAL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oma.h")]
-    OMA_CODECID_ATRAC3AL;
+    [CCode (cname="OMA_CODECID_ATRAC3AL")]
+    ATRAC3_AL;
 }
 
 //  extern const uint16 ff_oma_srate_tab[8];

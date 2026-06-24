@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
+[CCode (cname="struct ResampleContext",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
 [Compact]
 public class ResampleContext {
     [CCode (cname="")]
@@ -65,7 +65,7 @@ public class ResampleContext {
     public int linear;
 
     [CCode (cname="")]
-    public SwrFilterType filter_type;
+    public SoftwareResampleFilterType filter_type;
 
     [CCode (cname="")]
     public double kaiser_beta;

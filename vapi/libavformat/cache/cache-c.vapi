@@ -30,21 +30,19 @@ namespace LibAVFormat {
     support filling with a background thread
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "read_ahead_limit",
         short_help_text = "Amount in bytes that may be read ahead when seeking isn't supported, -1 for unlimited",
-        offsetof (
+        offset = offsetof (
             Context,
             read_ahead_limit
         ),
-        {
-            .i64 = 65536
-        },
-        -1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 65536,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

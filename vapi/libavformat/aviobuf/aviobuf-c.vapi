@@ -22,21 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="ff_avio_options",cheader_filename="")]
 static const LibAVUtil.Option ff_avio_options[] = {
     new LibAVUtil.StringOption () {
         name = "protocol_whitelist",
         short_help_text = "List of protocols that are allowed to be used",
-        offsetof (
+        offset = offsetof (
             AVIOContext,
             protocol_whitelist
         ),
-        {
-            .str = NULL
-        },
-        char.MIN,
-        char.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "",
+        minimum_value = char.MIN,
+        maximum_value = char.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

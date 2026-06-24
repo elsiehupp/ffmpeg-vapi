@@ -121,7 +121,9 @@ public class BitStreamFilterContext {
         finished
     ***********************************************************/
     [CCode (cname="av_bsf_iterate",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-    public BitStreamFilter av_bsf_iterate (out void *opaque);
+    public BitStreamFilter av_bsf_iterate (
+        out void *opaque
+    );
 
     /***********************************************************
     @brief Allocate a context for a given bitstream filter. The caller must fill in the

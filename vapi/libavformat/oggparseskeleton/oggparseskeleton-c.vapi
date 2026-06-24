@@ -23,7 +23,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_skeleton_codec",cheader_filename="ffmpeg/libformat/oggparseskeleton.c")]
 public class SkeletonCodec : OggCodec {
-    [CCode (cname="",cheader_filename="ffmpeg/libformat/oggparseskeleton.c")]
+    [CCode (cname="magic")]
     public override uint8[] magic {
         public get {
             return "fishead".data;
@@ -31,14 +31,29 @@ public class SkeletonCodec : OggCodec {
         }
 
     }
-    //  .magicsize = 8,
+
+    [CCode (cname="magicsize")]
+    public override uint8 magicsize {
+        public get {
+            return 8;
+        }
+
+    }
 
     [CCode (cname="skeleton_header",cheader_filename="ffmpeg/libformat/oggparseskeleton.c")]
     public override int header (
         AVFormatContext context,
         int arg
     );
-    //  .nb_header = 0;
+
+    [CCode (cname="nb_header")]
+    public override int nb_header {
+        public get {
+            return 0;
+        }
+
+    }
+
 }
 
 } // namespace LibAVFormat

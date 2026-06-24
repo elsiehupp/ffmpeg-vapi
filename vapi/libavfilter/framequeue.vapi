@@ -26,7 +26,7 @@ Note: this API is not thread-safe. Concurrent access to the same queue
 must be protected by a mutex or any synchronization mechanism.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
+[CCode (cname="struct FFFrameBucket",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 [Compact]
 public class FFFrameBucket {
     [CCode (cname="")]
@@ -41,7 +41,7 @@ frame queues, including memory consumption caps.
 
 It is currently empty.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
+[CCode (cname="struct FFFrameQueueGlobal",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 [Compact]
 public class FFFrameQueueGlobal {
     /***********************************************************
@@ -53,7 +53,7 @@ public class FFFrameQueueGlobal {
 /***********************************************************
 Queue of AVFrame pointers.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
+[CCode (cname="struct FFFrameQueue",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 [Compact]
 public class FFFrameQueue {
 

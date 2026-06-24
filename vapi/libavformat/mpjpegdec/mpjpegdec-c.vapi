@@ -22,21 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="mpjpeg_options",cheader_filename="")]
 static const LibAVUtil.Option mpjpeg_options[] = {
     new LibAVUtil.BoolOption () {
         name = "strict_mime_boundary",
         short_help_text = "require MIME boundaries match",
-        offsetof (
+        offset = offsetof (
             MPJPEGDemuxContext,
             strict_mime_boundary
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -150,7 +148,7 @@ public class MultipartJPEGDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mjpegdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

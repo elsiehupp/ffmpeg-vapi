@@ -97,7 +97,9 @@ public class CPBProperties {
     @return the newly allocated struct or null on failure
     ***********************************************************/
     [CCode (cname="av_cpb_properties_alloc",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-    public CPBProperties av_cpb_properties_alloc (out size_t size);
+    public CPBProperties av_cpb_properties_alloc (
+        out size_t size
+    );
 
 }
 

@@ -29,119 +29,103 @@ ISO DASH Specification:
 http://standards.iso.org/ittf/PubliclyAvailableStandards/c065274_ISO_IEC_23009-1_2014.zip
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "adaptation_sets",
         short_help_text = "Adaptation sets. Syntax: id=0,streams=0,1,2 id=1,streams=3,4 and so on",
-        offsetof (
+        offset = offsetof (
             WebMDashMuxContext,
             adaptation_sets
         ),
-        {
-            0
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "debug_mode",
         short_help_text = "[private option - users should never set this]. Create deterministic output",
-        offsetof (
+        offset = offsetof (
             WebMDashMuxContext,
             debug_mode
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "live",
         short_help_text = "create a live stream manifest",
-        offsetof (
+        offset = offsetof (
             WebMDashMuxContext,
             is_live
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "chunk_start_index",
         short_help_text = "start index of the chunk",
-        offsetof (
+        offset = offsetof (
             WebMDashMuxContext,
             chunk_start_index
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "chunk_duration_ms",
         short_help_text = "duration of each chunk (in milliseconds)",
-        offsetof (
+        offset = offsetof (
             WebMDashMuxContext,
             chunk_duration
         ),
-        {
-            .i64 = 1000
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1000,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "utc_timing_url",
         short_help_text = "URL of the page that will return the UTC timestamp in ISO format",
-        offsetof (
+        offset = offsetof (
             WebMDashMuxContext,
             utc_timing_url
         ),
-        {
-            0
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.DoubleOption () {
         name = "time_shift_buffer_depth",
         short_help_text = "Smallest time (in seconds) shifting buffer for which any Representation is guaranteed to be available.",
-        offsetof (
+        offset = offsetof (
             WebMDashMuxContext,
             time_shift_buffer_depth
         ),
-        {
-            .dbl = 60.0
-        },
-        1.0,
-        DBL_MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 60.0,
+        minimum_value = 1.0,
+        maximum_value = double.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "minimum_update_period",
         short_help_text = "Minimum Update Period (in seconds) of the manifest.",
-        offsetof (
+        offset = offsetof (
             WebMDashMuxContext,
             minimum_update_period
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL

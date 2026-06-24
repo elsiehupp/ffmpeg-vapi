@@ -194,7 +194,7 @@ public class RTPDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rtsp.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOFILE;
+            return AVFormatFlags1.NO_FILE;
 
         }
 

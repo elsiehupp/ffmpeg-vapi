@@ -36,14 +36,14 @@ public class ContentLightMetadata {
     /***********************************************************
     @brief Max content light level (cd/m^2).
     ***********************************************************/
-    [CCode (cname="MaxCLL",cheader_filename="subprojects/ffmpeg/libavutil/mastering_display_metadata.h")]
-    public uint max_content_light_level;
+    [CCode (cname="MaxCLL")]
+    public  uint max_content_light_level;
 
     /***********************************************************
     @brief Max average light level per frame (cd/m^2).
     ***********************************************************/
-    [CCode (cname="MaxFALL",cheader_filename="subprojects/ffmpeg/libavutil/mastering_display_metadata.h")]
-    public uint max_frame_light_level;
+    [CCode (cname="MaxFALL")]
+    public  uint max_frame_light_level;
 
     /***********************************************************
     @brief Allocate an ContentLightMetadata structure and set its fields to

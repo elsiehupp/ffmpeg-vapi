@@ -26,14 +26,14 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="FF_PROFILE_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum ProfileDTS {
-    FF_PROFILE_DTS,
-    FF_PROFILE_DTS_ES,
-    FF_PROFILE_DTS_96_24,
-    FF_PROFILE_DTS_HD_HRA,
-    FF_PROFILE_DTS_HD_MA,
-    FF_PROFILE_DTS_EXPRESS;
+    DTS,
+    DTS_ES,
+    DTS_96_24,
+    DTS_HD_HRA,
+    DTS_HD_MA,
+    DTS_EXPRESS;
 }
 
 } // namespace LibAVCodec

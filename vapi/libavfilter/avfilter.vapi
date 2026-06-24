@@ -50,11 +50,11 @@ Return the libavfilter license.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public string avfilter_license ();
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+[CCode (cname="struct AVFilterPad",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterPad { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+[CCode (cname="struct AVFilterFormats",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterFormats { }
 
@@ -99,29 +99,27 @@ public AVMediaType avfilter_pad_get_type (
 );
 
 [Flags]
-public enum FooBar {
+[CCode (cprefix="AVFILTER_FLAG_",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+public enum FilterFlags {
     /***********************************************************
     The number of the filter inputs is not determined just by AVFilter.inputs.
     The filter might add additional inputs during initialization depending on the
     options supplied to it.
     ***********************************************************/
-    [CCode (cname="")]
-    AVFILTER_FLAG_DYNAMIC_INPUTS, // (1 << 0)
+    DYNAMIC_INPUTS, // (1 << 0)
 
     /***********************************************************
     The number of the filter outputs is not determined just by AVFilter.outputs.
     The filter might add additional outputs during initialization depending on
     the options supplied to it.
     ***********************************************************/
-    [CCode (cname="")]
-    AVFILTER_FLAG_DYNAMIC_OUTPUTS, // (1 << 1)
+    DYNAMIC_OUTPUTS, // (1 << 1)
 
     /***********************************************************
     The filter supports multithreading by splitting frames into multiple parts
     and processing them concurrently.
     ***********************************************************/
-    [CCode (cname="")]
-    AVFILTER_FLAG_SLICE_THREADS, // (1 << 2)
+    SLICE_THREADS, // (1 << 2)
 
     /***********************************************************
     Some filters support a generic "enable" expression option that can be used
@@ -131,32 +129,29 @@ public enum FooBar {
     callback defined on each input pad, thus the frame is passed unchanged to
     the next filters.
     ***********************************************************/
-    [CCode (cname="")]
-    AVFILTER_FLAG_SUPPORT_TIMELINE_GENERIC, // (1 << 16)
+    SUPPORT_TIMELINE_GENERIC, // (1 << 16)
 
     /***********************************************************
-    Same as AVFILTER_FLAG_SUPPORT_TIMELINE_GENERIC, except that the filter will
+    Same as FilterFlags.SUPPORT_TIMELINE_GENERIC, except that the filter will
     have its filter_frame () callback (s) called as usual even when the enable
     expression is false. The filter will disable filtering within the
     filter_frame () callback (s) itself, for example executing code depending on
     the AVFilterContext->is_disabled value.
     ***********************************************************/
-    [CCode (cname="")]
-    AVFILTER_FLAG_SUPPORT_TIMELINE_INTERNAL, // (1 << 17)
+    SUPPORT_TIMELINE_INTERNAL, // (1 << 17)
 
     /***********************************************************
     Handy mask to test whether the filter supports or no the timeline feature
     (internally or generically).
     ***********************************************************/
-    [CCode (cname="")]
-    AVFILTER_FLAG_SUPPORT_TIMELINE; // (AVFILTER_FLAG_SUPPORT_TIMELINE_GENERIC | AVFILTER_FLAG_SUPPORT_TIMELINE_INTERNAL)
+    SUPPORT_TIMELINE; // (FilterFlags.SUPPORT_TIMELINE_GENERIC | FilterFlags.SUPPORT_TIMELINE_INTERNAL)
 }
 
 /***********************************************************
 Filter definition. This defines the pads a filter contains, and all the
 callback functions used to interact with the filter.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+[CCode (cname="struct AVFilter",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilter {
     /***********************************************************
@@ -177,7 +172,7 @@ public class AVFilter {
     List of inputs, terminated by a zeroed element.
 
     NULL if there are no (static) inputs. Instances of filters with
-    AVFILTER_FLAG_DYNAMIC_INPUTS set may have more inputs than present in
+    FilterFlags.DYNAMIC_INPUTS set may have more inputs than present in
     this list.
     ***********************************************************/
     [CCode (cname="")]
@@ -187,7 +182,7 @@ public class AVFilter {
     List of outputs, terminated by a zeroed element.
 
     NULL if there are no (static) outputs. Instances of filters with
-    AVFILTER_FLAG_DYNAMIC_OUTPUTS set may have more outputs than present in
+    FilterFlags.DYNAMIC_OUTPUTS set may have more outputs than present in
     this list.
     ***********************************************************/
     [CCode (cname="")]
@@ -205,10 +200,10 @@ public class AVFilter {
     public AVClass priv_class;
 
     /***********************************************************
-    A combination of AVFILTER_FLAG_*
+    A combination of FilterFlags
     ***********************************************************/
     [CCode (cname="")]
-    public int flags;
+    public FilterFlags flags;
 
     /*****************************************************************
     All fields below this line are not part of the public API. They
@@ -355,7 +350,7 @@ public class AVFilter {
         string arg,
         string res,
         int res_len,
-        int flags
+        FilterCommandFlags flags
     );
 
     /***********************************************************
@@ -364,7 +359,7 @@ public class AVFilter {
     @param cmd    the command to process, for handling simplicity all commands must be alphanumeric only
     @param arg    the argument for the command
     @param res    a buffer with size res_size where the filter (s) can return a response. This must not change when the command is not supported.
-    @param flags  if AVFILTER_CMD_FLAG_FAST is set and the command would be
+    @param flags  if FilterCommandFlags.FAST is set and the command would be
                   time consuming then a filter should treat it like an unsupported command
 
     @returns >=0 on success otherwise an error code.
@@ -408,22 +403,22 @@ public class AVFilter {
 }
 
 [Flags]
-public enum FooBar {
+public enum FilterThreadSliceFlags {
     /***********************************************************
     Process multiple parts of the frame concurrently.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-    AVFILTER_THREAD_SLICE; // (1 << 0)
+    [CCode (cname="AVFILTER_THREAD_SLICE",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+    SLICE; // (1 << 0)
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+[CCode (cname="struct AVFilterInternal",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterInternal { }
 
 /***********************************************************
 An instance of a filter
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+[CCode (cname="struct AVFilterContext",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterContext {
     /***********************************************************
@@ -600,7 +595,7 @@ Use the buffersrc and buffersink API instead.
 In the future, access to the header may be reserved for filters
 implementation.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+[CCode (cname="struct AVFilterLink",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterLink {
     /***********************************************************
@@ -733,32 +728,32 @@ public class AVFilterLink {
     /***********************************************************
     stage of the initialization of the link properties (dimensions, etc)
     ***********************************************************/
-    [CCode (cname="")]
-    public enum FooBar {
+    [CCode (cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+    public enum InitializationStage {
         /***********************************************************
         not started
         ***********************************************************/
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-        AVLINK_UNINIT, // = 0
+        [CCode (cname="AVLINK_UNINIT")]
+        UNINITIALIZED, // = 0
 
         /***********************************************************
         started, but incomplete
         ***********************************************************/
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-        AVLINK_STARTINIT,
+        [CCode (cname="AVLINK_STARTINIT")]
+        STARTED_INITIALIZATION,
 
         /***********************************************************
         complete
         ***********************************************************/
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-        AVLINK_INIT;
+        [CCode (cname="AVLINK_INIT")]
+        INITIALIZED;
     }
 
     /***********************************************************
     stage of the initialization of the link properties (dimensions, etc)
     ***********************************************************/
     [CCode (cname="")]
-    public FooBar init_state;
+    public InitializationStage init_state;
 
     /***********************************************************
     Graph the filter belongs to.
@@ -988,18 +983,17 @@ public int avfilter_config_links (
 );
 
 [Flags]
-public enum FooBar {
+[CCode (cprefix="AVFILTER_CMD_FLAG_",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+public enum FilterCommandFlags {
     /***********************************************************
     Stop once a filter understood the command (for target=all for example), fast filters are favored automatically
     ***********************************************************/
-    [CCode (cname="")]
-    AVFILTER_CMD_FLAG_ONE, // 1
+    ONE, // 1
 
     /***********************************************************
     Only execute command when its fast (like a video out that supports contrast adjustment in hw)
     ***********************************************************/
-    [CCode (cname="")]
-    AVFILTER_CMD_FLAG_FAST; // 2
+    FAST; // 2
 }
 
 /***********************************************************
@@ -1200,7 +1194,7 @@ public delegate int AVFilterExecuteDelegate (
     int nb_jobs
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+[CCode (cname="struct AVFilterGraph",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterGraph {
     [CCode (cname="")]
@@ -1374,27 +1368,25 @@ Enable or disable automatic format conversion inside the graph.
 Note that format conversion can still happen inside explicitly inserted
 scale and aresample filters.
 
-@param flags  any of the AVFILTER_AUTO_CONVERT_* constants
+@param flags  any of the FilterAutoConvert constants
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public void avfilter_graph_set_auto_convert (
     AVFilterGraph? graph,
-    uint flags
+    FilterAutoConvert flags
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-public enum FooBar {
+[CCode (cprefix="AVFILTER_AUTO_CONVERT_",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+public enum FilterAutoConvert {
     /***********************************************************
     all automatic conversions enabled
     ***********************************************************/
-    [CCode (cname="")]
-    AVFILTER_AUTO_CONVERT_ALL = 0,
+    ALL, // = 0,
 
     /***********************************************************
     all automatic conversions disabled
     ***********************************************************/
-    [CCode (cname="")]
-    AVFILTER_AUTO_CONVERT_NONE = -1;
+    NONE; // = -1;
 }
 
 /***********************************************************
@@ -1428,7 +1420,7 @@ to the caller.
 This struct specifies, per each not connected pad contained in the graph, the
 filter context and the pad index required for establishing a link.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+[CCode (cname="struct AVFilterInOut",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class AVFilterInOut {
     /***********************************************************
@@ -1595,7 +1587,7 @@ Queue a command for one or more filter instances.
 @param ts     time at which the command should be sent to the filter
 
 @note As this executes commands after this function returns, no return code
-      from the filter is provided, also AVFILTER_CMD_FLAG_ONE is not supported.
+      from the filter is provided, also FilterCommandFlags.ONE is not supported.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 public int avfilter_graph_queue_command (
@@ -1603,7 +1595,7 @@ public int avfilter_graph_queue_command (
     string target,
     string cmd,
     string arg,
-    int flags,
+    FilterCommandFlags flags,
     double ts
 );
 

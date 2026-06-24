@@ -22,49 +22,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "write_header_ret",
         short_help_text = "write_header () return value",
-        offsetof (
+        offset = offsetof (
             FailingMuxerContext,
             write_header_ret
         ),
-        {
-            .i64 = 0
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "write_trailer_ret",
         short_help_text = "write_trailer () return value",
-        offsetof (
+        offset = offsetof (
             FailingMuxerContext,
             write_trailer_ret
         ),
-        {
-            .i64 = 0
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "print_deinit_summary",
         short_help_text = "print summary when deinitializing muxer",
-        offsetof (
+        offset = offsetof (
             FailingMuxerContext,
             print_deinit_summary
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -163,7 +157,7 @@ public class FifoTestMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/fifo_test.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOFILE | AVFMT_ALLOW_FLUSH;
+            return AVFormatFlags1.NO_FILE | AVFormatFlags1.ALLOWS_FLUSH;
 
         }
 

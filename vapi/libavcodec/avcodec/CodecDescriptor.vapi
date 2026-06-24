@@ -70,7 +70,7 @@ public class CodecDescriptor {
 
     /***********************************************************
     @brief If non-null, an array of profiles recognized for this codec.
-    Terminated with FF_PROFILE_UNKNOWN.
+    Terminated with ProfileType.UNKNOWN.
     ***********************************************************/
     [CCode (cname="profiles")]
     public Profile[] profiles;

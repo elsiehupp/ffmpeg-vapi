@@ -64,7 +64,7 @@ public class HLSURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NESTED_SCHEME;
+            return URLProtocolFlags.NESTED_SCHEME;
 
         }
 

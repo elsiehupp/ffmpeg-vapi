@@ -29,49 +29,57 @@ LibAVCodec external API header
 /***********************************************************
 @brief Verify checksums embedded in the bitstream (could be of either encoded or
 decoded data, depending on the codec) and print an error message on mismatch.
-If AV_EF_EXPLODE is also set, a mismatching checksum will result in the
+If ErrorRecognitionFlags.EXPLODE is also set, a mismatching checksum will result in the
 decoder returning an error.
 ***********************************************************/
 [Flags]
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum ErrorRecognitionFlags {
-    AV_EF_CRCCHECK,
+    [CCode (cname="AV_EF_CRCCHECK")]
+    CRC_CHECK,
 
     /***********************************************************
     @brief Detect bitstream specification deviations
     ***********************************************************/
-    AV_EF_BITSTREAM,
+    [CCode (cname="AV_EF_BITSTREAM")]
+    BITSTREAM,
 
     /***********************************************************
     @brief Detect improper bitstream length
     ***********************************************************/
-    AV_EF_BUFFER,
+    [CCode (cname="AV_EF_BUFFER")]
+    BUFFER,
 
     /***********************************************************
     @brief Abort decoding on minor error detection
     ***********************************************************/
-    AV_EF_EXPLODE,
+    [CCode (cname="AV_EF_EXPLODE")]
+    EXPLODE,
 
     /***********************************************************
     @brief Ignore errors and continue
     ***********************************************************/
-    AV_EF_IGNORE_ERR,
+    [CCode (cname="AV_EF_IGNORE_ERR")]
+    IGNORE_ERRORS,
 
     /***********************************************************
     @brief Consider things that violate the spec, are fast to calculate
     and have not been seen in the wild as errors
     ***********************************************************/
-    AV_EF_CAREFUL,
+    [CCode (cname="AV_EF_CAREFUL")]
+    CAREFUL,
 
     /***********************************************************
     @brief Consider all spec non compliances as errors
     ***********************************************************/
-    AV_EF_COMPLIANT,
+    [CCode (cname="AV_EF_COMPLIANT")]
+    COMPLIANT,
 
     /***********************************************************
     @brief Consider things that a sane encoder should not do as an error
     ***********************************************************/
-    AV_EF_AGGRESSIVE;
+    [CCode (cname="AV_EF_AGGRESSIVE")]
+    AGGRESSIVE;
 }
 
 } // namespace LibAVCodec

@@ -101,32 +101,31 @@ public class AVAudioResampleContext { }
 
 Mixing Coefficient Types
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 //  attribute_deprecated
 public enum AVMixCoeffType {
     /***********************************************************
     16-bit 8.8 fixed-point
     ***********************************************************/
-    [CCode (cname="")]
-    AV_MIX_COEFF_TYPE_Q8,
+    [CCode (cname="AV_MIX_COEFF_TYPE_Q8")]
+    Q8_FIXED_POINT,
 
     /***********************************************************
     32-bit 17.15 fixed-point
     ***********************************************************/
-    [CCode (cname="")]
-    AV_MIX_COEFF_TYPE_Q15,
+    [CCode (cname="AV_MIX_COEFF_TYPE_Q15")]
+    Q15_FIXED_POINT,
 
     /***********************************************************
     floating-point
     ***********************************************************/
-    [CCode (cname="")]
-    AV_MIX_COEFF_TYPE_FLT,
+    [CCode (cname="AV_MIX_COEFF_TYPE_FLT")]
+    FLOATING_POINT,
 
     /***********************************************************
     Number of coeff types. Not part of ABI
     ***********************************************************/
-    [CCode (cname="")]
-    AV_MIX_COEFF_TYPE_NB;
+    NB;
 }
 
 /***********************************************************
@@ -134,69 +133,65 @@ public enum AVMixCoeffType {
 
 Resampling Filter Types
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 //  attribute_deprecated
 public enum AVResampleFilterType {
     /***********************************************************
     Cubic
     ***********************************************************/
-    [CCode (cname="")]
-    AV_RESAMPLE_FILTER_TYPE_CUBIC,
+    [CCode (cname="AV_RESAMPLE_FILTER_TYPE_CUBIC")]
+    CUBIC,
 
     /***********************************************************
     Blackman Nuttall Windowed Sinc
     ***********************************************************/
-    [CCode (cname="")]
-    AV_RESAMPLE_FILTER_TYPE_BLACKMAN_NUTTALL,
+    [CCode (cname="AV_RESAMPLE_FILTER_TYPE_BLACKMAN_NUTTALL")]
+    BLACKMAN_NUTTALL_WINDOWED_SINC,
 
     /***********************************************************
     Kaiser Windowed Sinc
     ***********************************************************/
-    [CCode (cname="")]
-    AV_RESAMPLE_FILTER_TYPE_KAISER;
+    [CCode (cname="AV_RESAMPLE_FILTER_TYPE_KAISER")]
+    KAISER_WINDOWED_SINC;
 }
 
 /***********************************************************
 @deprecated use libswresample
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
+[CCode (cprefix="AV_RESAMPLE_DITHER_",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
 //  attribute_deprecated
 public enum AVResampleDitherMethod {
     /***********************************************************
     Do not use dithering
     ***********************************************************/
-    [CCode (cname="")]
-    AV_RESAMPLE_DITHER_NONE,
+    NONE,
 
     /***********************************************************
     Rectangular Dither
     ***********************************************************/
-    [CCode (cname="")]
-    AV_RESAMPLE_DITHER_RECTANGULAR,
+    RECTANGULAR,
 
     /***********************************************************
     Triangular Dither
     ***********************************************************/
-    [CCode (cname="")]
-    AV_RESAMPLE_DITHER_TRIANGULAR,
+    TRIANGULAR,
 
     /***********************************************************
     Triangular Dither with High Pass
     ***********************************************************/
-    [CCode (cname="")]
-    AV_RESAMPLE_DITHER_TRIANGULAR_HP,
+    [CCode (cname="AV_RESAMPLE_DITHER_TRIANGULAR_HP")]
+    TRIANGULAR_HIGH_PASS,
 
     /***********************************************************
     Triangular Dither with Noise Shaping
     ***********************************************************/
-    [CCode (cname="")]
-    AV_RESAMPLE_DITHER_TRIANGULAR_NS,
+    [CCode (cname="AV_RESAMPLE_DITHER_TRIANGULAR_NS")]
+    TRIANGULAR_NOISE_SHAPING,
 
     /***********************************************************
     Number of dither types. Not part of ABI.
     ***********************************************************/
-    [CCode (cname="")]
-    AV_RESAMPLE_DITHER_NB;
+    NB;
 }
 
 /***********************************************************
@@ -235,7 +230,7 @@ public string avresample_license ();
 
 Get the AVClass for AVAudioResampleContext.
 
-Can be used in combination with AV_OPT_SEARCH_FAKE_OBJ for examining options
+Can be used in combination with OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options
 without allocating a context.
 
 @see av_opt_find ().

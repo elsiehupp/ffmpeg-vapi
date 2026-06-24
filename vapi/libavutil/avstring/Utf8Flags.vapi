@@ -41,5 +41,5 @@ public enum Utf8Flags {
     @brief Exclude control codes not accepted by XML
     ***********************************************************/
     EXCLUDE_XML_INVALID_CONTROL_CODES,
-    ACCEPT_ALL
+    ACCEPT_ALL;
 }

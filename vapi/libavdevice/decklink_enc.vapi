@@ -19,23 +19,23 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_enc.h")]
+[CCode (cname="ff_decklink_write_header",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_enc.h")]
 public int ff_decklink_write_header (
     AVFormatContext? avctx
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_enc.h")]
+[CCode (cname="ff_decklink_write_packet",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_enc.h")]
 public int ff_decklink_write_packet (
     AVFormatContext? avctx,
     AVPacket? pkt
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_enc.h")]
+[CCode (cname="ff_decklink_write_trailer",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_enc.h")]
 public int ff_decklink_write_trailer (
     AVFormatContext? avctx
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_enc.h")]
+[CCode (cname="ff_decklink_list_output_devices",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_enc.h")]
 public int ff_decklink_list_output_devices (
     AVFormatContext? avctx,
     AVDeviceInfoList? device_list

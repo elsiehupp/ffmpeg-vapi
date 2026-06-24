@@ -18,11 +18,11 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
+[CCode (cname="struct DitherContext",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
 [Compact]
 public class DitherContext { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
+[CCode (cname="struct DitherDSPContext",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
 [Compact]
 public class DitherDSPContext {
     public delegate void QuantizeDelegate (

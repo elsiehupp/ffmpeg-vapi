@@ -90,7 +90,7 @@ public class BinkDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_SHOW_IDS;
+            return AVFormatFlags1.SHOW_IDS;
 
         }
 

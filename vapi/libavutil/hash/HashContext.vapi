@@ -90,7 +90,7 @@ av_hash_freep (&hash_context);
 @endcode
 
 @section Hash Function-Specific Information
-If the CRC32 hash is selected, the #AV_CRC_32_IEEE polynomial will be
+If the CRC32 hash is selected, the #CRCIdentifier.32_IEEE polynomial will be
 used.
 
 If the Murmur3 hash is selected, the default seed will be used. See @ref

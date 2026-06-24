@@ -26,20 +26,20 @@ namespace LibAVFormat {
 Buffered I/O operations
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 public enum AVIOSeekableFlags {
     /***********************************************************
     @brief Seeking works like for a local file.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_SEEKABLE_NORMAL,
+    [CCode (cname="AVIO_SEEKABLE_NORMAL")]
+    NORMAL,
 
     /***********************************************************
     @brief Seeking by timestamp with avio_seek_time () is possible.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_SEEKABLE_TIME;
+    [CCode (cname="AVIO_SEEKABLE_TIME")]
+    TIME;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/avio.h")]
@@ -61,50 +61,50 @@ or AVIOContext.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 [Compact]
 public class AVIOInterruptCB {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public InterruptCallbackDelegate callback;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public void *opaque;
 }
 
 /***********************************************************
 @brief Directory entry types.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+[CCode (cname="enum AVIODirEntryType",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 public enum AVIODirEntryType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_UNKNOWN,
+    [CCode (cname="AVIO_ENTRY_UNKNOWN")]
+    UNKNOWN,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_BLOCK_DEVICE,
+    [CCode (cname="AVIO_ENTRY_BLOCK_DEVICE")]
+    BLOCK_DEVICE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_CHARACTER_DEVICE,
+    [CCode (cname="AVIO_ENTRY_CHARACTER_DEVICE")]
+    CHARACTER_DEVICE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_DIRECTORY,
+    [CCode (cname="AVIO_ENTRY_DIRECTORY")]
+    DIRECTORY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_NAMED_PIPE,
+    [CCode (cname="AVIO_ENTRY_NAMED_PIPE")]
+    NAMED_PIPE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_SYMBOLIC_LINK,
+    [CCode (cname="AVIO_ENTRY_SYMBOLIC_LINK")]
+    SYMBOLIC_LINK,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_SOCKET,
+    [CCode (cname="AVIO_ENTRY_SOCKET")]
+    SOCKET,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_FILE,
+    [CCode (cname="AVIO_ENTRY_FILE")]
+    FILE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_SERVER,
+    [CCode (cname="AVIO_ENTRY_SERVER")]
+    SERVER,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_SHARE,
+    [CCode (cname="AVIO_ENTRY_SHARE")]
+    SHARE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_ENTRY_WORKGROUP;
+    [CCode (cname="AVIO_ENTRY_WORKGROUP")]
+    WORKGROUP;
 }
 
 /***********************************************************
@@ -119,72 +119,72 @@ public class AVIODirEntry {
     /***********************************************************
     @brief Filename
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public string name;
 
     /***********************************************************
     @brief Type of the entry
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int type;
 
     /***********************************************************
     @brief Set to 1 when name is encoded with UTF-8, 0 otherwise.
     Name can be encoded with UTF-8 even though 0 is set.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int utf8;
 
     /***********************************************************
     @brief File size in bytes, -1 if unknown.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 size;
 
     /***********************************************************
     @brief Time of last modification in microseconds since unix
     epoch, -1 if unknown.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 modification_timestamp;
 
     /***********************************************************
     @brief Time of last access in microseconds since unix epoch,
     -1 if unknown.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 access_timestamp;
 
     /***********************************************************
     @brief Time of last status change in microseconds since unix
     epoch, -1 if unknown.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 status_change_timestamp;
 
     /***********************************************************
     User ID of owner, -1 if unknown.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 user_id;
 
     /***********************************************************
     @brief Group ID of owner, -1 if unknown.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 group_id;
 
     /***********************************************************
     Unix file mode, -1 if unknown.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 filemode;
 }
 
 [CCode (cname="struct AVIODirContext",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 [Compact]
 public class AVIODirContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public URLContext url_context;
 }
 
@@ -192,30 +192,30 @@ public class AVIODirContext {
 @brief Different data types that can be returned via the AVIO
 write_data_type callback.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+[CCode (cname="enum AVIODataMarkerType",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 public enum AVIODataMarkerType {
     /***********************************************************
     @brief Header data; this needs to be present for the stream to be decodeable.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_DATA_MARKER_HEADER,
+    [CCode (cname="AVIO_DATA_MARKER_HEADER")]
+    HEADER,
 
     /***********************************************************
     @brief A point in the output bytestream where a decoder can start decoding
     (i.e. a keyframe). A demuxer/decoder given the data flagged with
-    AVIO_DATA_MARKER_HEADER, followed by any AVIO_DATA_MARKER_SYNC_POINT,
+    AVIODataMarkerType.HEADER, followed by any AVIODataMarkerType.SYNC_POINT,
     should give decodeable results.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_DATA_MARKER_SYNC_POINT,
+    [CCode (cname="AVIO_DATA_MARKER_SYNC_POINT")]
+    SYNC_POINT,
 
     /***********************************************************
     @brief A point in the output bytestream where a demuxer can start parsing
     (for non self synchronizing bytestream formats). That is, any
     non-keyframe packet start point.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_DATA_MARKER_BOUNDARY_POINT,
+    [CCode (cname="AVIO_DATA_MARKER_BOUNDARY_POINT")]
+    BOUNDARY_POINT,
 
     /***********************************************************
     @brief This is any, unlabelled data. It can either be a muxer not marking
@@ -223,23 +223,23 @@ public enum AVIODataMarkerType {
     that the muxer chooses not to mark, or a later part of a packet/fragment
     that is cut into multiple write callbacks due to limited IO buffer size.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_DATA_MARKER_UNKNOWN,
+    [CCode (cname="AVIO_DATA_MARKER_UNKNOWN")]
+    UNKNOWN,
 
     /***********************************************************
     @brief Trailer data, which doesn't contain actual content, but only for
     finalizing the output file.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_DATA_MARKER_TRAILER,
+    [CCode (cname="AVIO_DATA_MARKER_TRAILER")]
+    TRAILER,
 
     /***********************************************************
     @brief A point in the output bytestream where the underlying AVIOContext might
     flush the buffer depending on latency or buffering requirements. Typically
     means the end of a packet.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_DATA_MARKER_FLUSH_POINT;
+    [CCode (cname="AVIO_DATA_MARKER_FLUSH_POINT")]
+    FLUSH_POINT;
 }
 
 /***********************************************************
@@ -268,7 +268,7 @@ public abstract class AVIOContext {
     warning -- this field can be NULL, be sure to not pass this AVIOContext
     to any av_opt_* functions in that case.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public LibAVUtil.Class av_class;
 
     /***********************************************************
@@ -324,19 +324,19 @@ public abstract class AVIOContext {
     /***********************************************************
     @brief Start of the buffer.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public uchar[] buffer;
 
     /***********************************************************
     @brief Maximum buffer size
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int buffer_size;
 
     /***********************************************************
     @brief Current position in the buffer
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public uchar[] buf_ptr;
 
     /***********************************************************
@@ -344,31 +344,31 @@ public abstract class AVIOContext {
     the read function returned less data than requested, e.g.
     for streams where no more data has been received yet.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public uchar[] buf_end;
 
     /***********************************************************
     @brief A private pointer, passed to the read/write/seek/...
     functions.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public void *opaque;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public abstract int read_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public abstract int write_packet (
         void *opaque,
         uint8[] buffer,
         int buf_size
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public abstract int64 seek (
         void *opaque,
         int64 offset,
@@ -378,31 +378,31 @@ public abstract class AVIOContext {
     /***********************************************************
     @brief Position in the file of the current buffer
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 pos;
 
     /***********************************************************
     @brief True if was unable to read due to error or eof
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int eof_reached;
 
     /***********************************************************
     @brief True if open for writing
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int write_flag;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int max_packet_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public ulong checksum;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public ustring checksum_ptr;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public abstract ulong update_checksum (
         ulong checksum,
         uint8[] buffer,
@@ -418,7 +418,7 @@ public abstract class AVIOContext {
     /***********************************************************
     @brief Pause or resume playback for network streaming protocols - e.g. MMS.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public abstract int read_pause (
         void *opaque,
         int pause
@@ -429,7 +429,7 @@ public abstract class AVIOContext {
     Needed for some network streaming protocols which don't support seeking
     to byte position.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public abstract int64 read_seek (
         void *opaque,
         int stream_index,
@@ -438,16 +438,16 @@ public abstract class AVIOContext {
     );
 
     /***********************************************************
-    @brief A combination of AVIO_SEEKABLE_ flags or 0 when the stream is not seekable.
+    @brief A combination of AVIOSeekableFlags. flags or 0 when the stream is not seekable.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    public int seekable;
+    [CCode (cname="")]
+    public AVIOSeekableFlags seekable;
 
     /***********************************************************
     @brief Max filesize, used to limit allocations
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 maxsize;
 
     /***********************************************************
@@ -455,28 +455,28 @@ public abstract class AVIOContext {
     instead of going through a buffer, and avio_seek will always
     call the underlying seek function directly.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int direct;
 
     /***********************************************************
     @brief Bytes read statistic
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 bytes_read;
 
     /***********************************************************
     @brief Seek statistic
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int seek_count;
 
     /***********************************************************
     @brief Writeout statistic
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int writeout_count;
 
     /***********************************************************
@@ -484,32 +484,32 @@ public abstract class AVIOContext {
     used internally after probing and ensure seekback to reset the buffer size
     This field is internal to libavformat and access from outside is not allowed.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int orig_buffer_size;
 
     /***********************************************************
     @brief Threshold to favor readahead over seek.
     This is current internal only, do not use from outside.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int short_seek_threshold;
 
     /***********************************************************
     ',' separated list of allowed protocols.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public string protocol_whitelist;
 
     /***********************************************************
     ',' separated list of disallowed protocols.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public string protocol_blacklist;
 
     /***********************************************************
     @brief A callback that is used instead of write_packet.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public abstract int write_data_type (
         void *opaque,
         uint8[] buffer,
@@ -519,45 +519,45 @@ public abstract class AVIOContext {
     );
 
     /***********************************************************
-    @brief If set, don't call write_data_type separately for AVIO_DATA_MARKER_BOUNDARY_POINT,
-    but ignore them and treat them as AVIO_DATA_MARKER_UNKNOWN (to avoid needlessly
+    @brief If set, don't call write_data_type separately for AVIODataMarkerType.BOUNDARY_POINT,
+    but ignore them and treat them as AVIODataMarkerType.UNKNOWN (to avoid needlessly
     small chunks of data returned from the callback).
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int ignore_boundary_point;
 
     /***********************************************************
     @brief Internal, not meant to be used from outside of AVIOContext.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public AVIODataMarkerType current_type;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 last_time;
 
     /***********************************************************
     @brief A callback that is used instead of short_seek_threshold.
     This is current internal only, do not use from outside.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public abstract int short_seek_get (
         void *opaque
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int64 written;
 
     /***********************************************************
     @brief Maximum reached position before a backward seek in the write buffer,
     used keeping track of already written data for a later flush.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public ustring buf_ptr_max;
 
     /***********************************************************
     @brief Try to buffer at least this amount of data before flushing it
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+    [CCode (cname="")]
     public int min_packet_size;
 }
 
@@ -574,7 +574,7 @@ public string avio_find_protocol_name (
 );
 
 /***********************************************************
-@brief Return AVIO_FLAG_* access flags corresponding to the access permissions
+@brief Return AVIOOpenFlags.* access flags corresponding to the access permissions
 of the resource in url, or a negative value corresponding to an
 LibAVUtil.ErrorCode code in case of failure. The returned access flags are
 masked by the value in flags.
@@ -850,16 +850,16 @@ public void avio_write_marker (
     AVIODataMarkerType type
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 public enum AVSeekWhence {
     /***********************************************************
     @brief ORing this as the "whence" parameter to a seek function causes it to
     return the filesize without seeking anywhere. Supporting this is optional.
     If it is not supported then the seek function will return <0.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVSEEK_SIZE,
+    [CCode (cname="AVSEEK_SIZE")]
+    SIZE,
 
     /***********************************************************
     @brief Passing this flag as the "whence" parameter to a seek function causes it to
@@ -867,8 +867,8 @@ public enum AVSeekWhence {
     means that can be extremely slow.
     This may be ignored by the seek code.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVSEEK_FORCE;
+    [CCode (cname="AVSEEK_FORCE")]
+    FORCE;
 }
 
 /***********************************************************
@@ -1067,8 +1067,8 @@ public int avio_get_str16be (
     int buflen
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 public enum AVIOOpenFlags {
     /***********************************************************
     @name URL open modes
@@ -1080,20 +1080,20 @@ public enum AVIOOpenFlags {
     /***********************************************************
     @brief Read-only
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_FLAG_READ,
+    [CCode (cname="AVIO_FLAG_READ")]
+    READ,
 
     /***********************************************************
     @brief Write-only
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_FLAG_WRITE,
+    [CCode (cname="AVIO_FLAG_WRITE")]
+    WRITE,
 
     /***********************************************************
     @brief Read-write pseudo flag
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_FLAG_READ_WRITE,
+    [CCode (cname="AVIO_FLAG_READ_WRITE")]
+    READ_WRITE,
 
     /***********************************************************
     @}
@@ -1111,8 +1111,8 @@ public enum AVIOOpenFlags {
     Warning: non-blocking protocols is work-in-progress; this flag may be
     silently ignored.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_FLAG_NONBLOCK,
+    [CCode (cname="AVIO_FLAG_NONBLOCK")]
+    NON_BLOCKING,
 
     /***********************************************************
     Use direct mode.
@@ -1120,8 +1120,8 @@ public enum AVIOOpenFlags {
     instead of going through a buffer, and avio_seek will always
     call the underlying seek function directly.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
-    AVIO_FLAG_DIRECT;
+    [CCode (cname="AVIO_FLAG_DIRECT")]
+    DIRECT;
 }
 
 /***********************************************************
@@ -1288,9 +1288,9 @@ Only meaningful if using a network streaming protocol (e.g. MMS.).
        seeking based on component streams, the call will fail.
 @param timestamp timestamp in AVStream.time_base units
        or if there is no stream specified then in AV_TIME_BASE units.
-@param flags Optional combination of AVSEEK_FLAG_BACKWARD, AVSEEK_FLAG_BYTE
-       and AVSEEK_FLAG_ANY. The protocol may silently ignore
-       AVSEEK_FLAG_BACKWARD and AVSEEK_FLAG_ANY, but AVSEEK_FLAG_BYTE will
+@param flags Optional combination of AVFormatSeekFlags.BACKWARD, AVFormatSeekFlags.BYTE
+       and AVFormatSeekFlags.ANY. The protocol may silently ignore
+       AVFormatSeekFlags.BACKWARD and AVFormatSeekFlags.ANY, but AVFormatSeekFlags.BYTE will
        fail if used and not supported.
 @return >= 0 on success
 @see AVInputFormat::read_seek
@@ -1300,7 +1300,7 @@ public int64 avio_seek_time (
     AVIOContext avio_context,
     int stream_index,
     int64 timestamp,
-    int flags
+    AVFormatSeekFlags flags
 );
 
 /***********************************************************

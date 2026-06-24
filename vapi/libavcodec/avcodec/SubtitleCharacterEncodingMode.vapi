@@ -26,29 +26,29 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="FF_SUB_CHARENC_MODE_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum SubtitleCharacterEncodingMode {
     /***********************************************************
     @brief Do nothing (demuxer outputs a stream supposed to be already
     in UTF-8, or the codec is bitmap for instance).
     ***********************************************************/
-    FF_SUB_CHARENC_MODE_DO_NOTHING,
+    DO_NOTHING,
 
     /***********************************************************
     @brief LibAVCodec will select the mode itself
     ***********************************************************/
-    FF_SUB_CHARENC_MODE_AUTOMATIC,
+    AUTOMATIC,
 
     /***********************************************************
     @brief The Packet data needs to be recoded to UTF-8 before being
     fed to the decoder, requires iconv
     ***********************************************************/
-    FF_SUB_CHARENC_MODE_PRE_DECODER,
+    PRE_DECODER,
 
     /***********************************************************
     @brief Neither convert the subtitles, nor check them for valid UTF-8
     ***********************************************************/
-    FF_SUB_CHARENC_MODE_IGNORE;
+    IGNORE;
 }
 
 } // namespace LibAVCodec

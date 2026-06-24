@@ -26,13 +26,13 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "usetoc",
         short_help_text = "use table of contents",
-        offsetof (
+        offset = offsetof (
             MP3DecContext, usetoc
         ),
-        {
-            .i64 = 0
-        },
-        0, 1, LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -134,7 +134,7 @@ public class MP3Demuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mp3dec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

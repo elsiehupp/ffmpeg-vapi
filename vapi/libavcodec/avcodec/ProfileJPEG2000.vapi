@@ -26,13 +26,22 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum ProfileJPEG2000 {
-    FF_PROFILE_JPEG2000_CSTREAM_RESTRICTION_0,
-    FF_PROFILE_JPEG2000_CSTREAM_RESTRICTION_1,
-    FF_PROFILE_JPEG2000_CSTREAM_NO_RESTRICTION,
-    FF_PROFILE_JPEG2000_DCINEMA_2K,
-    FF_PROFILE_JPEG2000_DCINEMA_4K;
+    [CCode (cname="FF_PROFILE_JPEG2000_CSTREAM_RESTRICTION_0")]
+    CSTREAM_RESTRICTION_0,
+
+    [CCode (cname="FF_PROFILE_JPEG2000_CSTREAM_RESTRICTION_1")]
+    CSTREAM_RESTRICTION_1,
+
+    [CCode (cname="FF_PROFILE_JPEG2000_CSTREAM_NO_RESTRICTION")]
+    CSTREAM_NO_RESTRICTION,
+
+    [CCode (cname="FF_PROFILE_JPEG2000_DCINEMA_2K")]
+    DCINEMA_2K,
+
+    [CCode (cname="FF_PROFILE_JPEG2000_DCINEMA_4K")]
+    DCINEMA_4K;
 }
 
 } // namespace LibAVCodec

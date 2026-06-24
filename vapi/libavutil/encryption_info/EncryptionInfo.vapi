@@ -62,10 +62,10 @@ public class EncryptionInfo {
     be the correct block size. This should always be 16 bytes
     long, but may be changed in the future.
     ***********************************************************/
-    [CCode (cname="iv",cheader_filename="subprojects/ffmpeg/libavutil/encryption_info.h")]
+    [CCode (cname="iv")]
     public uint8[] initialization_vector;
 
-    [CCode (cname="iv_size",cheader_filename="subprojects/ffmpeg/libavutil/encryption_info.h")]
+    [CCode (cname="iv_size")]
     public uint32 initialization_vector_size;
 
     /***********************************************************

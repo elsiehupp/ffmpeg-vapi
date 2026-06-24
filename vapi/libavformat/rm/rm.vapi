@@ -29,10 +29,10 @@ namespace LibAVFormat {
 [Compact]
 public class RMStream { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="ff_rm_alloc_rmstream",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
 public RMStream ff_rm_alloc_rmstream ();
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="ff_rm_free_rmstream",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
 public void ff_rm_free_rmstream (
     RMStream rms
 );
@@ -54,11 +54,12 @@ parameters.
 @param codec_data_size size of the MDPR chunk
 @return 0 on success, errno codes on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="ff_rm_read_mdpr_codecdata",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
 public int ff_rm_read_mdpr_codecdata (
     AVFormatContext format_context,
     AVIOContext pb,
-    AVStream st, RMStream rst,
+    AVStream st,
+    RMStream rst,
     uint codec_data_size,
     uint8[] mime
 );
@@ -80,7 +81,7 @@ public int ff_rm_read_mdpr_codecdata (
     value >0 means that no data was placed in packet, but that cached
     data is available by calling ff_rm_retrieve_cache ().
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="ff_rm_parse_packet",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
 public int ff_rm_parse_packet (
     AVFormatContext format_context,
     AVIOContext pb,
@@ -109,7 +110,7 @@ of those packets can be retrieved sequentially.
 @return the number of samples left for subsequent calls to this same
      function, or 0 if all samples have been retrieved.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="ff_rm_retrieve_cache",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
 public int ff_rm_retrieve_cache (
     AVFormatContext format_context,
     AVIOContext pb,

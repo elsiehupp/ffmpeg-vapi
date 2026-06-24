@@ -26,25 +26,16 @@ namespace LibAVFormat {
 See ISO/IEC 23009-1:2014 5.3.9.4.4
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dash.h")]
+[CCode (cname="enum DASHTmplId",cprefix="DASH_TMPL_ID_",cheader_filename="subprojects/ffmpeg/libformat/dash.h")]
 public enum DASHTmplId {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dash.h")]
-    DASH_TMPL_ID_UNDEFINED = -1,
+    UNDEFINED, // = -1,
+    ESCAPE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dash.h")]
-    DASH_TMPL_ID_ESCAPE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dash.h")]
-    DASH_TMPL_ID_REP_ID,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dash.h")]
-    DASH_TMPL_ID_NUMBER,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dash.h")]
-    DASH_TMPL_ID_BANDWIDTH,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/dash.h")]
-    DASH_TMPL_ID_TIME;
+    [CCode (cname="DASH_TMPL_ID_REP_ID")]
+    REP_ID,
+    NUMBER,
+    BANDWIDTH,
+    TIME;
 }
 
 

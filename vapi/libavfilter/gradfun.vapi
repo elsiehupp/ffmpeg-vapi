@@ -25,8 +25,8 @@ Holds instance-specific information for gradfun.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
 [Compact]
 public class GradFunContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public float strength;

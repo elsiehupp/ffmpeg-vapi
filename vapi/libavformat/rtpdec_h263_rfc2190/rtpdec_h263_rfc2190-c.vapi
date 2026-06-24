@@ -51,7 +51,7 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="need_parsing",cheader_filename="")]
     public override AVStreamParseType need_parsing {
         public get {
-            return AVSTREAM_PARSE_FULL;
+            return AVStreamParseType.FULL;
 
         }
 

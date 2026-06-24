@@ -28,21 +28,19 @@ namespace LibAVFormat {
 @see https://trac.annodex.net/wiki/AQTitle
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="aqt_options",cheader_filename="")]
 static const LibAVUtil.Option aqt_options[] = {
     new LibAVUtil.RationalOption () {
         name = "subfps",
         short_help_text = "set the movie frame rate",
-        offsetof (
+        offset = offsetof (
             AQTitleContext,
             frame_rate
         ),
-        {
-            .dbl = 25
-        },
-        0,
-        int.MAX,
-        (
+        default_value = 25,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.SUBTITLE_PARAM |
             LibAVUtil.OptionFlags.DECODING_PARAM
         )

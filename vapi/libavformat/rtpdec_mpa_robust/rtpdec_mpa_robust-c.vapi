@@ -54,7 +54,7 @@ public class MpegAudioRobustDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="need_parsing",cheader_filename="")]
     public override AVStreamParseType need_parsing {
         public get {
-            return AVSTREAM_PARSE_HEADERS;
+            return AVStreamParseType.HEADERS;
 
         }
 

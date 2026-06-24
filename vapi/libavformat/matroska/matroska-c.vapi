@@ -491,7 +491,7 @@ const AVMetadataConv ff_mkv_metadata_conv[] = {
 //          break;
 //      }
 
-//      ret = av_stream_add_side_data (st, AV_PKT_DATA_STEREO3D, (uint8[] )stereo,
+//      ret = av_stream_add_side_data (st, PacketSideDataType.STEREO_3D, (uint8[] )stereo,
 //                                    sizeof (*stereo));
 //      if (ret < 0) {
 //          av_freep (&stereo);

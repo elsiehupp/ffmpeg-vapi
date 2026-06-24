@@ -24,35 +24,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "loop",
         short_help_text = "Number of times to loop the output: -1 - no loop, 0 - infinite loop",
-        offsetof (
+        offset = offsetof (
             GIFContext,
             loop
         ),
-        {
-            .i64 = 0
-        },
-        -1,
-        65535,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = -1,
+        maximum_value = 65535,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "final_delay",
         short_help_text = "Force delay (in centiseconds) after the last frame",
-        offsetof (
+        offset = offsetof (
             GIFContext,
             last_delay
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        65535,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = 65535,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -182,7 +178,7 @@ public class GIFMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/gif.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS;
 
         }
 

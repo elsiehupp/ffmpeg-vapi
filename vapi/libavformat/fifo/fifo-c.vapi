@@ -22,147 +22,127 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.StringOption () {
         name = "fifo_format",
         short_help_text = "Target muxer",
-        offsetof (
+        offset = offsetof (
             FifoContext,
             format
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "queue_size",
         short_help_text = "Size of fifo queue",
-        offsetof (
+        offset = offsetof (
             FifoContext,
             queue_size
         ),
-        {
-            .i64 = FIFO_DEFAULT_QUEUE_SIZE
-        },
-        1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = FIFO_DEFAULT_QUEUE_SIZE,
+        minimum_value = 1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "format_opts",
         short_help_text = "Options to be passed to underlying muxer",
-        offsetof (
+        offset = offsetof (
             FifoContext,
             format_options_str
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "drop_pkts_on_overflow",
         short_help_text = "Drop packets on fifo queue overflow not to block encoder",
-        offsetof (
+        offset = offsetof (
             FifoContext,
             drop_pkts_on_overflow
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "restart_with_keyframe",
         short_help_text = "Wait for keyframe when restarting output",
-        offsetof (
+        offset = offsetof (
             FifoContext,
             restart_with_keyframe
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "attempt_recovery",
         short_help_text = "Attempt recovery in case of failure",
-        offsetof (
+        offset = offsetof (
             FifoContext,
             attempt_recovery
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "max_recovery_attempts",
         short_help_text = "Maximal number of recovery attempts",
-        offsetof (
+        offset = offsetof (
             FifoContext,
             max_recovery_attempts
         ),
-        {
-            .i64 = FIFO_DEFAULT_MAX_RECOVERY_ATTEMPTS
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = FIFO_DEFAULT_MAX_RECOVERY_ATTEMPTS,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.DurationOption () {
         name = "recovery_wait_time",
         short_help_text = "Waiting time between recovery attempts",
-        offsetof (
+        offset = offsetof (
             FifoContext,
             recovery_wait_time
         ),
-        {
-            .i64 = FIFO_DEFAULT_RECOVERY_WAIT_TIME_USEC
-        },
-        0,
-        int64.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = FIFO_DEFAULT_RECOVERY_WAIT_TIME_USEC,
+        minimum_value = 0,
+        maximum_value = int64.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "recovery_wait_streamtime",
         short_help_text = "Use stream time instead of real time while waiting for recovery",
-        offsetof (
+        offset = offsetof (
             FifoContext,
             recovery_wait_streamtime
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "recover_any_error",
         short_help_text = "Attempt recovery regardless of type of the error",
-        offsetof (
+        offset = offsetof (
             FifoContext,
             recover_any_error
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -266,7 +246,7 @@ public class FifoMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/fifo.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOFILE | AVFMT_ALLOW_FLUSH | AVFMT_TS_NEGATIVE;
+            return AVFormatFlags1.NO_FILE | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
 
         }
 

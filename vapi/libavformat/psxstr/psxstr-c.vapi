@@ -88,7 +88,7 @@ public class STRDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NO_BYTE_SEEK;
+            return AVFormatFlags1.NO_BYTE_SEEK;
 
         }
 

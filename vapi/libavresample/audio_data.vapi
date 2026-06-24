@@ -33,8 +33,8 @@ public class AudioData {
     /***********************************************************
     AVClass for logging
     ***********************************************************/
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     /***********************************************************
     data plane pointers

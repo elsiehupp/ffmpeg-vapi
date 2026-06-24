@@ -22,47 +22,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct voc_dec_context")]
+[CCode (cname="struct voc_dec_context",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
 [Compact]
 public class VocDecContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
+    [CCode (cname="")]
     public int64 remaining_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
+    [CCode (cname="")]
     public int64 pts;
 }
 
-[CCode (cname="enum voc_type")]
+[CCode (cname="enum voc_type",cprefix="VOC_TYPE_",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
 public enum VocType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
-    VOC_TYPE_EOF,
+    [CCode (cname="VOC_TYPE_EOF")]
+    END_OF_FILE,
+    VOICE_DATA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
-    VOC_TYPE_VOICE_DATA,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
-    VOC_TYPE_VOICE_DATA_CONT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
-    VOC_TYPE_SILENCE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
-    VOC_TYPE_MARKER,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
-    VOC_TYPE_ASCII,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
-    VOC_TYPE_REPETITION_START,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
-    VOC_TYPE_REPETITION_END,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
-    VOC_TYPE_EXTENDED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
-    VOC_TYPE_NEW_VOICE_DATA;
+    [CCode (cname="VOC_TYPE_VOICE_DATA_CONT")]
+    VOICE_DATA_CONT,
+    SILENCE,
+    MARKER,
+    ASCII,
+    REPETITION_START,
+    REPETITION_END,
+    EXTENDED,
+    NEW_VOICE_DATA;
 }
 
 //  extern const uchar ff_voc_magic[21];

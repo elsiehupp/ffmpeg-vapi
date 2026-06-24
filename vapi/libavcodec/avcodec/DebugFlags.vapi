@@ -27,29 +27,60 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum DebugFlags {
-    FF_DEBUG_PICT_INFO,
-    FF_DEBUG_RC,
-    FF_DEBUG_BITSTREAM,
-    FF_DEBUG_MB_TYPE,
-    FF_DEBUG_QP,
+    [CCode (cname="FF_DEBUG_PICT_INFO")]
+    PICT_INFO,
 
-    FF_DEBUG_DCT_COEFF,
-    FF_DEBUG_SKIP,
-    FF_DEBUG_STARTCODE,
-    FF_DEBUG_ER,
-    FF_DEBUG_MMCO,
-    FF_DEBUG_BUGS,
+    [CCode (cname="FF_DEBUG_RC")]
+    RC,
+
+    [CCode (cname="FF_DEBUG_BITSTREAM")]
+    BITSTREAM,
+
+    [CCode (cname="FF_DEBUG_MB_TYPE")]
+    MB_TYPE,
+
+    [CCode (cname="FF_DEBUG_QP")]
+    QP,
+
+    [CCode (cname="FF_DEBUG_DCT_COEFF")]
+    DCT_COEFF,
+
+    [CCode (cname="FF_DEBUG_SKIP")]
+    SKIP,
+
+    [CCode (cname="FF_DEBUG_STARTCODE")]
+    STARTCODE,
+
+    [CCode (cname="FF_DEBUG_ER")]
+    ER,
+
+    [CCode (cname="FF_DEBUG_MMCO")]
+    MMCO,
+
+    [CCode (cname="FF_DEBUG_BUGS")]
+    BUGS,
+
 #if FF_API_DEBUG_MV
-    FF_DEBUG_VIS_QP,
-    FF_DEBUG_VIS_MB_TYPE,
+    [CCode (cname="FF_DEBUG_VIS_QP")]
+    VIS_QP,
+
+    [CCode (cname="FF_DEBUG_VIS_MB_TYPE")]
+    VIS_MB_TYPE,
 #endif
 
-    FF_DEBUG_BUFFERS,
-    FF_DEBUG_THREADS,
-    FF_DEBUG_GREEN_MD,
-    FF_DEBUG_NOMC;
+    [CCode (cname="FF_DEBUG_BUFFERS")]
+    BUFFERS,
+
+    [CCode (cname="FF_DEBUG_THREADS")]
+    THREADS,
+
+    [CCode (cname="FF_DEBUG_GREEN_MD")]
+    GREEN_MD,
+
+    [CCode (cname="FF_DEBUG_NOMC")]
+    NOMC;
 }
 
 } // namespace LibAVCodec

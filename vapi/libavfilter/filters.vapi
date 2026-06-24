@@ -22,12 +22,13 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 Filters implementation helper functions
 ***********************************************************/
 
-public enum FooBar {
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
+public enum FilterError {
     /***********************************************************
     Special return code when activate () did not do anything.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
-    FFERROR_NOT_READY;
+    [CCode (cname="FFERROR_NOT_READY")]
+    NOT_READY;
     //  FFERRTAG (
     //      'N',
     //      'R',

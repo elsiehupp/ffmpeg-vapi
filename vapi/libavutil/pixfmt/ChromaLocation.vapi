@@ -37,7 +37,7 @@ ______ ______
                   |            |1 2 1-6 are possible chroma positions
 * 2nd luma line > |X X ...   |5 6 X ...    0 is undefined/unknown position
 ***********************************************************/
-[CCode (cname="AVChromaLocation", cprefix="AVCHROMA_LOC_",cheader_filename="subprojects/ffmpeg/libavutil/pixfmt.h")]
+[CCode (cname="enum AVChromaLocation", cprefix="AVCHROMA_LOC_",cheader_filename="subprojects/ffmpeg/libavutil/pixfmt.h")]
 public enum ChromaLocation {
     UNSPECIFIED,
 
@@ -65,7 +65,7 @@ public enum ChromaLocation {
     /***********************************************************
     @brief Not part of ABI
     ***********************************************************/
-    //  ChromaLocation.NB
+    //  ChromaLocation.NB;
 
 
     /***********************************************************

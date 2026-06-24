@@ -22,21 +22,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="MPEGTS_OPTIONS",cheader_filename="")]
 public define MPEGTS_OPTIONS
     new LibAVUtil.IntOption () {
         name = "resync_size",
         short_help_text = "set size limit for looking up a new synchronization",
-        offsetof (
+        offset = offsetof (
             MpegTSContext,
             resync_size
         ),
-        {
-            .i64 = MAX_RESYNC_SIZE
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = MAX_RESYNC_SIZE,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     }
 
 };
@@ -46,100 +44,86 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "fix_teletext_pts",
         short_help_text = "try to fix pts values of dvb teletext streams",
-        offsetof (
+        offset = offsetof (
             MpegTSContext,
             fix_teletext_pts
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "ts_packetsize",
         short_help_text = "output option carrying the raw packet size",
-        offsetof (
+        offset = offsetof (
             MpegTSContext,
             raw_packet_size
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
     },
     new LibAVUtil.BoolOption () {
         name = "scan_all_pmts",
         short_help_text = "scan and combine all PMTs",
-        offsetof (
+        offset = offsetof (
             MpegTSContext,
             scan_all_pmts
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "skip_unknown_pmt",
         short_help_text = "skip PMTs for programs not advertised in the PAT",
-        offsetof (
+        offset = offsetof (
             MpegTSContext,
             skip_unknown_pmt
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "merge_pmt_versions",
         short_help_text = "re-use streams when PMT's version/pids change",
-        offsetof (
+        offset = offsetof (
             MpegTSContext,
             merge_pmt_versions
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "skip_changes",
         short_help_text = "skip changing / adding streams / programs",
-        offsetof (
+        offset = offsetof (
             MpegTSContext,
             skip_changes
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        0
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = 0
     },
     new LibAVUtil.BoolOption () {
         name = "skip_clear",
         short_help_text = "skip clearing programs",
-        offsetof (
+        offset = offsetof (
             MpegTSContext,
             skip_clear
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        0
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = 0
     },
     {
         NULL
@@ -185,30 +169,26 @@ static const LibAVUtil.Option raw_options[] = {
     new LibAVUtil.BoolOption () {
         name = "compute_pcr",
         short_help_text = "compute exact PCR for each transport stream packet"
-        offsetof (
+        offset = offsetof (
             MpegTSContext,
             mpeg2ts_compute_pcr
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "ts_packetsize",
         short_help_text = "output option carrying the raw packet size"
-        offsetof (
+        offset = offsetof (
             MpegTSContext,
             raw_packet_size
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM | LibAVUtil.OptionFlags.EXPORT | LibAVUtil.OptionFlags.READONLY
     },
     {
         NULL
@@ -308,7 +288,7 @@ public class MPEGTSDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mpegts.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_SHOW_IDS | AVFMT_TS_DISCONT;
+            return AVFormatFlags1.SHOW_IDS | AVFormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES;
 
         }
 
@@ -372,7 +352,7 @@ public class MpegTSRawDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mpegts.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_SHOW_IDS | AVFMT_TS_DISCONT;
+            return AVFormatFlags1.SHOW_IDS | AVFormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES;
 
         }
 

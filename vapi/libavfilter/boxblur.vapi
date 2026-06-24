@@ -33,18 +33,18 @@ public class FilterParam {
     public string radius_expr;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
-public enum FooBar {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
+public enum BlurNumber {
+    [CCode (cname="Y")]
     Y, // 0
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
+    [CCode (cname="U")]
     U, // 1
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
+    [CCode (cname="V")]
     V, // 2
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/boxblur.h")]
+    [CCode (cname="A")]
     A; // 3
 }
 

@@ -33,214 +33,207 @@ https://github.com/jiixyj/libebur128/
  Use these values when setting the channel map with ebur128_set_channel ().
  See definitions in ITU R-REC-BS 1770-4
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
-public enum channel {
+[CCode (cname="enum channel",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
+public enum Channel {
     /***********************************************************
     unused channel (for example LFE channel)
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_UNUSED, // = 0,
+    UNUSED, // = 0,
 
-    [CCode (cname="")]
-    FF_EBUR128_LEFT,
+    LEFT,
 
     /***********************************************************
     itu M+030
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mp030, // = 1,
+    [CCode (cname="FF_EBUR128_Mp030")]
+    MP_030, // = 1,
 
-    [CCode (cname="")]
-    FF_EBUR128_RIGHT,
+    RIGHT,
 
     /***********************************************************
     itu M-030
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mm030, // = 2,
+    [CCode (cname="FF_EBUR128_Mm030")]
+    MM_030, // = 2,
 
-    [CCode (cname="")]
-    FF_EBUR128_CENTER,
+    CENTER,
 
     /***********************************************************
     itu M+000
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mp000, // = 3,
+    [CCode (cname="FF_EBUR128_Mp000")]
+    MP_000, // = 3,
 
-    [CCode (cname="")]
-    FF_EBUR128_LEFT_SURROUND,
+    LEFT_SURROUND,
 
     /***********************************************************
     itu M+110
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mp110, // = 4,
+    [CCode (cname="FF_EBUR128_Mp110")]
+    MP_110, // = 4,
 
-    [CCode (cname="")]
-    FF_EBUR128_RIGHT_SURROUND,
+    RIGHT_SURROUND,
 
     /***********************************************************
     itu M-110
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mm110, // = 5,
+    [CCode (cname="FF_EBUR128_Mm110")]
+    MM_110, // = 5,
 
     /***********************************************************
     a channel that is counted twice
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_DUAL_MONO,
+    DUAL_MONO,
 
     /***********************************************************
     itu M+SC
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_MpSC,
+    [CCode (cname="FF_EBUR128_MpSC")]
+    MP_SC,
 
     /***********************************************************
     itu M-SC
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_MmSC,
+    [CCode (cname="FF_EBUR128_MmSC")]
+    MM_SC,
 
     /***********************************************************
     itu M+060
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mp060,
+    [CCode (cname="FF_EBUR128_Mp060")]
+    MP_060,
 
     /***********************************************************
     itu M-060
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mm060,
+    [CCode (cname="FF_EBUR128_Mm060")]
+    MM_060,
 
     /***********************************************************
     itu M+090
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mp090,
+    [CCode (cname="FF_EBUR128_Mp090")]
+    MP_090,
 
     /***********************************************************
     itu M-090
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mm090,
+    [CCode (cname="FF_EBUR128_Mm090")]
+    MM_090,
 
     /***********************************************************
     itu M+135
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mp135,
+    [CCode (cname="FF_EBUR128_Mp135")]
+    MP_135,
 
     /***********************************************************
     itu M-135
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mm135,
+    [CCode (cname="FF_EBUR128_Mm135")]
+    MM_135,
 
     /***********************************************************
     itu M+180
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Mp180,
+    [CCode (cname="FF_EBUR128_Mp180")]
+    MP_180,
 
     /***********************************************************
     itu U+000
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Up000,
+    [CCode (cname="FF_EBUR128_Up000")]
+    UP_000,
 
     /***********************************************************
     itu U+030
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Up030,
+    [CCode (cname="FF_EBUR128_Up030")]
+    UP_030,
 
     /***********************************************************
     itu U-030
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Um030,
+    [CCode (cname="FF_EBUR128_Um030")]
+    UM_030,
 
     /***********************************************************
     itu U+045
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Up045,
+    [CCode (cname="FF_EBUR128_Up045")]
+    UP_045,
 
     /***********************************************************
     itu U-030
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Um045,
+    [CCode (cname="FF_EBUR128_Um045")]
+    UM_045,
 
     /***********************************************************
     itu U+090
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Up090,
+    [CCode (cname="FF_EBUR128_Up090")]
+    UP_090,
 
     /***********************************************************
     itu U-090
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Um090,
+    [CCode (cname="FF_EBUR128_Um090")]
+    UM_090,
 
     /***********************************************************
     itu U+110
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Up110,
+    [CCode (cname="FF_EBUR128_Up110")]
+    UP_110,
 
     /***********************************************************
     itu U-110
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Um110,
+    [CCode (cname="FF_EBUR128_Um110")]
+    UM_110,
 
     /***********************************************************
     itu U+135
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Up135,
+    [CCode (cname="FF_EBUR128_Up135")]
+    UP_135,
 
     /***********************************************************
     itu U-135
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Um135,
+    [CCode (cname="FF_EBUR128_Um135")]
+    UM_135,
 
     /***********************************************************
     itu U+180
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Up180,
+    [CCode (cname="FF_EBUR128_Up180")]
+    UP_180,
 
     /***********************************************************
     itu T+000
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Tp000,
+    [CCode (cname="FF_EBUR128_Tp000")]
+    TP_000,
 
     /***********************************************************
     itu B+000
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Bp000,
+    [CCode (cname="FF_EBUR128_Bp000")]
+    BP_000,
 
     /***********************************************************
     itu B+045
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Bp045,
+    [CCode (cname="FF_EBUR128_Bp045")]
+    BP_045,
 
     /***********************************************************
     itu B-045
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_Bm045;
+    [CCode (cname="FF_EBUR128_Bm045")]
+    BM_045;
 }
 
 /***********************************************************
@@ -248,37 +241,37 @@ public enum channel {
  Use these values in ebur128_init (or'ed). Try to use the lowest possible
  modes that suit your needs, as performance will be better.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
-public enum mode {
+[CCode (cname="enum mode",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
+public enum Mode {
     /***********************************************************
     can call ff_ebur128_loudness_momentary
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_MODE_M, // = (1 << 0),
+    [CCode (cname="FF_EBUR128_MODE_M")]
+    MOMENTARY, // = (1 << 0),
 
     /***********************************************************
     can call ff_ebur128_loudness_shortterm
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_MODE_S, // = (1 << 1) | FF_EBUR128_MODE_M,
+    [CCode (cname="FF_EBUR128_MODE_S")]
+    SHORT_TERM, // = (1 << 1) | Mode.MOMENTARY,
 
     /***********************************************************
     can call ff_ebur128_loudness_global_* and ff_ebur128_relative_threshold
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_MODE_I, // = (1 << 2) | FF_EBUR128_MODE_M,
+    [CCode (cname="FF_EBUR128_MODE_I")]
+    LOUDNESS_GLOBAL_OR_RELATIVE_THRESHOLD, // = (1 << 2) | Mode.MOMENTARY,
 
     /***********************************************************
     can call ff_ebur128_loudness_range
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_MODE_LRA, // = (1 << 3) | FF_EBUR128_MODE_S,
+    [CCode (cname="FF_EBUR128_MODE_LRA")]
+    LOUDNESS_RANGE, // = (1 << 3) | Mode.SHORT_TERM,
 
     /***********************************************************
     can call ff_ebur128_sample_peak
     ***********************************************************/
-    [CCode (cname="")]
-    FF_EBUR128_MODE_SAMPLE_PEAK; // = (1 << 4) | FF_EBUR128_MODE_M;
+    [CCode (cname="FF_EBUR128_MODE_SAMPLE_PEAK")]
+    SAMPLE_PEAK; // = (1 << 4) | Mode.MOMENTARY;
 }
 
 /***********************************************************
@@ -327,7 +320,7 @@ public class FFEBUR128State {
 @param channels the number of channels.
 @param samplerate the sample rate.
 @param window set the maximum window size in ms, set to 0 for auto.
-@param mode see the mode enum for possible values.
+@param mode see the Mode enum for possible values.
 @return an initialized library state.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
@@ -335,7 +328,7 @@ public FFEBUR128State? ff_ebur128_init (
     uint channels,
     ulong samplerate,
     ulong window,
-    int mode
+    Mode mode
 );
 
 /***********************************************************
@@ -352,16 +345,16 @@ public void ff_ebur128_destroy (
 @brief Set channel type.
 
  The default is:
- - 0 -> FF_EBUR128_LEFT
- - 1 -> FF_EBUR128_RIGHT
- - 2 -> FF_EBUR128_CENTER
- - 3 -> FF_EBUR128_UNUSED
- - 4 -> FF_EBUR128_LEFT_SURROUND
- - 5 -> FF_EBUR128_RIGHT_SURROUND
+ - 0 -> Channel.LEFT
+ - 1 -> Channel.RIGHT
+ - 2 -> Channel.CENTER
+ - 3 -> Channel.UNUSED
+ - 4 -> Channel.LEFT_SURROUND
+ - 5 -> Channel.RIGHT_SURROUND
 
 @param st library state.
 @param channel_number zero based channel index.
-@param value channel type from the "channel" enum.
+@param value channel type from the Channel enum.
 @return
    - 0 on success.
    - AVERROR (EINVAL) if invalid channel index.
@@ -370,7 +363,7 @@ public void ff_ebur128_destroy (
 public int ff_ebur128_set_channel (
     FFEBUR128State * st,
     uint channel_number,
-    int value
+    Channel value
 );
 
 /***********************************************************
@@ -474,7 +467,7 @@ public void ff_ebur128_add_frames_planar_double (
             infinity.
 @return
    - 0 on success.
-   - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_I" has not been set.
+   - AVERROR (EINVAL) if mode "Mode.LOUDNESS_GLOBAL_OR_RELATIVE_THRESHOLD" has not been set.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_global (
@@ -491,7 +484,7 @@ public int ff_ebur128_loudness_global (
             infinity.
 @return
    - 0 on success.
-   - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_I" has not been set.
+   - AVERROR (EINVAL) if mode "Mode.LOUDNESS_GLOBAL_OR_RELATIVE_THRESHOLD" has not been set.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_global_multiple (
@@ -523,7 +516,7 @@ public int ff_ebur128_loudness_momentary (
             infinity.
 @return
    - 0 on success.
-   - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_S" has not been set.
+   - AVERROR (EINVAL) if mode "Mode.SHORT_TERM" has not been set.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_shortterm (
@@ -560,7 +553,7 @@ public int ff_ebur128_loudness_window (
             error. AVERROR (EINVAL) will be returned in this case.
 @return
    - 0 on success.
-   - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_LRA" has not been set.
+   - AVERROR (EINVAL) if mode "Mode.LOUDNESS_RANGE" has not been set.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_range (
@@ -579,7 +572,7 @@ public int ff_ebur128_loudness_range (
             error. AVERROR (EINVAL) will be returned in this case.
 @return
    - 0 on success.
-   - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_LRA" has not been set.
+   - AVERROR (EINVAL) if mode "Mode.LOUDNESS_RANGE" has not been set.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_loudness_range_multiple (
@@ -596,7 +589,7 @@ public int ff_ebur128_loudness_range_multiple (
 @param out maximum sample peak in float format (1.0 is 0 dBFS)
 @return
    - 0 on success.
-   - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_SAMPLE_PEAK" has not been set.
+   - AVERROR (EINVAL) if mode "Mode.SAMPLE_PEAK" has not been set.
    - AVERROR (EINVAL) if invalid channel index.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
@@ -613,7 +606,7 @@ public int ff_ebur128_sample_peak (
 @param out relative threshold in LUFS.
 @return
    - 0 on success.
-   - AVERROR (EINVAL) if mode "FF_EBUR128_MODE_I" has not been set.
+   - AVERROR (EINVAL) if mode "Mode.LOUDNESS_GLOBAL_OR_RELATIVE_THRESHOLD" has not been set.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public int ff_ebur128_relative_threshold (

@@ -22,8 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/hflip.h")]
 [Compact]
 public class FlipContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     /***********************************************************
     max pixel step for each plane, expressed as a number of bytes

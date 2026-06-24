@@ -27,7 +27,8 @@ These values match the ones defined by ISO/IEC 23001-8_2013 § 7.2.
 ***********************************************************/
 [CCode (cprefix="AVCOL_TRC_",cheader_filename="subprojects/ffmpeg/libavutil/pixfmt.h")]
 public enum ColorTransferCharacteristic {
-    RESERVED0,
+    [CCode (cname="AVCOL_TRC_RESERVED0")]
+    RESERVED_0,
 
     /***********************************************************
     @brief Also ITU-R BT1361
@@ -120,7 +121,7 @@ public enum ColorTransferCharacteristic {
     /***********************************************************
     @brief Not part of ABI
     ***********************************************************/
-    //  NB
+    //  NB;
 
 
     /***********************************************************

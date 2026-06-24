@@ -30,80 +30,70 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "kind",
         short_help_text = "Set kind of WebVTT track",
-        offsetof (
+        offset = offsetof (
             WebVTTContext,
             kind
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        (
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.SUBTITLE_PARAM |
             LibAVUtil.OptionFlags.DECODING_PARAM
         ),
-        "webvtt_kind"
+        unit = "webvtt_kind"
     },
     new LibAVUtil.ConstOption () {
         name = "subtitles",
         short_help_text = "WebVTT subtitles kind",
-        0,
-        {
-            .i64 = 0
-        },
-        int.MIN,
-        int.MAX,
-        (
+        offset = 0,
+        default_value = 0,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.SUBTITLE_PARAM |
             LibAVUtil.OptionFlags.DECODING_PARAM
         ),
-        "webvtt_kind"
+        unit = "webvtt_kind"
     },
     new LibAVUtil.ConstOption () {
         name = "captions",
         short_help_text = "WebVTT captions kind",
-        0,
-        {
-            .i64 = AV_DISPOSITION_CAPTIONS
-        },
-        int.MIN,
-        int.MAX,
-        (
+        offset = 0,
+        default_value = AVDispositionFlags.CAPTIONS,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.SUBTITLE_PARAM |
             LibAVUtil.OptionFlags.DECODING_PARAM
         ),
-        "webvtt_kind"
+        unit = "webvtt_kind"
     },
     new LibAVUtil.ConstOption () {
         name = "descriptions",
         short_help_text = "WebVTT descriptions kind",
-        0,
-        {
-            .i64 = AV_DISPOSITION_DESCRIPTIONS
-        },
-        int.MIN,
-        int.MAX,
-        (
+        offset = 0,
+        default_value = AVDispositionFlags.DESCRIPTIONS,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.SUBTITLE_PARAM |
             LibAVUtil.OptionFlags.DECODING_PARAM
         ),
-        "webvtt_kind"
+        unit = "webvtt_kind"
     },
     new LibAVUtil.ConstOption () {
         name = "metadata",
         short_help_text = "WebVTT metadata kind",
-        0,
-        {
-            .i64 = AV_DISPOSITION_METADATA
-        },
-        int.MIN,
-        int.MAX,
-        (
+        offset = 0,
+        default_value = AVDispositionFlags.METADATA,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = (
             LibAVUtil.OptionFlags.SUBTITLE_PARAM |
             LibAVUtil.OptionFlags.DECODING_PARAM
         ),
-        "webvtt_kind"
+        unit = "webvtt_kind"
     },
     {
         NULL

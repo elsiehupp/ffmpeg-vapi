@@ -23,19 +23,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
+[CCode (cname="enum PlaylistType",cprefix="PLAYLIST_TYPE_",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
 public enum PlaylistType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
-    PLAYLIST_TYPE_NONE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
-    PLAYLIST_TYPE_EVENT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
-    PLAYLIST_TYPE_VOD,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
-    PLAYLIST_TYPE_NB;
+    NONE,
+    EVENT,
+    VOD,
+    NB;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]

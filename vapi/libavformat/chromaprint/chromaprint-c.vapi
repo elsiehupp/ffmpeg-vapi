@@ -22,85 +22,73 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "silence_threshold",
         short_help_text = "threshold for detecting silence",
-        offsetof (
+        offset = offsetof (
             ChromaprintMuxContext,
             silence_threshold
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        32767,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = 32767,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "algorithm",
         short_help_text = "version of the fingerprint algorithm",
-        offsetof (
+        offset = offsetof (
             ChromaprintMuxContext,
             algorithm
         ),
-        {
-            .i64 = CHROMAPRINT_ALGORITHM_DEFAULT
-        },
-        CHROMAPRINT_ALGORITHM_TEST1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = CHROMAPRINT_ALGORITHM_DEFAULT,
+        minimum_value = CHROMAPRINT_ALGORITHM_TEST1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "fp_format",
         short_help_text = "fingerprint format to write",
-        offsetof (
+        offset = offsetof (
             ChromaprintMuxContext,
             fp_format
         ),
-        {
-            .i64 = FINGERPRINT_BASE64
-        },
-        FINGERPRINT_RAW,
-        FINGERPRINT_BASE64,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = FINGERPRINT_BASE64,
+        minimum_value = FINGERPRINT_RAW,
+        maximum_value = FINGERPRINT_BASE64,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.ConstOption () {
         name = "raw",
         short_help_text = "binary raw fingerprint",
-        0,
-        {
-            .i64 = FINGERPRINT_RAW
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "fp_format"
+        offset = 0,
+        default_value = FINGERPRINT_RAW,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "fp_format"
     },
     new LibAVUtil.ConstOption () {
         name = "compressed",
         short_help_text = "binary compressed fingerprint",
-        0,
-        {
-            .i64 = FINGERPRINT_COMPRESSED
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "fp_format"
+        offset = 0,
+        default_value = FINGERPRINT_COMPRESSED,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "fp_format"
     },
     new LibAVUtil.ConstOption () {
         name = "base64",
         short_help_text = "Base64 compressed fingerprint",
-        0,
-        {
-            .i64 = FINGERPRINT_BASE64
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "fp_format"
+        offset = 0,
+        default_value = FINGERPRINT_BASE64,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "fp_format"
     },
     {
         NULL
@@ -204,7 +192,7 @@ public class ChromaPrintMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/chromaprint.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

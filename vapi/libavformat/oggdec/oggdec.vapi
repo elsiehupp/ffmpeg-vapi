@@ -27,13 +27,13 @@ namespace LibAVFormat {
 
 [CCode (cname="struct ogg_codec",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 public abstract class OggCodec {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public abstract uint8[] magic { public get; }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
-    public uint8 magicsize;
+    [CCode (cname="magicsize")]
+    public abstract uint8 magicsize { public get; }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public abstract uint8[] name { public get; }
 
     /***********************************************************
@@ -42,13 +42,13 @@ public abstract class OggCodec {
             0 if the packet was not a header (was a data packet)
             -1 if an error occurred or for unsupported stream
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public abstract int header (
         AVFormatContext context,
         int arg
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public abstract int packet (
         AVFormatContext context,
         int arg
@@ -59,7 +59,7 @@ public abstract class OggCodec {
     Will set dts if non-null and known.
     @return pts
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public abstract uint64 gptopts (
         AVFormatContext context,
         int arg1,
@@ -71,16 +71,21 @@ public abstract class OggCodec {
     1 if granule is the start time of the associated packet.
     0 if granule is the end time of the associated packet.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
-    public int granule_is_start;
+    [CCode (cname="granule_is_start")]
+    public virtual bool granule_is_start {
+        public get {
+            return false;
+        }
+
+    }
 
     /***********************************************************
     @brief Number of expected headers
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
-    public int nb_header;
+    [CCode (cname="nb_header")]
+    public abstract int nb_header { public get; }
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public abstract void cleanup (
         AVFormatContext format_context,
         int idx
@@ -91,173 +96,173 @@ public abstract class OggCodec {
 [CCode (cname="struct ogg_stream",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 [Compact]
 public class OggStream {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint8[] buffer;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint bufsize;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint bufpos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint pstart;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint psize;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint pflags;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint pduration;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint32 serial;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint64 granule;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint64 start_granule;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int64 lastpts;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int64 lastdts;
 
     /***********************************************************
     @brief File offset of the first page needed to reconstruct the current packet
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int64 sync_pos;
 
     /***********************************************************
     @brief File offset of the current page
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int64 page_pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int flags;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public OggCodec codec;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int header;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int nsegs;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int segp;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint8 segments[255];
 
     /***********************************************************
     @brief Whether we're expecting a continuation in the next page
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int incomplete;
 
     /***********************************************************
     @brief Current packet is the last one completed in the page
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int page_end;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int keyframe_seek;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int got_start;
 
     /***********************************************************
     1 if the stream got some data (non-initial packets), 0 otherwise
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int got_data;
 
     /***********************************************************
     @brief Set to the number of parsed headers
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int nb_header;
 
     /***********************************************************
     @brief Set the number of packets to drop from the end
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int end_trimming;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint8[] new_metadata;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint new_metadata_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public void *private;
 }
 
 [CCode (cname="struct ogg_state",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 [Compact]
 public class OggState {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public uint64 pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int curidx;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public OggState? next;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int nstreams;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public OggStream streams[1];
 }
 
 [CCode (cname="struct ogg",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 [Compact]
 public class Ogg {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public OggStream[] streams;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int nstreams;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int headers;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int curidx;
 
     /***********************************************************
     @brief File offset of the current page
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public int64 page_pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+    [CCode (cname="")]
     public OggState state;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 public enum OggFlags {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
-    OGG_FLAG_CONT,
+    [CCode (cname="OGG_FLAG_CONT")]
+    CONT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
-    OGG_FLAG_BOS,
+    [CCode (cname="OGG_FLAG_BOS")]
+    BOS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
-    OGG_FLAG_EOS;
+    [CCode (cname="OGG_FLAG_EOS")]
+    EOS;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]

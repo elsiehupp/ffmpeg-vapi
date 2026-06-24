@@ -83,7 +83,7 @@ public static inline void nothing (
 //  {
 //  }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct GUIDoffset",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class GUIDoffset {
     [CCode (cname="")]
@@ -93,22 +93,22 @@ public class GUIDoffset {
     public int offset;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public enum dshowDeviceType {
-    [CCode (cname="")]
-    VideoDevice = 0,
+[CCode (cname="enum dshowDeviceType",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+public enum DirectShowDeviceType {
+    [CCode (cname="VideoDevice")]
+    VIDEO_DEVICE, // = 0,
 
-    [CCode (cname="")]
-    AudioDevice = 1;
+    [CCode (cname="AudioDevice")]
+    AUDIO_DEVICE; // = 1;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
-public enum dshowSourceFilterType {
-    [CCode (cname="")]
-    VideoSourceDevice = 0,
+[CCode (cname="enum dshowSourceFilterType",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+public enum DirectShowSourceFilterType {
+    [CCode (cname="VideoSourceDevice")]
+    VIDEO_SOURCE_DEVICE, // = 0,
 
-    [CCode (cname="")]
-    AudioSourceDevice = 1;
+    [CCode (cname="AudioSourceDevice")]
+    AUDIO_SOURCE_DEVICE; // = 1;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
@@ -235,30 +235,30 @@ public define SETVTBL (
 /*****************************************************************************
 Forward Declarations
 ****************************************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct libAVPin",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVPin { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct libAVMemInputPin",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVMemInputPin { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct libAVEnumPins",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVEnumPins { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct libAVEnumMediaTypes",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVEnumMediaTypes { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct libAVFilter",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVFilter { }
 
 /*****************************************************************************
 libAVPin
 ****************************************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct libAVPin",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVPin {
     [CCode (cname="")]
@@ -463,7 +463,7 @@ public void libAVMemInputPin_Destroy (
 /*****************************************************************************
 libAVEnumPins
  ****************************************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct libAVEnumPins",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVEnumPins {
     [CCode (cname="")]
@@ -530,7 +530,8 @@ public void libAVEnumPins_Destroy (
     libAVEnumPins *
 );
 
-libAVEnumPins? libAVEnumPins_Create (
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+public libAVEnumPins? libAVEnumPins_Create (
     libAVPin? pin,
     libAVFilter? filter
 );
@@ -538,7 +539,7 @@ libAVEnumPins? libAVEnumPins_Create (
 /*****************************************************************************
 libAVEnumMediaTypes
  ****************************************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct libAVEnumMediaTypes",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVEnumMediaTypes {
     [CCode (cname="")]
@@ -609,7 +610,7 @@ public libAVEnumMediaTypes? libAVEnumMediaTypes_Create (
 /*****************************************************************************
 libAVFilter
  ****************************************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct libAVFilter",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class libAVFilter {
     [CCode (cname="")]
@@ -634,7 +635,7 @@ public class libAVFilter {
     public IReferenceClock? clock;
 
     [CCode (cname="")]
-    public dshowDeviceType type;
+    public DirectShowDeviceType type;
 
     [CCode (cname="")]
     public void *priv_data;
@@ -651,7 +652,7 @@ public class libAVFilter {
         uint8[] buf,
         int buf_size,
         int64 time,
-        dshowDeviceType type
+        DirectShowDeviceType type
     );
 
     [CCode (cname="callback")]
@@ -758,17 +759,17 @@ public void libAVFilter_Destroy (
 public libAVFilter? libAVFilter_Create (
     void *,
     void *,
-    dshowDeviceType
+    DirectShowDeviceType
 );
 
 /*****************************************************************************
 dshow_ctx
  ****************************************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
+[CCode (cname="struct dshow_ctx",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 [Compact]
 public class dshow_ctx {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public IGraphBuilder? graph;
@@ -911,7 +912,7 @@ CrossBar
 public HRESULT dshow_try_setup_crossbar_options (
     ICaptureGraphBuilder2? graph_builder2,
     IBaseFilter? device_filter,
-    dshowDeviceType devtype,
+    DirectShowDeviceType devtype,
     AVFormatContext? avctx
 );
 

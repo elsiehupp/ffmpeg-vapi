@@ -23,49 +23,49 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 DNN inference functions interface for native backend.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
 public enum DNNLayerType {
-    [CCode (cname="")]
+    [CCode (cname="INPUT")]
     INPUT,
 
-    [CCode (cname="")]
+    [CCode (cname="CONV")]
     CONV,
 
-    [CCode (cname="")]
+    [CCode (cname="DEPTH_TO_SPACE")]
     DEPTH_TO_SPACE
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
 public enum DNNActivationFunc {
-    [CCode (cname="")]
+    [CCode (cname="RELU")]
     RELU,
 
-    [CCode (cname="")]
+    [CCode (cname="TANH")]
     TANH,
 
-    [CCode (cname="")]
+    [CCode (cname="SIGMOID")]
     SIGMOID,
 
-    [CCode (cname="")]
+    [CCode (cname="NONE")]
     NONE,
 
-    [CCode (cname="")]
+    [CCode (cname="LEAKY_RELU")]
     LEAKY_RELU
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
 public enum DNNConvPaddingParam {
-    [CCode (cname="")]
+    [CCode (cname="VALID")]
     VALID,
 
-    [CCode (cname="")]
+    [CCode (cname="SAME")]
     SAME,
 
-    [CCode (cname="")]
+    [CCode (cname="SAME_CLAMP_TO_EDGE")]
     SAME_CLAMP_TO_EDGE
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
+[CCode (cname="struct Layer",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
 [Compact]
 public class Layer {
     [CCode (cname="")]
@@ -78,7 +78,7 @@ public class Layer {
     public void *params;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
+[CCode (cname="struct ConvolutionalParams",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
 [Compact]
 public class ConvolutionalParams {
     [CCode (cname="")]
@@ -106,7 +106,7 @@ public class ConvolutionalParams {
     public float[] biases;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
+[CCode (cname="struct InputParams",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
 [Compact]
 public class InputParams {
     [CCode (cname="")]
@@ -119,7 +119,7 @@ public class InputParams {
     public int channels;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
+[CCode (cname="struct DepthToSpaceParams",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
 [Compact]
 public class DepthToSpaceParams {
     [CCode (cname="")]
@@ -129,7 +129,7 @@ public class DepthToSpaceParams {
 /***********************************************************
 Represents simple feed-forward convolutional network.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
+[CCode (cname="struct ConvolutionalNetwork",cheader_filename="subprojects/ffmpeg/libavfilter/dnn_backend_native.h")]
 [Compact]
 public class ConvolutionalNetwork {
     public Layer? layers;

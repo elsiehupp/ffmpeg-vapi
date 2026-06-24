@@ -26,150 +26,150 @@ namespace LibAVFormat {
 [Compact]
 public class UID { } // uint8[16]
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="enum MXFMetadataSetType",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
 public enum MXFMetadataSetType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    AnyType,
+    [CCode (cname="AnyType")]
+    ANY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    MaterialPackage,
+    [CCode (cname="MaterialPackage")]
+    MATERIAL_PACKAGE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    SourcePackage,
+    [CCode (cname="SourcePackage")]
+    SOURCE_PACKAGE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    SourceClip,
+    [CCode (cname="SourceClip")]
+    SOURCE_CLIP,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    TimecodeComponent,
+    [CCode (cname="TimecodeComponent")]
+    TIMECODE_COMPONENT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    PulldownComponent,
+    [CCode (cname="PulldownComponent")]
+    PULLDOWN_COMPONENT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    Sequence,
+    [CCode (cname="Sequence")]
+    SEQUENCE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    MultipleDescriptor,
+    [CCode (cname="MultipleDescriptor")]
+    MULTIPLE_DESCRIPTOR,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    Descriptor,
+    [CCode (cname="Descriptor")]
+    DESCRIPTOR,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    Track,
+    [CCode (cname="Track")]
+    TRACK,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    CryptoContext,
+    [CCode (cname="CryptoContext")]
+    CRYPTO_CONTEXT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    Preface,
+    [CCode (cname="Preface")]
+    PREFACE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    Identification,
+    [CCode (cname="Identification")]
+    IDENTIFICATION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    ContentStorage,
+    [CCode (cname="ContentStorage")]
+    CONTENT_STORAGE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    SubDescriptor,
+    [CCode (cname="SubDescriptor")]
+    SUB_DESCRIPTOR,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    IndexTableSegment,
+    [CCode (cname="IndexTableSegment")]
+    INDEX_TABLE_SEGMENT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    EssenceContainerData,
+    [CCode (cname="EssenceContainerData")]
+    ESSENCE_CONTAINER_DATA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    EssenceGroup,
+    [CCode (cname="EssenceGroup")]
+    ESSENCE_GROUP,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    TaggedValue,
+    [CCode (cname="TaggedValue")]
+    TAGGED_VALUE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    TapeDescriptor,
+    [CCode (cname="TapeDescriptor")]
+    TAPE_DESCRIPTOR,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    AVCSubDescriptor;
+    [CCode (cname="AVCSubDescriptor")]
+    AVC_SUB_DESCRIPTOR;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="enum MXFFrameLayout",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
 public enum MXFFrameLayout {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    FullFrame, // = 0,
+    [CCode (cname="FullFrame")]
+    FULL_FRAME, // = 0,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    SeparateFields,
+    [CCode (cname="SeparateFields")]
+    SEPARATE_FIELDS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    OneField,
+    [CCode (cname="OneField")]
+    ONE_FIELD,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    MixedFields,
+    [CCode (cname="MixedFields")]
+    MIXED_FIELDS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    SegmentedFrame;
+    [CCode (cname="SegmentedFrame")]
+    SEGMENTED_FRAME;
 }
 
 [CCode (cname="struct KLVPacket",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
 [Compact]
 public class KLVPacket {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public UID key;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public int64 offset;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public uint64 length;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public int64 next_klv;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="enum MXFWrappingIndicatorType",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
 public enum MXFWrappingIndicatorType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    NormalWrap, // = 0,
+    [CCode (cname="NormalWrap")]
+    NORMAL, // = 0,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    D10D11Wrap,
+    [CCode (cname="D10D11Wrap")]
+    DIRECTX_10_DIRECTX_11,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    RawAWrap,
+    [CCode (cname="RawAWrap")]
+    RAW_AUDIO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
-    RawVWrap
+    [CCode (cname="RawVWrap")]
+    RAW_VIDEO;
 }
 
 [CCode (cname="struct MXFCodecUL",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
 [Compact]
 public class MXFCodecUL {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public UID uid;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public uint matching_len;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public int id;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public string desc;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public uint wrapping_indicator_pos;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public MXFWrappingIndicatorType wrapping_indicator_type;
 }
 
 [CCode (cname="struct MXFSamplesPerFrame",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
 [Compact]
 public class MXFSamplesPerFrame {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public LibAVUtil.Rational time_base;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+    [CCode (cname="")]
     public int samples_per_frame[6];
 }
 

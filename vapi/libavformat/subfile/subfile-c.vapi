@@ -25,30 +25,26 @@ static const LibAVUtil.Option subfile_options[] = {
     new LibAVUtil.Int64Option () {
         name = "start",
         short_help_text = "start offset",
-        offsetof (
+        offset = offsetof (
             SubfileContext,
             start
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int64.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int64.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.Int64Option () {
         name = "end",
         short_help_text = "end offset",
-        offsetof (
+        offset = offsetof (
             SubfileContext,
             end
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int64.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int64.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

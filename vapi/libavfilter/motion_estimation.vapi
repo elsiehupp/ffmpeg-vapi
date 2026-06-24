@@ -18,95 +18,95 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
-public enum FooBar {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
-    AV_ME_METHOD_ESA, // 1
+[CCode (cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+public enum MotionEstimationMethon {
+    [CCode (cname="AV_ME_METHOD_ESA")]
+    ESA, // 1
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
-    AV_ME_METHOD_TSS, // 2
+    [CCode (cname="AV_ME_METHOD_TSS")]
+    TSS, // 2
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
-    AV_ME_METHOD_TDLS, // 3
+    [CCode (cname="AV_ME_METHOD_TDLS")]
+    TDLS, // 3
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
-    AV_ME_METHOD_NTSS, // 4
+    [CCode (cname="AV_ME_METHOD_NTSS")]
+    NTSS, // 4
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
-    AV_ME_METHOD_FSS, // 5
+    [CCode (cname="AV_ME_METHOD_FSS")]
+    FSS, // 5
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
-    AV_ME_METHOD_DS, // 6
+    [CCode (cname="AV_ME_METHOD_DS")]
+    DS, // 6
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
-    AV_ME_METHOD_HEXBS, // 7
+    [CCode (cname="AV_ME_METHOD_HEXBS")]
+    HEXBS, // 7
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
-    AV_ME_METHOD_EPZS, // 8
+    [CCode (cname="AV_ME_METHOD_EPZS")]
+    EPZS, // 8
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
-    AV_ME_METHOD_UMH; // 9
+    [CCode (cname="AV_ME_METHOD_UMH")]
+    UMH; // 9
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+[CCode (cname="struct AVMotionEstPredictor",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
 [Compact]
 public class AVMotionEstPredictor {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int mvs[10][2];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int nb;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+[CCode (cname="struct AVMotionEstContext",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
 [Compact]
 public class AVMotionEstContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public uint8[] data_cur;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public uint8[] data_ref;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int linesize;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int mb_size;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int search_param;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int width;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int height;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int x_min;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int x_max;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int y_min;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int y_max;
 
     /***********************************************************
     median predictor x
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int pred_x;
 
     /***********************************************************
     median predictor y
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public int pred_y;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/motion_estimation.h")]
+    [CCode (cname="")]
     public AVMotionEstPredictor preds[2];
 
     public delegate uint64 GetCostDelegate (

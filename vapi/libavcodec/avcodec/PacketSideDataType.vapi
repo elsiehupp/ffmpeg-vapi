@@ -31,26 +31,28 @@ LibAVCodec external API header
 
 Types and functions for working with Packet.
 ***********************************************************/
-[CCode (cname="AVPacketSideDataType", cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="AVPacketSideDataType",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum PacketSideDataType {
     /***********************************************************
-    @brief An AV_PKT_DATA_PALETTE side data packet contains exactly AVPALETTE_SIZE
+    @brief An PacketSideDataType.PALETTE side data packet contains exactly AVPALETTE_SIZE
     bytes worth of palette. This side data signals that a new palette is
     present.
     ***********************************************************/
-    AV_PKT_DATA_PALETTE,
+    [CCode (cname="AV_PKT_DATA_PALETTE")]
+    PALETTE,
 
     /***********************************************************
-    @brief The AV_PKT_DATA_NEW_EXTRADATA is used to notify the codec or the format
+    @brief The PacketSideDataType.NEW_EXTRA_DATA is used to notify the codec or the format
     that the extradata buffer was changed and the receiving side should
     act upon it appropriately. The new extradata is embedded in the side
     data buffer and should be immediately used for processing the current
     frame or packet.
     ***********************************************************/
-    AV_PKT_DATA_NEW_EXTRADATA,
+    [CCode (cname="AV_PKT_DATA_NEW_EXTRADATA")]
+    NEW_EXTRA_DATA,
 
     /***********************************************************
-    @brief An AV_PKT_DATA_PARAM_CHANGE side data packet is laid out as follows:
+    @brief An PacketSideDataType.PARAMETER_CHANGE side data packet is laid out as follows:
     @code
     u32le param_flags
     if (param_flags & SideDataParamChangeFlags.CHANNEL_COUNT)
@@ -64,10 +66,11 @@ public enum PacketSideDataType {
         s32le height
     @endcode
     ***********************************************************/
-    AV_PKT_DATA_PARAM_CHANGE,
+    [CCode (cname="AV_PKT_DATA_PARAM_CHANGE")]
+    PARAMETER_CHANGE,
 
     /***********************************************************
-    @brief An AV_PKT_DATA_H263_MB_INFO side data packet contains a number of
+    @brief An PacketSideDataType.H263_MACRO_BLOCK_INFO side data packet contains a number of
     structures with info about macroblocks relevant to splitting the
     packet into smaller packets on macroblock edges (e.g. as for RFC 2190).
     That is, it does not necessarily contain info about all macroblocks,
@@ -85,13 +88,15 @@ public enum PacketSideDataType {
     u8 vertical MV predictor for block number 3
     @endcode
     ***********************************************************/
-    AV_PKT_DATA_H263_MB_INFO,
+    [CCode (cname="AV_PKT_DATA_H263_MB_INFO")]
+    H263_MACRO_BLOCK_INFO,
 
     /***********************************************************
     @brief This side data should be associated with an audio stream and contains
     ReplayGain information in form of the LibAVUtil.ReplayGain struct.
     ***********************************************************/
-    AV_PKT_DATA_REPLAYGAIN,
+    [CCode (cname="AV_PKT_DATA_REPLAYGAIN")]
+    REPLAY_GAIN,
 
     /***********************************************************
     @brief This side data contains a 3x3 transformation matrix describing an affine
@@ -100,19 +105,22 @@ public enum PacketSideDataType {
 
     See libavutil/display.h for a detailed description of the data.
     ***********************************************************/
-    AV_PKT_DATA_DISPLAYMATRIX,
+    [CCode (cname="AV_PKT_DATA_REPLAYGAIN")]
+    DISPLAY_MATRIX,
 
     /***********************************************************
     @brief This side data should be associated with a video stream and contains
     Stereoscopic 3D information in form of the LibAVUtil.Stereo3D struct.
     ***********************************************************/
-    AV_PKT_DATA_STEREO3D,
+    [CCode (cname="AV_PKT_DATA_STEREO3D")]
+    STEREO_3D,
 
     /***********************************************************
     @brief This side data should be associated with an audio stream and corresponds
     to enum AudioServiceType.
     ***********************************************************/
-    AV_PKT_DATA_AUDIO_SERVICE_TYPE,
+    [CCode (cname="AV_PKT_DATA_AUDIO_SERVICE_TYPE")]
+    AUDIO_SERVICE_TYPE,
 
     /***********************************************************
     @brief This side data contains quality related information from the encoder.
@@ -124,7 +132,8 @@ public enum PacketSideDataType {
     u64le[error count] sum of squared differences between encoder in and output
     @endcode
     ***********************************************************/
-    AV_PKT_DATA_QUALITY_STATS,
+    [CCode (cname="AV_PKT_DATA_QUALITY_STATS")]
+    QUALITY_STATS,
 
     /***********************************************************
     @brief This side data contains an integer value representing the stream index
@@ -132,12 +141,14 @@ public enum PacketSideDataType {
     track to use when the current track can not be decoded for some reason.
     e.g. no decoder available for codec.
     ***********************************************************/
-    AV_PKT_DATA_FALLBACK_TRACK,
+    [CCode (cname="AV_PKT_DATA_FALLBACK_TRACK")]
+    FALLBACK_TRACK,
 
     /***********************************************************
     @brief This side data corresponds to the CPBProperties struct.
     ***********************************************************/
-    AV_PKT_DATA_CPB_PROPERTIES,
+    [CCode (cname="AV_PKT_DATA_CPB_PROPERTIES")]
+    CPB_PROPERTIES,
 
     /***********************************************************
     @brief Recommmends skipping the specified number of samples
@@ -148,23 +159,26 @@ public enum PacketSideDataType {
     u8 reason for end skip (0=padding silence, 1=convergence)
     @endcode
     ***********************************************************/
-    AV_PKT_DATA_SKIP_SAMPLES,
+    [CCode (cname="AV_PKT_DATA_SKIP_SAMPLES")]
+    SKIP_SAMPLES,
 
     /***********************************************************
-    @brief An AV_PKT_DATA_JP_DUALMONO side data packet indicates that
+    @brief An PacketSideDataType.JAPAN_DUAL_MONO side data packet indicates that
     the packet may contain "dual mono" audio specific to Japanese DTV
     and if it is true, recommends only the selected channel to be used.
     @code
     u8 selected channels (0=mail/left, 1=sub/right, 2=both)
     @endcode
     ***********************************************************/
-    AV_PKT_DATA_JP_DUALMONO,
+    [CCode (cname="AV_PKT_DATA_JP_DUALMONO")]
+    JAPAN_DUAL_MONO,
 
     /***********************************************************
     @brief A list of zero terminated key/value strings. There is no end marker for
     the list, so it is required to rely on the side data size to stop.
     ***********************************************************/
-    AV_PKT_DATA_STRINGS_METADATA,
+    [CCode (cname="AV_PKT_DATA_STRINGS_METADATA")]
+    STRINGS_METADATA,
 
     /***********************************************************
     @brief Subtitle event position
@@ -175,7 +189,8 @@ public enum PacketSideDataType {
     u32le y2
     @endcode
     ***********************************************************/
-    AV_PKT_DATA_SUBTITLE_POSITION,
+    [CCode (cname="AV_PKT_DATA_SUBTITLE_POSITION")]
+    SUBTITLE_POSITION,
 
     /***********************************************************
     @brief Data found in BlockAdditional element of matroska container. There is
@@ -183,77 +198,89 @@ public enum PacketSideDataType {
     size to recognize the end. 8 byte id (as found in BlockAddId) followed
     by data.
     ***********************************************************/
-    AV_PKT_DATA_MATROSKA_BLOCKADDITIONAL,
+    [CCode (cname="AV_PKT_DATA_MATROSKA_BLOCKADDITIONAL")]
+    MATROSKA_BLOCK_ADDITIONAL,
 
     /***********************************************************
     @brief The optional first identifier line of a WebVTT cue.
     ***********************************************************/
-    AV_PKT_DATA_WEBVTT_IDENTIFIER,
+    [CCode (cname="AV_PKT_DATA_WEBVTT_IDENTIFIER")]
+    WEB_VTT_IDENTIFIER,
 
     /***********************************************************
     @brief The optional settings (rendering instructions) that immediately
     follow the timestamp specifier of a WebVTT cue.
     ***********************************************************/
-    AV_PKT_DATA_WEBVTT_SETTINGS,
+    [CCode (cname="AV_PKT_DATA_WEBVTT_SETTINGS")]
+    WEB_VTT_SETTINGS,
 
     /***********************************************************
     @brief A list of zero terminated key/value strings. There is no end marker for
     the list, so it is required to rely on the side data size to stop. This
     side data includes updated metadata which appeared in the stream.
     ***********************************************************/
-    AV_PKT_DATA_METADATA_UPDATE,
+    [CCode (cname="AV_PKT_DATA_METADATA_UPDATE")]
+    METADATA_UPDATE,
 
     /***********************************************************
     @brief MPEGTS stream ID as uint8, this is required to pass the stream ID
     information from the demuxer to the corresponding muxer.
     ***********************************************************/
-    AV_PKT_DATA_MPEGTS_STREAM_ID,
+    [CCode (cname="AV_PKT_DATA_MPEGTS_STREAM_ID")]
+    MPEGTS_STREAM_ID,
 
     /***********************************************************
     @brief Mastering display metadata (based on SMPTE-2086:2014). This metadata
     should be associated with a video stream and contains data in the form
     of the LibAVUtil.MasteringDisplayMetadata struct.
     ***********************************************************/
-    AV_PKT_DATA_MASTERING_DISPLAY_METADATA,
+    [CCode (cname="AV_PKT_DATA_MASTERING_DISPLAY_METADATA")]
+    MASTERING_DISPLAY_METADATA,
 
     /***********************************************************
     @brief This side data should be associated with a video stream and corresponds
     to the LibAVUtil.SphericalMapping structure.
     ***********************************************************/
-    AV_PKT_DATA_SPHERICAL,
+    [CCode (cname="AV_PKT_DATA_SPHERICAL")]
+    SPHERICAL,
 
     /***********************************************************
     @brief Content light level (based on CTA-861.3). This metadata should be
     associated with a video stream and contains data in the form of the
     LibAVUtil.ContentLightMetadata struct.
     ***********************************************************/
-    AV_PKT_DATA_CONTENT_LIGHT_LEVEL,
+    [CCode (cname="AV_PKT_DATA_CONTENT_LIGHT_LEVEL")]
+    CONTENT_LIGHT_LEVEL,
 
     /***********************************************************
     @brief ATSC A53 Part 4 Closed Captions. This metadata should be associated with
     a video stream. A53 CC bitstream is stored as uint8 in PacketSideData.data.
     The number of bytes of CC data is PacketSideData.size.
     ***********************************************************/
-    AV_PKT_DATA_A53_CC,
+    [CCode (cname="AV_PKT_DATA_A53_CC")]
+    A53_CLOSED_CAPTIONS,
 
     /***********************************************************
     @brief This side data is encryption initialization data.
     The format is not part of ABI, use av_encryption_init_info_* methods to
     access.
     ***********************************************************/
-    AV_PKT_DATA_ENCRYPTION_INIT_INFO,
+    [CCode (cname="AV_PKT_DATA_ENCRYPTION_INIT_INFO")]
+    ENCRYPTION_INIT_INFO,
 
     /***********************************************************
     @brief This side data contains encryption info for how to decrypt the packet.
     The format is not part of ABI, use av_encryption_info_* methods to access.
     ***********************************************************/
-    AV_PKT_DATA_ENCRYPTION_INFO,
+    [CCode (cname="AV_PKT_DATA_ENCRYPTION_INFO")]
+    ENCRYPTION_INFO,
 
     /***********************************************************
     @brief Active Format Description data consisting of a single byte as specified
     in ETSI TS 101 154 using LibAVUtil.ActiveFormatDescription enum.
     ***********************************************************/
-    AV_PKT_DATA_AFD,
+    [CCode (cname="AV_PKT_DATA_AFD")]
+    ACTIVE_FORMAT_DESCRIPTION,
 
     /***********************************************************
     @brief The number of side data types.
@@ -263,7 +290,8 @@ public enum PacketSideDataType {
     If its value becomes huge, some code using it
     needs to be updated as it assumes it to be smaller than other limits.
     ***********************************************************/
-    AV_PKT_DATA_NB
+    [CCode (cname="AV_PKT_DATA_NB")]
+    NB;
 }
 
 } // namespace LibAVCodec

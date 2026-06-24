@@ -51,131 +51,131 @@ public string swscale_license ();
 values for the flags, the stuff on the command line is different
 ***********************************************************/
 [Flags]
-public enum FooBar {
-    [CCode (cname="")]
-    SWS_FAST_BILINEAR, // 1
+public enum SwsFlags {
+    [CCode (cname="SWS_FAST_BILINEAR")]
+    FAST_BILINEAR, // 1
 
-    [CCode (cname="")]
-    SWS_BILINEAR, // 2
+    [CCode (cname="SWS_BILINEAR")]
+    BILINEAR, // 2
 
-    [CCode (cname="")]
-    SWS_BICUBIC, // 4
+    [CCode (cname="SWS_BICUBIC")]
+    BICUBIC, // 4
 
-    [CCode (cname="")]
-    SWS_X, // 8
+    [CCode (cname="SWS_X")]
+    X, // 8
 
-    [CCode (cname="")]
-    SWS_POINT, // 0x10
+    [CCode (cname="SWS_POINT")]
+    POINT, // 0x10
 
-    [CCode (cname="")]
-    SWS_AREA, // 0x20
+    [CCode (cname="SWS_AREA")]
+    AREA, // 0x20
 
-    [CCode (cname="")]
-    SWS_BICUBLIN, // 0x40
+    [CCode (cname="SWS_BICUBLIN")]
+    BICUBIC_LINEAR, // 0x40
 
-    [CCode (cname="")]
-    SWS_GAUSS, // 0x80
+    [CCode (cname="SWS_GAUSS")]
+    GAUSSIAN, // 0x80
 
-    [CCode (cname="")]
-    SWS_SINC, // 0x100
+    [CCode (cname="SWS_SINC")]
+    SINC, // 0x100
 
-    [CCode (cname="")]
-    SWS_LANCZOS 0x200
+    [CCode (cname="SWS_LANCZOS")]
+    LANCZOS, // 0x200
 
-    [CCode (cname="")]
-    SWS_SPLINE, // 0x400
+    [CCode (cname="SWS_SPLINE")]
+    SPLINE, // 0x400
 
-    [CCode (cname="")]
-    SWS_SRC_V_CHR_DROP_MASK, // 0x30000
+    [CCode (cname="SWS_SRC_V_CHR_DROP_MASK")]
+    SRC_V_CHR_DROP_MASK, // 0x30000
 
-    [CCode (cname="")]
-    SWS_SRC_V_CHR_DROP_SHIFT, // 16
+    [CCode (cname="SWS_SRC_V_CHR_DROP_SHIFT")]
+    SRC_V_CHR_DROP_SHIFT, // 16
 
-    [CCode (cname="")]
-    SWS_PARAM_DEFAULT, // 123456
+    [CCode (cname="SWS_PARAM_DEFAULT")]
+    PARAM_DEFAULT, // 123456
 
-    [CCode (cname="")]
-    SWS_PRINT_INFO, // 0x1000
+    [CCode (cname="SWS_PRINT_INFO")]
+    PRINT_INFO, // 0x1000
 
     /***********************************************************
     internal chrominance subsampling info
 
     this flag is not completely implemented
     ***********************************************************/
-    [CCode (cname="")]
-    SWS_FULL_CHR_H_INT, // 0x2000
+    [CCode (cname="SWS_FULL_CHR_H_INT")]
+    FULL_CHR_H_INT, // 0x2000
 
     /***********************************************************
     input subsampling info
 
     this flag is not completely implemented
     ***********************************************************/
-    [CCode (cname="")]
-    SWS_FULL_CHR_H_INP, // 0x4000
+    [CCode (cname="SWS_FULL_CHR_H_INP")]
+    FULL_CHR_H_INP, // 0x4000
 
     /***********************************************************
     this flag is not completely implemented
     ***********************************************************/
-    [CCode (cname="")]
-    SWS_DIRECT_BGR, // 0x8000
+    [CCode (cname="SWS_DIRECT_BGR")]
+    DIRECT_BGR, // 0x8000
 
-    [CCode (cname="")]
-    SWS_ACCURATE_RND, // 0x40000
+    [CCode (cname="SWS_ACCURATE_RND")]
+    ACCURATE_RND, // 0x40000
 
-    [CCode (cname="")]
-    SWS_BITEXACT, // 0x80000
+    [CCode (cname="SWS_BITEXACT")]
+    BIT_EXACT, // 0x80000
 
-    [CCode (cname="")]
-    SWS_ERROR_DIFFUSION; // 0x800000
+    [CCode (cname="SWS_ERROR_DIFFUSION")]
+    ERROR_DIFFUSION; // 0x800000
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public const float SWS_MAX_REDUCE_CUTOFF; // 0.002
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
-public enum FooBar {
-    [CCode (cname="")]
-    SWS_CS_ITU709, // 1
+public enum SwsColorSpace {
+    [CCode (cname="SWS_CS_ITU709")]
+    ITU709, // 1
 
-    [CCode (cname="")]
-    SWS_CS_FCC, // 4
+    [CCode (cname="SWS_CS_FCC")]
+    FCC, // 4
 
-    [CCode (cname="")]
-    SWS_CS_ITU601, // 5
+    [CCode (cname="SWS_CS_ITU601")]
+    ITU601, // 5
 
-    [CCode (cname="")]
-    SWS_CS_ITU624, // 5
+    [CCode (cname="SWS_CS_ITU624")]
+    ITU624, // 5
 
-    [CCode (cname="")]
-    SWS_CS_SMPTE170M, // 5
+    [CCode (cname="SWS_CS_SMPTE170M")]
+    SMPTE170M, // 5
 
-    [CCode (cname="")]
-    SWS_CS_SMPTE240M, // 7
+    [CCode (cname="SWS_CS_SMPTE240M")]
+    SMPTE240M, // 7
 
-    [CCode (cname="")]
-    SWS_CS_DEFAULT, // 5
+    [CCode (cname="SWS_CS_DEFAULT")]
+    DEFAULT, // 5
 
-    [CCode (cname="")]
-    SWS_CS_BT2020; // 9
+    [CCode (cname="SWS_CS_BT2020")]
+    BT2020; // 9
 }
 
 /***********************************************************
 Return a pointer to yuv<->rgb coefficients for the given colorspace
 suitable for sws_setColorspaceDetails ().
 
-@param colorspace One of the SWS_CS_* macros. If invalid,
-SWS_CS_DEFAULT is used.
+@param colorspace One of the SwsColorSpace.* macros. If invalid,
+SwsColorSpace.DEFAULT is used.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 public int[] sws_getCoefficients (
-    int colorspace
+    SwsColorSpace colorspace
 );
 
 /***********************************************************
 when used for filters they must have an odd number of elements
 coeffs cannot be shared between vectors
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
+[CCode (cname="struct SwsVector",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 [Compact]
 public class SwsVector {
     /***********************************************************
@@ -194,7 +194,7 @@ public class SwsVector {
 /***********************************************************
 vectors can be shared
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
+[CCode (cname="struct SwsFilter",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
 [Compact]
 public class SwsFilter {
     [CCode (cname="")]
@@ -281,11 +281,11 @@ scaling/conversion operations using sws_scale ().
 @param dstFormat the destination image format
 @param flags specify which algorithm and options to use for rescaling
 @param param extra parameters to tune the used scaler
-             For SWS_BICUBIC param[0] and [1] tune the shape of the basis
+             For SwsFlags.BICUBIC param[0] and [1] tune the shape of the basis
              function, param[0] tunes f (1) and param[1] f´(1)
-             For SWS_GAUSS param[0] tunes the exponent and thus cutoff
+             For SwsFlags.GAUSSIAN param[0] tunes the exponent and thus cutoff
              frequency
-             For SWS_LANCZOS param[0] tunes the width of the window function
+             For SwsFlags.LANCZOS param[0] tunes the width of the window function
 @return a pointer to an allocated context, or NULL in case of error
 @note this function is to be removed after a saner alternative is
       written
@@ -298,7 +298,7 @@ public SwsContext sws_getContext (
     int dstW,
     int dstH,
     AVPixelFormat dstFormat,
-    int flags,
+    SwsFlags flags,
     SwsFilter? srcFilter,
     SwsFilter? dstFilter,
     double[] param
@@ -505,7 +505,6 @@ Be warned that srcFilter and dstFilter are not checked, they
 are assumed to remain the same.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
-[Compact]
 public SwsContext? sws_getCachedContext (
     SwsContext? context,
     int srcW,
@@ -558,7 +557,7 @@ public void sws_convertPalette8ToPacked24 (
 
 /***********************************************************
 Get the AVClass for swsContext. It can be used in combination with
-AV_OPT_SEARCH_FAKE_OBJ for examining options.
+OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
 @see av_opt_find ().
 ***********************************************************/

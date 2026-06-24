@@ -67,7 +67,7 @@ public class WebVTTMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_VARIABLE_FPS | AVFMT_TS_NONSTRICT;
+            return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

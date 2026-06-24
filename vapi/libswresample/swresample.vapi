@@ -125,114 +125,114 @@ These constants are used for the @ref avoptions interface for lswr.
 
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
-public enum FooBar {
+[CCode (cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
+public enum SoftwareResampleFlags {
     /***********************************************************
     Force resampling even if equal sample rate
     TODO use int resample ?
     long term TODO can we enable this dynamically?
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
-    SWR_FLAG_RESAMPLE; // 1
+    [CCode (cname="SWR_FLAG_RESAMPLE")]
+    FORCE_RESAMPLE; // 1
 }
 
 /***********************************************************
 Dithering algorithms
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
-public enum SwrDitherType {
-    [CCode (cname="")]
-    SWR_DITHER_NONE; // = 0,
+[CCode (cname="enum SwrDitherType",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
+public enum SoftwareResampleDitherType {
+    [CCode (cname="SWR_DITHER_NONE")]
+    NONE, // = 0,
 
-    [CCode (cname="")]
-    SWR_DITHER_RECTANGULAR,
+    [CCode (cname="SWR_DITHER_RECTANGULAR")]
+    RECTANGULAR,
 
-    [CCode (cname="")]
-    SWR_DITHER_TRIANGULAR,
+    [CCode (cname="SWR_DITHER_TRIANGULAR")]
+    TRIANGULAR,
 
-    [CCode (cname="")]
-    SWR_DITHER_TRIANGULAR_HIGHPASS,
-
-    /***********************************************************
-    not part of API/ABI
-    ***********************************************************/
-    [CCode (cname="")]
-    SWR_DITHER_NS, // = 64,
-
-    [CCode (cname="")]
-    SWR_DITHER_NS_LIPSHITZ,
-
-    [CCode (cname="")]
-    SWR_DITHER_NS_F_WEIGHTED,
-
-    [CCode (cname="")]
-    SWR_DITHER_NS_MODIFIED_E_WEIGHTED,
-
-    [CCode (cname="")]
-    SWR_DITHER_NS_IMPROVED_E_WEIGHTED,
-
-    [CCode (cname="")]
-    SWR_DITHER_NS_SHIBATA,
-
-    [CCode (cname="")]
-    SWR_DITHER_NS_LOW_SHIBATA,
-
-    [CCode (cname="")]
-    SWR_DITHER_NS_HIGH_SHIBATA,
+    [CCode (cname="SWR_DITHER_TRIANGULAR_HIGHPASS")]
+    TRIANGULAR_HIGHPASS,
 
     /***********************************************************
     not part of API/ABI
     ***********************************************************/
-    [CCode (cname="")]
-    SWR_DITHER_NB;
+    [CCode (cname="SWR_DITHER_NS")]
+    NS, // = 64,
+
+    [CCode (cname="SWR_DITHER_NS_LIPSHITZ")]
+    NS_LIPSHITZ,
+
+    [CCode (cname="SWR_DITHER_NS_F_WEIGHTED")]
+    NS_F_WEIGHTED,
+
+    [CCode (cname="SWR_DITHER_NS_MODIFIED_E_WEIGHTED")]
+    NS_MODIFIED_E_WEIGHTED,
+
+    [CCode (cname="SWR_DITHER_NS_IMPROVED_E_WEIGHTED")]
+    NS_IMPROVED_E_WEIGHTED,
+
+    [CCode (cname="SWR_DITHER_NS_SHIBATA")]
+    NS_SHIBATA,
+
+    [CCode (cname="SWR_DITHER_NS_LOW_SHIBATA")]
+    NS_LOW_SHIBATA,
+
+    [CCode (cname="SWR_DITHER_NS_HIGH_SHIBATA")]
+    NS_HIGH_SHIBATA,
+
+    /***********************************************************
+    not part of API/ABI
+    ***********************************************************/
+    [CCode (cname="SWR_DITHER_NB")]
+    NB;
 }
 
 /***********************************************************
 Resampling Engines
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
-public enum SwrEngine {
+[CCode (cname="enum SwrEngine",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
+public enum SoftwareResampleEngine {
     /***********************************************************
     SW Resampler
     ***********************************************************/
-    [CCode (cname="")]
-    SWR_ENGINE_SWR,
+    [CCode (cname="SWR_ENGINE_SWR")]
+    SOFTWARE,
 
     /***********************************************************
     SoX Resampler
     ***********************************************************/
-    [CCode (cname="")]
-    SWR_ENGINE_SOXR,
+    [CCode (cname="SWR_ENGINE_SOXR")]
+    SOXR,
 
     /***********************************************************
     not part of API/ABI
     ***********************************************************/
-    [CCode (cname="")]
-    SWR_ENGINE_NB;
+    [CCode (cname="SWR_ENGINE_NB")]
+    NB;
 }
 
 /***********************************************************
 Resampling Filter Types
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
-public enum SwrFilterType {
+[CCode (cname="enum SwrFilterType",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
+public enum SoftwareResampleFilterType {
     /***********************************************************
     Cubic
     ***********************************************************/
-    [CCode (cname="")]
-    SWR_FILTER_TYPE_CUBIC,
+    [CCode (cname="SWR_FILTER_TYPE_CUBIC")]
+    CUBIC,
 
     /***********************************************************
     Blackman Nuttall windowed sinc
     ***********************************************************/
-    [CCode (cname="")]
-    SWR_FILTER_TYPE_BLACKMAN_NUTTALL,
+    [CCode (cname="SWR_FILTER_TYPE_BLACKMAN_NUTTALL")]
+    BLACKMAN_NUTTALL,
 
     /***********************************************************
     Kaiser windowed sinc
     ***********************************************************/
-    [CCode (cname="")]
-    SWR_FILTER_TYPE_KAISER;
+    [CCode (cname="SWR_FILTER_TYPE_KAISER")]
+    KAISER;
 };
 
 /***********************************************************
@@ -251,7 +251,7 @@ public class SwrContext { }
 
 /***********************************************************
 Get the AVClass for SwrContext. It can be used in combination with
-AV_OPT_SEARCH_FAKE_OBJ for examining options.
+OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
 @see av_opt_find ().
 @return the AVClass of SwrContext
@@ -323,7 +323,6 @@ on the allocated context.
 @see swr_init (), swr_free ()
 @return NULL on error, allocated context otherwise
 ***********************************************************/
-[Compact]
 public SwrContext? swr_alloc_set_opts (
     SwrContext? s,
     int64 out_ch_layout,

@@ -27,7 +27,7 @@ namespace LibAVUtil {
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="AV_OPT_SERIALIZE_",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
+[CCode (cprefix="OptionSearchFlags.SERIALIZE_",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
 public enum OptionSerializationFlags {
     /***********************************************************
     @brief Serialize options that are not set to default values only.
@@ -49,7 +49,7 @@ A key/value or pairs separator occurring in the serialized value or
 name string are escaped through the av_escape () function.
 
 @param[in] obj Class object to serialize
-@param[in] opt_flags serialize options with all the specified flags set (AV_OPT_FLAG)
+@param[in] opt_flags serialize options with all the specified flags set (OptionSearchFlags.FLAG)
 @param[in] flags combination of OptionSerializationFlags flags
 @param[out] buffer Pointer to buffer that will be allocated with string containg serialized options.
     Buffer must be freed by the caller when is no longer needed.

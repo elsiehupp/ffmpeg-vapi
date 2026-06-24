@@ -25,26 +25,23 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Authentication types, ordered from weakest to strongest.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+[CCode (cname="enum HTTPAuthType",cprefix="HTTP_AUTH_",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
 public enum HTTPAuthType {
     /***********************************************************
     @brief No authentication specified
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
-    HTTP_AUTH_NONE,
+    NONE,
 
     /***********************************************************
     @brief HTTP 1.0 Basic auth from RFC 1945
     (also in RFC 2617)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
-    HTTP_AUTH_BASIC,
+    BASIC,
 
     /***********************************************************
     @brief HTTP 1.1 Digest auth from RFC 2617
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
-    HTTP_AUTH_DIGEST;
+    DIGEST;
 }
 
 [CCode (cname="struct DigestParams",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
@@ -53,13 +50,13 @@ public class DigestParams {
     /***********************************************************
     @brief Server specified nonce
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+    [CCode (cname="")]
     public char nonce[300];
 
     /***********************************************************
     @brief Server specified digest algorithm
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+    [CCode (cname="")]
     public char algorithm[10];
 
     /***********************************************************
@@ -67,7 +64,7 @@ public class DigestParams {
     that we've chosen to use, from the
     alternatives that the server offered.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+    [CCode (cname="")]
     public char qop[30];
 
     /***********************************************************
@@ -75,7 +72,7 @@ public class DigestParams {
     included in authentication responses, not
     included in the actual digest calculation.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+    [CCode (cname="")]
     public char opaque[300];
 
     /***********************************************************
@@ -83,14 +80,14 @@ public class DigestParams {
     but needs to be redone with a new, non-stale
     nonce.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+    [CCode (cname="")]
     public char stale[10];
 
     /***********************************************************
     @brief Nonce count, the number of earlier replies
     where this particular nonce has been used.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+    [CCode (cname="")]
     public int nc;
 }
 
@@ -104,25 +101,25 @@ public class HTTPAuthState {
     /***********************************************************
     @brief The currently chosen auth type.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+    [CCode (cname="")]
     public int auth_type;
 
     /***********************************************************
     @brief Authentication realm
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+    [CCode (cname="")]
     public char realm[200];
 
     /***********************************************************
     @brief The parameters specific to digest authentication.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+    [CCode (cname="")]
     public DigestParams digest_params;
 
     /***********************************************************
     @brief Auth ok, but needs to be resent with a new nonce.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+    [CCode (cname="")]
     public int stale;
 }
 

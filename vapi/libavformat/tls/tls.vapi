@@ -25,31 +25,31 @@ namespace LibAVFormat {
 [CCode (cname="struct TLSShared",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
 [Compact]
 public class TLSShared {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+    [CCode (cname="")]
     public string ca_file;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+    [CCode (cname="")]
     public int verify;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+    [CCode (cname="")]
     public string cert_file;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+    [CCode (cname="")]
     public string key_file;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+    [CCode (cname="")]
     public int listen;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+    [CCode (cname="")]
     public string host;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+    [CCode (cname="")]
     public char underlying_host[200];
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+    [CCode (cname="")]
     public int numerichost;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+    [CCode (cname="")]
     public URLContext tcp;
 }
 

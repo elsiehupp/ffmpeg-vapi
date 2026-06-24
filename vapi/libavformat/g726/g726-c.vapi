@@ -22,35 +22,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "code_size",
         short_help_text = "Bits per G.726 code",
-        offsetof (
+        offset = offsetof (
             G726Context,
             code_size
         ),
-        {
-            .i64 = 4
-        },
-        2,
-        5,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 4,
+        minimum_value = 2,
+        maximum_value = 5,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "sample_rate",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             G726Context,
             sample_rate
         ),
-        {
-            .i64 = 8000
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 8000,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL

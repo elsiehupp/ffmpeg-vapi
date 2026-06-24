@@ -27,30 +27,38 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (LogLevel.color,cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="enum ",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum BugWorkaroundFlags {
     /***********************************************************
     @brief Autodetection
     ***********************************************************/
-    FF_BUG_AUTODETECT,
-    FF_BUG_XVID_ILACE,
-    FF_BUG_UMP4,
-    FF_BUG_NO_PADDING,
-    FF_BUG_AMV,
-    FF_BUG_QPEL_CHROMA,
-    FF_BUG_STD_QPEL,
-    FF_BUG_QPEL_CHROMA2,
-    FF_BUG_DIRECT_BLOCKSIZE,
-    FF_BUG_EDGE,
-    FF_BUG_HPEL_CHROMA,
-    FF_BUG_DC_CLIP,
+    [CCode (cname="FF_BUG_AUTODETECT")]
+    AUTODETECT,
+
+    [CCode (cname="FF_BUG_XVID_ILACE")]
+    XVID_INTERLACE,
+    UMP4,
+    NO_PADDING,
+    AMV,
+    QPEL_CHROMA,
+    STD_QPEL,
+    QPEL_CHROMA2,
+
+    [CCode (cname="FF_BUG_DIRECT_BLOCKSIZE")]
+    DIRECT_BLOCK_SIZE,
+    EDGE,
+    HPEL_CHROMA,
+    DC_CLIP,
 
     /***********************************************************
     @brief Workaround various bugs in Microsoft's broken decoders.
     ***********************************************************/
-    FF_BUG_MS,
-    FF_BUG_TRUNCATED,
-    FF_BUG_IEDGE;
+    [CCode (cname="FF_BUG_MS")]
+    MS,
+    TRUNCATED,
+
+    [CCode (cname="FF_BUG_IEDGE")]
+    IEDGE;
 }
 
 } // namespace LibAVCodec

@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawenc.h")]
+[CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libformat/rawenc.h")]
 public int ff_raw_write_packet (
     AVFormatContext format_context,
     LibAVCodec.Packet packet

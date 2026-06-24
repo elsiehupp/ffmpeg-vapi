@@ -16,95 +16,92 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
+[CCode (cname="enum YADIFMode",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public enum YADIFMode {
     /***********************************************************
     send 1 frame for each frame
     ***********************************************************/
-    [CCode (cname="")]
-    YADIF_MODE_SEND_FRAME = 0,
+    [CCode (cname="YADIF_MODE_SEND_FRAME")]
+    SEND_FRAME, // = 0,
 
     /***********************************************************
     send 1 frame for each field
     ***********************************************************/
-    [CCode (cname="")]
-    YADIF_MODE_SEND_FIELD = 1,
+    [CCode (cname="YADIF_MODE_SEND_FIELD")]
+    SEND_FIELD, // = 1,
 
     /***********************************************************
     send 1 frame for each frame but skips spatial interlacing check
     ***********************************************************/
-    [CCode (cname="")]
-    YADIF_MODE_SEND_FRAME_NOSPATIAL = 2,
+    [CCode (cname="YADIF_MODE_SEND_FRAME_NOSPATIAL")]
+    SEND_FRAME_NO_SPATIAL, // = 2,
 
     /***********************************************************
     send 1 frame for each field but skips spatial interlacing check
     ***********************************************************/
-    [CCode (cname="")]
-    YADIF_MODE_SEND_FIELD_NOSPATIAL = 3;
+    [CCode (cname="YADIF_MODE_SEND_FIELD_NOSPATIAL")]
+    SEND_FIELD_NO_SPATIAL; // = 3;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
+[CCode (cname="enum YADIFParity",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public enum YADIFParity {
     /***********************************************************
     top field first
     ***********************************************************/
-    [CCode (cname="")]
-    YADIF_PARITY_TFF = 0,
+    [CCode (cname="YADIF_PARITY_TFF")]
+    TOP_FIELD_FIRST, // = 0,
 
     /***********************************************************
     bottom field first
     ***********************************************************/
-    [CCode (cname="")]
-    YADIF_PARITY_BFF = 1,
+    [CCode (cname="YADIF_PARITY_BFF")]
+    BOTTOM_FIELD_FIRST, // = 1,
 
     /***********************************************************
     auto detection
     ***********************************************************/
-    [CCode (cname="")]
-    YADIF_PARITY_AUTO = -1;
+    [CCode (cname="YADIF_PARITY_AUTO")]
+    AUTO; // = -1;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
+[CCode (cname="enum YADIFDeint",cprefix="YADIF_DEINT_",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public enum YADIFDeint {
     /***********************************************************
     deinterlace all frames
     ***********************************************************/
     [CCode (cname="")]
-    YADIF_DEINT_ALL = 0,
+    ALL, // = 0,
 
     /***********************************************************
     only deinterlace frames marked as interlaced
     ***********************************************************/
     [CCode (cname="")]
-    YADIF_DEINT_INTERLACED = 1;
+    INTERLACED; // = 1;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
+[CCode (cname="enum YADIFCurrentField",cprefix="YADIF_FIELD_",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public enum YADIFCurrentField {
     /***********************************************************
     The last frame in a sequence
     ***********************************************************/
-    [CCode (cname="")]
-    YADIF_FIELD_BACK_END = -1,
+    BACK_END, // = -1,
 
     /***********************************************************
     The first or last field in a sequence
     ***********************************************************/
-    [CCode (cname="")]
-    YADIF_FIELD_END = 0,
+    END, // = 0,
 
     /***********************************************************
     A normal field in the middle of a sequence
     ***********************************************************/
-    [CCode (cname="")]
-    YADIF_FIELD_NORMAL = 1;
+    NORMAL; // = 1;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 [Compact]
 public class YADIFContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     /***********************************************************
     YADIFMode

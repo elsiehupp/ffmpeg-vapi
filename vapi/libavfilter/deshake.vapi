@@ -19,25 +19,22 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
+[CCode (cname="enum SearchMethod",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 public enum SearchMethod {
     /***********************************************************
     Search all possible positions
     ***********************************************************/
-    [CCode (cname="")]
     EXHAUSTIVE,
 
     /***********************************************************
     Search most possible positions (faster)
     ***********************************************************/
-    [CCode (cname="")]
     SMART_EXHAUSTIVE,
 
-    [CCode (cname="")]
     SEARCH_COUNT;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
+[CCode (cname="struct IntMotionVector",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 [Compact]
 public class IntMotionVector {
     /***********************************************************
@@ -53,7 +50,7 @@ public class IntMotionVector {
     public int y;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
+[CCode (cname="struct MotionVector",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 [Compact]
 public class MotionVector {
     /***********************************************************
@@ -69,7 +66,7 @@ public class MotionVector {
     public double y;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
+[CCode (cname="struct Transform",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 [Compact]
 public class Transform {
     /***********************************************************
@@ -94,11 +91,11 @@ public class Transform {
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 public const size_t MAX_R; // 64
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
+[CCode (cname="struct DeshakeContext",cheader_filename="subprojects/ffmpeg/libavfilter/deshake.h")]
 [Compact]
 public class DeshakeContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     /***********************************************************
     Scratch buffer for motion search

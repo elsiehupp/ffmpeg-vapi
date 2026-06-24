@@ -16,86 +16,73 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
-public enum var_name {
-    [CCode (cname="")]
-    VAR_MAIN_W,
+[CCode (cname="enum var_name",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
+public enum VarName {
+    [CCode (cname="VAR_MAIN_W")]
+    MAIN_W,
 
-    [CCode (cname="")]
-    VAR_MW,
+    [CCode (cname="VAR_MW")]
+    MW,
 
-    [CCode (cname="")]
-    VAR_MAIN_H,
+    [CCode (cname="VAR_MAIN_H")]
+    MAIN_H,
 
-    [CCode (cname="")]
-    VAR_MH,
+    [CCode (cname="VAR_MH")]
+    MH,
 
-    [CCode (cname="")]
-    VAR_OVERLAY_W,
+    [CCode (cname="VAR_OVERLAY_W")]
+    OVERLAY_W,
 
-    [CCode (cname="")]
-    VAR_OW,
+    [CCode (cname="VAR_OW")]
+    OW,
 
-    [CCode (cname="")]
-    VAR_OVERLAY_H,
+    [CCode (cname="VAR_OVERLAY_H")]
+    OVERLAY_H,
 
-    [CCode (cname="")]
-    VAR_OH,
+    [CCode (cname="VAR_OH")]
+    OH,
 
-    [CCode (cname="")]
-    VAR_HSUB,
+    [CCode (cname="VAR_HSUB")]
+    HSUB,
 
-    [CCode (cname="")]
-    VAR_VSUB,
+    [CCode (cname="VAR_VSUB")]
+    VSUB,
 
-    [CCode (cname="")]
-    VAR_X,
+    [CCode (cname="VAR_X")]
+    X,
 
-    [CCode (cname="")]
-    VAR_Y,
+    [CCode (cname="VAR_Y")]
+    Y,
 
-    [CCode (cname="")]
-    VAR_N,
+    [CCode (cname="VAR_N")]
+    N,
 
-    [CCode (cname="")]
-    VAR_POS,
+    [CCode (cname="VAR_POS")]
+    POS,
 
-    [CCode (cname="")]
-    VAR_T,
+    [CCode (cname="VAR_T")]
+    T,
 
-    [CCode (cname="")]
-    VAR_VARS_NB;
+    [CCode (cname="VAR_NB")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
+[CCode (cname="enum OverlayFormat",cprefix="OVERLAY_FORMAT_",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
 public enum OverlayFormat {
-    [CCode (cname="")]
-    OVERLAY_FORMAT_YUV420,
-
-    [CCode (cname="")]
-    OVERLAY_FORMAT_YUV422,
-
-    [CCode (cname="")]
-    OVERLAY_FORMAT_YUV444,
-
-    [CCode (cname="")]
-    OVERLAY_FORMAT_RGB,
-
-    [CCode (cname="")]
-    OVERLAY_FORMAT_GBRP,
-
-    [CCode (cname="")]
-    OVERLAY_FORMAT_AUTO,
-
-    [CCode (cname="")]
-    OVERLAY_FORMAT_NB;
+    YUV420,
+    YUV422,
+    YUV444,
+    RGB,
+    GBRP,
+    AUTO,
+    NB;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_overlay.h")]
 [Compact]
 public class OverlayContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     /***********************************************************
     position of overlaid picture
@@ -176,7 +163,7 @@ public class OverlayContext {
     public AVPixFmtDescriptor main_desc;
 
     [CCode (cname="")]
-    public double var_values[VAR_VARS_NB];
+    public double var_values[VarName.NB];
 
     [CCode (cname="")]
     public string x_expr;

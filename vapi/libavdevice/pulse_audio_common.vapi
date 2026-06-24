@@ -19,12 +19,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
+[CCode (cname="ff_codec_id_to_pulse_format",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
 public pa_sample_format_t ff_codec_id_to_pulse_format (
     AVCodecID codec_id
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
+[CCode (cname="ff_pulse_audio_get_devices",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
 //  av_warn_unused_result
 public int ff_pulse_audio_get_devices (
     AVDeviceInfoList? devices,
@@ -32,7 +32,7 @@ public int ff_pulse_audio_get_devices (
     int output
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
+[CCode (cname="ff_pulse_audio_connect_context",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
 //  av_warn_unused_result
 public int ff_pulse_audio_connect_context (
     pa_mainloop **pa_ml,
@@ -41,7 +41,7 @@ public int ff_pulse_audio_connect_context (
     string description
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
+[CCode (cname="ff_pulse_audio_disconnect_context",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
 public void ff_pulse_audio_disconnect_context (
     pa_mainloop **pa_ml,
     pa_context **pa_ctx

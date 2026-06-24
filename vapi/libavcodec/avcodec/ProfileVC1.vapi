@@ -26,12 +26,12 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="FF_PROFILE_VC1_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum ProfileVC1 {
-    FF_PROFILE_VC1_SIMPLE,
-    FF_PROFILE_VC1_MAIN,
-    FF_PROFILE_VC1_COMPLEX,
-    FF_PROFILE_VC1_ADVANCED;
+    SIMPLE,
+    MAIN,
+    COMPLEX,
+    ADVANCED;
 }
 
 } // namespace LibAVCodec

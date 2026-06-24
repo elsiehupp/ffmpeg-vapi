@@ -61,7 +61,7 @@ public class MP4VESDynamicHandler : RTPDynamicProtocolHandler {
     [CCode (cname="need_parsing",cheader_filename="ffmpeg/libformat/rtpdec_mpeg4.c")]
     public override AVStreamParseType need_parsing {
         public get {
-            return AVSTREAM_PARSE_FULL;
+            return AVStreamParseType.FULL;
 
         }
 

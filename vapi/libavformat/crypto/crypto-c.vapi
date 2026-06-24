@@ -22,16 +22,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BinaryOption () {
         name = "key",
         short_help_text = "AES encryption/decryption key",
-        offsetof (
+        offset = offsetof (
             CryptoContext,
             key
         ),
-        .flags = (
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -39,11 +39,11 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BinaryOption () {
         name = "iv",
         short_help_text = "AES encryption/decryption initialization vector",
-        offsetof (
+        offset = offsetof (
             CryptoContext,
             iv
         ),
-        .flags = (
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -51,11 +51,11 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BinaryOption () {
         name = "decryption_key",
         short_help_text = "AES decryption key",
-        offsetof (
+        offset = offsetof (
             CryptoContext,
             decrypt_key
         ),
-        .flags = (
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -63,11 +63,11 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BinaryOption () {
         name = "decryption_iv",
         short_help_text = "AES decryption initialization vector",
-        offsetof (
+        offset = offsetof (
             CryptoContext,
             decrypt_iv
         ),
-        .flags = (
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -75,11 +75,11 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BinaryOption () {
         name = "encryption_key",
         short_help_text = "AES encryption key",
-        offsetof (
+        offset = offsetof (
             CryptoContext,
             encrypt_key
         ),
-        .flags = (
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -87,11 +87,11 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BinaryOption () {
         name = "encryption_iv",
         short_help_text = "AES encryption initialization vector",
-        offsetof (
+        offset = offsetof (
             CryptoContext,
             encrypt_iv
         ),
-        .flags = (
+        option_flags = (
             LibAVUtil.OptionFlags.DECODING_PARAM |
             LibAVUtil.OptionFlags.ENCODING_PARAM
         )
@@ -194,7 +194,7 @@ public class CryptoURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/crypto.c")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NESTED_SCHEME;
+            return URLProtocolFlags.NESTED_SCHEME;
 
         }
 

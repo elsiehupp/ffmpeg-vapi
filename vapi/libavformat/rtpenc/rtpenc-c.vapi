@@ -30,58 +30,50 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "payload_type",
         short_help_text = "Specify RTP payload type",
-        offsetof (
+        offset = offsetof (
             RTPMuxContext,
             payload_type
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        127,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = 127,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "ssrc",
         short_help_text = "Stream identifier",
-        offsetof (
+        offset = offsetof (
             RTPMuxContext,
             ssrc
         ),
-        {
-            .i64 = 0
-        },
-        int.MIN,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = int.MIN,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.StringOption () {
         name = "cname",
         short_help_text = "CNAME to include in RTCP SR packets",
-        offsetof (
+        offset = offsetof (
             RTPMuxContext,
             cname
         ),
-        {
-            .str = NULL
-        },
-        0,
-        0,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = "",
+        minimum_value = 0,
+        maximum_value = 0,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "seq",
         short_help_text = "Starting sequence number",
-        offsetof (
+        offset = offsetof (
             RTPMuxContext,
             seq
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        65535,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = 65535,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -189,7 +181,7 @@ public class RTPMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/rtpenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_TS_NONSTRICT;
+            return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

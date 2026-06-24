@@ -62,7 +62,7 @@ public define DECKLINK_FREE (s) free ((void *) s)
 class decklink_output_callback;
 class decklink_input_callback;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
+[CCode (cname="struct",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 [Compact]
 public class AVPacketQueue {
     [CCode (cname="")]
@@ -93,7 +93,7 @@ public class AVPacketQueue {
     public int64 max_q_size;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
+[CCode (cname="struct",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 [Compact]
 public class decklink_ctx {
     /***********************************************************
@@ -253,13 +253,13 @@ public class decklink_ctx {
     public int audio_depth;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
-public enum decklink_direction_t {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
-    DIRECTION_IN,
+[CCode (cname="enum decklink_direction_t",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
+public enum DeckLinkDirection {
+    [CCode (cname="DIRECTION_IN")]
+    IN,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
-    DIRECTION_OUT
+    [CCode (cname="DIRECTION_OUT")]
+    OUT
 }
 
 #ifdef _WIN32
@@ -318,7 +318,7 @@ public int ff_decklink_set_format (
     int tb_num,
     int tb_den,
     AVFieldOrder field_order,
-    decklink_direction_t direction = DIRECTION_OUT,
+    decklink_direction_t direction = DeckLinkDirection.OUT,
     int num = 0
 );
 
@@ -347,7 +347,7 @@ public void ff_decklink_list_devices_legacy (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_list_formats (
     AVFormatContext? avctx,
-    decklink_direction_t direction = DIRECTION_OUT
+    decklink_direction_t direction = DeckLinkDirection.OUT
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]

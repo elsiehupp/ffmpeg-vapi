@@ -27,10 +27,10 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="FF_CODEC_PROPERTY_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum CodecPropertyFlags1 {
-    FF_CODEC_PROPERTY_LOSSLESS,
-    FF_CODEC_PROPERTY_CLOSED_CAPTIONS;
+    LOSSLESS,
+    CLOSED_CAPTIONS;
 }
 
 } // namespace LibAVCodec

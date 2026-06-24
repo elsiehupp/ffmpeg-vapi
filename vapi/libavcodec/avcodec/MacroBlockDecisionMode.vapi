@@ -26,22 +26,25 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum MacroBlockDecisionMode {
     /***********************************************************
     @brief Uses mb_cmp
     ***********************************************************/
-    FF_MB_DECISION_SIMPLE,
+    [CCode (cname="FF_MB_DECISION_SIMPLE")]
+    SIMPLE,
 
     /***********************************************************
     @brief Chooses the one which needs the fewest bits
     ***********************************************************/
-    FF_MB_DECISION_BITS,
+    [CCode (cname="FF_MB_DECISION_BITS")]
+    FEWEST_BITS,
 
     /***********************************************************
     @brief Rate distortion
     ***********************************************************/
-    FF_MB_DECISION_RD;
+    [CCode (cname="FF_MB_DECISION_RD")]
+    RATE_DISTORTION;
 }
 
 } // namespace LibAVCodec

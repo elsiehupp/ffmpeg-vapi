@@ -27,8 +27,8 @@ it was introduced in OpenCL 2.0.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 [Compact]
 public class OpenCLFilterContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     public AVBufferRef? device_ref;
     [CCode (cname="")]

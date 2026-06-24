@@ -21,61 +21,61 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
 public enum AVIFlags {
     /***********************************************************
     Index at end of file?
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
-    AVIF_HASINDEX,
+    [CCode (cname="AVIF_HASINDEX")]
+    HAS_INDEX,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
-    AVIF_MUSTUSEINDEX,
+    [CCode (cname="AVIF_MUSTUSEINDEX")]
+    MUST_USE_INDEX,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
-    AVIF_ISINTERLEAVED,
+    [CCode (cname="AVIF_ISINTERLEAVED")]
+    IS)INTERLEAVED,
 
     /***********************************************************
     Use CKType to find key frames?
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
-    AVIF_TRUSTCKTYPE,
+    [CCode (cname="AVIF_TRUSTCKTYPE")]
+    TRUST_CKTYPE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
-    AVIF_WASCAPTUREFILE,
+    [CCode (cname="AVIF_WASCAPTUREFILE")]
+    WAS_CAPTURE_FILE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
-    AVIF_COPYRIGHTED;
+    [CCode (cname="AVIF_COPYRIGHTED")]
+    COPYRIGHTED;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
+[CCode (cname="AVI_MAX_RIFF_SIZE",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
 public const uint64 AVI_MAX_RIFF_SIZE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
+[CCode (cname="AVI_MAX_STREAM_COUNT",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
 public const int AVI_MAX_STREAM_COUNT;
 
 /***********************************************************
 @brief Stream header flags
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/avi.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/avi.h")]
 public enum AVIStreamHeaderFlags {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
-    AVISF_VIDEO_PALCHANGES;
+    [CCode (cname="AVISF_VIDEO_PALCHANGES")]
+    VIDEO_PAL_CHANGES;
 }
 
 /***********************************************************
 @brief Index flags
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/avi.h")]
 [Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/avi.h")]
 public enum AVIIndexFlags {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
-    AVIIF_INDEX,
+    [CCode (cname="AVIIF_INDEX")]
+    INDEX,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
-    AVIIF_NO_TIME;
+    [CCode (cname="AVIIF_NO_TIME")]
+    NO_TIME;
 }
 
 } // namespace LibAVFormat

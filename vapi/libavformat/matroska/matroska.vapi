@@ -31,834 +31,791 @@ public const int EBML_VERSION;
 /***********************************************************
 @brief Top-level master-IDs
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public enum EBMLID {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    EBML_ID_HEADER,
+    [CCode (cname="EBML_ID_HEADER")]
+    HEADER,
 
     /***********************************************************
     @brief IDs in the HEADER master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    EBML_ID_EBMLVERSION,
+    [CCode (cname="EBML_ID_EBMLVERSION")]
+    EBML_VERSION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    EBML_ID_EBMLREADVERSION,
+    [CCode (cname="EBML_ID_EBMLREADVERSION")]
+    EBML_READ_VERSION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    EBML_ID_EBMLMAXIDLENGTH,
+    [CCode (cname="EBML_ID_EBMLMAXIDLENGTH")]
+    EBML_MAX_IDLENGTH,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    EBML_ID_EBMLMAXSIZELENGTH,
+    [CCode (cname="EBML_ID_EBMLMAXSIZELENGTH")]
+    EBML_MAX_SIZE_LENGTH,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    EBML_ID_DOCTYPE,
+    [CCode (cname="EBML_ID_DOCTYPE")]
+    DOCTYPE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    EBML_ID_DOCTYPEVERSION,
+    [CCode (cname="EBML_ID_DOCTYPEVERSION")]
+    DOCTYPE_VERSION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    EBML_ID_DOCTYPEREADVERSION,
+    [CCode (cname="EBML_ID_DOCTYPEREADVERSION")]
+    DOCTYPE_READ_VERSION,
 
     /***********************************************************
     @brief General EBML types
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    EBML_ID_VOID,
+    [CCode (cname="EBML_ID_VOID")]
+    VOID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    EBML_ID_CRC32;
+    [CCode (cname="EBML_ID_CRC32")]
+    CRC32;
 }
 
 /***********************************************************
 @brief Matroska element IDs, max. 32 bits
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public enum MatroskaID {
     /***********************************************************
     @brief Toplevel segment
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_SEGMENT,
+    [CCode (cname="MATROSKA_ID_SEGMENT")]
+    SEGMENT,
 
     /***********************************************************
     @brief Matroska top-level master IDs
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_INFO,
+    [CCode (cname="MATROSKA_ID_INFO")]
+    INFO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKS,
+    [CCode (cname="MATROSKA_ID_TRACKS")]
+    TRACKS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CUES,
+    [CCode (cname="MATROSKA_ID_CUES")]
+    CUES,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGS,
+    [CCode (cname="MATROSKA_ID_TAGS")]
+    TAGS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_SEEKHEAD,
+    [CCode (cname="MATROSKA_ID_SEEKHEAD")]
+    SEEK_HEAD,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ATTACHMENTS,
+    [CCode (cname="MATROSKA_ID_ATTACHMENTS")]
+    ATTACHMENTS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CLUSTER,
+    [CCode (cname="MATROSKA_ID_CLUSTER")]
+    CLUSTER,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPTERS,
+    [CCode (cname="MATROSKA_ID_CHAPTERS")]
+    CHAPTERS,
 
     /***********************************************************
     @brief IDs in the info master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TIMECODESCALE,
+    [CCode (cname="MATROSKA_ID_TIMECODESCALE")]
+    TIMECODE_SCALE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_DURATION,
+    [CCode (cname="MATROSKA_ID_DURATION")]
+    DURATION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TITLE,
+    [CCode (cname="MATROSKA_ID_TITLE")]
+    TITLE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_WRITINGAPP,
+    [CCode (cname="MATROSKA_ID_WRITINGAPP")]
+    WRITING_APP,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_MUXINGAPP,
+    [CCode (cname="MATROSKA_ID_MUXINGAPP")]
+    MUXING_APP,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_DATEUTC,
+    [CCode (cname="MATROSKA_ID_DATEUTC")]
+    DATE_UTC,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_SEGMENTUID,
+    [CCode (cname="MATROSKA_ID_SEGMENTUID")]
+    SEGMENT_UID,
 
     /***********************************************************
     @brief ID in the tracks master
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKENTRY,
+    [CCode (cname="MATROSKA_ID_TRACKENTRY")]
+    TRACK_ENTRY,
 
     /***********************************************************
     @brief IDs in the trackentry master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKNUMBER,
+    [CCode (cname="MATROSKA_ID_TRACKNUMBER")]
+    TRACK_NUMBER,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKUID,
+    [CCode (cname="MATROSKA_ID_TRACKUID")]
+    TRACKUID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKTYPE,
+    [CCode (cname="MATROSKA_ID_TRACKTYPE")]
+    TRACK_TYPE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKVIDEO,
+    [CCode (cname="MATROSKA_ID_TRACKVIDEO")]
+    TRACK_VIDEO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKAUDIO,
+    [CCode (cname="MATROSKA_ID_TRACKAUDIO")]
+    TRACK_AUDIO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKOPERATION,
+    [CCode (cname="MATROSKA_ID_TRACKOPERATION")]
+    TRACK_OPERATION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKCOMBINEPLANES,
+    [CCode (cname="MATROSKA_ID_TRACKCOMBINEPLANES")]
+    TRACK_COMBINE_PLANES,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKPLANE,
+    [CCode (cname="MATROSKA_ID_TRACKPLANE")]
+    TRACK_PLANE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKPLANEUID,
+    [CCode (cname="MATROSKA_ID_TRACKPLANEUID")]
+    TRACK_PLANE_UID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKPLANETYPE,
+    [CCode (cname="MATROSKA_ID_TRACKPLANETYPE")]
+    TRACK_PLANE_TYPE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CODECID,
+    [CCode (cname="MATROSKA_ID_CODECID")]
+    CODEC_ID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CODECPRIVATE,
+    [CCode (cname="MATROSKA_ID_CODECPRIVATE")]
+    CODEC_PRIVATE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CODECNAME,
+    [CCode (cname="MATROSKA_ID_CODECNAME")]
+    CODEC_NAME,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CODECINFOURL,
+    [CCode (cname="MATROSKA_ID_CODECINFOURL")]
+    CODEC_INFO_URL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CODECDOWNLOADURL,
+    [CCode (cname="MATROSKA_ID_CODECDOWNLOADURL")]
+    CODEC_DOWNLOAD_URL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CODECDECODEALL,
+    [CCode (cname="MATROSKA_ID_CODECDECODEALL")]
+    CODEC_DECODE_ALL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CODECDELAY,
+    [CCode (cname="MATROSKA_ID_CODECDELAY")]
+    CODEC_DELAY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_SEEKPREROLL,
+    [CCode (cname="MATROSKA_ID_SEEKPREROLL")]
+    SEEK_PREROLL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKNAME,
+    [CCode (cname="MATROSKA_ID_TRACKNAME")]
+    TRACK_NAME,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKLANGUAGE,
+    [CCode (cname="MATROSKA_ID_TRACKLANGUAGE")]
+    TRACK_LANGUAGE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKFLAGENABLED,
+    [CCode (cname="MATROSKA_ID_TRACKFLAGENABLED")]
+    TRACK_FLAG_ENABLED,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKFLAGDEFAULT,
+    [CCode (cname="MATROSKA_ID_TRACKFLAGDEFAULT")]
+    TRACK_FLAG_DEFAULT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKFLAGFORCED,
+    [CCode (cname="MATROSKA_ID_TRACKFLAGFORCED")]
+    TRACK_FLAG_FORCED,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKFLAGLACING,
+    [CCode (cname="MATROSKA_ID_TRACKFLAGLACING")]
+    TRACK_FLAG_LACING,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKMINCACHE,
+    [CCode (cname="MATROSKA_ID_TRACKMINCACHE")]
+    TRACK_MIN_CACHE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKMAXCACHE,
+    [CCode (cname="MATROSKA_ID_TRACKMAXCACHE")]
+    TRACK_MAX_CACHE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKDEFAULTDURATION,
+    [CCode (cname="MATROSKA_ID_TRACKDEFAULTDURATION")]
+    TRACK_DEFAULT_DURATION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKCONTENTENCODINGS,
+    [CCode (cname="MATROSKA_ID_TRACKCONTENTENCODINGS")]
+    TRACK_CONTENT_ENCODINGS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKCONTENTENCODING,
+    [CCode (cname="MATROSKA_ID_TRACKCONTENTENCODING")]
+    TRACK_CONTENT_ENCODING,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKTIMECODESCALE,
+    [CCode (cname="MATROSKA_ID_TRACKTIMECODESCALE")]
+    TRACK_TIME_CODE_SCALE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TRACKMAXBLKADDID,
+    [CCode (cname="MATROSKA_ID_TRACKMAXBLKADDID")]
+    TRACK_MAX_BLOCK_ADD_ID,
 
     /***********************************************************
     @brief IDs in the trackvideo master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOFRAMERATE,
+    [CCode (cname="MATROSKA_ID_VIDEOFRAMERATE")]
+    VIDEO_FRAMERATE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEODISPLAYWIDTH,
+    [CCode (cname="MATROSKA_ID_VIDEODISPLAYWIDTH")]
+    VIDEO_DISPLAY_WIDTH,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEODISPLAYHEIGHT,
+    [CCode (cname="MATROSKA_ID_VIDEODISPLAYHEIGHT")]
+    VIDEO_DISPLAY_HEIGHT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPIXELWIDTH,
+    [CCode (cname="MATROSKA_ID_VIDEOPIXELWIDTH")]
+    VIDEO_PIXEL_WIDTH,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPIXELHEIGHT,
+    [CCode (cname="MATROSKA_ID_VIDEOPIXELHEIGHT")]
+    VIDEO_PIXEL_HEIGHT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPIXELCROPB,
+    [CCode (cname="MATROSKA_ID_VIDEOPIXELCROPB")]
+    VIDEO_PIXEL_CROP_BOTTOM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPIXELCROPT,
+    [CCode (cname="MATROSKA_ID_VIDEOPIXELCROPT")]
+    VIDEO_PIXEL_CROP_TOP,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPIXELCROPL,
+    [CCode (cname="MATROSKA_ID_VIDEOPIXELCROPL")]
+    VIDEO_PIXEL_CROP_LEFT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPIXELCROPR,
+    [CCode (cname="MATROSKA_ID_VIDEOPIXELCROPR")]
+    VIDEO_PIXEL_CROP_RIGHT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEODISPLAYUNIT,
+    [CCode (cname="MATROSKA_ID_VIDEODISPLAYUNIT")]
+    VIDEO_DISPLAY_UNIT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOFLAGINTERLACED,
+    [CCode (cname="MATROSKA_ID_VIDEOFLAGINTERLACED")]
+    VIDEO_FLAG_INTERLACED,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOFIELDORDER,
+    [CCode (cname="MATROSKA_ID_VIDEOFIELDORDER")]
+    VIDEO_FIELD_ORDER,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOSTEREOMODE,
+    [CCode (cname="MATROSKA_ID_VIDEOSTEREOMODE")]
+    VIDEO_STEREO_MODE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOALPHAMODE,
+    [CCode (cname="MATROSKA_ID_VIDEOALPHAMODE")]
+    VIDEO_ALPHA_MODE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOASPECTRATIO,
+    [CCode (cname="MATROSKA_ID_VIDEOASPECTRATIO")]
+    VIDEO_ASPECT_RATIO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORSPACE,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORSPACE")]
+    VIDEO_COLORSPACE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR,
-
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORMATRIXCOEFF,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORBITSPERCHANNEL,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORCHROMASUBHORZ,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORCHROMASUBVERT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORCBSUBHORZ,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORCBSUBVERT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORCHROMASITINGHORZ,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORCHROMASITINGVERT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORRANGE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORTRANSFERCHARACTERISTICS,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR")]
+    VIDEO_COLOR,
 
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORPRIMARIES,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORMATRIXCOEFF")]
+    VIDEO_COLOR_MATRIX_COEFF,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORMAXCLL,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORBITSPERCHANNEL")]
+    VIDEO_COLOR_BITS_PER_CHANNEL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORMAXFALL,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORCHROMASUBHORZ")]
+    VIDEO_COLOR_CHROMA_SUB_HORIZONTAL,
 
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORCHROMASUBVERT")]
+    VIDEO_COLOR_CHROMA_SUB_VERTICAL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLORMASTERINGMETA,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORCBSUBHORZ")]
+    VIDEO_COLOR_CB_SUB_HORIZONTAL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR_RX,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORCBSUBVERT")]
+    VIDEO_COLOR_CB_SUB_VERTICAL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR_RY,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORCHROMASITINGHORZ")]
+    VIDEO_COLOR_CHROMA_SITING_HORIZONTAL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR_GX,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORCHROMASITINGVERT")]
+    VIDEO_COLOR_CHROMA_SITING_VERTICAL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR_GY,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORRANGE")]
+    VIDEO_COLOR_RANGE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR_BX,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR_BY,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR_WHITEX,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR_WHITEY,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR_LUMINANCEMAX,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOCOLOR_LUMINANCEMIN,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORTRANSFERCHARACTERISTICS")]
+    VIDEO_COLOR_TRANSFER_CHARACTERISTICS,
 
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPROJECTION,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORPRIMARIES")]
+    VIDEO_COLOR_PRIMARIES,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPROJECTIONTYPE,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORMAXCLL")]
+    VIDEO_COLOR_MAX_CLL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPROJECTIONPRIVATE,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORMAXFALL")]
+    VIDEO_COLOR_MAX_FALL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPROJECTIONPOSEYAW,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPROJECTIONPOSEPITCH,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLORMASTERINGMETA")]
+    VIDEO_COLOR_MASTERING_META,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_VIDEOPROJECTIONPOSEROLL,
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR_RX")]
+    VIDEO_COLOR_RED_X,
+
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR_RY")]
+    VIDEO_COLOR_RED_Y,
+
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR_GX")]
+    VIDEO_COLOR_GREEN_X,
+
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR_GY")]
+    VIDEO_COLOR_GREEN_Y,
+
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR_BX")]
+    VIDEO_COLOR_BLUE_X,
+
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR_BY")]
+    VIDEO_COLOR_BLUE_Y,
+
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR_WHITEX")]
+    VIDEO_COLOR_WHITE_X,
+
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR_WHITEY")]
+    VIDEO_COLOR_WHITE_Y,
+
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR_LUMINANCEMAX")]
+    VIDEO_COLOR_LUMINANCE_MAX,
+
+    [CCode (cname="MATROSKA_ID_VIDEOCOLOR_LUMINANCEMIN")]
+    VIDEO_COLOR_LUMINANCE_MIN,
+
+
+    [CCode (cname="MATROSKA_ID_VIDEOPROJECTION")]
+    VIDEO_PROJECTION,
+
+    [CCode (cname="MATROSKA_ID_VIDEOPROJECTIONTYPE")]
+    VIDEO_PROJECTION_TYPE,
+
+    [CCode (cname="MATROSKA_ID_VIDEOPROJECTIONPRIVATE")]
+    VIDEO_PROJECTION_PRIVATE,
+
+    [CCode (cname="MATROSKA_ID_VIDEOPROJECTIONPOSEYAW")]
+    VIDEO_PROJECTION_POSE_YAW,
+
+    [CCode (cname="MATROSKA_ID_VIDEOPROJECTIONPOSEPITCH")]
+    VIDEO_PROJECTION_POSE_PITCH,
+
+    [CCode (cname="MATROSKA_ID_VIDEOPROJECTIONPOSEROLL")]
+    VIDEO_PROJECTION_POSE_ROLL,
 
     /***********************************************************
     @brief IDs in the trackaudio master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_AUDIOSAMPLINGFREQ,
+    [CCode (cname="MATROSKA_ID_AUDIOSAMPLINGFREQ")]
+    AUDIO_SAMPLING_FREQENCY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_AUDIOOUTSAMPLINGFREQ,
+    [CCode (cname="MATROSKA_ID_AUDIOOUTSAMPLINGFREQ")]
+    AUDIO_OUT_SAMPLING_FREQUENCY,
 
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_AUDIOBITDEPTH,
+    [CCode (cname="MATROSKA_ID_AUDIOBITDEPTH")]
+    AUDIO_BIT_DEPTH,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_AUDIOCHANNELS,
+    [CCode (cname="MATROSKA_ID_AUDIOCHANNELS")]
+    AUDIO_CHANNELS,
 
     /***********************************************************
     @brief IDs in the content encoding master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGORDER,
+    [CCode (cname="MATROSKA_ID_ENCODINGORDER")]
+    ENCODING_ORDER,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGSCOPE,
+    [CCode (cname="MATROSKA_ID_ENCODINGSCOPE")]
+    ENCODING_SCOPE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGTYPE,
+    [CCode (cname="MATROSKA_ID_ENCODINGTYPE")]
+    ENCODING_TYPE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGCOMPRESSION,
+    [CCode (cname="MATROSKA_ID_ENCODINGCOMPRESSION")]
+    ENCODING_COMPRESSION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGCOMPALGO,
+    [CCode (cname="MATROSKA_ID_ENCODINGCOMPALGO")]
+    ENCODING_COMPRESSION_ALGORITHM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGCOMPSETTINGS,
+    [CCode (cname="MATROSKA_ID_ENCODINGCOMPSETTINGS")]
+    ENCODING_COMPRESSION_SETTINGS,
 
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGENCRYPTION,
+    [CCode (cname="MATROSKA_ID_ENCODINGENCRYPTION")]
+    ENCODING_ENCRYPTION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGENCAESSETTINGS,
+    [CCode (cname="MATROSKA_ID_ENCODINGENCAESSETTINGS")]
+    ENCODING_ENCRYPTION_AES_SETTINGS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGENCALGO,
+    [CCode (cname="MATROSKA_ID_ENCODINGENCALGO")]
+    ENCODING_ENCRYPTION_ALGO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGENCKEYID,
+    [CCode (cname="MATROSKA_ID_ENCODINGENCKEYID")]
+    ENCODING_ENCRYPTION_KEY_ID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGSIGALGO,
+    [CCode (cname="MATROSKA_ID_ENCODINGSIGALGO")]
+    ENCODING_SIGNATURE_ALGORITHM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGSIGHASHALGO,
+    [CCode (cname="MATROSKA_ID_ENCODINGSIGHASHALGO")]
+    ENCODING_SIGNATURE_HASH_ALGORITHM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGSIGKEYID,
+    [CCode (cname="MATROSKA_ID_ENCODINGSIGKEYID")]
+    ENCODING_SIGNATURE_KEY_ID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ENCODINGSIGNATURE,
+    [CCode (cname="MATROSKA_ID_ENCODINGSIGNATURE")]
+    ENCODING_SIGNATURE,
 
     /***********************************************************
     @brief ID in the cues master
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_POINTENTRY,
+    [CCode (cname="MATROSKA_ID_POINTENTRY")]
+    POINT_ENTRY,
 
     /***********************************************************
     @brief IDs in the pointentry master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CUETIME,
+    [CCode (cname="MATROSKA_ID_CUETIME")]
+    CUE_TIME,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CUETRACKPOSITION,
+    [CCode (cname="MATROSKA_ID_CUETRACKPOSITION")]
+    CUE_TRACK_POSITION,
 
     /***********************************************************
     @brief IDs in the cuetrackposition master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CUETRACK,
+    [CCode (cname="MATROSKA_ID_CUETRACK")]
+    CUE_TRACK,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CUECLUSTERPOSITION,
+    [CCode (cname="MATROSKA_ID_CUECLUSTERPOSITION")]
+    CUE_CLUSTER_POSITION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CUERELATIVEPOSITION,
+    [CCode (cname="MATROSKA_ID_CUERELATIVEPOSITION")]
+    CUE_RELATIVE_POSITION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CUEDURATION,
+    [CCode (cname="MATROSKA_ID_CUEDURATION")]
+    CUE_DURATION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CUEBLOCKNUMBER,
+    [CCode (cname="MATROSKA_ID_CUEBLOCKNUMBER")]
+    CUE_BLOCK_NUMBER,
 
     /***********************************************************
     @brief IDs in the tags master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAG,
+    [CCode (cname="MATROSKA_ID_TAG")]
+    TAG,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_SIMPLETAG,
+    [CCode (cname="MATROSKA_ID_SIMPLETAG")]
+    SIMPLE_TAG,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGNAME,
+    [CCode (cname="MATROSKA_ID_TAGNAME")]
+    TAG_NAME,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGSTRING,
+    [CCode (cname="MATROSKA_ID_TAGSTRING")]
+    TAG_STRING,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGLANG,
+    [CCode (cname="MATROSKA_ID_TAGLANG")]
+    TAG_LANG,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGDEFAULT,
+    [CCode (cname="MATROSKA_ID_TAGDEFAULT")]
+    TAG_DEFAULT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGDEFAULT_BUG,
+    [CCode (cname="MATROSKA_ID_TAGDEFAULT_BUG")]
+    TAG_DEFAULT_BUG,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGTARGETS,
+    [CCode (cname="MATROSKA_ID_TAGTARGETS")]
+    TAG_TARGETS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGTARGETS_TYPE,
+    [CCode (cname="MATROSKA_ID_TAGTARGETS_TYPE")]
+    TAG_TARGETS_TYPE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGTARGETS_TYPEVALUE,
+    [CCode (cname="MATROSKA_ID_TAGTARGETS_TYPEVALUE")]
+    TAG_TARGETS_TYPE_VALUE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGTARGETS_TRACKUID,
+    [CCode (cname="MATROSKA_ID_TAGTARGETS_TRACKUID")]
+    TAG_TARGETS_TRACK_UID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGTARGETS_CHAPTERUID,
+    [CCode (cname="MATROSKA_ID_TAGTARGETS_CHAPTERUID")]
+    TAG_TARGETS_CHAPTE_RUID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_TAGTARGETS_ATTACHUID,
+    [CCode (cname="MATROSKA_ID_TAGTARGETS_ATTACHUID")]
+    TAG_TARGETS_ATTACH_UID,
 
     /***********************************************************
     @brief IDs in the seekhead master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_SEEKENTRY,
+    [CCode (cname="MATROSKA_ID_SEEKENTRY")]
+    SEEK_ENTRY,
 
     /***********************************************************
     @brief IDs in the seekpoint master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_SEEKID,
+    [CCode (cname="MATROSKA_ID_SEEKID")]
+    SEEK_ID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_SEEKPOSITION,
+    [CCode (cname="MATROSKA_ID_SEEKPOSITION")]
+    SEEK_POSITION,
 
     /***********************************************************
     @brief IDs in the cluster master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CLUSTERTIMECODE,
+    [CCode (cname="MATROSKA_ID_CLUSTERTIMECODE")]
+    CLUSTER_TIME_CODE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CLUSTERPOSITION,
+    [CCode (cname="MATROSKA_ID_CLUSTERPOSITION")]
+    CLUSTER_POSITION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CLUSTERPREVSIZE,
+    [CCode (cname="MATROSKA_ID_CLUSTERPREVSIZE")]
+    CLUSTER_PREVIOUS_SIZE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_BLOCKGROUP,
+    [CCode (cname="MATROSKA_ID_BLOCKGROUP")]
+    BLOCK_GROUP,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_BLOCKADDITIONS,
+    [CCode (cname="MATROSKA_ID_BLOCKADDITIONS")]
+    BLOCK_ADDITIONS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_BLOCKMORE,
+    [CCode (cname="MATROSKA_ID_BLOCKMORE")]
+    BLOCK_MORE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_BLOCKADDID,
+    [CCode (cname="MATROSKA_ID_BLOCKADDID")]
+    BLOCK_ADD_ID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_BLOCKADDITIONAL,
+    [CCode (cname="MATROSKA_ID_BLOCKADDITIONAL")]
+    BLOCK_ADDITIONAL,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_SIMPLEBLOCK,
+    [CCode (cname="MATROSKA_ID_SIMPLEBLOCK")]
+    SIMPLE_BLOCK,
 
     /***********************************************************
     @brief IDs in the blockgroup master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_BLOCK,
+    [CCode (cname="MATROSKA_ID_BLOCK")]
+    BLOCK,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_BLOCKDURATION,
+    [CCode (cname="MATROSKA_ID_BLOCKDURATION")]
+    BLOCK_DURATION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_BLOCKREFERENCE,
+    [CCode (cname="MATROSKA_ID_BLOCKREFERENCE")]
+    BLOCK_REFERENCE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CODECSTATE,
+    [CCode (cname="MATROSKA_ID_CODECSTATE")]
+    CODEC_STATE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_DISCARDPADDING,
+    [CCode (cname="MATROSKA_ID_DISCARDPADDING")]
+    DISCARD_PADDING,
 
     /***********************************************************
     @brief IDs in the attachments master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_ATTACHEDFILE,
+    [CCode (cname="MATROSKA_ID_ATTACHEDFILE")]
+    ATTACHED_FILE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_FILEDESC,
+    [CCode (cname="MATROSKA_ID_FILEDESC")]
+    FILE_DESCRIPTION,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_FILENAME,
+    [CCode (cname="MATROSKA_ID_FILENAME")]
+    FILE_NAME,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_FILEMIMETYPE,
+    [CCode (cname="MATROSKA_ID_FILEMIMETYPE")]
+    FILE_MIMETYPE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_FILEDATA,
+    [CCode (cname="MATROSKA_ID_FILEDATA")]
+    FILE_DATA,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_FILEUID,
+    [CCode (cname="MATROSKA_ID_FILEUID")]
+    FILE_UID,
 
     /***********************************************************
     @brief IDs in the chapters master
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_EDITIONENTRY,
+    [CCode (cname="MATROSKA_ID_EDITIONENTRY")]
+    EDITION_ENTRY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPTERATOM,
+    [CCode (cname="MATROSKA_ID_CHAPTERATOM")]
+    CHAPTER_ATOM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPTERTIMESTART,
+    [CCode (cname="MATROSKA_ID_CHAPTERTIMESTART")]
+    CHAPTER_TIME_START,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPTERTIMEEND,
+    [CCode (cname="MATROSKA_ID_CHAPTERTIMEEND")]
+    CHAPTER_TIME_END,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPTERDISPLAY,
+    [CCode (cname="MATROSKA_ID_CHAPTERDISPLAY")]
+    CHAPTER_DISPLAY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPSTRING,
+    [CCode (cname="MATROSKA_ID_CHAPSTRING")]
+    CHAPTER_STRING,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPLANG,
+    [CCode (cname="MATROSKA_ID_CHAPLANG")]
+    CHAPTER_LANGUAGE,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPCOUNTRY,
+    [CCode (cname="MATROSKA_ID_CHAPCOUNTRY")]
+    CHAPTER_COUNTRY,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_EDITIONUID,
+    [CCode (cname="MATROSKA_ID_EDITIONUID")]
+    EDITION_UID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_EDITIONFLAGHIDDEN,
+    [CCode (cname="MATROSKA_ID_EDITIONFLAGHIDDEN")]
+    EDITION_FLAG_HIDDEN,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_EDITIONFLAGDEFAULT,
+    [CCode (cname="MATROSKA_ID_EDITIONFLAGDEFAULT")]
+    EDITION_FLAG_DEFAULT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_EDITIONFLAGORDERED,
+    [CCode (cname="MATROSKA_ID_EDITIONFLAGORDERED")]
+    EDITION_FLAG_ORDERED,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPTERUID,
+    [CCode (cname="MATROSKA_ID_CHAPTERUID")]
+    CHAPTER_UID,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPTERFLAGHIDDEN,
+    [CCode (cname="MATROSKA_ID_CHAPTERFLAGHIDDEN")]
+    CHAPTER_FLAG_HIDDEN,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPTERFLAGENABLED,
+    [CCode (cname="MATROSKA_ID_CHAPTERFLAGENABLED")]
+    CHAPTER_FLAG_ENABLED,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_ID_CHAPTERPHYSEQUIV;
+    [CCode (cname="MATROSKA_ID_CHAPTERPHYSEQUIV")]
+    CHAPTER_PHYS_EQUIV;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaTrackType",cprefix="MATROSKA_TRACK_TYPE_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public enum MatroskaTrackType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_TYPE_NONE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_TYPE_VIDEO,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_TYPE_AUDIO,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_TYPE_COMPLEX,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_TYPE_LOGO,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_TYPE_SUBTITLE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_TYPE_CONTROL,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_TYPE_METADATA;
+    NONE,
+    VIDEO,
+    AUDIO,
+    COMPLEX,
+    LOGO,
+    SUBTITLE,
+    CONTROL,
+    METADATA;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-public enum MatroskaTrackEncodingCompAlgo {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_ENCODING_COMP_ZLIB,
+[CCode (cname="enum MatroskaTrackEncodingCompAlgo",cprefix="MATROSKA_TRACK_ENCODING_COMP_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+public enum MatroskaTrackEncodingCompAlgorithm {
+    [CCode (cname="")]
+    ZLIB,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_ENCODING_COMP_BZLIB,
+    [CCode (cname="")]
+    BZLIB,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_ENCODING_COMP_LZO,
+    [CCode (cname="")]
+    LZO,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_TRACK_ENCODING_COMP_HEADERSTRIP;
+    [CCode (cname="MATROSKA_TRACK_ENCODING_COMP_HEADERSTRIP")]
+    HEADER_STRIP;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaVideoInterlaceFlag",cprefix="MATROSKA_VIDEO_INTERLACE_FLAG_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public enum MatroskaVideoInterlaceFlag {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_INTERLACE_FLAG_UNDETERMINED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_INTERLACE_FLAG_INTERLACED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_INTERLACE_FLAG_PROGRESSIVE;
+    UNDETERMINED,
+    INTERLACED,
+    PROGRESSIVE;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaVideoFieldOrder",cprefix="MATROSKA_VIDEO_FIELDORDER_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public enum MatroskaVideoFieldOrder {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_FIELDORDER_PROGRESSIVE,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_FIELDORDER_UNDETERMINED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_FIELDORDER_TT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_FIELDORDER_BB,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_FIELDORDER_TB,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_FIELDORDER_BT;
+    PROGRESSIVE,
+    UNDETERMINED,
+    TT,
+    BB,
+    TB,
+    BT;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaVideoStereoModeType",cprefix="MATROSKA_VIDEO_STEREOMODE_TYPE_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public enum MatroskaVideoStereoModeType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_MONO,
+    MONO,
+    LEFT_RIGHT,
+    BOTTOM_TOP,
+    TOP_BOTTOM,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_LEFT_RIGHT,
+    [CCode (cname="MATROSKA_VIDEO_STEREOMODE_TYPE_CHECKERBOARD_RL")]
+    CHECKERBOARD_RIGHT_LEFT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_BOTTOM_TOP,
+    [CCode (cname="MATROSKA_VIDEO_STEREOMODE_TYPE_CHECKERBOARD_LR")]
+    CHECKERBOARD_LEFT_RIGHT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_TOP_BOTTOM,
+    [CCode (cname="MATROSKA_VIDEO_STEREOMODE_TYPE_ROW_INTERLEAVED_RL")]
+    ROW_INTERLEAVED_RIGHT_LEFT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_CHECKERBOARD_RL,
+    [CCode (cname="MATROSKA_VIDEO_STEREOMODE_TYPE_ROW_INTERLEAVED_LR")]
+    ROW_INTERLEAVED_LEFT_RIGHT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_CHECKERBOARD_LR,
+    [CCode (cname="MATROSKA_VIDEO_STEREOMODE_TYPE_COL_INTERLEAVED_RL")]
+    COL_INTERLEAVED_RIGHT_LEFT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_ROW_INTERLEAVED_RL,
+    [CCode (cname="MATROSKA_VIDEO_STEREOMODE_TYPE_COL_INTERLEAVED_LR")]
+    COL_INTERLEAVED_LEFT_RIGHT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_ROW_INTERLEAVED_LR,
+    ANAGLYPH_CYAN_RED,
+    RIGHT_LEFT,
+    ANAGLYPH_GREEN_MAG,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_COL_INTERLEAVED_RL,
+    [CCode (cname="MATROSKA_VIDEO_STEREOMODE_TYPE_BOTH_EYES_BLOCK_LR")]
+    BOTH_EYES_BLOCK_LEFT_RIGHT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_COL_INTERLEAVED_LR,
+    [CCode (cname="MATROSKA_VIDEO_STEREOMODE_TYPE_BOTH_EYES_BLOCK_RL")]
+    BOTH_EYES_BLOCK_RIGHT_LEFT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_ANAGLYPH_CYAN_RED,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_RIGHT_LEFT,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_ANAGLYPH_GREEN_MAG,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_BOTH_EYES_BLOCK_LR,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_BOTH_EYES_BLOCK_RL,
-
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_STEREOMODE_TYPE_NB;
+    [CCode (cname="")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaVideoDisplayUnit",cprefix="MATROSKA_VIDEO_DISPLAYUNIT_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public enum MatroskaVideoDisplayUnit {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_DISPLAYUNIT_PIXELS,
+    [CCode (cname="")]
+    PIXELS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_DISPLAYUNIT_CENTIMETERS,
+    [CCode (cname="")]
+    CENTIMETERS,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_DISPLAYUNIT_INCHES,
+    [CCode (cname="")]
+    INCHES,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_DISPLAYUNIT_DAR,
+    [CCode (cname="")]
+    DAR,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_DISPLAYUNIT_UNKNOWN;
+    [CCode (cname="")]
+    UNKNOWN;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaColourChromaSitingHorz",cprefix="MATROSKA_COLOUR_CHROMASITINGHORZ_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public enum MatroskaColourChromaSitingHorz {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_COLOUR_CHROMASITINGHORZ_UNDETERMINED,
+    [CCode (cname="")]
+    UNDETERMINED,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_COLOUR_CHROMASITINGHORZ_LEFT,
+    [CCode (cname="")]
+    LEFT,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_COLOUR_CHROMASITINGHORZ_HALF,
+    [CCode (cname="")]
+    HALF,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_COLOUR_CHROMASITINGHORZ_NB;
+    [CCode (cname="")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaColourChromaSitingVert",cprefix="MATROSKA_COLOUR_CHROMASITINGVERT_",header_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public enum MatroskaColourChromaSitingVert {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_COLOUR_CHROMASITINGVERT_UNDETERMINED,
+    [CCode (cname="")]
+    UNDETERMINED,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_COLOUR_CHROMASITINGVERT_TOP,
+    [CCode (cname="")]
+    TOP,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_COLOUR_CHROMASITINGVERT_HALF,
+    [CCode (cname="")]
+    HALF,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_COLOUR_CHROMASITINGVERT_NB;
+    [CCode (cname="")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaVideoProjectionType",cprefix="MATROSKA_VIDEO_PROJECTION_TYPE_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public enum MatroskaVideoProjectionType {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_PROJECTION_TYPE_RECTANGULAR,
+    [CCode (cname="")]
+    RECTANGULAR,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_PROJECTION_TYPE_EQUIRECTANGULAR,
+    [CCode (cname="")]
+    EQUIRECTANGULAR,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_PROJECTION_TYPE_CUBEMAP,
+    [CCode (cname="")]
+    CUBEMAP,
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
-    MATROSKA_VIDEO_PROJECTION_TYPE_MESH;
+    [CCode (cname="")]
+    MESH;
 }
 
 /***********************************************************

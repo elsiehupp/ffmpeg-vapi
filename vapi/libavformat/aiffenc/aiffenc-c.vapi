@@ -21,35 +21,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="options",cheader_filename="")]
 static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "write_id3v2",
         short_help_text = "Enable ID3 tags writing.",
-        offsetof (
+        offset = offsetof (
             AIFFOutputContext,
             write_id3v2
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "id3v2_version",
         short_help_text = "Select ID3v2 version to write. Currently 3 and 4 are supported.",
-        offsetof (
+        offset = offsetof (
             AIFFOutputContext,
             id3v2_version
         ),
-        {
-            .i64 = 4
-        },
-        3,
-        4,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 4,
+        minimum_value = 3,
+        maximum_value = 4,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL

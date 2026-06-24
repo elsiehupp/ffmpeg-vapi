@@ -70,10 +70,10 @@ public class HardwareAcceleration {
     /***********************************************************
     @brief Hardware accelerated codec capabilities.
 
-    @see @link HardwareAccelerationCapabilities
+    @see @link HardwareAccelerationCodecCapabilityFlags
     ***********************************************************/
     [CCode (cname="capabilities")]
-    public HardwareAccelerationCapabilities capabilities;
+    public HardwareAccelerationCodecCapabilityFlags capabilities;
 }
 
 } // namespace LibAVCodec

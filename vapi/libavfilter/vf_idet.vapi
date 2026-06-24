@@ -27,38 +27,26 @@ public delegate int FfIdetFilterDelegate (
     int w
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
+[CCode (cname="enum Type",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 public enum Type {
-    [CCode (cname="")]
     TFF,
-
-    [CCode (cname="")]
     BFF,
-
-    [CCode (cname="")]
     PROGRESSIVE,
-
-    [CCode (cname="")]
     UNDETERMINED;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
+[CCode (cname="enum RepeatedField",cprefix="REPEAT_",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 public enum RepeatedField {
-    [CCode (cname="")]
-    REPEAT_NONE,
-
-    [CCode (cname="")]
-    REPEAT_TOP,
-
-    [CCode (cname="")]
-    REPEAT_BOTTOM;
+    NONE,
+    TOP,
+    BOTTOM;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vf_idet.h")]
 [Compact]
 public class IDETContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     [CCode (cname="")]
     public float interlace_threshold;

@@ -50,57 +50,49 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.FlagsOption () {
         name = "spdif_flags",
         short_help_text = "IEC 61937 encapsulation flags",
-        offsetof (
+        offset = offsetof (
             IEC61937Context,
             spdif_flags
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "spdif_flags"
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "spdif_flags"
     },
     new LibAVUtil.ConstOption () {
         name = "be",
         short_help_text = "output in big-endian format (for use as s16be)",
-        0,
-        {
-            .i64 = SPDIF_FLAG_BIGENDIAN
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "spdif_flags"
+        offset = 0,
+        default_value = SPDIF_FLAG_BIGENDIAN,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "spdif_flags"
     },
     new LibAVUtil.IntOption () {
         name = "dtshd_rate",
         short_help_text = "mux complete DTS frames in HD mode at the specified IEC958 rate (in Hz, default 0=disabled)",
-        offsetof (
+        offset = offsetof (
             IEC61937Context,
             dtshd_rate
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        768000,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 768000,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "dtshd_fallback_time",
         short_help_text = "min secs to strip HD for after an overflow (-1: till the end, default 60)",
-        offsetof (
+        offset = offsetof (
             IEC61937Context,
             dtshd_fallback
         ),
-        {
-            .i64 = 60
-        },
-        -1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 60,
+        minimum_value = -1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -218,7 +210,7 @@ public class SPIDFMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/spdifenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

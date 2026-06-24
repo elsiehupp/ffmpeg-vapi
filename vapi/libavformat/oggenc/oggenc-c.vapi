@@ -26,58 +26,50 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "serial_offset",
         short_help_text = "serial number offset",
-        offsetof (
+        offset = offsetof (
             OGGContext,
             serial_offset
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "oggpagesize",
         short_help_text = "Set preferred Ogg page size.",
-        offsetof (
+        offset = offsetof (
             OGGContext,
             pref_size
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        MAX_PAGE_SIZE,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = MAX_PAGE_SIZE,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "pagesize",
         short_help_text = "preferred page size in bytes (deprecated)",
-        offsetof (
+        offset = offsetof (
             OGGContext,
             pref_size
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        MAX_PAGE_SIZE,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = MAX_PAGE_SIZE,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.Int64Option () {
         name = "page_duration",
         short_help_text = "preferred page duration, in microseconds",
-        offsetof (
+        offset = offsetof (
             OGGContext,
             pref_duration
         ),
-        {
-            .i64 = 1000000
-        },
-        0,
-        int64.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1000000,
+        minimum_value = 0,
+        maximum_value = int64.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -230,7 +222,7 @@ public class OggMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/oggeng.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH;
+            return AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
 
         }
 
@@ -327,7 +319,7 @@ public class OggAudioMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/oggeng.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH;
+            return AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
 
         }
 
@@ -433,7 +425,7 @@ public class OggVideoMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/oggeng.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_TS_NEGATIVE | AVFMT_TS_NONSTRICT | AVFMT_ALLOW_FLUSH;
+            return AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
 
         }
 
@@ -530,7 +522,7 @@ public class OggSpeexMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/oggeng.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH;
+            return AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
 
         }
 
@@ -627,7 +619,7 @@ public class OggOpusMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/oggeng.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_TS_NEGATIVE | AVFMT_ALLOW_FLUSH;
+            return AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
 
         }
 

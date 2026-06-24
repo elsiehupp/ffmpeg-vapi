@@ -65,47 +65,47 @@ public const size_t APCK_SIZE;
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 public const int RETCODE_USE_CASCADE; // -12345
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
+[CCode (cname="struct SwsContext",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 [Compact]
 public class SwsContext { }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-public enum SwsDither {
-    [CCode (cname="")]
-    SWS_DITHER_NONE = 0,
+[CCode (cname="enum SwsDither",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
+public enum SoftwareScaleDitherType {
+    [CCode (cname="SWS_DITHER_NONE")]
+    NONE, // = 0,
 
-    [CCode (cname="")]
-    SWS_DITHER_AUTO,
+    [CCode (cname="SWS_DITHER_AUTO")]
+    AUTO,
 
-    [CCode (cname="")]
-    SWS_DITHER_BAYER,
+    [CCode (cname="SWS_DITHER_BAYER")]
+    BAYER,
 
-    [CCode (cname="")]
-    SWS_DITHER_ED,
+    [CCode (cname="SWS_DITHER_ED")]
+    ED,
 
-    [CCode (cname="")]
-    SWS_DITHER_A_DITHER,
+    [CCode (cname="SWS_DITHER_A_DITHER")]
+    A_DITHER,
 
-    [CCode (cname="")]
-    SWS_DITHER_X_DITHER,
+    [CCode (cname="SWS_DITHER_X_DITHER")]
+    X_DITHER,
 
-    [CCode (cname="")]
-    NB_SWS_DITHER;
+    [CCode (cname="NB_SWS_DITHER")]
+    NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-public enum SwsAlphaBlend {
-    [CCode (cname="")]
-    SWS_ALPHA_BLEND_NONE = 0,
+[CCode (cname="enum SwsAlphaBlend",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
+public enum SoftwareScaleAlphaBlendType {
+    [CCode (cname="SWS_ALPHA_BLEND_NONE")]
+    NONE, // = 0,
 
-    [CCode (cname="")]
-    SWS_ALPHA_BLEND_UNIFORM,
+    [CCode (cname="SWS_ALPHA_BLEND_UNIFORM")]
+    UNIFORM,
 
-    [CCode (cname="")]
-    SWS_ALPHA_BLEND_CHECKERBOARD,
+    [CCode (cname="SWS_ALPHA_BLEND_CHECKERBOARD")]
+    CHECKERBOARD,
 
-    [CCode (cname="")]
-    SWS_ALPHA_BLEND_NB;
+    [CCode (cname="SWS_ALPHA_BLEND_NB")]
+    NB;
 }
 
 [CCode (cname="SwsFunc",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -361,7 +361,7 @@ public delegate void Yuv2AnyXDelegate (
 /***********************************************************
 This struct should be aligned on at least a 32-byte boundary.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
+[CCode (cname="struct SwsContext",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 [Compact]
 public class SwsContext {
     /***********************************************************
@@ -765,40 +765,41 @@ public class SwsContext {
     //  [CCode (cname="")]
     //  public DECLARE_ALIGNED (16, int32, input_rgb2yuv_table)[16+40*4];
 
-    public enum FooBar {
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-        RY_IDX, // 0
+    [CCode (cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
+    public enum Index {
+        [CCode (cname="RY_IDX")]
+        RY, // 0
 
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-        GY_IDX, // 1
+        [CCode (cname="GY_IDX")]
+        GY, // 1
 
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-        BY_IDX, // 2
+        [CCode (cname="BY_IDX")]
+        BY, // 2
 
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-        RU_IDX, // 3
+        [CCode (cname="RU_IDX")]
+        RU, // 3
 
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-        GU_IDX, // 4
+        [CCode (cname="GU_IDX")]
+        GU, // 4
 
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-        BU_IDX, // 5
+        [CCode (cname="BU_IDX")]
+        BU, // 5
 
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-        RV_IDX, // 6
+        [CCode (cname="RV_IDX")]
+        RV, // 6
 
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-        GV_IDX, // 7
+        [CCode (cname="GV_IDX")]
+        GV, // 7
 
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
-        BV_IDX, // 8
+        [CCode (cname="BV_IDX")]
+        BV, // 8
 
-        [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
+        [CCode (cname="RGB2YUV_SHIFT")]
         RGB2YUV_SHIFT; // 15
     }
 
     [CCode (cname="")]
-    public out int dither_error[4];
+    public int[] dither_error[4];
 
     /***********************************************************
     Colorspace stuff
@@ -920,6 +921,7 @@ public class SwsContext {
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string CHR_MMX_FILTER_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)
+
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     public const string DSTW_OFFSET; // "11*8+4*4*"AV_STRINGIFY (MAX_FILTER_SIZE)"*2"
 
@@ -1387,10 +1389,10 @@ public class SwsContext {
     public int needs_hcscale;
 
     [CCode (cname="")]
-    public SwsDither dither;
+    public SoftwareScaleDitherType dither;
 
     [CCode (cname="")]
-    public SwsAlphaBlend alphablend;
+    public SoftwareScaleAlphaBlendType alphablend;
 }
 // FIXME check init (where 0)
 
@@ -1479,7 +1481,7 @@ public static int isBE (
 
 //      av_assert0 (desc);
 
-//      return desc->flags & AV_PIX_FMT_FLAG_BE;
+//      return desc->flags & PixelFormatFlags.BIG_ENDIAN;
 //  }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1492,7 +1494,7 @@ public static bool isYUV (
 
 //      av_assert0 (desc);
 
-//      return !(desc->flags & AV_PIX_FMT_FLAG_RGB) && desc->nb_components >= 2;
+//      return !(desc->flags & PixelFormatFlags.RGB) && desc->nb_components >= 2;
 //  }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1505,7 +1507,7 @@ public static bool isPlanarYUV (
 
 //      av_assert0 (desc);
 
-//      return ((desc->flags & AV_PIX_FMT_FLAG_PLANAR) && isYUV (pix_fmt));
+//      return ((desc->flags & PixelFormatFlags.PLANAR) && isYUV (pix_fmt));
 //  }
 
 /***********************************************************
@@ -1535,7 +1537,7 @@ public static int isRGB (
 
 //      av_assert0 (desc);
 
-//      return (desc->flags & AV_PIX_FMT_FLAG_RGB);
+//      return (desc->flags & PixelFormatFlags.RGB);
 //  }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1548,8 +1550,8 @@ public static bool isGray (
 
 //      av_assert0 (desc);
 
-//      return !(desc->flags & AV_PIX_FMT_FLAG_PAL) &&
-//             !(desc->flags & AV_PIX_FMT_FLAG_HWACCEL) &&
+//      return !(desc->flags & PixelFormatFlags.PALETTE) &&
+//             !(desc->flags & PixelFormatFlags.HARDWARE_ACCELERATED) &&
 //             desc->nb_components <= 2 &&
 //             pix_fmt != AV_PIX_FMT_MONOBLACK &&
 //             pix_fmt != AV_PIX_FMT_MONOWHITE;
@@ -1617,7 +1619,7 @@ public static int isBayer (
 
 //      av_assert0 (desc);
 
-//      return !!(desc->flags & AV_PIX_FMT_FLAG_BAYER);
+//      return !!(desc->flags & PixelFormatFlags.BAYER);
 //  }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1630,7 +1632,7 @@ public static bool isAnyRGB (
 
 //      av_assert0 (desc);
 
-//      return (desc->flags & AV_PIX_FMT_FLAG_RGB) ||
+//      return (desc->flags & PixelFormatFlags.RGB) ||
 //              pix_fmt == AV_PIX_FMT_MONOBLACK || pix_fmt == AV_PIX_FMT_MONOWHITE;
 //  }
 
@@ -1644,7 +1646,7 @@ public static int isFloat (
 
 //      av_assert0 (desc);
 
-//      return desc->flags & AV_PIX_FMT_FLAG_FLOAT;
+//      return desc->flags & PixelFormatFlags.FLOAT;
 //  }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1660,7 +1662,7 @@ public static int isALPHA (
 //      if (pix_fmt == AV_PIX_FMT_PAL8)
 //          return 1;
 
-//      return desc->flags & AV_PIX_FMT_FLAG_ALPHA;
+//      return desc->flags & PixelFormatFlags.ALPHA;
 //  }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1673,7 +1675,7 @@ public static int isPacked (
 
 //      av_assert0 (desc);
 
-//      return (desc->nb_components >= 2 && !(desc->flags & AV_PIX_FMT_FLAG_PLANAR)) ||
+//      return (desc->nb_components >= 2 && !(desc->flags & PixelFormatFlags.PLANAR)) ||
 //              pix_fmt == AV_PIX_FMT_PAL8 ||
 //              pix_fmt == AV_PIX_FMT_MONOBLACK || pix_fmt == AV_PIX_FMT_MONOWHITE;
 //  }
@@ -1688,7 +1690,7 @@ public static bool isPlanar (
 
 //      av_assert0 (desc);
 
-//      return (desc->nb_components >= 2 && (desc->flags & AV_PIX_FMT_FLAG_PLANAR));
+//      return (desc->nb_components >= 2 && (desc->flags & PixelFormatFlags.PLANAR));
 //  }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1701,7 +1703,7 @@ public static bool isPackedRGB (
 
 //      av_assert0 (desc);
 
-//      return ((desc->flags & (AV_PIX_FMT_FLAG_PLANAR | AV_PIX_FMT_FLAG_RGB)) == AV_PIX_FMT_FLAG_RGB);
+//      return ((desc->flags & (PixelFormatFlags.PLANAR | PixelFormatFlags.RGB)) == PixelFormatFlags.RGB);
 //  }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1714,8 +1716,8 @@ public static bool isPlanarRGB (
 
 //      av_assert0 (desc);
 
-//      return ((desc->flags & (AV_PIX_FMT_FLAG_PLANAR | AV_PIX_FMT_FLAG_RGB)) ==
-//              (AV_PIX_FMT_FLAG_PLANAR | AV_PIX_FMT_FLAG_RGB));
+//      return ((desc->flags & (PixelFormatFlags.PLANAR | PixelFormatFlags.RGB)) ==
+//              (PixelFormatFlags.PLANAR | PixelFormatFlags.RGB));
 //  }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1955,7 +1957,7 @@ public const size_t MAX_SLICE_PLANES; // 4
 /***********************************************************
 Slice plane
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
+[CCode (cname="struct SwsPlane",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 [Compact]
 public class SwsPlane {
     /***********************************************************
@@ -1994,7 +1996,7 @@ Struct which defines a slice of an image to be scaled or an output for
 a scaled slice.
 A slice can also be used as intermediate ring buffer for scaling steps.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
+[CCode (cname="struct SwsSlice",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 [Compact]
 public class SwsSlice {
     /***********************************************************
@@ -2044,7 +2046,7 @@ public class SwsSlice {
 Struct which holds all necessary data for processing a slice.
 A processing step can be a color conversion or horizontal/vertical scaling.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
+[CCode (cname="struct SwsFilterDescriptor",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
 [Compact]
 public class SwsFilterDescriptor {
     /***********************************************************

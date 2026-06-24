@@ -31,16 +31,14 @@ static const LibAVUtil.Option demux_options[] = {
     new LibAVUtil.BoolOption () {
         name = "ignore_length",
         short_help_text = "Ignore length",
-        offsetof (
+        offset = offsetof (
             WAVDemuxContext,
             ignore_length
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -135,7 +133,7 @@ public class WAVDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/wavdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 
@@ -215,7 +213,7 @@ public class Wave64Demuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/wavdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

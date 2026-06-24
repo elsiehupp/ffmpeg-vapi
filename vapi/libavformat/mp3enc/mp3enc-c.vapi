@@ -26,44 +26,38 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.IntOption () {
         name = "id3v2_version",
         short_help_text = "Select ID3v2 version to write. Currently 3 and 4 are supported.",
-        offsetof (
+        offset = offsetof (
             MP3Context,
             id3v2_version
         ),
-        {
-            .i64 = 4
-        },
-        0,
-        4,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 4,
+        minimum_value = 0,
+        maximum_value = 4,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "write_id3v1",
         short_help_text = "Enable ID3v1 writing. ID3v1 tags are written in UTF-8 which may not be supported by most software.",
-        offsetof (
+        offset = offsetof (
             MP3Context,
             write_id3v1
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     new LibAVUtil.BoolOption () {
         name = "write_xing",
         short_help_text = "Write the Xing header containing file duration.",
-        offsetof (
+        offset = offsetof (
             MP3Context,
             write_xing
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -196,7 +190,7 @@ public class MP3Muxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mp3enc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

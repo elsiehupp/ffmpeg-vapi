@@ -65,7 +65,7 @@ public class MLPDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mlpdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX | AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.USE_GENERIC_INDEX | AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -142,7 +142,7 @@ public class TrueHDDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mlpdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX | AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.USE_GENERIC_INDEX | AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

@@ -27,22 +27,22 @@ LibAVCodec external API header
 ***********************************************************/
 
 [Flags]
-[CCode (cprefix="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cprefix="SLICE_FLAG_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum SliceFlags {
     /***********************************************************
     @brief draw_horiz_band () is called in coded order instead of display
     ***********************************************************/
-    SLICE_FLAG_CODED_ORDER,
+    CODED_ORDER,
 
     /***********************************************************
     @brief Allow draw_horiz_band () with field slices (MPEG-2 field pics)
     ***********************************************************/
-    SLICE_FLAG_ALLOW_FIELD,
+    ALLOW_FIELD,
 
     /***********************************************************
     @brief Allow draw_horiz_band () with 1 component at a time (SVQ1)
     ***********************************************************/
-    SLICE_FLAG_ALLOW_PLANE;
+    ALLOW_PLANE;
 }
 
 } // namespace LibAVCodec

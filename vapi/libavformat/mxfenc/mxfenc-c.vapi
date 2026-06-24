@@ -39,106 +39,90 @@ SMPTE RP210: SMPTE Metadata Dictionary
 SMPTE RP224: Registry of SMPTE Universal Labels
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="MXF_COMMON_OPTIONS",cheader_filename="")]
 public define MXF_COMMON_OPTIONS
     new LibAVUtil.IntOption () {
         name = "signal_standard",
         short_help_text = "Force/set Signal Standard",
-        offsetof (
+        offset = offsetof (
             MXFContext,
             signal_standard
         ),
-        {
-            .i64 = -1
-        },
-        -1,
-        7,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "signal_standard"
+        default_value = -1,
+        minimum_value = -1,
+        maximum_value = 7,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "signal_standard"
     },
     new LibAVUtil.ConstOption () {
         name = "bt601",
         short_help_text = "ITU-R BT.601 and BT.656, also SMPTE 125M (525 and 625 line interlaced)",
-        0,
-        {
-            .i64 = 1
-        },
-        -1,
-        7,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "signal_standard"
+        offset = 0,
+        default_value = 1,
+        minimum_value = -1,
+        maximum_value = 7,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "signal_standard"
     },
     new LibAVUtil.ConstOption () {
         name = "bt1358",
         short_help_text = "ITU-R BT.1358 and ITU-R BT.799-3, also SMPTE 293M (525 and 625 line progressive)",
-        0,
-        {
-            .i64 = 2
-        },
-        -1,
-        7,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "signal_standard"
+        offset = 0,
+        default_value = 2,
+        minimum_value = -1,
+        maximum_value = 7,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "signal_standard"
     },
     new LibAVUtil.ConstOption () {
         name = "smpte347m",
         short_help_text = "SMPTE 347M (540 Mbps mappings)",
-        0,
-        {
-            .i64 = 3
-        },
-        -1,
-        7,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "signal_standard"
+        offset = 0,
+        default_value = 3,
+        minimum_value = -1,
+        maximum_value = 7,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "signal_standard"
     },
     new LibAVUtil.ConstOption () {
         name = "smpte274m",
         short_help_text = "SMPTE 274M (1125 line)",
-        0,
-        {
-            .i64 = 4
-        },
-        -1,
-        7,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "signal_standard"
+        offset = 0,
+        default_value = 4,
+        minimum_value = -1,
+        maximum_value = 7,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "signal_standard"
     },
     new LibAVUtil.ConstOption () {
         name = "smpte296m",
         short_help_text = "SMPTE 296M (750 line progressive)",
-        0,
-        {
-            .i64 = 5
-        },
-        -1,
-        7,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "signal_standard"
+        offset = 0,
+        default_value = 5,
+        minimum_value = -1,
+        maximum_value = 7,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "signal_standard"
     },
     new LibAVUtil.ConstOption () {
         name = "smpte349m",
         short_help_text = "SMPTE 349M (1485 Mbps mappings)",
-        0,
-        {
-            .i64 = 6
-        },
-        -1,
-        7,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "signal_standard"
+        offset = 0,
+        default_value = 6,
+        minimum_value = -1,
+        maximum_value = 7,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "signal_standard"
     },
     new LibAVUtil.ConstOption () {
         name = "smpte428",
         short_help_text = "SMPTE 428-1 DCDM",
-        0,
-        {
-            .i64 = 7
-        },
-        -1,
-        7,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
-        "signal_standard"
+        offset = 0,
+        default_value = 7,
+        minimum_value = -1,
+        maximum_value = 7,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
+        unit = "signal_standard"
     }
 
 };
@@ -150,16 +134,14 @@ static const LibAVUtil.Option mxf_options[] = {
     new LibAVUtil.BoolOption () {
         name = "store_user_comments",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             MXFContext,
             store_user_comments
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -206,31 +188,27 @@ static const LibAVUtil.Option d10_options[] = {
     new LibAVUtil.IntOption () {
         name = "d10_channelcount",
         short_help_text = "Force/set channelcount in generic sound essence descriptor",
-        offsetof (
+        offset = offsetof (
             MXFContext,
             channel_count
         ),
-        {
-            .i64 = -1
-        },
-        -1,
+        default_value = -1,
+        minimum_value = -1,
         8,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     MXF_COMMON_OPTIONS,
     new LibAVUtil.BoolOption () {
         name = "store_user_comments",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             MXFContext,
             store_user_comments
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -273,31 +251,27 @@ static const LibAVUtil.Option opatom_options[] = {
     new LibAVUtil.RationalOption () {
         name = "mxf_audio_edit_rate",
         short_help_text = "Audio edit rate for timecode",
-        offsetof (
+        offset = offsetof (
             MXFContext,
             audio_edit_rate
         ),
-        {
-            .dbl = 25
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 25,
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     MXF_COMMON_OPTIONS,
     new LibAVUtil.BoolOption () {
         name = "store_user_comments",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             MXFContext,
             store_user_comments
         ),
-        {
-            .i64 = 1
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.ENCODING_PARAM
+        default_value = 1,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
     },
     {
         NULL
@@ -420,7 +394,7 @@ public class MXFOPATOMMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mxfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -511,7 +485,7 @@ public class MXFD10Muxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mxfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -611,7 +585,7 @@ public class MXFMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mxfenc.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

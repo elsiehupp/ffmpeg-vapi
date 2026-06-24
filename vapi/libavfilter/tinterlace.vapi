@@ -26,61 +26,61 @@ temporal field interlace filter, ported from MPlayer/libmpcodecs
 ***********************************************************/
 
 [Flags]
-public enum FooBar {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
-    TINTERLACE_FLAG_VLPF, // 01
+public enum TemporalInterlaceFlags {
+    [CCode (cname="TINTERLACE_FLAG_VLPF",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
+    VLPF, // 01
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
-    TINTERLACE_FLAG_CVLPF, // 2
+    [CCode (cname="TINTERLACE_FLAG_CVLPF",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
+    CVLPF, // 2
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
-    TINTERLACE_FLAG_EXACT_TB; // 4
+    [CCode (cname="TINTERLACE_FLAG_EXACT_TB",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
+    EXACT_TB; // 4
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
-public enum TInterlaceMode {
-    [CCode (cname="")]
-    MODE_MERGE = 0,
+[CCode (cname="enum TInterlaceMode",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
+public enum TemporalInterlaceMode {
+    [CCode (cname="MODE_MERGE")]
+    MERGE, // = 0,
 
-    [CCode (cname="")]
-    MODE_DROP_EVEN,
+    [CCode (cname="MODE_DROP_EVEN")]
+    DROP_EVEN,
 
-    [CCode (cname="")]
-    MODE_DROP_ODD,
+    [CCode (cname="MODE_DROP_ODD")]
+    DROP_ODD,
 
-    [CCode (cname="")]
-    MODE_PAD,
+    [CCode (cname="MODE_PAD")]
+    PAD,
 
-    [CCode (cname="")]
-    MODE_INTERLEAVE_TOP,
+    [CCode (cname="MODE_INTERLEAVE_TOP")]
+    INTERLEAVE_TOP,
 
-    [CCode (cname="")]
-    MODE_INTERLEAVE_BOTTOM,
+    [CCode (cname="MODE_INTERLEAVE_BOTTOM")]
+    INTERLEAVE_BOTTOM,
 
-    [CCode (cname="")]
-    MODE_INTERLACEX2,
+    [CCode (cname="MODE_INTERLACEX2")]
+    INTERLACE_X2,
 
-    [CCode (cname="")]
-    MODE_MERGEX2,
+    [CCode (cname="MODE_MERGEX2")]
+    MERGE_X2,
 
-    [CCode (cname="")]
-    MODE_NB;
+    [CCode (cname="MODE_NB")]
+    MERGE_NB;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
+[CCode (cname="enum InterlaceScanMode",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
 public enum InterlaceScanMode {
-    [CCode (cname="")]
-    MODE_TFF = 0,
+    [CCode (cname="MODE_TFF")]
+    TFF, // = 0,
 
-    [CCode (cname="")]
-    MODE_BFF;
+    [CCode (cname="MODE_BFF")]
+    BFF;
 }
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/tinterlace.h")]
 [Compact]
 public class TInterlaceContext {
-    [CCode (cname="")]
-    public AVClass class;
+    [CCode (cname="class")]
+    public AVClass av_class;
 
     /***********************************************************
     TInterlaceMode, interlace mode selected

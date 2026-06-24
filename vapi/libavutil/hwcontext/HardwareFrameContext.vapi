@@ -129,7 +129,7 @@ public class HardwareFrameContext {
     @brief The pixel format identifying the underlying hardware surface type.
 
     Must be a hwaccel format, i.e. the corresponding descriptor must have the
-    AV_PIX_FMT_FLAG_HWACCEL flag set.
+    PixelFormatFlags.HARDWARE_ACCELERATED flag set.
 
     Must be set by the user before calling av_hwframe_ctx_init ().
     ***********************************************************/

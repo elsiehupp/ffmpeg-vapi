@@ -96,7 +96,7 @@ public class SDLMotionJpegMuxer : AVOutputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GLOBALHEADER | AVFMT_TS_NONSTRICT;
+            return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

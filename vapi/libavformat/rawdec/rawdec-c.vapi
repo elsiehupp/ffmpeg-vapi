@@ -23,35 +23,31 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="")]
+[CCode (cname="ff_rawvideo_options",cheader_filename="")]
 const LibAVUtil.Option ff_rawvideo_options[] = {
     new LibAVUtil.VideoRateOption () {
         name = "framerate",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             FFRawVideoDemuxerContext,
             framerate
         ),
-        {
-            .str = "25"
-        },
-        0,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = "25",
+        minimum_value = 0,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     new LibAVUtil.IntOption () {
         name = "raw_packet_size",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             FFRawVideoDemuxerContext,
             raw_packet_size
         ),
-        {
-            .i64 = RAW_PACKET_SIZE
-        },
-        1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = RAW_PACKET_SIZE,
+        minimum_value = 1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -63,16 +59,14 @@ const LibAVUtil.Option ff_raw_options[] = {
     new LibAVUtil.IntOption () {
         name = "raw_packet_size",
         short_help_text = "",
-        offsetof (
+        offset = offsetof (
             FFRawDemuxerContext,
             raw_packet_size
         ),
-        {
-            .i64 = RAW_PACKET_SIZE
-        },
-        1,
-        int.MAX,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = RAW_PACKET_SIZE,
+        minimum_value = 1,
+        maximum_value = int.MAX,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -126,7 +120,7 @@ public class DataDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_NOTIMESTAMPS;
+            return AVFormatFlags1.NO_TIMESTAMPS;
 
         }
 

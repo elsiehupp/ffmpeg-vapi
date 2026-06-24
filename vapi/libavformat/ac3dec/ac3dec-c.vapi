@@ -73,7 +73,7 @@ public class AC3Demuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 
@@ -160,7 +160,7 @@ public class EAC3Demuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/ac3dec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_GENERIC_INDEX;
+            return AVFormatFlags1.USE_GENERIC_INDEX;
 
         }
 

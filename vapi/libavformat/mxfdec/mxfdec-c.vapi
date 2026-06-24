@@ -50,16 +50,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "eia608_extract",
         short_help_text = "extract eia 608 captions from s436m track",
-        offsetof (
+        offset = offsetof (
             MXFContext,
             eia608_extract
         ),
-        {
-            .i64 = 0
-        },
-        0,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 0,
+        minimum_value = 0,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
@@ -128,7 +126,7 @@ public class MXFDemuxer : AVInputFormat {
     [CCode (cname="flags",cheader_filename="ffmpeg/libformat/mfxdec.c")]
     public override AVFormatFlags1 flags {
         public get {
-            return AVFMT_SEEK_TO_PTS;
+            return AVFormatFlags1.SEEK_TO_PTS;
 
         }
 

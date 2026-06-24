@@ -78,7 +78,7 @@ public class GopherURLProtocol : URLProtocol {
     [CCode (cname="flags",cheader_filename="")]
     public override URLProtocolFlags flags {
         public get {
-            return URL_PROTOCOL_FLAG_NETWORK;
+            return URLProtocolFlags.NETWORK;
 
         }
 

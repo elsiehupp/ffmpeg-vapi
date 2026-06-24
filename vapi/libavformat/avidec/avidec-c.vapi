@@ -26,16 +26,14 @@ static const LibAVUtil.Option options[] = {
     new LibAVUtil.BoolOption () {
         name = "use_odml",
         short_help_text = "use odml index",
-        offsetof (
+        offset = offsetof (
             AVIContext,
             use_odml
         ),
-        {
-            .i64 = 1
-        },
-        -1,
-        1,
-        .flags = LibAVUtil.OptionFlags.DECODING_PARAM
+        default_value = 1,
+        minimum_value = -1,
+        maximum_value = 1,
+        option_flags = LibAVUtil.OptionFlags.DECODING_PARAM
     },
     {
         NULL
