@@ -96,7 +96,7 @@ public class V210DemuxerClass : V210OptionsClass {
 }
 
 [CCode (cname="ff_v210_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
-public class V210Demuxer : AVInputFormat {
+public class V210Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
     public override string name {
         public get {
@@ -126,12 +126,12 @@ public class V210Demuxer : AVInputFormat {
 
     [CCode (cname="v210_read_header",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="v210_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -198,7 +198,7 @@ public class V210XDemuxerClass : V210OptionsClass {
 }
 
 [CCode (cname="ff_v210x_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
-public class V210XDemuxer : AVInputFormat {
+public class V210XDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
     public override string name {
         public get {
@@ -228,12 +228,12 @@ public class V210XDemuxer : AVInputFormat {
 
     [CCode (cname="v210_read_header",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="v210_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/v210.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

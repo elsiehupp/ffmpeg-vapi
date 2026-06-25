@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class NUVDemuxerPrivateData { }
 
 [CCode (cname="ff_nuv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
-public class NUVDemuxer : AVInputFormat {
+public class NUVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override string name {
         public get {
@@ -57,23 +57,23 @@ public class NUVDemuxer : AVInputFormat {
 
     [CCode (cname="nuv_probe",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="nuv_header",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="nuv_packet",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="nuv_read_dts",cheader_filename="subprojects/ffmpeg/libavformat/nuv.c")]
     public override int64 read_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit

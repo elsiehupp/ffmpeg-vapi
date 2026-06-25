@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class GenericDemuxerPrivateData { }
 
 [CCode (cname="ff_genh_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/genh.c")]
-public class GenericDemuxer : AVInputFormat {
+public class GenericDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/genh.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class GenericDemuxer : AVInputFormat {
 
     [CCode (cname="genh_probe",cheader_filename="subprojects/ffmpeg/libavformat/genh.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="genh_read_header",cheader_filename="subprojects/ffmpeg/libavformat/genh.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="genh_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/genh.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

@@ -71,7 +71,7 @@ public typedef union ColorFloat {
 [Compact]
 public class ShowCQTContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
     public AVFilterContext? ctx;
@@ -83,7 +83,7 @@ public class ShowCQTContext {
     public AVFrame? sono_frame;
 
     [CCode (cname="")]
-    public AVPixelFormat format;
+    public LibAVUtil.PixelFormat format;
 
     [CCode (cname="")]
     public int sono_idx;

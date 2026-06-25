@@ -83,7 +83,7 @@ public class G729DemuxerClass : LibAVUtil.Class {
 public class G729DemuxerPrivateData { }
 
 [CCode (cname="ff_g729_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
-public class G729Demuxer : AVInputFormat {
+public class G729Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override string name {
         public get {
@@ -113,12 +113,12 @@ public class G729Demuxer : AVInputFormat {
 
     [CCode (cname="g729_read_header",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="g729_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/g729dec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

@@ -28,7 +28,7 @@ public class TAKDemuxerPrivateData { }
 
 //  FF_RAW_DEMUXER_CLASS (tak)
 [CCode (cname="ff_tak_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/takdec.c")]
-public class TAKDemuxer : AVInputFormat {
+public class TAKDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/takdec.c")]
     public override string name {
         public get {
@@ -58,17 +58,17 @@ public class TAKDemuxer : AVInputFormat {
 
     [CCode (cname="tak_probe",cheader_filename="subprojects/ffmpeg/libavformat/takdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="tak_read_header",cheader_filename="subprojects/ffmpeg/libavformat/takdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="raw_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/takdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

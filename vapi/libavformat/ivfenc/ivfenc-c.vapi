@@ -61,7 +61,7 @@ static const AVCodecTag codec_ivf_tags[] = {
 };
 
 [CCode (cname="ff_ivf_muxer",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
-public class IVFMuxer : AVOutputFormat {
+public class IVFMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override size_t priv_data_size {
         public get {
@@ -118,23 +118,23 @@ public class IVFMuxer : AVOutputFormat {
 
     [CCode (cname="ivf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ivf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         tag = LibAVCodec.Packet packet
     );
 
     [CCode (cname="ivf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ivf_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/ivfenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         tag = LibAVCodec.Packet packet
     );
 

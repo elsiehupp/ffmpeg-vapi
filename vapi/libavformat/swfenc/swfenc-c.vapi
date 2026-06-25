@@ -26,7 +26,7 @@ namespace LibAVFormat {
 #if CONFIG_SWF_MUXER
 
 [CCode (cname="ff_swf_muxer",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
-public class SWFMuxer : AVOutputFormat {
+public class SWFMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override string name {
         public get {
@@ -92,7 +92,7 @@ public class SWFMuxer : AVOutputFormat {
 
     [CCode (cname="swf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="swf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
@@ -104,7 +104,7 @@ public class SWFMuxer : AVOutputFormat {
 
     [CCode (cname="swf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
@@ -121,7 +121,7 @@ public class SWFMuxer : AVOutputFormat {
 #if CONFIG_AVM2_MUXER
 
 [CCode (cname="ff_avm2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
-public class AVM2Muxer : AVOutputFormat {
+public class AVM2Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override string name {
         public get {
@@ -178,7 +178,7 @@ public class AVM2Muxer : AVOutputFormat {
 
     [CCode (cname="swf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="swf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
@@ -190,7 +190,7 @@ public class AVM2Muxer : AVOutputFormat {
 
     [CCode (cname="swf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/swfenc.c")]

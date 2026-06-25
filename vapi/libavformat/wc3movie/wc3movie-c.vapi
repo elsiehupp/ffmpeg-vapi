@@ -34,7 +34,7 @@ http://www.pcisys.net/~melanson/codecs/
 public class WC3DemuxerPrivateData { }
 
 [CCode (cname="ff_wc3_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/wc3movie.c")]
-public class WC3Demuxer : AVInputFormat {
+public class WC3Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wc3movie.c")]
     public override string name {
         public get {
@@ -64,23 +64,23 @@ public class WC3Demuxer : AVInputFormat {
 
     [CCode (cname="wc3_probe",cheader_filename="subprojects/ffmpeg/libavformat/wc3movie.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="wc3_read_header",cheader_filename="subprojects/ffmpeg/libavformat/wc3movie.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="wc3_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/wc3movie.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="wc3_read_close",cheader_filename="subprojects/ffmpeg/libavformat/wc3movie.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

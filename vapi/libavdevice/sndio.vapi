@@ -24,7 +24,7 @@ namespace LibAVDevice {
 [Compact]
 public class SndioData {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
     public sio_hdl? hdl;
@@ -59,7 +59,7 @@ public class SndioData {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/sndio.h")]
 public int ff_sndio_open (
-    AVFormatContext? s1,
+    LibAVFormat.FormatContext? s1,
     int is_output,
     string audio_device
 );

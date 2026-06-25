@@ -65,7 +65,7 @@ public class RTSPDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_rtsp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rtspdec.c")]
-public class RTSPDemuxer : AVInputFormat {
+public class RTSPDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtspdec.c")]
     public override string name {
         public get {
@@ -95,28 +95,28 @@ public class RTSPDemuxer : AVInputFormat {
 
     [CCode (cname="rtsp_probe",cheader_filename="subprojects/ffmpeg/libavformat/rtspdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="rtsp_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rtspdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rtsp_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtspdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="rtsp_read_close",cheader_filename="subprojects/ffmpeg/libavformat/rtspdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rtsp_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/rtspdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -133,12 +133,12 @@ public class RTSPDemuxer : AVInputFormat {
 
     [CCode (cname="rtsp_read_play",cheader_filename="subprojects/ffmpeg/libavformat/rtspdec.c")]
     public override int read_play (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rtsp_read_pause",cheader_filename="subprojects/ffmpeg/libavformat/rtspdec.c")]
     public override int read_pause (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = rtsp_demuxer_class;
 }

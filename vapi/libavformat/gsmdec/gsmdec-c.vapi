@@ -85,7 +85,7 @@ public class GSMDemuxerClass : LibAVUtil.Class {
 public class GSMDemuxerPrivateData { }
 
 [CCode (cname="ff_gsm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
-public class GSMDemuxer : AVInputFormat {
+public class GSMDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override string name {
         public get {
@@ -115,17 +115,17 @@ public class GSMDemuxer : AVInputFormat {
 
     [CCode (cname="gsm_probe",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="gsm_read_header",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="gsm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/gsmdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

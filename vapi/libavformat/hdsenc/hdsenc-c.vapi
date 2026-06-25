@@ -119,7 +119,7 @@ public class HDSMuxerClass : LibAVUtil.Class {
 public class HDSMuxerPrivateData { }
 
 [CCode (cname="ff_hds_muxer",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
-public class HDSMuxer : AVOutputFormat {
+public class HDSMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override string name {
         public get {
@@ -176,18 +176,18 @@ public class HDSMuxer : AVOutputFormat {
 
     [CCode (cname="hds_write_header",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="hds_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="hds_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/hdsenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = hds_class;
 }

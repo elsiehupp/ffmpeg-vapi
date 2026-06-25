@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class VOCMuxerPrivateData { }
 
 [CCode (cname="ff_voc_muxer",cheader_filename="subprojects/ffmpeg/libavformat/vocenc.c")]
-public class VOCMuxer : AVOutputFormat {
+public class VOCMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vocenc.c")]
     public override string name {
         public get {
@@ -93,18 +93,18 @@ public class VOCMuxer : AVOutputFormat {
 
     [CCode (cname="voc_write_header",cheader_filename="subprojects/ffmpeg/libavformat/vocenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="voc_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/vocenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="voc_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/vocenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="codec_tag")]

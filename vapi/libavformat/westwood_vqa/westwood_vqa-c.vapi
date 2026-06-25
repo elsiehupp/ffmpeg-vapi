@@ -35,7 +35,7 @@ http://www.geocities.com/SiliconValley/8682/aud3.txt
 public class WSVQADemuxerPrivateData { }
 
 [CCode (cname="ff_wsvqa_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/westwood_vqa.c")]
-public class WSVQADemuxer : AVInputFormat {
+public class WSVQADemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/westwood_vqa.c")]
     public override string name {
         public get {
@@ -65,17 +65,17 @@ public class WSVQADemuxer : AVInputFormat {
 
     [CCode (cname="wsvqa_probe",cheader_filename="subprojects/ffmpeg/libavformat/westwood_vqa.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="wsvqa_read_header",cheader_filename="subprojects/ffmpeg/libavformat/westwood_vqa.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="wsvqa_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/westwood_vqa.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

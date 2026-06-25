@@ -49,7 +49,7 @@ public void ff_hls_write_audio_rendition (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/hlsplaylist.h")]
 public void ff_hls_write_stream_info (
-    AVStream st,
+    LibAVFormat.Stream st,
     AVIOContext output,
     int bandwidth,
     string filename,

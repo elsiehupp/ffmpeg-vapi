@@ -29,7 +29,7 @@ Format specified in SMPTE standard 421 Annex L
 ***********************************************************/
 
 [CCode (cname="ff_vc1t_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
-public class VC1TestDemuxer : AVInputFormat {
+public class VC1TestDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override string name {
         public get {
@@ -50,17 +50,17 @@ public class VC1TestDemuxer : AVInputFormat {
 
     [CCode (cname="vc1t_probe",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="vc1t_read_header",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="vc1t_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/vc1test.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

@@ -24,7 +24,7 @@ namespace LibAVUtil {
 /***********************************************************
 @brief Describe the class of an Class context structure. That is an
 arbitrary struct of which the first field is a pointer to an
-Class struct (e.g. LibAVCodec.CodecContext, AVFormatContext etc.).
+Class struct (e.g. LibAVCodec.CodecContext, LibAVFormat.FormatContext etc.).
 ***********************************************************/
 [CCode (cname="struct AVClass",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public abstract class Class {

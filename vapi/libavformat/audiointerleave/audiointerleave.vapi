@@ -68,19 +68,19 @@ public class AudioInterleaveContext {
 
 [CCode (cname="ff_audio_interleave_init",cheader_filename="subprojects/ffmpeg/libformat/audiointerleave.h")]
 public int ff_audio_interleave_init (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int[] samples_per_frame,
     LibAVUtil.Rational time_base
 );
 
 [CCode (cname="ff_audio_interleave_close",cheader_filename="subprojects/ffmpeg/libformat/audiointerleave.h")]
 public void ff_audio_interleave_close (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/audiointerleave.h")]
 public delegate int GetPacketDelegate (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet_1,
     LibAVCodec.Packet packet_2,
     int arg
@@ -88,7 +88,7 @@ public delegate int GetPacketDelegate (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/audiointerleave.h")]
 public delegate int CompareTimeStampDelegate (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet_1,
     LibAVCodec.Packet packet_2
 );
@@ -96,7 +96,7 @@ public delegate int CompareTimeStampDelegate (
 /***********************************************************
 @brief Rechunk audio PCM packets per AudioInterleaveContext.samples_per_frame
 and interleave them correctly.
-The first element of AVStream.priv_data must be AudioInterleaveContext
+The first element of LibAVFormat.Stream.priv_data must be AudioInterleaveContext
 when using this function.
 
 @param get_packet function will output a packet when streams are correctly interleaved.
@@ -104,7 +104,7 @@ when using this function.
 ***********************************************************/
 [CCode (cname="ff_audio_rechunk_interleave",cheader_filename="subprojects/ffmpeg/libformat/audiointerleave.h")]
 public int ff_audio_rechunk_interleave (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet out,
     LibAVCodec.Packet packet,
     int flush,

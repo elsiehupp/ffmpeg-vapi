@@ -119,7 +119,7 @@ public class RTPMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_rtp_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
-public class RTPMuxer : AVOutputFormat {
+public class RTPMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override string name {
         public get {
@@ -167,18 +167,18 @@ public class RTPMuxer : AVOutputFormat {
 
     [CCode (cname="rtp_write_header",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rtp_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="rtp_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = rtp_muxer_class,
 

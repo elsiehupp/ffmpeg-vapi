@@ -143,7 +143,7 @@ public class WebVTTDemuxerClass : LibAVUtil.Class {
 public class WebVTTDemuxerPrivateData { }
 
 [CCode (cname="ff_webvtt_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
-public class WebVTTDemuxer : AVInputFormat {
+public class WebVTTDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override string name {
         public get {
@@ -173,23 +173,23 @@ public class WebVTTDemuxer : AVInputFormat {
 
     [CCode (cname="webvtt_probe",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="webvtt_read_header",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="webvtt_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="webvtt_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -199,7 +199,7 @@ public class WebVTTDemuxer : AVInputFormat {
 
     [CCode (cname="webvtt_read_close",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]

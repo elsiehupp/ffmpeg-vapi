@@ -25,7 +25,7 @@ namespace LibAVFormat {
 #if CONFIG_BIT_MUXER
 
 [CCode (cname="ff_bit_muxer",cheader_filename="ffmpeg/libavformat/bit.c")]
-public class G729BitMuxer : AVOutputFormat {
+public class G729BitMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="ffmpeg/libavformat/bit.c")]
     public override string name {
         public get {
@@ -82,7 +82,7 @@ public class G729BitMuxer : AVOutputFormat {
 
     [CCode (cname="write_header",cheader_filename="ffmpeg/libavformat/bit.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="write_packet",cheader_filename="ffmpeg/libavformat/bit.c")]

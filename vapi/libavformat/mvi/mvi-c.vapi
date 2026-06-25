@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class MVIDemuxerPrivateData { }
 
 [CCode (cname="ff_mvi_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mvi.c")]
-public class MVIDemuxer : AVInputFormat {
+public class MVIDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mvi.c")]
     public override string name {
         public get {
@@ -57,12 +57,12 @@ public class MVIDemuxer : AVInputFormat {
 
     [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/mvi.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mvi.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

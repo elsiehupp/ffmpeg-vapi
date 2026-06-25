@@ -238,7 +238,7 @@ public class MpegTSRawDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_mpegts_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
-public class MPEGTSDemuxer : AVInputFormat {
+public class MPEGTSDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string name {
         public get {
@@ -268,28 +268,28 @@ public class MPEGTSDemuxer : AVInputFormat {
 
     [CCode (cname="mpegts_probe",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="mpegts_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpegts_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mpegts_read_close",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpegts_get_dts",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int64 read_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
@@ -307,7 +307,7 @@ public class MPEGTSDemuxer : AVInputFormat {
 }
 
 [CCode (cname="ff_mpegtsraw_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
-public class MpegTSRawDemuxer : AVInputFormat {
+public class MpegTSRawDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string name {
         public get {
@@ -337,23 +337,23 @@ public class MpegTSRawDemuxer : AVInputFormat {
 
     [CCode (cname="mpegts_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpegts_raw_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mpegts_read_close",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpegts_get_dts",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override int64 read_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit

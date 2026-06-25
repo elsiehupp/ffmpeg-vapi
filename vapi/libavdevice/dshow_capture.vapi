@@ -53,7 +53,7 @@ public void ff_printGUID (
     GUID? g
 );
 
-//  extern const AVClass? ff_dshow_context_class_ptr;
+//  extern const LibAVUtil.Class? ff_dshow_context_class_ptr;
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public static void dshowdebug (
@@ -744,7 +744,7 @@ dshow_ctx
 [Compact]
 public class dshow_ctx {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
     public IGraphBuilder? graph;
@@ -835,7 +835,7 @@ public class dshow_ctx {
     public HANDLE event[2];
 
     [CCode (cname="")]
-    public AVPacketList? pktl;
+    public LibAVFormat.PacketList? pktl;
 
     [CCode (cname="")]
     public int eof;
@@ -853,7 +853,7 @@ public class dshow_ctx {
     public IMediaEvent? media_event;
 
     [CCode (cname="")]
-    public AVPixelFormat pixel_format;
+    public LibAVUtil.PixelFormat pixel_format;
 
     [CCode (cname="")]
     public AVCodecID video_codec_id;
@@ -888,13 +888,13 @@ public HRESULT dshow_try_setup_crossbar_options (
     ICaptureGraphBuilder2? graph_builder2,
     IBaseFilter? device_filter,
     DirectShowDeviceType devtype,
-    AVFormatContext? avctx
+    LibAVFormat.FormatContext? avctx
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public void dshow_show_filter_properties (
     IBaseFilter? pFilter,
-    AVFormatContext? avctx
+    LibAVFormat.FormatContext? avctx
 );
 
 } // namespace LibAVDevice

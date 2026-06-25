@@ -38,7 +38,7 @@ public int ff_load_image (
     int linesize[4],
     out int w,
     out int h,
-    AVPixelFormat? pix_fmt,
+    LibAVUtil.PixelFormat? pix_fmt,
     string filename,
     void *log_ctx
 );

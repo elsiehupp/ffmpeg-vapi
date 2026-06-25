@@ -96,7 +96,7 @@ public class APNGMuxerClass : LibAVUtil.Class {
 public class APNGMuxerPrivateData { }
 
 [CCode (cname="ff_apng_muxer",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
-public class APNGMuxer : AVOutputFormat {
+public class APNGMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override string name {
         public get {
@@ -162,23 +162,23 @@ public class APNGMuxer : AVOutputFormat {
 
     [CCode (cname="apng_write_header",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="apng_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="apng_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="apng_deinit",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = apng_muxer_class,
 

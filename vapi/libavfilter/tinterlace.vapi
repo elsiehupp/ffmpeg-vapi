@@ -81,7 +81,7 @@ public enum InterlaceScanMode {
 [Compact]
 public class TInterlaceContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     /***********************************************************
     TInterlaceMode, interlace mode selected

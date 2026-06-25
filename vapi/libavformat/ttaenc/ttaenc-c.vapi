@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class TrueAudioMuxerPrivateData { }
 
 [CCode (cname="ff_tta_muxer",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
-public class TrueAudioMuxer : AVOutputFormat {
+public class TrueAudioMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override string name {
         public get {
@@ -93,23 +93,23 @@ public class TrueAudioMuxer : AVOutputFormat {
 
     [CCode (cname="tta_init",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="tta_write_header",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="tta_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="tta_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/ttaenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

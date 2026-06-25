@@ -24,7 +24,7 @@ namespace LibAVFormat {
 //  FF_RAW_DEMUXER_CLASS (acm)
 
 [CCode (cname="ff_acm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
-public class ACMDemuxer : AVInputFormat {
+public class ACMDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override string name {
         public get {
@@ -45,17 +45,17 @@ public class ACMDemuxer : AVInputFormat {
 
     [CCode (cname="acm_probe",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="acm_read_header",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/acm.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

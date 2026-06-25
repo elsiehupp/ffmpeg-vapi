@@ -84,7 +84,7 @@ public class MultipartJpegMuxerClass : LibAVUtil.Class {
 public class MultipartJpegMuxerPrivateData { }
 
 [CCode (cname="ff_mpjpeg_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
-public class MultipartJpegMuxer : AVOutputFormat {
+public class MultipartJpegMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override string name {
         public get {
@@ -150,18 +150,18 @@ public class MultipartJpegMuxer : AVOutputFormat {
 
     [CCode (cname="mpjpeg_write_header",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpjpeg_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mpjpeg_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]

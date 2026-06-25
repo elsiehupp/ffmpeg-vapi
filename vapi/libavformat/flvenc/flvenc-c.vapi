@@ -134,7 +134,7 @@ public class FLVMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_flv_muxer",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
-public class FLVMuxer : AVOutputFormat {
+public class FLVMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override string name {
         public get {
@@ -202,28 +202,28 @@ public class FLVMuxer : AVOutputFormat {
 
     [CCode (cname="flv_init",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flv_write_header",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flv_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="flv_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flv_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

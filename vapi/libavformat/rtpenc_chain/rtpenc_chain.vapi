@@ -24,9 +24,9 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_rtp_chain_mux_open",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_chain.h")]
 public int ff_rtp_chain_mux_open (
-    out AVFormatContext output,
-    AVFormatContext format_context,
-    AVStream st,
+    out LibAVFormat.FormatContext output,
+    LibAVFormat.FormatContext format_context,
+    LibAVFormat.Stream st,
     URLContext handle,
     int packet_size,
     int id

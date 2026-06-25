@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_null_muxer",cheader_filename="subprojects/ffmpeg/libavformat/nullenc.c")]
-public class NullMuxer : AVOutputFormat {
+public class NullMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/nullenc.c")]
     public override string name {
         public get {
@@ -64,7 +64,7 @@ public class NullMuxer : AVOutputFormat {
 
     [CCode (cname="null_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/nullenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class SAPMuxerState { }
 
 [CCode (cname="ff_sap_muxer",cheader_filename="subprojects/ffmpeg/libavformat/sapenc.c")]
-public class SAPMuxer : AVOutputFormat {
+public class SAPMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sapenc.c")]
     public override string name {
         public get {
@@ -75,18 +75,18 @@ public class SAPMuxer : AVOutputFormat {
 
     [CCode (cname="sap_write_header",cheader_filename="subprojects/ffmpeg/libavformat/sapenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="sap_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/sapenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="sap_write_close",cheader_filename="subprojects/ffmpeg/libavformat/sapenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/sapenc.c")]

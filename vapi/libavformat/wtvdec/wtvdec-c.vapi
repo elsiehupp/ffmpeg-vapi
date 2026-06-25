@@ -32,7 +32,7 @@ namespace LibAVFormat {
 public class WTVDemuxerPrivateData { }
 
 [CCode (cname="ff_wtv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
-public class WTVDemuxer : AVInputFormat {
+public class WTVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override string name {
         public get {
@@ -62,23 +62,23 @@ public class WTVDemuxer : AVInputFormat {
 
     [CCode (cname="read_probe",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="read_seek",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -86,7 +86,7 @@ public class WTVDemuxer : AVInputFormat {
 
     [CCode (cname="read_close",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/wtvdec.c")]

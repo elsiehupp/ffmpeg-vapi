@@ -30,7 +30,7 @@ public const size_t MAX_LEVEL; // 6
 [Compact]
 public class SPPContext {
     [CCode (cname="")]
-    public AVClass? av_class;
+    public LibAVUtil.Class? av_class;
 
     [CCode (cname="")]
     public int log2_count;

@@ -217,7 +217,7 @@ public class NUTContext {
     public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
-    public AVFormatContext avf;
+    public LibAVFormat.FormatContext avf;
 
     //  public int written_packet_size;
 

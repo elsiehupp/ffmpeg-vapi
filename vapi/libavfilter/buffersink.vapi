@@ -76,7 +76,7 @@ public class AVBufferSinkParams {
     list of allowed pixel formats, terminated by AV_PIX_FMT_NONE
     ***********************************************************/
     [CCode (cname="")]
-    public AVPixelFormat[] pixel_fmts;
+    public LibAVUtil.PixelFormat[] pixel_fmts;
 }
 
 /***********************************************************

@@ -27,7 +27,7 @@ public const uint32 VAAPI_VPP_BACKGROUND_BLACK; // 0xff000000
 [Compact]
 public class VAAPIVPPContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
     public AVVAAPIDeviceContext? hwctx;
@@ -54,7 +54,7 @@ public class VAAPIVPPContext {
     public VARectangle input_region;
 
     [CCode (cname="")]
-    public AVPixelFormat output_format;
+    public LibAVUtil.PixelFormat output_format;
 
     /***********************************************************
     computed width

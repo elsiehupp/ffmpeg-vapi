@@ -35,7 +35,7 @@ For no string, set to an empty string.
 public int64 ff_vorbiscomment_length (
     LibAVUtil.Dictionary m,
     string vendor_string,
-    AVChapter[] chapters,
+    LibAVFormat.Chapter[] chapters,
     uint nb_chapters
 );
 
@@ -56,7 +56,7 @@ public int ff_vorbiscomment_write (
     out uint8[] p,
     out LibAVUtil.Dictionary m,
     string vendor_string,
-    AVChapter[] chapters,
+    LibAVFormat.Chapter[] chapters,
     uint nb_chapters
 );
 

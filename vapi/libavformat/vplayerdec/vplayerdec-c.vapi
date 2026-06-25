@@ -30,7 +30,7 @@ namespace LibAVFormat {
 public class VPlayerDemuxerPrivateData { }
 
 [CCode (cname="ff_vplayer_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
-public class VPlayerDemuxer : AVInputFormat {
+public class VPlayerDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override string name {
         public get {
@@ -60,23 +60,23 @@ public class VPlayerDemuxer : AVInputFormat {
 
     [CCode (cname="vplayer_probe",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="vplayer_read_header",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="vplayer_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="vplayer_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -86,7 +86,7 @@ public class VPlayerDemuxer : AVInputFormat {
 
     [CCode (cname="vplayer_read_close",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/vplayerdec.c")]

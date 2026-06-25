@@ -22,24 +22,24 @@ namespace LibAVDevice {
 
 [CCode (cname="ff_decklink_read_header",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_dec.h")]
 public int ff_decklink_read_header (
-    AVFormatContext? avctx
+    LibAVFormat.FormatContext? avctx
 );
 
 [CCode (cname="ff_decklink_read_packet",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_dec.h")]
 public int ff_decklink_read_packet (
-    AVFormatContext? avctx,
+    LibAVFormat.FormatContext? avctx,
     AVPacket? pkt
 );
 
 [CCode (cname="ff_decklink_read_close",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_dec.h")]
 public int ff_decklink_read_close (
-    AVFormatContext? avctx
+    LibAVFormat.FormatContext? avctx
 );
 
 [CCode (cname="ff_decklink_list_input_devices",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_dec.h")]
 public int ff_decklink_list_input_devices (
-    AVFormatContext? avctx,
-    AVDeviceInfoList? device_list
+    LibAVFormat.FormatContext? avctx,
+    LibAVFormat.DeviceInfoList? device_list
 );
 
 

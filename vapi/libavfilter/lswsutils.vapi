@@ -31,12 +31,12 @@ public int ff_scale_image (
     int dst_linesize[4],
     int dst_w,
     int dst_h,
-    AVPixelFormat dst_pix_fmt,
+    LibAVUtil.PixelFormat dst_pix_fmt,
     uint8[] const src_data[4],
     int src_linesize[4],
     int src_w,
     int src_h,
-    AVPixelFormat src_pix_fmt,
+    LibAVUtil.PixelFormat src_pix_fmt,
     void *log_ctx
 );
 

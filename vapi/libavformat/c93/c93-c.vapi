@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class C93DemuxerPrivateData { }
 
 [CCode (cname="ff_c93_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/c93.c")]
-public class C93Demuxer : AVInputFormat {
+public class C93Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/c93.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class C93Demuxer : AVInputFormat {
 
     [CCode (cname="probe",cheader_filename="subprojects/ffmpeg/libavformat/c93.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/c93.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/c93.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

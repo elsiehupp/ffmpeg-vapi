@@ -33,7 +33,7 @@ namespace LibAVFormat {
 public class TMVDemuxerPrivateData { }
 
 [CCode (cname="ff_tmv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/tmv.c")]
-public class TMVDemuxer : AVInputFormat {
+public class TMVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/tmv.c")]
     public override string name {
         public get {
@@ -63,23 +63,23 @@ public class TMVDemuxer : AVInputFormat {
 
     [CCode (cname="tmv_probe",cheader_filename="subprojects/ffmpeg/libavformat/tmv.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="tmv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/tmv.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="tmv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/tmv.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="tmv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/tmv.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

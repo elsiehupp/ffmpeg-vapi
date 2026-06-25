@@ -83,7 +83,7 @@ public class TedCaptionsDemuxerClass : LibAVUtil.Class {
 public class TedCaptionsDemuxerPrivateData { }
 
 [CCode (cname="ff_tedcaptions_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
-public class TedCaptionsDemuxer : AVInputFormat {
+public class TedCaptionsDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
     public override string name {
         public get {
@@ -114,28 +114,28 @@ public class TedCaptionsDemuxer : AVInputFormat {
 
     [CCode (cname="tedcaptions_read_header",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="tedcaptions_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="tedcaptions_read_close",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="tedcaptions_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="tedcaptions_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,

@@ -26,7 +26,7 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_flac_parse_picture",cheader_filename="subprojects/ffmpeg/libformat/flag_picture.h")]
 public int ff_flac_parse_picture (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     uint8[] buffer,
     int buf_size
 );

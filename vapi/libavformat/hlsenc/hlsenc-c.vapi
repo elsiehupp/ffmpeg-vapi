@@ -740,7 +740,7 @@ public class HLSMuxerClass : LibAVUtil.Class {
 public class HLSMuxerPrivateData { }
 
 [CCode (cname="ff_hls_muxer",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
-public class HLSMuxer : AVOutputFormat {
+public class HLSMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override string name {
         public get {
@@ -815,23 +815,23 @@ public class HLSMuxer : AVOutputFormat {
 
     [CCode (cname="hls_init",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="hls_write_header",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="hls_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="hls_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = hls_class;
 }

@@ -29,10 +29,10 @@ public class RTPMuxContext {
     public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
-    public AVFormatContext ic;
+    public LibAVFormat.FormatContext ic;
 
     [CCode (cname="")]
-    public AVStream st;
+    public LibAVFormat.Stream st;
 
     [CCode (cname="")]
     public int payload_type;
@@ -197,7 +197,7 @@ public static LibAVUtil.Option[] FF_RTP_FLAG_OPTS (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_data (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buf1,
     int len,
     int m
@@ -205,28 +205,28 @@ public void ff_rtp_send_data (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_h264_hevc (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buf1,
     int size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_h261 (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buf1,
     int size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_h263 (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buf1,
     int size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_h263_rfc2190 (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buf1,
     int size,
     uint8[] mb_info,
@@ -235,42 +235,42 @@ public void ff_rtp_send_h263_rfc2190 (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_aac (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buff,
     int size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_latm (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buff,
     int size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_amr (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buff,
     int size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_mpegvideo (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buf1,
     int size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_xiph (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buff,
     int size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_vc2hq (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buffer,
     int size,
     int interlaced
@@ -278,21 +278,21 @@ public void ff_rtp_send_vc2hq (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_vp8 (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buff,
     int size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_vp9 (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buff,
     int size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc.h")]
 public void ff_rtp_send_jpeg (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     uint8[] buff,
     int size
 );

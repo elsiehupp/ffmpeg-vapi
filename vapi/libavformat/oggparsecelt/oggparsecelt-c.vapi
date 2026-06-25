@@ -43,7 +43,7 @@ public class CELTCodec : OggCodec {
 
     [CCode (cname="celt_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsecelt.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 

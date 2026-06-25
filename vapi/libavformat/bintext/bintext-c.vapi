@@ -103,7 +103,7 @@ public abstract class BinTextClass : LibAVUtil.Class {
 #if CONFIG_BINTEXT_DEMUXER
 
 [CCode (cname="ff_bintext_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
-public class BinaryTextDemuxer : AVInputFormat {
+public class BinaryTextDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override string name {
         public get {
@@ -133,17 +133,17 @@ public class BinaryTextDemuxer : AVInputFormat {
 
     [CCode (cname="bin_probe",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="bintext_read_header",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -171,7 +171,7 @@ public class BinaryTextDemuxerBinTextClass : BinTextClass {
 #if CONFIG_XBIN_DEMUXER
 
 [CCode (cname="ff_xbin_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
-public class XBINDemuxer : AVInputFormat {
+public class XBINDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override string name {
         public get {
@@ -201,17 +201,17 @@ public class XBINDemuxer : AVInputFormat {
 
     [CCode (cname="xbin_probe",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="xbin_read_header",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -239,7 +239,7 @@ public class XBINDemuxerBinTextClass : BinTextClass {
 #if CONFIG_ADF_DEMUXER
 
 [CCode (cname="ff_adf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
-public class ADFDemuxer : AVInputFormat {
+public class ADFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override string name {
         public get {
@@ -269,12 +269,12 @@ public class ADFDemuxer : AVInputFormat {
 
     [CCode (cname="adf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -311,7 +311,7 @@ public class ADFDemuxerBinTextClass : BinTextClass {
 #if CONFIG_IDF_DEMUXER
 
 [CCode (cname="ff_idf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
-public class IDFDemuxer : AVInputFormat {
+public class IDFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override string name {
         public get {
@@ -341,17 +341,17 @@ public class IDFDemuxer : AVInputFormat {
 
     [CCode (cname="idf_probe",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="idf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

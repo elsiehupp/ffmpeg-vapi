@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class TrueAudioDemuxerPrivateData { }
 
 [CCode (cname="ff_tta_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
-public class TrueAudioDemuxer : AVInputFormat {
+public class TrueAudioDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override string name {
         public get {
@@ -57,23 +57,23 @@ public class TrueAudioDemuxer : AVInputFormat {
 
     [CCode (cname="tta_probe",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="tta_read_header",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="tta_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="tta_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/tta.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_ircam_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ircamdec.c")]
-public class IRCAMDemuxer : AVInputFormat {
+public class IRCAMDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ircamdec.c")]
     public override string name {
         public get {
@@ -44,23 +44,23 @@ public class IRCAMDemuxer : AVInputFormat {
 
     [CCode (cname="ircam_probe",cheader_filename="subprojects/ffmpeg/libavformat/ircamdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ircam_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ircamdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_pcm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/ircamdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/ircamdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

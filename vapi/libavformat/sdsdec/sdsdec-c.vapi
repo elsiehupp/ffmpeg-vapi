@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class SDSDemuxerPrivateData { }
 
 [CCode (cname="ff_sds_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
-public class SDSDemuxer : AVInputFormat {
+public class SDSDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class SDSDemuxer : AVInputFormat {
 
     [CCode (cname="sds_probe",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="sds_read_header",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="sds_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/sdsdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

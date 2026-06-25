@@ -45,13 +45,13 @@ public class OGMVideoCodec : OggCodec {
 
     [CCode (cname="ogm_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="ogm_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
@@ -94,13 +94,13 @@ public class OGMAudioCodec : OggCodec {
 
     [CCode (cname="ogm_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="ogm_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
@@ -143,13 +143,13 @@ public class OGMTextCodec : OggCodec {
 
     [CCode (cname="ogm_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="ogm_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
@@ -192,13 +192,13 @@ public class OGMOldCodec : OggCodec {
 
     [CCode (cname="ogm_dshow_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="ogm_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparseogm.c")]
     public override int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 

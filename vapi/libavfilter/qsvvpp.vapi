@@ -129,7 +129,7 @@ public class QSVVPPParam {
     Real output format
     ***********************************************************/
     [CCode (cname="")]
-    public AVPixelFormat out_sw_format;
+    public LibAVUtil.PixelFormat out_sw_format;
 
     /***********************************************************
     Crop information for each input, if needed

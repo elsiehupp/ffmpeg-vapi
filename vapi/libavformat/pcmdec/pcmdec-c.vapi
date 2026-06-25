@@ -87,7 +87,7 @@ public abstract class PCMDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
-public abstract class PCMDemuxer : AVInputFormat {
+public abstract class PCMDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override size_t priv_data_size {
         public get {
@@ -99,18 +99,18 @@ public abstract class PCMDemuxer : AVInputFormat {
 
     [CCode (cname="pcm_read_header",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_pcm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -1301,7 +1301,7 @@ public class SLNDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_sln_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
-public class SLNDemuxer : AVInputFormat {
+public class SLNDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string name {
         public get {

@@ -33,7 +33,7 @@ namespace LibAVFormat {
 public class BFIDemuxerPrivateData { }
 
 [CCode (cname="ff_bfi_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
-public class BFIDemuxer : AVInputFormat {
+public class BFIDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
     public override string name {
         public get {
@@ -63,17 +63,17 @@ public class BFIDemuxer : AVInputFormat {
 
     [CCode (cname="bfi_probe",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="bfi_read_header",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="bfi_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/bfi.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

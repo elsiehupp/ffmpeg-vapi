@@ -67,9 +67,9 @@ public class JPEGDynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="jpeg_parse_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_jpeg.c")]
     public override int parse_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         PayloadContext payload_context,
-        AVStream st,
+        LibAVFormat.Stream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
         uint8[] buffer,

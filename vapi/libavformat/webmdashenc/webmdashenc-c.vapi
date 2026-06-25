@@ -172,7 +172,7 @@ public class WebMDashManifestMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_webm_dash_manifest_muxer",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
-public class WebMDashManifestMuxer : AVOutputFormat {
+public class WebMDashManifestMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override string name {
         public get {
@@ -220,7 +220,7 @@ public class WebMDashManifestMuxer : AVOutputFormat {
 
     [CCode (cname="webm_dash_manifest_write_header",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="webm_dash_manifest_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
@@ -232,7 +232,7 @@ public class WebMDashManifestMuxer : AVOutputFormat {
 
     [CCode (cname="webm_dash_manifest_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = webm_dash_class;
 }

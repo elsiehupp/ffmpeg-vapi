@@ -31,7 +31,7 @@ public class FRMDemuxerPrivateData { }
 ***********************************************************/
 
 [CCode (cname="ff_frm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
-public class FRMDemuxer : AVInputFormat {
+public class FRMDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
     public override string name {
         public get {
@@ -61,17 +61,17 @@ public class FRMDemuxer : AVInputFormat {
 
     [CCode (cname="frm_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="frm_read_header",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="frm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/frmdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

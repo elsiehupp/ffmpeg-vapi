@@ -36,7 +36,7 @@ RIFF headers, followed by CD sectors.
 public class STRDemuxerPrivateData { }
 
 [CCode (cname="ff_str_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
-public class STRDemuxer : AVInputFormat {
+public class STRDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override string name {
         public get {
@@ -66,23 +66,23 @@ public class STRDemuxer : AVInputFormat {
 
     [CCode (cname="str_probe",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="str_read_header",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="str_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="str_read_close",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/psxstr.c")]

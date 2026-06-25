@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class CRCMuxerPrivateData { }
 
 [CCode (cname="ff_crc_muxer",cheader_filename="subprojects/ffmpeg/libavformat/crcenc.c")]
-public class CRCMuxer : AVOutputFormat {
+public class CRCMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/crcenc.c")]
     public override string name {
         public get {
@@ -75,18 +75,18 @@ public class CRCMuxer : AVOutputFormat {
 
     [CCode (cname="crc_write_header",cheader_filename="subprojects/ffmpeg/libavformat/crcenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="crc_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/crcenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="crc_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/crcenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/crcenc.c")]

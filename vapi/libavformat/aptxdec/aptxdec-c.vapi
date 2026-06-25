@@ -85,7 +85,7 @@ public class APTXDemuxerClass : AptXOptionsClass {
 }
 
 [CCode (cname="ff_aptx_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
-public class APTXDemuxer : AVInputFormat {
+public class APTXDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string name {
         public get {
@@ -124,11 +124,11 @@ public class APTXDemuxer : AVInputFormat {
 
     [CCode (cname="aptx_read_header",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     )
     [CCode (cname="aptx_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     )
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
@@ -176,7 +176,7 @@ public class APTXHDDemuxerClass : AptXOptionsClass {
 }
 
 [CCode (cname="ff_aptx_hd_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
-public class APTXDemuxer : AVInputFormat {
+public class APTXDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override string name {
         public get {
@@ -215,12 +215,12 @@ public class APTXDemuxer : AVInputFormat {
 
     [CCode (cname="aptx_hd_read_header",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="aptx_hd_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/aptxdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

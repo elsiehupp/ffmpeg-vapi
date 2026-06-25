@@ -86,7 +86,7 @@ public class MicroDVDDemuxerClass : LibAVUtil.Class {
 public class MicroDVDDemuxerPrivateData { }
 
 [CCode (cname="ff_microdvd_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
-public class MicroDVDDemuxer : AVInputFormat {
+public class MicroDVDDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override string name {
         public get {
@@ -116,23 +116,23 @@ public class MicroDVDDemuxer : AVInputFormat {
 
     [CCode (cname="microdvd_probe",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="microdvd_read_header",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="microdvd_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="microdvd_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -142,7 +142,7 @@ public class MicroDVDDemuxer : AVInputFormat {
 
     [CCode (cname="microdvd_read_close",cheader_filename="subprojects/ffmpeg/libavformat/microdvddec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = microdvd_class;
 }

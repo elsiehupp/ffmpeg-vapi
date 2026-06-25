@@ -139,7 +139,7 @@ public class FLVDemuxerClass : FLVDemuxerClass {
 }
 
 [CCode (cname="ff_flv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
-public class FLVDemuxer : AVInputFormat {
+public class FLVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string name {
         public get {
@@ -169,23 +169,23 @@ public class FLVDemuxer : AVInputFormat {
 
     [CCode (cname="flv_probe",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="flv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="flv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -193,7 +193,7 @@ public class FLVDemuxer : AVInputFormat {
 
     [CCode (cname="flv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
@@ -239,7 +239,7 @@ public class LiveFLVDemuxerClass : FLVDemuxerClass {
 }
 
 [CCode (cname="ff_live_flv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
-public class LiveFLVDemuxer : AVInputFormat {
+public class LiveFLVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string name {
         public get {
@@ -269,23 +269,23 @@ public class LiveFLVDemuxer : AVInputFormat {
 
     [CCode (cname="live_flv_probe",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="flv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="flv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -293,7 +293,7 @@ public class LiveFLVDemuxer : AVInputFormat {
 
     [CCode (cname="flv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
@@ -347,7 +347,7 @@ public class KUXDemuxerClass : FLVDemuxerClass {
 }
 
 [CCode (cname="ff_kux_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
-public class KUXDemuxer : AVInputFormat {
+public class KUXDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override string name {
         public get {
@@ -377,23 +377,23 @@ public class KUXDemuxer : AVInputFormat {
 
     [CCode (cname="kux_probe",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="flv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="flv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -401,7 +401,7 @@ public class KUXDemuxer : AVInputFormat {
 
     [CCode (cname="flv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/flvdec.c")]

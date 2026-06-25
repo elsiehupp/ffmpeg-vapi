@@ -35,7 +35,7 @@ http://wiki.multimedia.cx/index.php?title=EA_Command_And_Conquer_3_Audio_Codec
 public class EACTDATADemuxerPrivateData { }
 
 [CCode (cname="ff_ea_cdata_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
-public class EACTDATADemuxer : AVInputFormat {
+public class EACTDATADemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override string name {
         public get {
@@ -65,17 +65,17 @@ public class EACTDATADemuxer : AVInputFormat {
 
     [CCode (cname="cdata_probe",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="cdata_read_header",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="cdata_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/eacdata.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

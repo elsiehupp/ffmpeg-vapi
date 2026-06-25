@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class THPDemuxerPrivateData { }
 
 [CCode (cname="ff_thp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
-public class THPDemuxer : AVInputFormat {
+public class THPDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class THPDemuxer : AVInputFormat {
 
     [CCode (cname="thp_probe",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="thp_read_header",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="thp_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/thp.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class R3DDemuxerPrivateData { }
 
 [CCode (cname="ff_r3d_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/r3d.c")]
-public class R3DDemuxer : AVInputFormat {
+public class R3DDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/r3d.c")]
     public override string name {
         public get {
@@ -57,28 +57,28 @@ public class R3DDemuxer : AVInputFormat {
 
     [CCode (cname="r3d_probe",cheader_filename="subprojects/ffmpeg/libavformat/r3d.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="r3d_read_header",cheader_filename="subprojects/ffmpeg/libavformat/r3d.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="r3d_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/r3d.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="r3d_close",cheader_filename="subprojects/ffmpeg/libavformat/r3d.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="r3d_seek",cheader_filename="subprojects/ffmpeg/libavformat/r3d.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

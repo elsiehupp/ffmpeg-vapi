@@ -95,7 +95,7 @@ public class AVIMuxerClass : LibAVUtil.Class {
 public class AVIMuxerPrivateData { }
 
 [CCode (cname="ff_avi_muxer",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
-public class AVIMuxer : AVOutputFormat {
+public class AVIMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
     public override string name {
         public get {
@@ -163,23 +163,23 @@ public class AVIMuxer : AVOutputFormat {
 
     [CCode (cname="avi_init",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="avi_write_header",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="avi_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="avi_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/avienc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="codec_tag")]

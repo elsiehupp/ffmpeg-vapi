@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class LATMMuxerPrivateData { }
 
 [CCode (cname="ff_latm_muxer",cheader_filename="subprojects/ffmpeg/libavformat/latmenc.c")]
-public class LATMMuxer : AVOutputFormat {
+public class LATMMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/latmenc.c")]
     public override string name {
         public get {
@@ -93,19 +93,19 @@ public class LATMMuxer : AVOutputFormat {
 
     [CCode (cname="latm_write_header",cheader_filename="subprojects/ffmpeg/libavformat/latmenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="latm_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/latmenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = latm_muxer_class,
 
     [CCode (cname="latm_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/latmenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

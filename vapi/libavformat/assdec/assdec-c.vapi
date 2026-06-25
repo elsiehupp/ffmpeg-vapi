@@ -28,7 +28,7 @@ namespace LibAVFormat {
 public class ASSDemuxerPrivateData { }
 
 [CCode (cname="ff_ass_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/assdec.c")]
-public class ASSDemuxer : AVInputFormat {
+public class ASSDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/assdec.c")]
     public override string name {
         public get {
@@ -58,28 +58,28 @@ public class ASSDemuxer : AVInputFormat {
 
     [CCode (cname="ass_probe",cheader_filename="subprojects/ffmpeg/libavformat/assdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ass_read_header",cheader_filename="subprojects/ffmpeg/libavformat/assdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ass_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/assdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="ass_read_close",cheader_filename="subprojects/ffmpeg/libavformat/assdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ass_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/assdec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,

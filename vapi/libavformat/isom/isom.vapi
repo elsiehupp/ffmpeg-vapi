@@ -301,7 +301,7 @@ public class MOVStreamContext {
     public int pb_is_copied;
 
     /***********************************************************
-    @brief AVStream index
+    @brief LibAVFormat.Stream index
     ***********************************************************/
     [CCode (cname="")]
     public int ffindex;
@@ -588,7 +588,7 @@ public class MOVContext {
     public LibAVUtil.Class class;
 
     [CCode (cname="")]
-    public AVFormatContext fc;
+    public LibAVFormat.FormatContext fc;
 
     [CCode (cname="")]
     public int time_scale;
@@ -633,7 +633,7 @@ public class MOVContext {
     public DVDemuxContext dv_demux;
 
     [CCode (cname="")]
-    public AVFormatContext dv_fctx;
+    public LibAVFormat.FormatContext dv_fctx;
 
     /***********************************************************
     1 if file is ISO Media (mp4/3gp)
@@ -769,15 +769,15 @@ public int ff_mp4_read_descr_len (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
 public int ff_mp4_read_descr (
-    AVFormatContext fc,
+    LibAVFormat.FormatContext fc,
     AVIOContext pb,
     out int tag
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
 public int ff_mp4_read_dec_config_descr (
-    AVFormatContext fc,
-    AVStream st,
+    LibAVFormat.FormatContext fc,
+    LibAVFormat.Stream st,
     AVIOContext pb
 );
 
@@ -936,7 +936,7 @@ public static bool TAG_IS_AVCI (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
 public int ff_mov_read_esds (
-    AVFormatContext fc,
+    LibAVFormat.FormatContext fc,
     AVIOContext pb
 );
 

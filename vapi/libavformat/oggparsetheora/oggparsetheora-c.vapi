@@ -45,19 +45,19 @@ public class TheoraCodec : OggCodec {
 
     [CCode (cname="theora_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsetheora.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="theora_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparsetheora.c")]
     public override int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="theora_gptopts",cheader_filename="subprojects/ffmpeg/libavformat/oggparsetheora.c")]
     public override uint64 gptopts (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts

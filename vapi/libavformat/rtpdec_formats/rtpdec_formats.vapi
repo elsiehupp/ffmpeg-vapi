@@ -29,15 +29,15 @@ namespace LibAVFormat {
 ***********************************************************/
 [CCode (cname="ff_wms_parse_sdp_a_line",cheader_filename="subprojects/ffmpeg/libformat/rptdec_formats.h")]
 public int ff_wms_parse_sdp_a_line (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     string p
 );
 
 [CCode (cname="ff_h263_handle_packet",cheader_filename="subprojects/ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h263_handle_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     PayloadContext data,
-    AVStream st,
+    LibAVFormat.Stream st,
     LibAVCodec.Packet packet,
     out uint32 timestamp,
     uint8[] buffer,
@@ -48,7 +48,7 @@ public int ff_h263_handle_packet (
 
 [CCode (cname="ff_h264_parse_sprop_parameter_sets",cheader_filename="subprojects/ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h264_parse_sprop_parameter_sets (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out uint8[] data_ptr,
     out int size_ptr,
     string value
@@ -56,7 +56,7 @@ public int ff_h264_parse_sprop_parameter_sets (
 
 [CCode (cname="ff_h264_handle_aggregated_packet",cheader_filename="subprojects/ffmpeg/libformat/rptdec_formats.h")]
 public int ff_h264_handle_aggregated_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     PayloadContext data,
     LibAVCodec.Packet packet,
     uint8[] buffer,

@@ -48,7 +48,7 @@ public class VPCC {
 /***********************************************************
 @brief Writes VP codec configuration to the provided AVIOContext.
 
-@param format_context address of the AVFormatContext for the logging context.
+@param format_context address of the LibAVFormat.FormatContext for the logging context.
 @param pb address of the AVIOContext where the vpcC shall be written.
 @param par address of the LibAVCodec.CodecParameters which contains codec information.
 @return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
@@ -56,14 +56,14 @@ public class VPCC {
 ***********************************************************/
 [CCode (cname="ff_isom_write_vpcc",cheader_filename="subprojects/ffmpeg/libformat/vpcc.h")]
 public int ff_isom_write_vpcc (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     AVIOContext pb,
     LibAVCodec.CodecParameters par
 );
 
 [CCode (cname="ff_isom_get_vpcc_features",cheader_filename="subprojects/ffmpeg/libformat/vpcc.h")]
 public int ff_isom_get_vpcc_features (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.CodecParameters par,
     LibAVUtil.Rational frame_rate,
     VPCC vpcc

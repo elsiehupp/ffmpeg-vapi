@@ -158,7 +158,7 @@ Frame sync structure.
 [Compact]
 public class FFFrameSync {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     /***********************************************************
     Parent filter context.
@@ -246,7 +246,7 @@ public class FFFrameSync {
 Get the class for the framesync object.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
-public AVClass ff_framesync_get_class ();
+public LibAVUtil.Class ff_framesync_get_class ();
 
 /***********************************************************
 Pre-initialize a frame sync structure.
@@ -375,7 +375,7 @@ public int ff_framesync_dualinput_get_writable (
 //      ff_framesync_preinit (&s->field); \
 //      return 0; \
 //  } \
-//  static const AVClass? name##_child_class_next (const AVClass? prev) { \
+//  static const LibAVUtil.Class? name##_child_class_next (const LibAVUtil.Class? prev) { \
 //      return prev ? NULL : ff_framesync_get_class (); \
 //  } \
 //  static void *name##_child_next (void *obj, void *prev) { \
@@ -383,7 +383,7 @@ public int ff_framesync_dualinput_get_writable (
 //      s->fs.class = ff_framesync_get_class (); /* FIXME */ \
 //      return prev ? NULL : &s->field; \
 //  } \
-//  static const AVClass name##_class = { \
+//  static const LibAVUtil.Class name##_class = { \
 //      .class_name = #name, \
 //      .item_name = av_default_item_name, \
 //      .option = name##_options, \

@@ -44,13 +44,13 @@ public abstract class OggCodec {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="")]
     public abstract int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
@@ -61,7 +61,7 @@ public abstract class OggCodec {
     ***********************************************************/
     [CCode (cname="")]
     public abstract uint64 gptopts (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts
@@ -87,7 +87,7 @@ public abstract class OggCodec {
 
     [CCode (cname="")]
     public abstract void cleanup (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int idx
     );
 
@@ -287,7 +287,7 @@ public const uint64 OGG_NOGRANULE_VALUE;
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 public int ff_vorbis_comment (
-    AVFormatContext ms,
+    LibAVFormat.FormatContext ms,
     out LibAVUtil.Dictionary m,
     uint8[] buffer,
     int size,
@@ -296,8 +296,8 @@ public int ff_vorbis_comment (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 public int ff_vorbis_stream_comment (
-    AVFormatContext as,
-    AVStream st,
+    LibAVFormat.FormatContext as,
+    LibAVFormat.Stream st,
     uint8[] buffer,
     int size
 );
@@ -310,7 +310,7 @@ public static int ogg_find_stream (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
 public static uint64 ogg_gptopts (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int i,
     uint64 gp,
     out int64 dts

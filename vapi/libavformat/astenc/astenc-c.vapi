@@ -95,7 +95,7 @@ public class ASTMuxerClass : LibAVUtil.Class {
 public class ASTMuxerPrivateData { }
 
 [CCode (cname="ff_ast_muxer",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
-public class ASTMuxer : AVOutputFormat {
+public class ASTMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
     public override string name {
         public get {
@@ -152,18 +152,18 @@ public class ASTMuxer : AVOutputFormat {
 
     [CCode (cname="ast_write_header",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ast_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="ast_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/astenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = ast_muxer_class,
 

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 //  #define PCMDEF (name_, long_name_, ext, codec)               \
-//  AVOutputFormat ff_pcm_ ## name_ ## _muxer = {               \
+//  LibAVFormat.OutputFormat ff_pcm_ ## name_ ## _muxer = {               \
 //      .name = #name_, \
 //      .long_name = NULL_IF_CONFIG_SMALL (long_name_), \
 //      .extensions = ext, \

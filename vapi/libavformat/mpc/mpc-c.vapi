@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class MPCDemuxerPrivateData { }
 
 [CCode (cname="ff_mpc_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mpc.c")]
-public class MPCDemuxer : AVInputFormat {
+public class MPCDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpc.c")]
     public override string name {
         public get {
@@ -57,28 +57,28 @@ public class MPCDemuxer : AVInputFormat {
 
     [CCode (cname="mpc_probe",cheader_filename="subprojects/ffmpeg/libavformat/mpc.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="mpc_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mpc.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpc_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpc.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mpc_read_close",cheader_filename="subprojects/ffmpeg/libavformat/mpc.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpc_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/mpc.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

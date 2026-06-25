@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class DXADemuxerPrivateData { }
 
 [CCode (cname="ff_dxa_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/dxa.c")]
-public class DXADemuxer : AVInputFormat {
+public class DXADemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/dxa.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class DXADemuxer : AVInputFormat {
 
     [CCode (cname="dxa_probe",cheader_filename="subprojects/ffmpeg/libavformat/dxa.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="dxa_read_header",cheader_filename="subprojects/ffmpeg/libavformat/dxa.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="dxa_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/dxa.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

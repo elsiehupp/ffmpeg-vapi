@@ -122,7 +122,7 @@ public class WebMChunkMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_webm_chunk_muxer",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
-public class WebMChunkMuxer : AVOutputFormat {
+public class WebMChunkMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
     public override string name {
         public get {
@@ -179,7 +179,7 @@ public class WebMChunkMuxer : AVOutputFormat {
 
     [CCode (cname="webm_chunk_write_header",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="webm_chunk_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
@@ -191,7 +191,7 @@ public class WebMChunkMuxer : AVOutputFormat {
 
     [CCode (cname="webm_chunk_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = webm_chunk_class;
 }

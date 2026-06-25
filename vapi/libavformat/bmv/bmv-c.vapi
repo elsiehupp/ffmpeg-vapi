@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class BMVDemuxerPrivateData { }
 
 [CCode (cname="ff_bmv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/bmv.c")]
-public class BMVDemuxer : AVInputFormat {
+public class BMVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/bmv.c")]
     public override string name {
         public get {
@@ -57,18 +57,18 @@ public class BMVDemuxer : AVInputFormat {
 
     [CCode (cname="bmv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/bmv.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="bmv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/bmv.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="bmv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/bmv.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/bmv.c")]

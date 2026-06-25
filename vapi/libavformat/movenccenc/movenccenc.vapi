@@ -110,7 +110,7 @@ public int ff_mov_cenc_avc_parse_nal_units (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
 public int ff_mov_cenc_avc_write_nal_units (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     MOVMuxCencContext cenc_context,
     int nal_length_size,
     AVIOContext pb,

@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class MPC8DemuxerPrivateData { }
 
 [CCode (cname="ff_mpc8_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mpc8.c")]
-public class MPC8Demuxer : AVInputFormat {
+public class MPC8Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpc8.c")]
     public override string name {
         public get {
@@ -57,23 +57,23 @@ public class MPC8Demuxer : AVInputFormat {
 
     [CCode (cname="mpc8_probe",cheader_filename="subprojects/ffmpeg/libavformat/mpc8.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="mpc8_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mpc8.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpc8_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpc8.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mpc8_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/mpc8.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

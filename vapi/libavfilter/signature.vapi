@@ -280,7 +280,7 @@ public class StreamContext {
 [Compact]
 public class SignatureContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     /***********************************************************
     input parameters

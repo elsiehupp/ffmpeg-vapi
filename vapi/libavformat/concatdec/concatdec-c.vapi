@@ -106,7 +106,7 @@ public class ConcatDemuxerClass : LibAVUtil.Class {
 public class ConcatDemuxerPrivateData { }
 
 [CCode (cname="ff_concat_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
-public class ConcatDemuxer : AVInputFormat {
+public class ConcatDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override string name {
         public get {
@@ -136,28 +136,28 @@ public class ConcatDemuxer : AVInputFormat {
 
     [CCode (cname="concat_probe",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="concat_read_header",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="concat_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="concat_read_close",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="concat_seek",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,

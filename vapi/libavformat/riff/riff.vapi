@@ -42,7 +42,7 @@ public void ff_end_tag (
 );
 
 /***********************************************************
-@brief Read BITMAPINFOHEADER structure and set AVStream codec width, height and
+@brief Read BITMAPINFOHEADER structure and set LibAVFormat.Stream codec width, height and
 bits_per_encoded_sample fields. Does not read extradata.
 Writes the size of the BMP file to size.
 @return codec tag
@@ -50,7 +50,7 @@ Writes the size of the BMP file to size.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public int ff_get_bmp_header (
     AVIOContext pb,
-    AVStream st,
+    LibAVFormat.Stream st,
     uint32[] size
 );
 
@@ -87,7 +87,7 @@ public enum PutWAVHeaderFlags {
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public int ff_put_wav_header (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     AVIOContext pb,
     LibAVCodec.CodecParameters par,
     int flags
@@ -101,7 +101,7 @@ public LibAVCodec.CodecID ff_wav_codec_get_id (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public int ff_get_wav_header (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     AVIOContext pb,
     LibAVCodec.CodecParameters par,
     int size,
@@ -115,7 +115,7 @@ public int ff_get_wav_header (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public void ff_parse_specific_params (
-    AVStream st,
+    LibAVFormat.Stream st,
     out int au_rate,
     out int au_ssize,
     out int au_scale
@@ -123,7 +123,7 @@ public void ff_parse_specific_params (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public int ff_read_riff_info (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int64 size
 );
 
@@ -132,7 +132,7 @@ public int ff_read_riff_info (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/riff.h")]
 public void ff_riff_write_info (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************

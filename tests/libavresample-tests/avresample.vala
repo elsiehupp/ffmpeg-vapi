@@ -188,7 +188,7 @@ static const uint64_t layouts[] = {
 
 int main(int argc, char **argv)
 {
-    AVAudioResampleContext *s;
+    LibAVResample.AudioResampleContext *s;
     AVLFG rnd;
     int ret = 0;
     uint8_t *in_buf = NULL;
@@ -249,7 +249,7 @@ int main(int argc, char **argv)
 
     s = avresample_alloc_context();
     if (!s) {
-        av_log(NULL, AV_LOG_ERROR, "Error allocating AVAudioResampleContext\n");
+        av_log(NULL, AV_LOG_ERROR, "Error allocating LibAVResample.AudioResampleContext\n");
         ret = 1;
         goto end;
     }

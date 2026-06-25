@@ -29,7 +29,7 @@ public class RDTDemuxContext { }
 /***********************************************************
 @brief Allocate and init the RDT parsing context.
 @param ic the containing RTSP demuxer context
-@param first_stream_of_set_idx index to the first AVStream in the RTSP
+@param first_stream_of_set_idx index to the first LibAVFormat.Stream in the RTSP
              demuxer context's ic.streams array that is part of this
              particular stream's set of streams (with identical content)
 @param priv_data private data of the payload data handler context
@@ -38,7 +38,7 @@ public class RDTDemuxContext { }
 ***********************************************************/
 [CCode (cname="ff_rdt_parse_open",cheader_filename="subprojects/ffmpeg/libformat/rdt.h")]
 public RDTDemuxContext ff_rdt_parse_open (
-    AVFormatContext ic,
+    LibAVFormat.FormatContext ic,
     int first_stream_of_set_idx,
     void *priv_data,
     RTPDynamicProtocolHandler handler
@@ -122,14 +122,14 @@ public int ff_rdt_parse_packet (
 /***********************************************************
 @brief Parse a server-related SDP line.
 
-@param format_context the RTSP AVFormatContext
+@param format_context the RTSP LibAVFormat.FormatContext
 @param stream_index the index of the first stream in the set represented
               by the SDP m= line (in format_context.streams)
 @param buffer the SDP line
 ***********************************************************/
 [CCode (cname="ff_real_parse_sdp_a_line",cheader_filename="subprojects/ffmpeg/libformat/rdt.h")]
 public void ff_real_parse_sdp_a_line (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index,
     string buffer
 );

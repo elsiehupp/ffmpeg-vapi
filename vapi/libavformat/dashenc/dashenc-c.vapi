@@ -421,7 +421,7 @@ public class DashMuxerClass : LibAVUtil.Class {
 public class DashMuxerPrivateData { }
 
 [CCode (cname="ff_dash_muxer",cheader_filename="subprojects/ffmpeg/libavformat/dashenc.c")]
-public class DashMuxer : AVOutputFormat {
+public class DashMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/dashenc.c")]
     public override string name {
         public get {
@@ -487,33 +487,33 @@ public class DashMuxer : AVOutputFormat {
 
     [CCode (cname="dash_init",cheader_filename="subprojects/ffmpeg/libavformat/dashenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="dash_write_header",cheader_filename="subprojects/ffmpeg/libavformat/dashenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="dash_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/dashenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="dash_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/dashenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="dash_free",cheader_filename="subprojects/ffmpeg/libavformat/dashenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="dash_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/dashenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = dash_class;

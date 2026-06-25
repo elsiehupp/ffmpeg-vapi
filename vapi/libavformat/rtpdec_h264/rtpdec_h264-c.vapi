@@ -84,7 +84,7 @@ public class H264DynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="parse_h264_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
     public override int parse_sdp_a_line (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
@@ -97,9 +97,9 @@ public class H264DynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="h264_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h264.c")]
     public override int parse_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         PayloadContext payload_context,
-        AVStream st,
+        LibAVFormat.Stream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
         uint8[] buffer,

@@ -24,7 +24,7 @@ namespace LibAVFilter {
 [Compact]
 public class PP7Context {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
     public int thres2[99][16];

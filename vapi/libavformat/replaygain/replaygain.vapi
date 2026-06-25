@@ -23,7 +23,7 @@ namespace LibAVFormat {
 ***********************************************************/
 [CCode (cname="ff_replaygain_export",cheader_filename="subprojects/ffmpeg/libformat/replaygain.h")]
 public int ff_replaygain_export (
-    AVStream st,
+    LibAVFormat.Stream st,
     LibAVUtil.Dictionary metadata
 );
 
@@ -33,7 +33,7 @@ public int ff_replaygain_export (
 ***********************************************************/
 [CCode (cname="ff_replaygain_export_raw",cheader_filename="subprojects/ffmpeg/libformat/replaygain.h")]
 public int ff_replaygain_export_raw (
-    AVStream st,
+    LibAVFormat.Stream st,
     int32 tg,
     uint32 tp,
     int32 ag,

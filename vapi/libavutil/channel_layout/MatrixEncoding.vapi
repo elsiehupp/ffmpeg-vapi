@@ -30,7 +30,7 @@ namespace LibAVUtil {
 @addtogroup LibAVUtil.Audio
 ***********************************************************/
 
-[CCode (cprefix="AV_MATRIX_ENCODING_",cheader_filename="subprojects/ffmpeg/libavutil/channel_layout.h")]
+[CCode (cname="AVMatrixEncoding",cprefix="AV_MATRIX_ENCODING_",cheader_filename="subprojects/ffmpeg/libavutil/channel_layout.h")]
 public enum MatrixEncoding {
     NONE,
     DOLBY,

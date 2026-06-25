@@ -26,7 +26,7 @@ namespace LibAVFormat {
 public class AVISynthDemuxerPrivateData { }
 
 [CCode (cname="ff_avisynth_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
-public class AVISynthDemuxer : AVInputFormat {
+public class AVISynthDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override string name {
         public get {
@@ -56,23 +56,23 @@ public class AVISynthDemuxer : AVInputFormat {
 
     [CCode (cname="avisynth_read_header",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="avisynth_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="avisynth_read_close",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="avisynth_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/avisynth.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

@@ -194,11 +194,11 @@ public class AVFilter {
     This field is NULL for filters that do not declare any options.
 
     If this field is non-NULL, the first member of the filter private data
-    must be a pointer to AVClass, which will be set by libavfilter generic
+    must be a pointer to LibAVUtil.Class, which will be set by libavfilter generic
     code to this class.
     ***********************************************************/
     [CCode (cname="")]
-    public AVClass priv_class;
+    public LibAVUtil.Class priv_class;
 
     /***********************************************************
     A combination of FilterFlags
@@ -426,7 +426,7 @@ public class AVFilterContext {
     needed for av_log () and filters common options
     ***********************************************************/
     [CCode (cname="")]
-    public AVClass? av_class;
+    public LibAVUtil.Class? av_class;
 
     /***********************************************************
     the AVFilter of which this is an instance
@@ -791,7 +791,7 @@ public class AVFilterLink {
     If the source frame rate is unknown or variable, set this to 1/0.
     Filters should update it if necessary depending on their function.
     Sinks can use it to set a default output frame rate.
-    It is similar to the r_frame_rate field in AVStream.
+    It is similar to the r_frame_rate field in LibAVFormat.Stream.
     ***********************************************************/
     [CCode (cname="")]
     public AVRational frame_rate;
@@ -1147,12 +1147,12 @@ public int avfilter_insert_filter (
 );
 
 /***********************************************************
-@return AVClass for AVFilterContext.
+@return LibAVUtil.Class for AVFilterContext.
 
 @see av_opt_find ().
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-public AVClass? avfilter_get_class ();
+public LibAVUtil.Class? avfilter_get_class ();
 
 /***********************************************************
 A function pointer passed to the @ref AVFilterGraph.execute callback to be
@@ -1199,7 +1199,7 @@ public delegate int AVFilterExecuteDelegate (
 [Compact]
 public class AVFilterGraph {
     [CCode (cname="")]
-    public AVClass? av_class;
+    public LibAVUtil.Class? av_class;
 
     [CCode (cname="")]
     public AVFilterContext[] filters;

@@ -55,7 +55,7 @@ opaque as parameter. If the callback returns 1, the
 blocking operation will be aborted.
 
 No members can be added to this struct without a major bump, if
-new elements have been added after this struct in AVFormatContext
+new elements have been added after this struct in LibAVFormat.FormatContext
 or AVIOContext.
 ***********************************************************/
 [CCode (cname="struct AVIOInterruptCB",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
@@ -1286,14 +1286,14 @@ Only meaningful if using a network streaming protocol (e.g. MMS.).
        units from the beginning of the presentation.
        If a stream_index >= 0 is used and the protocol does not support
        seeking based on component streams, the call will fail.
-@param timestamp timestamp in AVStream.time_base units
+@param timestamp timestamp in LibAVFormat.Stream.time_base units
        or if there is no stream specified then in AV_TIME_BASE units.
 @param flags Optional combination of AVFormatSeekFlags.BACKWARD, AVFormatSeekFlags.BYTE
        and AVFormatSeekFlags.ANY. The protocol may silently ignore
        AVFormatSeekFlags.BACKWARD and AVFormatSeekFlags.ANY, but AVFormatSeekFlags.BYTE will
        fail if used and not supported.
 @return >= 0 on success
-@see AVInputFormat::read_seek
+@see LibAVFormat.InputFormat::read_seek
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
 public int64 avio_seek_time (

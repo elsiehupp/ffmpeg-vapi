@@ -31,7 +31,7 @@ DEALINGS IN THE SOFTWARE.
 namespace LibAVFormat {
 
 [CCode (cname="ff_ogg_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
-public class OggDemuxer : AVInputFormat {
+public class OggDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override string name {
         public get {
@@ -61,28 +61,28 @@ public class OggDemuxer : AVInputFormat {
 
     [CCode (cname="ogg_probe",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ogg_read_header",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="ogg_read_close",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -90,7 +90,7 @@ public class OggDemuxer : AVInputFormat {
 
     [CCode (cname="ogg_read_timestamp",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
     public override int64 read_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit

@@ -32,7 +32,7 @@ namespace LibAVFormat {
 public class CAFDemuxerPrivateData { }
 
 [CCode (cname="ff_caf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/cafdec.c")]
-public class CAFDemuxer : AVInputFormat {
+public class CAFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/cafdec.c")]
     public override string name {
         public get {
@@ -62,23 +62,23 @@ public class CAFDemuxer : AVInputFormat {
 
     [CCode (cname="probe",cheader_filename="subprojects/ffmpeg/libavformat/cafdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/cafdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/cafdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="read_seek",cheader_filename="subprojects/ffmpeg/libavformat/cafdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

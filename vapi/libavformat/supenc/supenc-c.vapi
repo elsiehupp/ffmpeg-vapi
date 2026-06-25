@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_sup_muxer",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
-public class SUPMuxer : AVOutputFormat {
+public class SUPMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override string name {
         public get {
@@ -71,12 +71,12 @@ public class SUPMuxer : AVOutputFormat {
 
     [CCode (cname="sup_write_header",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="sup_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

@@ -42,7 +42,7 @@ public class FlacCodec : OggCodec {
 
     [CCode (cname="flac_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseflac.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
@@ -77,7 +77,7 @@ public class OldFlacCodec : OggCodec {
 
     [CCode (cname="old_flac_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseflac.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 

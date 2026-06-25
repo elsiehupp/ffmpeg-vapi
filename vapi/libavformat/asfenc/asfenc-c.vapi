@@ -84,7 +84,7 @@ public class ASFMuxerClass : ASFOptionsClass {
 }
 
 [CCode (cname="ff_asf_muxer",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
-public class AsfMuxer : AVOutputFormat {
+public class AsfMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string name {
         public get {
@@ -150,7 +150,7 @@ public class AsfMuxer : AVOutputFormat {
 
     [CCode (cname="asf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="asf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
@@ -162,7 +162,7 @@ public class AsfMuxer : AVOutputFormat {
 
     [CCode (cname="asf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
@@ -224,7 +224,7 @@ public class ASFStreamMuxerClass : ASFOptionsClass {
 }
 
 [CCode (cname="ff_asf_stream_muxer",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
-public class AsfStreamMuxer : AVOutputFormat {
+public class AsfStreamMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override string name {
         public get {
@@ -290,7 +290,7 @@ public class AsfStreamMuxer : AVOutputFormat {
 
     [CCode (cname="asf_write_stream_header",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="asf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
@@ -302,7 +302,7 @@ public class AsfStreamMuxer : AVOutputFormat {
 
     [CCode (cname="asf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]

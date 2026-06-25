@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class CDGDemuxerPrivateData { }
 
 [CCode (cname="ff_cdg_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/cdg.c")]
-public class CDGDemuxer : AVInputFormat {
+public class CDGDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/cdg.c")]
     public override string name {
         public get {
@@ -57,12 +57,12 @@ public class CDGDemuxer : AVInputFormat {
 
     [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/cdg.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/cdg.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

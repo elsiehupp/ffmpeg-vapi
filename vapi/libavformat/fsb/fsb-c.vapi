@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_fsb_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/fsb.c")]
-public class FSBDemuxer : AVInputFormat {
+public class FSBDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/fsb.c")]
     public override string name {
         public get {
@@ -44,17 +44,17 @@ public class FSBDemuxer : AVInputFormat {
 
     [CCode (cname="fsb_probe",cheader_filename="subprojects/ffmpeg/libavformat/fsb.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="fsb_read_header",cheader_filename="subprojects/ffmpeg/libavformat/fsb.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="fsb_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/fsb.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

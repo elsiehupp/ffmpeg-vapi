@@ -443,7 +443,7 @@ const AVMetadataConv ff_mkv_metadata_conv[] = {
 //  }
 
 //  public int ff_mkv_stereo3d_conv (
-//      AVStream st,
+//      LibAVFormat.Stream st,
 //      MatroskaVideoStereoModeType stereo_mode
 //  );
 //  {

@@ -32,7 +32,7 @@ namespace LibAVFormat {
 public class AVSDemuxerPrivateData { }
 
 [CCode (cname="ff_avs_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/avs.c")]
-public class AVSDemuxer : AVInputFormat {
+public class AVSDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/avs.c")]
     public override string name {
         public get {
@@ -62,23 +62,23 @@ public class AVSDemuxer : AVInputFormat {
 
     [CCode (cname="avs_probe",cheader_filename="subprojects/ffmpeg/libavformat/avs.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="avs_read_header",cheader_filename="subprojects/ffmpeg/libavformat/avs.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="avs_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/avs.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="avs_read_close",cheader_filename="subprojects/ffmpeg/libavformat/avs.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

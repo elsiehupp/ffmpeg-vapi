@@ -68,28 +68,28 @@ public class FFRawDemuxerContext {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
 public int ff_raw_read_partial_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
 public int ff_raw_audio_read_header (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
 public int ff_raw_video_read_header (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
 public int ff_raw_subtitle_read_header (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
 public int ff_raw_data_read_header (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 #define FF_RAW_DEMUXER_CLASS (name)\
@@ -157,7 +157,7 @@ public const LibAVUtil.Class name ## _demuxer_class = {
 
 #define FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, flag)\
 FF_RAWVIDEO_DEMUXER_CLASS (shortname)\
-AVInputFormat ff_ ## shortname ## _demuxer = {
+LibAVFormat.InputFormat ff_ ## shortname ## _demuxer = {
     //  .name = #shortname,
     //  .long_name = NULL_IF_CONFIG_SMALL (longname),
     //  .read_probe = probe,
@@ -193,7 +193,7 @@ public const LibAVUtil.Class name ## _demuxer_class : RawOptionsClass {
 
 //  #define FF_DEF_RAWSUB_DEMUXER (shortname, longname, probe, ext, id, flag)\
 //  FF_RAWSUB_DEMUXER_CLASS (shortname)\
-//  AVInputFormat ff_ ## shortname ## _demuxer = {
+//  LibAVFormat.InputFormat ff_ ## shortname ## _demuxer = {
 //      //  .name = #shortname,
 //      //  .long_name = NULL_IF_CONFIG_SMALL (longname),
 //      //  .read_probe = probe,

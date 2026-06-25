@@ -57,7 +57,7 @@ public abstract class RawOptionsClass : LibAVUtil.Class {
 //  FF_RAW_DEMUXER_CLASS (raw_data)
 
 [CCode (cname="ff_data_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
-public class DataDemuxer : AVInputFormat {
+public class DataDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
     public override string name {
         public get {
@@ -78,12 +78,12 @@ public class DataDemuxer : AVInputFormat {
 
     [CCode (cname="ff_raw_data_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

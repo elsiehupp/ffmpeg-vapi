@@ -83,7 +83,7 @@ public class WebPMuxerClass : LibAVUtil.Class {
 public class WebPMuxerPrivateData { }
 
 [CCode (cname="ff_webp_muxer",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
-public class WebPMuxer : AVOutputFormat {
+public class WebPMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override string name {
         public get {
@@ -131,18 +131,18 @@ public class WebPMuxer : AVOutputFormat {
 
     [CCode (cname="webp_write_header",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="webp_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="webp_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = webp_muxer_class,
 

@@ -42,13 +42,13 @@ public class DiracCodec : OggCodec {
 
     [CCode (cname="dirac_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedirac.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="dirac_gptopts",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedirac.c")]
     public override uint64 gptopts (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts
@@ -93,13 +93,13 @@ public class OldDiracCodec : OggCodec {
 
     [CCode (cname="old_dirac_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedirac.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="old_dirac_gptopts",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedirac.c")]
     public override uint64 gptopts (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts

@@ -44,9 +44,9 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="mpegts_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpegts.c")]
     public override int parse_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         PayloadContext payload_context,
-        AVStream st,
+        LibAVFormat.Stream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
         uint8[] buffer,
@@ -57,7 +57,7 @@ public class MpegTSDynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="mpegts_init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_mpegts.c")]
     public override int init (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int st_index,
         PayloadContext priv_data
     );

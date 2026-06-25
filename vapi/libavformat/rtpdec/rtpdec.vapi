@@ -174,9 +174,9 @@ public enum RTPDecoderFlags {
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public delegate int DynamicPayloadPacketHandlerProc (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     PayloadContext payload_context,
-    AVStream st,
+    LibAVFormat.Stream st,
     LibAVCodec.Packet packet,
     uint32[] timestamp,
     uint8[] buffer,
@@ -215,7 +215,7 @@ public abstract class RTPDynamicProtocolHandler {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int init (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int st_index,
         PayloadContext priv_data
     );
@@ -225,7 +225,7 @@ public abstract class RTPDynamicProtocolHandler {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int parse_sdp_a_line (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
@@ -257,9 +257,9 @@ public abstract class RTPDynamicProtocolHandler {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int parse_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         PayloadContext payload_context,
-        AVStream st,
+        LibAVFormat.Stream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
         uint8[] buffer,
@@ -300,10 +300,10 @@ public class RTPPacket {
 [Compact]
 public class RTPDemuxContext {
     [CCode (cname="")]
-    public AVFormatContext ic;
+    public LibAVFormat.FormatContext ic;
 
     [CCode (cname="")]
-    public AVStream st;
+    public LibAVFormat.Stream st;
 
     [CCode (cname="")]
     public int payload_type;
@@ -419,8 +419,8 @@ public class RTPDemuxContext {
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
     public RTPDemuxContext ff_rtp_parse_open (
-        AVFormatContext s1,
-        AVStream st,
+        LibAVFormat.FormatContext s1,
+        LibAVFormat.Stream st,
         int payload_type,
         int queue_size
     );
@@ -516,8 +516,8 @@ public int ff_rtsp_next_attr_and_value (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public delegate int ParseFMTPDelegate (
-    AVFormatContext format_context,
-    AVStream stream,
+    LibAVFormat.FormatContext format_context,
+    LibAVFormat.Stream stream,
     PayloadContext data,
     string attr,
     string value
@@ -525,8 +525,8 @@ public delegate int ParseFMTPDelegate (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
 public int ff_parse_fmtp (
-    AVFormatContext format_context,
-    AVStream stream,
+    LibAVFormat.FormatContext format_context,
+    LibAVFormat.Stream stream,
     PayloadContext data,
     string p,
     ParseFMTPDelegate parse_fmtp

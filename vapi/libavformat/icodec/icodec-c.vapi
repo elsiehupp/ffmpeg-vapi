@@ -31,7 +31,7 @@ namespace LibAVFormat {
 public class ICODemuxerPrivateData { }
 
 [CCode (cname="ff_ico_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/icodec.c")]
-public class ICODemuxer : AVInputFormat {
+public class ICODemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/icodec.c")]
     public override string name {
         public get {
@@ -61,23 +61,23 @@ public class ICODemuxer : AVInputFormat {
 
     [CCode (cname="probe",cheader_filename="subprojects/ffmpeg/libavformat/icodec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/icodec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/icodec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="ico_read_close",cheader_filename="subprojects/ffmpeg/libavformat/icodec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/icodec.c")]

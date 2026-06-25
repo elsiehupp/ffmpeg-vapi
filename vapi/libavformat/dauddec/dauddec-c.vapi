@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_daud_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/dauddec.c")]
-public class DAUDDemuxer : AVInputFormat {
+public class DAUDDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/dauddec.c")]
     public override string name {
         public get {
@@ -44,12 +44,12 @@ public class DAUDDemuxer : AVInputFormat {
 
     [CCode (cname="daud_header",cheader_filename="subprojects/ffmpeg/libavformat/dauddec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="daud_packet",cheader_filename="subprojects/ffmpeg/libavformat/dauddec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

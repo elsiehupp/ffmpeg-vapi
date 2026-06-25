@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class RTPMpegTSMuxerPrivateData { }
 
 [CCode (cname="ff_rtp_mpegts_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
-public class RTPMpegTSMuxer : AVOutputFormat {
+public class RTPMpegTSMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override string name {
         public get {
@@ -75,18 +75,18 @@ public class RTPMpegTSMuxer : AVOutputFormat {
 
     [CCode (cname="rtp_mpegts_write_header",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rtp_mpegts_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="rtp_mpegts_write_close",cheader_filename="subprojects/ffmpeg/libavformat/rtpenc_mpegts.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

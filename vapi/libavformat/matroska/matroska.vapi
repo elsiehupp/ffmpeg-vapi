@@ -850,7 +850,7 @@ public const int MATROSKA_VIDEO_STEREO_PLANE_COUNT;
 //  extern string const ff_matroska_video_stereo_plane[MATROSKA_VIDEO_STEREO_PLANE_COUNT];
 
 /***********************************************************
-@brief AVStream Metadata tag keys for WebM Dash Manifest
+@brief LibAVFormat.Stream Metadata tag keys for WebM Dash Manifest
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public const string INITIALIZATION_RANGE; // "webm_dash_manifest_initialization_range"
@@ -884,7 +884,7 @@ public const string CODEC_PRIVATE_SIZE; // "webm_dash_manifest_codec_priv_size"
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
 public int ff_mkv_stereo3d_conv (
-    AVStream st,
+    LibAVFormat.Stream st,
     MatroskaVideoStereoModeType stereo_mode
 );
 

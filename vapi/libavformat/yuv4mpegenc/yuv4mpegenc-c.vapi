@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_yuv4mpegpipe_muxer",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
-public class YUV4MpegPipeMuxer : AVOutputFormat {
+public class YUV4MpegPipeMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override string name {
         public get {
@@ -80,12 +80,12 @@ public class YUV4MpegPipeMuxer : AVOutputFormat {
 
     [CCode (cname="yuv4_write_header",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="yuv4_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/yuv4mpegenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

@@ -41,7 +41,7 @@ public const size_t APE_TAG_HEADER_BYTES;
 ***********************************************************/
 [CCode (cname="ff_ape_parse_tag",cheader_filename="subprojects/ffmpeg/libformat/apetag.h")]
 public int64 ff_ape_parse_tag (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -49,7 +49,7 @@ public int64 ff_ape_parse_tag (
 ***********************************************************/
 [CCode (cname="ff_ape_write_tag",cheader_filename="subprojects/ffmpeg/libformat/apetag.h")]
 public int ff_ape_write_tag (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 } // namespace LibAVFormat

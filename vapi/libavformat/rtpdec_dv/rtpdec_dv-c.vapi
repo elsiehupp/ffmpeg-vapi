@@ -62,7 +62,7 @@ public class DVDynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="dv_parse_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_dv.c")]
     public override int parse_sdp_a_line (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
@@ -84,9 +84,9 @@ public class DVDynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="dv_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_dv.c")]
     public override int parse_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         PayloadContext payload_context,
-        AVStream st,
+        LibAVFormat.Stream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
         uint8[] buffer,

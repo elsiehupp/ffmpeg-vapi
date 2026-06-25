@@ -26,7 +26,7 @@ namespace LibAVFormat {
 
 //  FF_RAW_DEMUXER_CLASS (shorten)
 [CCode (cname="ff_shorten_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
-public class RawShortenDemuxer : AVInputFormat {
+public class RawShortenDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override string name {
         public get {
@@ -47,17 +47,17 @@ public class RawShortenDemuxer : AVInputFormat {
 
     [CCode (cname="shn_probe",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/shortendec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

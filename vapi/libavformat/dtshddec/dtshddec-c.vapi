@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class DTSHDDemuxerPrivateData { }
 
 [CCode (cname="ff_dtshd_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/dtshddec.c")]
-public class DTSHDDemuxer : AVInputFormat {
+public class DTSHDDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/dtshddec.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class DTSHDDemuxer : AVInputFormat {
 
     [CCode (cname="dtshd_probe",cheader_filename="subprojects/ffmpeg/libavformat/dtshddec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="dtshd_read_header",cheader_filename="subprojects/ffmpeg/libavformat/dtshddec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="raw_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/dtshddec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

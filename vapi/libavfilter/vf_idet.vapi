@@ -47,7 +47,7 @@ public enum RepeatedField {
 [Compact]
 public class IDETContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
     public float interlace_threshold;

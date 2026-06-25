@@ -87,7 +87,7 @@ public class FITSDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_fits_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
-public class FITSDemuxer : AVInputFormat {
+public class FITSDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override string name {
         public get {
@@ -117,17 +117,17 @@ public class FITSDemuxer : AVInputFormat {
 
     [CCode (cname="fits_probe",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="fits_read_header",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="fits_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = fits_demuxer_class,

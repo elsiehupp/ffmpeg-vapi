@@ -45,19 +45,19 @@ public class VorbisCodec : OggCodec {
 
     [CCode (cname="vorbis_header",cheader_filename="subprojects/ffmpeg/libavformat/offparsevorbis.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="vorbis_packet",cheader_filename="subprojects/ffmpeg/libavformat/offparsevorbis.c")]
     public override int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="vorbis_cleanup",cheader_filename="subprojects/ffmpeg/libavformat/offparsevorbis.c")]
     public override void cleanup (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int idx
     );
 

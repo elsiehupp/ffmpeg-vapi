@@ -85,7 +85,7 @@ public class WAVDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_wav_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
-public class WAVDemuxer : AVInputFormat {
+public class WAVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override string name {
         public get {
@@ -115,23 +115,23 @@ public class WAVDemuxer : AVInputFormat {
 
     [CCode (cname="wav_probe",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="wav_read_header",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="wav_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="wav_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -165,7 +165,7 @@ public class WAVDemuxer : AVInputFormat {
 #if CONFIG_W64_DEMUXER
 
 [CCode (cname="ff_w64_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
-public class Wave64Demuxer : AVInputFormat {
+public class Wave64Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override string name {
         public get {
@@ -195,23 +195,23 @@ public class Wave64Demuxer : AVInputFormat {
 
     [CCode (cname="w64_probe",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="w64_read_header",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="wav_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="wav_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/wavdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

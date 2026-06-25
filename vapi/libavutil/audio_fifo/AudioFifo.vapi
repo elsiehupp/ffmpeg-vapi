@@ -39,7 +39,7 @@ namespace LibAVUtil {
 - Supports multiple channels with either planar or packed sample format.
 - Automatic reallocation when writing to a full buffer.
 ***********************************************************/
-[CCode (cname="struct AVAudioFifo",cheader_filename="subprojects/ffmpeg/libavutil/audio_fifo.h")]
+[CCode (cname="struct LibAVUtil.AudioFifo",cheader_filename="subprojects/ffmpeg/libavutil/audio_fifo.h")]
 [Compact]
 public class AudioFifo {
 

@@ -264,7 +264,7 @@ public class MatroskaMuxerClass : MatroskaClassOptions {
 }
 
 [CCode (cname="ff_matroska_muxer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-public class MatroskaMuxer : AVOutputFormat {
+public class MatroskaMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string name {
         public get {
@@ -330,12 +330,12 @@ public class MatroskaMuxer : AVOutputFormat {
 
     [CCode (cname="mkv_init",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mkv_write_header",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mkv_write_flush_packet",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
@@ -347,7 +347,7 @@ public class MatroskaMuxer : AVOutputFormat {
 
     [CCode (cname="mkv_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
@@ -392,7 +392,7 @@ public class MatroskaMuxer : AVOutputFormat {
 
     [CCode (cname="mkv_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = matroska_class;
@@ -432,7 +432,7 @@ public class WebMMuxerClass : MatroskaClassOptions {
 }
 
 [CCode (cname="ff_webm_muxer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-public class WebMMuxer : AVOutputFormat {
+public class WebMMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string name {
         public get {
@@ -507,12 +507,12 @@ public class WebMMuxer : AVOutputFormat {
 
     [CCode (cname="mkv_init",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mkv_write_header",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mkv_write_flush_packet",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
@@ -524,7 +524,7 @@ public class WebMMuxer : AVOutputFormat {
 
     [CCode (cname="mkv_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="webm_query_codec",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
@@ -535,7 +535,7 @@ public class WebMMuxer : AVOutputFormat {
 
     [CCode (cname="mkv_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -584,7 +584,7 @@ public class MatroskaAudioMuxerClass : MatroskaClassOptions {
 }
 
 [CCode (cname="ff_matroska_audio_muxer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-public class MatroskaAudioMuxer : AVOutputFormat {
+public class MatroskaAudioMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override string name {
         public get {
@@ -651,12 +651,12 @@ public class MatroskaAudioMuxer : AVOutputFormat {
 
     [CCode (cname="mkv_init",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mkv_write_header",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mkv_write_flush_packet",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
@@ -668,12 +668,12 @@ public class MatroskaAudioMuxer : AVOutputFormat {
 
     [CCode (cname="mkv_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mkv_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

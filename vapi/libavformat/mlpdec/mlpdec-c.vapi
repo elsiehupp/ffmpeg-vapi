@@ -27,7 +27,7 @@ namespace LibAVFormat {
 #if CONFIG_MLP_DEMUXER
 //  FF_RAW_DEMUXER_CLASS (mlp)
 [CCode (cname="ff_mlp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
-public class MLPDemuxer : AVInputFormat {
+public class MLPDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override string name {
         public get {
@@ -48,17 +48,17 @@ public class MLPDemuxer : AVInputFormat {
 
     [CCode (cname="mlp_probe",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -104,7 +104,7 @@ public class MLPDemuxer : AVInputFormat {
 #if CONFIG_TRUEHD_DEMUXER
 //  FF_RAW_DEMUXER_CLASS (truehd)
 [CCode (cname="ff_truehd_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
-public class TrueHDDemuxer : AVInputFormat {
+public class TrueHDDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override string name {
         public get {
@@ -125,17 +125,17 @@ public class TrueHDDemuxer : AVInputFormat {
 
     [CCode (cname="thd_probe",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/mlpdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

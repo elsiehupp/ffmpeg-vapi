@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class DSFDemuxerPrivateData { }
 
 [CCode (cname="ff_dsf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/dsfdec.c")]
-public class DSFDemuxer : AVInputFormat {
+public class DSFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/dsfdec.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class DSFDemuxer : AVInputFormat {
 
     [CCode (cname="dsf_probe",cheader_filename="subprojects/ffmpeg/libavformat/dsfdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="dsf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/dsfdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="dsf_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/dsfdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

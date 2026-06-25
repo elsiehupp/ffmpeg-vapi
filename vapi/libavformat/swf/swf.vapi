@@ -307,7 +307,7 @@ public class SWFContext {
     public LibAVCodec.CodecParameters video_par;
 
     [CCode (cname="")]
-    public AVStream video_st;
+    public LibAVFormat.Stream video_st;
 
 #if CONFIG_ZLIB
     [CCode (cname="")]

@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_aix_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
-public class AIXDemuxer : AVInputFormat {
+public class AIXDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override string name {
         public get {
@@ -43,17 +43,17 @@ public class AIXDemuxer : AVInputFormat {
 
     [CCode (cname="aix_probe",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="aix_read_header",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="aix_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/aixdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

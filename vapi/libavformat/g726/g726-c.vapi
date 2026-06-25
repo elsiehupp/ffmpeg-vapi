@@ -97,7 +97,7 @@ public class G726LEDemuxerClass : G726OptionsClass {
 }
 
 [CCode (cname="ff_g726_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
-public class G726Demuxer : AVInputFormat {
+public class G726Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string name {
         public get {
@@ -118,12 +118,12 @@ public class G726Demuxer : AVInputFormat {
 
     [CCode (cname="g726_read_header",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="g726_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -181,7 +181,7 @@ public class G726DemuxerClass : G726OptionsClass {
 }
 
 [CCode (cname="ff_g726le_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
-public class G726LEDemuxer : AVInputFormat {
+public class G726LEDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override string name {
         public get {
@@ -202,12 +202,12 @@ public class G726LEDemuxer : AVInputFormat {
 
     [CCode (cname="g726_read_header",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="g726_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/g726.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 //  FF_RAW_DEMUXER_CLASS (sbc)
 [CCode (cname="ff_sbc_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/sbcdec.c")]
-public class SBCDemuxer : AVInputFormat {
+public class SBCDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sbcdec.c")]
     public override string name {
         public get {
@@ -63,12 +63,12 @@ public class SBCDemuxer : AVInputFormat {
 
     [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/sbcdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/sbcdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

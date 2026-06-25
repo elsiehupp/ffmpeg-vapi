@@ -108,7 +108,7 @@ public class MXFDemuxerClass : LibAVUtil.Class {
 public class MXFDemuxerPrivateData { }
 
 [CCode (cname="ff_mxf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
-public class MXFDemuxer : AVInputFormat {
+public class MXFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
     public override string name {
         public get {
@@ -147,28 +147,28 @@ public class MXFDemuxer : AVInputFormat {
 
     [CCode (cname="mxf_probe",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="mxf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mxf_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mxf_read_close",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mxf_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

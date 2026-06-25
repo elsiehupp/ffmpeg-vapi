@@ -58,7 +58,7 @@ public uint32 ff_mov_get_channel_layout_tag (
 /***********************************************************
 @brief Read 'chan' tag from the input stream.
 
-@param format_context AVFormatContext
+@param format_context LibAVFormat.FormatContext
 @param pb AVIOContext
 @param st The stream to set codec values for
 @param size Remaining size in the 'chan' tag
@@ -66,9 +66,9 @@ public uint32 ff_mov_get_channel_layout_tag (
 ***********************************************************/
 [CCode (cname="ff_mov_read_chan",cheader_filename="subprojects/ffmpeg/libformat/mov_chan.h")]
 public int ff_mov_read_chan (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     AVIOContext pb,
-    AVStream st,
+    LibAVFormat.Stream st,
     int64 size
 );
 

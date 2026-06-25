@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class SAPDemuxerState { }
 
 [CCode (cname="ff_sap_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/sapdec.c")]
-public class SAPDemuxer : AVInputFormat {
+public class SAPDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sapdec.c")]
     public override string name {
         public get {
@@ -57,23 +57,23 @@ public class SAPDemuxer : AVInputFormat {
 
     [CCode (cname="sap_probe",cheader_filename="subprojects/ffmpeg/libavformat/sapdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="sap_read_header",cheader_filename="subprojects/ffmpeg/libavformat/sapdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="sap_fetch_packet",cheader_filename="subprojects/ffmpeg/libavformat/sapdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="sap_read_close",cheader_filename="subprojects/ffmpeg/libavformat/sapdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/sapdec.c")]

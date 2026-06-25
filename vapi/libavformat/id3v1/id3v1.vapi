@@ -38,7 +38,7 @@ public const size_t ID3v1_GENRE_MAX;
 ***********************************************************/
 [CCode (cname="ff_id3v1_read",cheader_filename="subprojects/ffmpeg/libformat/id3v1.h")]
 public void ff_id3v1_read (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 } // namespace LibAVFormat

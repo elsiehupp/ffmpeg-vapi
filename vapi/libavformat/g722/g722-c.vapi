@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 //  FF_RAW_DEMUXER_CLASS (g722)
 [CCode (cname="ff_g722_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/g722.c")]
-public class G722Demuxer : AVInputFormat {
+public class G722Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/g722.c")]
     public override string name {
         public get {
@@ -45,12 +45,12 @@ public class G722Demuxer : AVInputFormat {
 
     [CCode (cname="g722_read_header",cheader_filename="subprojects/ffmpeg/libavformat/g722.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/g722.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

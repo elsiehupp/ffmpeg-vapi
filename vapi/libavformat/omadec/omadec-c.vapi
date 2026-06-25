@@ -47,7 +47,7 @@ Supported decoders: ATRAC3, ATRAC3+, MP3, LPCM
 public class OMADemuxerPrivateData { }
 
 [CCode (cname="ff_oma_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/omadec.c")]
-public class OMADemuxer : AVInputFormat {
+public class OMADemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/omadec.c")]
     public override string name {
         public get {
@@ -77,23 +77,23 @@ public class OMADemuxer : AVInputFormat {
 
     [CCode (cname="oma_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/omadec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="oma_read_header",cheader_filename="subprojects/ffmpeg/libavformat/omadec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="oma_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/omadec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="oma_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/omadec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -101,7 +101,7 @@ public class OMADemuxer : AVInputFormat {
 
     [CCode (cname="oma_read_close",cheader_filename="subprojects/ffmpeg/libavformat/omadec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/omadec.c")]

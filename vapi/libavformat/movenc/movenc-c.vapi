@@ -1057,7 +1057,7 @@ public class MOVMuxerClass : MOVOptionsClass {
 }
 
 [CCode (cname="ff_mov_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class MOVMuxer : AVOutputFormat {
+public class MOVMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
@@ -1114,12 +1114,12 @@ public class MOVMuxer : AVOutputFormat {
 
     [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1131,12 +1131,12 @@ public class MOVMuxer : AVOutputFormat {
 
     [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1164,7 +1164,7 @@ public class MOVMuxer : AVOutputFormat {
 
     [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = mov_muxer_class;
@@ -1204,7 +1204,7 @@ public class TGPMuxerClass : MOVOptionsClass {
 }
 
 [CCode (cname="ff_tgp_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class TGPMuxer : AVOutputFormat {
+public class TGPMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
@@ -1261,12 +1261,12 @@ public class TGPMuxer : AVOutputFormat {
 
     [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1278,12 +1278,12 @@ public class TGPMuxer : AVOutputFormat {
 
     [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1309,7 +1309,7 @@ public class TGPMuxer : AVOutputFormat {
 
     [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = tgp_muxer_class;
@@ -1349,7 +1349,7 @@ public class MP4MuxerClass : MOVOptionsClass {
 }
 
 [CCode (cname="ff_mp4_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class MP4Muxer : AVOutputFormat {
+public class MP4Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
@@ -1415,12 +1415,12 @@ public class MP4Muxer : AVOutputFormat {
 
     [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1432,12 +1432,12 @@ public class MP4Muxer : AVOutputFormat {
 
     [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1463,7 +1463,7 @@ public class MP4Muxer : AVOutputFormat {
 
     [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = mp4_muxer_class;
@@ -1503,7 +1503,7 @@ public class PSPMuxerClass : MOVOptionsClass {
 }
 
 [CCode (cname="ff_psp_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class PSPMuxer : AVOutputFormat {
+public class PSPMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
@@ -1560,12 +1560,12 @@ public class PSPMuxer : AVOutputFormat {
 
     [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1577,12 +1577,12 @@ public class PSPMuxer : AVOutputFormat {
 
     [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1608,7 +1608,7 @@ public class PSPMuxer : AVOutputFormat {
 
     [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = psp_muxer_class;
@@ -1648,7 +1648,7 @@ public class TG2MuxerClass : MOVOptionsClass {
 }
 
 [CCode (cname="ff_tg2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class TG2Muxer : AVOutputFormat {
+public class TG2Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
@@ -1705,12 +1705,12 @@ public class TG2Muxer : AVOutputFormat {
 
     [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1722,12 +1722,12 @@ public class TG2Muxer : AVOutputFormat {
 
     [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1753,7 +1753,7 @@ public class TG2Muxer : AVOutputFormat {
 
     [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = tg2_muxer_class;
@@ -1793,7 +1793,7 @@ public class IPodMuxerClass : MOVOptionsClass {
 }
 
 [CCode (cname="ff_ipod_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class IPodMuxer : AVOutputFormat {
+public class IPodMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
@@ -1859,12 +1859,12 @@ public class IPodMuxer : AVOutputFormat {
 
     [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1876,12 +1876,12 @@ public class IPodMuxer : AVOutputFormat {
 
     [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -1907,7 +1907,7 @@ public class IPodMuxer : AVOutputFormat {
 
     [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = ipod_muxer_class;
@@ -1947,7 +1947,7 @@ public class ISMVMuxerClass : MOVOptionsClass {
 }
 
 [CCode (cname="ff_ismv_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class ISMVMuxer : AVOutputFormat {
+public class ISMVMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
@@ -2013,12 +2013,12 @@ public class ISMVMuxer : AVOutputFormat {
 
     [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -2030,12 +2030,12 @@ public class ISMVMuxer : AVOutputFormat {
 
     [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -2062,7 +2062,7 @@ public class ISMVMuxer : AVOutputFormat {
 
     [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = ismv_muxer_class;
@@ -2102,7 +2102,7 @@ public class F4VMuxerClass : MOVOptionsClass {
 }
 
 [CCode (cname="ff_f4v_muxer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
-public class F4VMuxer : AVOutputFormat {
+public class F4VMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override string name {
         public get {
@@ -2168,12 +2168,12 @@ public class F4VMuxer : AVOutputFormat {
 
     [CCode (cname="mov_init",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_header",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -2185,12 +2185,12 @@ public class F4VMuxer : AVOutputFormat {
 
     [CCode (cname="mov_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_free",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
@@ -2216,7 +2216,7 @@ public class F4VMuxer : AVOutputFormat {
 
     [CCode (cname="mov_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/movenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = f4v_muxer_class;

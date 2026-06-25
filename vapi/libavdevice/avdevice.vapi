@@ -73,8 +73,8 @@ if d is non-NULL, returns the next registered input audio/video device after d
 or NULL if d is the last one.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
-public AVInputFormat? av_input_audio_device_next (
-    AVInputFormat? d
+public LibAVFormat.InputFormat? av_input_audio_device_next (
+    LibAVFormat.InputFormat? d
 );
 
 /***********************************************************
@@ -85,8 +85,8 @@ if d is non-NULL, returns the next registered input audio/video device after d
 or NULL if d is the last one.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
-public AVInputFormat? av_input_video_device_next (
-    AVInputFormat? d
+public LibAVFormat.InputFormat? av_input_video_device_next (
+    LibAVFormat.InputFormat? d
 );
 
 /***********************************************************
@@ -97,8 +97,8 @@ if d is non-NULL, returns the next registered output audio/video device after d
 or NULL if d is the last one.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
-public AVOutputFormat? av_output_audio_device_next (
-    AVOutputFormat? d
+public LibAVFormat.OutputFormat? av_output_audio_device_next (
+    LibAVFormat.OutputFormat? d
 );
 
 /***********************************************************
@@ -109,8 +109,8 @@ if d is non-NULL, returns the next registered output audio/video device after d
 or NULL if d is the last one.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
-public AVOutputFormat? av_output_video_device_next (
-    AVOutputFormat? d
+public LibAVFormat.OutputFormat? av_output_video_device_next (
+    LibAVFormat.OutputFormat? d
 );
 
 [CCode (cname="struct AVDeviceRect",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
@@ -505,7 +505,7 @@ Send control message from application to device.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 public int avdevice_app_to_dev_control_message (
-    AVFormatContext? s,
+    LibAVFormat.FormatContext? s,
     AVAppToDevMessageType type,
     void *data,
     size_t data_size
@@ -523,7 +523,7 @@ Send control message from device to application.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 public int avdevice_dev_to_app_control_message (
-    AVFormatContext? s,
+    LibAVFormat.FormatContext? s,
     AVDevToAppMessageType type,
     void *data,
     size_t data_size
@@ -551,7 +551,7 @@ List of capabilities that can be queried:
                      type: LibAVUtil.OptionType.INT64
  - Capabilities valid for video devices:
    - pixel_format:   supported pixel formats.
-                     type: LibAVUtil.OptionType.INT (AVPixelFormat value)
+                     type: LibAVUtil.OptionType.INT (LibAVUtil.PixelFormat value)
    - window_size:    supported window sizes (describes size of the window size presented to the user).
                      type: LibAVUtil.OptionType.IMAGE_SIZE
    - frame_size:     supported frame sizes (describes size of provided video frames).
@@ -560,7 +560,7 @@ List of capabilities that can be queried:
                      type: LibAVUtil.OptionType.RATIONAL
 
 Value of the capability may be set by user using av_opt_set () function
-and AVDeviceCapabilitiesQuery object. Following queries will
+and LibAVDevice.DeviceCapabilitiesQuery object. Following queries will
 limit results to the values matching already set capabilities.
 For example, setting a codec may impact number of formats or fps values
 returned during next query. Setting invalid value may limit results to zero.
@@ -568,8 +568,8 @@ returned during next query. Setting invalid value may limit results to zero.
 Example of the usage basing on opengl output device:
 
 @code
- AVFormatContext? oc = NULL;
- AVDeviceCapabilitiesQuery? caps = NULL;
+ LibAVFormat.FormatContext? oc = NULL;
+ LibAVDevice.DeviceCapabilitiesQuery? caps = NULL;
  AVOptionRanges? ranges;
  int ret;
 
@@ -607,12 +607,12 @@ to implement capabilities probing API based on AVOption API. Should not be used 
 ***********************************************************/
 [CCode (cname="struct AVDeviceCapabilitiesQuery",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 [Compact]
-public class AVDeviceCapabilitiesQuery {
+public class LibAVDevice.DeviceCapabilitiesQuery {
     [CCode (cname="")]
-    public AVClass? av_class;
+    public LibAVUtil.Class? av_class;
 
     [CCode (cname="")]
-    public AVFormatContext? device_context;
+    public LibAVFormat.FormatContext? device_context;
 
     [CCode (cname="")]
     public AVCodecID codec;
@@ -621,7 +621,7 @@ public class AVDeviceCapabilitiesQuery {
     public AVSampleFormat sample_format;
 
     [CCode (cname="")]
-    public AVPixelFormat pixel_format;
+    public LibAVUtil.PixelFormat pixel_format;
 
     [CCode (cname="")]
     public int sample_rate;
@@ -672,8 +672,8 @@ not used anymore.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 public int avdevice_capabilities_create (
-    AVDeviceCapabilitiesQuery **caps,
-    AVFormatContext? s,
+    LibAVDevice.DeviceCapabilitiesQuery **caps,
+    LibAVFormat.FormatContext? s,
     AVDictionary **device_options
 );
 
@@ -685,8 +685,8 @@ Free resources created by avdevice_capabilities_create ()
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 public void avdevice_capabilities_free (
-    AVDeviceCapabilitiesQuery **caps,
-    AVFormatContext? s
+    LibAVDevice.DeviceCapabilitiesQuery **caps,
+    LibAVFormat.FormatContext? s
 );
 
 /***********************************************************
@@ -711,9 +711,9 @@ public class AVDeviceInfo {
 /***********************************************************
 List of devices.
 ***********************************************************/
-[CCode (cname="struct AVDeviceInfoList",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
+[CCode (cname="struct LibAVFormat.DeviceInfoList",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 [Compact]
-public class AVDeviceInfoList {
+public class LibAVFormat.DeviceInfoList {
     /***********************************************************
     list of autodetected devices
     ***********************************************************/
@@ -748,8 +748,8 @@ Returns available device names and their parameters.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 public int avdevice_list_devices (
-    AVFormatContext? s,
-    AVDeviceInfoList **device_list
+    LibAVFormat.FormatContext? s,
+    LibAVFormat.DeviceInfoList **device_list
 );
 
 /***********************************************************
@@ -759,7 +759,7 @@ Convenient function to free result of avdevice_list_devices ().
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 public void avdevice_free_list_devices (
-    AVDeviceInfoList **device_list
+    LibAVFormat.DeviceInfoList **device_list
 );
 
 /***********************************************************
@@ -781,18 +781,18 @@ Device context is allocated and deallocated internally.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 public int avdevice_list_input_sources (
-    AVInputFormat? device,
+    LibAVFormat.InputFormat? device,
     string device_name,
     AVDictionary? device_options,
-    AVDeviceInfoList **device_list
+    LibAVFormat.DeviceInfoList **device_list
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 public int avdevice_list_output_sinks (
-    AVOutputFormat? device,
+    LibAVFormat.OutputFormat? device,
     string device_name,
     AVDictionary? device_options,
-    AVDeviceInfoList **device_list
+    LibAVFormat.DeviceInfoList **device_list
 );
 
 /***********************************************************

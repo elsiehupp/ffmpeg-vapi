@@ -83,7 +83,7 @@ public enum OverlayFormat {
 [Compact]
 public class OverlayContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     /***********************************************************
     position of overlaid picture

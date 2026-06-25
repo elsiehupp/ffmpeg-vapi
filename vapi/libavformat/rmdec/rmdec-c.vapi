@@ -52,7 +52,7 @@ VBR case for AAC
 public class RealMediaDemuxerPrivateData { }
 
 [CCode (cname="ff_rm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
-public class RealMediaDemuxer : AVInputFormat {
+public class RealMediaDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override string name {
         public get {
@@ -82,28 +82,28 @@ public class RealMediaDemuxer : AVInputFormat {
 
     [CCode (cname="rm_probe",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="rm_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="rm_read_close",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rm_read_dts",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int64 read_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
@@ -111,7 +111,7 @@ public class RealMediaDemuxer : AVInputFormat {
 
     [CCode (cname="rm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -120,7 +120,7 @@ public class RealMediaDemuxer : AVInputFormat {
 }
 
 [CCode (cname="ff_rdt_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
-public class RDTDemuxer : AVInputFormat {
+public class RDTDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override string name {
         public get {
@@ -150,7 +150,7 @@ public class RDTDemuxer : AVInputFormat {
 
     [CCode (cname="rm_read_close",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
@@ -164,7 +164,7 @@ public class RDTDemuxer : AVInputFormat {
 }
 
 [CCode (cname="ff_ivr_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
-public class IVRDemuxer : AVInputFormat {
+public class IVRDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override string name {
         public get {
@@ -194,23 +194,23 @@ public class IVRDemuxer : AVInputFormat {
 
     [CCode (cname="ivr_probe",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ivr_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ivr_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="rm_read_close",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/rmdec.c")]

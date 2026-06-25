@@ -39,39 +39,39 @@ file, tcp, http and others).
 Unless you are absolutely sure you won't use libavformat's network
 capabilities, you should also call avformat_network_init ().
 
-A supported input format is described by an AVInputFormat struct, conversely
-an output format is described by AVOutputFormat. You can iterate over all
+A supported input format is described by an LibAVFormat.InputFormat struct, conversely
+an output format is described by LibAVFormat.OutputFormat. You can iterate over all
 input/output formats using the av_demuxer_iterate / av_muxer_iterate () functions.
 The protocols layer is not part of the public API, so you can only get the names
 of supported protocols with the avio_enum_protocols () function.
 
-Main lavf structure used for both muxing and demuxing is AVFormatContext,
+Main lavf structure used for both muxing and demuxing is LibAVFormat.FormatContext,
 which exports all information about the file being read or written. As with
 most Libavformat structures, its size is not part of public ABI, so it cannot be
 allocated on stack or directly with av_malloc (). To create an
-AVFormatContext, use avformat_alloc_context () (some functions, like
+LibAVFormat.FormatContext, use avformat_alloc_context () (some functions, like
 avformat_open_input () might do that for you).
 
-Most importantly an AVFormatContext contains:
-@li the @ref AVFormatContext.iformat "input" or @ref AVFormatContext.oformat
+Most importantly an LibAVFormat.FormatContext contains:
+@li the @ref LibAVFormat.FormatContext.iformat "input" or @ref LibAVFormat.FormatContext.oformat
 "output" format. It is either autodetected or set by user for input;
 always set by user for output.
-@li an @ref AVFormatContext.streams "array" of AVStreams, which describe all
+@li an @ref LibAVFormat.FormatContext.streams "array" of AVStreams, which describe all
 elementary streams stored in the file. AVStreams are typically referred to
 using their index in this array.
-@li an @ref AVFormatContext.pb "I/O context". It is either opened by lavf or
+@li an @ref LibAVFormat.FormatContext.pb "I/O context". It is either opened by lavf or
 set by user for input, always set by user for output (unless you are dealing
 with an AVFormatFlags1.NO_FILE format).
 
 @section lavf_options Passing options to (de)muxers
 It is possible to configure lavf muxers and demuxers using the @ref avoptions
 mechanism. Generic (format-independent) libavformat options are provided by
-AVFormatContext, they can be examined from a user program by calling
-av_opt_next () / av_opt_find () on an allocated AVFormatContext (or its LibAVUtil.Class
+LibAVFormat.FormatContext, they can be examined from a user program by calling
+av_opt_next () / av_opt_find () on an allocated LibAVFormat.FormatContext (or its LibAVUtil.Class
 from avformat_get_class ()). Private (format-specific) options are provided by
-AVFormatContext.priv_data if and only if AVInputFormat.priv_class /
-AVOutputFormat.priv_class of the corresponding format struct is non-NULL.
-Further options may be provided by the @ref AVFormatContext.pb "I/O context"
+LibAVFormat.FormatContext.priv_data if and only if LibAVFormat.InputFormat.priv_class /
+LibAVFormat.OutputFormat.priv_class of the corresponding format struct is non-NULL.
+Further options may be provided by the @ref LibAVFormat.FormatContext.pb "I/O context"
 if its LibAVUtil.Class is non-NULL, and the protocols layer. See the discussion on
 nesting in @ref avoptions documentation to learn how to access those.
 
@@ -103,25 +103,25 @@ The minimum information required to open a file is its URL, which
 is passed to avformat_open_input (), as in the following code:
 @code
 const char url = "file:in.mp3";
-AVFormatContext format_context = NULL;
+LibAVFormat.FormatContext format_context = NULL;
 public int ret = avformat_open_input (&format_context, url, NULL, NULL);
 if (ret < 0)
     abort ();
 @endcode
-The above code attempts to allocate an AVFormatContext, open the
+The above code attempts to allocate an LibAVFormat.FormatContext, open the
 specified file (autodetecting the format) and read the header, exporting the
 information stored there into format_context. Some formats do not have a header or do not
 store enough information there, so it is recommended that you call the
 avformat_find_stream_info () function which tries to read and decode a few
 frames to find missing information.
 
-In some cases you might want to preallocate an AVFormatContext yourself with
+In some cases you might want to preallocate an LibAVFormat.FormatContext yourself with
 avformat_alloc_context () and do some tweaking on it before passing it to
 avformat_open_input (). One such case is when you want to use custom functions
 for reading input data instead of lavf internal I/O layer.
 To do that, create your own AVIOContext with avio_alloc_context (), passing
 your reading callbacks to it. Then set the @em pb field of your
-AVFormatContext to newly created AVIOContext.
+LibAVFormat.FormatContext to newly created AVIOContext.
 
 Since the format of the opened file is in general not known until after
 avformat_open_input () has returned, it is not possible to set demuxer private
@@ -158,9 +158,9 @@ After you have finished reading the file, you must close it with
 avformat_close_input (). It will free everything associated with the file.
 
 @section lavf_decoding_read Reading from an opened file
-Reading data from an opened AVFormatContext is done by repeatedly calling
+Reading data from an opened LibAVFormat.FormatContext is done by repeatedly calling
 av_read_frame () on it. Each call, if successful, will return an LibAVCodec.Packet
-containing encoded data for one AVStream, identified by
+containing encoded data for one LibAVFormat.Stream, identified by
 LibAVCodec.Packet.stream_index. This packet may be passed straight into the libavcodec
 decoding functions avcodec_send_packet () or avcodec_decode_subtitle2 () if the
 caller wishes to decode the data.
@@ -168,7 +168,7 @@ caller wishes to decode the data.
 LibAVCodec.Packet.pts, LibAVCodec.Packet.dts and LibAVCodec.Packet.duration timing information will be
 set if known. They may also be unset (i.e. AV_NOPTS_VALUE for
 pts/dts, 0 for duration) if the stream does not provide them. The timing
-information will be in AVStream.time_base units, i.e. it has to be
+information will be in LibAVFormat.Stream.time_base units, i.e. it has to be
 multiplied by the timebase to convert them to seconds.
 
 If LibAVCodec.Packet.buffer is set on the returned packet, then the packet is
@@ -197,17 +197,17 @@ At the beginning of the muxing process, the caller must first call
 avformat_alloc_context () to create a muxing context. The caller then sets up
 the muxer by filling the various fields in this context:
 
-- The @ref AVFormatContext.oformat "oformat" field must be set to select the
+- The @ref LibAVFormat.FormatContext.oformat "oformat" field must be set to select the
 muxer that will be used.
-- Unless the format is of the AVFormatFlags1.NO_FILE type, the @ref AVFormatContext.pb
+- Unless the format is of the AVFormatFlags1.NO_FILE type, the @ref LibAVFormat.FormatContext.pb
 "pb" field must be set to an opened IO context, either returned from
 avio_open2 () or a custom one.
 - Unless the format is of the AVFormatFlags1.NO_STREAMS type, at least one stream must
 be created with the avformat_new_stream () function. The caller should fill
-the @ref AVStream.codecpar "stream codec parameters" information, such as the
+the @ref LibAVFormat.Stream.codecpar "stream codec parameters" information, such as the
 codec @ref LibAVCodec.CodecParameters.codec_type "type", @ref LibAVCodec.CodecParameters.codec_id
 "id" and other parameters (e.g. width / height, the pixel or sample format,
-etc.) as known. The @ref AVStream.time_base "stream timebase" should
+etc.) as known. The @ref LibAVFormat.Stream.time_base "stream timebase" should
 be set to the timebase that the caller desires to use for this stream (note
 that the timebase actually used by the muxer can be different, as will be
 described later).
@@ -216,10 +216,10 @@ LibAVCodec.CodecParameters, rather than using @ref avcodec_parameters_copy () du
 remuxing: there is no guarantee that the codec context values remain valid
 for both input and output format contexts.
 - The caller may fill in additional information, such as @ref
-AVFormatContext.metadata "global" or @ref AVStream.metadata "per-stream"
-metadata, @ref AVFormatContext.chapters "chapters", @ref
-AVFormatContext.programs "programs", etc. as described in the
-AVFormatContext documentation. Whether such information will actually be
+LibAVFormat.FormatContext.metadata "global" or @ref LibAVFormat.Stream.metadata "per-stream"
+metadata, @ref LibAVFormat.FormatContext.chapters "chapters", @ref
+LibAVFormat.FormatContext.programs "programs", etc. as described in the
+LibAVFormat.FormatContext documentation. Whether such information will actually be
 stored in the output depends on what the container format and the muxer
 support.
 
@@ -234,7 +234,7 @@ av_interleaved_write_frame () (consult those functions' documentation for
 discussion on the difference between them; only one of them may be used with
 a single muxing context, they should not be mixed). Do note that the timing
 information on the packets sent to the muxer must be in the corresponding
-AVStream's timebase. That timebase is set by the muxer (in the
+LibAVFormat.Stream's timebase. That timebase is set by the muxer (in the
 avformat_write_header () step) and may be different from the timebase
 requested by the caller.
 
@@ -315,11 +315,11 @@ for (;;) {
 
 [CCode (cname="struct AVDeviceInfoList",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
-public class AVDeviceInfoList { }
+public class LibAVFormat.DeviceInfoList { }
 
 [CCode (cname="struct AVDeviceCapabilitiesQuery",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
-public class AVDeviceCapabilitiesQuery { }
+public class LibAVFormat.DeviceCapabilitiesQuery { }
 
 /***********************************************************
 @defgroup metadata_api Public Metadata API
@@ -330,7 +330,7 @@ application when demuxing. Conversely it allows a client application to
 set metadata when muxing.
 
 Metadata is exported or set as pairs of key/value strings in the 'metadata'
-fields of the AVFormatContext, AVStream, AVChapter and AVProgram structs
+fields of the LibAVFormat.FormatContext, LibAVFormat.Stream, LibAVFormat.Chapter and LibAVFormat.Program structs
 using the @ref lavu_dict "LibAVUtil.Dictionary" API. Like all strings in FFmpeg,
 metadata is assumed to be UTF-8 encoded Unicode. Note that metadata
 exported by demuxers isn't checked to be valid UTF-8 in most cases.
@@ -356,9 +356,9 @@ Important concepts to keep in mind:
       sorting will have '-sort' appended. E.g. artist="The Beatles"
       artist-sort="Beatles, The".
 - Some protocols and demuxers support metadata updates. After a successful
-call to av_read_packet (), AVFormatContext.event_flags or AVStream.event_flags
+call to av_read_packet (), LibAVFormat.FormatContext.event_flags or LibAVFormat.Stream.event_flags
 will be updated to indicate if metadata changed. In order to detect metadata
-changes on a stream, you need to loop through all streams in the AVFormatContext
+changes on a stream, you need to loop through all streams in the LibAVFormat.FormatContext
 and check their individual event_flags.
 
 -  Demuxers attempt to export metadata in a generic format, however tags
@@ -452,7 +452,7 @@ public int av_append_packet (
 ***********************************************************/
 [CCode (cname="struct AVProbeData",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
-public class AVProbeData {
+public class LibAVFormat.ProbeData {
     [CCode (cname="filename")]
     public string filename;
 
@@ -605,7 +605,7 @@ public enum AVFormatFlags1 {
     av_interleaved_write_frame so they
     start from 0.
     The user or muxer can override this through
-    AVFormatContext.avoid_negative_ts
+    LibAVFormat.FormatContext.avoid_negative_ts
     ***********************************************************/
     [CCode (cname="AVFMT_TS_NEGATIVE")]
     ALLOW_NEGATIVE_TIMESTAMPS,
@@ -621,8 +621,8 @@ public enum AVFormatFlags1 {
 @addtogroup lavf_encoding
 @{
 ***********************************************************/
-[CCode (cname="struct AVOutputFormat",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public abstract class AVOutputFormat {
+[CCode (cname="struct LibAVFormat.OutputFormat",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+public abstract class LibAVFormat.OutputFormat {
     [CCode (cname="name")]
     public abstract string name { public get; }
 
@@ -702,7 +702,7 @@ public abstract class AVOutputFormat {
     New public fields should be added right above.
     ***********************************************************/
     [CCode (cname="")]
-    public AVOutputFormat next;
+    public LibAVFormat.OutputFormat next;
 
     /***********************************************************
     @brief Size of private data so that it can be allocated in the wrapper
@@ -712,7 +712,7 @@ public abstract class AVOutputFormat {
 
     [CCode (cname="")]
     public abstract int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     /***********************************************************
@@ -724,13 +724,13 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="")]
     public abstract int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     /***********************************************************
@@ -738,7 +738,7 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int interleave_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet output,
         LibAVCodec.Packet input,
         int flush
@@ -759,7 +759,7 @@ public abstract class AVOutputFormat {
 
     [CCode (cname="")]
     public abstract void get_output_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream,
         int64[] dts,
         int64[] wall
@@ -770,7 +770,7 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int control_message (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int type,
         void *data,
         size_t data_size
@@ -786,7 +786,7 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int write_uncoded_frame (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         LibAVUtil.Frame frame,
         uint flags
@@ -798,8 +798,8 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int get_device_list (
-        AVFormatContext format_context,
-        AVDeviceInfoList device_list
+        LibAVFormat.FormatContext format_context,
+        LibAVFormat.DeviceInfoList device_list
     );
 
     /***********************************************************
@@ -808,8 +808,8 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int create_device_capabilities (
-        AVFormatContext format_context,
-        AVDeviceCapabilitiesQuery caps
+        LibAVFormat.FormatContext format_context,
+        LibAVFormat.DeviceCapabilitiesQuery caps
     );
 
     /***********************************************************
@@ -818,8 +818,8 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int free_device_capabilities (
-        AVFormatContext format_context,
-        AVDeviceCapabilitiesQuery caps
+        LibAVFormat.FormatContext format_context,
+        LibAVFormat.DeviceCapabilitiesQuery caps
     );
 
     /***********************************************************
@@ -829,8 +829,8 @@ public abstract class AVOutputFormat {
     public abstract LibAVCodec.CodecID data_codec { public get; }
 
     /***********************************************************
-    @brief Initialize format. May allocate data here, and set any AVFormatContext or
-    AVStream parameters that need to be set before packets are sent.
+    @brief Initialize format. May allocate data here, and set any LibAVFormat.FormatContext or
+    LibAVFormat.Stream parameters that need to be set before packets are sent.
     This method must not write output.
 
     Return 0 if streams were fully configured, 1 if not, negative LibAVUtil.ErrorCode on failure
@@ -839,7 +839,7 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     /***********************************************************
@@ -852,7 +852,7 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     /***********************************************************
@@ -862,7 +862,7 @@ public abstract class AVOutputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -877,7 +877,7 @@ public abstract class AVOutputFormat {
 @{
 ***********************************************************/
 [CCode (cname="struct AVInputFormat",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public abstract class AVInputFormat {
+public abstract class LibAVFormat.InputFormat {
     /***********************************************************
     @brief A comma separated list of short names for the format. New names
     may be appended with a minor bump.
@@ -941,7 +941,7 @@ public abstract class AVInputFormat {
     New public fields should be added right above.
     ***********************************************************/
     [CCode (cname="")]
-    public AVInputFormat next;
+    public LibAVFormat.InputFormat next;
 
     /***********************************************************
     @brief Raw demuxers store their codec ID here.
@@ -962,17 +962,17 @@ public abstract class AVInputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     /***********************************************************
-    @brief Read the format header and initialize the AVFormatContext
+    @brief Read the format header and initialize the LibAVFormat.FormatContext
     structure. Return 0 if OK. 'avformat_new_stream' should be
     called to create new streams.
     ***********************************************************/
     [CCode (cname="")]
     public abstract int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     /***********************************************************
@@ -986,17 +986,17 @@ public abstract class AVInputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     /***********************************************************
-    @brief Close the stream. The AVFormatContext and AVStreams are not
+    @brief Close the stream. The LibAVFormat.FormatContext and AVStreams are not
     freed by this function
     ***********************************************************/
     [CCode (cname="")]
     public abstract int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     /***********************************************************
@@ -1009,7 +1009,7 @@ public abstract class AVInputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -1021,7 +1021,7 @@ public abstract class AVInputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int64 read_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
@@ -1033,7 +1033,7 @@ public abstract class AVInputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int read_play (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     /***********************************************************
@@ -1042,18 +1042,18 @@ public abstract class AVInputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int read_pause (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     /***********************************************************
     @brief Seek to timestamp ts.
     Seeking will be done so that the point from which all active streams
     can be presented successfully will be closest to ts and within min/max_ts.
-    Active streams are all streams that have AVStream.discard < AVDISCARD_ALL.
+    Active streams are all streams that have LibAVFormat.Stream.discard < AVDISCARD_ALL.
     ***********************************************************/
     [CCode (cname="")]
     public abstract int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -1067,8 +1067,8 @@ public abstract class AVInputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int get_device_list (
-        AVFormatContext format_context,
-        AVDeviceInfoList device_list
+        LibAVFormat.FormatContext format_context,
+        LibAVFormat.DeviceInfoList device_list
     );
 
     /***********************************************************
@@ -1077,8 +1077,8 @@ public abstract class AVInputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int create_device_capabilities (
-        AVFormatContext format_context,
-        AVDeviceCapabilitiesQuery caps
+        LibAVFormat.FormatContext format_context,
+        LibAVFormat.DeviceCapabilitiesQuery caps
     );
 
     /***********************************************************
@@ -1087,8 +1087,8 @@ public abstract class AVInputFormat {
     ***********************************************************/
     [CCode (cname="")]
     public abstract int free_device_capabilities (
-        AVFormatContext format_context,
-        AVDeviceCapabilitiesQuery caps
+        LibAVFormat.FormatContext format_context,
+        LibAVFormat.DeviceCapabilitiesQuery caps
     );
 
 }
@@ -1137,12 +1137,12 @@ public enum AVStreamParseType {
 
 [CCode (cname="struct AVIndexEntry",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
-public class AVIndexEntry {
+public class LibAVFormat.IndexEntry {
     [CCode (cname="")]
     public int64 pos;
 
     /***********************************************************
-    @brief Timestamp in AVStream.time_base units, preferably the time
+    @brief Timestamp in LibAVFormat.Stream.time_base units, preferably the time
     from which on correctly decoded frames are available when
     seeking to this entry. This means preferable PTS on keyframe
     based formats, but demuxers can choose to store a different
@@ -1232,7 +1232,7 @@ public enum AVDispositionFlags {
     APIC frame in ID3v2). The first (usually only) packet associated with it
     will be returned among the first few packets read from the file unless
     seeking takes place. It can also be accessed at any time in
-    AVStream.attached_pic.
+    LibAVFormat.Stream.attached_pic.
     ***********************************************************/
     [CCode (cname="AV_DISPOSITION_ATTACHED_PIC")]
     ATTACHED_PIC,
@@ -1308,13 +1308,13 @@ public enum AVFormatStreamEventFlags {
 New fields can be added to the end with minor version bumps.
 Removal, reordering and changes to existing fields require a major
 version bump.
-sizeof (AVStream) must not be used outside libav*.
+sizeof (LibAVFormat.Stream) must not be used outside libav*.
 ***********************************************************/
 [CCode (cname="struct AVStream",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
-public class AVStream {
+public class LibAVFormat.Stream {
     /***********************************************************
-    @brief Stream index in AVFormatContext
+    @brief Stream index in LibAVFormat.FormatContext
     ***********************************************************/
     [CCode (cname="")]
     public int index;
@@ -1440,7 +1440,7 @@ public class AVStream {
     public LibAVCodec.PacketSideData[] side_data;
 
     /***********************************************************
-    @brief The number of elements in the AVStream.side_data array.
+    @brief The number of elements in the LibAVFormat.Stream.side_data array.
     ***********************************************************/
     [CCode (cname="")]
     public int nb_side_data;
@@ -1573,9 +1573,9 @@ public class AVStream {
     //  /***********************************************************
     //  last packet in packet_buffer for this stream when muxing.
     //  ***********************************************************/
-    //  public AVPacketList last_in_packet_buffer;
+    //  public LibAVFormat.PacketList last_in_packet_buffer;
 
-    //  public AVProbeData probe_data;
+    //  public LibAVFormat.ProbeData probe_data;
 
     //  public const int MAX_REORDER_DELAY;
 
@@ -1584,7 +1584,7 @@ public class AVStream {
     //  /***********************************************************
     //  Only used if the format does not support seeking natively.
     //  ***********************************************************/
-    //  public AVIndexEntry[] index_entries;
+    //  public LibAVFormat.IndexEntry[] index_entries;
 
     //  public int nb_index_entries;
 
@@ -1725,7 +1725,7 @@ public class AVStream {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public LibAVCodec.CodecParserContext av_stream_get_parser (
-    AVStream stream
+    LibAVFormat.Stream stream
 );
 
 /***********************************************************
@@ -1735,7 +1735,7 @@ the retuned value is undefined when used with a demuxer.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int64 av_stream_get_end_pts (
-    AVStream st
+    LibAVFormat.Stream st
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
@@ -1745,11 +1745,11 @@ public const int AV_PROGRAM_RUNNING;
 @brief New fields can be added to the end with minor version bumps.
 Removal, reordering and changes to existing fields require a major
 version bump.
-sizeof (AVProgram) must not be used outside libav*.
+sizeof (LibAVFormat.Program) must not be used outside libav*.
 ***********************************************************/
 [CCode (cname="struct AVProgram",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
-public class AVProgram {
+public class LibAVFormat.Program {
     [CCode (cname="")]
     public int id;
 
@@ -1827,7 +1827,7 @@ public enum AVFormatContextFlags {
 
 [CCode (cname="struct AVChapter",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
-public class AVChapter {
+public class LibAVFormat.Chapter {
     /***********************************************************
     unique ID to identify the chapter
     ***********************************************************/
@@ -1862,7 +1862,7 @@ public class AVChapter {
 ***********************************************************/
 [CCode (cname="av_format_control_message")]
 public delegate int AVFormatControlMessage (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int type,
     void *data,
     size_t data_size
@@ -1870,7 +1870,7 @@ public delegate int AVFormatControlMessage (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/avformat.h")]
 public delegate int AVOpenCallback (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out AVIOContext pb,
     string url,
     int flags,
@@ -2050,8 +2050,8 @@ public enum AVFormatAvoidNegativeTimestampFlags {
 New fields can be added to the end with minor version bumps.
 Removal, reordering and changes to existing fields require a major
 version bump.
-sizeof (AVFormatContext) must not be used outside libav*, use
-avformat_alloc_context () to create an AVFormatContext.
+sizeof (LibAVFormat.FormatContext) must not be used outside libav*, use
+avformat_alloc_context () to create an LibAVFormat.FormatContext.
 
 Fields can be accessed through AVOptions (av_opt*),
 the name string used matches the associated command line parameter name and
@@ -2060,7 +2060,7 @@ The LibAVUtil.Option/command line parameter names differ in some cases from the 
 structure field names for historic reasons or brevity.
 ***********************************************************/
 [CCode (cname="struct AVFormatContext",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public abstract class AVFormatContext {
+public abstract class LibAVFormat.FormatContext {
     /***********************************************************
     @brief A class for logging and @ref avoptions. Set by avformat_alloc_context ().
     Exports (de)muxer private options if they exist.
@@ -2074,7 +2074,7 @@ public abstract class AVFormatContext {
     Demuxing only, set by avformat_open_input ().
     ***********************************************************/
     [CCode (cname="")]
-    public AVInputFormat iformat;
+    public LibAVFormat.InputFormat iformat;
 
     /***********************************************************
     @brief The output container format.
@@ -2082,7 +2082,7 @@ public abstract class AVFormatContext {
     Muxing only, must be set by the caller before avformat_write_header ().
     ***********************************************************/
     [CCode (cname="")]
-    public AVOutputFormat oformat;
+    public LibAVFormat.OutputFormat oformat;
 
     /***********************************************************
     @brief Format private data. This is an AVOptions-enabled struct
@@ -2132,10 +2132,10 @@ public abstract class AVFormatContext {
     Freed by libavformat in avformat_free_context ().
     ***********************************************************/
     [CCode (cname="")]
-    public AVStream[] streams;
+    public LibAVFormat.Stream[] streams;
 
     /***********************************************************
-    @brief Number of elements in AVFormatContext.streams.
+    @brief Number of elements in LibAVFormat.FormatContext.streams.
 
     Set by avformat_new_stream (), must not be modified by any other code.
     ***********************************************************/
@@ -2161,7 +2161,7 @@ public abstract class AVFormatContext {
     /***********************************************************
     @brief Position of the first frame of the component, in
     AV_TIME_BASE fractional seconds. NEVER set this value directly:
-    It is deduced from the AVStream values.
+    It is deduced from the LibAVFormat.Stream values.
 
     Demuxing only, set by libavformat.
     ***********************************************************/
@@ -2172,7 +2172,7 @@ public abstract class AVFormatContext {
     @brief Duration of the stream, in AV_TIME_BASE fractional
     seconds. Only set this value if you know none of the individual stream
     durations and also do not set any of them. This is deduced from the
-    AVStream values if not set.
+    LibAVFormat.Stream values if not set.
 
     Demuxing only, set by libavformat.
     ***********************************************************/
@@ -2224,7 +2224,7 @@ public abstract class AVFormatContext {
     public int keylen;
 
     [CCode (cname="")]
-    public AVProgram[] programs;
+    public LibAVFormat.Program[] programs;
 
     [CCode (cname="")]
     public uint nb_programs;
@@ -2271,7 +2271,7 @@ public abstract class AVFormatContext {
     public uint max_picture_buffer;
 
     /***********************************************************
-    @brief Number of chapters in AVChapter array.
+    @brief Number of chapters in LibAVFormat.Chapter array.
     When muxing, chapters are normally written in the file header,
     so nb_chapters should normally be initialized before write_header
     is called. Some muxers (e.g. mov and mkv) can also write chapters
@@ -2282,7 +2282,7 @@ public abstract class AVFormatContext {
     - demuxing: set by libavformat
     ***********************************************************/
     [CCode (cname="")]
-    public AVChapter[] chapters;
+    public LibAVFormat.Chapter[] chapters;
 
     [CCode (cname="")]
     public uint nb_chapters;
@@ -2645,13 +2645,13 @@ public abstract class AVFormatContext {
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
 
     @note Certain muxers and demuxers do nesting, i.e. they open one or more
-    additional internal format contexts. Thus the AVFormatContext pointer
+    additional internal format contexts. Thus the LibAVFormat.FormatContext pointer
     passed to this callback may be different from the one facing the caller.
     It will, however, have the same 'opaque' field.
     ***********************************************************/
     [CCode (cname="")]
     public abstract int io_open (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         out AVIOContext pb,
         string url,
         int flags,
@@ -2659,11 +2659,11 @@ public abstract class AVFormatContext {
     );
 
     /***********************************************************
-    @brief A callback for closing the streams opened with AVFormatContext.io_open ().
+    @brief A callback for closing the streams opened with LibAVFormat.FormatContext.io_open ().
     ***********************************************************/
     [CCode (cname="")]
     public abstract void io_close (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         AVIOContext pb
     );
 
@@ -2698,7 +2698,7 @@ of each stream as well as after any subsequent seek.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public void av_format_inject_global_side_data (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -2708,17 +2708,17 @@ public void av_format_inject_global_side_data (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public AVDurationEstimationMethod av_fmt_ctx_get_duration_estimation_method (
-    AVFormatContext fomat_context
+    LibAVFormat.FormatContext fomat_context
 );
 
 [CCode (cname="struct AVPacketList",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
-public class AVPacketList {
+public class LibAVFormat.PacketList {
     [CCode (cname="")]
     public LibAVCodec.Packet packet;
 
     [CCode (cname="")]
-    public AVPacketList? next;
+    public LibAVFormat.PacketList? next;
 }
 
 
@@ -2783,7 +2783,7 @@ public int avformat_network_deinit ();
         finished
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVOutputFormat av_muxer_iterate (
+public LibAVFormat.OutputFormat av_muxer_iterate (
     out void *opaque
 );
 
@@ -2797,29 +2797,29 @@ public AVOutputFormat av_muxer_iterate (
         finished
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVInputFormat av_demuxer_iterate (
+public LibAVFormat.InputFormat av_demuxer_iterate (
     out void *opaque
 );
 
 /***********************************************************
-@brief Allocate an AVFormatContext.
+@brief Allocate an LibAVFormat.FormatContext.
 avformat_free_context () can be used to free the context and everything
 allocated by the framework within it.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVFormatContext avformat_alloc_context ();
+public LibAVFormat.FormatContext avformat_alloc_context ();
 
 /***********************************************************
-@brief Free an AVFormatContext and all its streams.
+@brief Free an LibAVFormat.FormatContext and all its streams.
 @param format_context context to free
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public void avformat_free_context (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
-@brief Get the LibAVUtil.Class for AVFormatContext. It can be used in combination with
+@brief Get the LibAVUtil.Class for LibAVFormat.FormatContext. It can be used in combination with
 OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
 @see av_opt_find ().
@@ -2847,8 +2847,8 @@ defaults to be set, so codec should be provided if it is known.
 @return newly created stream or NULL on error.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVStream avformat_new_stream (
-    AVFormatContext format_context,
+public LibAVFormat.Stream avformat_new_stream (
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Codec codec
 );
 
@@ -2866,7 +2866,7 @@ public AVStream avformat_new_stream (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_stream_add_side_data (
-    AVStream st,
+    LibAVFormat.Stream st,
     LibAVCodec.PacketSideDataType type,
     uint8[] data,
     size_t size
@@ -2882,7 +2882,7 @@ public int av_stream_add_side_data (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public uint8[] av_stream_new_side_data (
-    AVStream stream,
+    LibAVFormat.Stream stream,
     LibAVCodec.PacketSideDataType type,
     int size
 );
@@ -2897,14 +2897,14 @@ public uint8[] av_stream_new_side_data (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public uint8[] av_stream_get_side_data (
-    AVStream stream,
+    LibAVFormat.Stream stream,
     LibAVCodec.PacketSideDataType type,
     int[] size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVProgram av_new_program (
-    AVFormatContext format_context,
+public LibAVFormat.Program av_new_program (
+    LibAVFormat.FormatContext format_context,
     int id
 );
 
@@ -2914,7 +2914,7 @@ public AVProgram av_new_program (
 
 
 /***********************************************************
-@brief Allocate an AVFormatContext for an output format.
+@brief Allocate an LibAVFormat.FormatContext for an output format.
 avformat_free_context () can be used to free the context and
 everything allocated by the framework within it.
 
@@ -2931,8 +2931,8 @@ failure
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_alloc_output_context2 (
-    out AVFormatContext fomat_context,
-    AVOutputFormat oformat,
+    out LibAVFormat.FormatContext fomat_context,
+    LibAVFormat.OutputFormat oformat,
     string format_name,
     string filename
 );
@@ -2943,10 +2943,10 @@ public int avformat_alloc_output_context2 (
 ***********************************************************/
 
 /***********************************************************
-@brief Find AVInputFormat based on the short name of the input format.
+@brief Find LibAVFormat.InputFormat based on the short name of the input format.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVInputFormat av_find_input_format (
+public LibAVFormat.InputFormat av_find_input_format (
     string short_name
 );
 
@@ -2958,8 +2958,8 @@ public AVInputFormat av_find_input_format (
                  demuxers with or without AVFormatFlags1.NO_FILE are probed.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVInputFormat av_probe_input_format (
-    AVProbeData probe_data,
+public LibAVFormat.InputFormat av_probe_input_format (
+    LibAVFormat.ProbeData probe_data,
     int is_opened
 );
 
@@ -2976,8 +2976,8 @@ public AVInputFormat av_probe_input_format (
                  to retry with a larger probe buffer.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVInputFormat av_probe_input_format2 (
-    AVProbeData probe_data,
+public LibAVFormat.InputFormat av_probe_input_format2 (
+    LibAVFormat.ProbeData probe_data,
     int is_opened,
     out int score_max
 );
@@ -2990,8 +2990,8 @@ public AVInputFormat av_probe_input_format2 (
 @param score_ret The score of the best detection.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVInputFormat av_probe_input_format3 (
-    AVProbeData probe_data,
+public LibAVFormat.InputFormat av_probe_input_format3 (
+    LibAVFormat.ProbeData probe_data,
     int is_opened,
     out int score_ret
 );
@@ -3015,7 +3015,7 @@ LibAVUtil.ErrorCode code otherwise
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_probe_input_buffer2 (
     AVIOContext pb,
-    out AVInputFormat fmt,
+    out LibAVFormat.InputFormat fmt,
     string url,
     void *logctx,
     uint offset,
@@ -3028,7 +3028,7 @@ public int av_probe_input_buffer2 (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_probe_input_buffer (
     AVIOContext pb,
-    out AVInputFormat fmt,
+    out LibAVFormat.InputFormat fmt,
     string url,
     void *logctx,
     uint offset,
@@ -3039,14 +3039,14 @@ public int av_probe_input_buffer (
 @brief Open an input stream and read the header. The codecs are not opened.
 The stream must be closed with avformat_close_input ().
 
-@param ps Pointer to user-supplied AVFormatContext (allocated by avformat_alloc_context).
-          May be a pointer to NULL, in which case an AVFormatContext is allocated by this
+@param ps Pointer to user-supplied LibAVFormat.FormatContext (allocated by avformat_alloc_context).
+          May be a pointer to NULL, in which case an LibAVFormat.FormatContext is allocated by this
           function and written into ps.
-          Note that a user-supplied AVFormatContext will be freed on failure.
+          Note that a user-supplied LibAVFormat.FormatContext will be freed on failure.
 @param url URL of the stream to open.
 @param fmt If non-NULL, this parameter forces a specific input format.
            Otherwise the format is autodetected.
-@param options A dictionary filled with AVFormatContext and demuxer-private options.
+@param options A dictionary filled with LibAVFormat.FormatContext and demuxer-private options.
                 On return this parameter will be destroyed and replaced with a dict containing
                 options that were not found. May be NULL.
 
@@ -3056,9 +3056,9 @@ The stream must be closed with avformat_close_input ().
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_open_input (
-    out AVFormatContext ps,
+    out LibAVFormat.FormatContext ps,
     string url,
-    AVInputFormat fmt,
+    LibAVFormat.InputFormat fmt,
     out LibAVUtil.Dictionary options
 );
 
@@ -3085,7 +3085,7 @@ examined packets may be buffered for later processing.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_find_stream_info (
-    AVFormatContext ic,
+    LibAVFormat.FormatContext ic,
     out LibAVUtil.Dictionary options
 );
 
@@ -3100,15 +3100,15 @@ public int avformat_find_stream_info (
         the last program is not among the programs of ic.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVProgram av_find_program_from_stream (
-    AVFormatContext ic,
-    AVProgram last,
+public LibAVFormat.Program av_find_program_from_stream (
+    LibAVFormat.FormatContext ic,
+    LibAVFormat.Program last,
     int stream_index
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public void av_program_add_stream_index (
-    AVFormatContext ac,
+    LibAVFormat.FormatContext ac,
     int progid,
     uint idx
 );
@@ -3139,7 +3139,7 @@ be found are ignored.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_find_best_stream (
-    AVFormatContext ic,
+    LibAVFormat.FormatContext ic,
     LibAVUtil.MediaType type,
     int wanted_stream_nb,
     int related_stream,
@@ -3164,7 +3164,7 @@ frame has a known fixed size (e.g. PCM or ADPCM data). If the audio frames
 have a variable size (e.g. MPEG audio), then it contains one frame.
 
 packet.pts, packet.dts and packet.duration are always set to correct
-values in AVStream.time_base units (and guessed if the format cannot
+values in LibAVFormat.Stream.time_base units (and guessed if the format cannot
 provide them). packet.pts can be AV_NOPTS_VALUE if the video format
 has B-frames, so it is better to rely on packet.dts if you do not
 decompress the payload.
@@ -3173,7 +3173,7 @@ decompress the payload.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_read_frame (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
@@ -3185,14 +3185,14 @@ public int av_read_frame (
 @param stream_index If stream_index is (-1), a default
 stream is selected, and timestamp is automatically converted
 from AV_TIME_BASE units to the stream specific time_base.
-@param timestamp Timestamp in AVStream.time_base units
+@param timestamp Timestamp in LibAVFormat.Stream.time_base units
        or, if no stream is specified, in AV_TIME_BASE units.
 @param flags flags which select direction and seeking mode
 @return >= 0 on success
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_seek_frame (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index,
     int64 timestamp,
     int flags
@@ -3202,7 +3202,7 @@ public int av_seek_frame (
 @brief Seek to timestamp ts.
 Seeking will be done so that the point from which all active streams
 can be presented successfully will be closest to ts and within min/max_ts.
-Active streams are all streams that have AVStream.discard < AVDISCARD_ALL.
+Active streams are all streams that have LibAVFormat.Stream.discard < AVDISCARD_ALL.
 
 If flags contain AVFormatSeekFlags.BYTE, then all timestamps are in bytes and
 are the file position (this may not be supported by all demuxers).
@@ -3228,7 +3228,7 @@ If flags contain AVFormatSeekFlags.BACKWARD, it is ignored.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_seek_file (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index,
     int64 min_ts,
     int64 ts,
@@ -3244,7 +3244,7 @@ work with NUT, Ogg and in a limited way AVI for example.
 
 The set of streams, the detected duration, stream parameters and codecs do
 not change when calling this function. If you want a complete reset, it's
-better to open a new AVFormatContext.
+better to open a new LibAVFormat.FormatContext.
 
 This does not flush the AVIOContext (format_context.pb). If necessary, call
 avio_flush (format_context.pb) before calling this function.
@@ -3254,7 +3254,7 @@ avio_flush (format_context.pb) before calling this function.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_flush (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -3263,7 +3263,7 @@ current position.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_read_play (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -3273,16 +3273,16 @@ Use av_read_play () to resume it.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_read_pause (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
-@brief Close an opened input AVFormatContext. Free it and all its contents
+@brief Close an opened input LibAVFormat.FormatContext. Free it and all its contents
 and set format_context to NULL.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public void avformat_close_input (
-    out AVFormatContext format_context
+    out LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -3345,7 +3345,7 @@ an output media file.
 @param format_context Media file handle, must be allocated with avformat_alloc_context ().
          Its oformat field must be set to the desired output format;
          Its pb field must be set to an already opened AVIOContext.
-@param options An LibAVUtil.Dictionary filled with AVFormatContext and muxer-private options.
+@param options An LibAVUtil.Dictionary filled with LibAVFormat.FormatContext and muxer-private options.
                 On return this parameter will be destroyed and replaced with a dict containing
                 options that were not found. May be NULL.
 
@@ -3358,7 +3358,7 @@ an output media file.
 //  av_warn_unused_result
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_write_header (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out LibAVUtil.Dictionary options
 );
 
@@ -3371,7 +3371,7 @@ If using this function, do not pass the same options to avformat_write_header.
 @param format_context Media file handle, must be allocated with avformat_alloc_context ().
          Its oformat field must be set to the desired output format;
          Its pb field must be set to an already opened AVIOContext.
-@param options An LibAVUtil.Dictionary filled with AVFormatContext and muxer-private options.
+@param options An LibAVUtil.Dictionary filled with LibAVFormat.FormatContext and muxer-private options.
                 On return this parameter will be destroyed and replaced with a dict containing
                 options that were not found. May be NULL.
 
@@ -3384,7 +3384,7 @@ If using this function, do not pass the same options to avformat_write_header.
 //  av_warn_unused_result
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_init_output (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out LibAVUtil.Dictionary options
 );
 
@@ -3410,7 +3410,7 @@ function.
            <br>
            Packet's @ref LibAVCodec.Packet.stream_index "stream_index" field must be
            set to the index of the corresponding stream in @ref
-           AVFormatContext.streams "format_context.streams".
+           LibAVFormat.FormatContext.streams "format_context.streams".
            <br>
            The timestamps (@ref LibAVCodec.Packet.pts "pts", @ref LibAVCodec.Packet.dts "dts")
            must be set to correct values in the stream's timebase (unless the
@@ -3427,7 +3427,7 @@ function.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_write_frame (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
@@ -3458,7 +3458,7 @@ muxer for VFR content in fragmenting mode.
            <br>
            Packet's @ref LibAVCodec.Packet.stream_index "stream_index" field must be
            set to the index of the corresponding stream in @ref
-           AVFormatContext.streams "format_context.streams".
+           LibAVFormat.FormatContext.streams "format_context.streams".
            <br>
            The timestamps (@ref LibAVCodec.Packet.pts "pts", @ref LibAVCodec.Packet.dts "dts")
            must be set to correct values in the stream's timebase (unless the
@@ -3472,11 +3472,11 @@ muxer for VFR content in fragmenting mode.
 @return 0 on success, a negative LibAVUtil.ErrorCode on error. Libavformat will always
         take care of freeing the packet, even if this function fails.
 
-@see av_write_frame (), AVFormatContext.max_interleave_delta
+@see av_write_frame (), LibAVFormat.FormatContext.max_interleave_delta
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_interleaved_write_frame (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
@@ -3490,7 +3490,7 @@ See av_interleaved_write_frame () for details.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_write_uncoded_frame (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index,
     LibAVUtil.Frame frame
 );
@@ -3513,7 +3513,7 @@ afterwards.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_interleaved_write_uncoded_frame (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index,
     LibAVUtil.Frame frame
 );
@@ -3526,7 +3526,7 @@ public int av_interleaved_write_uncoded_frame (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_write_uncoded_frame_query (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index
 );
 
@@ -3541,7 +3541,7 @@ May only be called after a successful call to avformat_write_header.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_write_trailer (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -3557,7 +3557,7 @@ extensions of the registered formats
 MIME type of the registered formats
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public AVOutputFormat av_guess_format (
+public LibAVFormat.OutputFormat av_guess_format (
     string short_name,
     string filename,
     string mime_type
@@ -3568,7 +3568,7 @@ public AVOutputFormat av_guess_format (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public LibAVCodec.CodecID av_guess_codec (
-    AVOutputFormat fmt,
+    LibAVFormat.OutputFormat fmt,
     string short_name,
     string filename,
     string mime_type,
@@ -3592,7 +3592,7 @@ atomically.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_get_output_timestamp (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream,
     out int64 dts,
     out int64 wall
@@ -3655,14 +3655,14 @@ public void av_hex_dump_log (
 @param file The file stream pointer where the dump should be sent to.
 @param packet packet to dump
 @param dump_payload True if the payload must be displayed, too.
-@param st AVStream that the packet belongs to
+@param st LibAVFormat.Stream that the packet belongs to
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public void av_pkt_dump2 (
     GLib.File file,
     LibAVCodec.Packet packet,
     int dump_payload,
-    AVStream st
+    LibAVFormat.Stream st
 );
 
 
@@ -3675,7 +3675,7 @@ pointer to an LibAVUtil.Class struct.
 higher importance.
 @param packet packet to dump
 @param dump_payload True if the payload must be displayed, too.
-@param st AVStream that the packet belongs to
+@param st LibAVFormat.Stream that the packet belongs to
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public void av_pkt_dump_log2 (
@@ -3683,7 +3683,7 @@ public void av_pkt_dump_log2 (
     int level,
     LibAVCodec.Packet packet,
     int dump_payload,
-    AVStream st
+    LibAVFormat.Stream st
 );
 
 /***********************************************************
@@ -3691,7 +3691,7 @@ public void av_pkt_dump_log2 (
 If no codec id is found returns LibAVCodec.CodecID.NONE.
 
 @param tags list of supported codec_id-codec_tag_list pairs, as stored
-in AVInputFormat.codec_tag_list and AVOutputFormat.codec_tag_list
+in LibAVFormat.InputFormat.codec_tag_list and LibAVFormat.OutputFormat.codec_tag_list
 @param tag codec tag to match to a codec ID
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
@@ -3705,7 +3705,7 @@ public LibAVCodec.CodecID av_codec_get_id (
 If no codec tag is found returns 0.
 
 @param tags list of supported codec_id-codec_tag_list pairs, as stored
-in AVInputFormat.codec_tag_list and AVOutputFormat.codec_tag_list
+in LibAVFormat.InputFormat.codec_tag_list and LibAVFormat.OutputFormat.codec_tag_list
 @param id codec ID to match to a codec tag
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
@@ -3718,7 +3718,7 @@ public uint av_codec_get_tag (
 @brief Get the codec tag for the given codec id.
 
 @param tags list of supported codec_id - codec_tag_list pairs, as stored
-in AVInputFormat.codec_tag_list and AVOutputFormat.codec_tag_list
+in LibAVFormat.InputFormat.codec_tag_list and LibAVFormat.OutputFormat.codec_tag_list
 @param id codec id that should be searched for in the list
 @param tag A pointer to the found tag
 @return 0 if id was not found in tags, > 0 if it was found
@@ -3732,7 +3732,7 @@ public int av_codec_get_tag2 (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_find_default_stream_index (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -3748,7 +3748,7 @@ public int av_find_default_stream_index (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_index_search_timestamp (
-    AVStream st,
+    LibAVFormat.Stream st,
     int64 timestamp,
     AVFormatSeekFlags flags
 );
@@ -3761,7 +3761,7 @@ already contains it.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_add_index_entry (
-    AVStream st,
+    LibAVFormat.Stream st,
     int64 pos,
     int64 timestamp,
     int size,
@@ -3816,7 +3816,7 @@ codec and time base.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public void av_dump_format (
-    AVFormatContext ic,
+    LibAVFormat.FormatContext ic,
     int index,
     string url,
     int is_output
@@ -3881,9 +3881,9 @@ for getting unique dynamic payload types.
 
 @param ac array of AVFormatContexts describing the RTP streams. If the
           array is composed by only one context, such context can contain
-          multiple AVStreams (one AVStream per RTP stream). Otherwise,
+          multiple AVStreams (one LibAVFormat.Stream per RTP stream). Otherwise,
           all the contexts in the array (an LibAVCodec.CodecContext per RTP stream)
-          must contain only one AVStream.
+          must contain only one LibAVFormat.Stream.
 @param n_files number of AVCodecContexts contained in ac
 @param buffer buffer where the SDP will be stored (must be allocated by
            the caller)
@@ -3892,7 +3892,7 @@ for getting unique dynamic payload types.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int av_sdp_create (
-    out AVFormatContext[] ac,
+    out LibAVFormat.FormatContext[] ac,
     int n_files,
     string buffer,
     int size
@@ -3923,7 +3923,7 @@ public int av_match_ext (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_query_codec (
-    AVOutputFormat ofmt,
+    LibAVFormat.OutputFormat ofmt,
     LibAVCodec.CodecID codec_id,
     int std_compliance
 );
@@ -3987,8 +3987,8 @@ usually easy to modify can override the coded value in the frames.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public LibAVUtil.Rational av_guess_sample_aspect_ratio (
-    AVFormatContext format,
-    AVStream stream,
+    LibAVFormat.FormatContext format,
+    LibAVFormat.Stream stream,
     LibAVUtil.Frame frame
 );
 
@@ -4002,8 +4002,8 @@ public LibAVUtil.Rational av_guess_sample_aspect_ratio (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public LibAVUtil.Rational av_guess_frame_rate (
-    AVFormatContext fomat_context,
-    AVStream stream,
+    LibAVFormat.FormatContext fomat_context,
+    LibAVFormat.Stream stream,
     LibAVUtil.Frame frame
 );
 
@@ -4022,14 +4022,14 @@ of spec.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_match_stream_specifier (
-    AVFormatContext format_context,
-    AVStream st,
+    LibAVFormat.FormatContext format_context,
+    LibAVFormat.Stream st,
     string spec
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_queue_attached_pictures (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 [CCode (cname="enum AVTimebaseSource",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
@@ -4061,9 +4061,9 @@ This function is useful when doing stream copy.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public int avformat_transfer_internal_stream_timing_info (
-    AVOutputFormat ofmt,
-    AVStream ost,
-    AVStream ist,
+    LibAVFormat.OutputFormat ofmt,
+    LibAVFormat.Stream ost,
+    LibAVFormat.Stream ist,
     AVTimebaseSource copy_tb
 );
 
@@ -4074,7 +4074,7 @@ public int avformat_transfer_internal_stream_timing_info (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public LibAVUtil.Rational av_stream_get_codec_timebase (
-    AVStream st
+    LibAVFormat.Stream st
 );
 
 /***********************************************************

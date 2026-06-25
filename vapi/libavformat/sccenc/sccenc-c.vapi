@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class SCCMuxerPrivateData { }
 
 [CCode (cname="ff_scc_muxer",cheader_filename="subprojects/ffmpeg/libavformat/sccenc.c")]
-public class SCCMuxer : AVOutputFormat {
+public class SCCMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sccenc.c")]
     public override string name {
         public get {
@@ -66,12 +66,12 @@ public class SCCMuxer : AVOutputFormat {
 
     [CCode (cname="scc_write_header",cheader_filename="subprojects/ffmpeg/libavformat/sccenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="scc_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/sccenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

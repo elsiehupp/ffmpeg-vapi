@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 //  FF_RAW_DEMUXER_CLASS (loas)
 [CCode (cname="ff_loas_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/loasdec.c")]
-public class LOASDemuxer : AVInputFormat {
+public class LOASDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/loasdec.c")]
     public override string name {
         public get {
@@ -45,17 +45,17 @@ public class LOASDemuxer : AVInputFormat {
 
     [CCode (cname="loas_probe",cheader_filename="subprojects/ffmpeg/libavformat/loasdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="loas_read_header",cheader_filename="subprojects/ffmpeg/libavformat/loasdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/loasdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

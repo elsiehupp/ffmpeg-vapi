@@ -52,13 +52,13 @@ public class OpusCodec : OggCodec {
 
     [CCode (cname="opus_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseopus.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="opus_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparseopus.c")]
     public override int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 

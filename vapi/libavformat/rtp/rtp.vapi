@@ -25,7 +25,7 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Return the payload type for a given stream used in the given format context.
 Static payload types are derived from the codec.
-Dynamic payload type are derived from the id field in AVStream.
+Dynamic payload type are derived from the id field in LibAVFormat.Stream.
 The format context private option payload_type overrides both.
 
 @param fmt The context of the format
@@ -35,7 +35,7 @@ The format context private option payload_type overrides both.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtp.h")]
 public int ff_rtp_get_payload_type (
-    AVFormatContext fmt,
+    LibAVFormat.FormatContext fmt,
     LibAVCodec.CodecParameters par,
     int idx
 );

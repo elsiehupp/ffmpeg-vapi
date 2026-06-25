@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 //  FF_RAW_DEMUXER_CLASS (wsd)
 [CCode (cname="ff_wsd_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/wsddec.c")]
-public class WSDDemuxer : AVInputFormat {
+public class WSDDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wsddec.c")]
     public override string name {
         public get {
@@ -45,17 +45,17 @@ public class WSDDemuxer : AVInputFormat {
 
     [CCode (cname="wsd_probe",cheader_filename="subprojects/ffmpeg/libavformat/wsddec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="wsd_read_header",cheader_filename="subprojects/ffmpeg/libavformat/wsddec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/wsddec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

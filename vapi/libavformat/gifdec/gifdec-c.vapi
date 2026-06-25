@@ -128,7 +128,7 @@ public class GIFDemuxerClass : LibAVUtil.Class {
 public class GIFDemuxerPrivateData { }
 
 [CCode (cname="ff_gif_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
-public class GIFDemuxer : AVInputFormat {
+public class GIFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
     public override string name {
         public get {
@@ -158,17 +158,17 @@ public class GIFDemuxer : AVInputFormat {
 
     [CCode (cname="gif_probe",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="gif_read_header",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="gif_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

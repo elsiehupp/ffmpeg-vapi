@@ -27,14 +27,14 @@ namespace LibAVFormat {
 ***********************************************************/
 
 /***********************************************************
-@param avctx AVFormatContext
+@param avctx LibAVFormat.FormatContext
 @param[out] fsize return length of file, less SAUCE header
 @param[out] got_width set to non-zero if SAUCE header reported height
 @param get_height Tell SAUCE header to parse height
 ***********************************************************/
 [CCode (cname="ff_sauce_read",cheader_filename="subprojects/ffmpeg/libformat/sauce.h")]
 public int ff_sauce_read (
-    AVFormatContext avctx,
+    LibAVFormat.FormatContext avctx,
     uint64[] fsize,
     out int got_width,
     int get_height

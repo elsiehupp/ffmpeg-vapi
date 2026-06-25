@@ -92,7 +92,7 @@ public class AudioFIRDSPContext {
 [Compact]
 public class AudioFIRContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
     public float wet_gain;

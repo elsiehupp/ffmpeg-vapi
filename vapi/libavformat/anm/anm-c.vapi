@@ -30,7 +30,7 @@ namespace LibAVFormat {
 public class ANMDemuxerPrivateData { }
 
 [CCode (cname="ff_anm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/anm.c")]
-public class ANMDemuxer : AVInputFormat {
+public class ANMDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/anm.c")]
     public override string name {
         public get {
@@ -60,17 +60,17 @@ public class ANMDemuxer : AVInputFormat {
 
     [CCode (cname="probe",cheader_filename="subprojects/ffmpeg/libavformat/anm.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/anm.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/anm.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

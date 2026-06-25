@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_iv8_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
-public class IV8Demuxer : AVInputFormat {
+public class IV8Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
     public override string name {
         public get {
@@ -43,17 +43,17 @@ public class IV8Demuxer : AVInputFormat {
 
     [CCode (cname="probe",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/iv8.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_ilbc_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
-public class ILBCDemuxer : AVInputFormat {
+public class ILBCDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override string name {
         public get {
@@ -44,17 +44,17 @@ public class ILBCDemuxer : AVInputFormat {
 
     [CCode (cname="ilbc_probe",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ilbc_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ilbc_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -69,7 +69,7 @@ public class ILBCDemuxer : AVInputFormat {
 }
 
 [CCode (cname="ff_ilbc_muxer",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
-public class ILBCMuxer : AVOutputFormat {
+public class ILBCMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override string name {
         public get {
@@ -117,12 +117,12 @@ public class ILBCMuxer : AVOutputFormat {
 
     [CCode (cname="ilbc_write_header",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ilbc_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/ilbc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

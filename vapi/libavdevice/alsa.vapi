@@ -52,7 +52,7 @@ public const size_t ALSA_BUFFER_SIZE_MAX; // 131072
 [Compact]
 public class AlsaData {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
     public snd_pcm_t? h;
@@ -129,7 +129,7 @@ Open an ALSA PCM.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/alsa.h")]
 //  av_warn_unused_result
 public int ff_alsa_open (
-    AVFormatContext? s,
+    LibAVFormat.FormatContext? s,
     snd_pcm_stream_t mode,
     uint? sample_rate,
     int channels,
@@ -145,7 +145,7 @@ Close the ALSA PCM.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/alsa.h")]
 public int ff_alsa_close (
-    AVFormatContext? s1
+    LibAVFormat.FormatContext? s1
 );
 
 /***********************************************************
@@ -159,7 +159,7 @@ Try to recover from ALSA buffer underrun.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/alsa.h")]
 //  av_warn_unused_result
 public int ff_alsa_xrun_recover (
-    AVFormatContext? s1,
+    LibAVFormat.FormatContext? s1,
     int err
 );
 
@@ -173,7 +173,7 @@ public int ff_alsa_extend_reorder_buf (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/alsa.h")]
 //  av_warn_unused_result
 public int ff_alsa_get_device_list (
-    AVDeviceInfoList? device_list,
+    LibAVFormat.DeviceInfoList? device_list,
     snd_pcm_stream_t stream_type
 );
 

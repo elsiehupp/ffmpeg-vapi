@@ -25,7 +25,7 @@ namespace LibAVFormat {
 #if CONFIG_MMF_DEMUXER
 
 [CCode (cname="ff_mmf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mmf.c")]
-public class SMAFDemuxer : AVInputFormat {
+public class SMAFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mmf.c")]
     public override string name {
         public get {
@@ -55,17 +55,17 @@ public class SMAFDemuxer : AVInputFormat {
 
     [CCode (cname="mmf_probe",cheader_filename="subprojects/ffmpeg/libavformat/mmf.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="mmf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mmf.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mmf_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mmf.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -83,7 +83,7 @@ public class SMAFDemuxer : AVInputFormat {
 #if CONFIG_MMF_MUXER
 
 [CCode (cname="ff_mmf_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mmf.c")]
-public class MMFMuxer : AVOutputFormat {
+public class MMFMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mmf.c")]
     public override string name {
         public get {
@@ -149,7 +149,7 @@ public class MMFMuxer : AVOutputFormat {
 
     [CCode (cname="mmf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/mmf.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mmf.c")]
@@ -161,7 +161,7 @@ public class MMFMuxer : AVOutputFormat {
 
     [CCode (cname="mmf_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/mmf.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

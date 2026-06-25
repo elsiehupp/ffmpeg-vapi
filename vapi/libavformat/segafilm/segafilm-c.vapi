@@ -34,7 +34,7 @@ http://www.pcisys.net/~melanson/codecs/
 public class SegaFilmDemuxerPrivateData { }
 
 [CCode (cname="ff_segafilm_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/segafilm.c")]
-public class SegaFilmDemuxer : AVInputFormat {
+public class SegaFilmDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/segafilm.c")]
     public override string name {
         public get {
@@ -64,28 +64,28 @@ public class SegaFilmDemuxer : AVInputFormat {
 
     [CCode (cname="film_probe",cheader_filename="subprojects/ffmpeg/libavformat/segafilm.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="film_read_header",cheader_filename="subprojects/ffmpeg/libavformat/segafilm.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="film_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/segafilm.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="film_read_close",cheader_filename="subprojects/ffmpeg/libavformat/segafilm.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="film_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/segafilm.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

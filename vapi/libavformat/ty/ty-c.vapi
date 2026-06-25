@@ -31,7 +31,7 @@ namespace LibAVFormat {
 public class TYDemuxerPrivateData { }
 
 [CCode (cname="ff_ty_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ty.c")]
-public class TYDemuxer : AVInputFormat {
+public class TYDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ty.c")]
     public override string name {
         public get {
@@ -61,23 +61,23 @@ public class TYDemuxer : AVInputFormat {
 
     [CCode (cname="ty_probe",cheader_filename="subprojects/ffmpeg/libavformat/ty.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ty_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ty.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ty_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/ty.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="ty_read_close",cheader_filename="subprojects/ffmpeg/libavformat/ty.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/ty.c")]

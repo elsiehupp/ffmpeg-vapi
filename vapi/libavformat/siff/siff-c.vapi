@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class SIFFDemuxerPrivateData { }
 
 [CCode (cname="ff_siff_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
-public class SIFFDemuxer : AVInputFormat {
+public class SIFFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class SIFFDemuxer : AVInputFormat {
 
     [CCode (cname="siff_probe",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="siff_read_header",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="siff_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/siff.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

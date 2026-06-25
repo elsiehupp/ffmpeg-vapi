@@ -30,7 +30,7 @@ namespace LibAVFormat {
 public class MPL2DemuxerPrivateData { }
 
 [CCode (cname="ff_mpl2_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mpl2dec.c")]
-public class MPL2Demuxer : AVInputFormat {
+public class MPL2Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpl2dec.c")]
     public override string name {
         public get {
@@ -60,23 +60,23 @@ public class MPL2Demuxer : AVInputFormat {
 
     [CCode (cname="mpl2_probe",cheader_filename="subprojects/ffmpeg/libavformat/mpl2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="mpl2_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mpl2dec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpl2_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpl2dec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mpl2_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/mpl2dec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -86,7 +86,7 @@ public class MPL2Demuxer : AVInputFormat {
 
     [CCode (cname="mpl2_read_close",cheader_filename="subprojects/ffmpeg/libavformat/mpl2dec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/mpl2dec.c")]

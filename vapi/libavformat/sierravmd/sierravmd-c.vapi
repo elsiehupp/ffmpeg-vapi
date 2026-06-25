@@ -34,7 +34,7 @@ for more information on the Sierra VMD file format, visit:
 public class VMDDemuxerPrivateData { }
 
 [CCode (cname="ff_vmd_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/sierravmd.c")]
-public class VMDDemuxer : AVInputFormat {
+public class VMDDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sierravmd.c")]
     public override string name {
         public get {
@@ -64,23 +64,23 @@ public class VMDDemuxer : AVInputFormat {
 
     [CCode (cname="vmd_probe",cheader_filename="subprojects/ffmpeg/libavformat/sierravmd.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="vmd_read_header",cheader_filename="subprojects/ffmpeg/libavformat/sierravmd.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="vmd_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/sierravmd.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="vmd_read_close",cheader_filename="subprojects/ffmpeg/libavformat/sierravmd.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

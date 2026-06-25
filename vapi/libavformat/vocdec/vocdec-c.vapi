@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_voc_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/vocdec.c")]
-public class VOCDemuxer : AVInputFormat {
+public class VOCDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vocdec.c")]
     public override string name {
         public get {
@@ -53,23 +53,23 @@ public class VOCDemuxer : AVInputFormat {
 
     [CCode (cname="voc_probe",cheader_filename="subprojects/ffmpeg/libavformat/vocdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="voc_read_header",cheader_filename="subprojects/ffmpeg/libavformat/vocdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="voc_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/vocdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="voc_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/vocdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

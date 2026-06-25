@@ -103,7 +103,7 @@ public class WebMDashManifestDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_matroska_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
-public class MatroskaDemuxer : AVInputFormat {
+public class MatroskaDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override string name {
         public get {
@@ -142,28 +142,28 @@ public class MatroskaDemuxer : AVInputFormat {
 
     [CCode (cname="matroska_probe",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="matroska_read_header",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="matroska_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="matroska_read_close",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="matroska_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -180,7 +180,7 @@ public class MatroskaDemuxer : AVInputFormat {
 }
 
 [CCode (cname="ff_webm_dash_manifest_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
-public class WebMDashManifestDemuxer : AVInputFormat {
+public class WebMDashManifestDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override string name {
         public get {
@@ -210,18 +210,18 @@ public class WebMDashManifestDemuxer : AVInputFormat {
 
     [CCode (cname="webm_dash_manifest_read_header",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="webm_dash_manifest_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="matroska_read_close",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     ); // =,
     //  .priv_class = webm_dash_class;
 }

@@ -45,13 +45,13 @@ public class SpeexCodec : OggCodec {
 
     [CCode (cname="speex_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsespeex.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="speex_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparsespeex.c")]
     public override int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 

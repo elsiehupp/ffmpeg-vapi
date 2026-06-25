@@ -84,7 +84,7 @@ public class HWAccel {
     public HWAccelID id;
 
     [CCode (cname="")]
-    public AVPixelFormat pix_fmt;
+    public LibAVUtil.PixelFormat pix_fmt;
 }
 
 [CCode (cname="struct HWDevice",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
@@ -906,7 +906,7 @@ public classInputStream {
     public string hwaccel_device;
 
     [CCode (cname="")]
-    public public AVPixelFormat hwaccel_output_format;
+    public public LibAVUtil.PixelFormat hwaccel_output_format;
 
     /***********************************************************
     hwaccel context
@@ -939,10 +939,10 @@ public classInputStream {
     public HwAccelRetrieveDataDelegate hwaccel_retrieve_data;
 
     [CCode (cname="")]
-    public AVPixelFormat hwaccel_pix_fmt;
+    public LibAVUtil.PixelFormat hwaccel_pix_fmt;
 
     [CCode (cname="")]
-    public AVPixelFormat hwaccel_retrieved_pix_fmt;
+    public LibAVUtil.PixelFormat hwaccel_retrieved_pix_fmt;
 
     [CCode (cname="")]
     public AVBufferRef hw_frames_ctx;
@@ -986,7 +986,7 @@ public classInputStream {
 [Compact]
 public class InputFile {
     [CCode (cname="")]
-    public AVFormatContext? ctx;
+    public LibAVFormat.FormatContext? ctx;
 
     /***********************************************************
     true if eof reached
@@ -1158,7 +1158,7 @@ public class OutputStream {
     stream in the output file
     ***********************************************************/
     [CCode (cname="")]
-    public AVStream? st;
+    public LibAVFormat.Stream? st;
 
     /***********************************************************
     true if encoding needed for this stream
@@ -1364,7 +1364,7 @@ public class OutputStream {
     /***********************************************************
     init_output_stream () has been called for this stream
     The encoder and the bitstream filters have been initialized
-    and the stream parameters are set in the AVStream.
+    and the stream parameters are set in the LibAVFormat.Stream.
     ***********************************************************/
     [CCode (cname="")]
     public int initialized;
@@ -1444,7 +1444,7 @@ public class OutputStream {
 [Compact]
 public class OutputFile {
     [CCode (cname="")]
-    public AVFormatContext? ctx;
+    public LibAVFormat.FormatContext? ctx;
 
     [CCode (cname="")]
     public AVDictionary? opts;
@@ -1576,16 +1576,16 @@ public int guess_input_channel_layout (
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-public AVPixelFormat choose_pixel_fmt (
-    AVStream? st,
+public LibAVUtil.PixelFormat choose_pixel_fmt (
+    LibAVFormat.Stream? st,
     AVCodecContext? avctx,
     AVCodec? codec,
-    AVPixelFormat target
+    LibAVUtil.PixelFormat target
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
 public void choose_sample_fmt (
-    AVStream? st,
+    LibAVFormat.Stream? st,
     AVCodec? codec
 );
 

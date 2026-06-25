@@ -31,7 +31,7 @@ namespace LibAVFormat {
 public class FilmstripDemuxerPrivateData { }
 
 [CCode (cname="ff_filmstrip_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/filmstripdec.c")]
-public class FilmstripDemuxer : AVInputFormat {
+public class FilmstripDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/filmstripdec.c")]
     public override string name {
         public get {
@@ -61,18 +61,18 @@ public class FilmstripDemuxer : AVInputFormat {
 
     [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/filmstripdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/filmstripdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="read_seek",cheader_filename="subprojects/ffmpeg/libavformat/filmstripdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

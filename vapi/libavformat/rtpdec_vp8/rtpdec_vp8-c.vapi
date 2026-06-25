@@ -69,7 +69,7 @@ public class VP8DynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="vp8_init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
     public override int init (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int st_index,
         PayloadContext priv_data
     );
@@ -81,9 +81,9 @@ public class VP8DynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="vp8_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vp8.c")]
     public override int parse_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         PayloadContext payload_context,
-        AVStream st,
+        LibAVFormat.Stream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
         uint8[] buffer,

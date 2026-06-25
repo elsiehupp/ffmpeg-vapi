@@ -23,8 +23,8 @@ namespace LibSoftwareResample {
 [Compact]
 internal class LibSoftwareResample.Resampler {
     [CCode (cname="resample_init_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
-    internal delegate LibSoftwareResample.ResampleContext ResampleInitDelegate (
-        LibSoftwareResample.ResampleContext? c,
+    internal delegate LibSoftwareResample.LibAVResample.ResampleContext ResampleInitDelegate (
+        LibSoftwareResample.LibAVResample.ResampleContext? c,
         int out_rate,
         int in_rate,
         int filter_size,
@@ -44,7 +44,7 @@ internal class LibSoftwareResample.Resampler {
 
     [CCode (cname="resample_free_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     internal delegate void ResampleFreeDelegate (
-        LibSoftwareResample.ResampleContext **c
+        LibSoftwareResample.LibAVResample.ResampleContext **c
     );
 
     [CCode (cname="")]
@@ -52,7 +52,7 @@ internal class LibSoftwareResample.Resampler {
 
     [CCode (cname="multiple_resample_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     internal delegate int MultipleResampleDelegate (
-        LibSoftwareResample.ResampleContext? c,
+        LibSoftwareResample.LibAVResample.ResampleContext? c,
         LibSoftwareResample.AudioData? dst,
         int dst_size,
         LibSoftwareResample.AudioData? src,
@@ -73,7 +73,7 @@ internal class LibSoftwareResample.Resampler {
 
     [CCode (cname="set_compensation_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     internal delegate int SetCompensationDelegate (
-        LibSoftwareResample.ResampleContext? c,
+        LibSoftwareResample.LibAVResample.ResampleContext? c,
         int sample_delta,
         int compensation_distance
     );
@@ -92,7 +92,7 @@ internal class LibSoftwareResample.Resampler {
 
     [CCode (cname="invert_initial_buffer_func",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     internal delegate int InvertInitialBufferDelegate (
-        LibSoftwareResample.ResampleContext? c,
+        LibSoftwareResample.LibAVResample.ResampleContext? c,
         LibSoftwareResample.AudioData? dst,
         LibSoftwareResample.AudioData? src,
         int src_size,

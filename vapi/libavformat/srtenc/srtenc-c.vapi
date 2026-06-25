@@ -34,7 +34,7 @@ namespace LibAVFormat {
 public class SubRipMuxerPrivateData { }
 
 [CCode (cname="ff_srt_muxer",cheader_filename="subprojects/ffmpeg/libavformat/strenc.c")]
-public class SubRipMuxer : AVOutputFormat {
+public class SubRipMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/strenc.c")]
     public override string name {
         public get {
@@ -82,12 +82,12 @@ public class SubRipMuxer : AVOutputFormat {
 
     [CCode (cname="srt_write_header",cheader_filename="subprojects/ffmpeg/libavformat/strenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="srt_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/strenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

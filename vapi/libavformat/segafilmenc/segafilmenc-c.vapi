@@ -66,7 +66,7 @@ public class SegaFilmMuxerClass : LibAVUtil.Class {
 public class SegaFilmMuxerPrivateData { }
 
 [CCode (cname="ff_segafilm_muxer",cheader_filename="subprojects/ffmpeg/libavformat/segafilmenc.c")]
-public class SegaFilmMuxer : AVOutputFormat {
+public class SegaFilmMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/segafilmenc.c")]
     public override string name {
         public get {
@@ -123,17 +123,17 @@ public class SegaFilmMuxer : AVOutputFormat {
 
     [CCode (cname="film_init",cheader_filename="subprojects/ffmpeg/libavformat/segafilmenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="film_write_header",cheader_filename="subprojects/ffmpeg/libavformat/segafilmenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="film_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/segafilmenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
     //  .priv_class = film_muxer_class;

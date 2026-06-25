@@ -62,14 +62,14 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="amr_init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int init (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int st_index,
         PayloadContext priv_data
     );
 
     [CCode (cname="amr_parse_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int parse_sdp_a_line (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
@@ -77,9 +77,9 @@ public class AMRNBDynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="amr_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int parse_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         PayloadContext payload_context,
-        AVStream st,
+        LibAVFormat.Stream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
         uint8[] buffer,
@@ -130,14 +130,14 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="amr_init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int init (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int st_index,
         PayloadContext priv_data
     );
 
     [CCode (cname="amr_parse_sdp_line",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int parse_sdp_a_line (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int st_index,
         PayloadContext priv_data,
         string line
@@ -145,9 +145,9 @@ public class AMRWBDynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="amr_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_amr.c")]
     public override int parse_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         PayloadContext payload_context,
-        AVStream st,
+        LibAVFormat.Stream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
         uint8[] buffer,

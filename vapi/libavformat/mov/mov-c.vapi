@@ -275,7 +275,7 @@ public class MOVDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_mov_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
-public class MOVDemuxer : AVInputFormat {
+public class MOVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
     public override string name {
         public get {
@@ -315,28 +315,28 @@ public class MOVDemuxer : AVInputFormat {
 
     [CCode (cname="mov_probe",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="mov_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mov_read_close",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mov_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

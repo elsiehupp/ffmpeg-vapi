@@ -31,7 +31,7 @@ namespace LibAVFormat {
 public class SAMIDemuxerPrivateData { }
 
 [CCode (cname="ff_sami_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/samidec.c")]
-public class SAMIDemuxer : AVInputFormat {
+public class SAMIDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/samidec.c")]
     public override string name {
         public get {
@@ -61,23 +61,23 @@ public class SAMIDemuxer : AVInputFormat {
 
     [CCode (cname="sami_probe",cheader_filename="subprojects/ffmpeg/libavformat/samidec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="sami_read_header",cheader_filename="subprojects/ffmpeg/libavformat/samidec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="sami_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/samidec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="sami_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/samidec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -87,7 +87,7 @@ public class SAMIDemuxer : AVInputFormat {
 
     [CCode (cname="sami_read_close",cheader_filename="subprojects/ffmpeg/libavformat/samidec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/samidec.c")]

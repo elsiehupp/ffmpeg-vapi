@@ -59,7 +59,7 @@ public abstract class ImageClass : LibAVUtil.Class {
 }
 
 [CCode (cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
-public abstract class ImageDemuxer : AVInputFormat {
+public abstract class ImageDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="priv_data_size",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override size_t priv_data_size {
         public get {
@@ -71,12 +71,12 @@ public abstract class ImageDemuxer : AVInputFormat {
 
     [CCode (cname="ff_img_read_header",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_img_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -133,7 +133,7 @@ public class BMPPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="bmp_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  .priv_class = bmp_class,
 
@@ -190,7 +190,7 @@ public class DDSPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="dds_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = dds_class,
@@ -248,7 +248,7 @@ public class DPXPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="dpx_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = dpx_class,
@@ -306,7 +306,7 @@ public class EXRPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="exr_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = exr_class,
@@ -364,7 +364,7 @@ public class GIFPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="gif_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = gif_class,
@@ -422,7 +422,7 @@ public class J2KPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="j2k_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = j2k_class,
@@ -480,7 +480,7 @@ public class JPEGPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="jpeg_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = jpeg_class,
@@ -538,7 +538,7 @@ public class JPEGLSPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="jpegls_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = jpegls_class,
@@ -596,7 +596,7 @@ public class PAMPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="pam_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pam_class,
@@ -654,7 +654,7 @@ public class PBMPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="pbm_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pbm_class,
@@ -712,7 +712,7 @@ public class PCXPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="pcx_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pcx_class,
@@ -770,7 +770,7 @@ public class PGMPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="pgm_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pgm_class,
@@ -828,7 +828,7 @@ public class PGMYUVPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="pgmyuv_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pgmyuv_class,
@@ -886,7 +886,7 @@ public class PictorPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="pictor_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = pictor_class,
@@ -944,7 +944,7 @@ public class PNGPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="png_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = png_class,
@@ -1002,7 +1002,7 @@ public class PPMPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="ppm_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = ppm_class,
@@ -1060,7 +1060,7 @@ public class PSDPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="psd_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = psd_class,
@@ -1118,7 +1118,7 @@ public class QDrawPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="qdraw_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = qdraw_class,
@@ -1176,7 +1176,7 @@ public class SGIPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="sgi_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = sgi_class,
@@ -1234,7 +1234,7 @@ public class SunrastPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="sunrast_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = sunrast_class,
@@ -1292,7 +1292,7 @@ public class SVGPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="svg_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = svg_class,
@@ -1350,7 +1350,7 @@ public class TIFFPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="tiff_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = tiff_class,
@@ -1408,7 +1408,7 @@ public class WebPPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="webp_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = webp_class,
@@ -1466,7 +1466,7 @@ public class XPMPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="xpm_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = xpm_class,
@@ -1524,7 +1524,7 @@ public class XWDPipeDemuxer : ImageDemuxer {
 
     [CCode (cname="xwd_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
     //  [CCode (cname="priv_class",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     //  .priv_class = xwd_class,

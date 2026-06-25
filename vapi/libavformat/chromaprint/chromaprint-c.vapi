@@ -137,7 +137,7 @@ public class ChromaPrintMuxerClass : LibAVUtil.Class {
 public class ChromaPrintMuxerPrivateData { }
 
 [CCode (cname="ff_chromaprint_muxer",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
-public class ChromaPrintMuxer : AVOutputFormat {
+public class ChromaPrintMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override string name {
         public get {
@@ -178,18 +178,18 @@ public class ChromaPrintMuxer : AVOutputFormat {
 
     [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]

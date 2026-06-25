@@ -43,19 +43,19 @@ public class VP8Codec : OggCodec {
 
     [CCode (cname="vp8_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsevp8.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="vp8_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparsevp8.c")]
     public override int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="vp8_gptopts",cheader_filename="subprojects/ffmpeg/libavformat/oggparsevp8.c")]
     public override uint64 gptopts (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts

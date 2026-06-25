@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_mkvtimestamp_v2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
-public class MKVTimeStampV2Muxer : AVOutputFormat {
+public class MKVTimeStampV2Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
     public override string name {
         public get {
@@ -62,12 +62,12 @@ public class MKVTimeStampV2Muxer : AVOutputFormat {
 
     [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mkvtimestamp_v2.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

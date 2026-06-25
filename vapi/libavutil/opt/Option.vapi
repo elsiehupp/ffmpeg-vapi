@@ -291,7 +291,7 @@ public void free_test_struct (out test_struct foo) {
 @section avoptions_use Using LibAVUtil.Options
 This section deals with accessing options in an LibAVUtil.Options-enabled struct.
 Such structs in FFmpeg are e.g. LibAVCodec.CodecContext in LibAVCodec or
-AVFormatContext in libavformat.
+LibAVFormat.FormatContext in libavformat.
 
 @subsection avoptions_use_examine Examining LibAVUtil.Options
 The basic functions for examining options are av_opt_next (), which iterates

@@ -94,7 +94,7 @@ public class AIFFMuxerClass : LibAVUtil.Class {
 public class AIFFMuxerPrivateData { }
 
 [CCode (cname="ff_aiff_muxer",cheader_filename="subprojects/ffmpeg/libavformat/aiffenc.c")]
-public class AIFFMuxer : AVOutputFormat {
+public class AIFFMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aiffenc.c")]
     public override string name {
         public get {
@@ -160,18 +160,18 @@ public class AIFFMuxer : AVOutputFormat {
 
     [CCode (cname="aiff_write_header",cheader_filename="subprojects/ffmpeg/libavformat/aiffenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="aiff_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/aiffenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="aiff_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/aiffenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="codec_tag")]

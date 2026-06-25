@@ -65,7 +65,7 @@ public class RTSPMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_rtsp_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rtspenc.c")]
-public class RTSPMuxer : AVOutputFormat {
+public class RTSPMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtspenc.c")]
     public override string name {
         public get {
@@ -113,18 +113,18 @@ public class RTSPMuxer : AVOutputFormat {
 
     [CCode (cname="rtsp_write_header",cheader_filename="subprojects/ffmpeg/libavformat/rtspenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rtsp_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtspenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="rtsp_write_close",cheader_filename="subprojects/ffmpeg/libavformat/rtspenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rtspenc.c")]

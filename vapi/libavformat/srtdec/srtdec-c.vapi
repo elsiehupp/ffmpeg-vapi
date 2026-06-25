@@ -28,7 +28,7 @@ namespace LibAVFormat {
 public class SubRipDemuxerPrivateData { }
 
 [CCode (cname="ff_srt_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
-public class SubRipDemuxer : AVInputFormat {
+public class SubRipDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override string name {
         public get {
@@ -58,23 +58,23 @@ public class SubRipDemuxer : AVInputFormat {
 
     [CCode (cname="srt_probe",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="srt_read_header",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="srt_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="srt_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -84,7 +84,7 @@ public class SubRipDemuxer : AVInputFormat {
 
     [CCode (cname="srt_read_close",cheader_filename="subprojects/ffmpeg/libavformat/srtdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

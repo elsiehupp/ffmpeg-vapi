@@ -327,7 +327,7 @@ public class MXFOPAtomMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_mxf_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
-public class MXFOPATOMMuxer : AVOutputFormat {
+public class MXFOPATOMMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override string name {
         public get {
@@ -393,18 +393,18 @@ public class MXFOPATOMMuxer : AVOutputFormat {
 
     [CCode (cname="mxf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mxf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mxf_write_footer",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
@@ -418,7 +418,7 @@ public class MXFOPATOMMuxer : AVOutputFormat {
 
     [CCode (cname="mxf_interleave",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int interleave_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet output,
         LibAVCodec.Packet input,
         int flush
@@ -427,7 +427,7 @@ public class MXFOPATOMMuxer : AVOutputFormat {
 }
 
 [CCode (cname="ff_mxf_d10_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
-public class MXFD10Muxer : AVOutputFormat {
+public class MXFD10Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override string name {
         public get {
@@ -484,18 +484,18 @@ public class MXFD10Muxer : AVOutputFormat {
 
     [CCode (cname="mxf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mxf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mxf_write_footer",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
@@ -509,7 +509,7 @@ public class MXFD10Muxer : AVOutputFormat {
 
     [CCode (cname="mxf_interleave",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int interleave_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet output,
         LibAVCodec.Packet input,
         int flush
@@ -518,7 +518,7 @@ public class MXFD10Muxer : AVOutputFormat {
 }
 
 [CCode (cname="ff_mxf_opatom_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
-public class MXFMuxer : AVOutputFormat {
+public class MXFMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override string name {
         public get {
@@ -584,18 +584,18 @@ public class MXFMuxer : AVOutputFormat {
 
     [CCode (cname="mxf_write_header",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mxf_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mxf_write_footer",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
@@ -609,7 +609,7 @@ public class MXFMuxer : AVOutputFormat {
 
     [CCode (cname="mxf_interleave",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override int interleave_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet output,
         LibAVCodec.Packet input,
         int flush

@@ -123,7 +123,7 @@ public class NUTMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_nut_muxer",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
-public class NUTMuxer : AVOutputFormat {
+public class NUTMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override string name {
         public get {
@@ -195,23 +195,23 @@ public class NUTMuxer : AVOutputFormat {
 
     [CCode (cname="nut_write_header",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="nut_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="nut_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="nut_write_deinit",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]

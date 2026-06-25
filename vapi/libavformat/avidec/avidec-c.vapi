@@ -84,7 +84,7 @@ public class AVIDemuxerClass : LibAVUtil.Class {
 public class AVIDemuxerPrivateData { }
 
 [CCode (cname="ff_avi_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
-public class AVIDemuxer : AVInputFormat {
+public class AVIDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override string name {
         public get {
@@ -123,28 +123,28 @@ public class AVIDemuxer : AVInputFormat {
 
     [CCode (cname="avi_probe",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="avi_read_header",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="avi_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="avi_read_close",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="avi_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

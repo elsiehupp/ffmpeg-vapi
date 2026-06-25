@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class LXFDemuxerPrivateData { }
 
 [CCode (cname="ff_lxf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
-public class LXFDemuxer : AVInputFormat {
+public class LXFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class LXFDemuxer : AVInputFormat {
 
     [CCode (cname="lxf_probe",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="lxf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="lxf_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/lxfdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

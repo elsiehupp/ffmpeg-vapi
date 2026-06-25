@@ -337,7 +337,7 @@ public class Frame {
 
     /***********************************************************
     @brief Duration of the corresponding packet, expressed in
-    AVStream.time_base units, 0 if unknown.
+    LibAVFormat.Stream.time_base units, 0 if unknown.
 
     - encoding: unused
     - decoding: Read by user.

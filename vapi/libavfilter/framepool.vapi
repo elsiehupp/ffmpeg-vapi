@@ -49,7 +49,7 @@ public FFFramePool? ff_frame_pool_video_init (
     AllocDelegate alloc,
     int width,
     int height,
-    AVPixelFormat format,
+    LibAVUtil.PixelFormat format,
     int align
 );
 
@@ -99,7 +99,7 @@ public int ff_frame_pool_get_video_config (
     FFFramePool? pool,
     out int width,
     out int height,
-    AVPixelFormat? format,
+    LibAVUtil.PixelFormat? format,
     out int align
 );
 

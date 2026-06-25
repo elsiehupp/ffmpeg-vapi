@@ -218,7 +218,7 @@ public class AVFilterInternal {
 
 /***********************************************************
 Tell if an integer is contained in the provided -1-terminated list of integers.
-This is useful for determining (for instance) if an AVPixelFormat is in an
+This is useful for determining (for instance) if an LibAVUtil.PixelFormat is in an
 array of supported formats.
 
 @param fmt provided format
@@ -246,7 +246,7 @@ Parse a pixel format.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 //  av_warn_unused_result
 public int ff_parse_pixel_format (
-    AVPixelFormat? ret,
+    LibAVUtil.PixelFormat? ret,
     string arg,
     void *log_ctx
 );
@@ -508,7 +508,7 @@ public int ff_request_frame (
 public define AVFILTER_DEFINE_CLASS (
     fname
 );
-//  static const AVClass fname##_class = {
+//  static const LibAVUtil.Class fname##_class = {
 //      .class_name = #fname,
 //      .item_name = av_default_item_name,
 //      .option = fname##_options,

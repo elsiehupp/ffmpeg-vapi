@@ -28,7 +28,7 @@ namespace LibAVFormat {
 public class IFVDemuxerPrivateData { }
 
 [CCode (cname="ff_ifv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ifv.c")]
-public class IFVDemuxer : AVInputFormat {
+public class IFVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ifv.c")]
     public override string name {
         public get {
@@ -67,23 +67,23 @@ public class IFVDemuxer : AVInputFormat {
 
     [CCode (cname="ifv_probe",cheader_filename="subprojects/ffmpeg/libavformat/ifv.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ifv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ifv.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ifv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/ifv.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="ifv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/ifv.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

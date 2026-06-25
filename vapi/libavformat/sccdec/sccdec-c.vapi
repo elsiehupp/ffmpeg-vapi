@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class SCCDemuxerPrivateData { }
 
 [CCode (cname="ff_scc_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/sccdec.c")]
-public class SCCDemuxer : AVInputFormat {
+public class SCCDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sccdec.c")]
     public override string name {
         public get {
@@ -57,23 +57,23 @@ public class SCCDemuxer : AVInputFormat {
 
     [CCode (cname="scc_probe",cheader_filename="subprojects/ffmpeg/libavformat/sccdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="scc_read_header",cheader_filename="subprojects/ffmpeg/libavformat/sccdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="scc_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/sccdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="scc_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/sccdec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -83,7 +83,7 @@ public class SCCDemuxer : AVInputFormat {
 
     [CCode (cname="scc_read_close",cheader_filename="subprojects/ffmpeg/libavformat/sccdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/sccdec.c")]

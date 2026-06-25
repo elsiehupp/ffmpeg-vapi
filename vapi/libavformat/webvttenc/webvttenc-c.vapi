@@ -27,7 +27,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="ff_webvtt_muxer",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
-public class WebVTTMuxer : AVOutputFormat {
+public class WebVTTMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override string name {
         public get {
@@ -84,12 +84,12 @@ public class WebVTTMuxer : AVOutputFormat {
 
     [CCode (cname="webvtt_write_header",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="webvtt_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/webvttenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

@@ -186,7 +186,7 @@ public int ff_mxf_decode_pixel_layout (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
 public MXFSamplesPerFrame ff_mxf_get_samples_per_frame (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVUtil.Rational time_base
 );
 

@@ -89,7 +89,7 @@ public class UnsharpFilterParam {
 [Compact]
 public class UnsharpContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
     public int lmsize_x;

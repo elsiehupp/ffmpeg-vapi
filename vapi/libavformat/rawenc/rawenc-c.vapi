@@ -26,7 +26,7 @@ namespace LibAVFormat {
 #if CONFIG_AC3_MUXER
 
 [CCode (cname="ff_ac3_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class AC3Muxer : AVOutputFormat {
+public class AC3Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -83,7 +83,7 @@ public class AC3Muxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -107,7 +107,7 @@ public class AC3Muxer : AVOutputFormat {
 #if CONFIG_ADX_MUXER
 
 [CCode (cname="ff_adx_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class ADXMuxer : AVOutputFormat {
+public class ADXMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -155,7 +155,7 @@ public class ADXMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -167,7 +167,7 @@ public class ADXMuxer : AVOutputFormat {
 
     [CCode (cname="adx_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -184,7 +184,7 @@ public class ADXMuxer : AVOutputFormat {
 #if CONFIG_APTX_MUXER
 
 [CCode (cname="ff_aptx_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class APTXMuxer : AVOutputFormat {
+public class APTXMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -232,7 +232,7 @@ public class APTXMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -256,7 +256,7 @@ public class APTXMuxer : AVOutputFormat {
 #if CONFIG_APTX_HD_MUXER
 
 [CCode (cname="ff_aptx_hd_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class APTXHDMuxer : AVOutputFormat {
+public class APTXHDMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -304,7 +304,7 @@ public class APTXHDMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -328,7 +328,7 @@ public class APTXHDMuxer : AVOutputFormat {
 #if CONFIG_AVS2_MUXER
 
 [CCode (cname="ff_avs2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class AVS2Muxer : AVOutputFormat {
+public class AVS2Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -376,7 +376,7 @@ public class AVS2Muxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -400,7 +400,7 @@ public class AVS2Muxer : AVOutputFormat {
 #if CONFIG_CAVSVIDEO_MUXER
 
 [CCode (cname="ff_cavsvideo_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class CAVSVideoMuxer : AVOutputFormat {
+public class CAVSVideoMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -448,7 +448,7 @@ public class CAVSVideoMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -472,7 +472,7 @@ public class CAVSVideoMuxer : AVOutputFormat {
 #if CONFIG_CODEC2RAW_MUXER
 
 [CCode (cname="ff_codec2raw_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class Codec2RawMuxer : AVOutputFormat {
+public class Codec2RawMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -511,7 +511,7 @@ public class Codec2RawMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -536,7 +536,7 @@ public class Codec2RawMuxer : AVOutputFormat {
 #if CONFIG_DATA_MUXER
 
 [CCode (cname="ff_data_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class DataMuxer : AVOutputFormat {
+public class DataMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -557,7 +557,7 @@ public class DataMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -581,7 +581,7 @@ public class DataMuxer : AVOutputFormat {
 #if CONFIG_DIRAC_MUXER
 
 [CCode (cname="ff_dirac_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class DiracMuxer : AVOutputFormat {
+public class DiracMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -629,7 +629,7 @@ public class DiracMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -653,7 +653,7 @@ public class DiracMuxer : AVOutputFormat {
 #if CONFIG_DNXHD_MUXER
 
 [CCode (cname="ff_dnxhd_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class DNxHDMuxer : AVOutputFormat {
+public class DNxHDMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -701,7 +701,7 @@ public class DNxHDMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -725,7 +725,7 @@ public class DNxHDMuxer : AVOutputFormat {
 #if CONFIG_DTS_MUXER
 
 [CCode (cname="ff_dts_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class DTSMuxer : AVOutputFormat {
+public class DTSMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -782,7 +782,7 @@ public class DTSMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -806,7 +806,7 @@ public class DTSMuxer : AVOutputFormat {
 #if CONFIG_EAC3_MUXER
 
 [CCode (cname="ff_eac3_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class EAC3Muxer : AVOutputFormat {
+public class EAC3Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -863,7 +863,7 @@ public class EAC3Muxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -887,7 +887,7 @@ public class EAC3Muxer : AVOutputFormat {
 #if CONFIG_G722_MUXER
 
 [CCode (cname="ff_g722_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class G722Muxer : AVOutputFormat {
+public class G722Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -944,7 +944,7 @@ public class G722Muxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -968,7 +968,7 @@ public class G722Muxer : AVOutputFormat {
 #if CONFIG_G723_1_MUXER
 
 [CCode (cname="ff_g723_1_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class G7231Muxer : AVOutputFormat {
+public class G7231Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1025,7 +1025,7 @@ public class G7231Muxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1049,7 +1049,7 @@ public class G7231Muxer : AVOutputFormat {
 #if CONFIG_G726_MUXER
 
 [CCode (cname="ff_g726_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class G726Muxer : AVOutputFormat {
+public class G726Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1088,7 +1088,7 @@ public class G726Muxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1112,7 +1112,7 @@ public class G726Muxer : AVOutputFormat {
 #if CONFIG_G726LE_MUXER
 
 [CCode (cname="ff_g726le_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class G726LEMuxer : AVOutputFormat {
+public class G726LEMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1151,7 +1151,7 @@ public class G726LEMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1175,7 +1175,7 @@ public class G726LEMuxer : AVOutputFormat {
 #if CONFIG_GSM_MUXER
 
 [CCode (cname="ff_gsm_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class GSMMuxer : AVOutputFormat {
+public class GSMMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1232,7 +1232,7 @@ public class GSMMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1256,7 +1256,7 @@ public class GSMMuxer : AVOutputFormat {
 #if CONFIG_H261_MUXER
 
 [CCode (cname="ff_h261_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class H261Muxer : AVOutputFormat {
+public class H261Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1313,7 +1313,7 @@ public class H261Muxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1337,7 +1337,7 @@ public class H261Muxer : AVOutputFormat {
 #if CONFIG_H263_MUXER
 
 [CCode (cname="ff_h263_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class H263Muxer : AVOutputFormat {
+public class H263Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1394,7 +1394,7 @@ public class H263Muxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1418,7 +1418,7 @@ public class H263Muxer : AVOutputFormat {
 #if CONFIG_H264_MUXER
 
 [CCode (cname="ff_h264_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class H264Muxer : AVOutputFormat {
+public class H264Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1466,7 +1466,7 @@ public class H264Muxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1478,7 +1478,7 @@ public class H264Muxer : AVOutputFormat {
 
     [CCode (cname="h264_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -1494,9 +1494,9 @@ public class H264Muxer : AVOutputFormat {
 #endif
 
 #if CONFIG_HEVC_MUXER
-static int hevc_check_bitstream (AVFormatContext? s, AVPacket? pkt)
+static int hevc_check_bitstream (LibAVFormat.FormatContext? s, AVPacket? pkt)
 {
-    AVStream? st = s->streams[0];
+    LibAVFormat.Stream? st = s->streams[0];
     if (pkt->size >= 5 && AV_RB32 (pkt->data) != 0x0000001 &&
                           AV_RB24 (pkt->data) != 0x000001)
         return ff_stream_add_bitstream_filter (st, "hevc_mp4toannexb", NULL);
@@ -1504,7 +1504,7 @@ static int hevc_check_bitstream (AVFormatContext? s, AVPacket? pkt)
 }
 
 [CCode (cname="ff_hevc_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class HEVCMuxer : AVOutputFormat {
+public class HEVCMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1552,7 +1552,7 @@ public class HEVCMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1564,7 +1564,7 @@ public class HEVCMuxer : AVOutputFormat {
 
     [CCode (cname="hevc_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -1582,7 +1582,7 @@ public class HEVCMuxer : AVOutputFormat {
 #if CONFIG_M4V_MUXER
 
 [CCode (cname="ff_m4v_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class M4VMuxer : AVOutputFormat {
+public class M4VMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1630,7 +1630,7 @@ public class M4VMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1654,7 +1654,7 @@ public class M4VMuxer : AVOutputFormat {
 #if CONFIG_MJPEG_MUXER
 
 [CCode (cname="ff_mjpeg_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class MJEPGMuxer : AVOutputFormat {
+public class MJEPGMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1711,7 +1711,7 @@ public class MJEPGMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1735,7 +1735,7 @@ public class MJEPGMuxer : AVOutputFormat {
 #if CONFIG_SINGLEJPEG_MUXER
 
 [CCode (cname="ff_singlejpeg_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class SingleJPEGMuxer : AVOutputFormat {
+public class SingleJPEGMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1799,7 +1799,7 @@ public class SingleJPEGMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }
@@ -1808,7 +1808,7 @@ public class SingleJPEGMuxer : AVOutputFormat {
 #if CONFIG_MLP_MUXER
 
 [CCode (cname="ff_mlp_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class MLPMuxer : AVOutputFormat {
+public class MLPMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1856,7 +1856,7 @@ public class MLPMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -1880,7 +1880,7 @@ public class MLPMuxer : AVOutputFormat {
 #if CONFIG_MP2_MUXER
 
 [CCode (cname="ff_mp2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class MP2Muxer : AVOutputFormat {
+public class MP2Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -1956,7 +1956,7 @@ public class MP2Muxer : AVOutputFormat {
 #if CONFIG_MPEG1VIDEO_MUXER
 
 [CCode (cname="ff_mpeg1video_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class Mpeg1VideoMuxer : AVOutputFormat {
+public class Mpeg1VideoMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -2013,7 +2013,7 @@ public class Mpeg1VideoMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -2037,7 +2037,7 @@ public class Mpeg1VideoMuxer : AVOutputFormat {
 #if CONFIG_MPEG2VIDEO_MUXER
 
 [CCode (cname="ff_mpeg2video_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class Mpeg2VideoMuxer : AVOutputFormat {
+public class Mpeg2VideoMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -2085,7 +2085,7 @@ public class Mpeg2VideoMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -2109,7 +2109,7 @@ public class Mpeg2VideoMuxer : AVOutputFormat {
 #if CONFIG_RAWVIDEO_MUXER
 
 [CCode (cname="ff_rawvideo_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class RawVideoMuxer : AVOutputFormat {
+public class RawVideoMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -2176,7 +2176,7 @@ public class RawVideoMuxer : AVOutputFormat {
 #if CONFIG_SBC_MUXER
 
 [CCode (cname="ff_sbc_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class SBCMuxer : AVOutputFormat {
+public class SBCMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -2224,7 +2224,7 @@ public class SBCMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -2248,7 +2248,7 @@ public class SBCMuxer : AVOutputFormat {
 #if CONFIG_TRUEHD_MUXER
 
 [CCode (cname="ff_truehd_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class TrueHDMuxer : AVOutputFormat {
+public class TrueHDMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -2296,7 +2296,7 @@ public class TrueHDMuxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
@@ -2320,7 +2320,7 @@ public class TrueHDMuxer : AVOutputFormat {
 #if CONFIG_VC1_MUXER
 
 [CCode (cname="ff_vc1_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-public class VC1Muxer : AVOutputFormat {
+public class VC1Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override string name {
         public get {
@@ -2366,7 +2366,7 @@ public class VC1Muxer : AVOutputFormat {
 
     [CCode (cname="force_one_stream",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]

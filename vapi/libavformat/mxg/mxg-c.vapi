@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class MXGDemuxerPrivateData { }
 
 [CCode (cname="ff_mxg_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/msg.c")]
-public class MXGDemuxer : AVInputFormat {
+public class MXGDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/msg.c")]
     public override string name {
         public get {
@@ -57,18 +57,18 @@ public class MXGDemuxer : AVInputFormat {
 
     [CCode (cname="mxg_read_header",cheader_filename="subprojects/ffmpeg/libavformat/msg.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mxg_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/msg.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mxg_close",cheader_filename="subprojects/ffmpeg/libavformat/msg.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/msg.c")]

@@ -54,9 +54,9 @@ public enum VocType {
 
 [CCode (cname="ff_voc_get_packet",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
 public int ff_voc_get_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet,
-    AVStream st,
+    LibAVFormat.Stream st,
     int max_size
 );
 

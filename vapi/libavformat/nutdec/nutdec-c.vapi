@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_nut_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/nutdec.c")]
-public class NUTDemuxer : AVInputFormat {
+public class NUTDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/nutdec.c")]
     public override string name {
         public get {
@@ -63,28 +63,28 @@ public class NUTDemuxer : AVInputFormat {
 
     [CCode (cname="nut_probe",cheader_filename="subprojects/ffmpeg/libavformat/nutdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="nut_read_header",cheader_filename="subprojects/ffmpeg/libavformat/nutdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="nut_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/nutdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="nut_read_close",cheader_filename="subprojects/ffmpeg/libavformat/nutdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_seek",cheader_filename="subprojects/ffmpeg/libavformat/nutdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

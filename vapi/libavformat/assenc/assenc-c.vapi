@@ -83,7 +83,7 @@ public class ASSClass : LibAVUtil.Class {
 public class ASSMuxerPrivateData { }
 
 [CCode (cname="ff_ass_muxer",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
-public class ASSMuxer : AVOutputFormat {
+public class ASSMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override string name {
         public get {
@@ -140,18 +140,18 @@ public class ASSMuxer : AVOutputFormat {
 
     [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/assenc.c")]

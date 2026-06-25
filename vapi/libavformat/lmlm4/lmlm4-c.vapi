@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_lmlm4_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/lmlm4.c")]
-public class LMLM4Demuxer : AVInputFormat {
+public class LMLM4Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/lmlm4.c")]
     public override string name {
         public get {
@@ -47,17 +47,17 @@ public class LMLM4Demuxer : AVInputFormat {
 
     [CCode (cname="lmlm4_probe",cheader_filename="subprojects/ffmpeg/libavformat/lmlm4.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="lmlm4_read_header",cheader_filename="subprojects/ffmpeg/libavformat/lmlm4.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="lmlm4_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/lmlm4.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

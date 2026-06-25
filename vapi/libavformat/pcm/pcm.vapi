@@ -24,13 +24,13 @@ namespace LibAVFormat {
 
 [CCode (cname="ff_pcm_read_packet",cheader_filename="subprojects/ffmpeg/libformat/pdm.h")]
 public int ff_pcm_read_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
 [CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libformat/pdm.h")]
 public int ff_pcm_read_seek (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index,
     int64 timestamp,
     int flags

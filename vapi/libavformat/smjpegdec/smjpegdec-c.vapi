@@ -31,7 +31,7 @@ namespace LibAVFormat {
 public class SMJPEGDemuxerPrivateData { }
 
 [CCode (cname="ff_smjpeg_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/smjpegdec.c")]
-public class SMJPEGDemuxer : AVInputFormat {
+public class SMJPEGDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/smjpegdec.c")]
     public override string name {
         public get {
@@ -61,17 +61,17 @@ public class SMJPEGDemuxer : AVInputFormat {
 
     [CCode (cname="smjpeg_probe",cheader_filename="subprojects/ffmpeg/libavformat/smjpegdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="smjpeg_read_header",cheader_filename="subprojects/ffmpeg/libavformat/smjpegdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="smjpeg_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/smjpegdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

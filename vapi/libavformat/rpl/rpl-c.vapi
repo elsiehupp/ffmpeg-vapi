@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class RPLDemuxerPrivateData { }
 
 [CCode (cname="ff_rpl_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
-public class RPLDemuxer : AVInputFormat {
+public class RPLDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class RPLDemuxer : AVInputFormat {
 
     [CCode (cname="rpl_probe",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="rpl_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rpl_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/rpl.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

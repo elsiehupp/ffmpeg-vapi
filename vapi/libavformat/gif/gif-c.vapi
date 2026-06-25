@@ -97,7 +97,7 @@ public class GIFMuxerClass : LibAVUtil.Class {
 public class GIFMuxerPrivateData { }
 
 [CCode (cname="ff_gif_muxer",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
-public class GIFMuxer : AVOutputFormat {
+public class GIFMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override string name {
         public get {
@@ -163,18 +163,18 @@ public class GIFMuxer : AVOutputFormat {
 
     [CCode (cname="gif_write_header",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="gif_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="gif_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = gif_muxer_class,
 

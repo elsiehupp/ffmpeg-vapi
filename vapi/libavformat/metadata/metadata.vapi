@@ -45,7 +45,7 @@ public void ff_metadata_conv (
 
 [CCode (cname="ff_metadata_conv_ctx",cheader_filename="subprojects/ffmpeg/libformat/metadata.h")]
 public void ff_metadata_conv_ctx (
-    AVFormatContext fomat_context,
+    LibAVFormat.FormatContext fomat_context,
     AVMetadataConv d_conv,
     AVMetadataConv s_conv
 );

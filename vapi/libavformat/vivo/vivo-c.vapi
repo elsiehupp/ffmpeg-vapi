@@ -33,7 +33,7 @@ namespace LibAVFormat {
 public class VivoDemuxerPrivateData { }
 
 [CCode (cname="ff_vivo_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/vivo.c")]
-public class VivoDemuxer : AVInputFormat {
+public class VivoDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vivo.c")]
     public override string name {
         public get {
@@ -63,17 +63,17 @@ public class VivoDemuxer : AVInputFormat {
 
     [CCode (cname="vivo_probe",cheader_filename="subprojects/ffmpeg/libavformat/vivo.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="vivo_read_header",cheader_filename="subprojects/ffmpeg/libavformat/vivo.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="vivo_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/vivo.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

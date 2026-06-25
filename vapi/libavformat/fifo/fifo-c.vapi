@@ -191,7 +191,7 @@ public class FifoMuxerClass : LibAVUtil.Class {
 public class FifoMuxerPrivateData { }
 
 [CCode (cname="ff_fifo_muxer",cheader_filename="subprojects/ffmpeg/libavformat/fifo.c")]
-public class FifoMuxer : AVOutputFormat {
+public class FifoMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/fifo.c")]
     public override string name {
         public get {
@@ -221,28 +221,28 @@ public class FifoMuxer : AVOutputFormat {
 
     [CCode (cname="fifo_init",cheader_filename="subprojects/ffmpeg/libavformat/fifo.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="fifo_write_header",cheader_filename="subprojects/ffmpeg/libavformat/fifo.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="fifo_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/fifo.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="fifo_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/fifo.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="fifo_deinit",cheader_filename="subprojects/ffmpeg/libavformat/fifo.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = fifo_muxer_class,
 

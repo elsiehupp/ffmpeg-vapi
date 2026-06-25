@@ -22,7 +22,7 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-namespace LibSoftwareRescale {
+namespace LibSoftwareScale {
 
 /***********************************************************
 A full collection of RGB to RGB (BGR) converters
@@ -162,161 +162,161 @@ A full collection of RGB to RGB (BGR) converters
 
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb64tobgr48_nobswap (
+internal void rgb64tobgr48_nobswap (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb64tobgr48_bswap (
+internal void rgb64tobgr48_bswap (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb48tobgr48_nobswap (
+internal void rgb48tobgr48_nobswap (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb48tobgr48_bswap (
+internal void rgb48tobgr48_bswap (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb64to48_nobswap (
+internal void rgb64to48_nobswap (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb64to48_bswap (
+internal void rgb64to48_bswap (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb48tobgr64_nobswap (
+internal void rgb48tobgr64_nobswap (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb48tobgr64_bswap (
+internal void rgb48tobgr64_bswap (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb48to64_nobswap (
+internal void rgb48to64_nobswap (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb48to64_bswap (
+internal void rgb48to64_bswap (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb24to32 (
+internal void rgb24to32 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb32to24 (
+internal void rgb32to24 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb16tobgr32 (
+internal void rgb16tobgr32 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb16to24 (
+internal void rgb16to24 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb16tobgr16 (
+internal void rgb16tobgr16 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb16tobgr15 (
+internal void rgb16tobgr15 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb15tobgr32 (
+internal void rgb15tobgr32 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb15to24 (
+internal void rgb15to24 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb15tobgr16 (
+internal void rgb15tobgr16 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb15tobgr15 (
+internal void rgb15tobgr15 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb12tobgr12 (
+internal void rgb12tobgr12 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb12to15 (
+internal void rgb12to15 (
     uint8[] src,
     uint8[] dst,
     int src_size
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void ff_rgb24toyv12_c (
+internal void ff_rgb24toyv12_c (
     uint8[] src,
     uint8[] ydst,
     uint8[] udst,
@@ -532,9 +532,9 @@ FIXME: Write high quality version.
 //  );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void ff_sws_rgb2rgb_init ();
+internal void ff_sws_rgb2rgb_init ();
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/rgb2rgb.h")]
-public void rgb2rgb_init_x86 ();
+internal void rgb2rgb_init_x86 ();
 
-} // namespace LibSoftwareRescale
+} // namespace LibSoftwareScale

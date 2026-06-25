@@ -20,8 +20,8 @@ namespace LibAVDevice {
 [CCode (cname="ff_alloc_input_device_context",cheader_filename="subprojects/ffmpeg/libavdevice/internal.h")]
 //  av_warn_unused_result
 public int ff_alloc_input_device_context (
-    AVFormatContext **avctx,
-    AVInputFormat? iformat,
+    LibAVFormat.FormatContext **avctx,
+    LibAVFormat.InputFormat? iformat,
     string format
 );
 

@@ -24,7 +24,7 @@ namespace LibAVFilter {
 [Compact]
 public class FlipContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     /***********************************************************
     max pixel step for each plane, expressed as a number of bytes

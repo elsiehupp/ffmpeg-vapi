@@ -20,11 +20,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibSoftwareResample {
 
-[CCode (cname="struct ResampleContext",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
+[CCode (cname="struct LibAVResample.ResampleContext",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
 [Compact]
-internal class LibSoftwareResample.ResampleContext {
+internal class LibSoftwareResample.LibAVResample.ResampleContext {
     [CCode (cname="")]
-    internal AVClass? av_class;
+    internal LibAVUtil.Class? av_class;
 
     [CCode (cname="")]
     internal uint8[] filter_bank;
@@ -103,7 +103,7 @@ internal class LibSoftwareResample.ResampleContext {
         internal ResampleOneDelegate resample_one;
 
         internal delegate int ResampleCommonDelegate (
-            LibSoftwareResample.ResampleContext? resample_context,
+            LibSoftwareResample.LibAVResample.ResampleContext? resample_context,
             void *dst,
             void *src,
             int n,
@@ -114,7 +114,7 @@ internal class LibSoftwareResample.ResampleContext {
         internal ResampleCommonDelegate resample_common;
 
         internal delegate int ResambleLinearDelegate (
-            LibSoftwareResample.ResampleContext? resample_context,
+            LibSoftwareResample.LibAVResample.ResampleContext? resample_context,
             void *dst,
             void *src,
             int n,
@@ -129,22 +129,22 @@ internal class LibSoftwareResample.ResampleContext {
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
     internal void swri_resample_dsp_init (
-        LibSoftwareResample.ResampleContext? resample_context
+        LibSoftwareResample.LibAVResample.ResampleContext? resample_context
     );
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
     internal void swri_resample_dsp_x86_init (
-        LibSoftwareResample.ResampleContext? resample_context
+        LibSoftwareResample.LibAVResample.ResampleContext? resample_context
     );
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
     internal void swri_resample_dsp_arm_init (
-        LibSoftwareResample.ResampleContext? resample_context
+        LibSoftwareResample.LibAVResample.ResampleContext? resample_context
     );
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/resample.h")]
     internal void swri_resample_dsp_aarch64_init (
-        LibSoftwareResample.ResampleContext? resample_context
+        LibSoftwareResample.LibAVResample.ResampleContext? resample_context
     );
 
 }

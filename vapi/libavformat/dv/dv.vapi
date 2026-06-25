@@ -34,7 +34,7 @@ public class DVDemuxContext {
 
     [CCode (cname="avpriv_dv_init_demux",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
     public DVDemuxContext avpriv_dv_init_demux (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="avpriv_dv_get_packet",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]

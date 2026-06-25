@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 /***********************************************************
-@file Options definition for AVFormatContext.
+@file Options definition for LibAVFormat.FormatContext.
 ***********************************************************/
 
 [CCode (cname="av_format_context_class",cheader_filename="subprojects/ffmpeg/libavformat/options.c")]
@@ -30,7 +30,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/options.c")]
     public override string class_name {
         public get {
-            return "AVFormatContext";
+            return "LibAVFormat.FormatContext";
 
         }
 
@@ -45,7 +45,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "avioflags",
                     short_help_text = "",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         avio_flags
                     ),
                     default_value = DEFAULT,
@@ -74,7 +74,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "probesize",
                     short_help_text = "set probing size",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         probesize
                     ),
                     default_value = 5000000,
@@ -86,7 +86,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "formatprobesize",
                     short_help_text = "number of bytes to probe file format",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         format_probesize
                     ),
                     default_value = PROBE_BUF_MAX,
@@ -100,7 +100,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "packetsize",
                     short_help_text = "set packet size",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         packet_size
                     ),
                     default_value = DEFAULT,
@@ -115,7 +115,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "fflags",
                     short_help_text = "",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         flags
                     ),
                     default_value = AVFormatFlags.AUTO_BSF,
@@ -300,7 +300,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "seek2any",
                     short_help_text = "allow seeking to non-keyframes on demuxer level when supported",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         seek2any
                     ),
                     default_value = 0,
@@ -312,7 +312,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "analyzeduration",
                     short_help_text = "specify how many microseconds are analyzed to probe the input",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         max_analyze_duration
                     ),
                     default_value = 0,
@@ -324,7 +324,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "cryptokey",
                     short_help_text = "decryption key",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         key
                     ),
                     default_value = 0,
@@ -336,7 +336,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "indexmem",
                     short_help_text = "max memory used for timestamp index (per stream)",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         max_index_size
                     ),
                     default_value = (
@@ -350,7 +350,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "rtbufsize",
                     short_help_text = "max memory used for buffering real-time frames",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         max_picture_buffer
                     ),
                     default_value = 3041280,
@@ -362,7 +362,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "fdebug",
                     short_help_text = "print specific debug info",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         debug
                     ),
                     default_value = DEFAULT,
@@ -391,7 +391,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "max_delay",
                     short_help_text = "maximum muxing or demuxing delay in microseconds",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         max_delay
                     ),
                     default_value = -1,
@@ -406,7 +406,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "start_time_realtime",
                     short_help_text = "wall-clock time when stream begins (PTS==0)",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         start_time_realtime
                     ),
                     default_value = AV_NOPTS_VALUE,
@@ -421,7 +421,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "fpsprobesize",
                     short_help_text = "number of frames used to probe fps",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         fps_probe_size
                     ),
                     default_value = -1,
@@ -435,7 +435,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "audio_preload",
                     short_help_text = "microseconds by which audio packets should be interleaved earlier",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         audio_preload
                     ),
                     default_value = 0,
@@ -452,7 +452,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "chunk_duration",
                     short_help_text = "microseconds for each chunk",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         max_chunk_duration
                     ),
                     default_value = 0,
@@ -469,7 +469,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "chunk_size",
                     short_help_text = "size in bytes for each chunk",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         max_chunk_size
                     ),
                     default_value = 0,
@@ -490,7 +490,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "f_err_detect",
                     short_help_text = "set error detection flags (deprecated; use err_detect, save via avconv)",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         error_recognition
                     ),
                     default_value = ErrorRecognitionFlags.CRC_CHECK,
@@ -503,7 +503,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "err_detect",
                     short_help_text = "set error detection flags",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         error_recognition
                     ),
                     default_value = ErrorRecognitionFlags.CRC_CHECK,
@@ -596,7 +596,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "use_wallclock_as_timestamps",
                     short_help_text = "use wallclock as timestamps",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         use_wallclock_as_timestamps
                     ),
                     default_value = 0,
@@ -608,7 +608,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "skip_initial_bytes",
                     short_help_text = "set number of bytes to skip before reading header and frames",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         skip_initial_bytes
                     ),
                     default_value = 0,
@@ -622,7 +622,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "correct_ts_overflow",
                     short_help_text = "correct single timestamp overflows",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         correct_ts_overflow
                     ),
                     default_value = 1,
@@ -634,7 +634,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "flush_packets",
                     short_help_text = "enable flushing of the I/O context after each packet",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         flush_packets
                     ),
                     default_value = -1,
@@ -649,7 +649,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "metadata_header_padding",
                     short_help_text = "set number of bytes to be written as padding in a metadata header",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         metadata_header_padding
                     ),
                     default_value = -1,
@@ -664,7 +664,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "output_ts_offset",
                     short_help_text = "set output timestamp offset",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         output_ts_offset
                     ),
                     default_value = 0,
@@ -679,7 +679,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "max_interleave_delta",
                     short_help_text = "maximum buffering duration for interleaving",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         max_interleave_delta
                     ),
                     default_value = 10000000,
@@ -694,7 +694,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "f_strict",
                     short_help_text = "how strictly to follow the standards (deprecated; use strict, save via avconv)",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         strict_std_compliance
                     ),
                     default_value = DEFAULT,
@@ -710,7 +710,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "strict",
                     short_help_text = "how strictly to follow the standards",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         strict_std_compliance
                     ),
                     default_value = DEFAULT,
@@ -791,7 +791,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "max_ts_probe",
                     short_help_text = "maximum number of packets to read while waiting for the first timestamp",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         max_ts_probe
                     ),
                     default_value = 50,
@@ -803,7 +803,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "avoid_negative_ts",
                     short_help_text = "shift timestamps so they start at 0",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         avoid_negative_ts
                     ),
                     default_value = -1,
@@ -871,7 +871,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "dump_separator",
                     short_help_text = "set information dump field separator",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         dump_separator
                     ),
                     default_value = ", ",
@@ -886,7 +886,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "codec_whitelist",
                     short_help_text = "List of decoders that are allowed to be used",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         codec_whitelist
                     ),
                     default_value = "",
@@ -898,7 +898,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "format_whitelist",
                     short_help_text = "List of demuxers that are allowed to be used",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         format_whitelist
                     ),
                     default_value = "",
@@ -910,7 +910,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "protocol_whitelist",
                     short_help_text = "List of protocols that are allowed to be used",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         protocol_whitelist
                     ),
                     default_value = "",
@@ -922,7 +922,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "protocol_blacklist",
                     short_help_text = "List of protocols that are not allowed to be used",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         protocol_blacklist
                     ),
                     default_value = "",
@@ -934,7 +934,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "max_streams",
                     short_help_text = "maximum number of streams",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         max_streams
                     ),
                     default_value = 1000,
@@ -946,7 +946,7 @@ public class AVFormatContextClass : LibAVUtil.Class {
                     name = "skip_estimate_duration_from_pts",
                     short_help_text = "skip duration calculation in estimate_timings_from_pts",
                     offset = offsetof (
-                        AVFormatContext,
+                        LibAVFormat.FormatContext,
                         skip_estimate_duration_from_pts
                     ),
                     default_value = 0,

@@ -68,7 +68,7 @@ public class LibOpenMptDemuxerClass : LibAVUtil.Class {
 public class LibOpenMptDemuxerPrivateData { }
 
 [CCode (cname="ff_libopenmpt_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/libopenmpt.c")]
-public class LibOpenMptDemuxer : AVInputFormat {
+public class LibOpenMptDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/libopenmpt.c")]
     public override string name {
         public get {
@@ -98,28 +98,28 @@ public class LibOpenMptDemuxer : AVInputFormat {
 
     [CCode (cname="read_probe_openmpt",cheader_filename="subprojects/ffmpeg/libavformat/libopenmpt.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="read_header_openmpt",cheader_filename="subprojects/ffmpeg/libavformat/libopenmpt.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet_openmpt",cheader_filename="subprojects/ffmpeg/libavformat/libopenmpt.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="read_close_openmpt",cheader_filename="subprojects/ffmpeg/libavformat/libopenmpt.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_seek_openmpt",cheader_filename="subprojects/ffmpeg/libavformat/libopenmpt.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

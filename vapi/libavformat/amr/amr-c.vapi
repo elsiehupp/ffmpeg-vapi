@@ -29,7 +29,7 @@ Only mono files are supported.
 #if CONFIG_AMRWB_DEMUXER
 
 [CCode (cname="ff_amrwb_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/amr.c")]
-public class AMRWBDemuxer : AVInputFormat {
+public class AMRWBDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/amr.c")]
     public override string name {
         public get {
@@ -59,17 +59,17 @@ public class AMRWBDemuxer : AVInputFormat {
 
     [CCode (cname="amrwb_probe",cheader_filename="subprojects/ffmpeg/libavformat/amr.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="amrwb_read_header",cheader_filename="subprojects/ffmpeg/libavformat/amr.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="amr_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/amr.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -87,7 +87,7 @@ public class AMRWBDemuxer : AVInputFormat {
 #if CONFIG_AMR_MUXER
 
 [CCode (cname="ff_amr_muxer",cheader_filename="subprojects/ffmpeg/libavformat/amr.c")]
-public class AmrMuxer : AVOutputFormat {
+public class AmrMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/amr.c")]
     public override string name {
         public get {
@@ -144,7 +144,7 @@ public class AmrMuxer : AVOutputFormat {
 
     [CCode (cname="amr_write_header",cheader_filename="subprojects/ffmpeg/libavformat/amr.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="amr_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/amr.c")]

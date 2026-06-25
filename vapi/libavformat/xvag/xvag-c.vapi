@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_xvag_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/xvag.c")]
-public class XVAGDemuxer : AVInputFormat {
+public class XVAGDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/xvag.c")]
     public override string name {
         public get {
@@ -44,17 +44,17 @@ public class XVAGDemuxer : AVInputFormat {
 
     [CCode (cname="xvag_probe",cheader_filename="subprojects/ffmpeg/libavformat/xvag.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="xvag_read_header",cheader_filename="subprojects/ffmpeg/libavformat/xvag.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="xvag_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/xvag.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

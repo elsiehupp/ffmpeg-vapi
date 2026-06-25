@@ -106,7 +106,7 @@ public class Mpeg2SystemsMuxerClass : MpegOptionsClass {
 }
 
 [CCode (cname="ff_mpeg1system_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-public class Mpeg2SystemsMuxer : AVOutputFormat {
+public class Mpeg2SystemsMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override string name {
         public get {
@@ -172,7 +172,7 @@ public class Mpeg2SystemsMuxer : AVOutputFormat {
 
     [CCode (cname="mpeg_mux_init",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpeg_mux_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
@@ -184,7 +184,7 @@ public class Mpeg2SystemsMuxer : AVOutputFormat {
 
     [CCode (cname="mpeg_mux_end",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = mpeg_class;
 }
@@ -224,7 +224,7 @@ public class VCDMuxerClass : MpegOptionsClass {
 }
 
 [CCode (cname="ff_mpeg1vcd_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-public class VCDMuxer : AVOutputFormat {
+public class VCDMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override string name {
         public get {
@@ -281,7 +281,7 @@ public class VCDMuxer : AVOutputFormat {
 
     [CCode (cname="mpeg_mux_init",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpeg_mux_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
@@ -293,7 +293,7 @@ public class VCDMuxer : AVOutputFormat {
 
     [CCode (cname="mpeg_mux_end",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = vcd_class;
 }
@@ -333,7 +333,7 @@ public class VOBMuxerClass : MpegOptionsClass {
 }
 
 [CCode (cname="ff_mpeg2vob_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-public class VOBMuxer : AVOutputFormat {
+public class VOBMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override string name {
         public get {
@@ -399,7 +399,7 @@ public class VOBMuxer : AVOutputFormat {
 
     [CCode (cname="mpeg_mux_init",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpeg_mux_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
@@ -411,7 +411,7 @@ public class VOBMuxer : AVOutputFormat {
 
     [CCode (cname="mpeg_mux_end",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = vob_class;
 }
@@ -454,7 +454,7 @@ public class SVCDMuxerClass : MpegOptionsClass {
 }
 
 [CCode (cname="ff_mpeg2svcd_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-public class SVCDMuxer : AVOutputFormat {
+public class SVCDMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override string name {
         public get {
@@ -520,7 +520,7 @@ public class SVCDMuxer : AVOutputFormat {
 
     [CCode (cname="mpeg_mux_init",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpeg_mux_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
@@ -532,7 +532,7 @@ public class SVCDMuxer : AVOutputFormat {
 
     [CCode (cname="mpeg_mux_end",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = svcd_class;
 }
@@ -575,7 +575,7 @@ public class DVDVOBMuxerClass : MpegOptionsClass {
 }
 
 [CCode (cname="ff_mpeg2dvd_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
-public class DVDVOBMuxer : AVOutputFormat {
+public class DVDVOBMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override string name {
         public get {
@@ -641,7 +641,7 @@ public class DVDVOBMuxer : AVOutputFormat {
 
     [CCode (cname="mpeg_mux_init",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpeg_mux_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
@@ -653,7 +653,7 @@ public class DVDVOBMuxer : AVOutputFormat {
 
     [CCode (cname="mpeg_mux_end",cheader_filename="subprojects/ffmpeg/libavformat/mpegenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = dvd_class;
 }

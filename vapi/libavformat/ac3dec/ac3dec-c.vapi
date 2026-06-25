@@ -23,7 +23,7 @@ namespace LibAVFormat {
 
 #if CONFIG_AC3_DEMUXER
 static int ac3_probe (
-    const AVProbeData? p
+    const LibAVFormat.ProbeData? p
 ) {
     return ac3_eac3_probe (
         p,
@@ -35,7 +35,7 @@ static int ac3_probe (
 //  FF_RAW_DEMUXER_CLASS (ac3)
 
 [CCode (cname="ff_ac3_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
-public class AC3Demuxer : AVInputFormat {
+public class AC3Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override string name {
         public get {
@@ -56,17 +56,17 @@ public class AC3Demuxer : AVInputFormat {
 
     [CCode (cname="ac3_probe",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
@@ -111,7 +111,7 @@ public class AC3Demuxer : AVInputFormat {
 
 #if CONFIG_EAC3_DEMUXER
 static int eac3_probe (
-    const AVProbeData? p
+    const LibAVFormat.ProbeData? p
 ) {
     return ac3_eac3_probe (
         p,
@@ -122,7 +122,7 @@ static int eac3_probe (
 
 //  FF_RAW_DEMUXER_CLASS (eac3)
 [CCode (cname="ff_eac3_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
-public class EAC3Demuxer : AVInputFormat {
+public class EAC3Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override string name {
         public get {
@@ -143,17 +143,17 @@ public class EAC3Demuxer : AVInputFormat {
 
     [CCode (cname="eac3_probe",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ff_raw_audio_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

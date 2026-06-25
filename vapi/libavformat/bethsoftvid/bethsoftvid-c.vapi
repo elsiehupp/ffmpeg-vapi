@@ -34,7 +34,7 @@ namespace LibAVFormat {
 public class BethSoftVIDDemuxerPrivateData { }
 
 [CCode (cname="ff_bethsoftvid_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/bethsoftvid.c")]
-public class BethSoftVIDDemuxer : AVInputFormat {
+public class BethSoftVIDDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/bethsoftvid.c")]
     public override string name {
         public get {
@@ -64,23 +64,23 @@ public class BethSoftVIDDemuxer : AVInputFormat {
 
     [CCode (cname="vid_probe",cheader_filename="subprojects/ffmpeg/libavformat/bethsoftvid.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="vid_read_header",cheader_filename="subprojects/ffmpeg/libavformat/bethsoftvid.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="vid_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/bethsoftvid.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="vid_read_close",cheader_filename="subprojects/ffmpeg/libavformat/bethsoftvid.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

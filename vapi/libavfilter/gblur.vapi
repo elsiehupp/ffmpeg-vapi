@@ -30,7 +30,7 @@ namespace LibAVFilter {
 [Compact]
 public class GBlurContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     [CCode (cname="")]
     public float sigma;

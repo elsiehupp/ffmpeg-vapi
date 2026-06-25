@@ -38,7 +38,7 @@ special FLIs from the PC games "Magic Carpet" and "X-COM: Terror from the Deep".
 public class FLICDemuxerPrivateData { }
 
 [CCode (cname="ff_flic_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/flic.c")]
-public class FLICDemuxer : AVInputFormat {
+public class FLICDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flic.c")]
     public override string name {
         public get {
@@ -68,17 +68,17 @@ public class FLICDemuxer : AVInputFormat {
 
     [CCode (cname="flic_probe",cheader_filename="subprojects/ffmpeg/libavformat/flic.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="flic_read_header",cheader_filename="subprojects/ffmpeg/libavformat/flic.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flic_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/flic.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

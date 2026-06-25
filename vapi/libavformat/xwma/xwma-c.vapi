@@ -31,7 +31,7 @@ namespace LibAVFormat {
 public class XWMADemuxerPrivateData { }
 
 [CCode (cname="ff_xwma_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/xwma.c")]
-public class XWMADemuxer : AVInputFormat {
+public class XWMADemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/xwma.c")]
     public override string name {
         public get {
@@ -61,17 +61,17 @@ public class XWMADemuxer : AVInputFormat {
 
     [CCode (cname="xwma_probe",cheader_filename="subprojects/ffmpeg/libavformat/xwma.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="xwma_read_header",cheader_filename="subprojects/ffmpeg/libavformat/xwma.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="xwma_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/xwma.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

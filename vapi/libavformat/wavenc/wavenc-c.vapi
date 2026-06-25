@@ -210,7 +210,7 @@ public class WAVMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_wav_muxer",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
-public class WAVMuxer : AVOutputFormat {
+public class WAVMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string name {
         public get {
@@ -276,7 +276,7 @@ public class WAVMuxer : AVOutputFormat {
 
     [CCode (cname="wav_write_header",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="wav_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
@@ -288,7 +288,7 @@ public class WAVMuxer : AVOutputFormat {
 
     [CCode (cname="wav_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
@@ -318,7 +318,7 @@ public class WAVMuxer : AVOutputFormat {
 #if CONFIG_W64_MUXER
 
 [CCode (cname="ff_w64_muxer",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
-public class Wave64Muxer : AVOutputFormat {
+public class Wave64Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override string name {
         public get {
@@ -375,7 +375,7 @@ public class Wave64Muxer : AVOutputFormat {
 
     [CCode (cname="w64_write_header",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="wav_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
@@ -387,7 +387,7 @@ public class Wave64Muxer : AVOutputFormat {
 
     [CCode (cname="w64_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/wavenc.c")]

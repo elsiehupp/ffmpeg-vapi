@@ -246,7 +246,7 @@ public class MOVTrack {
     public int tag;
 
     [CCode (cname="")]
-    public AVStream st;
+    public LibAVFormat.Stream st;
 
     [CCode (cname="")]
     public LibAVCodec.CodecParameters par;
@@ -315,7 +315,7 @@ public class MOVTrack {
     @brief The format context for the hinting rtp muxer
     ***********************************************************/
     [CCode (cname="")]
-    public AVFormatContext rtp_ctx;
+    public LibAVFormat.FormatContext rtp_ctx;
 
     [CCode (cname="")]
     public uint32 prev_rtp_ts;
@@ -527,7 +527,7 @@ public class MOVMuxContext {
     public int per_stream_grouping;
 
     [CCode (cname="")]
-    public AVFormatContext fc;
+    public LibAVFormat.FormatContext fc;
 
     [CCode (cname="")]
     public int use_editlist;
@@ -650,20 +650,20 @@ public enum MOVFlags {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
 public int ff_mov_write_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
 public int ff_mov_init_hinting (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int index,
     int src_index
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
 public int ff_mov_add_hinted_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet,
     int track_index,
     int sample,

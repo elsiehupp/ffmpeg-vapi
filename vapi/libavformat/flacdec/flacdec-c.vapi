@@ -28,7 +28,7 @@ public class FLACDemuxerPrivateData { }
 
 //  FF_RAW_DEMUXER_CLASS (flac)
 [CCode (cname="ff_flac_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
-public class FLACDemuxer : AVInputFormat {
+public class FLACDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override string name {
         public get {
@@ -49,23 +49,23 @@ public class FLACDemuxer : AVInputFormat {
 
     [CCode (cname="flac_probe",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="flac_read_header",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_read_partial_packet",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="flac_seek",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -73,7 +73,7 @@ public class FLACDemuxer : AVInputFormat {
 
     [CCode (cname="flac_read_timestamp",cheader_filename="subprojects/ffmpeg/libavformat/flacdec.c")]
     public override int64 read_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit

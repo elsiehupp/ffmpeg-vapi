@@ -135,7 +135,7 @@ public enum MpegTransportStreamType {
 public class MpegTSContext {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
     public MpegTSContext avpriv_mpegts_parse_open (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
@@ -226,8 +226,8 @@ public class Mp4Descr {
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
 public int ff_parse_mpeg2_descriptor (
-    AVFormatContext fc,
-    AVStream st,
+    LibAVFormat.FormatContext fc,
+    LibAVFormat.Stream st,
     MpegTransportStreamType stream_type,
     out uint8[] pp,
     out uint8 desc_list_end,
@@ -243,8 +243,8 @@ public int ff_parse_mpeg2_descriptor (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
 public int ff_check_h264_startcode (
-    AVFormatContext format_context,
-    AVStream st,
+    LibAVFormat.FormatContext format_context,
+    LibAVFormat.Stream st,
     LibAVCodec.Packet packet
 );
 

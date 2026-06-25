@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class GXFDemuxerPrivateData { }
 
 [CCode (cname="ff_gxf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
-public class GXFDemuxer : AVInputFormat {
+public class GXFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override string name {
         public get {
@@ -57,23 +57,23 @@ public class GXFDemuxer : AVInputFormat {
 
     [CCode (cname="gxf_probe",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="gxf_header",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="gxf_packet",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="gxf_seek",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -81,7 +81,7 @@ public class GXFDemuxer : AVInputFormat {
 
     [CCode (cname="gxf_read_timestamp",cheader_filename="subprojects/ffmpeg/libavformat/gxf.c")]
     public override int64 read_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit

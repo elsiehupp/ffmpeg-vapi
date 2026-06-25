@@ -95,7 +95,7 @@ public class ADTSMuxerClass : LibAVUtil.Class {
 public class ADTSMuxerPrivateData { }
 
 [CCode (cname="ff_adts_muxer",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
-public class ADTSMuxer : AVOutputFormat {
+public class ADTSMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override string name {
         public get {
@@ -161,23 +161,23 @@ public class ADTSMuxer : AVOutputFormat {
 
     [CCode (cname="adts_init",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="adts_write_header",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="adts_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="adts_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/adtsenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = adts_muxer_class,
 

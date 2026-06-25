@@ -83,7 +83,7 @@ public class SERDemuxerClass : LibAVUtil.Class {
 public class SERDemuxerPrivateData { }
 
 [CCode (cname="ff_ser_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/dec.c")]
-public class SERDemuxer : AVInputFormat {
+public class SERDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/dec.c")]
     public override string name {
         public get {
@@ -113,17 +113,17 @@ public class SERDemuxer : AVInputFormat {
 
     [CCode (cname="ser_probe",cheader_filename="subprojects/ffmpeg/libavformat/dec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ser_read_header",cheader_filename="subprojects/ffmpeg/libavformat/dec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ser_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/dec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

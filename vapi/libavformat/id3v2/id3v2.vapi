@@ -205,7 +205,7 @@ public void ff_id3v2_read_dict (
 /***********************************************************
 @brief Read an ID3v2 tag, including supported extra metadata.
 
-Data is read from and stored to AVFormatContext.
+Data is read from and stored to LibAVFormat.FormatContext.
 
 @param extra_meta If not NULL, extra metadata is parsed into a list of
 ID3v2ExtraMeta structs and? extra_meta points to the head of the list
@@ -213,7 +213,7 @@ ID3v2ExtraMeta structs and? extra_meta points to the head of the list
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public void ff_id3v2_read (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     string magic,
     out ID3v2ExtraMeta extra_meta,
     uint max_search_size
@@ -235,7 +235,7 @@ public void ff_id3v2_start (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_write_metadata (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     ID3v2EncContext id3
 );
 
@@ -244,7 +244,7 @@ public int ff_id3v2_write_metadata (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_write_apic (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     ID3v2EncContext id3,
     LibAVCodec.Packet packet
 );
@@ -267,7 +267,7 @@ If in doubt, use ID3v2_DEFAULT_MAGIC.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_write_simple (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int id3v2_version,
     string magic
 );
@@ -287,7 +287,7 @@ ID3v2 header.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_parse_apic (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out ID3v2ExtraMeta extra_meta
 );
 
@@ -296,7 +296,7 @@ public int ff_id3v2_parse_apic (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_parse_chapters (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out ID3v2ExtraMeta extra_meta
 );
 
@@ -317,7 +317,7 @@ escaped.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/id3v2.h")]
 public int ff_id3v2_parse_priv (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out ID3v2ExtraMeta extra_meta
 );
 

@@ -42,7 +42,7 @@ public delegate void BlendDelegate (
 [Compact]
 public class FrameRateContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     // parameters
 

@@ -27,7 +27,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="ff_g723_1_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/g723_1.c")]
-public class G7231Demuxer : AVInputFormat {
+public class G7231Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/g723_1.c")]
     public override string name {
         public get {
@@ -48,12 +48,12 @@ public class G7231Demuxer : AVInputFormat {
 
     [CCode (cname="g723_1_init",cheader_filename="subprojects/ffmpeg/libavformat/g723_1.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="g723_1_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/g723_1.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

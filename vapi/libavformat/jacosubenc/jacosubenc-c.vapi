@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_jacosub_muxer",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
-public class JacoSubMuxer : AVOutputFormat {
+public class JacoSubMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override string name {
         public get {
@@ -58,12 +58,12 @@ public class JacoSubMuxer : AVOutputFormat {
 
     [CCode (cname="jacosub_write_header",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

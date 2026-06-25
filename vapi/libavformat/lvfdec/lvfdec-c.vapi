@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_lvf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/lvfdec.c")]
-public class LVFDemuxer : AVInputFormat {
+public class LVFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/lvfdec.c")]
     public override string name {
         public get {
@@ -44,17 +44,17 @@ public class LVFDemuxer : AVInputFormat {
 
     [CCode (cname="lvf_probe",cheader_filename="subprojects/ffmpeg/libavformat/lvfdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="lvf_read_header",cheader_filename="subprojects/ffmpeg/libavformat/lvfdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="lvf_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/lvfdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

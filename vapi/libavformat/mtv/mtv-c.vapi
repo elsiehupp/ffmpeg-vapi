@@ -31,7 +31,7 @@ namespace LibAVFormat {
 public class MTVDemuxerPrivateData { }
 
 [CCode (cname="ff_mtv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
-public class MTVDemuxer : AVInputFormat {
+public class MTVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
     public override string name {
         public get {
@@ -61,17 +61,17 @@ public class MTVDemuxer : AVInputFormat {
 
     [CCode (cname="mtv_probe",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="mtv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mtv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mtv.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

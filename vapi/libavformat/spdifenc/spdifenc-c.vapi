@@ -142,7 +142,7 @@ public class SPIDFMuxerClass : LibAVUtil.Class {
 public class SPIDFMuxerPrivateData { }
 
 [CCode (cname="ff_spdif_muxer",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]
-public class SPIDFMuxer : AVOutputFormat {
+public class SPIDFMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]
     public override string name {
         public get {
@@ -199,18 +199,18 @@ public class SPIDFMuxer : AVOutputFormat {
 
     [CCode (cname="spdif_write_header",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="spdif_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="spdif_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]

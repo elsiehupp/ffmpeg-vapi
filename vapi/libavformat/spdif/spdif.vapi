@@ -178,7 +178,7 @@ public void ff_spdif_bswap_buf16 (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/spdif.h")]
 public int ff_spdif_read_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 

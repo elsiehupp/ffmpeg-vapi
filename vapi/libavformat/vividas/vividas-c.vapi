@@ -35,7 +35,7 @@ namespace LibAVFormat {
 public class VividasDemuxerPrivateData { }
 
 [CCode (cname="ff_vividas_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
-public class VividasDemuxer : AVInputFormat {
+public class VividasDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override string name {
         public get {
@@ -65,28 +65,28 @@ public class VividasDemuxer : AVInputFormat {
 
     [CCode (cname="viv_probe",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="viv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="viv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="viv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="viv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/vividas.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

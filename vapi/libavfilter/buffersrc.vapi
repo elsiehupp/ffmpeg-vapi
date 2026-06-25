@@ -77,7 +77,7 @@ av_free (). All the allocated fields in it remain owned by the caller.
 [Compact]
 public class AVBufferSrcParameters {
     /***********************************************************
-    video: the pixel format, value corresponds to AVPixelFormat
+    video: the pixel format, value corresponds to LibAVUtil.PixelFormat
     audio: the sample format, value corresponds to AVSampleFormat
     ***********************************************************/
     [CCode (cname="")]

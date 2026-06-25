@@ -69,7 +69,7 @@ public class LibModPlugDemuxerClass : LibAVUtil.Class {
 public class LibModPlugDemuxerPrivateData { }
 
 [CCode (cname="ff_libmodplug_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
-public class LibModPlugDemuxer : AVInputFormat {
+public class LibModPlugDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
     public override string name {
         public get {
@@ -99,28 +99,28 @@ public class LibModPlugDemuxer : AVInputFormat {
 
     [CCode (cname="modplug_probe",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="modplug_read_header",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="modplug_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="modplug_read_close",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="modplug_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

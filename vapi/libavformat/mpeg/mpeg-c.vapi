@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class MPEGPSDemuxerPrivateData { }
 
 [CCode (cname="ff_mpegps_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
-public class MPEGPSDemuxer : AVInputFormat {
+public class MPEGPSDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override string name {
         public get {
@@ -57,23 +57,23 @@ public class MPEGPSDemuxer : AVInputFormat {
 
     [CCode (cname="mpegps_probe",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="mpegps_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpegps_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mpegps_read_dts",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override int64 read_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit
@@ -148,7 +148,7 @@ public class VobSubDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_vobsub_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
-public class VobSubDemuxer : AVInputFormat {
+public class VobSubDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override string name {
         public get {
@@ -178,23 +178,23 @@ public class VobSubDemuxer : AVInputFormat {
 
     [CCode (cname="vobsub_probe",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="vobsub_read_header",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="vobsub_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="vobsub_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -204,7 +204,7 @@ public class VobSubDemuxer : AVInputFormat {
 
     [CCode (cname="vobsub_read_close",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]

@@ -109,10 +109,10 @@ public class AVFormatInternal {
     streams.
     ***********************************************************/
     [CCode (cname="")]
-    public AVPacketList packet_buffer;
+    public LibAVFormat.PacketList packet_buffer;
 
     [CCode (cname="")]
-    public AVPacketList packet_buffer_end;
+    public LibAVFormat.PacketList packet_buffer_end;
 
     /***********************************************************
     @brief Av_seek_frame () support
@@ -131,19 +131,19 @@ public class AVFormatInternal {
     codec.
     ***********************************************************/
     [CCode (cname="")]
-    public AVPacketList raw_packet_buffer;
+    public LibAVFormat.PacketList raw_packet_buffer;
 
     [CCode (cname="")]
-    public AVPacketList raw_packet_buffer_end;
+    public LibAVFormat.PacketList raw_packet_buffer_end;
 
     /***********************************************************
     @brief Packets split by the parser get queued here.
     ***********************************************************/
     [CCode (cname="")]
-    public AVPacketList parse_queue;
+    public LibAVFormat.PacketList parse_queue;
 
     [CCode (cname="")]
-    public AVPacketList parse_queue_end;
+    public LibAVFormat.PacketList parse_queue_end;
 
     /***********************************************************
     @brief Remaining size available for raw_packet_buffer, in bytes.
@@ -157,7 +157,7 @@ public class AVFormatInternal {
     /***********************************************************
     @brief Offset to remap timestamps to be non-negative.
     Expressed in timebase units.
-    @see AVStream.mux_ts_offset
+    @see LibAVFormat.Stream.mux_ts_offset
     ***********************************************************/
     [CCode (cname="")]
     public int64 offset;
@@ -338,26 +338,26 @@ public int ff_hex_to_data (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/internal.h")]
 public delegate int PacketComparisonDelegate (
-    AVFormatContext context,
+    LibAVFormat.FormatContext context,
     LibAVCodec.Packet packet_1,
     LibAVCodec.Packet packet_2
 );
 
 /***********************************************************
-@brief Add packet to AVFormatContext.packet_buffer list, determining its
+@brief Add packet to LibAVFormat.FormatContext.packet_buffer list, determining its
 public interleaved position using compare () function argument.
 @return 0, or < 0 on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_interleave_add_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet,
     PacketComparisonDelegate compare
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_read_frame_flush (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
@@ -392,26 +392,26 @@ existing content.
 
 @param buff the buffer to append the SDP fragment to
 @param size the size of the buff buffer
-@param st the AVStream of the media to describe
+@param st the LibAVFormat.Stream of the media to describe
 @param idx the global stream index
 @param dest_addr the destination address of the media stream, may be NULL
 @param dest_type the destination address type, may be NULL
 @param port the destination port of the media stream, 0 if unknown
 @param ttl the time to live of the stream, 0 if not multicast
-@param fmt the AVFormatContext, which might contain options modifying
+@param fmt the LibAVFormat.FormatContext, which might contain options modifying
            the generated SDP
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_sdp_write_media (
     string buff,
     int size,
-    AVStream st,
+    LibAVFormat.Stream st,
     int idx,
     string dest_addr,
     string dest_type,
     int port,
     int ttl,
-    AVFormatContext fmt
+    LibAVFormat.FormatContext fmt
 );
 
 /***********************************************************
@@ -428,10 +428,10 @@ writes a received packet to another muxer.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_write_chained (
-    AVFormatContext dst,
+    LibAVFormat.FormatContext dst,
     int dst_stream,
     LibAVCodec.Packet packet,
-    AVFormatContext src,
+    LibAVFormat.FormatContext src,
     int interleave
 );
 
@@ -563,7 +563,7 @@ public void ff_parse_key_value (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_find_stream_index (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int id
 );
 
@@ -572,7 +572,7 @@ public int ff_find_stream_index (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_index_search_timestamp (
-    AVIndexEntry[] entries,
+    LibAVFormat.IndexEntry[] entries,
     int nb_entries,
     int64 wanted_timestamp,
     int flags
@@ -583,7 +583,7 @@ public int ff_index_search_timestamp (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_add_index_entry (
-    out AVIndexEntry[] index_entries,
+    out LibAVFormat.IndexEntry[] index_entries,
     out int nb_index_entries,
     out uint index_entries_allocated_size,
     int64 pos,
@@ -595,7 +595,7 @@ public int ff_add_index_entry (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_configure_buffers_for_index (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int64 time_tolerance
 );
 
@@ -608,11 +608,11 @@ public void ff_configure_buffers_for_index (
 @param end chapter end time in time_base units
 @param title chapter title
 
-@return AVChapter or NULL on error
+@return LibAVFormat.Chapter or NULL on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
-public AVChapter avpriv_new_chapter (
-    AVFormatContext format_context,
+public LibAVFormat.Chapter avpriv_new_chapter (
+    LibAVFormat.FormatContext format_context,
     int id,
     LibAVUtil.Rational time_base,
     int64 start,
@@ -622,12 +622,12 @@ public AVChapter avpriv_new_chapter (
 
 /***********************************************************
 @brief Ensure the index uses less memory than the maximum specified in
-AVFormatContext.max_index_size by discarding entries if it grows
+LibAVFormat.FormatContext.max_index_size by discarding entries if it grows
 too large.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_reduce_index (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index
 );
 
@@ -639,21 +639,21 @@ public LibAVCodec.CodecID ff_guess_image2_codec (
 /***********************************************************
 @brief Perform a binary search using av_index_search_timestamp () and
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
-public class Demuxer : AVInputFormat.read_timestamp ().
+public class Demuxer : LibAVFormat.InputFormat.read_timestamp ().
 
 @param target_ts target timestamp in the time base of the given stream
 @param stream_index stream number
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_seek_frame_binary (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index,
     int64 target_ts,
     int flags
 );
 
 /***********************************************************
-@brief Update cur_dts of all streams based on the given timestamp and AVStream.
+@brief Update cur_dts of all streams based on the given timestamp and LibAVFormat.Stream.
 
 Stream ref_st unchanged, others set cur_dts in their native time base.
 Only needed for timestamp wrapping or if (dts not set and pts!=dts).
@@ -662,14 +662,14 @@ Only needed for timestamp wrapping or if (dts not set and pts!=dts).
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_update_cur_dts (
-    AVFormatContext format_context,
-    AVStream ref_st,
+    LibAVFormat.FormatContext format_context,
+    LibAVFormat.Stream ref_st,
     int64 timestamp
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/internal.h")]
 public delegate int64 ReadTimeStampeDelegate (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int arg1,
     out int64 arg2,
     int64 arg3
@@ -677,7 +677,7 @@ public delegate int64 ReadTimeStampeDelegate (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_find_last_ts (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index,
     out int64 ts,
     out int64 pos,
@@ -692,7 +692,7 @@ public int ff_find_last_ts (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int64 ff_gen_search (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index,
     int64 target_ts,
     int64 pos_min,
@@ -719,7 +719,7 @@ unchanged.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void avpriv_set_pts_info (
-    AVStream stream,
+    LibAVFormat.Stream stream,
     int pts_wrap_bits,
     uint pts_num,
     uint pts_den
@@ -745,7 +745,7 @@ print it.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_framehash_write_header (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -757,7 +757,7 @@ public int ff_framehash_write_header (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_read_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
@@ -778,7 +778,7 @@ on them is still safe.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_interleave_packet_per_dts (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet output,
     LibAVCodec.Packet packet,
     int flush
@@ -786,8 +786,8 @@ public int ff_interleave_packet_per_dts (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_free_stream (
-    AVFormatContext format_context,
-    AVStream st
+    LibAVFormat.FormatContext format_context,
+    LibAVFormat.Stream st
 );
 
 /***********************************************************
@@ -795,10 +795,10 @@ public void ff_free_stream (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_compute_frame_duration (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out int pnum,
     out int pden,
-    AVStream st,
+    LibAVFormat.Stream st,
     LibAVCodec.CodecParserContext pc,
     LibAVCodec.Packet packet
 );
@@ -845,8 +845,8 @@ at least as precise as 1/min_precision would be.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public LibAVUtil.Rational ff_choose_timebase (
-    AVFormatContext format_context,
-    AVStream st,
+    LibAVFormat.FormatContext format_context,
+    LibAVFormat.Stream st,
     int min_precision
 );
 
@@ -855,8 +855,8 @@ public LibAVUtil.Rational ff_choose_timebase (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public LibAVUtil.ChromaLocation ff_choose_chroma_location (
-    AVFormatContext format_context,
-    AVStream st
+    LibAVFormat.FormatContext format_context,
+    LibAVFormat.Stream st
 );
 
 /***********************************************************
@@ -865,7 +865,7 @@ order.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_generate_avci_extradata (
-    AVStream st
+    LibAVFormat.Stream st
 );
 
 /***********************************************************
@@ -879,7 +879,7 @@ public int ff_generate_avci_extradata (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_stream_add_bitstream_filter (
-    AVStream st,
+    LibAVFormat.Stream st,
     string name,
     string args
 );
@@ -887,14 +887,14 @@ public int ff_stream_add_bitstream_filter (
 /***********************************************************
 @brief Copy encoding parameters from source to destination stream
 
-@param dst pointer to destination AVStream
-@param src pointer to source AVStream
+@param dst pointer to destination LibAVFormat.Stream
+@param src pointer to source LibAVFormat.Stream
 @return >=0 on success, LibAVUtil.ErrorCode code on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_stream_encode_params_copy (
-    AVStream dst,
-    AVStream src
+    LibAVFormat.Stream dst,
+    LibAVFormat.Stream src
 );
 
 /***********************************************************
@@ -935,7 +935,7 @@ which is always set to 0 and fill it from pb.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_get_extradata (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.CodecParameters par,
     AVIOContext pb,
     int size
@@ -949,18 +949,18 @@ public int ff_get_extradata (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_rfps_add_frame (
-    AVFormatContext ic,
-    AVStream st,
+    LibAVFormat.FormatContext ic,
+    LibAVFormat.Stream st,
     int64 dts
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_rfps_calculate (
-    AVFormatContext ic
+    LibAVFormat.FormatContext ic
 );
 
 /***********************************************************
-@brief Flags for AVFormatContext.write_uncoded_frame ()
+@brief Flags for LibAVFormat.FormatContext.write_uncoded_frame ()
 ***********************************************************/
 [CCode (cname="enum AVWriteUncodedFrameFlags",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public enum AVWriteUncodedFrameFlags {
@@ -977,8 +977,8 @@ public enum AVWriteUncodedFrameFlags {
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_copy_whiteblacklists (
-    AVFormatContext dst,
-    AVFormatContext src
+    LibAVFormat.FormatContext dst,
+    LibAVFormat.FormatContext src
 );
 
 [CCode (cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
@@ -1001,32 +1001,32 @@ public enum FFError {
 /***********************************************************
 @brief Utility function to open IO stream of output format.
 
-@param format_context AVFormatContext
+@param format_context LibAVFormat.FormatContext
 @param url URL or file name to open for writing
 @options optional options which will be passed to io_open callback
 @return >=0 on success, negative LibAVUtil.ErrorCode in case of failure
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_format_output_open (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     string url,
     out LibAVUtil.Dictionary options
 );
 
 /***********************************************************
-@brief A wrapper around AVFormatContext.io_close that should be used
+@brief A wrapper around LibAVFormat.FormatContext.io_close that should be used
 instead of calling the pointer directly.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_format_io_close (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out AVIOContext pb
 );
 
 /***********************************************************
 @brief Utility function to check if the file uses http or https protocol
 
-@param format_context AVFormatContext
+@param format_context LibAVFormat.FormatContext
 @param filename URL or file name to open for writing
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
@@ -1035,31 +1035,31 @@ public int ff_is_http_proto (
 );
 
 /***********************************************************
-@brief Parse creation_time in AVFormatContext metadata if exists and warn if the
+@brief Parse creation_time in LibAVFormat.FormatContext metadata if exists and warn if the
 parsing fails.
 
-@param format_context AVFormatContext
+@param format_context LibAVFormat.FormatContext
 @param timestamp parsed timestamp in microseconds, only set on successful parsing
 @param return_seconds set this to get the number of seconds in timestamp instead of microseconds
 @return 1 if OK, 0 if the metadata was not present, LibAVUtil.ErrorCode (EINVAL) on parse error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_parse_creation_time_metadata (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int64[] timestamp,
     int return_seconds
 );
 
 /***********************************************************
-@brief Standardize creation_time metadata in AVFormatContext to an ISO-8601
+@brief Standardize creation_time metadata in LibAVFormat.FormatContext to an ISO-8601
 timestamp string.
 
-@param format_context AVFormatContext
+@param format_context LibAVFormat.FormatContext
 @return <0 on error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_standardize_creation_time (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
@@ -1076,7 +1076,7 @@ public const int CONTAINS_PAL;
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_reshuffle_raw_rgb (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out LibAVCodec.Packet ppkt,
     LibAVCodec.CodecParameters par,
     int expected_stride
@@ -1097,7 +1097,7 @@ Use 0 for the ret parameter to check for side data only.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_get_packet_palette (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet,
     int ret,
     uint32[] palette
@@ -1122,7 +1122,7 @@ modify).
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_interleaved_peek (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream,
     LibAVCodec.Packet packet,
     int add_offset
@@ -1136,13 +1136,13 @@ public int ff_lock_avformat ();
 public int ff_unlock_avformat ();
 
 /***********************************************************
-@brief Set AVFormatContext url field to the provided pointer. The pointer must
+@brief Set LibAVFormat.FormatContext url field to the provided pointer. The pointer must
 point to a valid string. The existing url field is freed if necessary. Also
 set the legacy filename field to the same string which was provided in url.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_format_set_url (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     string url
 );
 
@@ -1169,8 +1169,8 @@ public enum PacketListFlags {
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_packet_list_put (
-    out AVPacketList head,
-    out AVPacketList tail,
+    out LibAVFormat.PacketList head,
+    out LibAVFormat.PacketList tail,
     LibAVCodec.Packet packet,
     PacketListFlags flags
 );
@@ -1187,8 +1187,8 @@ public int ff_packet_list_put (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public int ff_packet_list_get (
-    out AVPacketList head,
-    out AVPacketList tail,
+    out LibAVFormat.PacketList head,
+    out LibAVFormat.PacketList tail,
     LibAVCodec.Packet packet
 );
 
@@ -1200,14 +1200,14 @@ public int ff_packet_list_get (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void ff_packet_list_free (
-    out AVPacketList head,
-    out AVPacketList tail
+    out LibAVFormat.PacketList head,
+    out LibAVFormat.PacketList tail
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/internal.h")]
 public void avpriv_register_devices (
-    AVOutputFormat[] av_output_format,
-    AVInputFormat[] av_input_format
+    LibAVFormat.OutputFormat[] av_output_format,
+    LibAVFormat.InputFormat[] av_input_format
 );
 
 } // namespace LibAVFormat

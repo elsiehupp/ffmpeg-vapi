@@ -38,12 +38,12 @@ public class DeckLinkInputCallback {}
 
 [CCode (cname="struct AVPacketQueue",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 [Compact]
-public class AVPacketQueue {
+public class LibAVDevice.PacketQueue {
     [CCode (cname="")]
-    public AVPacketList? first_pkt;
+    public LibAVFormat.PacketList? first_pkt;
 
     [CCode (cname="")]
-    public AVPacketList? last_pkt;
+    public LibAVFormat.PacketList? last_pkt;
 
     [CCode (cname="")]
     public int nb_packets;
@@ -61,7 +61,7 @@ public class AVPacketQueue {
     public pthread_cond_t cond;
 
     [CCode (cname="")]
-    public AVFormatContext? avctx;
+    public LibAVFormat.FormatContext? avctx;
 
     [CCode (cname="")]
     public int64 max_q_size;
@@ -128,7 +128,7 @@ public class decklink_ctx {
     Capture buffer queue
     ***********************************************************/
     [CCode (cname="")]
-    public AVPacketQueue queue;
+    public LibAVDevice.PacketQueue queue;
 
     /***********************************************************
     Streams present
@@ -158,13 +158,13 @@ public class decklink_ctx {
     public uint dropped;
 
     [CCode (cname="")]
-    public AVStream? audio_st;
+    public LibAVFormat.Stream? audio_st;
 
     [CCode (cname="")]
-    public AVStream? video_st;
+    public LibAVFormat.Stream? video_st;
 
     [CCode (cname="")]
-    public AVStream? teletext_st;
+    public LibAVFormat.Stream? teletext_st;
 
     [CCode (cname="")]
     public uint16 cdp_sequence_num;
@@ -280,13 +280,13 @@ static const BMDTimecodeFormat decklink_timecode_format_map[] = {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_set_configs (
-    AVFormatContext? avctx,
+    LibAVFormat.FormatContext? avctx,
     decklink_direction_t direction
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_set_format (
-    AVFormatContext? avctx,
+    LibAVFormat.FormatContext? avctx,
     int width,
     int height,
     int tb_num,
@@ -298,40 +298,40 @@ public int ff_decklink_set_format (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_set_format (
-    AVFormatContext? avctx,
+    LibAVFormat.FormatContext? avctx,
     decklink_direction_t direction,
     int num
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_list_devices (
-    AVFormatContext? avctx,
-    AVDeviceInfoList? device_list,
+    LibAVFormat.FormatContext? avctx,
+    LibAVFormat.DeviceInfoList? device_list,
     int show_inputs,
     int show_outputs
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public void ff_decklink_list_devices_legacy (
-    AVFormatContext? avctx,
+    LibAVFormat.FormatContext? avctx,
     int show_inputs,
     int show_outputs
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_list_formats (
-    AVFormatContext? avctx,
+    LibAVFormat.FormatContext? avctx,
     decklink_direction_t direction = DeckLinkDirection.OUT
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public void ff_decklink_cleanup (
-    AVFormatContext? avctx
+    LibAVFormat.FormatContext? avctx
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common.h")]
 public int ff_decklink_init_device (
-    AVFormatContext? avctx,
+    LibAVFormat.FormatContext? avctx,
     char* name
 );
 

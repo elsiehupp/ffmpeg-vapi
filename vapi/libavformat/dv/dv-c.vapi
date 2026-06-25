@@ -37,7 +37,7 @@ namespace LibAVFormat {
 public class DVDemuxerPrivateData { }
 
 [CCode (cname="ff_dv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/dv.c")]
-public class DVDemuxer : AVInputFormat {
+public class DVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/dv.c")]
     public override string name {
         public get {
@@ -67,28 +67,28 @@ public class DVDemuxer : AVInputFormat {
 
     [CCode (cname="dv_probe",cheader_filename="subprojects/ffmpeg/libavformat/dv.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="dv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/dv.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="dv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/dv.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="dv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/dv.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="dv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/dv.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

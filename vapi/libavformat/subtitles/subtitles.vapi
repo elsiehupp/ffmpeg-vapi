@@ -227,12 +227,12 @@ public int ff_subtitles_queue_read_packet (
 
 /***********************************************************
 @brief Update current_sub_idx to emulate a seek. Except the first parameter, it
-matches AVInputFormat.read_seek2 prototypes.
+matches LibAVFormat.InputFormat.read_seek2 prototypes.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/subtitles.h")]
 public int ff_subtitles_queue_seek (
     FFDemuxSubtitlesQueue queue,
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int stream_index,
     int64 min_ts,
     int64 ts,

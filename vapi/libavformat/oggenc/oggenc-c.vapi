@@ -118,7 +118,7 @@ public class FlaverMuxerClass : LibAVUtil.Class {
 #if CONFIG_OGG_MUXER
 //  OGG_CLASS (ogg, Ogg)
 [CCode (cname="ff_ogg_muxer",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-public class OggMuxer : AVOutputFormat {
+public class OggMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override string name {
         public get {
@@ -198,12 +198,12 @@ public class OggMuxer : AVOutputFormat {
 
     [CCode (cname="ogg_init",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_write_header",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
@@ -215,12 +215,12 @@ public class OggMuxer : AVOutputFormat {
 
     [CCode (cname="ogg_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_free",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
@@ -238,7 +238,7 @@ public class OggMuxer : AVOutputFormat {
 #if CONFIG_OGA_MUXER
 //  OGG_CLASS (oga, Ogg audio)
 [CCode (cname="ff_oga_muxer",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-public class OggAudioMuxer : AVOutputFormat {
+public class OggAudioMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override string name {
         public get {
@@ -295,12 +295,12 @@ public class OggAudioMuxer : AVOutputFormat {
 
     [CCode (cname="ogg_init",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_write_header",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
@@ -312,12 +312,12 @@ public class OggAudioMuxer : AVOutputFormat {
 
     [CCode (cname="ogg_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_free",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
@@ -335,7 +335,7 @@ public class OggAudioMuxer : AVOutputFormat {
 #if CONFIG_OGV_MUXER
 //  OGG_CLASS (ogv, Ogg video)
 [CCode (cname="ff_ogv_muxer",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-public class OggVideoMuxer : AVOutputFormat {
+public class OggVideoMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override string name {
         public get {
@@ -401,12 +401,12 @@ public class OggVideoMuxer : AVOutputFormat {
 
     [CCode (cname="ogg_init",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_write_header",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
@@ -418,12 +418,12 @@ public class OggVideoMuxer : AVOutputFormat {
 
     [CCode (cname="ogg_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_free",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
@@ -441,7 +441,7 @@ public class OggVideoMuxer : AVOutputFormat {
 #if CONFIG_SPX_MUXER
 //  OGG_CLASS (spx, Ogg Speex)
 [CCode (cname="ff_spx_muxer",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-public class OggSpeexMuxer : AVOutputFormat {
+public class OggSpeexMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override string name {
         public get {
@@ -498,12 +498,12 @@ public class OggSpeexMuxer : AVOutputFormat {
 
     [CCode (cname="ogg_init",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_write_header",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
@@ -515,12 +515,12 @@ public class OggSpeexMuxer : AVOutputFormat {
 
     [CCode (cname="ogg_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_free",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
@@ -538,7 +538,7 @@ public class OggSpeexMuxer : AVOutputFormat {
 #if CONFIG_OPUS_MUXER
 //  OGG_CLASS (opus, Ogg Opus)
 [CCode (cname="ff_opus_muxer",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-public class OggOpusMuxer : AVOutputFormat {
+public class OggOpusMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override string name {
         public get {
@@ -595,12 +595,12 @@ public class OggOpusMuxer : AVOutputFormat {
 
     [CCode (cname="ogg_init",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_write_header",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
@@ -612,12 +612,12 @@ public class OggOpusMuxer : AVOutputFormat {
 
     [CCode (cname="ogg_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ogg_free",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]

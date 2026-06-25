@@ -40,7 +40,7 @@ optional background_frame
 public class RL2DemuxerPrivateData { }
 
 [CCode (cname="ff_rl2_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rl2.c")]
-public class RL2Demuxer : AVInputFormat {
+public class RL2Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rl2.c")]
     public override string name {
         public get {
@@ -70,23 +70,23 @@ public class RL2Demuxer : AVInputFormat {
 
     [CCode (cname="rl2_probe",cheader_filename="subprojects/ffmpeg/libavformat/rl2.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="rl2_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rl2.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rl2_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/rl2.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="rl2_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/rl2.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

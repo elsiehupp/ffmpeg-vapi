@@ -581,7 +581,7 @@ public class RTSPState {
     @brief ASF demuxer context for the embedded ASF stream from WMS servers
     ***********************************************************/
     [CCode (cname="")]
-    public AVFormatContext asf_ctx;
+    public LibAVFormat.FormatContext asf_ctx;
 
     /***********************************************************
     @brief Cache for position of the asf demuxer, since we load a new
@@ -595,7 +595,7 @@ public class RTSPState {
     /***********************************************************
     @brief Some MS RTSP streams contain a URL in the SDP that we need to use
     for all subsequent RTSP requests, rather than the input URI; in
-    other cases, this is a copy of AVFormatContext.filename.
+    other cases, this is a copy of LibAVFormat.FormatContext.filename.
     ***********************************************************/
     [CCode (cname="")]
     public char control_uri[1024];
@@ -790,7 +790,7 @@ public class RTSPSource {
 /***********************************************************
 @brief Describe a single stream, as identified by a single m= line block in the
 SDP content. In the case of RDT, one RTSPStream can represent multiple
-AVStreams. In this case, each AVStream in this set has similar content
+AVStreams. In this case, each LibAVFormat.Stream in this set has similar content
 (but different codec/bitrate).
 ***********************************************************/
 [CCode (cname="struct RTSPStream",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
@@ -803,7 +803,7 @@ public class RTSPStream {
     public URLContext rtp_handle;
 
     /***********************************************************
-    @brief RTP/RDT parse context if input, RTP AVFormatContext if output
+    @brief RTP/RDT parse context if input, RTP LibAVFormat.FormatContext if output
     ***********************************************************/
     [CCode (cname="")]
     public void *transport_priv;
@@ -921,7 +921,7 @@ public class RTSPStream {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public void ff_rtsp_parse_line (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     RTSPMessageHeader reply,
     string buffer,
     RTSPState rt,
@@ -935,7 +935,7 @@ public void ff_rtsp_parse_line (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_send_cmd_async (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     string method,
     string url,
     string headers
@@ -959,7 +959,7 @@ public int ff_rtsp_send_cmd_async (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_send_cmd_with_content (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     string method,
     string url,
     string headers,
@@ -976,7 +976,7 @@ public int ff_rtsp_send_cmd_with_content (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_send_cmd (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     string method,
     string url,
     string headers,
@@ -1009,7 +1009,7 @@ connection as well.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_read_reply (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     RTSPMessageHeader reply,
     out uchar[] content_ptr,
     int return_on_interleaved_data,
@@ -1021,7 +1021,7 @@ public int ff_rtsp_read_reply (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public void ff_rtsp_skip_packet (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -1035,7 +1035,7 @@ This can be used for both muxers and demuxers.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_connect (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -1045,7 +1045,7 @@ public int ff_rtsp_connect (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public void ff_rtsp_close_streams (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -1055,7 +1055,7 @@ public void ff_rtsp_close_streams (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public void ff_rtsp_close_connections (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
@@ -1064,7 +1064,7 @@ objects.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_setup_input_streams (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     RTSPMessageHeader reply
 );
 
@@ -1074,7 +1074,7 @@ objects for each media stream.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_setup_output_streams (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     string addr
 );
 
@@ -1084,17 +1084,17 @@ listen mode.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_parse_streaming_commands (
-    AVFormatContext format_context
+    LibAVFormat.FormatContext format_context
 );
 
 /***********************************************************
 @brief Parse an SDP description of streams by populating an RTSPState struct
-within the AVFormatContext; also allocate the RTP streams and the
+within the LibAVFormat.FormatContext; also allocate the RTP streams and the
 GLib.PollFD array used for UDP streams.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_sdp_parse (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     string content
 );
 
@@ -1103,7 +1103,7 @@ public int ff_sdp_parse (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_tcp_read_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     out RTSPStream prtsp_st,
     uint8[] buffer,
     int buf_size
@@ -1114,17 +1114,17 @@ public int ff_rtsp_tcp_read_packet (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_tcp_write_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     RTSPStream rtsp_st
 );
 
 /***********************************************************
-@brief Receive one packet from the RTSPStreams set up in the AVFormatContext
+@brief Receive one packet from the RTSPStreams set up in the LibAVFormat.FormatContext
 (which should contain a RTSPState struct as priv_data).
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_fetch_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
@@ -1135,7 +1135,7 @@ lower transport mode.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_make_setup_request (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     string host,
     int port,
     int lower_transport,
@@ -1148,7 +1148,7 @@ transport_priv and rtp_handle fields.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public void ff_rtsp_undo_setup (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     int send_packets
 );
 
@@ -1157,7 +1157,7 @@ public void ff_rtsp_undo_setup (
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtsp.h")]
 public int ff_rtsp_open_transport_ctx (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     RTSPStream rtsp_st
 );
 

@@ -25,7 +25,7 @@ namespace LibAVFilter {
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public int ff_fill_rgba_map (
     uint8[] rgba_map,
-    AVPixelFormat pix_fmt
+    LibAVUtil.PixelFormat pix_fmt
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
@@ -34,7 +34,7 @@ public int ff_fill_line_with_color (
     int pixel_step[4],
     int w,
     uint8 dst_color[4],
-    AVPixelFormat pix_fmt,
+    LibAVUtil.PixelFormat pix_fmt,
     uint8 rgba_color[4],
     out int is_packed_rgba,
     uint8 rgba_map[4]
@@ -80,7 +80,7 @@ public class FFDrawContext {
     public AVPixFmtDescriptor desc;
 
     [CCode (cname="")]
-    public AVPixelFormat format;
+    public LibAVUtil.PixelFormat format;
 
     [CCode (cname="")]
     public uint nb_planes;
@@ -155,7 +155,7 @@ flags is combination of FF_DRAW_* flags.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/drawutils.h")]
 public int ff_draw_init (
     FFDrawContext? draw,
-    AVPixelFormat format,
+    LibAVUtil.PixelFormat format,
     uint flags
 );
 

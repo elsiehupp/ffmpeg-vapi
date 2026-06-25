@@ -31,7 +31,7 @@ namespace LibAVFormat {
 public class FilmstripMuxerPrivateData { }
 
 [CCode (cname="ff_filmstrip_muxer",cheader_filename="subprojects/ffmpeg/libavformat/filmstripenc.c")]
-public class FilmstripMuxer : AVOutputFormat {
+public class FilmstripMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/filmstripenc.c")]
     public override string name {
         public get {
@@ -88,18 +88,18 @@ public class FilmstripMuxer : AVOutputFormat {
 
     [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/filmstripenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/filmstripenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/filmstripenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

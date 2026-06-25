@@ -36,7 +36,7 @@ program birth year, defined by the program for show_banner ()
 //  extern const int program_birth_year;
 
 //  extern AVCodecContext? avcodec_opts[LibAVUtil.MediaType.NB];
-//  extern AVFormatContext? avformat_opts;
+//  extern LibAVFormat.FormatContext? avformat_opts;
 //  extern AVDictionary? sws_dict;
 //  extern AVDictionary? swr_opts;
 //  extern AVDictionary? format_opts,? codec_opts,? resample_opts;
@@ -627,7 +627,7 @@ children.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void show_help_children (
-    AVClass class,
+    LibAVUtil.Class class,
     int flags
 );
 
@@ -880,8 +880,8 @@ Check if the given stream matches a stream specifier.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public int check_stream_specifier (
-    AVFormatContext? av_format_context,
-    AVStream? st,
+    LibAVFormat.FormatContext? av_format_context,
+    LibAVFormat.Stream? st,
     string spec
 );
 
@@ -903,8 +903,8 @@ opts which apply to the codec with ID codec_id.
 public AVDictionary? filter_codec_opts (
     AVDictionary? opts,
     AVCodecID codec_id,
-    AVFormatContext? av_format_context,
-    AVStream? st,
+    LibAVFormat.FormatContext? av_format_context,
+    LibAVFormat.Stream? st,
     AVCodec? codec
 );
 
@@ -921,7 +921,7 @@ cannot be created
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public AVDictionary **setup_find_stream_info_opts (
-    AVFormatContext? av_format_context,
+    LibAVFormat.FormatContext? av_format_context,
     AVDictionary? codec_opts
 );
 
@@ -1231,5 +1231,5 @@ public void *grow_array (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public double get_rotation (
-    AVStream? st
+    LibAVFormat.Stream? st
 );

@@ -28,7 +28,7 @@ namespace LibAVFormat {
 public class DHAVDemuxerPrivateData { }
 
 [CCode (cname="ff_dhav_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/dhav.c")]
-public class DHAVDemuxer : AVInputFormat {
+public class DHAVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/dhav.c")]
     public override string name {
         public get {
@@ -58,23 +58,23 @@ public class DHAVDemuxer : AVInputFormat {
 
     [CCode (cname="dhav_probe",cheader_filename="subprojects/ffmpeg/libavformat/dhav.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="dhav_read_header",cheader_filename="subprojects/ffmpeg/libavformat/dhav.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="dhav_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/dhav.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="dhav_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/dhav.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

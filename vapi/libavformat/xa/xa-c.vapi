@@ -34,7 +34,7 @@ http://wiki.multimedia.cx/index.php?title=Maxis_XA
 public class XADemuxerPrivateData { }
 
 [CCode (cname="ff_xa_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
-public class XADemuxer : AVInputFormat {
+public class XADemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
     public override string name {
         public get {
@@ -64,17 +64,17 @@ public class XADemuxer : AVInputFormat {
 
     [CCode (cname="xa_probe",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="xa_read_header",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="xa_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/xa.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

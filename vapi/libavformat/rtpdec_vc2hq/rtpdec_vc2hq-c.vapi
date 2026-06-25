@@ -62,9 +62,9 @@ public class VC2HQDynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="vc2hq_handle_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_vc2hq.c")]
     public override int parse_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         PayloadContext payload_context,
-        AVStream st,
+        LibAVFormat.Stream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
         uint8[] buffer,

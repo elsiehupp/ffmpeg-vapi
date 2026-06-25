@@ -44,9 +44,9 @@ public enum DecklinkPtsSource {
 
 [CCode (cname="struct decklink_cctx",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_common_c.h")]
 [Compact]
-public class decklink_cctx {
+public class DeckLinkContext {
     [CCode (cname="")]
-    public AVClass cclass;
+    public LibAVUtil.Class cclass;
 
     [CCode (cname="")]
     public void *ctx;

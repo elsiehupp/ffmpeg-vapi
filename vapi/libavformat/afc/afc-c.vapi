@@ -26,7 +26,7 @@ namespace LibAVFormat {
 public class AFCDemuxerPrivateData { }
 
 [CCode (cname="ff_afc_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/afc.c")]
-public class AFCDemuxer : AVInputFormat {
+public class AFCDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/afc.c")]
     public override string name {
         public get {
@@ -56,12 +56,12 @@ public class AFCDemuxer : AVInputFormat {
 
     [CCode (cname="afc_read_header",cheader_filename="subprojects/ffmpeg/libavformat/afc.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="afc_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/afc.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

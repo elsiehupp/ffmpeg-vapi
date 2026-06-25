@@ -24,16 +24,16 @@ Conversion routines between libav* and vid.stab
 ***********************************************************/
 
 /***********************************************************
-Converts an AVPixelFormat to a VSPixelFormat.
+Converts an LibAVUtil.PixelFormat to a VSPixelFormat.
 
 @param[in] av_filter_context AVFilterContext used for logging
-@param[in] pf  AVPixelFormat
+@param[in] pf  LibAVUtil.PixelFormat
 @return    a corresponding VSPixelFormat
 ***********************************************************/
 [CCode (cname="ff_av2vs_pixfmt",cheader_filename="subprojects/ffmpeg/libavfilter/vidstabutils.h")]
 public VSPixelFormat ff_av2vs_pixfmt (
     AVFilterContext? av_filter_context,
-    AVPixelFormat pf
+    LibAVUtil.PixelFormat pf
 );
 
 /***********************************************************

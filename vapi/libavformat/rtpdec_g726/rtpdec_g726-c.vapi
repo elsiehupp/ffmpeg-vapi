@@ -22,10 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 //  #define RTP_G726_HANDLER (bitrate)
-//  static av_cold int g726_ ## bitrate ##_init (AVFormatContext? s, int st_index,
+//  static av_cold int g726_ ## bitrate ##_init (LibAVFormat.FormatContext? s, int st_index,
 //                                              PayloadContext? data)
 //  {
-//      AVStream? stream = s->streams[st_index];
+//      LibAVFormat.Stream? stream = s->streams[st_index];
 //      AVCodecParameters? par = stream->codecpar;
 //  \
 //      par->bits_per_coded_sample = bitrate/8;
@@ -54,7 +54,7 @@ namespace LibAVFormat {
 //      }
 //      [CCode (cname="g726_ ## bitrate ## _init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //      public override int init (
-//          AVFormatContext format_context
+//          LibAVFormat.FormatContext format_context
 //      );
 //  }
 //  [CCode (cname="ff_g726le_ ## bitrate ## _dynamic_handler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
@@ -77,7 +77,7 @@ namespace LibAVFormat {
 //      }
 //      [CCode (cname="g726_ ## bitrate ## _init",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_g726.c")]
 //      public override int init (
-//          AVFormatContext format_context
+//          LibAVFormat.FormatContext format_context
 //      );
 //  }
 

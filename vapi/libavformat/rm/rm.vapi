@@ -40,7 +40,7 @@ public void ff_rm_free_rmstream (
 /***********************************************************
     input format for Realmedia-style RTSP streams
 ***********************************************************/
-//  extern AVInputFormat ff_rdt_demuxer;
+//  extern LibAVFormat.InputFormat ff_rdt_demuxer;
 
 /***********************************************************
 @brief Read the MDPR chunk, which contains stream-specific codec initialization
@@ -56,9 +56,9 @@ parameters.
 ***********************************************************/
 [CCode (cname="ff_rm_read_mdpr_codecdata",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
 public int ff_rm_read_mdpr_codecdata (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     AVIOContext pb,
-    AVStream st,
+    LibAVFormat.Stream st,
     RMStream rst,
     uint codec_data_size,
     uint8[] mime
@@ -83,9 +83,9 @@ public int ff_rm_read_mdpr_codecdata (
 ***********************************************************/
 [CCode (cname="ff_rm_parse_packet",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
 public int ff_rm_parse_packet (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     AVIOContext pb,
-    AVStream st,
+    LibAVFormat.Stream st,
     RMStream rst,
     int len,
     LibAVCodec.Packet packet,
@@ -112,9 +112,9 @@ of those packets can be retrieved sequentially.
 ***********************************************************/
 [CCode (cname="ff_rm_retrieve_cache",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
 public int ff_rm_retrieve_cache (
-    AVFormatContext format_context,
+    LibAVFormat.FormatContext format_context,
     AVIOContext pb,
-    AVStream st,
+    LibAVFormat.Stream st,
     RMStream rst,
     LibAVCodec.Packet packet
 );

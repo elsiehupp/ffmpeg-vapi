@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_ffmetadata_muxer",cheader_filename="subprojects/ffmpeg/libavformat/ffmetaenc.c")]
-public class MetadataMuxer : AVOutputFormat {
+public class MetadataMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ffmetaenc.c")]
     public override string name {
         public get {
@@ -53,18 +53,18 @@ public class MetadataMuxer : AVOutputFormat {
 
     [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/ffmetaenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/ffmetaenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/ffmetaenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/ffmetaenc.c")]

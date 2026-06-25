@@ -67,9 +67,9 @@ public class QDM2DynamicHandler : RTPDynamicProtocolHandler {
 
     [CCode (cname="qdm2_parse_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_qdm2.c")]
     public override int parse_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         PayloadContext payload_context,
-        AVStream st,
+        LibAVFormat.Stream st,
         LibAVCodec.Packet packet,
         uint32[] timestamp,
         uint8[] buffer,

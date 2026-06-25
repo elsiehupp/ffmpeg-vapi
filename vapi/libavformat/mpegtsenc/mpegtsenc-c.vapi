@@ -408,7 +408,7 @@ public class MpegTSMuxerClass : LibAVUtil.Class {
 public class MpegTSMuxerPrivateData { }
 
 [CCode (cname="ff_mpegts_muxer",cheader_filename="subprojects/ffmpeg/libavformat/mpegtsenc.c")]
-public class MpegTSMuxer : AVOutputFormat {
+public class MpegTSMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/mpegtsenc.c")]
     public override string name {
         public get {
@@ -474,28 +474,28 @@ public class MpegTSMuxer : AVOutputFormat {
 
     [CCode (cname="mpegts_init",cheader_filename="subprojects/ffmpeg/libavformat/mpegtsenc.c")]
     public override int init (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpegts_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/mpegtsenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="mpegts_write_end",cheader_filename="subprojects/ffmpeg/libavformat/mpegtsenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpegts_deinit",cheader_filename="subprojects/ffmpeg/libavformat/mpegtsenc.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="mpegts_check_bitstream",cheader_filename="subprojects/ffmpeg/libavformat/mpegtsenc.c")]
     public override int check_bitstream (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

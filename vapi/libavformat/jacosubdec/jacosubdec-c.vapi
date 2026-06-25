@@ -32,7 +32,7 @@ namespace LibAVFormat {
 public class JacoSubDemuxerPrivateData { }
 
 [CCode (cname="ff_jacosub_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
-public class JacoSubDemuxer : AVInputFormat {
+public class JacoSubDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override string name {
         public get {
@@ -62,23 +62,23 @@ public class JacoSubDemuxer : AVInputFormat {
 
     [CCode (cname="jacosub_probe",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="jacosub_read_header",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="jacosub_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="jacosub_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -88,7 +88,7 @@ public class JacoSubDemuxer : AVInputFormat {
 
     [CCode (cname="jacosub_read_close",cheader_filename="subprojects/ffmpeg/libavformat/jacosubdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

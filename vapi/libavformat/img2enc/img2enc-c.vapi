@@ -130,7 +130,7 @@ public class Image2MuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_image2_muxer",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
-public class Image2Muxer : AVOutputFormat {
+public class Image2Muxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override string name {
         public get {
@@ -180,7 +180,7 @@ public class Image2Muxer : AVOutputFormat {
 
     [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
@@ -211,7 +211,7 @@ public class Image2Muxer : AVOutputFormat {
 #if CONFIG_IMAGE2PIPE_MUXER
 
 [CCode (cname="ff_image2pipe_muxer",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
-public class Image2PipeMuxer : AVOutputFormat {
+public class Image2PipeMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override string name {
         public get {
@@ -250,7 +250,7 @@ public class Image2PipeMuxer : AVOutputFormat {
 
     [CCode (cname="write_header",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="write_packet",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]

@@ -32,7 +32,7 @@ http://www.goice.co.jp/member/mo/formats/au.html
 ***********************************************************/
 
 [CCode (cname="ff_au_muxer",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
-public class AUMuxer : AVOutputFormat {
+public class AUMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override string name {
         public get {
@@ -98,7 +98,7 @@ public class AUMuxer : AVOutputFormat {
 
     [CCode (cname="au_write_header",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_raw_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
@@ -110,7 +110,7 @@ public class AUMuxer : AVOutputFormat {
 
     [CCode (cname="au_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/au.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="codec_tag")]

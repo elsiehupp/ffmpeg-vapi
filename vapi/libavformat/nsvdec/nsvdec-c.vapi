@@ -29,7 +29,7 @@ namespace LibAVFormat {
 public class NSVDemuxerPrivateData { }
 
 [CCode (cname="ff_nsv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/nsvdec.c")]
-public class NSVDemuxer : AVInputFormat {
+public class NSVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/nsvdec.c")]
     public override string name {
         public get {
@@ -59,28 +59,28 @@ public class NSVDemuxer : AVInputFormat {
 
     [CCode (cname="nsv_probe",cheader_filename="subprojects/ffmpeg/libavformat/nsvdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="nsv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/nsvdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="nsv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/nsvdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="nsv_read_close",cheader_filename="subprojects/ffmpeg/libavformat/nsvdec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="nsv_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/nsvdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags

@@ -28,7 +28,7 @@ public pa_sample_format_t ff_codec_id_to_pulse_format (
 [CCode (cname="ff_pulse_audio_get_devices",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
 //  av_warn_unused_result
 public int ff_pulse_audio_get_devices (
-    AVDeviceInfoList? devices,
+    LibAVFormat.DeviceInfoList? devices,
     string server,
     int output
 );

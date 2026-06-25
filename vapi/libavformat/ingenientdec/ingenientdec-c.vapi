@@ -25,7 +25,7 @@ namespace LibAVFormat {
 //  FF_RAWVIDEO_DEMUXER_CLASS (ingenient)
 
 [CCode (cname="ff_ingenient_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/ingenientdec.c")]
-public class IngenientDemuxer : AVInputFormat {
+public class IngenientDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/ingenientdec.c")]
     public override string name {
         public get {
@@ -55,17 +55,17 @@ public class IngenientDemuxer : AVInputFormat {
 
     [CCode (cname="ingenient_probe",cheader_filename="subprojects/ffmpeg/libavformat/ingenientdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ff_raw_video_read_header",cheader_filename="subprojects/ffmpeg/libavformat/ingenientdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ingenient_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/ingenientdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

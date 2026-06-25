@@ -123,10 +123,10 @@ structure.
 [Compact]
 public class LibSoftwareResample.SoftwareContext {
     /***********************************************************
-    AVClass used for AVOption and av_log ()
+    LibAVUtil.Class used for AVOption and av_log ()
     ***********************************************************/
     [CCode (cname="")]
-    internal AVClass? av_class;
+    internal LibAVUtil.Class? av_class;
 
     /***********************************************************
     logging level offset
@@ -510,7 +510,7 @@ public class LibSoftwareResample.SoftwareContext {
     resampling context
     ***********************************************************/
     [CCode (cname="")]
-    internal LibSoftwareResample.ResampleContext? resample;
+    internal LibSoftwareResample.LibAVResample.ResampleContext? resample;
 
     /***********************************************************
     resampler virtual function table
@@ -695,14 +695,14 @@ public class LibSoftwareResample.SoftwareContext {
 
 
     /***********************************************************
-    Get the AVClass for LibSoftwareResample.SoftwareContext. It can be used in combination with
+    Get the LibAVUtil.Class for LibSoftwareResample.SoftwareContext. It can be used in combination with
     OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
     @see av_opt_find ().
-    @return the AVClass of LibSoftwareResample.SoftwareContext
+    @return the LibAVUtil.Class of LibSoftwareResample.SoftwareContext
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
-    public AVClass? swr_get_class ();
+    public LibAVUtil.Class? swr_get_class ();
 
     /***********************************************************
     @name LibSoftwareResample.SoftwareContext constructor functions
@@ -950,7 +950,7 @@ public class LibSoftwareResample.SoftwareContext {
         double rematrix_volume,
         double[] matrix,
         int stride,
-        AVMatrixEncoding matrix_encoding,
+        LibAVUtil.MatrixEncoding matrix_encoding,
         void *log_ctx
     );
 

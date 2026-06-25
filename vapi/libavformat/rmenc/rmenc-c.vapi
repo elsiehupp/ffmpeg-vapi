@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class RealMediaMuxerPrivateData { }
 
 [CCode (cname="ff_rm_muxer",cheader_filename="subprojects/ffmpeg/libavformat/rmenc.c")]
-public class RealMediaMuxer : AVOutputFormat {
+public class RealMediaMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rmenc.c")]
     public override string name {
         public get {
@@ -93,18 +93,18 @@ public class RealMediaMuxer : AVOutputFormat {
 
     [CCode (cname="rm_write_header",cheader_filename="subprojects/ffmpeg/libavformat/rmenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="rm_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/rmenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="rm_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/rmenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="codec_tag")]

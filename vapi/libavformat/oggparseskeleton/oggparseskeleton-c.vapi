@@ -42,7 +42,7 @@ public class SkeletonCodec : OggCodec {
 
     [CCode (cname="skeleton_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparseskeleton.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 

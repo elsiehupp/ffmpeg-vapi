@@ -35,7 +35,7 @@ http://wiki.multimedia.cx/index.php?title=IFF
 public class IFFDemuxerPrivateData { }
 
 [CCode (cname="ff_iff_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
-public class IFFDemuxer : AVInputFormat {
+public class IFFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override string name {
         public get {
@@ -65,17 +65,17 @@ public class IFFDemuxer : AVInputFormat {
 
     [CCode (cname="iff_probe",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="iff_read_header",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="iff_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/iff.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

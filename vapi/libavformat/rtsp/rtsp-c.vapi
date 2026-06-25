@@ -67,7 +67,7 @@ public class SDPDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_sdp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
-public class SDPDemuxer : AVInputFormat {
+public class SDPDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string name {
         public get {
@@ -97,23 +97,23 @@ public class SDPDemuxer : AVInputFormat {
 
     [CCode (cname="sdp_probe",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="sdp_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_rtsp_fetch_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="sdp_read_close",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = sdp_demuxer_class;
 }
@@ -164,7 +164,7 @@ public class RTPDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_rtp_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
-public class RTPDemuxer : AVInputFormat {
+public class RTPDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string name {
         public get {
@@ -194,23 +194,23 @@ public class RTPDemuxer : AVInputFormat {
 
     [CCode (cname="rtp_probe",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="rtp_read_header",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_rtsp_fetch_packet",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="sdp_read_close",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]

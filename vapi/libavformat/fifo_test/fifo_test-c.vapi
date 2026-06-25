@@ -107,7 +107,7 @@ public class FifoTestMuxerClass : LibAVUtil.Class {
 public class FifoTestMuxerPrivateData { }
 
 [CCode (cname="ff_fifo_test_muxer",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
-public class FifoTestMuxer : AVOutputFormat {
+public class FifoTestMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override string name {
         public get {
@@ -137,23 +137,23 @@ public class FifoTestMuxer : AVOutputFormat {
 
     [CCode (cname="failing_write_header",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="failing_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="failing_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="failing_deinit",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override void deinit (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
     //  .priv_class = failing_muxer_class,
 

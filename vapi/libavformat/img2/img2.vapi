@@ -137,12 +137,12 @@ public class IdStrMap {
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
 public int ff_img_read_header (
-    AVFormatContext s1
+    LibAVFormat.FormatContext s1
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
 public int ff_img_read_packet (
-    AVFormatContext s1,
+    LibAVFormat.FormatContext s1,
     LibAVCodec.Packet packet
 );
 

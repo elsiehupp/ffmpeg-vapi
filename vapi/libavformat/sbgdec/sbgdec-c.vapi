@@ -107,7 +107,7 @@ public class SBGDemuxerClass : LibAVUtil.Class {
 public class SBGDemuxerPrivateData { }
 
 [CCode (cname="ff_sbg_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
-public class SBGDemuxer : AVInputFormat {
+public class SBGDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
     public override string name {
         public get {
@@ -137,23 +137,23 @@ public class SBGDemuxer : AVInputFormat {
 
     [CCode (cname="sbg_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="sbg_read_header",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="sbg_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="sbg_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
     public override int read_seek (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 timestamp,
         int flags
@@ -161,7 +161,7 @@ public class SBGDemuxer : AVInputFormat {
 
     [CCode (cname="sbg_read_seek2",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,

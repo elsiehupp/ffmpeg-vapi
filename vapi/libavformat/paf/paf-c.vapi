@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class PAFDemuxerPrivateData { }
 
 [CCode (cname="ff_paf_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/paf.c")]
-public class PAFDemuxer : AVInputFormat {
+public class PAFDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/paf.c")]
     public override string name {
         public get {
@@ -57,23 +57,23 @@ public class PAFDemuxer : AVInputFormat {
 
     [CCode (cname="read_probe",cheader_filename="subprojects/ffmpeg/libavformat/paf.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="read_header",cheader_filename="subprojects/ffmpeg/libavformat/paf.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="read_packet",cheader_filename="subprojects/ffmpeg/libavformat/paf.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="read_close",cheader_filename="subprojects/ffmpeg/libavformat/paf.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

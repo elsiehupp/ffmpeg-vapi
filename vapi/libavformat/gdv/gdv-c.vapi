@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class GDVDemuxerPrivateData { }
 
 [CCode (cname="ff_gdv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/gdv.c")]
-public class GDVDemuxer : AVInputFormat {
+public class GDVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/gdv.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class GDVDemuxer : AVInputFormat {
 
     [CCode (cname="gdv_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/gdv.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="gdv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/gdv.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="gdv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/gdv.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

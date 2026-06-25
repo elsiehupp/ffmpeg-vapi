@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class SmushDemuxerPrivateData { }
 
 [CCode (cname="ff_smush_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/smush.c")]
-public class SmushDemuxer : AVInputFormat {
+public class SmushDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/smush.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class SmushDemuxer : AVInputFormat {
 
     [CCode (cname="smush_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/smush.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="smush_read_header",cheader_filename="subprojects/ffmpeg/libavformat/smush.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="smush_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/smush.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

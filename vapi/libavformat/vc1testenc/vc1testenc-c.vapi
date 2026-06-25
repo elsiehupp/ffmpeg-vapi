@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class VC1TestMuxerPrivateData { }
 
 [CCode (cname="ff_vc1t_muxer",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
-public class VC1TestMuxer : AVOutputFormat {
+public class VC1TestMuxer : LibAVFormat.OutputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override string name {
         public get {
@@ -84,18 +84,18 @@ public class VC1TestMuxer : AVOutputFormat {
 
     [CCode (cname="vc1test_write_header",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override int write_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="vc1test_write_packet",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override int write_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="vc1test_write_trailer",cheader_filename="subprojects/ffmpeg/libavformat/vc1testenc.c")]
     public override int write_trailer (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
 }

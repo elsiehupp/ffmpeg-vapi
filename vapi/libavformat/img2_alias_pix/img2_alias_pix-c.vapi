@@ -65,7 +65,7 @@ public class Image2AliasPIXDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="ff_image2_alias_pix_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/img2_alias_pix.c")]
-public class Image2AliasPIXDemuxer : AVInputFormat {
+public class Image2AliasPIXDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/img2_alias_pix.c")]
     public override string name {
         public get {
@@ -95,17 +95,17 @@ public class Image2AliasPIXDemuxer : AVInputFormat {
 
     [CCode (cname="alias_pix_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/img2_alias_pix.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="ff_img_read_header",cheader_filename="subprojects/ffmpeg/libavformat/img2_alias_pix.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="ff_img_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/img2_alias_pix.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

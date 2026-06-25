@@ -95,7 +95,7 @@ public class CDXLDemuxerClass : LibAVUtil.Class {
 public class CDXLDemuxerPrivateData { }
 
 [CCode (cname="ff_cdxl_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/cdxl.c")]
-public class CDXLDemuxer : AVInputFormat {
+public class CDXLDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/cdxl.c")]
     public override string name {
         public get {
@@ -125,17 +125,17 @@ public class CDXLDemuxer : AVInputFormat {
 
     [CCode (cname="cdxl_read_probe",cheader_filename="subprojects/ffmpeg/libavformat/cdxl.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="cdxl_read_header",cheader_filename="subprojects/ffmpeg/libavformat/cdxl.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="cdxl_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/cdxl.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

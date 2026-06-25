@@ -29,7 +29,7 @@ it was introduced in OpenCL 2.0.
 [Compact]
 public class OpenCLFilterContext {
     [CCode (cname="class")]
-    public AVClass av_class;
+    public LibAVUtil.Class av_class;
 
     public AVBufferRef? device_ref;
     [CCode (cname="")]
@@ -44,7 +44,7 @@ public class OpenCLFilterContext {
     public cl_program program;
 
     [CCode (cname="")]
-    public AVPixelFormat output_format;
+    public LibAVUtil.PixelFormat output_format;
 
     [CCode (cname="")]
     public int output_width;

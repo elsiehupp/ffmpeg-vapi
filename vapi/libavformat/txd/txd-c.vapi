@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_txd_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/txd.c")]
-public class TXDDemuxer : AVInputFormat {
+public class TXDDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/txd.c")]
     public override string name {
         public get {
@@ -44,17 +44,17 @@ public class TXDDemuxer : AVInputFormat {
 
     [CCode (cname="txd_probe",cheader_filename="subprojects/ffmpeg/libavformat/txd.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="txd_read_header",cheader_filename="subprojects/ffmpeg/libavformat/txd.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="txd_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/txd.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

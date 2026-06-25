@@ -53,19 +53,19 @@ public class DaalaCodec : OggCodec {
 
     [CCode (cname="daala_header",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedaala.c")]
     public override int header (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="daala_packet",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedaala.c")]
     public override int packet (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg
     );
 
     [CCode (cname="daala_gptopts",cheader_filename="subprojects/ffmpeg/libavformat/oggparsedaala.c")]
     public override uint64 gptopts (
-        AVFormatContext context,
+        LibAVFormat.FormatContext context,
         int arg1,
         uint64 arg2,
         out int64 dts

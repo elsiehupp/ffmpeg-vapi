@@ -36,7 +36,7 @@ qualify a file. Refer to wsaud_probe () for the precise parameters.
 ***********************************************************/
 
 [CCode (cname="ff_wsaud_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/westwood_aud.c")]
-public class WSAUDDemuxer : AVInputFormat {
+public class WSAUDDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/westwood_aud.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class WSAUDDemuxer : AVInputFormat {
 
     [CCode (cname="wsaud_probe",cheader_filename="subprojects/ffmpeg/libavformat/westwood_aud.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="wsaud_read_header",cheader_filename="subprojects/ffmpeg/libavformat/westwood_aud.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="wsaud_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/westwood_aud.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

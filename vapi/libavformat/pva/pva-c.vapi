@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class PVADemuxerPrivateData { }
 
 [CCode (cname="ff_pva_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
-public class PVADemuxer : AVInputFormat {
+public class PVADemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override string name {
         public get {
@@ -57,23 +57,23 @@ public class PVADemuxer : AVInputFormat {
 
     [CCode (cname="pva_probe",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="pva_read_header",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="pva_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="pva_read_timestamp",cheader_filename="subprojects/ffmpeg/libavformat/pva.c")]
     public override int64 read_timestamp (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64[] pos,
         int64 pos_limit

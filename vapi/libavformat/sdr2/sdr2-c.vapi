@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_sdr2_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/sdr2.c")]
-public class SDR2Demuxer : AVInputFormat {
+public class SDR2Demuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/sdr2.c")]
     public override string name {
         public get {
@@ -44,17 +44,17 @@ public class SDR2Demuxer : AVInputFormat {
 
     [CCode (cname="sdr2_probe",cheader_filename="subprojects/ffmpeg/libavformat/sdr2.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="sdr2_read_header",cheader_filename="subprojects/ffmpeg/libavformat/sdr2.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="sdr2_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/sdr2.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 

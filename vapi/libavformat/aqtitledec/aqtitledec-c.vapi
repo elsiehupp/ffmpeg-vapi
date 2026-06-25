@@ -92,7 +92,7 @@ public class AQTitleClass : LibAVUtil.Class {
 public class AQTitleDemuxerPrivateData { }
 
 [CCode (cname="ff_aqtitle_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
-public class AQTitleDemuxer : AVInputFormat {
+public class AQTitleDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
     public override string name {
         public get {
@@ -122,23 +122,23 @@ public class AQTitleDemuxer : AVInputFormat {
 
     [CCode (cname="aqt_probe",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="aqt_read_header",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="aqt_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
     [CCode (cname="aqt_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
     public override int read_seek2 (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         int stream_index,
         int64 min_ts,
         int64 ts,
@@ -148,7 +148,7 @@ public class AQTitleDemuxer : AVInputFormat {
 
     [CCode (cname="aqt_read_close",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
     public override int read_close (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="extensions",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]

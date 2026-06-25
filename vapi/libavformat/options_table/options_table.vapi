@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  #define offsetof (AVFormatContext, x) offsetof (AVFormatContext,x)
+//  #define offsetof (LibAVFormat.FormatContext, x) offsetof (LibAVFormat.FormatContext,x)
 /***********************************************************
 should be NAN but it does not work as it is not a constant
 in glibc as required by ANSI/ISO C

@@ -106,7 +106,7 @@ public int ff_vmafmotion_init (
     VMAFMotionData? data,
     int w,
     int h,
-    AVPixelFormat fmt
+    LibAVUtil.PixelFormat fmt
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vmaf_motion.h")]

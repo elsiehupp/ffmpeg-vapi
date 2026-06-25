@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class WVDemuxerPrivateData { }
 
 [CCode (cname="ff_wv_demuxer",cheader_filename="subprojects/ffmpeg/libavformat/wvdec.c")]
-public class WVDemuxer : AVInputFormat {
+public class WVDemuxer : LibAVFormat.InputFormat {
     [CCode (cname="name",cheader_filename="subprojects/ffmpeg/libavformat/wvdec.c")]
     public override string name {
         public get {
@@ -57,17 +57,17 @@ public class WVDemuxer : AVInputFormat {
 
     [CCode (cname="wv_probe",cheader_filename="subprojects/ffmpeg/libavformat/wvdec.c")]
     public override int read_probe (
-        AVProbeData format_context
+        LibAVFormat.ProbeData format_context
     );
 
     [CCode (cname="wv_read_header",cheader_filename="subprojects/ffmpeg/libavformat/wvdec.c")]
     public override int read_header (
-        AVFormatContext format_context
+        LibAVFormat.FormatContext format_context
     );
 
     [CCode (cname="wv_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/wvdec.c")]
     public override int read_packet (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
     );
 
