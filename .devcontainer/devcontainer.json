@@ -25,9 +25,9 @@
                 "editor.detectIndentation": false,
                 "editor.insertSpaces": true,
                 "files.exclude" : {
-                    "/tmp/*" : true,
+                    // "/tmp/*" : true,
                     // "subprojects/ffmpeg/**" : true,
-                    "**/.cache/**" : true
+                    // "**/.cache/**" : true
                 },
                 "editor.tabSize": 4,
                 "git.alwaysSignOff": true,
