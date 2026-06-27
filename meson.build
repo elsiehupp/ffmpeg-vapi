@@ -1,6 +1,8 @@
 project ('org.ffmpeg.FFmpeg', 'c', 'vala', version: '1.0.0')
 
-srcs = files ()
+srcs = files ([
+    './main.vala'
+])
 
 subdir ('vapi')
 

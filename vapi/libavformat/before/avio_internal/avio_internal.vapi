@@ -8,33 +8,16 @@ version 2.1 of the License, or (at your option) any later version.
 
 FFmpeg is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-/***********************************************************
-@copyright 2007 Marco Gerards <marco@gnu.org>
-@copyright 2009 David Conrad
-@copyright 2011 Jordi Ortiz
-***********************************************************/
-namespace LibAVCodec {
-using LibAVUtil;
 
-/***********************************************************
-@file Interface to Dirac Decoder/Encoder
-@author Marco Gerards <marco@gnu.org>
-@author David Conrad
-@author Jordi Ortiz
-***********************************************************/
+namespace LibAVFormat {
 
-[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/dirac.h")]
-public enum DiracChromaFormat {
-    @444 = 0,
-    @422 = 1,
-    @420 = 2
-}
+//  extern const LibAVUtil.Class ff_avio_class;
 
-} // namespace LibAVCodec
+} // namespace LibAVFormat

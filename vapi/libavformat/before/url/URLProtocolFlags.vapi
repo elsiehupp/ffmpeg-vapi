@@ -8,33 +8,32 @@ version 2.1 of the License, or (at your option) any later version.
 
 FFmpeg is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-/***********************************************************
-@copyright 2007 Marco Gerards <marco@gnu.org>
-@copyright 2009 David Conrad
-@copyright 2011 Jordi Ortiz
-***********************************************************/
-namespace LibAVCodec {
-using LibAVUtil;
+
+namespace LibAVFormat {
 
 /***********************************************************
-@file Interface to Dirac Decoder/Encoder
-@author Marco Gerards <marco@gnu.org>
-@author David Conrad
-@author Jordi Ortiz
+@file unbuffered private I/O API
 ***********************************************************/
 
-[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/dirac.h")]
-public enum DiracChromaFormat {
-    @444 = 0,
-    @422 = 1,
-    @420 = 2
+[Flags]
+[CCode (cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+public enum URLProtocolFlags {
+    /***********************************************************
+    @brief The protocol name can be the first part of a nested protocol scheme
+    ***********************************************************/
+    [CCode (cname="URL_PROTOCOL_FLAG_NESTED_SCHEME")]
+    NESTED_SCHEME,
+
+    /***********************************************************
+    @brief The protocol uses network
+    ***********************************************************/
+    [CCode (cname="URL_PROTOCOL_FLAG_NETWORK")]
+    NETWORK;
 }
-
-} // namespace LibAVCodec
