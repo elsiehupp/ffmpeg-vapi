@@ -98,31 +98,31 @@ public class GradFunContext {
     [CCode (cname="blur_line")]
     public BlurLineDelegate blur_line;
 
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
+    public void ff_gradfun_init_x86 (
+        GradFunContext? gf
+    );
+
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
+    public void ff_gradfun_filter_line_c (
+        uint8[] dst,
+        uint8[] src,
+        uint16[] dc,
+        int width,
+        int thresh,
+        uint16[] dithers
+    );
+
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
+    public void ff_gradfun_blur_line_c (
+        uint16[] dc,
+        uint16[] buf,
+        uint16[] buf1,
+        uint8[] src,
+        int src_linesize,
+        int width
+    );
+
 }
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
-public void ff_gradfun_init_x86 (
-    GradFunContext? gf
-);
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
-public void ff_gradfun_filter_line_c (
-    uint8[] dst,
-    uint8[] src,
-    uint16[] dc,
-    int width,
-    int thresh,
-    uint16[] dithers
-);
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/gradfun.h")]
-public void ff_gradfun_blur_line_c (
-    uint16[] dc,
-    uint16[] buf,
-    uint16[] buf1,
-    uint8[] src,
-    int src_linesize,
-    int width
-);
 
 } // namespace LibAVFilter
