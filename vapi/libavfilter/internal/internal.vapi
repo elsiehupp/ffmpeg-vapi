@@ -55,8 +55,8 @@ Update the position of a link in the age heap.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_avfilter_graph_update_heap (
-    AVFilterGraph? graph,
-    AVFilterLink? link
+    LibAVFilter.FilterGraph? graph,
+    LibAVFilter.FilterLink? link
 );
 
 /***********************************************************
@@ -64,7 +64,7 @@ A filter pad used for either input or output.
 ***********************************************************/
 [CCode (cname="struct AVFilterPad",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
-public class AVFilterPad {
+public class LibAVFilter.FilterPad {
     /***********************************************************
     Pad name. The name is unique among inputs and among outputs, but an
     input may have the same name as an output. This may be NULL if this
@@ -74,13 +74,13 @@ public class AVFilterPad {
     public string name;
 
     /***********************************************************
-    AVFilterPad type.
+    LibAVFilter.FilterPad type.
     ***********************************************************/
     [CCode (cname="")]
-    public AVMediaType type;
+    public LibAVUtil.MediaType type;
 
     public delegate AVFrame GetVideoBufferDelegate (
-        AVFilterLink? link,
+        LibAVFilter.FilterLink? link,
         int w,
         int h
     );
@@ -95,7 +95,7 @@ public class AVFilterPad {
     public GetVideoBufferDelegate get_video_buffer;
 
     public delegate AVFrame GetAudioBufferDelegate (
-        AVFilterLink? link,
+        LibAVFilter.FilterLink? link,
         int nb_samples
     );
 
@@ -109,7 +109,7 @@ public class AVFilterPad {
     public GetAudioBufferDelegate get_audio_buffer;
 
     public delegate int FilterFrameDelegate (
-        AVFilterLink? link,
+        LibAVFilter.FilterLink? link,
         AVFrame? frame
     );
 
@@ -127,7 +127,7 @@ public class AVFilterPad {
     public FilterFrameDelegate filter_frame;
 
     public delegate int PollFrameDelegate (
-        AVFilterLink? link
+        LibAVFilter.FilterLink? link
     );
 
     /***********************************************************
@@ -143,7 +143,7 @@ public class AVFilterPad {
     public PollFrameDelegate poll_frame;
 
     public delegate int RequestFrameDelegate (
-        AVFilterLink? link
+        LibAVFilter.FilterLink? link
     );
 
     /***********************************************************
@@ -153,11 +153,11 @@ public class AVFilterPad {
 
     Output pads only.
     ***********************************************************/
-    [CCode (cname="AVFilterLink")]
+    [CCode (cname="LibAVFilter.FilterLink")]
     public RequestFrameDelegate request_frame;
 
     public delegate int ConfigPropsDelegate (
-        AVFilterLink? link
+        LibAVFilter.FilterLink? link
     );
 
     /***********************************************************
@@ -211,7 +211,7 @@ public class AVFilterGraphInternal {
 
 [CCode (cname="struct AVFilterInternal",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 [Compact]
-public class AVFilterInternal {
+public class LibAVFilter.FilterInternal {
     [CCode (cname="")]
     public AVFilterExecuteDelegate? execute;
 }
@@ -320,7 +320,7 @@ public int ff_parse_channel_layout (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_update_link_current_pts (
-    AVFilterLink? link,
+    LibAVFilter.FilterLink? link,
     int64 pts
 );
 
@@ -333,7 +333,7 @@ end time of the last frame.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_avfilter_link_set_in_status (
-    AVFilterLink? link,
+    LibAVFilter.FilterLink? link,
     int status,
     int64 pts
 );
@@ -344,14 +344,14 @@ The pts should probably be left unset (AV_NOPTS_VALUE).
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_avfilter_link_set_out_status (
-    AVFilterLink? link,
+    LibAVFilter.FilterLink? link,
     int status,
     int64 pts
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_command_queue_pop (
-    AVFilterContext? filter
+    LibAVFilter.FilterContext? filter
 );
 
 /***********************************************************
@@ -384,7 +384,7 @@ public void ff_tlog_ref (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_tlog_link (
     void *ctx,
-    AVFilterLink? link,
+    LibAVFilter.FilterLink? link,
     int end
 );
 
@@ -394,7 +394,7 @@ Insert a new pad.
 @param idx Insertion point. Pad is inserted at the end if this point
            is beyond the end of the list of pads.
 @param count Pointer to the number of pads in the list
-@param padidx_off Offset within an AVFilterLink structure to the element
+@param padidx_off Offset within an LibAVFilter.FilterLink structure to the element
                   to increment when inserting a new pad causes link
                   numbering to change
 @param pads Pointer to the pointer to the beginning of the list of pads
@@ -407,9 +407,9 @@ public int ff_insert_pad (
     uint idx,
     uint? count,
     size_t padidx_off,
-    AVFilterPad **pads,
-    AVFilterLink ***links,
-    AVFilterPad? newpad
+    LibAVFilter.FilterPad **pads,
+    LibAVFilter.FilterLink ***links,
+    LibAVFilter.FilterPad? newpad
 );
 
 /***********************************************************
@@ -417,16 +417,16 @@ Insert a new input pad for the filter.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public static inline int ff_insert_inpad (
-    AVFilterContext? av_filter_context,
+    LibAVFilter.FilterContext? av_filter_context,
     uint index,
-    AVFilterPad? p
+    LibAVFilter.FilterPad? p
 );
 //  {
 //      return ff_insert_pad (
 //          index,
 //          &av_filter_context->nb_inputs,
 //          offsetof (
-//              AVFilterLink,
+//              LibAVFilter.FilterLink,
 //              dstpad
 //          ),
 //          &av_filter_context->input_pads, &av_filter_context->inputs, p
@@ -438,16 +438,16 @@ Insert a new output pad for the filter.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public static inline int ff_insert_outpad (
-    AVFilterContext? av_filter_context,
+    LibAVFilter.FilterContext? av_filter_context,
     uint index,
-    AVFilterPad? p
+    LibAVFilter.FilterPad? p
 );
 //  {
 //      return ff_insert_pad (
 //          index,
 //          &av_filter_context->nb_outputs,
 //          offsetof (
-//              AVFilterLink,
+//              LibAVFilter.FilterLink,
 //              srcpad
 //          ),
 //          &av_filter_context->output_pads,
@@ -465,7 +465,7 @@ number in case of error
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_poll_frame (
-    AVFilterLink? link
+    LibAVFilter.FilterLink? link
 );
 
 /***********************************************************
@@ -501,7 +501,7 @@ filter is also allowed to simply forward a success return value.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_request_frame (
-    AVFilterLink? link
+    LibAVFilter.FilterLink? link
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
@@ -550,7 +550,7 @@ is responsible for unreferencing frame in case of error.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_frame (
-    AVFilterLink? link,
+    LibAVFilter.FilterLink? link,
     AVFrame? frame
 );
 
@@ -563,14 +563,14 @@ Allocate a new filter context and return it.
 @return newly created filter context or NULL on failure
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
-public AVFilterContext? ff_filter_alloc (
-    AVFilter? filter,
+public LibAVFilter.FilterContext? ff_filter_alloc (
+    LibAVFilter.Filter? filter,
     string inst_name
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_activate (
-    AVFilterContext? filter
+    LibAVFilter.FilterContext? filter
 );
 
 /***********************************************************
@@ -578,13 +578,13 @@ Remove a filter from a graph;
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_filter_graph_remove_filter (
-    AVFilterGraph? graph,
-    AVFilterContext? filter
+    LibAVFilter.FilterGraph? graph,
+    LibAVFilter.FilterContext? filter
 );
 
 [Flags]
 [CCode (cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
-public enum FilterFlags {
+public enum LibAVFilter.FilterFlags {
     /***********************************************************
     The filter is aware of hardware frames, and any hardware frame context
     should not be automatically propagated through it.
@@ -598,7 +598,7 @@ Run one round of processing on a filter graph.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_graph_run_once (
-    AVFilterGraph? graph
+    LibAVFilter.FilterGraph? graph
 );
 
 /***********************************************************
@@ -627,7 +627,7 @@ This number is always same or less than graph->nb_threads.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_get_nb_threads (
-    AVFilterContext? av_filter_context
+    LibAVFilter.FilterContext? av_filter_context
 );
 
 /***********************************************************
@@ -645,8 +645,8 @@ compatibility).
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_init_hw_frames (
-    AVFilterContext? avctx,
-    AVFilterLink? link,
+    LibAVFilter.FilterContext? avctx,
+    LibAVFilter.FilterLink? link,
     int default_pool_size
 );
 

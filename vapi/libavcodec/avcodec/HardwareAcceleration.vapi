@@ -105,7 +105,7 @@ typedef struct AVHWAccel {
      *
      * See AVMEDIA_TYPE_xxx
      */
-    enum AVMediaType type;
+    enum LibAVUtil.MediaType type;
 
     /**
      * Codec implemented by the hardware accelerator.

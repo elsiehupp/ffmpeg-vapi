@@ -560,7 +560,7 @@ public class OptionsContext {
 [Compact]
 public class InputFilter {
     [CCode (cname="")]
-    public AVFilterContext? filter;
+    public LibAVFilter.FilterContext? filter;
 
     [CCode (cname="")]
     public InputStream? ist;
@@ -575,7 +575,7 @@ public class InputFilter {
     LibAVUtil.MediaType.SUBTITLE for sub2video
     ***********************************************************/
     [CCode (cname="")]
-    public AVMediaType type;
+    public LibAVUtil.MediaType type;
 
     [CCode (cname="")]
     public AVFifoBuffer? frame_queue;
@@ -615,7 +615,7 @@ public class InputFilter {
 [Compact]
 public class OutputFilter {
     [CCode (cname="")]
-    public AVFilterContext? filter;
+    public LibAVFilter.FilterContext? filter;
 
     [CCode (cname="")]
     public OutputStream? ost;
@@ -630,10 +630,10 @@ public class OutputFilter {
     temporary storage until stream maps are processed
     ***********************************************************/
     [CCode (cname="")]
-    public AVFilterInOut? out_tmp;
+    public LibAVFilter.FilterInOut? out_tmp;
 
     [CCode (cname="")]
-    public AVMediaType type;
+    public LibAVUtil.MediaType type;
 
     /***********************************************************
     desired output stream properties
@@ -677,7 +677,7 @@ public classFilterGraph {
     public string graph_desc;
 
     [CCode (cname="")]
-    public AVFilterGraph? graph;
+    public LibAVFilter.FilterGraph? graph;
 
     [CCode (cname="")]
     public int reconfiguration;
@@ -812,7 +812,7 @@ public classInputStream {
     public int saw_first_ts;
 
     [CCode (cname="")]
-    public AVDictionary? decoder_opts;
+    public LibAVUtil.Dictionary? decoder_opts;
 
     /***********************************************************
     framerate forced with -r
@@ -1332,16 +1332,16 @@ public class OutputStream {
     public string filters_script;
 
     [CCode (cname="")]
-    public AVDictionary? encoder_opts;
+    public LibAVUtil.Dictionary? encoder_opts;
 
     [CCode (cname="")]
-    public AVDictionary? sws_dict;
+    public LibAVUtil.Dictionary? sws_dict;
 
     [CCode (cname="")]
-    public AVDictionary? swr_opts;
+    public LibAVUtil.Dictionary? swr_opts;
 
     [CCode (cname="")]
-    public AVDictionary? resample_opts;
+    public LibAVUtil.Dictionary? resample_opts;
 
     [CCode (cname="")]
     public string apad;
@@ -1447,7 +1447,7 @@ public class OutputFile {
     public LibAVFormat.FormatContext? ctx;
 
     [CCode (cname="")]
-    public AVDictionary? opts;
+    public LibAVUtil.Dictionary? opts;
 
     /***********************************************************
     index of the first stream in output_streams
@@ -1561,13 +1561,13 @@ public void opt_output_file (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
 public void remove_avoptions (
-    AVDictionary **av_dictionary_a,
-    AVDictionary? b
+    LibAVUtil.Dictionary **av_dictionary_a,
+    LibAVUtil.Dictionary? b
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
 public void assert_avoptions (
-    AVDictionary? m
+    LibAVUtil.Dictionary? m
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
@@ -1598,7 +1598,7 @@ public int configure_filtergraph (
 public int configure_output_filter (
     FilterGraph? fg,
     OutputFilter? ofilter,
-    AVFilterInOut? out
+    LibAVFilter.FilterInOut? out
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]

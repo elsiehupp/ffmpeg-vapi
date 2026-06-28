@@ -2923,16 +2923,16 @@ structure field names for historic reasons or brevity.
 sizeof(AVCodecContext) must not be used outside libav*.
 ***********************************************************/
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+[CCode (cname="struct AVCodecContext",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 typedef struct AVCodecContext {
     /**
      * information on struct for av_log
      * - set by avcodec_alloc_context3
      */
-    const AVClass *av_class;
+    const LibAVUtil.Class *av_class;
     int log_level_offset;
 
-    enum AVMediaType codec_type; /* see AVMEDIA_TYPE_xxx */
+    enum LibAVUtil.MediaType codec_type; /* see AVMEDIA_TYPE_xxx */
     const struct AVCodec  *codec;
     enum AVCodecID     codec_id; /* see AV_CODEC_ID_xxx */
 
@@ -3152,7 +3152,7 @@ typedef struct AVCodecContext {
      * - encoding: Set by user
      * - decoding: Set by libavcodec
      */
-    enum AVColorSpace colorspace;
+    enum LibAVUtil.ColorSpace colorspace;
 
     /**
      * MPEG vs JPEG YUV range.
@@ -3162,7 +3162,7 @@ typedef struct AVCodecContext {
      * - decoding: Set by libavcodec, can be set by the user to propagate the
      *   color range to components reading from the decoder context.
      */
-    enum AVColorRange color_range;
+    enum LibAVUtil.ColorRange color_range;
 
     /**
      * This defines the location of chroma samples.

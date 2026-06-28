@@ -25,7 +25,7 @@ namespace LibAVUtil {
 @brief YUV colorspace type.
 These values match the ones defined by ISO/IEC 23001-8_2013 § 7.3.
 ***********************************************************/
-[CCode (cprefix="AVCOL_SPC_",cheader_filename="subprojects/ffmpeg/libavutil/pixfmt.h")]
+[CCode (cname="enum AVColorSpace",cprefix="AVCOL_SPC_",cheader_filename="subprojects/ffmpeg/libavutil/pixfmt.h")]
 public enum ColorSpace {
     /***********************************************************
     @brief Order of coefficients is actually GBR, also IEC 61966-2-1 (sRGB)

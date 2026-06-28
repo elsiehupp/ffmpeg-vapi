@@ -661,7 +661,7 @@ not used anymore.
 
 @param[out] caps      Device capabilities data. Pointer to a NULL pointer must be passed.
 @param s              Context of the device.
-@param device_options An AVDictionary filled with device-private options.
+@param device_options An LibAVUtil.Dictionary filled with device-private options.
                       On return this parameter will be destroyed and replaced with a dict
                       containing options that were not found. May be NULL.
                       The same options must be passed later to avformat_write_header () for output
@@ -674,7 +674,7 @@ not used anymore.
 public int avdevice_capabilities_create (
     LibAVDevice.DeviceCapabilitiesQuery **caps,
     LibAVFormat.FormatContext? s,
-    AVDictionary **device_options
+    LibAVUtil.Dictionary **device_options
 );
 
 /***********************************************************
@@ -771,7 +771,7 @@ Device context is allocated and deallocated internally.
 
 @param device           device format. May be NULL if device name is set.
 @param device_name      device name. May be NULL if device format is set.
-@param device_options   An AVDictionary filled with device-private options. May be NULL.
+@param device_options   An LibAVUtil.Dictionary filled with device-private options. May be NULL.
                         The same options must be passed later to avformat_write_header () for output
                         devices or avformat_open_input () for input devices, or at any other place
                         that affects device-private options.
@@ -783,7 +783,7 @@ Device context is allocated and deallocated internally.
 public int avdevice_list_input_sources (
     LibAVFormat.InputFormat? device,
     string device_name,
-    AVDictionary? device_options,
+    LibAVUtil.Dictionary? device_options,
     LibAVFormat.DeviceInfoList **device_list
 );
 
@@ -791,7 +791,7 @@ public int avdevice_list_input_sources (
 public int avdevice_list_output_sinks (
     LibAVFormat.OutputFormat? device,
     string device_name,
-    AVDictionary? device_options,
+    LibAVUtil.Dictionary? device_options,
     LibAVFormat.DeviceInfoList **device_list
 );
 

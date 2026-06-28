@@ -37,9 +37,9 @@ program birth year, defined by the program for show_banner ()
 
 //  extern AVCodecContext? avcodec_opts[LibAVUtil.MediaType.NB];
 //  extern LibAVFormat.FormatContext? avformat_opts;
-//  extern AVDictionary? sws_dict;
-//  extern AVDictionary? swr_opts;
-//  extern AVDictionary? format_opts,? codec_opts,? resample_opts;
+//  extern LibAVUtil.Dictionary? sws_dict;
+//  extern LibAVUtil.Dictionary? swr_opts;
+//  extern LibAVUtil.Dictionary? format_opts,? codec_opts,? resample_opts;
 //  extern int hide_banner;
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
@@ -693,7 +693,7 @@ public int parse_option (
 
 /***********************************************************
 An option extracted from the commandline.
-Cannot use AVDictionary because of options like -map which can be
+Cannot use LibAVUtil.Dictionary because of options like -map which can be
 used multiple times.
 ***********************************************************/
 [CCode (cname="struct Option",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
@@ -750,19 +750,19 @@ public class OptionGroup {
     public int nb_opts;
 
     [CCode (cname="")]
-    public AVDictionary? codec_opts;
+    public LibAVUtil.Dictionary? codec_opts;
 
     [CCode (cname="")]
-    public AVDictionary? format_opts;
+    public LibAVUtil.Dictionary? format_opts;
 
     [CCode (cname="")]
-    public AVDictionary? resample_opts;
+    public LibAVUtil.Dictionary? resample_opts;
 
     [CCode (cname="")]
-    public AVDictionary? sws_dict;
+    public LibAVUtil.Dictionary? sws_dict;
 
     [CCode (cname="")]
-    public AVDictionary? swr_opts;
+    public LibAVUtil.Dictionary? swr_opts;
 }
 
 /***********************************************************
@@ -900,8 +900,8 @@ opts which apply to the codec with ID codec_id.
 @return a pointer to the created dictionary
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public AVDictionary? filter_codec_opts (
-    AVDictionary? opts,
+public LibAVUtil.Dictionary? filter_codec_opts (
+    LibAVUtil.Dictionary? opts,
     AVCodecID codec_id,
     LibAVFormat.FormatContext? av_format_context,
     LibAVFormat.Stream? st,
@@ -920,9 +920,9 @@ be applied to the corresponding stream codec context.
 cannot be created
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
-public AVDictionary **setup_find_stream_info_opts (
+public LibAVUtil.Dictionary **setup_find_stream_info_opts (
     LibAVFormat.FormatContext? av_format_context,
-    AVDictionary? codec_opts
+    LibAVUtil.Dictionary? codec_opts
 );
 
 /***********************************************************

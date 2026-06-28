@@ -24,7 +24,7 @@ namespace LibAVUtil {
 /***********************************************************
 @brief MPEG vs JPEG YUV range.
 ***********************************************************/
-[CCode (cprefix="AVCOL_RANGE_",cheader_filename="subprojects/ffmpeg/libavutil/pixfmt.h")]
+[CCode (cname="enum AVColorRange",cprefix="AVCOL_RANGE_",cheader_filename="subprojects/ffmpeg/libavutil/pixfmt.h")]
 public enum ColorRange {
     UNSPECIFIED,
 

@@ -1,5 +1,8 @@
 /***********************************************************
-@brief This file is part of FFmpeg.
+filter layer
+Copyright (c) 2007 Bobby Bingham
+
+This file is part of FFmpeg.
 
 FFmpeg is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -8,82 +11,80 @@ version 2.1 of the License, or (at your option) any later version.
 
 FFmpeg is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-/***********************************************************
-@@copyright 2001 Fabrice Bellard
-***********************************************************/
-namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
-@file @ingroup libavc
-LibAVCodec external API header
+@file
+@ingroup lavfi
+Main libavfilter public API header
 ***********************************************************/
+namespace LibAVFilter {
 
 /***********************************************************
-@addtogroup lavc_decoding
+@defgroup lavfi libavfilter
+Graph-based frame editing library.
+
 @{
 ***********************************************************/
 
-[CCode (cname="enum AVCodecConfig",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public enum CodecConfig {
+/***********************************************************
+Lists of formats / etc. supported by an end of a link.
+
+This structure is directly part of LibAVFilter.FilterLink, in two copies:
+one for the source filter, one for the destination filter.
+
+These lists are used for negotiating the format to actually be used,
+which will be loaded into the format and channel_layout members of
+LibAVFilter.FilterLink, when chosen.
+***********************************************************/
+
+[CCode (cname="struct AVFilterFormatsConfig",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+[Compact]
+public class LibAVFilter.FilterFormatsConfig {
     /***********************************************************
-    AVPixelFormat, terminated by AV_PIX_FMT_NONE
+    List of supported formats (pixel or sample).
     ***********************************************************/
-    [CCode (cname="AV_CODEC_CONFIG_PIX_FORMAT")]
-    PIXEL_FORMAT,
+    public LibAVFilter.FilterFormats? formats;
 
     /***********************************************************
-    AVRational, terminated by {0, 0}
+    Lists of supported sample rates, only for audio.
     ***********************************************************/
-    [CCode (cname="AV_CODEC_CONFIG_FRAME_RATE")]
-    FRAME_RATE,
+    public LibAVFilter.FilterFormats? samplerates;
 
     /***********************************************************
-    int, terminated by 0
+    Lists of supported channel layouts, only for audio.
     ***********************************************************/
-    [CCode (cname="AV_CODEC_CONFIG_SAMPLE_RATE")]
-    SAMPLE_RATE,
+    public LibAVFilter.FilterChannelLayouts? channel_layouts;
 
     /***********************************************************
-    AVSampleFormat, terminated by AV_SAMPLE_FMT_NONE
+    List of supported YUV color metadata, only for YUV video.
+
+    LibAVUtil.ColorSpace
     ***********************************************************/
-    [CCode (cname="AV_CODEC_CONFIG_SAMPLE_FORMAT")]
-    SAMPLE_FORMAT,
+    public LibAVFilter.FilterFormats? color_spaces;
 
     /***********************************************************
-    AVChannelLayout, terminated by {0}
+    List of supported YUV color metadata, only for YUV video.
+
+    LibAVUtil.ColorRange
     ***********************************************************/
-    [CCode (cname="AV_CODEC_CONFIG_CHANNEL_LAYOUT")]
-    CHANNEL_LAYOUT,
+    public LibAVFilter.FilterFormats? color_ranges;
 
     /***********************************************************
-    LibAVUtil.ColorRange, terminated by AVCOL_RANGE_UNSPECIFIED
+    List of supported alpha modes, only for video with an alpha channel.
     ***********************************************************/
-    [CCode (cname="AV_CODEC_CONFIG_COLOR_RANGE")]
-    COLOR_RANGE,
+    public LibAVFilter.FilterFormats? alpha_modes;  ///< AVAlphaMode
 
-    /***********************************************************
-    LibAVUtil.ColorSpace, terminated by AVCOL_SPC_UNSPECIFIED
-    ***********************************************************/
-    [CCode (cname="AV_CODEC_CONFIG_COLOR_SPACE")]
-    COLOR_SPACE,
-
-    /***********************************************************
-    AVAlphaMode, terminated by AVALPHA_MODE_UNSPECIFIED
-    ***********************************************************/
-    [CCode (cname="AV_CODEC_CONFIG_ALPHA_MODE")]
-    ALPHA_MODE;
 }
 
 /***********************************************************
 @}
 ***********************************************************/
 
-} // namespace LibAVCodec
+} // namespace LibAVFilter
