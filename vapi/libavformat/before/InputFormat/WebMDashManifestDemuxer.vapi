@@ -35,7 +35,7 @@ namespace LibAVFormat {
 public class MatroskaDemuxerPrivateData { }
 
 [CCode (cname="webm_dash_class",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
-public class WebMDashManifestDemuxerClass : LibAVUtil.Class {
+public class WebMDashManifestDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/matroskadec.c")]
     public override string class_name {
         public get {

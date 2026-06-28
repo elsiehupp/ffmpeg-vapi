@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class FLACMuxerPrivateData { }
 
 [CCode (cname="flac_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/flacenc.c")]
-public class FLACMuxerClass : LibAVUtil.Class {
+public class FLACMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/flacenc.c")]
     public override string class_name {
         public get {

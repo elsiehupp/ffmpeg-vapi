@@ -27,7 +27,7 @@ M3U8 specification can be find here:
 @url {http://tools.ietf.org/id/draft-pantos-http-live-streaming}
 ***********************************************************/
 
-public abstract class SegmentOptionsClass : LibAVUtil.Class {
+public abstract class SegmentOptionsClass : LibAVUtil.Log.Class {
 
     [CCode (cname="option")]
     public override LibAVUtil.Option[] options {

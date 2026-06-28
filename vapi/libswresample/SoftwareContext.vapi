@@ -123,10 +123,10 @@ structure.
 [Compact]
 public class LibSoftwareResample.SoftwareContext {
     /***********************************************************
-    LibAVUtil.Class used for AVOption and av_log ()
+    LibAVUtil.Log.Class used for AVOption and av_log ()
     ***********************************************************/
     [CCode (cname="")]
-    internal LibAVUtil.Class? av_class;
+    internal LibAVUtil.Log.Class? av_class;
 
     /***********************************************************
     logging level offset
@@ -695,14 +695,14 @@ public class LibSoftwareResample.SoftwareContext {
 
 
     /***********************************************************
-    Get the LibAVUtil.Class for LibSoftwareResample.SoftwareContext. It can be used in combination with
+    Get the LibAVUtil.Log.Class for LibSoftwareResample.SoftwareContext. It can be used in combination with
     OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
     @see av_opt_find ().
-    @return the LibAVUtil.Class of LibSoftwareResample.SoftwareContext
+    @return the LibAVUtil.Log.Class of LibSoftwareResample.SoftwareContext
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
-    public LibAVUtil.Class? swr_get_class ();
+    public LibAVUtil.Log.Class? swr_get_class ();
 
     /***********************************************************
     @name LibSoftwareResample.SoftwareContext constructor functions

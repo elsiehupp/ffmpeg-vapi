@@ -24,7 +24,7 @@ namespace LibAVFilter {
 [Compact]
 public class RemoveGrainContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public int mode[4];

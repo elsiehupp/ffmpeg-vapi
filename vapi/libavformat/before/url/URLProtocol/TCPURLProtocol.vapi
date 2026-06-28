@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="tcp_class",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
-public class TCPURLProtocolClass : LibAVUtil.Class {
+public class TCPURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tcp.c")]
     public override string class_name {
         public get {

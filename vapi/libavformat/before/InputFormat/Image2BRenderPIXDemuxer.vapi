@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="image2_brender_pix_class",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
-public class Image2BRenderPIXDemuxerClass : LibAVUtil.Class {
+public class Image2BRenderPIXDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2_brender_pix.c")]
     public override string class_name {
         public get {

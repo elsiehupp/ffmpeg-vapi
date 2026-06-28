@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="chromaprint_class",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
-public class ChromaPrintMuxerClass : LibAVUtil.Class {
+public class ChromaPrintMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
     public override string class_name {
         public get {

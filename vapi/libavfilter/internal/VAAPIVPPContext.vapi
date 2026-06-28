@@ -27,13 +27,13 @@ public const uint32 VAAPI_VPP_BACKGROUND_BLACK; // 0xff000000
 [Compact]
 public class VAAPIVPPContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public AVVAAPIDeviceContext? hwctx;
 
     [CCode (cname="")]
-    public AVBufferRef device_ref;
+    public LibAVUtil.BufferRef device_ref;
 
     [CCode (cname="")]
     public int valid_ids;
@@ -45,7 +45,7 @@ public class VAAPIVPPContext {
     public VAContextID va_context;
 
     [CCode (cname="")]
-    public AVBufferRef? input_frames_ref;
+    public LibAVUtil.BufferRef? input_frames_ref;
 
     [CCode (cname="")]
     public AVHWFramesContext? input_frames;

@@ -28,7 +28,7 @@ namespace LibAVFormat {
 /*@{*/
 
 [CCode (cname="ffurl_context_class",cheader_filename="subprojects/ffmpeg/libavformat/avio.c")]
-public class URLContextClass : LibAVUtil.Class {
+public class URLContextClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/avio.c")]
     public override string class_name {
         public get {
@@ -105,8 +105,8 @@ public class URLContextClass : LibAVUtil.Class {
     );
 
     [CCode (cname="ff_urlcontext_child_class_next",cheader_filename="subprojects/ffmpeg/libavformat/avio.c")]
-    public override LibAVUtil.Class child_class_next (
-        LibAVUtil.Class prev
+    public override LibAVUtil.Log.Class child_class_next (
+        LibAVUtil.Log.Class prev
     );
 
 }

@@ -81,7 +81,7 @@ public enum InterlaceScanMode {
 [Compact]
 public class TInterlaceContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     /***********************************************************
     TInterlaceMode, interlace mode selected
@@ -90,7 +90,7 @@ public class TInterlaceContext {
     public int mode;
 
     [CCode (cname="")]
-    public AVRational preout_time_base;
+    public LibAVUtil.Rational preout_time_base;
 
     /***********************************************************
     flags affecting interlacing algorithm

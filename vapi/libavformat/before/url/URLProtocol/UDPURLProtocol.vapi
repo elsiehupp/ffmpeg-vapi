@@ -27,7 +27,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="udp_class",cheader_filename="subprojects/ffmpeg/libavformat/udp.c")]
-public class UDPURLProtocolClass : LibAVUtil.Class {
+public class UDPURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/udp.c")]
     public override string class_name {
         public get {
@@ -57,7 +57,7 @@ public class UDPURLProtocolClass : LibAVUtil.Class {
 }
 
 [CCode (cname="udplite_context_class",cheader_filename="subprojects/ffmpeg/libavformat/udp.c")]
-public class UDPLiteURLProtocolClass : LibAVUtil.Class {
+public class UDPLiteURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/udp.c")]
     public override string class_name {
         public get {

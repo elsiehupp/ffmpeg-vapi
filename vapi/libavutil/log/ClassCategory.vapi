@@ -18,11 +18,11 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
 namespace LibAVUtil {
+namespace Log {
 
-[CCode (cname="enum ClassCategory",cprefix="AV_CLASS_CATEGORY_",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
-public enum ClassCategory {
+[CCode (cname="enum AVClassCategory",cprefix="AV_CLASS_CATEGORY_",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+public enum LibAVUtil.Log.ClassCategory {
     [CCode (cname="AV_CLASS_CATEGORY_NA")]
     NOT_APPLICABLE,
     INPUT,
@@ -49,23 +49,24 @@ public enum ClassCategory {
     /***********************************************************
     @brief Not part of ABI/API
     ***********************************************************/
-    //  LibAVUtil.ClassCategory.NB
+    //  LibAVUtil.Log.ClassCategory.NB
 
     [CCode (cname="AV_IS_INPUT_DEVICE",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
-    public static bool av_is_input_device (
-        ClassCategory category
+    public static bool is_input_device (
+        LibAVUtil.Log.ClassCategory category
     );
 
     [CCode (cname="AV_IS_OUTPUT_DEVICE",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
-    public static bool av_is_output_device (
-        ClassCategory category
+    public static bool output_device (
+        LibAVUtil.Log.ClassCategory category
     );
 
     [CCode (cname="av_default_get_category",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
-    public static ClassCategory av_default_get_category (
+    public static LibAVUtil.Log.ClassCategory av_default_get_category (
         void *ptr
     );
 
 }
 
+} // namespace Log
 } // namespace LibAVUtil

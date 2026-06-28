@@ -26,7 +26,7 @@ namespace LibAVFormat {
 //  #define IMAGEAUTO_DEMUXER (imgname, codecid)
 
 [CCode (cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
-public abstract class ImageClass : LibAVUtil.Class {
+public abstract class ImageClass : LibAVUtil.Log.Class {
     [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/img2dec.c")]
     public override string item_name (
         void *class_context

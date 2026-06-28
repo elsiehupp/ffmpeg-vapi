@@ -42,7 +42,7 @@ internal class LibPostProc.PostProcessContext {
     info on struct for av_log
     ***********************************************************/
     [CCode (cname="")]
-    internal LibAVUtil.Class? av_class;
+    internal LibAVUtil.Log.Class? av_class;
 
     /***********************************************************
     used for the horizontal code

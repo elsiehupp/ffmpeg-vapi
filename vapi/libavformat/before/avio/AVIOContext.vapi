@@ -53,7 +53,7 @@ public abstract class AVIOContext {
     to any av_opt_* functions in that case.
     ***********************************************************/
     [CCode (cname="")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     /***********************************************************
     @brief The following shows the relationship between buffer, buf_ptr,

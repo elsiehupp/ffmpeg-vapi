@@ -43,10 +43,10 @@ public define hex_dump_debug (
     void *size
 );
 //  #ifdef DEBUG
-//  av_hex_dump_log (class, LogLevel.DEBUG, buffer, size)
+//  av_hex_dump_log (class, LibAVUtil.Log.Level.DEBUG, buffer, size)
 //  #else
 //  {
-//      if (0) av_hex_dump_log (class, LogLevel.DEBUG, buffer, size);
+//      if (0) av_hex_dump_log (class, LibAVUtil.Log.Level.DEBUG, buffer, size);
 //  }
 //  #endif
 

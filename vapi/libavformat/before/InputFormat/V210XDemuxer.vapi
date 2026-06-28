@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-public abstract class V210OptionsClass : LibAVUtil.Class {
+public abstract class V210OptionsClass : LibAVUtil.Log.Class {
     [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {

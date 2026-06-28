@@ -31,7 +31,7 @@ Artworx Data Format demuxer
 iCEDraw File demuxer
 ***********************************************************/
 
-public abstract class BinTextClass : LibAVUtil.Class {
+public abstract class BinTextClass : LibAVUtil.Log.Class {
     [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/bintext.c")]
     public override string item_name (
         void *class_context
@@ -147,7 +147,7 @@ public class BinaryTextDemuxer : LibAVFormat.InputFormat {
         LibAVCodec.Packet packet
     );
 
-    public override LibAVUtil.Class priv_class {
+    public override LibAVUtil.Log.Class priv_class {
         public get {
             return new BinaryTextDemuxerBinTextClass ();
         }
@@ -215,7 +215,7 @@ public class XBINDemuxer : LibAVFormat.InputFormat {
         LibAVCodec.Packet packet
     );
 
-    public override LibAVUtil.Class priv_class {
+    public override LibAVUtil.Log.Class priv_class {
         public get {
             return new XBINDemuxerBinTextClass ();
         }
@@ -287,7 +287,7 @@ public class ADFDemuxer : LibAVFormat.InputFormat {
 
     }
 
-    public override LibAVUtil.Class priv_class {
+    public override LibAVUtil.Log.Class priv_class {
         public get {
             return new ADFDemuxerBinTextClass ();
         }
@@ -364,7 +364,7 @@ public class IDFDemuxer : LibAVFormat.InputFormat {
 
     }
 
-    public override LibAVUtil.Class priv_class {
+    public override LibAVUtil.Log.Class priv_class {
         public get {
             return new IDFDemuxerBinTextClass ();
         }

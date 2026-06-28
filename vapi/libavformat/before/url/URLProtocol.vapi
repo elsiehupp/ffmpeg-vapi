@@ -137,7 +137,7 @@ public abstract class URLProtocol {
     public abstract size_t priv_data_size { public get; }
 
     [CCode (cname="")]
-    public abstract LibAVUtil.Class priv_data_class { public get; }
+    public abstract LibAVUtil.Log.Class priv_data_class { public get; }
 
     [CCode (cname="")]
     public abstract URLProtocolFlags flags { public get; }

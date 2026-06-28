@@ -42,7 +42,7 @@ After adding new codec IDs, do not forget to add an entry to the codec
 descriptor list and bump LibAVCodec minor version.
 ***********************************************************/
 [CCode (cname="enum AVCodecID",cheader_filename="subprojects/ffmpeg/libavcodec/codec_id.h")]
-public enum CodecID {
+public enum LibAVCodec.CodecID {
     [CCode (cname="AV_CODEC_ID_NONE")]
     NONE,
 
@@ -100,9 +100,6 @@ public enum CodecID {
 
     [CCode (cname="AV_CODEC_ID_MSMPEG4V3")]
     MSMPEG4V3,
-
-    [CCode (cname="AV_CODEC_ID_WMV2")]
-    WMV2,
 
     [CCode (cname="AV_CODEC_ID_WMV2")]
     WMV2,
@@ -1476,7 +1473,7 @@ public enum CodecID {
     BIN_DATA,
 
     /***********************************************************
-    @brief CodecID is not known (like LibAVCodec.CodecID.NONE) but lavf should attempt to identify it
+    @brief LibAVCodec.CodecID is not known (like LibAVCodec.CodecID.NONE) but lavf should attempt to identify it
     ***********************************************************/
     [CCode (cname="AV_CODEC_ID_PROBE")]
     PROBE,
@@ -1510,7 +1507,7 @@ public enum CodecID {
     ***********************************************************/
     [CCode (cname="avcodec_get_type",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public static LibAVUtil.MediaType avcodec_get_type (
-        CodecID codec_id
+        LibAVCodec.CodecID codec_id
     );
 
     /***********************************************************
@@ -1519,7 +1516,7 @@ public enum CodecID {
     ***********************************************************/
     [CCode (cname="avcodec_get_name",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public static string avcodec_get_name (
-        CodecID id
+        LibAVCodec.CodecID id
     );
 
     /***********************************************************
@@ -1535,7 +1532,7 @@ public enum CodecID {
     ***********************************************************/
     [CCode (cname="avcodec_profile_name",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public static string avcodec_profile_name (
-        CodecID codec_id,
+        LibAVCodec.CodecID codec_id,
         int profile
     );
 
@@ -1547,7 +1544,7 @@ public enum CodecID {
     ***********************************************************/
     [CCode (cname="av_get_bits_per_sample",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public static int av_get_bits_per_sample (
-        CodecID codec_id
+        LibAVCodec.CodecID codec_id
     );
 
     /***********************************************************
@@ -1560,7 +1557,7 @@ public enum CodecID {
     ***********************************************************/
     [CCode (cname="av_get_exact_bits_per_sample",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public static int av_get_exact_bits_per_sample (
-        CodecID codec_id
+        LibAVCodec.CodecID codec_id
     );
 
 }

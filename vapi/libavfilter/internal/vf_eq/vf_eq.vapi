@@ -96,7 +96,7 @@ public enum EvalMode {
 [Compact]
 public class EQContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public EQParameters param[3];

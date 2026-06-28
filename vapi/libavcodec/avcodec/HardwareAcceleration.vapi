@@ -54,10 +54,10 @@ public class HardwareAcceleration {
     /***********************************************************
     @brief Codec implemented by the hardware accelerator.
 
-    @see @link CodecID
+    @see @link LibAVCodec.CodecID
     ***********************************************************/
     [CCode (cname="id")]
-    public CodecID id;
+    public LibAVCodec.CodecID id;
 
     /***********************************************************
     @brief Supported pixel format.
@@ -98,7 +98,7 @@ typedef struct AVHWAccel {
      * The name is globally unique among encoders and among decoders (but an
      * encoder and a decoder can share the same name).
      */
-    const char *name;
+    const string name;
 
     /**
      * Type of codec implemented by the hardware accelerator.

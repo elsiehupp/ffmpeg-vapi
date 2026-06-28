@@ -118,7 +118,7 @@ static const AVCodecTag additional_subtitle_tags[] = {
 
 };
 
-public abstract class MatroskaClassOptions : LibAVUtil.Class {
+public abstract class MatroskaClassOptions : LibAVUtil.Log.Class {
     [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {

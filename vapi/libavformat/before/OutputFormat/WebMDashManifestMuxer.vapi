@@ -32,7 +32,7 @@ http://standards.iso.org/ittf/PubliclyAvailableStandards/c065274_ISO_IEC_23009-1
 #if CONFIG_WEBM_DASH_MANIFEST_MUXER
 
 [CCode (cname="webm_dash_class",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
-public class WebMDashManifestMuxerClass : LibAVUtil.Class {
+public class WebMDashManifestMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/webmdashenc.c")]
     public override string class_name {
         public get {

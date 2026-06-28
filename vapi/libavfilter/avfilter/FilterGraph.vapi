@@ -37,7 +37,7 @@ Graph-based frame editing library.
 [Compact]
 public class LibAVFilter.FilterGraph {
     [CCode (cname="av_class")]
-    public LibAVUtil.Class? av_class;
+    public LibAVUtil.Log.Class? av_class;
 
     [CCode (cname="filters")]
     public LibAVFilter.FilterContext[] filters;
@@ -149,6 +149,15 @@ public class LibAVFilter.FilterGraph {
     ***********************************************************/
     [CCode (cname="aresample_swr_opts")]
     public string aresample_swr_opts;
+
+    /***********************************************************
+    Sets the maximum number of buffered frames in the filtergraph combined.
+
+    Zero means no limit. This field must be set before calling
+    avfilter_graph_config().
+    ***********************************************************/
+    [CCode (cname="max_buffered_frames")]
+    public uint max_buffered_frames;
 
     /***********************************************************
     Private fields
@@ -352,6 +361,38 @@ public class LibAVFilter.FilterGraph {
     );
 
     /***********************************************************
+    Parse a textual filtergraph description into an intermediate form.
+
+    This intermediate representation is intended to be modified by the caller as
+    described in the documentation of LibAVFilter.FilterGraphSegment and its children, and
+    then applied to the graph either manually or with other
+    avfilter_graph_segment_*() functions. See the documentation for
+    avfilter_graph_segment_apply() for the canonical way to apply
+    LibAVFilter.FilterGraphSegment.
+
+    @param graph Filter graph the parsed segment is associated with. Will only be
+                 used for logging and similar auxiliary purposes. The graph will
+                 not be actually modified by this function - the parsing results
+                 are instead stored in seg for further processing.
+    @param graph_str a string describing the filtergraph segment
+    @param flags reserved for future use, caller must set to 0 for now
+    @param seg A pointer to the newly-created LibAVFilter.FilterGraphSegment is written
+               here on success. The graph segment is owned by the caller and must
+               be freed with avfilter_graph_segment_free() before graph itself is
+               freed.
+
+    @retval "non-negative number" success
+    @retval "negative error code" failure
+    ***********************************************************/
+    [CCode (cname="avfilter_graph_segment_parse",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
+    public int avfilter_graph_segment_parse (
+        LibAVFilter.FilterGraph? graph,
+        string graph_str,
+        int flags,
+        LibAVFilter.FilterGraphSegment[] seg
+    );
+
+    /***********************************************************
     Send a command to one or more filter instances.
 
     @param graph  the filter graph
@@ -445,233 +486,5 @@ public class LibAVFilter.FilterGraph {
 /***********************************************************
 @}
 ***********************************************************/
-
-} // namespace LibAVFilter
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-typedef struct LibAVFilter.FilterGraph {
-    const LibAVUtil.Class *av_class;
-    LibAVFilter.FilterContext[] filters;
-    unsigned nb_filters;
-
-    char *scale_sws_opts; ///< sws options to use for the auto-inserted scale filters
-
-    /***********************************************************
-    Type of multithreading allowed for filters in this graph. A combination
-    of LibAVFilter.FilterThreadSliceFlags flags.
-     *
-    May be set by the caller at any point, the setting will apply to all
-    filters initialized after that. The default is allowing everything.
-     *
-    When a filter in this graph is initialized, this field is combined using
-    bit AND with LibAVFilter.FilterContext.thread_type to get the final mask used for
-    determining allowed threading types. I.e. a threading type needs to be
-    set in both to be allowed.
-    ***********************************************************/
-    int thread_type;
-
-    /***********************************************************
-    Maximum number of threads used by filters in this graph. May be set by
-    the caller before adding any filters to the filtergraph. Zero (the
-    default) means that the number of threads is determined automatically.
-    ***********************************************************/
-    int nb_threads;
-
-    /***********************************************************
-    Opaque user data. May be set by the caller to an arbitrary value, e.g. to
-    be used from callbacks like @ref LibAVFilter.FilterGraph.execute.
-    Libavfilter will not touch this field in any way.
-    ***********************************************************/
-    void *opaque;
-
-    /***********************************************************
-    This callback may be set by the caller immediately after allocating the
-    graph and before adding any filters to it, to provide a custom
-    multithreading implementation.
-     *
-    If set, filters with slice threading capability will call this callback
-    to execute multiple jobs in parallel.
-     *
-    If this field is left unset, libavfilter will use its internal
-    implementation, which may or may not be multithreaded depending on the
-    platform and build options.
-    ***********************************************************/
-    avfilter_execute_func *execute;
-
-    char *aresample_swr_opts; ///< swr options to use for the auto-inserted aresample filters, Access ONLY through AVOptions
-
-    /***********************************************************
-    Sets the maximum number of buffered frames in the filtergraph combined.
-     *
-    Zero means no limit. This field must be set before calling
-    avfilter_graph_config().
-    ***********************************************************/
-    unsigned max_buffered_frames;
-} LibAVFilter.FilterGraph;
-
-/***********************************************************
-Allocate a filter graph.
-
-@return the allocated filter graph on success or NULL.
-***********************************************************/
-LibAVFilter.FilterGraph *avfilter_graph_alloc(void);
-
-/***********************************************************
-Create a new filter instance in a filter graph.
-
-@param graph graph in which the new filter will be used
-@param filter the filter to create an instance of
-@param name Name to give to the new instance (will be copied to
-            LibAVFilter.FilterContext.name). This may be used by the caller to identify
-            different filters, libavfilter itself assigns no semantics to
-            this parameter. May be NULL.
-
-@return the context of the newly created filter instance (note that it is
-        also retrievable directly through LibAVFilter.FilterGraph.filters or with
-        avfilter_graph_get_filter()) on success or NULL on failure.
-***********************************************************/
-LibAVFilter.FilterContext *avfilter_graph_alloc_filter(LibAVFilter.FilterGraph *graph,
-                                             const LibAVFilter.Filter *filter,
-                                             const char *name);
-
-/***********************************************************
-Get a filter instance identified by instance name from graph.
-
-@param graph filter graph to search through.
-@param name filter instance name (should be unique in the graph).
-@return the pointer to the found filter instance or NULL if it
-cannot be found.
-***********************************************************/
-LibAVFilter.FilterContext *avfilter_graph_get_filter(LibAVFilter.FilterGraph *graph, const char *name);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/***********************************************************
-Parse a textual filtergraph description into an intermediate form.
-
-This intermediate representation is intended to be modified by the caller as
-described in the documentation of LibAVFilter.FilterGraphSegment and its children, and
-then applied to the graph either manually or with other
-avfilter_graph_segment_*() functions. See the documentation for
-avfilter_graph_segment_apply() for the canonical way to apply
-LibAVFilter.FilterGraphSegment.
-
-@param graph Filter graph the parsed segment is associated with. Will only be
-             used for logging and similar auxiliary purposes. The graph will
-             not be actually modified by this function - the parsing results
-             are instead stored in seg for further processing.
-@param graph_str a string describing the filtergraph segment
-@param flags reserved for future use, caller must set to 0 for now
-@param seg A pointer to the newly-created LibAVFilter.FilterGraphSegment is written
-           here on success. The graph segment is owned by the caller and must
-           be freed with avfilter_graph_segment_free() before graph itself is
-           freed.
-
-@retval "non-negative number" success
-@retval "negative error code" failure
- */
-int avfilter_graph_segment_parse(LibAVFilter.FilterGraph *graph, const char *graph_str,
-                                 int flags, LibAVFilter.FilterGraphSegment **seg);
-
-/***********************************************************
-Send a command to one or more filter instances.
-
-@param graph  the filter graph
-@param target the filter(s) to which the command should be sent
-              "all" sends to all filters
-              otherwise it can be a filter or filter instance name
-              which will send the command to all matching filters.
-@param cmd    the command to send, for handling simplicity all commands must be alphanumeric only
-@param arg    the argument for the command
-@param res    a buffer with size res_size where the filter(s) can return a response.
-
-@returns >=0 on success otherwise an error code.
-             AVERROR(ENOSYS) on unsupported commands
- */
-int avfilter_graph_send_command(LibAVFilter.FilterGraph *graph, const char *target, const char *cmd, const char *arg, char *res, int res_len, int flags);
-
-/***********************************************************
-Queue a command for one or more filter instances.
-
-@param graph  the filter graph
-@param target the filter(s) to which the command should be sent
-              "all" sends to all filters
-              otherwise it can be a filter or filter instance name
-              which will send the command to all matching filters.
-@param cmd    the command to sent, for handling simplicity all commands must be alphanumeric only
-@param arg    the argument for the command
-@param ts     time at which the command should be sent to the filter
-
-@note As this executes commands after this function returns, no return code
-      from the filter is provided, also AVFILTER_CMD_FLAG_ONE is not supported.
-***********************************************************/
-int avfilter_graph_queue_command(LibAVFilter.FilterGraph *graph, const char *target, const char *cmd, const char *arg, int flags, double ts);
-
-
-/***********************************************************
-Dump a graph into a human-readable string representation.
-
-@param graph    the graph to dump
-@param options  formatting options; currently ignored
-@return  a string, or NULL in case of memory allocation failure;
-         the string must be freed using av_free
- */
-char *avfilter_graph_dump(LibAVFilter.FilterGraph *graph, const char *options);
-
-/***********************************************************
-Request a frame on the oldest sink link.
-
-If the request returns AVERROR_EOF, try the next.
-
-Note that this function is not meant to be the sole scheduling mechanism
-of a filtergraph, only a convenience function to help drain a filtergraph
-in a balanced way under normal circumstances.
-
-Also note that AVERROR_EOF does not mean that frames did not arrive on
-some of the sinks during the process.
-When there are multiple sink links, in case the requested link
-returns an EOF, this may cause a filter to flush pending frames
-which are sent to another sink link, although unrequested.
-
-@return  the return value of ff_request_frame(),
-         or AVERROR_EOF if all links returned AVERROR_EOF
- */
-int avfilter_graph_request_oldest (
-    LibAVFilter.FilterGraph *graph
-);
 
 } // namespace LibAVFilter

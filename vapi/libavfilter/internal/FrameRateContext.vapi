@@ -42,7 +42,7 @@ public delegate void BlendDelegate (
 [Compact]
 public class FrameRateContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     // parameters
 
@@ -50,7 +50,7 @@ public class FrameRateContext {
     output frames per second
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational dest_frame_rate;
+    public LibAVUtil.Rational dest_frame_rate;
 
     /***********************************************************
     flags affecting frame rate conversion algorithm
@@ -89,13 +89,13 @@ public class FrameRateContext {
     timebase of source
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational srce_time_base;
+    public LibAVUtil.Rational srce_time_base;
 
     /***********************************************************
     timebase of destination
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational dest_time_base;
+    public LibAVUtil.Rational dest_time_base;
 
     /***********************************************************
     Sum of the absolute difference function (scene detect only)

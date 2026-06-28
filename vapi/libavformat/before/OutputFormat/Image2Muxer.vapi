@@ -26,7 +26,7 @@ namespace LibAVFormat {
 #if CONFIG_IMAGE2_MUXER
 
 [CCode (cname="img2mux_class",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
-public class Image2MuxerClass : LibAVUtil.Class {
+public class Image2MuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
     public override string class_name {
         public get {

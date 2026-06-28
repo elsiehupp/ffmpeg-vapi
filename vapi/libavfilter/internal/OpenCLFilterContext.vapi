@@ -29,9 +29,9 @@ it was introduced in OpenCL 2.0.
 [Compact]
 public class OpenCLFilterContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
-    public AVBufferRef? device_ref;
+    public LibAVUtil.BufferRef? device_ref;
     [CCode (cname="")]
 
     [CCode (cname="")]
@@ -69,7 +69,7 @@ avctx, cle and err.
 //  {
 //      cle = clSetKernelArg (kernel, arg_num, sizeof (type), arg);
 //      if (cle != CL_SUCCESS) {
-//          av_log (avctx, LogLevel.ERROR, "Failed to set kernel "
+//          av_log (avctx, LibAVUtil.Log.Level.ERROR, "Failed to set kernel "
 //                 "argument %d: error %d.\n", arg_num, cle);
 //          err = AVERROR (EIO);
 //          goto fail;
@@ -87,7 +87,7 @@ variable err, log error msg, and jump to fail label on error.
 //  );
 //  {
 //      if (cle != CL_SUCCESS) {
-//          av_log (avctx, LogLevel.ERROR, __VA_ARGS__);
+//          av_log (avctx, LibAVUtil.Log.Level.ERROR, __VA_ARGS__);
 //          err = errcode;
 //          goto fail;
 //      }
@@ -104,7 +104,7 @@ release an OpenCL Kernel
 //      if (k) {
 //          cle = clReleaseKernel (k);
 //          if (cle != CL_SUCCESS)
-//              av_log (avctx, LogLevel.ERROR, "Failed to release "
+//              av_log (avctx, LibAVUtil.Log.Level.ERROR, "Failed to release "
 //                     "OpenCL kernel: %d.\n", cle);
 //      }
 //  }
@@ -120,7 +120,7 @@ release an OpenCL Memory Object
 //      if (m) {
 //          cle = clReleaseMemObject (m);
 //          if (cle != CL_SUCCESS)
-//              av_log (avctx, LogLevel.ERROR, "Failed to release "
+//              av_log (avctx, LibAVUtil.Log.Level.ERROR, "Failed to release "
 //                     "OpenCL memory: %d.\n", cle);
 //      }
 //  }
@@ -136,7 +136,7 @@ release an OpenCL Command Queue
 //      if (q) {
 //          cle = clReleaseCommandQueue (q);
 //          if (cle != CL_SUCCESS)
-//              av_log (avctx, LogLevel.ERROR, "Failed to release "
+//              av_log (avctx, LibAVUtil.Log.Level.ERROR, "Failed to release "
 //                     "OpenCL command queue: %d.\n", cle);
 //      }
 //  }

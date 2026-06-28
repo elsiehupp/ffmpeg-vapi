@@ -22,7 +22,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 namespace LibAVFormat {
 
 [CCode (cname="tls_class",cheader_filename="subprojects/ffmpeg/libavformat/tls_securetransport.c")]
-public class SecureTransportTLSURLProtocolClass : LibAVUtil.Class {
+public class SecureTransportTLSURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tls_securetransport.c")]
     public override string class_name {
         public get {

@@ -132,7 +132,7 @@ public define MXF_COMMON_OPTIONS
 public class MXFMuxerClassPrivateData { }
 
 [CCode (cname="mxf_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
-public class MXFMuxerClass : LibAVUtil.Class {
+public class MXFMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override string class_name {
         public get {
@@ -189,7 +189,7 @@ public class MXFMuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="mxf_d10_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
-public class MXFD10MuxerClass : LibAVUtil.Class {
+public class MXFD10MuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override string class_name {
         public get {
@@ -258,7 +258,7 @@ public class MXFD10MuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="mxf_opatom_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
-public class MXFOPAtomMuxerClass : LibAVUtil.Class {
+public class MXFOPAtomMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
     public override string class_name {
         public get {

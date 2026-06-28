@@ -23,7 +23,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 namespace LibAVFormat {
 
 [CCode (cname="tee_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/tee.c")]
-public class TeeMuxerClass : LibAVUtil.Class {
+public class TeeMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tee.c")]
     public override string class_name {
         public get {

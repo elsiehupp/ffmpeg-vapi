@@ -42,7 +42,7 @@ public static const LibAVUtil.IntOption[] FRAMES_PER_PACKET = {
 };
 
 [CCode (cname="codec2_mux_class",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
-public class Codec2MuxerClass : LibAVUtil.Class {
+public class Codec2MuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string class_name {
         public get {
@@ -69,11 +69,11 @@ public class Codec2MuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = LibAVUtil.ClassCategory.DEMUXER;
+    //  .category = LibAVUtil.Log.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="codec2_demux_class",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
-public class Codec2DemuxerClass : LibAVUtil.Class {
+public class Codec2DemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string class_name {
         public get {
@@ -115,11 +115,11 @@ public class Codec2DemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = LibAVUtil.ClassCategory.DEMUXER;
+    //  .category = LibAVUtil.Log.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="codec2raw_demux_class",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
-public class Codec2RawDemuxerClass : LibAVUtil.Class {
+public class Codec2RawDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/codec2.c")]
     public override string class_name {
         public get {
@@ -168,7 +168,7 @@ public class Codec2RawDemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = LibAVUtil.ClassCategory.DEMUXER;
+    //  .category = LibAVUtil.Log.ClassCategory.DEMUXER;
 }
 
 #if CONFIG_CODEC2_MUXER

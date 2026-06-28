@@ -90,7 +90,7 @@ Only suitable for opt_help and similar since it lacks prefix handling.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void log_callback_help (
-    void* ptr,
+    void *ptr,
     int level,
     char* fmt,
     va_list vl
@@ -627,7 +627,7 @@ children.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public void show_help_children (
-    LibAVUtil.Class class,
+    LibAVUtil.Log.Class class,
     int flags
 );
 

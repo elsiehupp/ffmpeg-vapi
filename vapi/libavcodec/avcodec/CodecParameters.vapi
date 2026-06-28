@@ -46,7 +46,7 @@ public class CodecParameters {
     @brief Specific type of the encoded data (the codec used).
     ***********************************************************/
     [CCode (cname="codec_id")]
-    internal CodecID codec_id;
+    internal LibAVCodec.CodecID codec_id;
 
     /***********************************************************
     @brief Additional information about the codec (corresponds to the AVI FOURCC).

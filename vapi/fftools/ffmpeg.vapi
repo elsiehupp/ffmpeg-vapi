@@ -97,7 +97,7 @@ public class HWDevice {
     public AVHWDeviceType type;
 
     [CCode (cname="")]
-    public AVBufferRef device_ref;
+    public LibAVUtil.BufferRef device_ref;
 }
 
 /***********************************************************
@@ -593,7 +593,7 @@ public class InputFilter {
     public int height;
 
     [CCode (cname="")]
-    public AVRational sample_aspect_ratio;
+    public LibAVUtil.Rational sample_aspect_ratio;
 
     [CCode (cname="")]
     public int sample_rate;
@@ -605,7 +605,7 @@ public class InputFilter {
     public uint64 channel_layout;
 
     [CCode (cname="")]
-    public AVBufferRef hw_frames_ctx;
+    public LibAVUtil.BufferRef hw_frames_ctx;
 
     [CCode (cname="")]
     public int eof;
@@ -642,7 +642,7 @@ public class OutputFilter {
     public int width, height;
 
     [CCode (cname="")]
-    public AVRational frame_rate;
+    public LibAVUtil.Rational frame_rate;
 
     [CCode (cname="")]
     public int format;
@@ -818,7 +818,7 @@ public classInputStream {
     framerate forced with -r
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational framerate;
+    public LibAVUtil.Rational framerate;
 
     [CCode (cname="")]
     public int top_field_first;
@@ -844,7 +844,7 @@ public classInputStream {
         public int ret;
 
         [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-        public AVSubtitle subtitle;
+        public LibAVCodec.Subtitle subtitle;
     }
 
     public PrevSub prev_sub;
@@ -859,7 +859,7 @@ public classInputStream {
         public int64 end_pts;
 
         /***********************************************************
-        queue of AVSubtitle* before filter init
+        queue of LibAVCodec.Subtitle* before filter init
         ***********************************************************/
         [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
         public AVFifoBuffer? sub_queue;
@@ -945,7 +945,7 @@ public classInputStream {
     public LibAVUtil.PixelFormat hwaccel_retrieved_pix_fmt;
 
     [CCode (cname="")]
-    public AVBufferRef hw_frames_ctx;
+    public LibAVUtil.BufferRef hw_frames_ctx;
 
     /***********************************************************
     stats
@@ -1023,7 +1023,7 @@ public class InputFile {
     time base of the duration
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational time_base;
+    public LibAVUtil.Rational time_base;
 
     [CCode (cname="")]
     public int64 input_ts_offset;
@@ -1203,10 +1203,10 @@ public class OutputStream {
     the timebase of the packets sent to the muxer
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational mux_timebase;
+    public LibAVUtil.Rational mux_timebase;
 
     [CCode (cname="")]
-    public AVRational enc_timebase;
+    public LibAVUtil.Rational enc_timebase;
 
     [CCode (cname="")]
     public int nb_bitstream_filters;
@@ -1248,7 +1248,7 @@ public class OutputStream {
     video only
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational frame_rate;
+    public LibAVUtil.Rational frame_rate;
 
     [CCode (cname="")]
     public int is_cfr;
@@ -1266,7 +1266,7 @@ public class OutputStream {
     public double rotate_override_value;
 
     [CCode (cname="")]
-    public AVRational frame_aspect_ratio;
+    public LibAVUtil.Rational frame_aspect_ratio;
 
     /***********************************************************
     forced key frames
@@ -1531,7 +1531,7 @@ public class OutputFile {
 
 //  extern const OptionDef options[];
 //  extern const HWAccel hwaccels[];
-//  extern AVBufferRef? hw_device_ctx;
+//  extern LibAVUtil.BufferRef? hw_device_ctx;
 //  #if CONFIG_QSV
 //  extern string qsv_device;
 //  #endif
@@ -1629,7 +1629,7 @@ public int init_complex_filtergraph (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
 public void sub2video_update (
     InputStream? ist,
-    AVSubtitle? sub
+    LibAVCodec.Subtitle? sub
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]

@@ -22,7 +22,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 namespace LibAVFormat {
 
 [CCode (cname="concat_class",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
-public class ConcatDemuxerClass : LibAVUtil.Class {
+public class ConcatDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/concatdec.c")]
     public override string class_name {
         public get {

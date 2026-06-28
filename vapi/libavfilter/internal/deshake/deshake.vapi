@@ -96,7 +96,7 @@ public const size_t MAX_R; // 64
 [Compact]
 public class DeshakeContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     /***********************************************************
     Scratch buffer for motion search

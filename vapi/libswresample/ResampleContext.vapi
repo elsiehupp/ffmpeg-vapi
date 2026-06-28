@@ -24,7 +24,7 @@ namespace LibSoftwareResample {
 [Compact]
 internal class LibSoftwareResample.LibAVResample.ResampleContext {
     [CCode (cname="")]
-    internal LibAVUtil.Class? av_class;
+    internal LibAVUtil.Log.Class? av_class;
 
     [CCode (cname="")]
     internal uint8[] filter_bank;

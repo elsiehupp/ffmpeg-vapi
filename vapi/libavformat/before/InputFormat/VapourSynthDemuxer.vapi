@@ -25,7 +25,7 @@ Synthesizes vapour (?)
 ***********************************************************/
 
 [CCode (cname="class_vs",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
-public class VapourSynthDemuxerClass : LibAVUtil.Class {
+public class VapourSynthDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/vapoursynth.c")]
     public override string class_name {
         public get {

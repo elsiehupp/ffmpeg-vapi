@@ -87,7 +87,7 @@ public class AVBufferSrcParameters {
     The timebase to be used for the timestamps on the input frames.
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational time_base;
+    public LibAVUtil.Rational time_base;
 
     /***********************************************************
     Video only, the display dimensions of the input frames.
@@ -105,7 +105,7 @@ public class AVBufferSrcParameters {
     Video only, the sample (pixel) aspect ratio.
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational sample_aspect_ratio;
+    public LibAVUtil.Rational sample_aspect_ratio;
 
     /***********************************************************
     Video only, the frame rate of the input video. This field
@@ -114,7 +114,7 @@ public class AVBufferSrcParameters {
     value if the framerate is variable or unknown.
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational frame_rate;
+    public LibAVUtil.Rational frame_rate;
 
     /***********************************************************
     Video with a hwaccel pixel format only. This should be a
@@ -122,7 +122,7 @@ public class AVBufferSrcParameters {
     input frames.
     ***********************************************************/
     [CCode (cname="")]
-    public AVBufferRef hw_frames_ctx;
+    public LibAVUtil.BufferRef hw_frames_ctx;
 
     /***********************************************************
     Audio only, the audio sampling rate in samples per second.

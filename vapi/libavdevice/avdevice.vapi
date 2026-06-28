@@ -570,7 +570,7 @@ Example of the usage basing on opengl output device:
 @code
  LibAVFormat.FormatContext? oc = NULL;
  LibAVDevice.DeviceCapabilitiesQuery? caps = NULL;
- AVOptionRanges? ranges;
+ LibAVUtil.Log.OptionRangeList? ranges;
  int ret;
 
  if ((ret = avformat_alloc_output_context2 (&oc, NULL, "opengl", NULL)) < 0)
@@ -609,7 +609,7 @@ to implement capabilities probing API based on AVOption API. Should not be used 
 [Compact]
 public class LibAVDevice.DeviceCapabilitiesQuery {
     [CCode (cname="")]
-    public LibAVUtil.Class? av_class;
+    public LibAVUtil.Log.Class? av_class;
 
     [CCode (cname="")]
     public LibAVFormat.FormatContext? device_context;
@@ -645,7 +645,7 @@ public class LibAVDevice.DeviceCapabilitiesQuery {
     public int frame_height;
 
     [CCode (cname="")]
-    public AVRational fps;
+    public LibAVUtil.Rational fps;
 }
 
 /***********************************************************

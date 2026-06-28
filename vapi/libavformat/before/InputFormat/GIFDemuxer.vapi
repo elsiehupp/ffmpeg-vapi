@@ -27,7 +27,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
-public class GIFDemuxerClass : LibAVUtil.Class {
+public class GIFDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]
     public override string class_name {
         public get {
@@ -120,7 +120,7 @@ public class GIFDemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = LibAVUtil.ClassCategory.DEMUXER;
+    //  .category = LibAVUtil.Log.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="struct GIFDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/gifdec.c")]

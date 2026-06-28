@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="mov_class",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
-public class MOVDemuxerClass : LibAVUtil.Class {
+public class MOVDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
     public override string class_name {
         public get {

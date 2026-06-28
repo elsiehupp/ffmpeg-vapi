@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="tedcaptions_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
-public class TedCaptionsDemuxerClass : LibAVUtil.Class {
+public class TedCaptionsDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tedcaptionsdec.c")]
     public override string class_name {
         public get {

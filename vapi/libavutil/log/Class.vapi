@@ -18,19 +18,19 @@ You should have received a copy of the GNU Lesser General Public
 License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
-
 namespace LibAVUtil {
+namespace Log {
 
 /***********************************************************
-@brief Describe the class of an Class context structure. That is an
+@brief Describe the class of an LibAVUtil.Log.Class context structure. That is an
 arbitrary struct of which the first field is a pointer to an
-Class struct (e.g. LibAVCodec.CodecContext, LibAVFormat.FormatContext etc.).
+LibAVUtil.Log.Class struct (e.g. LibAVCodec.CodecContext, LibAVFormat.FormatContext etc.).
 ***********************************************************/
 [CCode (cname="struct AVClass",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
-public abstract class Class {
+public abstract class LibAVUtil.Log.Class {
     /***********************************************************
     @brief The name of the class; usually it is the same name as the
-    context structure type to which the Class is associated.
+    context structure type to which the LibAVUtil.Log.Class is associated.
     ***********************************************************/
     [CCode (cname="class_name")]
     public abstract string class_name { public get; }
@@ -45,11 +45,151 @@ public abstract class Class {
     //  );
 
     /***********************************************************
+    @brief Send the specified message to the log if the level is less than or equal
+    to the current av_log_level. By default, all logging messages are sent to
+    stderr. This behavior can be altered by setting a different logging callback
+    function.
+    @see @link av_log_set_callback
+
+    @param avcl A pointer to an arbitrary struct of which the first field is a
+        pointer to an LibAVUtil.Log.Class struct or null if general log.
+    @param level The importance level of the message expressed using a @ref
+        lavu_log_constants "Logging Constant".
+    @param fmt The format string (printf-compatible) that specifies how
+        subsequent arguments are converted to output.
+    ***********************************************************/
+    [CCode (cname="av_log",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+    public void av_log (
+        void *avcl,
+        int level,
+        string fmt,
+        ...
+    ); // av_printf_format (3, 4);
+
+    /***********************************************************
+    @brief Send the specified message to the log once with the initial_level and then with
+    the subsequent_level. By default, all logging messages are sent to
+    stderr. This behavior can be altered by setting a different logging callback
+    function.
+    @see av_log
+
+    @param avcl A pointer to an arbitrary struct of which the first field is a
+           pointer to an LibAVUtil.Log.Class struct or NULL if general log.
+    @param initial_level importance level of the message expressed using a @ref
+           lavu_log_constants "Logging Constant" for the first occurrence.
+    @param subsequent_level importance level of the message expressed using a @ref
+           lavu_log_constants "Logging Constant" after the first occurrence.
+    @param fmt The format string (printf-compatible) that specifies how
+           subsequent arguments are converted to output.
+    @param state a variable to keep track of if a message has already been printed
+           this must be initialized to 0 before the first use. The same state
+           must not be accessed by 2 Threads simultaneously.
+    ***********************************************************/
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+    public void av_log_once (
+        void *avcl,
+        int initial_level,
+        int subsequent_level,
+        ref int state,
+        string fmt, ...
+    ) av_printf_format (5, 6);
+
+
+    /***********************************************************
+    @brief Send the specified message to the log if the level is less than or equal
+    to the current av_log_level. By default, all logging messages are sent to
+    stderr. This behavior can be altered by setting a different logging callback
+    function.
+    @see @link av_log_set_callback
+
+    @param avcl A pointer to an arbitrary struct of which the first field is a
+        pointer to an LibAVUtil.Log.Class struct.
+    @param level The importance level of the message expressed using a @ref
+        lavu_log_constants "Logging Constant".
+    @param fmt The format string (printf-compatible) that specifies how
+        subsequent arguments are converted to output.
+    @param vl The arguments referenced by the format string.
+    ***********************************************************/
+    [CCode (cname="av_vlog",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+    public void av_vlog (
+        void *avcl,
+        int level,
+        string fmt,
+        va_list vl
+    );
+
+    /***********************************************************
+    @brief Get the current log level
+
+    @see @link lavu_log_constants
+
+    @return Current log level
+    ***********************************************************/
+    [CCode (cname="av_log_get_level",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+    public int av_log_get_level ();
+
+    /***********************************************************
+    @brief Set the log level
+
+    @see @link lavu_log_constants
+
+    @param level Logging level
+    ***********************************************************/
+    [CCode (cname="av_log_set_level",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+    public void av_log_set_level (
+        int level
+    );
+
+    [CCode (cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+    public delegate void CallbackDelegate (
+        void *arg0,
+        int arg1,
+        string arg2,
+        va_list arg3
+    );
+
+    /***********************************************************
+    @brief Set the logging callback
+
+    @note The callback must be thread safe, even if the application does not use
+          threads itself as some codecs are multithreaded.
+
+    @see @link av_log_default_callback
+
+    @param callback A logging function with a compatible signature.
+    ***********************************************************/
+    [CCode (cname="av_log_set_callback",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+    public void av_log_set_callback (
+        CallbackDelegate callback
+    );
+
+    /***********************************************************
+    @brief Default logging callback
+
+    It prints the message to stderr, optionally colorizing it.
+
+    @param avcl A pointer to an arbitrary struct of which the first field is a
+        pointer to an LibAVUtil.Log.Class struct.
+    @param level The importance level of the message expressed using a @ref
+        lavu_log_constants "Logging Constant".
+    @param fmt The format string (printf-compatible) that specifies how
+        subsequent arguments are converted to output.
+    @param vl The arguments referenced by the format string.
+    ***********************************************************/
+    [CCode (cname="av_log_default_callback",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+    public void av_log_default_callback (
+        void *avcl,
+        int level,
+        string fmt,
+        va_list vl
+    );
+
+    /***********************************************************
     @brief Return the context name
 
-    @param class_context The Class context
+    @param class_context The LibAVUtil.Log.Class context
 
-    @return The Class class_name
+    @return The LibAVUtil.Log.Class class_name
     ***********************************************************/
     [CCode (cname="av_default_item_name",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
     public virtual string item_name (
@@ -65,7 +205,7 @@ public abstract class Class {
     public abstract Option[] option { public get; }
 
     /***********************************************************
-    @brief LIBAVUTIL_VERSION with which this structure was created.
+    @brief LibAVUtil.Version.VERSI with which this structure was created.
     This is used to allow fields to be added without requiring major
     version bumps everywhere.
     ***********************************************************/
@@ -99,7 +239,7 @@ public abstract class Class {
     );
 
     /***********************************************************
-    @brief Return an Class corresponding to the next potential
+    @brief Return an LibAVUtil.Log.Class corresponding to the next potential
     LibAVUtil.Options-enabled child.
 
     The difference between child_next and this is that
@@ -107,8 +247,8 @@ public abstract class Class {
     child_class_next iterates over _all possible_ children.
     ***********************************************************/
     [CCode (cname="child_class_next")]
-    public abstract Class child_class_next (
-        Class prev
+    public abstract LibAVUtil.Log.Class child_class_next (
+        LibAVUtil.Log.Class prev
     );
 
     /***********************************************************
@@ -146,12 +286,144 @@ public abstract class Class {
 @brief Iterate over potential LibAVUtil.Options-enabled children of parent.
 
 @param prev result of a previous call to this function or null
-@return Class corresponding to next potential child or null
+@return LibAVUtil.Log.Class corresponding to next potential child or null
 ***********************************************************/
 [CCode (cname="av_opt_child_class_next",cheader_filename="subprojects/ffmpeg/libavutil/opt.h")]
-public Class av_opt_child_class_next (
-    Class parent,
-    Class prev
+public LibAVUtil.Log.Class av_opt_child_class_next (
+    LibAVUtil.Log.Class parent,
+    LibAVUtil.Log.Class prev
 );
 
+} // namespace LibAVUtil
+
+/***********************************************************
+copyright (c) 2006 Michael Niedermayer <michaelni@gmx.at>
+
+This file is part of FFmpeg.
+
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
+namespace LibAVUtil {
+
+/***********************************************************
+Describe the class of an LibAVUtil.Log.Class context structure. That is an
+arbitrary struct of which the first field is a pointer to an
+LibAVUtil.Log.Class struct (e.g. AVCodecContext, AVFormatContext etc.).
+***********************************************************/
+[CCode (cname="struct AVClass",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+public class LibAVUtil.Log.Class {
+    /***********************************************************
+    The name of the class; usually it is the same name as the
+    context structure type to which the LibAVUtil.Log.Class is associated.
+    ***********************************************************/
+    public string class_name;
+
+    /***********************************************************
+    A pointer to a function which returns the name of a context
+    instance ctx associated with the class.
+    ***********************************************************/
+    //  public string (*item_name)(void *ctx);
+
+    /***********************************************************
+    An array of options for the structure or NULL.
+    When non-NULL, the array must be terminated by an option with a NULL
+    name.
+
+    @see av_set_default_options()
+    ***********************************************************/
+    public AVOption? option;
+
+    /***********************************************************
+    LibAVUtil.Version.VERSI with which this structure was created.
+    This is used to allow fields to be added to LibAVUtil.Log.Class without requiring
+    major version bumps everywhere.
+    ***********************************************************/
+    public int version;
+
+    /***********************************************************
+    Offset in the structure where the log level offset is stored. The log
+    level offset is an int added to the log level for logging with this
+    object as the context.
+
+    0 means there is no such variable.
+    ***********************************************************/
+    public int log_level_offset_offset;
+
+    /***********************************************************
+    Offset in the structure where a pointer to the parent context for
+    logging is stored. For example a decoder could pass its AVCodecContext
+    to eval as such a parent context, which an ::av_log() implementation
+    could then leverage to display the parent context.
+
+    When the pointer is NULL, or this offset is zero, the object is assumed
+    to have no parent.
+    ***********************************************************/
+    public int parent_log_context_offset;
+
+    /***********************************************************
+    Category used for visualization (like color).
+
+    Only used when ::get_category() is NULL. Use this field when all
+    instances of this class have the same category, use ::get_category()
+    otherwise.
+    ***********************************************************/
+    public AVClassCategory category;
+
+    /***********************************************************
+    Callback to return the instance category. Use this callback when
+    different instances of this class may have different categories,
+    ::category otherwise.
+    ***********************************************************/
+    //  public AVClassCategory (*get_category)(void *ctx);
+
+    /***********************************************************
+    Callback to return the supported/allowed ranges.
+    ***********************************************************/
+    //  public int (*query_ranges)(struct LibAVUtil.Log.OptionRangeList **, void *obj, string key, int flags);
+
+    /***********************************************************
+    Return next AVOptions-enabled child or NULL
+    ***********************************************************/
+    //  public void *(*child_next)(void *obj, void *prev);
+
+    /***********************************************************
+    Iterate over the AVClasses corresponding to potential AVOptions-enabled
+    children.
+
+    @param iter pointer to opaque iteration state. The caller must initialize
+                *iter to NULL before the first call.
+    @return LibAVUtil.Log.Class for the next AVOptions-enabled child or NULL if there are
+            no more such children.
+
+    @note The difference between ::child_next() and ::child_class_iterate()
+          is that ::child_next() iterates over _actual_ children of an
+          _existing_ object instance, while ::child_class_iterate() iterates
+          over the classes of all _potential_ children of any possible
+          instance of this class.
+    ***********************************************************/
+    //  public LibAVUtil.Log.Class* (*child_class_iterate)(void **iter);
+
+    /***********************************************************
+    When non-zero, offset in the object to an unsigned int holding object
+    state flags, a combination of LibAVUtil.Log.ClassStateFlags values. The flags are
+    updated by the object to signal its state to the generic code.
+
+    Added in version 59.41.100.
+    ***********************************************************/
+    public int state_flags_offset;
+}
+
+} // namespace Log
 } // namespace LibAVUtil

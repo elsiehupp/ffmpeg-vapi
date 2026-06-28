@@ -214,7 +214,7 @@ public class ChapterContext {
 [Compact]
 public class NUTContext {
     [CCode (cname="")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public LibAVFormat.FormatContext avf;

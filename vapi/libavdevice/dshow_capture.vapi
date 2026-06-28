@@ -53,7 +53,7 @@ public void ff_printGUID (
     GUID? g
 );
 
-//  extern const LibAVUtil.Class? ff_dshow_context_class_ptr;
+//  extern const LibAVUtil.Log.Class? ff_dshow_context_class_ptr;
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavdevice/dshow_capture.h")]
 public static void dshowdebug (
@@ -744,7 +744,7 @@ dshow_ctx
 [Compact]
 public class dshow_ctx {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public IGraphBuilder? graph;
@@ -868,7 +868,7 @@ public class dshow_ctx {
     public int requested_height;
 
     [CCode (cname="")]
-    public AVRational requested_framerate;
+    public LibAVUtil.Rational requested_framerate;
 
     [CCode (cname="")]
     public int sample_rate;

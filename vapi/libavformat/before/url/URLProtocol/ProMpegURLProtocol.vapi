@@ -82,7 +82,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="prompeg_class",cheader_filename="subprojects/ffmpeg/libavformat/prompeg.c")]
-public class ProMpegURLProtocolClass : LibAVUtil.Class {
+public class ProMpegURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/prompeg.c")]
     public override string class_name {
         public get {

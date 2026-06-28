@@ -79,11 +79,11 @@ public class LibAVFilter.Filter {
     This field is NULL for filters that do not declare any options.
 
     If this field is non-NULL, the first member of the filter private data
-    must be a pointer to LibAVUtil.Class, which will be set by libavfilter generic
+    must be a pointer to LibAVUtil.Log.Class, which will be set by libavfilter generic
     code to this class.
     ***********************************************************/
     [CCode (cname="priv_class")]
-    public LibAVUtil.Class priv_class;
+    public LibAVUtil.Log.Class priv_class;
 
     /***********************************************************
     A combination of LibAVFilter.FilterFlags

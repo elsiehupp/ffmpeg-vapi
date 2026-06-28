@@ -42,7 +42,7 @@ internal class BitStreamFilter {
     May be null, in that case the bitstream filter works with any codec id.
     ***********************************************************/
     [CCode (cname="codec_ids")]
-    public CodecID[] codec_ids;
+    public LibAVCodec.CodecID[] codec_ids;
 
     /***********************************************************
     @brief A class for the private data, used to declare bitstream filter private
@@ -50,11 +50,11 @@ internal class BitStreamFilter {
     any options.
 
     If this field is non-null, the first member of the filter private data
-    must be a pointer to LibAVUtil.Class, which will be set by LibAVCodec generic
+    must be a pointer to LibAVUtil.Log.Class, which will be set by LibAVCodec generic
     code to this class.
     ***********************************************************/
     //  [CCode (cname="priv_class")]
-    public LibAVUtil.Class priv_class;
+    public LibAVUtil.Log.Class priv_class;
 }
 
 } // namespace LibAVCodec

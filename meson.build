@@ -15,11 +15,11 @@ deps = [
     #     'glib-2.0'
     # ),
     # dependency ('gtk+-3.0'),
-    subproject(
-        'ffmpeg'
-    ).get_variable (
-        'declared_dep'
-    )
+    # subproject(
+    #     'ffmpeg'
+    # ).get_variable (
+    #     'declared_dep'
+    # )
     # subproject(
     #     'ffmpeg'
     # ).get_variable (

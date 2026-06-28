@@ -33,7 +33,7 @@ namespace LibAVFormat {
 //  #undef OFFSET
 
 [CCode (cname="async_context_class",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
-public class AsyncContextClass : LibAVUtil.Class {
+public class AsyncContextClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
     public override string class_name {
         public get {
@@ -132,7 +132,7 @@ public class AsyncURLProtocol : URLProtocol {
 #if 0
 
 [CCode (cname="async_test_context_class",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
-public class AsyncTestContextClass : LibAVUtil.Class {
+public class AsyncTestContextClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/async.c")]
     public override string class_name {
         public get {

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="mp3_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mp3enc.c")]
-public class MP3MuxerClass : LibAVUtil.Class {
+public class MP3MuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mp3enc.c")]
     public override string class_name {
         public get {

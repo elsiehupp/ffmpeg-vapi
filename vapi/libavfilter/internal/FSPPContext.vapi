@@ -77,7 +77,7 @@ public enum Fix { // int16
 [Compact]
 public class FSPPContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public uint64 threshold_mtx_noq[8 * 2];

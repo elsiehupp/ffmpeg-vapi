@@ -27,7 +27,7 @@ namespace LibAVFormat {
 public class PCMDemuxerPrivateData { }
 
 [CCode (cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
-public abstract class PCMDemuxerClass : LibAVUtil.Class {
+public abstract class PCMDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="item_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string item_name (
         void *class_context
@@ -1250,7 +1250,7 @@ public class PCMVIDCDemuxer : PCMDemuxer {
 }
 
 [CCode (cname="sln_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
-public class SLNDemuxerClass : LibAVUtil.Class {
+public class SLNDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/pcmdec.c")]
     public override string class_name {
         public get {

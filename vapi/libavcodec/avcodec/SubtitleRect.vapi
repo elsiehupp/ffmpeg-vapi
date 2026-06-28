@@ -138,12 +138,12 @@ typedef struct AVSubtitleRect {
     int flags;
     enum AVSubtitleType type;
 
-    char *text;                     ///< 0 terminated plain UTF-8 text
+    string text;                     ///< 0 terminated plain UTF-8 text
 
     /**
      * 0 terminated ASS/SSA compatible event line.
      * The presentation of this is unaffected by the other values in this
      * struct.
      */
-    char *ass;
+    string ass;
 } AVSubtitleRect;

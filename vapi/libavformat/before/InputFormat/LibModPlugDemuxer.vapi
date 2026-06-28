@@ -24,7 +24,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="modplug_class",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
-public class LibModPlugDemuxerClass : LibAVUtil.Class {
+public class LibModPlugDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/libmodplug.c")]
     public override string class_name {
         public get {

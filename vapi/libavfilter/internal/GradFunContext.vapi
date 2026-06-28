@@ -27,7 +27,7 @@ Holds instance-specific information for gradfun.
 [Compact]
 public class GradFunContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public float strength;

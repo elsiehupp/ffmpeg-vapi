@@ -26,7 +26,7 @@ namespace LibAVFormat {
 public const string BOUNDARY_TAG; // "ffmpeg"
 
 [CCode (cname="mpjpeg_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
-public class MultipartJpegMuxerClass : LibAVUtil.Class {
+public class MultipartJpegMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpjpeg.c")]
     public override string class_name {
         public get {

@@ -24,7 +24,7 @@ public const size_t OSS_AUDIO_BLOCK_SIZE; // 4096
 [Compact]
 public class OSSAudioData {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public int fd;

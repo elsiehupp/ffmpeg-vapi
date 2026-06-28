@@ -29,7 +29,7 @@ Freed in avfilter_graph_segment_free().
 [Compact]
 public class LibAVFilter.FilterChain {
     [CCode (cname="filters")]
-    public AVFilterParams[] filters;
+    public LibAVFilter.FilterParams[] filters;
 
     [CCode (cname="nb_filters")]
     public size_t nb_filters;

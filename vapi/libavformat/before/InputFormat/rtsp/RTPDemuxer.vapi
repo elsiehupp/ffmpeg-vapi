@@ -25,7 +25,7 @@ namespace LibAVFormat {
 #if CONFIG_SDP_DEMUXER
 
 [CCode (cname="sdp_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
-public class SDPDemuxerClass : LibAVUtil.Class {
+public class SDPDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string class_name {
         public get {
@@ -122,7 +122,7 @@ public class SDPDemuxer : LibAVFormat.InputFormat {
 #if CONFIG_RTP_DEMUXER
 
 [CCode (cname="rtp_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
-public class RTPDemuxerClass : LibAVUtil.Class {
+public class RTPDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtsp.c")]
     public override string class_name {
         public get {

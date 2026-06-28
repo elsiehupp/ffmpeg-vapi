@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="asf_class",cheader_filename="subprojects/ffmpeg/libavformat/asfdec_f.c")]
-public class ASFClass : LibAVUtil.Class {
+public class ASFClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/asfdec_f.c")]
     public override string class_name {
         public get {

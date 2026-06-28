@@ -137,7 +137,7 @@ public class LibSoftwareScale.SoftwareScaleVector {
     //  attribute_deprecated
     public void sws_printVec2 (
         LibSoftwareScale.SoftwareScaleVector? a,
-        LibAVUtil.Class? log_ctx,
+        LibAVUtil.Log.Class? log_ctx,
         int log_level
     );
 

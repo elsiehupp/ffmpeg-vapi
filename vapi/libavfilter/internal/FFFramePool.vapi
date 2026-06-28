@@ -28,7 +28,7 @@ ff_frame_pool_uninit ().
 [Compact]
 public class FFFramePool { }
 
-public delegate AVBufferRef AllocDelegate (
+public delegate LibAVUtil.BufferRef AllocDelegate (
     int size
 );
 

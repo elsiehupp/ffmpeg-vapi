@@ -29,7 +29,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="ffrtmpcrypt_class",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
-public class RTMPCryptURLProtocolClass : LibAVUtil.Class {
+public class RTMPCryptURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtmpcrypt.c")]
     public override string class_name {
         public get {

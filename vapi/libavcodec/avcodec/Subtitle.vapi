@@ -28,7 +28,7 @@ LibAVCodec external API header
 
 [CCode (cname="struct AVSubtitle",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
-public class Subtitle {
+public class LibAVCodec.Subtitle {
     /***********************************************************
     @brief 0 = graphics
     ***********************************************************/
@@ -72,13 +72,3 @@ public class Subtitle {
 }
 
 } // namespace LibAVCodec
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-typedef struct AVSubtitle {
-    uint16_t format; /* 0 = graphics */
-    uint32_t start_display_time; /* relative to packet pts, in ms */
-    uint32_t end_display_time; /* relative to packet pts, in ms */
-    unsigned num_rects;
-    AVSubtitleRect **rects;
-    int64_t pts;    ///< Same as packet pts, in AV_TIME_BASE
-} AVSubtitle;

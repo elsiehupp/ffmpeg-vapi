@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="failing_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
-public class FifoTestMuxerClass : LibAVUtil.Class {
+public class FifoTestMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
     public override string class_name {
         public get {

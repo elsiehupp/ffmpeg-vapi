@@ -31,7 +31,7 @@ namespace LibAVFormat {
 [Compact]
 public class FLVDemuxerClassPrivateData { }
 
-public abstract class FLVDemuxerClass : LibAVUtil.Class {
+public abstract class FLVDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
         public get {

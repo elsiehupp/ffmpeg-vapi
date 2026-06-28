@@ -40,7 +40,7 @@ public define MPEGTS_OPTIONS
 };
 
 [CCode (cname="mpegts_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
-public class MpegTSDemuxerClass : LibAVUtil.Class {
+public class MpegTSDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string class_name {
         public get {
@@ -169,7 +169,7 @@ public class MpegTSDemuxerClass : LibAVUtil.Class {
 }
 
 [CCode (cname="mpegtsraw_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
-public class MpegTSRawDemuxerClass : LibAVUtil.Class {
+public class MpegTSRawDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.c")]
     public override string class_name {
         public get {

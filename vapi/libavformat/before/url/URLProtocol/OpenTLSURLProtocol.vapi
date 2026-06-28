@@ -37,7 +37,7 @@ namespace LibAVFormat {
 //  #endif
 
 [CCode (cname="tls_class",cheader_filename="subprojects/ffmpeg/libavformat/tls_openssl.c")]
-public class OpenTLSURLProtocolClass : LibAVUtil.Class {
+public class OpenTLSURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tls_openssl.c")]
     public override string class_name {
         public get {

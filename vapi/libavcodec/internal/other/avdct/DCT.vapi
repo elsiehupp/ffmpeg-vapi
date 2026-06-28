@@ -54,7 +54,7 @@ public delegate void GetPixelsDelegate (
 [Compact]
 public class DCT {
     [CCode (cname="av_class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="idct")]
     public IDCTDelegate idct;
@@ -115,7 +115,7 @@ public class DCT {
     );
 
     [CCode (cname="avcodec_dct_get_class",cheader_filename="subprojects/ffmpeg/libavcodec/avdct.h")]
-    public LibAVUtil.Class avcodec_dct_get_class ();
+    public LibAVUtil.Log.Class avcodec_dct_get_class ();
 }
 
 } // namespace LibAVCodec

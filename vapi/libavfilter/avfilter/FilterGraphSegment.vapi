@@ -34,7 +34,7 @@ Graph-based frame editing library.
 ***********************************************************/
 
 /***********************************************************
-A parsed representation of a filtergraph segment.
+@brief A parsed representation of a filtergraph segment.
 
 A filtergraph segment is conceptually a list of filterchains, with some
 supplementary information (e.g. format conversion flags).
@@ -46,14 +46,14 @@ avfilter_graph_segment_free().
 [Compact]
 public class LibAVFilter.FilterGraphSegment {
     /***********************************************************
-    The filtergraph this segment is associated with.
+    @brief The filtergraph this segment is associated with.
     Set by avfilter_graph_segment_parse().
     ***********************************************************/
     [CCode (cname="graph")]
     public LibAVFilter.FilterGraph? graph;
 
     /***********************************************************
-    A list of filter chain contained in this segment.
+    @brief A list of filter chain contained in this segment.
     Set in avfilter_graph_segment_parse().
     ***********************************************************/
     [CCode (cname="chains")]
@@ -63,7 +63,7 @@ public class LibAVFilter.FilterGraphSegment {
     public size_t nb_chains;
 
     /***********************************************************
-    A string containing a colon-separated list of key=value options applied
+    @brief A string containing a colon-separated list of key=value options applied
     to all scale filters in this segment.
 
     May be set by avfilter_graph_segment_parse().
@@ -75,17 +75,17 @@ public class LibAVFilter.FilterGraphSegment {
 
 
     /***********************************************************
-    Create filters specified in a graph segment.
+    @brief Create filters specified in a graph segment.
 
-    Walk through the creation-pending AVFilterParams in the segment and create
+    Walk through the creation-pending LibAVFilter.FilterParams in the segment and create
     new filter instances for them.
-    Creation-pending params are those where AVFilterParams.filter_name is
-    non-NULL (and hence AVFilterParams.filter is NULL). All other AVFilterParams
+    Creation-pending params are those where LibAVFilter.FilterParams.filter_name is
+    non-NULL (and hence LibAVFilter.FilterParams.filter is NULL). All other LibAVFilter.FilterParams
     instances are ignored.
 
     For any filter created by this function, the corresponding
-    AVFilterParams.filter is set to the newly-created filter context,
-    AVFilterParams.filter_name and AVFilterParams.instance_name are freed and set
+    LibAVFilter.FilterParams.filter is set to the newly-created filter context,
+    LibAVFilter.FilterParams.filter_name and LibAVFilter.FilterParams.instance_name are freed and set
     to NULL.
 
     @param seg the filtergraph segment to process
@@ -106,11 +106,11 @@ public class LibAVFilter.FilterGraphSegment {
     );
 
     /***********************************************************
-    Apply parsed options to filter instances in a graph segment.
+    @brief Apply parsed options to filter instances in a graph segment.
 
     Walk through all filter instances in the graph segment that have option
     dictionaries associated with them and apply those options with
-    av_opt_set_dict2(..., AV_OPT_SEARCH_CHILDREN). AVFilterParams.opts is
+    av_opt_set_dict2(..., AV_OPT_SEARCH_CHILDREN). LibAVFilter.FilterParams.opts is
     replaced by the dictionary output by av_opt_set_dict2(), which should be
     empty (NULL) if all options were successfully applied.
 
@@ -120,7 +120,7 @@ public class LibAVFilter.FilterGraphSegment {
     it wishes.
 
     Any creation-pending filters (see avfilter_graph_segment_create_filters())
-    present in the segment will cause this function to fail. AVFilterParams with
+    present in the segment will cause this function to fail. LibAVFilter.FilterParams with
     no associated filter context are simply skipped.
 
     @param seg the filtergraph segment to process
@@ -139,13 +139,13 @@ public class LibAVFilter.FilterGraphSegment {
     );
 
     /***********************************************************
-    Initialize all filter instances in a graph segment.
+    @brief Initialize all filter instances in a graph segment.
 
     Walk through all filter instances in the graph segment and call
     avfilter_init_dict(..., NULL) on those that have not been initialized yet.
 
     Any creation-pending filters (see avfilter_graph_segment_create_filters())
-    present in the segment will cause this function to fail. AVFilterParams with
+    present in the segment will cause this function to fail. LibAVFilter.FilterParams with
     no associated filter context or whose filter context is already initialized,
     are simply skipped.
 
@@ -165,7 +165,7 @@ public class LibAVFilter.FilterGraphSegment {
     );
 
     /***********************************************************
-    Link filters in a graph segment.
+    @brief Link filters in a graph segment.
 
     Walk through all filter instances in the graph segment and try to link all
     unlinked input and output pads. Any creation-pending filters (see
@@ -206,7 +206,7 @@ public class LibAVFilter.FilterGraphSegment {
     );
 
     /***********************************************************
-    Apply all filter/link descriptions from a graph segment to the associated filtergraph.
+    @brief Apply all filter/link descriptions from a graph segment to the associated filtergraph.
 
     This functions is currently equivalent to calling the following in sequence:
     - avfilter_graph_segment_create_filters();
@@ -238,13 +238,13 @@ public class LibAVFilter.FilterGraphSegment {
     );
 
     /***********************************************************
-    Free the provided LibAVFilter.FilterGraphSegment and everything associated with it.
+    @brief Free the provided LibAVFilter.FilterGraphSegment and everything associated with it.
 
     @param seg double pointer to the LibAVFilter.FilterGraphSegment to be freed. NULL will
     be written to this pointer on exit from this function.
 
     @note
-    The filter contexts (AVFilterParams.filter) are owned by LibAVFilter.FilterGraph rather
+    The filter contexts (LibAVFilter.FilterParams.filter) are owned by LibAVFilter.FilterGraph rather
     than LibAVFilter.FilterGraphSegment, so they are not freed.
     ***********************************************************/
     [CCode (cname="avfilter_graph_segment_free",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]

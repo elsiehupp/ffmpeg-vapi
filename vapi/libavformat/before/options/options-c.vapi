@@ -26,7 +26,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="av_format_context_class",cheader_filename="subprojects/ffmpeg/libavformat/options.c")]
-public class AVFormatContextClass : LibAVUtil.Class {
+public class AVFormatContextClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/options.c")]
     public override string class_name {
         public get {
@@ -980,13 +980,13 @@ public class AVFormatContextClass : LibAVUtil.Class {
     );
 
     [CCode (cname="format_child_class_next",cheader_filename="subprojects/ffmpeg/libavformat/options.c")]
-    public override LibAVUtil.Class child_class_next (
-        LibAVUtil.Class prev
+    public override LibAVUtil.Log.Class child_class_next (
+        LibAVUtil.Log.Class prev
     );
-    //  .category = LibAVUtil.ClassCategory.MUXER,
+    //  .category = LibAVUtil.Log.ClassCategory.MUXER,
 
     [CCode (cname="get_category",cheader_filename="subprojects/ffmpeg/libavformat/options.c")]
-    public override LibAVUtil.ClassCategory get_category (
+    public override LibAVUtil.Log.ClassCategory get_category (
         void *class_context
     );
 

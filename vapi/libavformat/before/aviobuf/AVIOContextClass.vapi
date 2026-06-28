@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ff_avio_class",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
-public class AVIOContextClass : LibAVUtil.Class {
+public class AVIOContextClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
     public override string class_name {
         public get {
@@ -84,8 +84,8 @@ public class AVIOContextClass : LibAVUtil.Class {
     );
 
     [CCode (cname="ff_avio_child_class_next",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
-    public override LibAVUtil.Class child_class_next (
-        LibAVUtil.Class prev
+    public override LibAVUtil.Log.Class child_class_next (
+        LibAVUtil.Log.Class prev
     );
 
 }

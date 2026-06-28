@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 #if CONFIG_HASH_MUXER || CONFIG_FRAMEHASH_MUXER
 
-public abstract class HashOptionsClass : LibAVUtil.Class {
+public abstract class HashOptionsClass : LibAVUtil.Log.Class {
 
     [CCode (cname="option")]
     public override LibAVUtil.Option[] options {
@@ -70,7 +70,7 @@ public abstract class HashOptionsClass : LibAVUtil.Class {
 
 #if CONFIG_MD5_MUXER || CONFIG_FRAMEMD5_MUXER
 
-public abstract class MD5OptionsClass : LibAVUtil.Class {
+public abstract class MD5OptionsClass : LibAVUtil.Log.Class {
 
     [CCode (cname="option")]
     public override LibAVUtil.Option[] options {

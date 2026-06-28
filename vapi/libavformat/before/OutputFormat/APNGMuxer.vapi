@@ -24,7 +24,7 @@ first version by Donny Yang <work@kota.moe>
 namespace LibAVFormat {
 
 [CCode (cname="apng_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
-public class APNGMuxerClass : LibAVUtil.Class {
+public class APNGMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/apngenc.c")]
     public override string class_name {
         public get {

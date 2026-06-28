@@ -30,7 +30,7 @@ only a subset of it.
 #if CONFIG_HTTP_PROTOCOL
 
 [CCode (cname="http_context_class",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
-public class HTTPURLProtocolClass : LibAVUtil.Class {
+public class HTTPURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
     public override string class_name {
         public get {
@@ -167,7 +167,7 @@ public class HTTPURLProtocol : URLProtocol {
 #if CONFIG_HTTPS_PROTOCOL
 
 [CCode (cname="https_context_class",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
-public class HTTPSURLProtocolClass : LibAVUtil.Class {
+public class HTTPSURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/http.c")]
     public override string class_name {
         public get {

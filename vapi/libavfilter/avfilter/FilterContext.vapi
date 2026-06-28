@@ -43,7 +43,7 @@ public class LibAVFilter.FilterContext {
     @brief needed for av_log () and filters common options
     ***********************************************************/
     [CCode (cname="av_class")]
-    public LibAVUtil.Class? av_class;
+    public LibAVUtil.Log.Class? av_class;
 
     /***********************************************************
     @brief the LibAVFilter.Filter of which this is an instance
@@ -128,7 +128,7 @@ public class LibAVFilter.FilterContext {
     @brief An opaque struct for libavfilter internal use.
     ***********************************************************/
     [CCode (cname="internal")]
-    public LibAVFilter.FilterInternal? internal;
+    internal LibAVFilter.FilterInternal? internal;
 
     /***********************************************************
     @brief enable expression string
@@ -138,6 +138,8 @@ public class LibAVFilter.FilterContext {
 
     /***********************************************************
     @brief the enabled state from the last expression evaluation
+
+    MUST NOT be accessed from outside avfilter.
     ***********************************************************/
     [CCode (cname="is_disabled")]
     public bool is_disabled;
@@ -150,7 +152,7 @@ public class LibAVFilter.FilterContext {
     hardware context information.
     ***********************************************************/
     [CCode (cname="hw_device_ctx")]
-    public AVBufferRef hw_device_ctx;
+    public LibAVUtil.BufferRef hw_device_ctx;
 
     /***********************************************************
     @brief Max number of threads allowed in this filter instance.
@@ -273,12 +275,12 @@ public class LibAVFilter.FilterContext {
     );
 
     /***********************************************************
-    @return LibAVUtil.Class for LibAVFilter.FilterContext.
+    @return LibAVUtil.Log.Class for LibAVFilter.FilterContext.
 
     @see av_opt_find ().
     ***********************************************************/
     [CCode (cname="avfilter_get_class",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-    public LibAVUtil.Class? avfilter_get_class ();
+    public LibAVUtil.Log.Class? avfilter_get_class ();
 
 }
 
@@ -287,103 +289,3 @@ public class LibAVFilter.FilterContext {
 ***********************************************************/
 
 } // namespace LibAVFilter
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/** An instance of a filter */
-typedef struct LibAVFilter.FilterContext {
-    const LibAVUtil.Class *av_class;        ///< needed for av_log() and filters common options
-
-    const LibAVFilter.Filter *filter;         ///< the LibAVFilter.Filter of which this is an instance
-
-    char *name;                     ///< name of this filter instance
-
-    LibAVFilter.FilterPad   *input_pads;      ///< array of input pads
-    LibAVFilter.FilterLink **inputs;          ///< array of pointers to input links
-    unsigned    nb_inputs;          ///< number of input pads
-
-    LibAVFilter.FilterPad   *output_pads;     ///< array of output pads
-    LibAVFilter.FilterLink **outputs;         ///< array of pointers to output links
-    unsigned    nb_outputs;         ///< number of output pads
-
-    void *priv;                     ///< private data for use by the filter
-
-    struct LibAVFilter.FilterGraph *graph;    ///< filtergraph this filter belongs to
-
-    /***********************************************************
-    Type of multithreading being allowed/used. A combination of
-    LibAVFilter.FilterThreadSliceFlags flags.
-     *
-    May be set by the caller before initializing the filter to forbid some
-    or all kinds of multithreading for this filter. The default is allowing
-    everything.
-     *
-    When the filter is initialized, this field is combined using bit AND with
-    LibAVFilter.FilterGraph.thread_type to get the final mask used for determining
-    allowed threading types. I.e. a threading type needs to be set in both
-    to be allowed.
-     *
-    After the filter is initialized, libavfilter sets this field to the
-    threading type that is actually used (0 for no multithreading).
-    ***********************************************************/
-    int thread_type;
-
-    /***********************************************************
-    Max number of threads allowed in this filter instance.
-    If <= 0, its value is ignored.
-    Overrides global number of threads set per filter graph.
-    ***********************************************************/
-    int nb_threads;
-
-    char *enable_str;               ///< enable expression string
-
-    /***********************************************************
-    MUST NOT be accessed from outside avfilter.
-     *
-    the enabled state from the last expression evaluation
-    ***********************************************************/
-    int is_disabled;
-
-    /***********************************************************
-    For filters which will create hardware frames, sets the device the
-    filter should create them in.  All other filters will ignore this field:
-    in particular, a filter which consumes or processes hardware frames will
-    instead use the hw_frames_ctx field in LibAVFilter.FilterLink to carry the
-    hardware context information.
-     *
-    May be set by the caller on filters flagged with AVFILTER_FLAG_HWDEVICE
-    before initializing the filter with avfilter_init_str() or
-    avfilter_init_dict().
-    ***********************************************************/
-    AVBufferRef *hw_device_ctx;
-
-    /***********************************************************
-    Sets the number of extra hardware frames which the filter will
-    allocate on its output links for use in following filters or by
-    the caller.
-     *
-    Some hardware filters require all frames that they will use for
-    output to be defined in advance before filtering starts.  For such
-    filters, any hardware frame pools used for output must therefore be
-    of fixed size.  The extra frames set here are on top of any number
-    that the filter needs internally in order to operate normally.
-     *
-    This field must be set before the graph containing this filter is
-    configured.
-    ***********************************************************/
-    int extra_hw_frames;
-} LibAVFilter.FilterContext;

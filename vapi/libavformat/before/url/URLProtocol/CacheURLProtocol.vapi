@@ -35,7 +35,7 @@ namespace LibAVFormat {
 public class CachePrivateData { }
 
 [CCode (cname="cache_context_class",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
-public class CacheContextClass : LibAVUtil.Class {
+public class CacheContextClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/cache.c")]
     public override string class_name {
         public get {

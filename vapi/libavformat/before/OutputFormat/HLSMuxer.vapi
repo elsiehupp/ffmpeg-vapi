@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="hls_class",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
-public class HLSMuxerClass : LibAVUtil.Class {
+public class HLSMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
     public override string class_name {
         public get {

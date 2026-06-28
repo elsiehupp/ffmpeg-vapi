@@ -18,6 +18,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  extern const LibAVUtil.Class ff_avio_class;
+//  extern const LibAVUtil.Log.Class ff_avio_class;
 
 } // namespace LibAVFormat

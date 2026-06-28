@@ -26,7 +26,7 @@ Based on the CURL SChannel module
 ***********************************************************/
 
 [CCode (cname="tls_class",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
-public class SecureChannelTLSURLProtocolClass : LibAVUtil.Class {
+public class SecureChannelTLSURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/tls_schannel.c")]
     public override string class_name {
         public get {

@@ -29,7 +29,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="aqt_class",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
-public class AQTitleClass : LibAVUtil.Class {
+public class AQTitleClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aqtitledec.c")]
     public override string class_name {
         public get {

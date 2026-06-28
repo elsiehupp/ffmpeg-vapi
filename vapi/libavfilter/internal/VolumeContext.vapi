@@ -95,7 +95,7 @@ public enum ReplayGainType {
 [Compact]
 public class VolumeContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     public AVFloatDSPContext? fdsp;
 

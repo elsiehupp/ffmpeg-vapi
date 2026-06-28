@@ -93,10 +93,10 @@ while (get_input (&input, &in_linesize, &in_samples)) {
 [Compact]
 public class LibAVResample.AudioResampleContext {
     /***********************************************************
-    LibAVUtil.Class for logging and AVOptions
+    LibAVUtil.Log.Class for logging and AVOptions
     ***********************************************************/
     [CCode (cname="")]
-    internal LibAVUtil.Class? av_class;
+    internal LibAVUtil.Log.Class? av_class;
 
     /***********************************************************
     input channel layout
@@ -422,18 +422,18 @@ public class LibAVResample.AudioResampleContext {
     /***********************************************************
     @deprecated use libswresample
 
-    Get the LibAVUtil.Class for LibAVResample.AudioResampleContext.
+    Get the LibAVUtil.Log.Class for LibAVResample.AudioResampleContext.
 
     Can be used in combination with OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options
     without allocating a context.
 
     @see av_opt_find ().
 
-    @return LibAVUtil.Class for LibAVResample.AudioResampleContext
+    @return LibAVUtil.Log.Class for LibAVResample.AudioResampleContext
     ***********************************************************/
     //  attribute_deprecated
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
-    public LibAVUtil.Class? avresample_get_class ();
+    public LibAVUtil.Log.Class? avresample_get_class ();
 
     /***********************************************************
     @deprecated use libswresample

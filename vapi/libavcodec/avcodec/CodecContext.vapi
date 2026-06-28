@@ -17,9 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 /***********************************************************
 @@copyright 2001 Fabrice Bellard
-***********************************************************/
-namespace LibAVCodec {
-using LibAVUtil;
+****************************
 
 /***********************************************************
 @file @ingroup libavc
@@ -187,7 +185,7 @@ public class CodecContext {
     - set by avcodec_alloc_context3
     ***********************************************************/
     [CCode (cname="av_class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="log_level_offset")]
     public int log_level_offset;
@@ -199,13 +197,13 @@ public class CodecContext {
     public LibAVUtil.MediaType codec_type;
 
     [CCode (cname="codec")]
-    internal Codec codec;
+    internal LibAVCodec.Codec codec;
 
     /***********************************************************
-    @see @link CodecID
+    @see @link LibAVCodec.CodecID
     ***********************************************************/
     [CCode (cname="codec_id")]
-    public CodecID codec_id;
+    public LibAVCodec.CodecID codec_id;
 
     /***********************************************************
     @brief fourcc (LSB first, so "ABCD" -> ('D'<<24) + ('C'<<16) + ('B'<<8) + 'A').
@@ -2877,13 +2875,13 @@ public string avcodec_configuration ();
 public string avcodec_license ();
 
 /***********************************************************
-@brief Get the LibAVUtil.Class for CodecContext. It can be used in combination with
+@brief Get the LibAVUtil.Log.Class for CodecContext. It can be used in combination with
 OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
 @see @link av_opt_find ().
 ***********************************************************/
 [CCode (cname="avcodec_get_class",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public LibAVUtil.Class avcodec_get_class ();
+public LibAVUtil.Log.Class avcodec_get_class ();
 
 
 
@@ -2929,7 +2927,7 @@ typedef struct AVCodecContext {
      * information on struct for av_log
      * - set by avcodec_alloc_context3
      */
-    const LibAVUtil.Class *av_class;
+    const LibAVUtil.Log.Class *av_class;
     int log_level_offset;
 
     enum LibAVUtil.MediaType codec_type; /* see AVMEDIA_TYPE_xxx */
@@ -3028,14 +3026,14 @@ typedef struct AVCodecContext {
      * - encoding: MUST be set by user.
      * - decoding: unused.
      */
-    AVRational time_base;
+    LibAVUtil.Rational time_base;
 
     /**
      * Timebase in which pkt_dts/pts and AVPacket.dts/pts are expressed.
      * - encoding: unused.
      * - decoding: set by user.
      */
-    AVRational pkt_timebase;
+    LibAVUtil.Rational pkt_timebase;
 
     /**
      * - decoding: For codecs that store a framerate value in the compressed
@@ -3044,7 +3042,7 @@ typedef struct AVCodecContext {
      * - encoding: May be used to signal the framerate of CFR content to an
      *             encoder.
      */
-    AVRational framerate;
+    LibAVUtil.Rational framerate;
 
     /**
      * Codec delay.
@@ -3109,7 +3107,7 @@ typedef struct AVCodecContext {
      * - encoding: Set by user.
      * - decoding: Set by libavcodec.
      */
-    AVRational sample_aspect_ratio;
+    LibAVUtil.Rational sample_aspect_ratio;
 
     /**
      * Pixel format, see AV_PIX_FMT_xxx.
@@ -3640,10 +3638,10 @@ typedef struct AVCodecContext {
      *     extended_data must be allocated with av_malloc() and will be freed in
      *     av_frame_unref().
      *   * otherwise extended_data must point to data
-     * - buf[] must contain one or more pointers to AVBufferRef structures. Each of
+     * - buf[] must contain one or more pointers to LibAVUtil.BufferRef structures. Each of
      *   the frame's data and extended_data pointers must be contained in these. That
-     *   is, one AVBufferRef for each allocated chunk of memory, not necessarily one
-     *   AVBufferRef per data[] entry. See: av_buffer_create(), av_buffer_alloc(),
+     *   is, one LibAVUtil.BufferRef for each allocated chunk of memory, not necessarily one
+     *   LibAVUtil.BufferRef per data[] entry. See: av_buffer_create(), av_buffer_alloc(),
      *   and av_buffer_ref().
      * - extended_buf and nb_extended_buf must be allocated with av_malloc() by
      *   this callback and filled with the extra buffers if there are more
@@ -3809,7 +3807,7 @@ typedef struct AVCodecContext {
      * - encoding: Set by libavcodec.
      * - decoding: unused
      */
-    char *stats_out;
+    string stats_out;
 
     /**
      * pass2 encoding statistics input buffer
@@ -3817,7 +3815,7 @@ typedef struct AVCodecContext {
      * - encoding: Allocated/set/freed by user.
      * - decoding: unused
      */
-    char *stats_in;
+    string stats_in;
 
     /**
      * Work around bugs in encoders which sometimes cannot be detected automatically.
@@ -3950,7 +3948,7 @@ typedef struct AVCodecContext {
      *
      *             This field should be set before avcodec_open2() is called.
      */
-    AVBufferRef *hw_frames_ctx;
+    LibAVUtil.BufferRef *hw_frames_ctx;
 
     /**
      * A reference to the AVHWDeviceContext describing the device which will
@@ -3972,7 +3970,7 @@ typedef struct AVCodecContext {
      * order to support hw_frames_ctx at all - in that case, all frames
      * contexts used must be created on the same device.
      */
-    AVBufferRef *hw_device_ctx;
+    LibAVUtil.BufferRef *hw_device_ctx;
 
     /**
      * Bit set of AV_HWACCEL_FLAG_* flags, which affect hardware accelerated
@@ -4208,7 +4206,7 @@ typedef struct AVCodecContext {
      * - decoding: set by user
      * - encoding: unused
      */
-    char *sub_charenc;
+    string sub_charenc;
 
     /**
      * Subtitles character encoding mode. Formats or codecs might be adjusting
@@ -4252,7 +4250,7 @@ typedef struct AVCodecContext {
      * - encoding: unused
      * - decoding: set by user
      */
-    char *codec_whitelist;
+    string codec_whitelist;
 
     /**
      * Additional data associated with the entire coded stream.
@@ -4341,7 +4339,7 @@ typedef struct AVCodecContext {
      * This callback must fill the following fields in the packet:
      * - data: alignment requirements for AVPacket apply, if any. Some architectures and
      *   encoders may benefit from having aligned data.
-     * - buf: must contain a pointer to an AVBufferRef structure. The packet's
+     * - buf: must contain a pointer to an LibAVUtil.BufferRef structure. The packet's
      *   data pointer must be contained in it. See: av_buffer_create(), av_buffer_alloc(),
      *   and av_buffer_ref().
      *
@@ -4640,9 +4638,9 @@ device_ref AVHWDeviceContext.
 ***********************************************************/
 int avcodec_get_hw_frames_parameters(
     AVCodecContext *avctx,
-    AVBufferRef *device_ref,
+    LibAVUtil.BufferRef *device_ref,
     enum AVPixelFormat hw_pix_fmt,
-    AVBufferRef **out_frames_ref
+    LibAVUtil.BufferRef **out_frames_ref
 );
 
 

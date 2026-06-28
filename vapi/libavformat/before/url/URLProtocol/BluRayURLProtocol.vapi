@@ -24,7 +24,7 @@ BluRay (libbluray) protocol
 ***********************************************************/
 
 [CCode (cname="bluray_context_class",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
-public class BluRayContextClass : LibAVUtil.Class {
+public class BluRayContextClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/bluray.c")]
     public override string class_name {
         public get {

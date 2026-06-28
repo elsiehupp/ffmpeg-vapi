@@ -270,7 +270,7 @@ public int ff_parse_sample_rate (
 /***********************************************************
 Parse a time base.
 
-@param ret uint AVRational pointer to where the value should be written
+@param ret uint LibAVUtil.Rational pointer to where the value should be written
 @param arg string to parse
 @param log_ctx log context
 @return >= 0 in case of success, a negative AVERROR code on error
@@ -278,7 +278,7 @@ Parse a time base.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 //  av_warn_unused_result
 public int ff_parse_time_base (
-    AVRational? ret,
+    LibAVUtil.Rational? ret,
     string arg,
     void *log_ctx
 );
@@ -508,12 +508,12 @@ public int ff_request_frame (
 public define AVFILTER_DEFINE_CLASS (
     fname
 );
-//  static const LibAVUtil.Class fname##_class = {
+//  static const LibAVUtil.Log.Class fname##_class = {
 //      .class_name = #fname,
 //      .item_name = av_default_item_name,
 //      .option = fname##_options,
 //      .version = LIBAVUTIL_VERSION_INT,
-//      .category = LibAVUtil.ClassCategory.FILTER,
+//      .category = LibAVUtil.Log.ClassCategory.FILTER,
 //  }
 
 /***********************************************************

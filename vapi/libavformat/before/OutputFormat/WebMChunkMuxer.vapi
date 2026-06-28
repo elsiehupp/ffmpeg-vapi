@@ -30,7 +30,7 @@ chunk, followed by data chunks where each Cluster is written out as a Chunk.
 #if CONFIG_WEBM_CHUNK_MUXER
 
 [CCode (cname="webm_chunk_class",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
-public class WebMChunkMuxerClass : LibAVUtil.Class {
+public class WebMChunkMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
     public override string class_name {
         public get {

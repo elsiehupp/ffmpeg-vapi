@@ -437,7 +437,7 @@ public enum MOVPrftBox {
 [Compact]
 public class MOVMuxContext {
     [CCode (cname="")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public int mode;

@@ -157,7 +157,7 @@ public LibAVUtil.MediaType av_buffersink_get_type (
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
-public AVRational av_buffersink_get_time_base (
+public LibAVUtil.Rational av_buffersink_get_time_base (
     LibAVFilter.FilterContext? av_filter_context
 );
 
@@ -168,7 +168,7 @@ public int av_buffersink_get_format (
 
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
-public AVRational av_buffersink_get_frame_rate (
+public LibAVUtil.Rational av_buffersink_get_frame_rate (
     LibAVFilter.FilterContext? av_filter_context
 );
 
@@ -183,7 +183,7 @@ public int av_buffersink_get_h (
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
-public AVRational av_buffersink_get_sample_aspect_ratio (
+public LibAVUtil.Rational av_buffersink_get_sample_aspect_ratio (
     LibAVFilter.FilterContext? av_filter_context
 );
 
@@ -205,7 +205,7 @@ public int av_buffersink_get_sample_rate (
 
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
-public AVBufferRef av_buffersink_get_hw_frames_ctx (
+public LibAVUtil.BufferRef av_buffersink_get_hw_frames_ctx (
     LibAVFilter.FilterContext? av_filter_context
 );
 

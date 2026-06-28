@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="libsmbclient_context_class",cheader_filename="subprojects/ffmpeg/libavformat/libsmbclient.c")]
-public class LibSMBClientURLProtocolClass : LibAVUtil.Class {
+public class LibSMBClientURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/libsmbclient.c")]
     public override string class_name {
         public get {

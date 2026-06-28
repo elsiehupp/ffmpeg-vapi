@@ -22,7 +22,7 @@ namespace LibAVFormat {
 @file unbuffered private I/O API
 ***********************************************************/
 
-//  extern const LibAVUtil.Class ffurl_context_class;
+//  extern const LibAVUtil.Log.Class ffurl_context_class;
 
 /***********************************************************
 @brief Assemble a URL string from components. This is the reverse operation
@@ -82,8 +82,8 @@ public void ff_make_absolute_url (
 public AVIODirEntry ff_alloc_dir_entry ();
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
-public LibAVUtil.Class ff_urlcontext_child_class_next (
-    LibAVUtil.Class prev
+public LibAVUtil.Log.Class ff_urlcontext_child_class_next (
+    LibAVUtil.Log.Class prev
 );
 
 /***********************************************************

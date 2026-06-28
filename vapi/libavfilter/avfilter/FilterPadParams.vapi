@@ -36,7 +36,7 @@ Graph-based frame editing library.
 /***********************************************************
 Parameters of a filter's input or output pad.
 
-Created as a child of AVFilterParams by avfilter_graph_segment_parse().
+Created as a child of LibAVFilter.FilterParams by avfilter_graph_segment_parse().
 Freed in avfilter_graph_segment_free().
 ***********************************************************/
 [CCode (cname="struct AVFilterPadParams",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
@@ -52,3 +52,9 @@ public class LibAVFilter.FilterPadParams {
     [CCode (cname="label")]
     public string label;
 }
+
+/***********************************************************
+@}
+***********************************************************/
+
+} // namespace LibAVFilter

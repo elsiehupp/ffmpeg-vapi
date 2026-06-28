@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mp3dec.c")]
-public class MP3DemuxerClass : LibAVUtil.Class {
+public class MP3DemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mp3dec.c")]
     public override string class_name {
         public get {
@@ -75,7 +75,7 @@ public class MP3DemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = LibAVUtil.ClassCategory.DEMUXER;
+    //  .category = LibAVUtil.Log.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="struct MP3DecContext",cheader_filename="subprojects/ffmpeg/libavformat/mp3dec.c")]

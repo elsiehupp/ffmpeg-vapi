@@ -26,10 +26,10 @@ Audio buffer used for intermediate storage between conversion phases.
 [Compact]
 internal class LibAVResample.AudioData {
     /***********************************************************
-    LibAVUtil.Class for logging
+    LibAVUtil.Log.Class for logging
     ***********************************************************/
     [CCode (cname="class")]
-    internal LibAVUtil.Class av_class;
+    internal LibAVUtil.Log.Class av_class;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/avresample.h")]
     public const size_t AVRESAMPLE_MAX_CHANNELS; // 32

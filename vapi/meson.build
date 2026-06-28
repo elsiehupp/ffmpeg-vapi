@@ -1,6 +1,6 @@
-subdir ('libavcodec')
+# subdir ('libavcodec')
 # subdir ('libavdevice')
-# subdir ('libavfilter')
+subdir ('libavfilter')
 # subdir ('libavformat')
 # subdir ('libavresample')
 subdir ('libavutil')

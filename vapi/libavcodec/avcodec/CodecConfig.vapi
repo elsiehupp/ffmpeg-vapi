@@ -40,7 +40,7 @@ public enum CodecConfig {
     PIXEL_FORMAT,
 
     /***********************************************************
-    AVRational, terminated by {0, 0}
+    LibAVUtil.Rational, terminated by {0, 0}
     ***********************************************************/
     [CCode (cname="AV_CODEC_CONFIG_FRAME_RATE")]
     FRAME_RATE,

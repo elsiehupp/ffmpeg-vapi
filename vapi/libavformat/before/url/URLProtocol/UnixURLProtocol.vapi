@@ -28,7 +28,7 @@ Unix socket url_protocol
 ***********************************************************/
 
 [CCode (cname="unix_class",cheader_filename="subprojects/ffmpeg/libavformat/unix.c")]
-public class UnixURLProtocolClass : LibAVUtil.Class {
+public class UnixURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/unix.c")]
     public override string class_name {
         public get {

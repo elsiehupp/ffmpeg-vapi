@@ -77,7 +77,7 @@ public class FilterParams {
 [Compact]
 public class NoiseContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public int nb_planes;

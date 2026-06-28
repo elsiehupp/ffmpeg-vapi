@@ -26,7 +26,7 @@ namespace LibAVFormat {
 [Compact]
 public class RTPMuxContext {
     [CCode (cname="")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public LibAVFormat.FormatContext ic;

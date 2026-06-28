@@ -98,7 +98,7 @@ public class FFFrameSyncIn {
     Time base for the incoming frames
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational time_base;
+    public LibAVUtil.Rational time_base;
 
     /***********************************************************
     Current frame, may be NULL before the first one or after EOF
@@ -158,7 +158,7 @@ Frame sync structure.
 [Compact]
 public class FFFrameSync {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     /***********************************************************
     Parent filter context.
@@ -176,7 +176,7 @@ public class FFFrameSync {
     Time base for the output events
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational time_base;
+    public LibAVUtil.Rational time_base;
 
     /***********************************************************
     Timestamp of the current event
@@ -246,7 +246,7 @@ public class FFFrameSync {
 Get the class for the framesync object.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
-public LibAVUtil.Class ff_framesync_get_class ();
+public LibAVUtil.Log.Class ff_framesync_get_class ();
 
 /***********************************************************
 Pre-initialize a frame sync structure.
@@ -375,7 +375,7 @@ public int ff_framesync_dualinput_get_writable (
 //      ff_framesync_preinit (&s->field); \
 //      return 0; \
 //  } \
-//  static const LibAVUtil.Class? name##_child_class_next (const LibAVUtil.Class? prev) { \
+//  static const LibAVUtil.Log.Class? name##_child_class_next (const LibAVUtil.Log.Class? prev) { \
 //      return prev ? NULL : ff_framesync_get_class (); \
 //  } \
 //  static void *name##_child_next (void *obj, void *prev) { \
@@ -383,12 +383,12 @@ public int ff_framesync_dualinput_get_writable (
 //      s->fs.class = ff_framesync_get_class (); /* FIXME */ \
 //      return prev ? NULL : &s->field; \
 //  } \
-//  static const LibAVUtil.Class name##_class = { \
+//  static const LibAVUtil.Log.Class name##_class = { \
 //      .class_name = #name, \
 //      .item_name = av_default_item_name, \
 //      .option = name##_options, \
 //      .version = LIBAVUTIL_VERSION_INT, \
-//      .category = LibAVUtil.ClassCategory.FILTER, \
+//      .category = LibAVUtil.Log.ClassCategory.FILTER, \
 //      .child_class_next = name##_child_class_next, \
 //      .child_next = name##_child_next, \
 //  }

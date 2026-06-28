@@ -47,7 +47,7 @@ internal class BitStreamFilterContext {
     @brief A class for logging and LibAVUtil.Options
     ***********************************************************/
     [CCode (cname="av_class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     /***********************************************************
     @brief The bitstream filter this context is an instance of.
@@ -221,13 +221,13 @@ internal class BitStreamFilterContext {
     );
 
     /***********************************************************
-    @brief Get the LibAVUtil.Class for BitStreamFilterContext. It can be used in combination with
+    @brief Get the LibAVUtil.Log.Class for BitStreamFilterContext. It can be used in combination with
     OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
     @see @link av_opt_find ().
     ***********************************************************/
     [CCode (cname="av_bsf_get_class",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-    public LibAVUtil.Class av_bsf_get_class ();
+    public LibAVUtil.Log.Class av_bsf_get_class ();
 
     /***********************************************************
     @brief Parse string describing list of bitstream filters and create single

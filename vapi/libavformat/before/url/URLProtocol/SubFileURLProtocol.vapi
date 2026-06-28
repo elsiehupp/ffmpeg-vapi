@@ -25,7 +25,7 @@ namespace LibAVFormat {
 //  #undef LibAVUtil.OptionFlags.DECODING_PARAM
 
 [CCode (cname="subfile_class",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
-public class SubFileURLProtocolClass : LibAVUtil.Class {
+public class SubFileURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/subfile.c")]
     public override string class_name {
         public get {

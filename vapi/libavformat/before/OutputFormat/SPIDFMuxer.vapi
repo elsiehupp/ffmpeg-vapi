@@ -47,7 +47,7 @@ IEC 61937 frames at normal usage start every specific count of bytes,
 ***********************************************************/
 
 [CCode (cname="spdif_class",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]
-public class SPIDFMuxerClass : LibAVUtil.Class {
+public class SPIDFMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/spdifenc.c")]
     public override string class_name {
         public get {

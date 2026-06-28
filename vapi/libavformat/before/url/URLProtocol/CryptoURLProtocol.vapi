@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="crypto_class",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
-public class CryptoURLProtocolClass : LibAVUtil.Class {
+public class CryptoURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/crypto.c")]
     public override string class_name {
         public get {

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
-public class AVIDemuxerClass : LibAVUtil.Class {
+public class AVIDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]
     public override string class_name {
         public get {
@@ -76,7 +76,7 @@ public class AVIDemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = LibAVUtil.ClassCategory.DEMUXER;
+    //  .category = LibAVUtil.Log.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="struct AVIContext",cheader_filename="subprojects/ffmpeg/libavformat/avidec.c")]

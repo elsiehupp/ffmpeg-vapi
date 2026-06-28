@@ -92,7 +92,7 @@ public class AudioFIRDSPContext {
 [Compact]
 public class AudioFIRContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public float wet_gain;
@@ -125,7 +125,7 @@ public class AudioFIRContext {
     public int h;
 
     [CCode (cname="")]
-    public AVRational frame_rate;
+    public LibAVUtil.Rational frame_rate;
 
     [CCode (cname="")]
     public int ir_channel;

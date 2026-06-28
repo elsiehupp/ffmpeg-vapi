@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="mpegts_muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mpegtsenc.c")]
-public class MpegTSMuxerClass : LibAVUtil.Class {
+public class MpegTSMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mpegtsenc.c")]
     public override string class_name {
         public get {

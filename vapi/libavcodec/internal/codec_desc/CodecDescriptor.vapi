@@ -35,7 +35,7 @@ CodecID.
 [Compact]
 internal class CodecDescriptor {
     [CCode (cname="id")]
-    public CodecID id;
+    public LibAVCodec.CodecID id;
 
     [CCode (cname="type")]
     public LibAVUtil.MediaType type;
@@ -123,15 +123,15 @@ internal class CodecDescriptor {
     @brief If non-null, an array of profiles recognized for this codec.
     Terminated with ProfileType.UNKNOWN.
     ***********************************************************/
-    [CCode (cname="profiles")]
-    public Profile[] profiles;
+    //  [CCode (cname="profiles")]
+    //  public  LibAVCodec.Profile[] profiles;
 
     /***********************************************************
     @return descriptor for given codec ID or null if no descriptor exists.
     ***********************************************************/
     [CCode (cname="avcodec_descriptor_get",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public CodecDescriptor avcodec_descriptor_get (
-        CodecID id
+        LibAVCodec.CodecID id
     );
 
     /***********************************************************

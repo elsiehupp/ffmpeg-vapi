@@ -102,7 +102,7 @@ public enum YADIFCurrentField {
 [Compact]
 public class YADIFContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     /***********************************************************
     YADIFMode

@@ -26,7 +26,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace LibAVFormat {
 
 [CCode (cname="aa_class",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
-public class AAClass : LibAVUtil.Class {
+public class AAClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
     public override string class_name {
         public get {

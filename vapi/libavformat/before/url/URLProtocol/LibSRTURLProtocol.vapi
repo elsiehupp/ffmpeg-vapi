@@ -23,7 +23,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="libsrt_class",cheader_filename="subprojects/ffmpeg/libavformat/libsrt.c")]
-public class LibSRTURLProtocolClass : LibAVUtil.Class {
+public class LibSRTURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/libsrt.c")]
     public override string class_name {
         public get {

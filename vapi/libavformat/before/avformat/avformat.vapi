@@ -67,12 +67,12 @@ with an AVFormatFlags1.NO_FILE format).
 It is possible to configure lavf muxers and demuxers using the @ref avoptions
 mechanism. Generic (format-independent) libavformat options are provided by
 LibAVFormat.FormatContext, they can be examined from a user program by calling
-av_opt_next () / av_opt_find () on an allocated LibAVFormat.FormatContext (or its LibAVUtil.Class
+av_opt_next () / av_opt_find () on an allocated LibAVFormat.FormatContext (or its LibAVUtil.Log.Class
 from avformat_get_class ()). Private (format-specific) options are provided by
 LibAVFormat.FormatContext.priv_data if and only if LibAVFormat.InputFormat.priv_class /
 LibAVFormat.OutputFormat.priv_class of the corresponding format struct is non-NULL.
 Further options may be provided by the @ref LibAVFormat.FormatContext.pb "I/O context"
-if its LibAVUtil.Class is non-NULL, and the protocols layer. See the discussion on
+if its LibAVUtil.Log.Class is non-NULL, and the protocols layer. See the discussion on
 nesting in @ref avoptions documentation to learn how to access those.
 
 @section urls
@@ -690,10 +690,10 @@ public abstract class LibAVFormat.OutputFormat {
 
 
     /***********************************************************
-    @brief LibAVUtil.Class for the private context
+    @brief LibAVUtil.Log.Class for the private context
     ***********************************************************/
     [CCode (cname="")]
-    public abstract LibAVUtil.Class priv_class { public get; }
+    public abstract LibAVUtil.Log.Class priv_class { public get; }
 
     /***********************************************************
     @brief No fields below this line are part of the public API. They
@@ -921,10 +921,10 @@ public abstract class LibAVFormat.InputFormat {
     public AVCodecTag codec_tag_list;
 
     /***********************************************************
-    @brief LibAVUtil.Class for the private context
+    @brief LibAVUtil.Log.Class for the private context
     ***********************************************************/
     [CCode (cname="")]
-    public LibAVUtil.Class priv_class;
+    public LibAVUtil.Log.Class priv_class;
 
     /***********************************************************
     @brief Comma-separated list of mime types.
@@ -2066,7 +2066,7 @@ public abstract class LibAVFormat.FormatContext {
     Exports (de)muxer private options if they exist.
     ***********************************************************/
     [CCode (cname="")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     /***********************************************************
     @brief The input container format.
@@ -2819,13 +2819,13 @@ public void avformat_free_context (
 );
 
 /***********************************************************
-@brief Get the LibAVUtil.Class for LibAVFormat.FormatContext. It can be used in combination with
+@brief Get the LibAVUtil.Log.Class for LibAVFormat.FormatContext. It can be used in combination with
 OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
 @see av_opt_find ().
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public LibAVUtil.Class avformat_get_class ();
+public LibAVUtil.Log.Class avformat_get_class ();
 
 /***********************************************************
 @brief Add a new stream to a media file.
@@ -3633,7 +3633,7 @@ public void av_hex_dump (
 @brief Send a nice hexadecimal dump of a buffer to the log.
 
 @param avcl A pointer to an arbitrary struct of which the first field is a
-pointer to an LibAVUtil.Class struct.
+pointer to an LibAVUtil.Log.Class struct.
 @param level The importance level of the message, lower values signifying
 higher importance.
 @param buffer buffer
@@ -3670,7 +3670,7 @@ public void av_pkt_dump2 (
 @brief Send a nice dump of a packet to the log.
 
 @param avcl A pointer to an arbitrary struct of which the first field is a
-pointer to an LibAVUtil.Class struct.
+pointer to an LibAVUtil.Log.Class struct.
 @param level The importance level of the message, lower values signifying
 higher importance.
 @param packet packet to dump

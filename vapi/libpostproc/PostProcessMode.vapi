@@ -72,7 +72,7 @@ public class LibPostProc.PostProcessMode {
     amount of "black" you are willing to lose to get a brightness-corrected picture
     ***********************************************************/
     [CCode (cname="")]
-    internal AVRational maxClippedThreshold;
+    internal LibAVUtil.Rational maxClippedThreshold;
 
     /***********************************************************
     for Temporal Noise Reducing filter (Maximal sum of abs differences)

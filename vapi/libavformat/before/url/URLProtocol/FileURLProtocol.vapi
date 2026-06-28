@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="file_class",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
-public class FileClass : LibAVUtil.Class {
+public class FileClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override string class_name {
         public get {
@@ -115,7 +115,7 @@ public class FileClass : LibAVUtil.Class {
 }
 
 [CCode (cname="pipe_class",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
-public class PipeClass : LibAVUtil.Class {
+public class PipeClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override string class_name {
         public get {

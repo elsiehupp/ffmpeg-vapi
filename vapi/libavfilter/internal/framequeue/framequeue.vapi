@@ -196,6 +196,6 @@ It adapts the data pointers and timestamps of the head frame to account
 for the skipped samples.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
-public void ff_framequeue_skip_samples (FFFrameQueue? fq, size_t samples, AVRational time_base);
+public void ff_framequeue_skip_samples (FFFrameQueue? fq, size_t samples, LibAVUtil.Rational time_base);
 
 } // namespace LibAVFilter

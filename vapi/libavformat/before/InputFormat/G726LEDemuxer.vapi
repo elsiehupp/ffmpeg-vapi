@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 #if CONFIG_G726_DEMUXER
 
-public class G726OptionsClass : LibAVUtil.Class {
+public class G726OptionsClass : LibAVUtil.Log.Class {
 
     [CCode (cname="option")]
     public override LibAVUtil.Option[] options {

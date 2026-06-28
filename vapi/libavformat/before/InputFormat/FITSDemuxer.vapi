@@ -31,7 +31,7 @@ namespace LibAVFormat {
 public class FITSDemuxerClassPrivateData { }
 
 [CCode (cname="fits_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
-public class FITSDemuxerClass : LibAVUtil.Class {
+public class FITSDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/fitsdec.c")]
     public override string class_name {
         public get {

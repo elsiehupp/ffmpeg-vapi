@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="class_openmpt",cheader_filename="subprojects/ffmpeg/libavformat/libopenmpt.c")]
-public class LibOpenMptDemuxerClass : LibAVUtil.Class {
+public class LibOpenMptDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/libopenmpt.c")]
     public override string class_name {
         public get {

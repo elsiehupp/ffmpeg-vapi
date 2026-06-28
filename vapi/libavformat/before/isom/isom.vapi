@@ -585,7 +585,7 @@ public class MOVContext {
     @brief Class for private options
     ***********************************************************/
     [CCode (cname="")]
-    public LibAVUtil.Class class;
+    public LibAVUtil.Log.Class class;
 
     [CCode (cname="")]
     public LibAVFormat.FormatContext fc;

@@ -23,7 +23,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="cdxl_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/cdxl.c")]
-public class CDXLDemuxerClass : LibAVUtil.Class {
+public class CDXLDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/cdxl.c")]
     public override string class_name {
         public get {

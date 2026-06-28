@@ -23,7 +23,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="class_gme",cheader_filename="subprojects/ffmpeg/libavformat/libgme.c")]
-public class LibGMEDemuxerClass : LibAVUtil.Class {
+public class LibGMEDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/libgme.c")]
     public override string class_name {
         public get {

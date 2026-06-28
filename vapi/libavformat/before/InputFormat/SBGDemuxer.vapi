@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="sbg_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
-public class SBGDemuxerClass : LibAVUtil.Class {
+public class SBGDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/sbgdec.c")]
     public override string class_name {
         public get {

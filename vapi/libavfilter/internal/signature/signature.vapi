@@ -204,7 +204,7 @@ public class StreamContext {
     needed for xml_export
     ***********************************************************/
     [CCode (cname="")]
-    public AVRational time_base;
+    public LibAVUtil.Rational time_base;
 
     /***********************************************************
     height
@@ -280,7 +280,7 @@ public class StreamContext {
 [Compact]
 public class SignatureContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     /***********************************************************
     input parameters

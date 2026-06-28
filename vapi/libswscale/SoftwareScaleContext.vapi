@@ -33,7 +33,7 @@ internal class LibSoftwareScale.SoftwareScaleContext {
     info on struct for av_log
     ***********************************************************/
     [CCode (cname="")]
-    internal LibAVUtil.Class? av_class;
+    internal LibAVUtil.Log.Class? av_class;
 
     [CCode (cname="SwsFunc",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
     internal delegate int LibSoftwareScale.SoftwareScaleDelegate (
@@ -1747,7 +1747,7 @@ internal class LibSoftwareScale.SoftwareScaleContext {
 
     //  extern const int32 ff_yuv2rgb_coeffs[11][4];
 
-    //  extern const LibAVUtil.Class ff_sws_context_class;
+    //  extern const LibAVUtil.Log.Class ff_sws_context_class;
 
     /***********************************************************
     Set c->swscale to an unscaled converter if one exists for the specific
@@ -2136,13 +2136,13 @@ internal class LibSoftwareScale.SoftwareScaleContext {
     );
 
     /***********************************************************
-    Get the LibAVUtil.Class for swsContext. It can be used in combination with
+    Get the LibAVUtil.Log.Class for swsContext. It can be used in combination with
     OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
     @see av_opt_find ().
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
-    public LibAVUtil.Class? sws_get_class ();
+    public LibAVUtil.Log.Class? sws_get_class ();
 
 }
 // FIXME check init (where 0)

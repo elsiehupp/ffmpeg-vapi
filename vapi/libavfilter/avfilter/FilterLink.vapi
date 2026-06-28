@@ -79,25 +79,34 @@ public class LibAVFilter.FilterLink {
     public LibAVUtil.MediaType type;
 
     /***********************************************************
-    These parameters apply only to video
+    @brief agreed-upon media format
     ***********************************************************/
+    [CCode (cname="format")]
+    public int format;
+
     /***********************************************************
     @brief agreed-upon image width
+
+    This parameter applies only to video.
     ***********************************************************/
     [CCode (cname="w")]
     public int w;
 
     /***********************************************************
     @brief agreed-upon image height
+
+    This parameter applies only to video.
     ***********************************************************/
     [CCode (cname="h")]
     public int h;
 
     /***********************************************************
     @brief agreed-upon sample aspect ratio
+
+    This parameter applies only to video.
     ***********************************************************/
     [CCode (cname="sample_aspect_ratio")]
-    public AVRational sample_aspect_ratio;
+    public LibAVUtil.Rational sample_aspect_ratio;
 
     /***********************************************************
     For non-YUV links, these are respectively set to fallback values (as
@@ -118,25 +127,20 @@ public class LibAVFilter.FilterLink {
     public LibAVUtil.ColorRange color_range;
 
     /***********************************************************
-    These parameters apply only to audio
-    ***********************************************************/
-    /***********************************************************
     @brief channel layout of current buffer (see libavutil/channel_layout.h)
+
+    This parameter applies only to audio.
     ***********************************************************/
     [CCode (cname="ch_layout")]
     public uint64 channel_layout;
 
     /***********************************************************
     @brief samples per second
+
+    This parameter applies only to audio.
     ***********************************************************/
     [CCode (cname="sample_rate")]
     public int sample_rate;
-
-    /***********************************************************
-    @brief agreed-upon media format
-    ***********************************************************/
-    [CCode (cname="format")]
-    public int format;
 
     /***********************************************************
     @brief Define the time base used by the PTS of the frames/samples
@@ -146,12 +150,19 @@ public class LibAVFilter.FilterLink {
     input link is assumed to be an unchangeable property.
     ***********************************************************/
     [CCode (cname="time_base")]
-    public AVRational time_base;
+    public LibAVUtil.Rational time_base;
 
+    [CCode (cname="side_data")]
     public AVFrameSideData[] side_data;
+
+    [CCode (cname="nb_side_data")]
     public int nb_side_data;
 
-    public AVAlphaMode alpha_mode; ///< alpha mode (for videos with an alpha channel)
+    /***********************************************************
+    @brief alpha mode (for videos with an alpha channel)
+    ***********************************************************/
+    [CCode (cname="alpha_mode")]
+    public AVAlphaMode alpha_mode;
 
     /*****************************************************************
     All fields below this line are not part of the public API. They
@@ -285,7 +296,7 @@ public class LibAVFilter.FilterLink {
     It is similar to the r_frame_rate field in LibAVFormat.Stream.
     ***********************************************************/
     [CCode (cname="frame_rate")]
-    internal AVRational frame_rate;
+    internal LibAVUtil.Rational frame_rate;
 
     /***********************************************************
     Buffer partially filled with samples to achieve a fixed/minimum size.
@@ -360,7 +371,7 @@ public class LibAVFilter.FilterLink {
     AVHWFramesContext describing the frames.
     ***********************************************************/
     [CCode (cname="hw_frames_ctx")]
-    internal AVBufferRef hw_frames_ctx;
+    internal LibAVUtil.BufferRef hw_frames_ctx;
 
 #if !FF_INTERNAL_FIELDS
 
@@ -419,11 +430,11 @@ public class LibAVFilter.FilterLink {
 
     @return a ref-counted copy of the link's hw_frames_ctx field if there is
             a hardware frames context associated with the link or NULL otherwise.
-            The returned AVBufferRef needs to be released with av_buffer_unref()
+            The returned LibAVUtil.BufferRef needs to be released with av_buffer_unref()
             when it is no longer used.
     ***********************************************************/
     [CCode (cname="avfilter_link_get_hw_frames_ctx",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-    public AVBufferRef? avfilter_link_get_hw_frames_ctx(
+    public LibAVUtil.BufferRef? avfilter_link_get_hw_frames_ctx(
         LibAVFilter.FilterLink? link
     );
 

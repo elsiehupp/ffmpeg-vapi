@@ -52,7 +52,7 @@ public const size_t ALSA_BUFFER_SIZE_MAX; // 131072
 [Compact]
 public class AlsaData {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public snd_pcm_t? h;

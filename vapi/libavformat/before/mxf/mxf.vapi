@@ -206,14 +206,14 @@ public const string PRIxUID;
 
 //  #ifdef DEBUG
 //  #define PRINT_KEY (pc, s, x)
-//      av_log (pc, LogLevel.VERBOSE,
+//      av_log (pc, LibAVUtil.Log.Level.VERBOSE,
 //             "%s "
 //             "0x%02x,0x%02x,0x%02x,0x%02x,"
 //             "0x%02x,0x%02x,0x%02x,0x%02x,"
 //             "0x%02x,0x%02x,0x%02x,0x%02x,"
 //             "0x%02x,0x%02x,0x%02x,0x%02x ",
 //              s, UID_ARG (x));
-//      av_log (pc, LogLevel.INFO,
+//      av_log (pc, LibAVUtil.Log.Level.INFO,
 //             "%s "
 //             "%02x.%02x.%02x.%02x."
 //             "%02x.%02x.%02x.%02x."
@@ -222,7 +222,7 @@ public const string PRIxUID;
 //              s, UID_ARG (x))
 //  #else
 //  #define PRINT_KEY (pc, s, x) do { if (0)
-//      av_log (pc, LogLevel.VERBOSE,
+//      av_log (pc, LibAVUtil.Log.Level.VERBOSE,
 //             "%s "
 //             "0x%02x,0x%02x,0x%02x,0x%02x,"
 //             "0x%02x,0x%02x,0x%02x,0x%02x,"

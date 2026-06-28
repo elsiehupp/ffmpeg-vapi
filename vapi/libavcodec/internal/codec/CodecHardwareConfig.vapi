@@ -28,7 +28,7 @@ LibAVCodec external API header
 
 [CCode (cname="struct AVCodecHWConfig",cheader_filename="subprojects/ffmpeg/libavcodec/codec.h")]
 [Compact]
-internal class CodecHardwareConfig {
+internal class LibAVCodec.CodecHardwareConfig {
     /***********************************************************
     @brief A hardware pixel format which the codec can use.
     ***********************************************************/

@@ -46,7 +46,7 @@ public enum DecklinkPtsSource {
 [Compact]
 public class DeckLinkContext {
     [CCode (cname="")]
-    public LibAVUtil.Class cclass;
+    public LibAVUtil.Log.Class cclass;
 
     [CCode (cname="")]
     public void *ctx;

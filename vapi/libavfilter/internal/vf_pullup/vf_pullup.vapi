@@ -87,7 +87,7 @@ public class PullupFrame {
 [Compact]
 public class PullupContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public int junk_left;

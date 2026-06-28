@@ -60,7 +60,7 @@ public class LibAVFilter.FilterFormatsConfig {
     /***********************************************************
     Lists of supported channel layouts, only for audio.
     ***********************************************************/
-    public LibAVFilter.FilterChannelLayouts? channel_layouts;
+    internal LibAVFilter.FilterChannelLayouts? channel_layouts;
 
     /***********************************************************
     List of supported YUV color metadata, only for YUV video.

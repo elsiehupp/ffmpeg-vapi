@@ -27,11 +27,11 @@ LibAVCodec external API header
 ***********************************************************/
 
 /***********************************************************
-@brief Codec.
+@brief LibAVCodec.Codec.
 ***********************************************************/
 [CCode (cname="struct AVCodec",cheader_filename="subprojects/ffmpeg/libavcodec/codec.h")]
 [Compact]
-internal class Codec {
+internal class LibAVCodec.Codec {
     /***********************************************************
     @brief Name of the codec implementation.
     The name is globally unique among encoders and among decoders (but an
@@ -51,11 +51,11 @@ internal class Codec {
     [CCode (cname="type")]
     public LibAVUtil.MediaType type;
 
-    [CCode (cname="id")]
-    public CodecID id;
+    //  [CCode (cname="id")]
+    //  public LibAVCodec.CodecID id;
 
     /***********************************************************
-    @brief Codec capabilities
+    @brief LibAVCodec.Codec capabilities
     ***********************************************************/
     [Flags]
     [CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
@@ -67,7 +67,7 @@ internal class Codec {
         DRAW_HORIZONTAL_BAND,
 
         /***********************************************************
-        @brief Codec uses get_buffer () for allocating buffers and supports
+        @brief LibAVCodec.Codec uses get_buffer () for allocating buffers and supports
         custom allocators. If not set, it might not use get_buffer ()
         at all or use operations that assume the buffer was
         allocated by avcodec_default_get_buffer.
@@ -95,7 +95,7 @@ internal class Codec {
         The encoder needs to be fed with null data at the end of
         encoding until the encoder no longer returns data.
 
-        NOTE: For encoders implementing the Codec.encode2 ()
+        NOTE: For encoders implementing the LibAVCodec.Codec.encode2 ()
             function, setting this flag also means that the encoder
             must set the pts and duration for each output packet.
             If this flag is not set, the pts and duration will be
@@ -104,13 +104,13 @@ internal class Codec {
         DELAY,
 
         /***********************************************************
-        @brief Codec can be fed a final frame with a smaller size. This can
+        @brief LibAVCodec.Codec can be fed a final frame with a smaller size. This can
         be used to prevent truncation of the last audio samples.
         ***********************************************************/
         SMALL_LAST_FRAME,
 
         /***********************************************************
-        @brief Codec can output multiple frames per Packet. Normally
+        @brief LibAVCodec.Codec can output multiple frames per Packet. Normally
         demuxers return one frame at a time, demuxers which do not do
         are connected to a parser to split what they return into
         proper frames. This flag is reserved to the very rare
@@ -124,35 +124,35 @@ internal class Codec {
         SUBFRAMES,
 
         /***********************************************************
-        @brief Codec is experimental and is thus avoided in favor of non-
+        @brief LibAVCodec.Codec is experimental and is thus avoided in favor of non-
         experimental encoders.
         ***********************************************************/
         EXPERIMENTAL,
 
         /***********************************************************
-        @brief Codec should fill in channel configuration and samplerate
+        @brief LibAVCodec.Codec should fill in channel configuration and samplerate
         instead of container.
         ***********************************************************/
         [CCode (cname="AV_CODEC_CAP_CHANNEL_CONF")]
         CHANNEL_CONFIGURATION,
 
         /***********************************************************
-        @brief Codec supports frame-level multithreading.
+        @brief LibAVCodec.Codec supports frame-level multithreading.
         ***********************************************************/
         FRAME_THREADS,
 
         /***********************************************************
-        @brief Codec supports slice-based (or partition-based) multithreading.
+        @brief LibAVCodec.Codec supports slice-based (or partition-based) multithreading.
         ***********************************************************/
         SLICE_THREADS,
 
         /***********************************************************
-        @brief Codec supports changed parameters at any point.
+        @brief LibAVCodec.Codec supports changed parameters at any point.
         ***********************************************************/
         PARAMETER_CHANGE,
 
         /***********************************************************
-        @brief Codec supports avctx.thread_count == 0 (auto).
+        @brief LibAVCodec.Codec supports avctx.thread_count == 0 (auto).
         ***********************************************************/
         AUTO_THREADS,
 
@@ -173,24 +173,24 @@ internal class Codec {
         AVOID_PROBING,
 
         /***********************************************************
-        @brief Codec is intra only.
+        @brief LibAVCodec.Codec is intra only.
         ***********************************************************/
         INTRA_ONLY,
 
         /***********************************************************
-        @brief Codec is lossless.
+        @brief LibAVCodec.Codec is lossless.
         ***********************************************************/
         LOSSLESS,
 
         /***********************************************************
-        @brief Codec is backed by a hardware implementation. Typically used
+        @brief LibAVCodec.Codec is backed by a hardware implementation. Typically used
         to identify a non-hwaccel hardware decoder. For information
         about hwaccels, use avcodec_get_hw_config () instead.
         ***********************************************************/
         HARDWARE,
 
         /***********************************************************
-        @brief Codec is potentially backed by a hardware implementation,
+        @brief LibAVCodec.Codec is potentially backed by a hardware implementation,
         but not necessarily. This is used instead of AV_CODEC_CAP_HARDWARE,
         if the implementation provides some sort of internal fallback.
         ***********************************************************/
@@ -205,7 +205,7 @@ internal class Codec {
     }
 
     /***********************************************************
-    @brief Codec capabilities.
+    @brief LibAVCodec.Codec capabilities.
     ***********************************************************/
     [CCode (cname="capabilities")]
     public CodecCapabilityFlags capabilities;
@@ -252,17 +252,17 @@ internal class Codec {
     public uint8 max_lowres;
 
     /***********************************************************
-    @brief LibAVUtil.Class for the private context
+    @brief LibAVUtil.Log.Class for the private context
     ***********************************************************/
     //  [CCode (cname="priv_class")]
-    public LibAVUtil.Class priv_class;
+    public LibAVUtil.Log.Class priv_class;
 
     /***********************************************************
     @brief Array of recognized profiles, or null if unknown, array is
     terminated by {ProfileType.UNKNOWN}
     ***********************************************************/
-    [CCode (cname="profiles")]
-    public Profile[] profiles;
+    //  [CCode (cname="profiles")]
+    //  public  LibAVCodec.Profile[] profiles;
 
     /***********************************************************
     @brief Group name of the codec implementation.
@@ -271,8 +271,8 @@ internal class Codec {
     as an external library, or a codec implementation provided by the OS or
     the hardware.
     If this field is null, this is a builtin, LibAVCodec native codec.
-    If non-null, this will be the suffix in Codec.name in most cases
-    (usually Codec.name will be of the form "<codec_name>_<wrapper_name>").
+    If non-null, this will be the suffix in LibAVCodec.Codec.name in most cases
+    (usually LibAVCodec.Codec.name will be of the form "<codec_name>_<wrapper_name>").
     ***********************************************************/
     [CCode (cname="wrapper_name")]
     public string wrapper_name;
@@ -285,8 +285,8 @@ internal class Codec {
     any hardware configurations then it will always return null.
     ***********************************************************/
     [CCode (cname="avcodec_get_hw_config",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-    public CodecHardwareConfig avcodec_get_hw_config (
-        Codec codec,
+    public LibAVCodec.CodecHardwareConfig avcodec_get_hw_config (
+        LibAVCodec.Codec codec,
         int index
     );
 
@@ -300,19 +300,19 @@ internal class Codec {
         finished
     ***********************************************************/
     [CCode (cname="av_codec_iterate",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-    public Codec av_codec_iterate (
+    public LibAVCodec.Codec av_codec_iterate (
         out void *opaque
     );
 
     /***********************************************************
     @brief Find a registered decoder with a matching codec ID.
 
-    @param id CodecID of the requested decoder
+    @param id LibAVCodec.CodecID of the requested decoder
     @return A decoder if one was found, null otherwise.
     ***********************************************************/
     [CCode (cname="avcodec_find_decoder",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-    public Codec avcodec_find_decoder (
-        CodecID id
+    public LibAVCodec.Codec avcodec_find_decoder (
+        LibAVCodec.CodecID id
     );
 
     /***********************************************************
@@ -322,19 +322,19 @@ internal class Codec {
     @return A decoder if one was found, null otherwise.
     ***********************************************************/
     [CCode (cname="avcodec_find_decoder_by_name",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-    public Codec avcodec_find_decoder_by_name (
+    public LibAVCodec.Codec avcodec_find_decoder_by_name (
         string name
     );
 
     /***********************************************************
     @brief Find a registered encoder with a matching codec ID.
 
-    @param id CodecID of the requested encoder
+    @param id LibAVCodec.CodecID of the requested encoder
     @return An encoder if one was found, null otherwise.
     ***********************************************************/
     [CCode (cname="avcodec_find_encoder",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-    public Codec avcodec_find_encoder (
-        CodecID id
+    public LibAVCodec.Codec avcodec_find_encoder (
+        LibAVCodec.CodecID id
     );
 
     /***********************************************************
@@ -344,7 +344,7 @@ internal class Codec {
     @return An encoder if one was found, null otherwise.
     ***********************************************************/
     [CCode (cname="avcodec_find_encoder_by_name",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-    public Codec avcodec_find_encoder_by_name (
+    public LibAVCodec.Codec avcodec_find_encoder_by_name (
         string name
     );
 
@@ -353,7 +353,7 @@ internal class Codec {
     ***********************************************************/
     [CCode (cname="av_codec_is_encoder",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_codec_is_encoder (
-        Codec codec
+        LibAVCodec.Codec codec
     );
 
     /***********************************************************
@@ -361,7 +361,7 @@ internal class Codec {
     ***********************************************************/
     [CCode (cname="av_codec_is_decoder",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_codec_is_decoder (
-        Codec codec
+        LibAVCodec.Codec codec
     );
 
     /***********************************************************
@@ -373,7 +373,7 @@ internal class Codec {
     ***********************************************************/
     [CCode (cname="av_get_profile_name",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public string av_get_profile_name (
-        Codec codec,
+        LibAVCodec.Codec codec,
         int profile
     );
 

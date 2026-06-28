@@ -27,7 +27,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="ffrtmphttp_class",cheader_filename="subprojects/ffmpeg/libavformat/rtmphttp.c")]
-public class RTMPHTTPURLProtocolClass : LibAVUtil.Class {
+public class RTMPHTTPURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/rtmphttp.c")]
     public override string class_name {
         public get {

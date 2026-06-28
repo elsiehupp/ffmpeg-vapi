@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [CCode (cname="ism_class",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
-public class SmoothStreamingMuxerClass : LibAVUtil.Class {
+public class SmoothStreamingMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/smoothstreamingenc.c")]
     public override string class_name {
         public get {

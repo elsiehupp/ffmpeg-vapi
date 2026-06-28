@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 //  #define OGG_CLASS (flavor, name)
 [CCode (cname="flavor ## _muxer_class",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-public class FlaverMuxerClass : LibAVUtil.Class {
+public class FlaverMuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
     public override string class_name {
         public get {

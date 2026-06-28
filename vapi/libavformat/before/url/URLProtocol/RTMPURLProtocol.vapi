@@ -26,7 +26,7 @@ namespace LibAVFormat {
 @file RTMP protocol
 ***********************************************************/
 
-public abstract class RTMPOptionsClass : LibAVUtil.Class {
+public abstract class RTMPOptionsClass : LibAVUtil.Log.Class {
 
     [CCode (cname="option")]
     public override LibAVUtil.Option[] options {

@@ -31,7 +31,7 @@ namespace LibAVFormat {
 public class LibRTMPPrivateData { }
 
 [CCode (cname="librtmp_class",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
-public class LibRTMPURLProtocolClass : LibAVUtil.Class {
+public class LibRTMPURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string class_name {
         public get {
@@ -352,7 +352,7 @@ public class LibRTMPURLProtocol : URLProtocol {
 }
 
 [CCode (cname="librtmpt_class",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
-public class LibRTMPTURLProtocolClass : LibAVUtil.Class {
+public class LibRTMPTURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string class_name {
         public get {
@@ -469,7 +469,7 @@ public class LibRTMPTURLProtocol : URLProtocol {
 }
 
 [CCode (cname="librtmpe_class",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
-public class LibRTMPEURLProtocolClass : LibAVUtil.Class {
+public class LibRTMPEURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string class_name {
         public get {
@@ -586,7 +586,7 @@ public class LibRTMPEURLProtocol : URLProtocol {
 }
 
 [CCode (cname="librtmpte_class",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
-public class LibRTMPTEURLProtocolClass : LibAVUtil.Class {
+public class LibRTMPTEURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string class_name {
         public get {
@@ -703,7 +703,7 @@ public class LibRTMPTEURLProtocol : URLProtocol {
 }
 
 [CCode (cname="librtmps_class",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
-public class LibRTMPSURLProtocolClass : LibAVUtil.Class {
+public class LibRTMPSURLProtocolClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/librtmp.c")]
     public override string class_name {
         public get {

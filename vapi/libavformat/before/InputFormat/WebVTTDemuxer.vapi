@@ -27,7 +27,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [CCode (cname="webvtt_demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
-public class WebVTTDemuxerClass : LibAVUtil.Class {
+public class WebVTTDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/webvttdec.c")]
     public override string class_name {
         public get {

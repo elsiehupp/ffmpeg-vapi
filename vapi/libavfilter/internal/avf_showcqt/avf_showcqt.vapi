@@ -71,7 +71,7 @@ public typedef union ColorFloat {
 [Compact]
 public class ShowCQTContext {
     [CCode (cname="class")]
-    public LibAVUtil.Class av_class;
+    public LibAVUtil.Log.Class av_class;
 
     [CCode (cname="")]
     public LibAVFilter.FilterContext? ctx;
@@ -95,7 +95,7 @@ public class ShowCQTContext {
     public int step;
 
     [CCode (cname="")]
-    public AVRational step_frac;
+    public LibAVUtil.Rational step_frac;
 
     [CCode (cname="")]
     public int remaining_frac;
@@ -263,7 +263,7 @@ public class ShowCQTContext {
     public int height;
 
     [CCode (cname="")]
-    public AVRational rate;
+    public LibAVUtil.Rational rate;
 
     [CCode (cname="")]
     public int bar_h;

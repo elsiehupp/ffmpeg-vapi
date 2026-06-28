@@ -47,7 +47,7 @@ Only tracks with associated descriptors will be decoded. "Highly Desirable" SMPT
 ***********************************************************/
 
 [CCode (cname="demuxer_class",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
-public class MXFDemuxerClass : LibAVUtil.Class {
+public class MXFDemuxerClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
     public override string class_name {
         public get {
@@ -100,7 +100,7 @@ public class MXFDemuxerClass : LibAVUtil.Class {
         }
 
     }
-    //  .category = LibAVUtil.ClassCategory.DEMUXER;
+    //  .category = LibAVUtil.Log.ClassCategory.DEMUXER;
 }
 
 [CCode (cname="struct MXFContext",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]

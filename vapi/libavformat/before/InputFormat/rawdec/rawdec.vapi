@@ -29,7 +29,7 @@ public class FFRawVideoDemuxerContext {
     @brief Class for private options.
     ***********************************************************/
     [CCode (cname="")]
-    public LibAVUtil.Class class;
+    public LibAVUtil.Log.Class class;
 
     [CCode (cname="")]
     public int raw_packet_size;
@@ -60,7 +60,7 @@ public class FFRawDemuxerContext {
     @brief Class for private options.
     ***********************************************************/
     [CCode (cname="")]
-    public LibAVUtil.Class class;
+    public LibAVUtil.Log.Class class;
 
     [CCode (cname="")]
     public int raw_packet_size;
@@ -93,7 +93,7 @@ public int ff_raw_data_read_header (
 );
 
 #define FF_RAW_DEMUXER_CLASS (name)\
-public const LibAVUtil.Class name ## _demuxer_class : RawOptionsClass {
+public const LibAVUtil.Log.Class name ## _demuxer_class : RawOptionsClass {
     //  .class_name = #name " demuxer",
     //  .item_name = base.item_name,
 
@@ -111,7 +111,7 @@ public const LibAVUtil.Class name ## _demuxer_class : RawOptionsClass {
 }
 
 #define FF_RAWVIDEO_DEMUXER_CLASS (name)\
-public const LibAVUtil.Class name ## _demuxer_class = {
+public const LibAVUtil.Log.Class name ## _demuxer_class = {
     //  .class_name = #name " demuxer",
     //  .item_name = base.item_name,
 
@@ -174,7 +174,7 @@ LibAVFormat.InputFormat ff_ ## shortname ## _demuxer = {
 FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, AVFormatFlags1.USE_GENERIC_INDEX)
 
 #define FF_RAWSUB_DEMUXER_CLASS (name)\
-public const LibAVUtil.Class name ## _demuxer_class : RawOptionsClass {
+public const LibAVUtil.Log.Class name ## _demuxer_class : RawOptionsClass {
     //  .class_name = #name " demuxer",
     //  .item_name = base.item_name,
 

@@ -86,7 +86,7 @@ public static inline void ff_bufqueue_add (
 //      if (
 //          ff_bufqueue_is_full (queue)
 //      ) {
-//          av_log (log, LogLevel.WARNING, "Buffer queue overflow, dropping.\n");
+//          av_log (log, LibAVUtil.Log.Level.WARNING, "Buffer queue overflow, dropping.\n");
 //          av_frame_free (&BUCKET (--queue->available));
 //      }
 //      BUCKET (queue->available++) = buf;
