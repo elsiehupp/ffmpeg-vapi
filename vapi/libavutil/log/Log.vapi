@@ -64,5 +64,4 @@ namespace Log {
     );
 
 } // namespace Log
-
 } // namespace LibAVUtil
