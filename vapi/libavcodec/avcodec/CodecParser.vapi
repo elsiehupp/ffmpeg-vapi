@@ -100,101 +100,78 @@ public abstract class CodecParser {
 
 }
 
-/***********************************************************
-@addtogroup lavc_encoding
-***********************************************************/
-
-/***********************************************************
-@defgroup lavc_misc Utility functions
-@ingroup libavc
-
-Miscellaneous utility functions related to both encoding and decoding
-(or neither).
-***********************************************************/
-
-/***********************************************************
-@defgroup lavc_misc_pixfmt Pixel formats
-
-Functions for working with pixel formats.
-***********************************************************/
-
-/***********************************************************
-@brief Return a value representing the fourCC code associated to the
-pixel format pixel_format, or 0 if no associated fourCC code can be
-found.
-***********************************************************/
-[CCode (cname="avcodec_pix_fmt_to_codec_tag",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public uint avcodec_pix_fmt_to_codec_tag (
-    LibAVUtil.PixelFormat pixel_format
-);
-
-/***********************************************************
-@brief Find the best pixel format to convert to given a certain source pixel
-format. When converting from one pixel format to another, information loss
-may occur. For example, when converting from RGB24 to GRAY, the color
-information will be lost. Similarly, other losses occur when converting from
-some formats to other formats. avcodec_find_best_pix_fmt_of_2 () searches which of
-the given pixel formats should be used to suffer the least amount of loss.
-The pixel formats from which it chooses one, are determined by the
-pix_fmt_list parameter.
-
-@param[in] pix_fmt_list LibAVUtil.PixelFormat.NONE terminated array of pixel formats to choose from
-@param[in] input_pix_fmt source pixel format
-@param[in] has_alpha Whether the source pixel format alpha channel is used.
-@param[out] loss_ptr Combination of flags informing you what kind of losses will occur.
-@return The best pixel format to convert to or -1 if none was found.
-***********************************************************/
-[CCode (cname="avcodec_find_best_pix_fmt_of_list",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public LibAVUtil.PixelFormat avcodec_find_best_pix_fmt_of_list (
-    LibAVUtil.PixelFormat[] pix_fmt_list,
-    LibAVUtil.PixelFormat input_pix_fmt,
-    int has_alpha,
-    out int loss_ptr
-);
-
-/***********************************************************
-@brief Fill LibAVUtil.Frame audio data and linesize pointers.
-
-The buffer buffer must be a preallocated buffer with a size big enough
-to contain the specified samples amount. The filled LibAVUtil.Frame data
-pointers will point to this buffer.
-
-LibAVUtil.Frame extended_data channel pointers are allocated if necessary for
-planar audio.
-
-@param frame the LibAVUtil.Frame
-    frame.nb_samples must be set prior to calling the
-    function. This function fills in frame.data,
-    frame.extended_data, frame.linesize[0].
-@param nb_channels channel count
-@param sample_fmt sample format
-@param buffer buffer to use for frame data
-@param buf_size size of buffer
-@param align plane size sample alignment (0 = default)
-@return    >=0 on success, negative error code on failure
-@todo return the size in bytes required to store the samples in
-case of success, at the next libavutil bump
-***********************************************************/
-[CCode (cname="avcodec_fill_audio_frame",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public int avcodec_fill_audio_frame (
-    LibAVUtil.Frame frame,
-    int nb_channels,
-    LibAVUtil.SampleFormat sample_fmt,
-    uint8[] buffer,
-    int buf_size,
-    int align
-);
-
-/***********************************************************
-@brief Return the PCM codec associated with a sample format.
-@param be endianness, 0 for little, 1 for big,
-    -1 (or anything else) for native
-@return CodecID
-***********************************************************/
-[CCode (cname="av_get_pcm_codec",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public CodecID av_get_pcm_codec (
-    LibAVUtil.SampleFormat fmt,
-    int be
-);
-
 } // namespace LibAVCodec
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***********************************************************
+@defgroup lavc_parsing Frame parsing
+@{
+***********************************************************/
+
+typedef struct AVCodecParser {
+#if FF_API_PARSER_CODECID
+    int codec_ids[7]; /* several codec IDs are permitted */
+#else
+    enum AVCodecID codec_ids[7]; /* several codec IDs are permitted */
+#endif
+#if FF_API_PARSER_PRIVATE
+    /*****************************************************************
+     * All fields below this line are not part of the public API. They
+     * may not be used outside of libavcodec and can be changed and
+     * removed at will.
+     * New public fields should be added right above.
+     *****************************************************************
+     */
+    attribute_deprecated
+    int priv_data_size;
+    attribute_deprecated
+    int (*parser_init)(AVCodecParserContext *s);
+    /* This callback never returns an error, a negative value means that
+     * the frame start was in a previous packet. */
+    attribute_deprecated
+    int (*parser_parse)(AVCodecParserContext *s,
+                        AVCodecContext *avctx,
+                        const uint8_t **poutbuf, int *poutbuf_size,
+                        const uint8_t *buf, int buf_size);
+    attribute_deprecated
+    void (*parser_close)(AVCodecParserContext *s);
+    attribute_deprecated
+    int (*split)(AVCodecContext *avctx, const uint8_t *buf, int buf_size);
+#endif
+} AVCodecParser;
+
+/***********************************************************
+@}
+***********************************************************/
+
+
+/***********************************************************
+@defgroup lavc_parsing Frame parsing
+@{
+***********************************************************/
+
+/***********************************************************
+Iterate over all registered codec parsers.
+
+@param opaque a pointer where libavcodec will store the iteration state. Must
+              point to NULL to start the iteration.
+
+@return the next registered codec parser or NULL when the iteration is
+        finished
+***********************************************************/
+const AVCodecParser *av_parser_iterate(void **opaque);
+
+/***********************************************************
+@}
+***********************************************************/

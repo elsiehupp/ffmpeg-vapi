@@ -1264,3 +1264,126 @@ public enum PixelFormat {
 }
 
 } // namespace LibAVUtil
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***********************************************************
+@defgroup lavc_misc Utility functions
+@ingroup libavc
+
+Miscellaneous utility functions related to both encoding and decoding
+(or neither).
+@{
+***********************************************************/
+
+/***********************************************************
+@defgroup lavc_misc_pixfmt Pixel formats
+
+Functions for working with pixel formats.
+@{
+***********************************************************/
+
+/***********************************************************
+Return a value representing the fourCC code associated to the
+pixel format pix_fmt, or 0 if no associated fourCC code can be
+found.
+***********************************************************/
+unsigned int avcodec_pix_fmt_to_codec_tag(enum AVPixelFormat pix_fmt);
+
+/***********************************************************
+Find the best pixel format to convert to given a certain source pixel
+format.  When converting from one pixel format to another, information loss
+may occur.  For example, when converting from RGB24 to GRAY, the color
+information will be lost. Similarly, other losses occur when converting from
+some formats to other formats. avcodec_find_best_pix_fmt_of_2() searches which of
+the given pixel formats should be used to suffer the least amount of loss.
+The pixel formats from which it chooses one, are determined by the
+pix_fmt_list parameter.
+
+ *
+@param[in] pix_fmt_list AV_PIX_FMT_NONE terminated array of pixel formats to choose from
+@param[in] src_pix_fmt source pixel format
+@param[in] has_alpha Whether the source pixel format alpha channel is used.
+@param[out] loss_ptr Combination of flags informing you what kind of losses will occur.
+@return The best pixel format to convert to or -1 if none was found.
+***********************************************************/
+enum AVPixelFormat avcodec_find_best_pix_fmt_of_list(const enum AVPixelFormat *pix_fmt_list,
+                                            enum AVPixelFormat src_pix_fmt,
+                                            int has_alpha, int *loss_ptr);
+
+enum AVPixelFormat avcodec_default_get_format(struct AVCodecContext *s, const enum AVPixelFormat * fmt);
+
+/***********************************************************
+@}
+***********************************************************/
+
+/***********************************************************
+@}
+***********************************************************/
+
+
+
+
+/***********************************************************
+@brief Find the best pixel format to convert to given a certain source pixel
+format. When converting from one pixel format to another, information loss
+may occur. For example, when converting from RGB24 to GRAY, the color
+information will be lost. Similarly, other losses occur when converting from
+some formats to other formats. avcodec_find_best_pix_fmt_of_2 () searches which of
+the given pixel formats should be used to suffer the least amount of loss.
+The pixel formats from which it chooses one, are determined by the
+pix_fmt_list parameter.
+
+@param[in] pix_fmt_list LibAVUtil.PixelFormat.NONE terminated array of pixel formats to choose from
+@param[in] input_pix_fmt source pixel format
+@param[in] has_alpha Whether the source pixel format alpha channel is used.
+@param[out] loss_ptr Combination of flags informing you what kind of losses will occur.
+@return The best pixel format to convert to or -1 if none was found.
+***********************************************************/
+[CCode (cname="avcodec_find_best_pix_fmt_of_list",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+public static LibAVUtil.PixelFormat avcodec_find_best_pix_fmt_of_list (
+    LibAVUtil.PixelFormat[] pix_fmt_list,
+    LibAVUtil.PixelFormat input_pix_fmt,
+    int has_alpha,
+    out int loss_ptr
+);
+
+/***********************************************************
+@addtogroup lavc_encoding
+***********************************************************/
+
+/***********************************************************
+@defgroup lavc_misc Utility functions
+@ingroup libavc
+
+Miscellaneous utility functions related to both encoding and decoding
+(or neither).
+***********************************************************/
+
+/***********************************************************
+@defgroup lavc_misc_pixfmt Pixel formats
+
+Functions for working with pixel formats.
+***********************************************************/
+
+/***********************************************************
+@brief Return a value representing the fourCC code associated to the
+pixel format pixel_format, or 0 if no associated fourCC code can be
+found.
+***********************************************************/
+[CCode (cname="avcodec_pix_fmt_to_codec_tag",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+public uint avcodec_pix_fmt_to_codec_tag (
+    LibAVUtil.PixelFormat pixel_format
+);

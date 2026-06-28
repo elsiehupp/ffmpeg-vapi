@@ -710,6 +710,53 @@ public class Frame {
         FrameCropFlags flags
     );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /***********************************************************
+    @brief Fill LibAVUtil.Frame audio data and linesize pointers.
+
+    The buffer buffer must be a preallocated buffer with a size big enough
+    to contain the specified samples amount. The filled LibAVUtil.Frame data
+    pointers will point to this buffer.
+
+    LibAVUtil.Frame extended_data channel pointers are allocated if necessary for
+    planar audio.
+
+    @param frame the LibAVUtil.Frame
+        frame.nb_samples must be set prior to calling the
+        function. This function fills in frame.data,
+        frame.extended_data, frame.linesize[0].
+    @param nb_channels channel count
+    @param sample_fmt sample format
+    @param buffer buffer to use for frame data
+    @param buf_size size of buffer
+    @param align plane size sample alignment (0 = default)
+    @return    >=0 on success, negative error code on failure
+    @todo return the size in bytes required to store the samples in
+    case of success, at the next libavutil bump
+    ***********************************************************/
+    [CCode (cname="avcodec_fill_audio_frame",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+    public int avcodec_fill_audio_frame (
+        LibAVUtil.Frame frame,
+        int nb_channels,
+        LibAVUtil.SampleFormat sample_fmt,
+        uint8[] buffer,
+        int buf_size,
+        int align
+    );
+
 }
 
 } // namespace LibAVUtil

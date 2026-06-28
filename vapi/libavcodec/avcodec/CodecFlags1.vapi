@@ -27,6 +27,15 @@ LibAVCodec external API header
 ***********************************************************/
 
 /***********************************************************
+@defgroup lavc_core Core functions/structures.
+@ingroup libavc
+
+Basic definitions, functions for querying libavcodec capabilities,
+allocating core structures, etc.
+@{
+***********************************************************/
+
+/***********************************************************
 @brief Encoding support
 
 These flags can be passed in CodecContext.flags before initialization.

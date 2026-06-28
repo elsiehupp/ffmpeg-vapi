@@ -382,6 +382,18 @@ public enum SampleFormat {
         SampleFormat sample_fmt
     );
 
+    /***********************************************************
+    @brief Return the PCM codec associated with a sample format.
+    @param be endianness, 0 for little, 1 for big,
+        -1 (or anything else) for native
+    @return CodecID
+    ***********************************************************/
+    [CCode (cname="av_get_pcm_codec",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+    public CodecID av_get_pcm_codec (
+        LibAVUtil.SampleFormat fmt,
+        int be
+    );
+
 }
 
 } // namespace LibAVUtil

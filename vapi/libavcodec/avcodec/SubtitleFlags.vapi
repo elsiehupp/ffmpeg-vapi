@@ -32,4 +32,7 @@ public enum SubtitleFlags {
     FORCED;
 }
 
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+#define AV_SUBTITLE_FLAG_FORCED 0x00000001
+
 } // namespace LibAVCodec

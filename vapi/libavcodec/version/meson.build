@@ -1,0 +1,4 @@
+
+srcs += files([
+    './Version.vapi'
+])

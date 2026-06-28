@@ -78,9 +78,4 @@ public const bool FF_API_LAVR_OPTS; // (LIBAVFILTER_VERSION_MAJOR < 8)
 public const bool FF_API_FILTER_GET_SET; // (LIBAVFILTER_VERSION_MAJOR < 8)
 #endif
 
-#if !FF_API_NEXT
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/version.h")]
-public const bool FF_API_NEXT; // (LIBAVFILTER_VERSION_MAJOR < 8)
-#endif
-
 } // namespace LibAVFilter

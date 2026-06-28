@@ -135,11 +135,6 @@ public const bool FF_API_FORMAT_FILENAME; // (LIBAVFORMAT_VERSION_MAJOR < 59)
 public const bool FF_API_OLD_RTSP_OPTIONS; // (LIBAVFORMAT_VERSION_MAJOR < 59)
 #endif
 
-#if !FF_API_NEXT
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/version.h")]
-public const bool FF_API_NEXT; // (LIBAVFORMAT_VERSION_MAJOR < 59)
-#endif
-
 #if !FF_API_DASH_MIN_SEG_DURATION
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/version.h")]
 public const bool FF_API_DASH_MIN_SEG_DURATION; // (LIBAVFORMAT_VERSION_MAJOR < 59)

@@ -77,3 +77,53 @@ public class HardwareAcceleration {
 }
 
 } // namespace LibAVCodec
+
+
+
+
+
+
+/***********************************************************
+@defgroup lavc_hwaccel AVHWAccel
+
+@note  Nothing in this structure should be accessed by the user.  At some
+       point in future it will not be externally visible at all.
+
+@{
+***********************************************************/
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+typedef struct AVHWAccel {
+    /**
+     * Name of the hardware accelerated codec.
+     * The name is globally unique among encoders and among decoders (but an
+     * encoder and a decoder can share the same name).
+     */
+    const char *name;
+
+    /**
+     * Type of codec implemented by the hardware accelerator.
+     *
+     * See AVMEDIA_TYPE_xxx
+     */
+    enum AVMediaType type;
+
+    /**
+     * Codec implemented by the hardware accelerator.
+     *
+     * See AV_CODEC_ID_xxx
+     */
+    enum AVCodecID id;
+
+    /**
+     * Supported pixel format.
+     *
+     * Only hardware accelerated formats are supported here.
+     */
+    enum AVPixelFormat pix_fmt;
+
+    /**
+     * Hardware accelerated codec capabilities.
+     * see AV_HWACCEL_CODEC_CAP_*
+     */
+    int capabilities;
+} AVHWAccel;

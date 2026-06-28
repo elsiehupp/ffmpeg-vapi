@@ -27,6 +27,15 @@ LibAVCodec external API header
 ***********************************************************/
 
 /***********************************************************
+@defgroup lavc_core Core functions/structures.
+@ingroup libavc
+
+Basic definitions, functions for querying libavcodec capabilities,
+allocating core structures, etc.
+@{
+***********************************************************/
+
+/***********************************************************
 @brief Unsupported options :
     Syntax Arithmetic coding (SAC)
     Reference Picture Selection
@@ -86,7 +95,69 @@ public enum CodecFlags2 {
     @brief Do not reset ASS ReadOrder field on flush (subtitles decoding)
     ***********************************************************/
     [CCode (cname="AV_CODEC_FLAG2_RO_FLUSH_NOOP")]
-    READ_ONLY_FLUSH_NOOP;
+    READ_ONLY_FLUSH_NOOP,
+
+    /***********************************************************
+    Generate/parse ICC profiles on encode/decode, as appropriate for the type of
+    file. No effect on codecs which cannot contain embedded ICC profiles, or
+    when compiled without support for lcms2.
+    ***********************************************************/
+    ICC_PROFILES;
 }
 
 } // namespace LibAVCodec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***********************************************************
+@defgroup lavc_core Core functions/structures.
+@ingroup libavc
+
+Basic definitions, functions for querying libavcodec capabilities,
+allocating core structures, etc.
+@{
+***********************************************************/
+
+/* Exported side data.
+   These flags can be passed in AVCodecContext.export_side_data before initialization.
+*/
+
+[Flags]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+public enum CodecExportDataFlags {}
+/***********************************************************
+Export motion vectors through frame side data
+***********************************************************/
+#define AV_CODEC_EXPORT_DATA_MVS         (1 << 0)
+/***********************************************************
+Export encoder Producer Reference Time through packet side data
+***********************************************************/
+#define AV_CODEC_EXPORT_DATA_PRFT        (1 << 1)
+/***********************************************************
+Decoding only.
+Export the AVVideoEncParams structure through frame side data.
+***********************************************************/
+#define AV_CODEC_EXPORT_DATA_VIDEO_ENC_PARAMS (1 << 2)
+/***********************************************************
+Decoding only.
+Do not apply film grain, export it instead.
+***********************************************************/
+#define AV_CODEC_EXPORT_DATA_FILM_GRAIN (1 << 3)
+
+/***********************************************************
+Decoding only.
+Do not apply picture enhancement layers, export them instead.
+***********************************************************/
+#define AV_CODEC_EXPORT_DATA_ENHANCEMENTS (1 << 4)

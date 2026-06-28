@@ -26,6 +26,15 @@ using LibAVUtil;
 LibAVCodec external API header
 ***********************************************************/
 
+/***********************************************************
+@defgroup lavc_core Core functions/structures.
+@ingroup libavc
+
+Basic definitions, functions for querying libavcodec capabilities,
+allocating core structures, etc.
+@{
+***********************************************************/
+
 [Flags]
 [CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum GetBufferFlags {

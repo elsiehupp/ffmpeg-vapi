@@ -1025,44 +1025,6 @@ public AVFilter? av_filter_iterate (
     void **opaque
 );
 
-#if FF_API_NEXT
-
-/***********************************************************
-Initialize the filter system. Register all builtin filters.
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-//  attribute_deprecated
-public void avfilter_register_all ();
-
-/***********************************************************
-Register a filter. This is only needed if you plan to use
-avfilter_get_by_name later to lookup the AVFilter structure by name. A
-filter can still by instantiated with avfilter_graph_alloc_filter even if it
-is not registered.
-
-@param filter the filter to register
-@return 0 if the registration was successful, a negative value
-otherwise
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-//  attribute_deprecated
-public int avfilter_register (
-    AVFilter? filter
-);
-
-/***********************************************************
-Iterate over all registered filters.
-@return If prev is non-NULL, next registered filter after prev or NULL if
-prev is the last filter. If prev is NULL, return the first registered filter.
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-//  attribute_deprecated
-public AVFilter? avfilter_next (
-    AVFilter? prev
-);
-
-#endif
-
 /***********************************************************
 Get a filter definition matching the given name.
 

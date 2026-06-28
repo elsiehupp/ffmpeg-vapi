@@ -75,6 +75,28 @@ public class SubtitleRect {
     [CCode (cname="linesize")]
     public int linesize[4];
 
+    [CCode (cname="enum AVSubtitleType",cprefix="SUBTITLE_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+    public enum SubtitleType {
+        NONE,
+
+        /***********************************************************
+        @brief A bitmap, pict will be set
+        ***********************************************************/
+        BITMAP,
+
+        /***********************************************************
+        @brief Plain text, the text field must be set by the decoder and is
+        authoritative. ass and pict fields may contain approximations.
+        ***********************************************************/
+        TEXT,
+
+        /***********************************************************
+        @brief Formatted text, the ass field must be set by the decoder and is
+        authoritative. pict and text fields may contain approximations.
+        ***********************************************************/
+        ASS;
+    }
+
     [CCode (cname="type")]
     public SubtitleType type;
 
@@ -97,3 +119,31 @@ public class SubtitleRect {
 }
 
 } // namespace LibAVCodec
+
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+typedef struct AVSubtitleRect {
+    int x;         ///< top left corner  of pict, undefined when pict is not set
+    int y;         ///< top left corner  of pict, undefined when pict is not set
+    int w;         ///< width            of pict, undefined when pict is not set
+    int h;         ///< height           of pict, undefined when pict is not set
+    int nb_colors; ///< number of colors in pict, undefined when pict is not set
+
+    /**
+     * data+linesize for the bitmap of this subtitle.
+     * Can be set for text/ass as well once they are rendered.
+     */
+    uint8_t *data[4];
+    int linesize[4];
+
+    int flags;
+    enum AVSubtitleType type;
+
+    char *text;                     ///< 0 terminated plain UTF-8 text
+
+    /**
+     * 0 terminated ASS/SSA compatible event line.
+     * The presentation of this is unaffected by the other values in this
+     * struct.
+     */
+    char *ass;
+} AVSubtitleRect;

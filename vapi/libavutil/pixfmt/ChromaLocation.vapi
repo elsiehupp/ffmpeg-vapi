@@ -84,6 +84,41 @@ public enum ChromaLocation {
         string name
     );
 
+    /***********************************************************
+    @addtogroup lavc_decoding
+    ***********************************************************/
+
+    /***********************************************************
+    @brief Converts LibAVUtil.ChromaLocation to swscale x/y chroma position.
+
+    The positions represent the chroma (0,0) position in a coordinates system
+    with luma (0,0) representing the origin and luma (1,1) representing 256,256
+
+    @param xpos horizontal chroma sample position
+    @param ypos vertical chroma sample position
+    ***********************************************************/
+    [CCode (cname="avcodec_enum_to_chroma_pos",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+    public int avcodec_enum_to_chroma_pos (
+        int xpos,
+        int ypos,
+        LibAVUtil.ChromaLocation pos
+    );
+
+    /***********************************************************
+    @brief Converts swscale x/y chroma position to LibAVUtil.ChromaLocation.
+
+    The positions represent the chroma (0,0) position in a coordinates system
+    with luma (0,0) representing the origin and luma (1,1) representing 256,256
+
+    @param xpos horizontal chroma sample position
+    @param ypos vertical chroma sample position
+    ***********************************************************/
+    [CCode (cname="avcodec_chroma_pos_to_enum",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+    public LibAVUtil.ChromaLocation avcodec_chroma_pos_to_enum (
+        int xpos,
+        int ypos
+    );
+
 }
 
 } // namespace LibAVUtil
