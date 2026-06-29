@@ -34,7 +34,7 @@ void randomize_buffers_float () {
     }
 }
 
-static void check_rct_int () {
+public static void check_rct_int () {
     LOCAL_ALIGNED_32 (int32_t, src, [BUF_SIZE*3]);
     LOCAL_ALIGNED_32 (int32_t, ref, [BUF_SIZE*3]);
     LOCAL_ALIGNED_32 (int32_t, new, [BUF_SIZE*3]);
@@ -57,7 +57,7 @@ static void check_rct_int () {
     bench_new (new0, new1, new2, BUF_SIZE);
 }
 
-static void check_ict_float () {
+public static void check_ict_float () {
     LOCAL_ALIGNED_32 (float, src, [BUF_SIZE*3]);
     LOCAL_ALIGNED_32 (float, ref, [BUF_SIZE*3]);
     LOCAL_ALIGNED_32 (float, new, [BUF_SIZE*3]);

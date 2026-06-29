@@ -58,7 +58,7 @@ void check_blend_func (depth) {
                     uint8[] bottom, size_t bottom_linesize,
                     uint8[] dst, size_t dst_linesize,
                     size_t width, size_t height,
-                    FilterParams *param, double *values);
+                    FilterParams? param, double[] values);
     w = WIDTH / depth;
 
     for (i = 0; i < BUF_UNITS - 1; i++) {
@@ -72,14 +72,14 @@ void check_blend_func (depth) {
         int dst_offset = i * SIZE_PER_UNIT;
         randomize_buffers ();
         call_ref (top1 + src_offset, w, bot1 + src_offset, w,
-                    dst1 + dst_offset, w, w, HEIGHT, &param, NULL);
+                    dst1 + dst_offset, w, w, HEIGHT, &param, null);
         call_new (top2 + src_offset, w, bot2 + src_offset, w,
-                    dst2 + dst_offset, w, w, HEIGHT, &param, NULL);
+                    dst2 + dst_offset, w, w, HEIGHT, &param, null);
         if (memcmp (top1, top2, BUF_SIZE) || memcmp (bot1, bot2, BUF_SIZE) || memcmp (dst1, dst2, BUF_SIZE))
             fail ();
     }
     bench_new (top2, w / 4, bot2, w / 4, dst2, w / 4,
-                w / 4, HEIGHT / 4, &param, NULL);
+                w / 4, HEIGHT / 4, &param, null);
 }
 
 void checkasm_check_blend () {

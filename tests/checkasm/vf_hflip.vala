@@ -26,7 +26,7 @@ void randomize_buffers (void *buf, int size) {
         tmp_buf[j] = rnd () & 0xFF;
 }
 
-static void check_hflip (int step, string report_name){
+public static void check_hflip (int step, string report_name){
     LOCAL_ALIGNED_32 (uint8, src,     [WIDTH_PADDED]);
     LOCAL_ALIGNED_32 (uint8, dst_ref, [WIDTH_PADDED]);
     LOCAL_ALIGNED_32 (uint8, dst_new, [WIDTH_PADDED]);

@@ -76,11 +76,11 @@ void CHECK_RESTORE (type) {
     bench_new (src_r1, src_g1, src_b1, WIDTH_PADDED, WIDTH_PADDED, WIDTH_PADDED, WIDTH, HEIGHT)
 }
 
-static void check_restore_rgb_planes () {
+public static void check_restore_rgb_planes () {
     CHECK_RESTORE (uint8);
 }
 
-static void check_restore_rgb_planes10 () {
+public static void check_restore_rgb_planes10 () {
     CHECK_RESTORE (uint16);
 }
 

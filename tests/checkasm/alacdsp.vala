@@ -30,11 +30,11 @@ void randomize_buffers () {
     }
 }
 
-static void check_decorrelate_stereo () {
+public static void check_decorrelate_stereo () {
     LOCAL_ALIGNED_16 (int32_t, ref_buf, [BUF_SIZE*MAX_CHANNELS]);
     LOCAL_ALIGNED_16 (int32_t, new_buf, [BUF_SIZE*MAX_CHANNELS]);
-    int32_t *ref[2] = { &ref_buf[BUF_SIZE*0], &ref_buf[BUF_SIZE*1] };
-    int32_t *new[2] = { &new_buf[BUF_SIZE*0], &new_buf[BUF_SIZE*1] };
+    int32_t[] ref[2] = { &ref_buf[BUF_SIZE*0], &ref_buf[BUF_SIZE*1] };
+    int32_t[] new[2] = { &new_buf[BUF_SIZE*0], &new_buf[BUF_SIZE*1] };
     ALACDSPContext c;
 
     ff_alacdsp_init (&c);
@@ -42,7 +42,7 @@ static void check_decorrelate_stereo () {
         int len    = (rnd () & 0xFF) + 1;
         int shift  =  rnd () & 0x1F;
         int weight =  rnd () & 0xFF;
-        declare_func (void, int32_t *buf[2], int len, int shift, int weight);
+        declare_func (void, int32_t[] buf[2], int len, int shift, int weight);
 
         randomize_buffers ();
         call_ref (ref, len, shift, weight);
@@ -71,13 +71,13 @@ void randomize_buffers () {
     }
 }
 
-static void check_append_extra_bits () {
+public static void check_append_extra_bits () {
     LOCAL_ALIGNED_16 (int32_t, ref_buf, [BUF_SIZE*MAX_CHANNELS*2]);
     LOCAL_ALIGNED_16 (int32_t, new_buf, [BUF_SIZE*MAX_CHANNELS*2]);
-    int32_t *ref[2]     = { &ref_buf[BUF_SIZE*0], &ref_buf[BUF_SIZE*1] };
-    int32_t *new[2]     = { &new_buf[BUF_SIZE*0], &new_buf[BUF_SIZE*1] };
-    int32_t *ref_ebb[2] = { &ref_buf[BUF_SIZE*2], &ref_buf[BUF_SIZE*3] };
-    int32_t *new_ebb[2] = { &new_buf[BUF_SIZE*2], &new_buf[BUF_SIZE*3] };
+    int32_t[] ref[2]     = { &ref_buf[BUF_SIZE*0], &ref_buf[BUF_SIZE*1] };
+    int32_t[] new[2]     = { &new_buf[BUF_SIZE*0], &new_buf[BUF_SIZE*1] };
+    int32_t[] ref_ebb[2] = { &ref_buf[BUF_SIZE*2], &ref_buf[BUF_SIZE*3] };
+    int32_t[] new_ebb[2] = { &new_buf[BUF_SIZE*2], &new_buf[BUF_SIZE*3] };
     ALACDSPContext c;
     const string channels[2] = { "mono", "stereo" };
     int ch;
@@ -86,7 +86,7 @@ static void check_append_extra_bits () {
     for (ch = 1; ch <= 2; ch++) {
         if (check_func (c.append_extra_bits[ch-1], "alac_append_extra_bits_%s", channels[ch-1])) {
             int len    = (rnd () & 0xFF) + 1;
-            declare_func (void, int32_t *buf[2], int32_t *ebb[2], int ebits, int ch, int len);
+            declare_func (void, int32_t[] buf[2], int32_t[] ebb[2], int ebits, int ch, int len);
 
             randomize_buffers ();
             call_ref (ref, ref_ebb, 8, ch, len);

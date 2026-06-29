@@ -29,7 +29,7 @@ void randomize_buffer (void *buf) {
     }
 }
 
-static void test_fcmul_add (float[] src0, float[] src1, float[] src2) {
+public static void test_fcmul_add (float[] src0, float[] src1, float[] src2) {
     LOCAL_ALIGNED_32 (float, cdst, [LEN*2+8]);
     LOCAL_ALIGNED_32 (float, odst, [LEN*2+8]);
     int i;

@@ -42,7 +42,7 @@ void checkasm_check_fmtconvert () {
     for (i = 0; i < FF_ARRAY_ELEMS (scale_arr); i++)
         scale_arr[i] = (FF_ARRAY_ELEMS (scale_arr) - FF_ARRAY_ELEMS (scale_arr) / 2) / 13;
 
-    ff_fmt_convert_init (&c, NULL);
+    ff_fmt_convert_init (&c, null);
 
     memset (dst0, 0, sizeof (*dst0) * BUF_SIZE);
     memset (dst1, 0, sizeof (*dst1) * BUF_SIZE);
@@ -68,7 +68,7 @@ void checkasm_check_fmtconvert () {
         }
     }
     if (check_func (c.int32_to_float_fmul_array8, "int32_to_float_fmul_array8")) {
-        declare_func (void, FmtConvertContext *, float *, int32_t *,
+        declare_func (void, FmtConvertContext? , float? , int32_t? ,
                      float[] , int);
 
         for (i = 0; i < 4; i++) {

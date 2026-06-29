@@ -26,7 +26,7 @@ void randomize (void *buf, int len) {
 
 const float EPS = 0.0001f;
 
-static void test_sum64x5 () {
+public static void test_sum64x5 () {
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [64 + 256]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst1, [64 + 256]);
 
@@ -41,7 +41,7 @@ static void test_sum64x5 () {
     bench_new (dst1);
 }
 
-static void test_sum_square () {
+public static void test_sum_square () {
     INTFLOAT res0;
     INTFLOAT res1;
     LOCAL_ALIGNED_16 (INTFLOAT, src, [256], [2]);
@@ -56,7 +56,7 @@ static void test_sum_square () {
     bench_new (src, 256);
 }
 
-static void test_neg_odd_64 () {
+public static void test_neg_odd_64 () {
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [64]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst1, [64]);
 
@@ -71,7 +71,7 @@ static void test_neg_odd_64 () {
     bench_new (dst1);
 }
 
-static void test_qmf_pre_shuffle () {
+public static void test_qmf_pre_shuffle () {
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [128]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst1, [128]);
 
@@ -86,7 +86,7 @@ static void test_qmf_pre_shuffle () {
     bench_new (dst1);
 }
 
-static void test_qmf_post_shuffle () {
+public static void test_qmf_post_shuffle () {
     LOCAL_ALIGNED_16 (INTFLOAT, src, [64]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [32], [2]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst1, [32], [2]);
@@ -101,7 +101,7 @@ static void test_qmf_post_shuffle () {
     bench_new (dst1, src);
 }
 
-static void test_qmf_deint_neg () {
+public static void test_qmf_deint_neg () {
     LOCAL_ALIGNED_16 (INTFLOAT, src, [64]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [64]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst1, [64]);
@@ -116,7 +116,7 @@ static void test_qmf_deint_neg () {
     bench_new (dst1, src);
 }
 
-static void test_qmf_deint_bfly () {
+public static void test_qmf_deint_bfly () {
     LOCAL_ALIGNED_16 (INTFLOAT, src0, [64]);
     LOCAL_ALIGNED_16 (INTFLOAT, src1, [64]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [128]);
@@ -136,7 +136,7 @@ static void test_qmf_deint_bfly () {
     bench_new (dst1, src0, src1);
 }
 
-static void test_autocorrelate () {
+public static void test_autocorrelate () {
     LOCAL_ALIGNED_16 (INTFLOAT, src, [40], [2]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [3], [2][2]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst1, [3], [2][2]);
@@ -154,7 +154,7 @@ static void test_autocorrelate () {
     bench_new (src, dst1);
 }
 
-static void test_hf_gen () {
+public static void test_hf_gen () {
     LOCAL_ALIGNED_16 (INTFLOAT, low, [128], [2]);
     LOCAL_ALIGNED_16 (INTFLOAT, alpha0, [2]);
     LOCAL_ALIGNED_16 (INTFLOAT, alpha1, [2]);
@@ -181,7 +181,7 @@ static void test_hf_gen () {
     }
 }
 
-static void test_hf_g_filt () {
+public static void test_hf_g_filt () {
     LOCAL_ALIGNED_16 (INTFLOAT, high, [128], [40][2]);
     LOCAL_ALIGNED_16 (INTFLOAT, g_filt, [128]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [128], [2]);
@@ -200,7 +200,7 @@ static void test_hf_g_filt () {
     bench_new (dst1, high, g_filt, 128, 20);
 }
 
-static void test_hf_apply_noise (const SBRDSPContext *sbrdsp) {
+public static void test_hf_apply_noise (const SBRDSPContext *sbrdsp) {
     LOCAL_ALIGNED_16 (AAC_FLOAT, s_m, [128]);
     LOCAL_ALIGNED_16 (AAC_FLOAT, q_filt, [128]);
     LOCAL_ALIGNED_16 (INTFLOAT, ref, [128], [2]);

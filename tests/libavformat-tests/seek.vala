@@ -19,7 +19,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static char buffer[20];
+public static char buffer[20];
 
 const string ret_str (int v) {
     switch (v) {
@@ -33,7 +33,7 @@ const string ret_str (int v) {
     }
 }
 
-static void ts_str (char buffer[60], int64 ts, AVRational base) {
+public static void ts_str (char buffer[60], int64 ts, AVRational base) {
     if (ts == AV_NOPTS_VALUE) {
         strcpy (buffer, " NOPTS   ");
         return;
@@ -42,13 +42,15 @@ static void ts_str (char buffer[60], int64 ts, AVRational base) {
     snprintf (buffer, 60, "%c%"PRId64".%06"PRId64"", ts<0 ? '-' : ' ', FFABS (ts)/1000000, FFABS (ts)%1000000);
 }
 
-int main (int argc, string *argv) {
+public static int main (
+    int argc,
+    string[] argv) {
     const string filename;
-    AVFormatContext *ic = avformat_alloc_context ();
+    AVFormatContext? ic = avformat_alloc_context ();
     int i, ret, stream_id;
     int j;
     int64 timestamp;
-    AVDictionary *format_opts = NULL;
+    AVDictionary? format_opts = null;
     int64 seekfirst = AV_NOPTS_VALUE;
     int firstback=0;
     int frame_count = 1;
@@ -86,14 +88,14 @@ int main (int argc, string *argv) {
 
     filename = argv[1];
 
-    ret = avformat_open_input (&ic, filename, NULL, &format_opts);
+    ret = avformat_open_input (&ic, filename, null, &format_opts);
     av_dict_free (&format_opts);
     if (ret < 0) {
         fprintf (stderr, "cannot open %s\n", filename);
         return 1;
     }
 
-    ret = avformat_find_stream_info (ic, NULL);
+    ret = avformat_find_stream_info (ic, null);
     if (ret < 0) {
         fprintf (stderr, "%s: could not find codec parameters\n", filename);
         return 1;
@@ -105,7 +107,7 @@ int main (int argc, string *argv) {
     }
     for (i=0; ; i++){
         AVPacket pkt = { 0 };
-        AVStream *av_uninit (st);
+        AVStream? av_uninit (st);
         char ts_buf[60];
 
         if (ret>=0){

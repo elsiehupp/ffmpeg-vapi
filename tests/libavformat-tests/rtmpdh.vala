@@ -16,8 +16,8 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static int test_random_shared_secret () {
-    FF_DH *peer1 = NULL, *peer2 = NULL;
+public static int test_random_shared_secret () {
+    FF_DH? peer1 = null,? peer2 = null;
     int ret;
     uint8 pubkey1[128], pubkey2[128];
     uint8 sharedkey1[128], sharedkey2[128];
@@ -104,8 +104,8 @@ const uint8 shared_secret[] = {
     0x65, 0xb0, 0xce, 0xc6, 0xb2, 0x8f, 0x5b, 0xb0
 };
 
-static int test_ref_data () {
-    FF_DH *dh;
+public static int test_ref_data () {
+    FF_DH? dh;
     int ret = AVERROR (ENOMEM);
     uint8 pubkey_test[128];
     uint8 sharedkey_test[128];
@@ -142,7 +142,7 @@ fail:
     return ret;
 }
 
-int main () {
+public static int main () {
     avformat_network_init ();
     if (test_random_shared_secret () < 0)
         return 1;

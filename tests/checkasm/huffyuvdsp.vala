@@ -24,13 +24,13 @@ void randomize_buffers (void *buf, int size) {
         buf[j] = rnd () & 0xFFFF;
 }
 
-static void check_add_int16 (HuffYUVDSPContext c, uint mask, int width, string name) {
-    uint16 *src0 = av_mallocz (width * sizeof (uint16));
-    uint16 *src1 = av_mallocz (width * sizeof (uint16));
-    uint16 *dst0 = av_mallocz (width * sizeof (uint16));
-    uint16 *dst1 = av_mallocz (width * sizeof (uint16));
+public static void check_add_int16 (HuffYUVDSPContext c, uint mask, int width, string name) {
+    uint16[] src0 = av_mallocz (width * sizeof (uint16));
+    uint16[] src1 = av_mallocz (width * sizeof (uint16));
+    uint16[] dst0 = av_mallocz (width * sizeof (uint16));
+    uint16[] dst1 = av_mallocz (width * sizeof (uint16));
 
-    declare_func_emms (AV_CPU_FLAG_MMX, void, uint16 *dst, uint16 *src, uint mask, int w);
+    declare_func_emms (AV_CPU_FLAG_MMX, void, uint16[] dst, uint16[] src, uint mask, int w);
 
     if (!src0 || !src1 || !dst0 || !dst1)
         fail ();

@@ -171,7 +171,7 @@ const size_t src0 = (buf0 + 4 * 16);
 
 const size_t src1 = (buf1 + 4 * 16);
 
-static void check_pred4x4 (
+public static void check_pred4x4 (
     H264PredContext *h,
     uint8[] buf0,
     uint8[] buf1,
@@ -197,7 +197,7 @@ static void check_pred4x4 (
     }
 }
 
-static void check_pred8x8 (
+public static void check_pred8x8 (
     H264PredContext *h,
     uint8[] buf0,
     uint8[] buf1,
@@ -221,7 +221,7 @@ static void check_pred8x8 (
     }
 }
 
-static void check_pred16x16 (
+public static void check_pred16x16 (
     H264PredContext *h,
     uint8[] buf0,
     uint8[] buf1,
@@ -246,7 +246,7 @@ static void check_pred16x16 (
     }
 }
 
-static void check_pred8x8l (
+public static void check_pred8x8l (
     H264PredContext *h,
     uint8[] buf0,
     uint8[] buf1,

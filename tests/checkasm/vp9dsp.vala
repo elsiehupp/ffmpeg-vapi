@@ -39,7 +39,7 @@ void randomize_buffers () {
     }
 }
 
-static void check_ipred () {
+public static void check_ipred () {
     LOCAL_ALIGNED_32 (uint8, a_buf, [64 * 2]);
     uint8[] a = &a_buf[32 * 2];
     LOCAL_ALIGNED_32 (uint8, l, [32 * 2]);
@@ -103,15 +103,15 @@ void randomize_buffers () {
                 coef[y * sz + x] = src[y * sz + x] - dst[y * sz + x];
             } else {
                 ((int32_t *) coef)[y * sz + x] =
-                    ((uint16 *) src)[y * sz + x] -
-                    ((uint16 *) dst)[y * sz + x];
+                    ((uint16[] ) src)[y * sz + x] -
+                    ((uint16[] ) dst)[y * sz + x];
             }
         }
     }
 }
 
 // wht function copied from libvpx
-static void fwht_1d (double *out, double[] in, int sz) {
+public static void fwht_1d (double *out, double[] in, int sz) {
     double t0 = in[0] + in[1];
     double t3 = in[3] - in[2];
     double t4 = trunc ((t0 - t3) * 0.5);
@@ -125,7 +125,7 @@ static void fwht_1d (double *out, double[] in, int sz) {
 }
 
 // standard DCT-II
-static void fdct_1d (double *out, double[] in, int sz) {
+public static void fdct_1d (double *out, double[] in, int sz) {
     int k, n;
 
     for (k = 0; k < sz; k++) {
@@ -139,7 +139,7 @@ static void fdct_1d (double *out, double[] in, int sz) {
 // see "Towards jointly optimal spatial prediction and adaptive transform in
 // video/image coding", by J. Han, A. Saxena, and K. Rose
 // IEEE Proc. ICASSP, pp. 726-729, Mar. 2010.
-static void fadst4_1d (double *out, double[] in, int sz) {
+public static void fadst4_1d (double *out, double[] in, int sz) {
     int k, n;
 
     for (k = 0; k < sz; k++) {
@@ -152,7 +152,7 @@ static void fadst4_1d (double *out, double[] in, int sz) {
 // see "A Butterfly Structured Design of The Hybrid Transform Coding Scheme",
 // by Jingning Han, Yaowu Xu, and Debargha Mukherjee
 // http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41418.pdf
-static void fadst_1d (double *out, double[] in, int sz) {
+public static void fadst_1d (double *out, double[] in, int sz) {
     int k, n;
 
     for (k = 0; k < sz; k++) {
@@ -163,7 +163,7 @@ static void fadst_1d (double *out, double[] in, int sz) {
 }
 
 typedef void (*ftx1d_fn)(double *out, double[] in, int sz);
-static void ftx_2d (double *out, double[] in, enum TxfmMode tx,
+public static void ftx_2d (double *out, double[] in, enum TxfmMode tx,
                    enum TxfmType txtp, int sz) {
     const double scaling_factors[5][4] = {
         { 4.0, 16.0 * M_SQRT1_2 / 3.0, 16.0 * M_SQRT1_2 / 3.0, 32.0 / 9.0 },
@@ -213,7 +213,7 @@ static void ftx_2d (double *out, double[] in, enum TxfmMode tx,
         ftx1d_tbl[tx][txtp][1](&out[i * sz], &temp[i * sz], sz);
 }
 
-static void ftx (int16[] buf, enum TxfmMode tx,
+public static void ftx (int16[] buf, enum TxfmMode tx,
                 enum TxfmType txtp, int sz, int bit_depth) {
     double ind[1024], outd[1024];
     int n;
@@ -234,7 +234,7 @@ static void ftx (int16[] buf, enum TxfmMode tx,
     }
 }
 
-static int copy_subcoefs (
+public static int copy_subcoefs (
     int16[] out,
     int16[] in,
     TxfmMode tx,
@@ -285,7 +285,7 @@ static int copy_subcoefs (
     return eob;
 }
 
-static int iszero (
+public static int iszero (
     int16[] c,
     int sz
 ) {
@@ -300,7 +300,7 @@ static int iszero (
 
 const size_t SIZEOF_COEF = (2 * ((bit_depth + 7) / 8));
 
-static void check_itxfm () {
+public static void check_itxfm () {
     LOCAL_ALIGNED_32 (uint8, src, [32 * 32 * 2]);
     LOCAL_ALIGNED_32 (uint8, dst, [32 * 32 * 2]);
     LOCAL_ALIGNED_32 (uint8, dst0, [32 * 32 * 2]);
@@ -373,7 +373,7 @@ void setpx (a,b,c) {
     if (SIZEOF_PIXEL == 1) {
         buf0[(a) + (b) * jstride] = av_clip_uint8 (c);
     } else {
-        ((uint16 *)buf0)[(a) + (b) * jstride] = av_clip_uintp2 (c, bit_depth);
+        ((uint16[] )buf0)[(a) + (b) * jstride] = av_clip_uintp2 (c, bit_depth);
     }
 }
 
@@ -384,7 +384,7 @@ void setdx (a,b,c,d) {
 void setsx (a,b,c,d) {
     setdx (a,b,c,(d) << (bit_depth - 8));
 }
-static void randomize_loopfilter_buffers (int bidx, int lineoff, int str,
+public static void randomize_loopfilter_buffers (int bidx, int lineoff, int str,
                                          int bit_depth, int dir, int[] E,
                                          int[] F, int[] H, int[] I,
                                          uint8[] buf0, uint8[] buf1) {
@@ -447,7 +447,7 @@ uint M (out uint a) {
     return (((a)[1] << 8) | (a)[0]);
 }
 
-static void check_loopfilter () {
+public static void check_loopfilter () {
     LOCAL_ALIGNED_32 (uint8, base0, [32 + 16 * 16 * 2]);
     LOCAL_ALIGNED_32 (uint8, base1, [32 + 16 * 16 * 2]);
     VP9DSPContext dsp;
@@ -550,7 +550,7 @@ void randomize_buffers () {
     }
 }
 
-static void check_mc () {
+public static void check_mc () {
     LOCAL_ALIGNED_32 (uint8, buf, [72 * 72 * 2]);
     LOCAL_ALIGNED_32 (uint8, dst0, [64 * 64 * 2]);
     LOCAL_ALIGNED_32 (uint8, dst1, [64 * 64 * 2]);

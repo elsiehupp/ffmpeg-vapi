@@ -29,7 +29,7 @@ void randomize_buffers () {
     }
 }
 
-static void check_reorder_pixels () {
+public static void check_reorder_pixels () {
     LOCAL_ALIGNED_32 (uint8, src,     [PADDED_BUF_SIZE]);
     LOCAL_ALIGNED_32 (uint8, dst_ref, [PADDED_BUF_SIZE]);
     LOCAL_ALIGNED_32 (uint8, dst_new, [PADDED_BUF_SIZE]);
@@ -47,7 +47,7 @@ static void check_reorder_pixels () {
     bench_new (dst_new, src, BUF_SIZE);
 }
 
-static void check_predictor () {
+public static void check_predictor () {
     LOCAL_ALIGNED_32 (uint8, src,     [PADDED_BUF_SIZE]);
     LOCAL_ALIGNED_32 (uint8, dst_ref, [PADDED_BUF_SIZE]);
     LOCAL_ALIGNED_32 (uint8, dst_new, [PADDED_BUF_SIZE]);

@@ -31,7 +31,7 @@ const struct {uint8 w, h, s;} planes[] = {
 const size_t MAX_STRIDE = 128;
 const size_t MAX_HEIGHT = 127;
 
-static void check_diff_bytes (LLVidEncDSPContext *c) {
+public static void check_diff_bytes (LLVidEncDSPContext? c) {
     int i;
     LOCAL_ALIGNED_32 (uint8, dst0, [MAX_STRIDE]);
     LOCAL_ALIGNED_32 (uint8, dst1, [MAX_STRIDE]);
@@ -61,7 +61,7 @@ static void check_diff_bytes (LLVidEncDSPContext *c) {
     }
 }
 
-static void check_sub_left_pred (LLVidEncDSPContext *c) {
+public static void check_sub_left_pred (LLVidEncDSPContext? c) {
     int i;
     LOCAL_ALIGNED_32 (uint8, dst0, [MAX_STRIDE * MAX_HEIGHT]);
     LOCAL_ALIGNED_32 (uint8, dst1, [MAX_STRIDE * MAX_HEIGHT]);

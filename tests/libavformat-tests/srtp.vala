@@ -85,14 +85,14 @@ const uint8 rtcp_aes128_80_32[] = {
     0x09, 0x16, 0xb4, 0x27, 0x9a, 0xe9, 0x92, 0x26, 0x4e, 0x10,
 };
 
-static void print_data (uint8[] buf, int len) {
+public static void print_data (uint8[] buf, int len) {
     int i;
     for (i = 0; i < len; i++)
         printf ("%02x", buf[i]);
     printf ("\n");
 }
 
-static int test_decrypt (struct SRTPContext *srtp, uint8[] in, int len,
+public static int test_decrypt (struct SRTPContext? srtp, uint8[] in, int len,
                         uint8[] out) {
     memcpy (out, in, len);
     if (!ff_srtp_decrypt (srtp, out, &len)) {
@@ -102,7 +102,7 @@ static int test_decrypt (struct SRTPContext *srtp, uint8[] in, int len,
         return -1;
 }
 
-static void test_encrypt (uint8[] data, int in_len, string suite,
+public static void test_encrypt (uint8[] data, int in_len, string suite,
                          const string key) {
     SRTPContext enc = { 0 }, dec = { 0 };
     int len;
@@ -122,7 +122,7 @@ static void test_encrypt (uint8[] data, int in_len, string suite,
     ff_srtp_free (&dec);
 }
 
-int main () {
+public static int main () {
     const string aes128_80_suite = "AES_CM_128_HMAC_SHA1_80";
     const string aes128_32_suite = "AES_CM_128_HMAC_SHA1_32";
     const string aes128_80_32_suite = "SRTP_AES128_CM_HMAC_SHA1_32";

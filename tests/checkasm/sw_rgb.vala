@@ -42,7 +42,7 @@ const Plane[] planes = {
 public const size_t MAX_STRIDE = 128;
 public const size_t MAX_HEIGHT = 128;
 
-static void check_shuffle_bytes (void *func, string report) {
+public static void check_shuffle_bytes (void *func, string report) {
     int i;
     LOCAL_ALIGNED_32 (uint8, src0, [MAX_STRIDE]);
     LOCAL_ALIGNED_32 (uint8, src1, [MAX_STRIDE]);
@@ -67,7 +67,7 @@ static void check_shuffle_bytes (void *func, string report) {
     }
 }
 
-static void check_uyvy_to_422p () {
+public static void check_uyvy_to_422p () {
     int i;
 
     LOCAL_ALIGNED_32 (uint8, src0, [MAX_STRIDE * MAX_HEIGHT * 2]);

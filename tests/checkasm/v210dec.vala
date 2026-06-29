@@ -18,7 +18,7 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-static uint32 get_v210 () {
+public static uint32 get_v210 () {
     uint32 t0 = rnd () & 0x3ff,
              t1 = rnd () & 0x3ff,
              t2 = rnd () & 0x3ff;
@@ -30,7 +30,7 @@ static uint32 get_v210 () {
 
 const size_t NUM_SAMPLES = 2048;
 
-static void randomize_buffers (uint32[] src0, uint32[] src1, int len) {
+public static void randomize_buffers (uint32[] src0, uint32[] src1, int len) {
     for (int i = 0; i < len; i++) {
         uint32 value = get_v210 ();
         src0[i] = value;
@@ -53,7 +53,7 @@ void checkasm_check_v210dec () {
         uint16 u1[NUM_SAMPLES/4];
         uint16 v0[NUM_SAMPLES/4];
         uint16 v1[NUM_SAMPLES/4];
-        declare_func (void, uint32[] src, uint16 *y, uint16 *u, uint16 *v, int width);
+        declare_func (void, uint32[] src, uint16[] y, uint16[] u, uint16[] v, int width);
         const int pixels = NUM_SAMPLES / 2 / 6 * 6;
 
         randomize_buffers (src0, src1, NUM_SAMPLES/3);

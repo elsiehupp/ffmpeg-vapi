@@ -1,37 +1,37 @@
-/*
- * This file is part of FFmpeg.
- *
- * FFmpeg is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * FFmpeg is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with FFmpeg; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+/***********************************************************
+This file is part of FFmpeg.
 
-#include "libavfilter/vf_nlmeans.c"
+FFmpeg is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
 
-static void display_integral(const uint32_t *ii, int w, int h, int lz_32)
-{
+FFmpeg is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with FFmpeg; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+***********************************************************/
+
+//  #include "libavfilter/vf_nlmeans.c"
+
+public static void display_integral (const uint32_t *ii, int w, int h, int lz_32
+) {
     int x, y;
 
     for (y = 0; y < h; y++) {
         for (x = 0; x < w; x++)
-            printf(" %7x", ii[y*lz_32 + x]);
-        printf("\n");
+            printf (" %7x", ii[y*lz_32 + x]);
+        printf ("\n");
     }
-    printf("---------------\n");
+    printf ("---------------\n");
 }
 
-int main(void)
-{
+public static int main (void
+) {
     int ret = 0, xoff, yoff;
     uint32_t *ii_start;
     uint32_t *ii_start2;
@@ -54,8 +54,8 @@ int main(void)
     const int ii_lz_32 = ((ii_w + 1) + 3) & ~3;
 
     // "+1" is for the space of the top 0-line
-    uint32_t *ii  = av_mallocz_array(ii_h + 1, ii_lz_32 * sizeof(*ii));
-    uint32_t *ii2 = av_mallocz_array(ii_h + 1, ii_lz_32 * sizeof(*ii2));
+    uint32_t *ii  = av_mallocz_array (ii_h + 1, ii_lz_32 * sizeof (*ii));
+    uint32_t *ii2 = av_mallocz_array (ii_h + 1, ii_lz_32 * sizeof (*ii2));
 
     if (!ii || !ii2)
         return -1;
@@ -63,25 +63,25 @@ int main(void)
     ii_start  = ii  + ii_lz_32 + 1; // skip top 0-line and left 0-column
     ii_start2 = ii2 + ii_lz_32 + 1; // skip top 0-line and left 0-column
 
-    ff_nlmeans_init(&dsp);
+    ff_nlmeans_init (&dsp);
 
     for (yoff = -e; yoff <= e; yoff++) {
         for (xoff = -e; xoff <= e; xoff++) {
-            printf("xoff=%d yoff=%d\n", xoff, yoff);
+            printf ("xoff=%d yoff=%d\n", xoff, yoff);
 
-            compute_ssd_integral_image(&dsp, ii_start, ii_lz_32,
+            compute_ssd_integral_image (&dsp, ii_start, ii_lz_32,
                                        src, lz, xoff, yoff, e, w, h);
-            display_integral(ii_start, ii_w, ii_h, ii_lz_32);
+            display_integral (ii_start, ii_w, ii_h, ii_lz_32);
 
-            compute_unsafe_ssd_integral_image(ii_start2, ii_lz_32,
+            compute_unsafe_ssd_integral_image (ii_start2, ii_lz_32,
                                               0, 0,
                                               src, lz,
                                               xoff, yoff, e, w, h,
                                               ii_w, ii_h);
-            display_integral(ii_start2, ii_w, ii_h, ii_lz_32);
+            display_integral (ii_start2, ii_w, ii_h, ii_lz_32);
 
-            if (memcmp(ii, ii2, (ii_h+1) * ii_lz_32 * sizeof(*ii))) {
-                printf("Integral mismatch\n");
+            if (memcmp (ii, ii2, (ii_h+1) * ii_lz_32 * sizeof (*ii))) {
+                printf ("Integral mismatch\n");
                 ret = 1;
                 goto end;
             }
@@ -89,7 +89,7 @@ int main(void)
     }
 
 end:
-    av_freep(&ii);
-    av_freep(&ii2);
+    av_freep (&ii);
+    av_freep (&ii2);
     return ret;
 }

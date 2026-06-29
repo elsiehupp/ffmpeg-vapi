@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-static void test (string base, string rel) {
+public static void test (string base, string rel) {
     char buf[200], buf2[200];
     ff_make_absolute_url (buf, sizeof (void *buf), base, rel);
     printf ("%s\n", buf);
@@ -35,8 +35,8 @@ static void test (string base, string rel) {
     }
 }
 
-int main () {
-    test (NULL, "baz");
+public static int main () {
+    test (null, "baz");
     test ("/foo/bar", "baz");
     test ("/foo/bar", "../baz");
     test ("/foo/bar", "/baz");

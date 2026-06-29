@@ -53,7 +53,7 @@ void randomize_buffers2 (void *buf, int size) {
     }
 }
 
-static void check_sao_band (HEVCDSPContext h, int bit_depth) {
+public static void check_sao_band (HEVCDSPContext h, int bit_depth) {
     int i;
     LOCAL_ALIGNED_32 (uint8, dst0, [BUF_SIZE]);
     LOCAL_ALIGNED_32 (uint8, dst1, [BUF_SIZE]);
@@ -83,7 +83,7 @@ static void check_sao_band (HEVCDSPContext h, int bit_depth) {
     }
 }
 
-static void check_sao_edge (HEVCDSPContext h, int bit_depth) {
+public static void check_sao_edge (HEVCDSPContext h, int bit_depth) {
     int i;
     LOCAL_ALIGNED_32 (uint8, dst0, [BUF_SIZE]);
     LOCAL_ALIGNED_32 (uint8, dst1, [BUF_SIZE]);

@@ -21,11 +21,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 const uint SCALEBITS = 8;
 const uint ONE_HALF = (1 << (SCALEBITS - 1));
-static uint FIX (float x) {
+public static uint FIX (float x) {
     return ((uint) (x * (1 << SCALEBITS) + 0.5));
 }
 
-static void err_if (bool expr) {
+public static void err_if (bool expr) {
     if (expr) {
         fprintf (
             stderr,
@@ -36,7 +36,7 @@ static void err_if (bool expr) {
     }
 }
 
-static void rgb24_to_yuv420p (
+public static void rgb24_to_yuv420p (
     uchar[] lum,
     uchar[] cb,
     uchar[] cr,
@@ -120,7 +120,7 @@ const uint DEFAULT_WIDTH = 352;
 const uint DEFAULT_HEIGHT = 288;
 const uint DEFAULT_NB_PICT = 50;
 
-static void pgmyuv_save (
+public static void pgmyuv_save (
     string filename,
     uint width,
     uint height,
@@ -178,12 +178,12 @@ static void pgmyuv_save (
     free (cr_tab);
 }
 
-static uchar[] rgb_tab;
-static uint width_2;
-static uint height_2;
-static uint wrap;
+public static uchar[] rgb_tab;
+public static uint width_2;
+public static uint height_2;
+public static uint wrap;
 
-static void put_pixel (
+public static void put_pixel (
     uint x,
     uint y,
     uint r,

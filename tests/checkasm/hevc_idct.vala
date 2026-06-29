@@ -26,7 +26,7 @@ void randomize_buffers (void *buf, int size) {
     }
 }
 
-static void check_idct (HEVCDSPContext h, int bit_depth) {
+public static void check_idct (HEVCDSPContext h, int bit_depth) {
     int i;
     LOCAL_ALIGNED (32, int16, coeffs0, [32 * 32]);
     LOCAL_ALIGNED (32, int16, coeffs1, [32 * 32]);
@@ -49,7 +49,7 @@ static void check_idct (HEVCDSPContext h, int bit_depth) {
     }
 }
 
-static void check_idct_dc (HEVCDSPContext h, int bit_depth) {
+public static void check_idct_dc (HEVCDSPContext h, int bit_depth) {
     int i;
     LOCAL_ALIGNED (32, int16, coeffs0, [32 * 32]);
     LOCAL_ALIGNED (32, int16, coeffs1, [32 * 32]);

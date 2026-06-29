@@ -32,7 +32,7 @@ void randomize_buffers2 (void *buf, int size) {
         AV_WN16A (buf + j * 2, rnd () & 0x3FF);
 }
 
-static void check_add_res (HEVCDSPContext h, int bit_depth) {
+public static void check_add_res (HEVCDSPContext h, int bit_depth) {
     int i;
     LOCAL_ALIGNED_32 (int16, res0, [32 * 32]);
     LOCAL_ALIGNED_32 (int16, res1, [32 * 32]);

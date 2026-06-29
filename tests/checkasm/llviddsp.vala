@@ -32,7 +32,7 @@ void init_buffer (a0, a1, type, width) {
     memcpy (a1, a0, width*sizeof (type));
 }
 
-static void check_add_bytes (LLVidDSPContext c, int width) {
+public static void check_add_bytes (LLVidDSPContext c, int width) {
     uint8[] dst0 = av_mallocz (width);
     uint8[] dst1 = av_mallocz (width);
     uint8[] src0 = av_mallocz_array (width, sizeof (uint8));
@@ -59,7 +59,7 @@ static void check_add_bytes (LLVidDSPContext c, int width) {
     av_free (dst1);
 }
 
-static void check_add_median_pred (LLVidDSPContext c, int width) {
+public static void check_add_median_pred (LLVidDSPContext c, int width) {
     int A0, A1, B0, B1;
     uint8[] dst0 = av_mallocz (width);
     uint8[] dst1 = av_mallocz (width);
@@ -96,7 +96,7 @@ static void check_add_median_pred (LLVidDSPContext c, int width) {
     av_free (dst1);
 }
 
-static void check_add_left_pred (LLVidDSPContext c, int width, int acc, string report) {
+public static void check_add_left_pred (LLVidDSPContext c, int width, int acc, string report) {
     int res0, res1;
     uint8[] dst0 = av_mallocz (width);
     uint8[] dst1 = av_mallocz (width);
@@ -124,13 +124,19 @@ static void check_add_left_pred (LLVidDSPContext c, int width, int acc, string r
     av_free (dst1);
 }
 
-static void check_add_left_pred_16 (LLVidDSPContext c, uint mask, int width, uint acc, string report) {
+public static void check_add_left_pred_16 (
+    LLVidDSPContext c,
+    uint mask,
+    int width,
+    uint acc,
+    string report
+) {
     int res0, res1;
-    uint16 *dst0 = av_mallocz_array (width, sizeof (uint16));
-    uint16 *dst1 = av_mallocz_array (width, sizeof (uint16));
-    uint16 *src0 = av_mallocz_array (width, sizeof (uint16));
-    uint16 *src1 = av_mallocz_array (width, sizeof (uint16));
-    declare_func_emms (AV_CPU_FLAG_MMX, int, uint16 *dst, uint16 *src, uint mask, size_t w, uint acc);
+    uint16[] dst0 = av_mallocz_array (width, sizeof (uint16));
+    uint16[] dst1 = av_mallocz_array (width, sizeof (uint16));
+    uint16[] src0 = av_mallocz_array (width, sizeof (uint16));
+    uint16[] src1 = av_mallocz_array (width, sizeof (uint16));
+    declare_func_emms (AV_CPU_FLAG_MMX, int, uint16[] dst, uint16[] src, uint mask, size_t w, uint acc);
 
     init_buffer (src0, src1, uint16, width);
 
@@ -152,7 +158,7 @@ static void check_add_left_pred_16 (LLVidDSPContext c, uint mask, int width, uin
     av_free (dst1);
 }
 
-static void check_add_gradient_pred (LLVidDSPContext c, int w) {
+public static void check_add_gradient_pred (LLVidDSPContext c, int w) {
     int src_size, stride;
     uint8[] src0, *src1;
     declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] src, size_t stride,

@@ -42,7 +42,7 @@ const string format_string[] = {
 
 const uint bpp_mask[] = { 0xffffffff, 0x03ff03ff, 0x0fff0fff };
 
-static void check_yuv2yuv () {
+public static void check_yuv2yuv () {
     declare_func (void, uint8[] dst[3], size_t dst_stride[3],
                  uint8[] src[3], size_t src_stride[3],
                  int w, int h, int16 coeff[3][3][8],
@@ -109,7 +109,7 @@ static void check_yuv2yuv () {
     report ("yuv2yuv");
 }
 
-static void check_yuv2rgb () {
+public static void check_yuv2rgb () {
     declare_func (void, int16[] dst[3], size_t dst_stride,
                  uint8[] src[3], size_t src_stride[3],
                  int w, int h, int16 coeff[3][3][8],
@@ -184,7 +184,7 @@ void randomize_buffers () {
     }
 }
 
-static void check_rgb2yuv () {
+public static void check_rgb2yuv () {
     declare_func (void, uint8[] dst[3], size_t dst_stride[3],
                  int16[] src[3], size_t src_stride,
                  int w, int h, int16 coeff[3][3][8],
@@ -247,7 +247,7 @@ static void check_rgb2yuv () {
     report ("rgb2yuv");
 }
 
-static void check_multiply3x3 () {
+public static void check_multiply3x3 () {
     declare_func (void, int16[] data[3], size_t stride,
                  int w, int h, int16 coeff[3][3][8]);
     ColorSpaceDSPContext dsp;

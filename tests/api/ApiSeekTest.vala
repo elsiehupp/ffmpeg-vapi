@@ -28,7 +28,7 @@ public class ApiSeekTest : GLib.TestCase {
     ***********************************************************/
 
 
-    int64 *pts_array;
+    int64[] pts_array;
     uint32[] crc_array;
     uint size_of_array;
     uint number_of_elements;

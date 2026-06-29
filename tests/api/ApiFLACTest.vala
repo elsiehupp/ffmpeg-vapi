@@ -215,7 +215,7 @@ public class ApiFLACTest : GLib.TestCase {
             enc_pkt.data = null;
             enc_pkt.size = 0;
 
-            generate_raw_frame ((uint16*)(in_frame.data[0]), i, enc_ctx.sample_rate,
+            generate_raw_frame ((uint16[])(in_frame.data[0]), i, enc_ctx.sample_rate,
                             enc_ctx.channels, enc_ctx.frame_size);
             in_frame_bytes = in_frame.nb_samples * in_frame.channels * sizeof (uint16);
             if (in_frame_bytes > in_frame.linesize[0]) {

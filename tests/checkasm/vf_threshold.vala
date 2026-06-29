@@ -27,7 +27,7 @@ void randomize_buffers (void *buf, int size) {
     }
 }
 
-static void check_threshold (int depth){
+public static void check_threshold (int depth){
     LOCAL_ALIGNED_32 (uint8, in       , [WIDTH_PADDED]);
     LOCAL_ALIGNED_32 (uint8, threshold, [WIDTH_PADDED]);
     LOCAL_ALIGNED_32 (uint8, min      , [WIDTH_PADDED]);

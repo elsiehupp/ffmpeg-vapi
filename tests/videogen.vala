@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Generate a synthetic YUV video sequence suitable for codec testing.
 NOTE: No floats are used to guarantee bitexact output.
 ***********************************************************/
-static uint myrnd (out uint seed_ptr, uint n) {
+public static uint myrnd (out uint seed_ptr, uint n) {
     uint seed;
     uint val;
 
@@ -48,7 +48,7 @@ const uint FRAC_ONE = 1 << FRAC_BITS;
 cosine approximate with 1-x^2
 ***********************************************************/
 
-static uint int_cos (uint a) {
+public static uint int_cos (uint a) {
     uint v, neg;
     a = a & (FRAC_ONE - 1);
     if (a >= (FRAC_ONE / 2))
@@ -77,11 +77,11 @@ public struct VObj {
     uint b;
 }
 
-static VObj objs[NB_OBJS];
+public static VObj objs[NB_OBJS];
 
-static uint seed = 1;
+public static uint seed = 1;
 
-static void gen_image (uint num, uint width, uint height) {
+public static void gen_image (uint num, uint width, uint height) {
     uint r, g, b, x, y, i, dx, dy, x1, y1;
     uint seed1;
 

@@ -264,7 +264,7 @@ public class ApiCodecParameterTest : GLib.TestCase {
         return ret;
     }
 
-    uint main (uint argc, char* argv[]) {
+    uint main (uint argc, string argv[]) {
         try {
             uint ret = 0;
             AVFormatContext format_context = null;

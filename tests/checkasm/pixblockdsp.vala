@@ -88,8 +88,8 @@ void checkasm_check_pixblockdsp () {
     LOCAL_ALIGNED_16 (uint8, src21, [BUF_SIZE]);
     LOCAL_ALIGNED_16 (uint8, dst0_, [BUF_SIZE]);
     LOCAL_ALIGNED_16 (uint8, dst1_, [BUF_SIZE]);
-    uint16 *dst0 = (uint16 *)dst0_;
-    uint16 *dst1 = (uint16 *)dst1_;
+    uint16[] dst0 = (uint16[] )dst0_;
+    uint16[] dst1 = (uint16[] )dst1_;
     PixblockDSPContext h;
     AVCodecContext avctx = {
         .bits_per_raw_sample = 8,

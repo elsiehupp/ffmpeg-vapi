@@ -177,7 +177,7 @@ const Test tests[] = {
         { "fixed_dsp", checkasm_check_fixed_dsp },
         { "float_dsp", checkasm_check_float_dsp },
 #endif
-    { NULL }
+    { null }
 };
 
 /***********************************************************
@@ -223,7 +223,7 @@ const Cpu cpus[] = {
     { "AVX2",     "avx2",     AV_CPU_FLAG_AVX2 },
     { "AVX-512",  "avx512",   AV_CPU_FLAG_AVX512 },
 #endif
-    { NULL }
+    { null }
 };
 
 struct CheckasmFuncVersion {
@@ -250,7 +250,7 @@ struct CheckasmFunc {
 /***********************************************************
 Internal state
 ***********************************************************/
-static struct State {
+public static struct State {
     CheckasmFunc *funcs;
     CheckasmFunc *current_func;
     CheckasmFuncVersion *current_func_ver;
@@ -280,7 +280,7 @@ AVLFG checkasm_lfg;
 /***********************************************************
 float compare support code
 ***********************************************************/
-static int is_negative (union av_intfloat32 u) {
+public static int is_negative (union av_intfloat32 u) {
     return u.i >> 31;
 }
 
@@ -389,7 +389,7 @@ int double_near_abs_eps_array (
 /***********************************************************
 Print colored text to stderr if the terminal supports it
 ***********************************************************/
-static void color_printf (int color, string fmt, va_list arg) {
+public static void color_printf (int color, string fmt, va_list arg) {
     static int use_color = -1;
 
 #if HAVE_SETCONSOLETEXTATTRIBUTE
@@ -432,7 +432,7 @@ static void color_printf (int color, string fmt, va_list arg) {
 /***********************************************************
 Deallocate a tree
 ***********************************************************/
-static void destroy_func_tree (CheckasmFunc *f) {
+public static void destroy_func_tree (CheckasmFunc *f) {
     if (f) {
         CheckasmFuncVersion *v = f.versions.next;
         while (v) {
@@ -450,7 +450,7 @@ static void destroy_func_tree (CheckasmFunc *f) {
 /***********************************************************
 Allocate a zero-initialized block, clean up and exit on failure
 ***********************************************************/
-static void *checkasm_malloc (size_t size) {
+public static void *checkasm_malloc (size_t size) {
     void *ptr = calloc (1, size);
     if (!ptr) {
         fprintf (stderr, "checkasm: malloc failed\n");
@@ -473,14 +473,14 @@ const string cpu_suffix (int cpu) {
     return "c";
 }
 
-static int cmp_nop (const void *a, void *b) {
-    return *(const uint16*)a - *(const uint16*)b;
+public static int cmp_nop (const void *a, void *b) {
+    return *(const uint16[])a - *(const uint16[])b;
 }
 
 /***********************************************************
 Measure the overhead of the timing code (in decicycles)
 ***********************************************************/
-static int measure_nop_time () {
+public static int measure_nop_time () {
     uint16 nops[10000];
     int i, nop_sum = 0;
     av_unused const int sysfd = state.sysfd;
@@ -502,7 +502,7 @@ static int measure_nop_time () {
 /***********************************************************
 Print benchmark results
 ***********************************************************/
-static void print_benchs (CheckasmFunc *f) {
+public static void print_benchs (CheckasmFunc *f) {
     if (f) {
         print_benchs (f.child[0]);
 
@@ -527,7 +527,7 @@ static void print_benchs (CheckasmFunc *f) {
 /***********************************************************
 ASCIIbetical sort except preserving natural order for numbers
 ***********************************************************/
-static int cmp_func_names (string a, string b) {
+public static int cmp_func_names (string a, string b) {
     const string start = a;
     int ascii_diff, digit_diff;
 
@@ -543,7 +543,7 @@ static int cmp_func_names (string a, string b) {
 /***********************************************************
 Perform a tree rotation in the specified direction and return the new root
 ***********************************************************/
-static CheckasmFunc *rotate_tree (CheckasmFunc *f, int dir) {
+public static CheckasmFunc *rotate_tree (CheckasmFunc *f, int dir) {
     CheckasmFunc *r = f.child[dir^1];
     f.child[dir^1] = r.child[dir];
     r.child[dir] = f;
@@ -557,7 +557,7 @@ bool is_red (f) ((f) && !(f).color)
 /***********************************************************
 Balance a left-leaning red-black tree at the specified node
 ***********************************************************/
-static void balance_tree (CheckasmFunc **root) {
+public static void balance_tree (CheckasmFunc **root) {
     CheckasmFunc *f = *root;
 
     if (is_red (f.child[0]) && is_red (f.child[1])) {
@@ -580,7 +580,7 @@ static void balance_tree (CheckasmFunc **root) {
 /***********************************************************
 Get a node with the specified name, creating it if it doesn't exist
 ***********************************************************/
-static CheckasmFunc *get_func (CheckasmFunc **root, string name) {
+public static CheckasmFunc *get_func (CheckasmFunc **root, string name) {
     CheckasmFunc *f = *root;
 
     if (f) {
@@ -612,7 +612,7 @@ static CheckasmFunc *get_func (CheckasmFunc **root, string name) {
 /***********************************************************
 Perform tests and benchmarks for the specified cpu flag if supported by the host
 ***********************************************************/
-static void check_cpu_flag (string name, int flag) {
+public static void check_cpu_flag (string name, int flag) {
     int old_cpu_flag = state.cpu_flag;
 
     flag |= old_cpu_flag;
@@ -636,15 +636,15 @@ static void check_cpu_flag (string name, int flag) {
 /***********************************************************
 Print the name of the current CPU flag, but only do it once
 ***********************************************************/
-static void print_cpu_name () {
+public static void print_cpu_name () {
     if (state.cpu_flag_name) {
         color_printf (COLOR_YELLOW, "%s:\n", state.cpu_flag_name);
-        state.cpu_flag_name = NULL;
+        state.cpu_flag_name = null;
     }
 }
 
 #if CONFIG_LINUX_PERF
-static int bench_init_linux () {
+public static int bench_init_linux () {
     struct perf_event_attr attr = {
         .type           = PERF_TYPE_HARDWARE,
         .size           = sizeof (struct perf_event_attr),
@@ -666,7 +666,7 @@ static int bench_init_linux () {
 #endif
 
 #if !CONFIG_LINUX_PERF
-static int bench_init_ffmpeg () {
+public static int bench_init_ffmpeg () {
 #ifdef AV_READ_TIME
     printf ("benchmarking with native FFmpeg timers\n");
     return 0;
@@ -677,7 +677,7 @@ static int bench_init_ffmpeg () {
 }
 #endif
 
-static int bench_init () {
+public static int bench_init () {
 #if CONFIG_LINUX_PERF
     int ret = bench_init_linux ();
 #else
@@ -691,14 +691,15 @@ static int bench_init () {
     return 0;
 }
 
-static void bench_uninit () {
+public static void bench_uninit () {
 #if CONFIG_LINUX_PERF
     if (state.sysfd > 0)
         close (state.sysfd);
 #endif
 }
 
-int main (int argc, string argv[]) {
+public static int main (
+    int argc, string argv[]) {
     uint seed = av_get_random_seed ();
     int i, ret = 0;
 
@@ -724,7 +725,7 @@ int main (int argc, string argv[]) {
         } else if (!strncmp (argv[1], "--test=", 7)) {
             state.test_name = argv[1] + 7;
         } else {
-            seed = strtoul (argv[1], NULL, 10);
+            seed = strtoul (argv[1], null, 10);
         }
 
         argc--;
@@ -734,7 +735,7 @@ int main (int argc, string argv[]) {
     fprintf (stderr, "checkasm: using random seed %u\n", seed);
     av_lfg_init (&checkasm_lfg, seed);
 
-    check_cpu_flag (NULL, 0);
+    check_cpu_flag (null, 0);
     for (i = 0; cpus[i].flag; i++)
         check_cpu_flag (cpus[i].name, cpus[i].flag);
 
@@ -756,7 +757,7 @@ int main (int argc, string argv[]) {
 /***********************************************************
 Decide whether or not the specified function needs to be tested and
 allocate/initialize data structures if needed. Returns a pointer to a
-reference function if the function should be tested, otherwise NULL
+reference function if the function should be tested, otherwise null
 ***********************************************************/
 void *checkasm_check_func (void *func, string name, ...) {
     char name_buf[256];
@@ -770,7 +771,7 @@ void *checkasm_check_func (void *func, string name, ...) {
     va_end (arg);
 
     if (!func || name_length <= 0 || name_length >= sizeof (name_buf))
-        return NULL;
+        return null;
 
     state.current_func = get_func (&state.funcs, name_buf);
     state.funcs.color = 1;
@@ -783,7 +784,7 @@ void *checkasm_check_func (void *func, string name, ...) {
             Only test functions that haven't already been tested
             ***********************************************************/
             if (v.func == func)
-                return NULL;
+                return null;
 
             if (v.ok)
                 ref = v.func;
@@ -875,7 +876,7 @@ void checkasm_report (string name, ...) {
         va_list arg;
 
         va_start (arg, name);
-        length += vsnprintf (NULL, 0, name, arg);
+        length += vsnprintf (null, 0, name, arg);
         va_end (arg);
 
         if (length > max_length)

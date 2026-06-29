@@ -47,14 +47,14 @@ void randomize_buffers () {
                                     dst[y * PIXEL_STRIDE + x];
             } else {
                 ((int32_t *)coef)[y * sz + x] =
-                    ((uint16 *)src)[y * (PIXEL_STRIDE/2) + x] -
-                    ((uint16 *)dst)[y * (PIXEL_STRIDE/2) + x];
+                    ((uint16[] )src)[y * (PIXEL_STRIDE/2) + x] -
+                    ((uint16[] )dst)[y * (PIXEL_STRIDE/2) + x];
             }
         }
     }
 }
 
-static void dct4x4_impl (size, dctcoef) {
+public static void dct4x4_impl (size, dctcoef) {
     static void dct4x4_##size (dctcoef *coef) {
         int i, y, x;
         dctcoef tmp[16];
@@ -151,14 +151,14 @@ dct4x4_impl (32, int32_t)
 dct8x8_impl (16, int16)
 dct8x8_impl (32, int32_t)
 
-static void dct4x4 (int16[] coef, int bit_depth) {
+public static void dct4x4 (int16[] coef, int bit_depth) {
     if (bit_depth == 8)
         dct4x4_16 (coef);
     else
         dct4x4_32 ((int32_t *) coef);
 }
 
-static void dct8x8 (int16[] coef, int bit_depth) {
+public static void dct8x8 (int16[] coef, int bit_depth) {
     if (bit_depth == 8) {
         dct8x8_16 (coef);
     } else {
@@ -167,7 +167,7 @@ static void dct8x8 (int16[] coef, int bit_depth) {
 }
 
 
-static void check_idct () {
+public static void check_idct () {
     LOCAL_ALIGNED_16 (uint8, src,  [8 * 8 * 2]);
     LOCAL_ALIGNED_16 (uint8, dst,  [8 * 8 * 2]);
     LOCAL_ALIGNED_16 (uint8, dst0, [8 * 8 * 2]);
@@ -190,7 +190,7 @@ static void check_idct () {
                 dct8x8 (coef, bit_depth);
 
             for (dc = 0; dc <= 1; dc++) {
-                void (*idct)(uint8[] , int16[] , int) = NULL;
+                void (*idct)(uint8[] , int16[] , int) = null;
                 switch ((sz << 1) | dc) {
                 case (4 << 1) | 0: idct = h.h264_idct_add; break;
                 case (4 << 1) | 1: idct = h.h264_idct_dc_add; break;
@@ -222,7 +222,7 @@ static void check_idct () {
     }
 }
 
-static void check_idct_multiple () {
+public static void check_idct_multiple () {
     LOCAL_ALIGNED_16 (uint8, dst_full,  [16 * 16 * 2]);
     LOCAL_ALIGNED_16 (int16, coef_full, [16 * 16 * 2]);
     LOCAL_ALIGNED_16 (uint8, dst0,  [16 * 16 * 2]);
@@ -237,7 +237,7 @@ static void check_idct_multiple () {
     for (bit_depth = 8; bit_depth <= 10; bit_depth++) {
         ff_h264dsp_init (&h, bit_depth, 1);
         for (func = 0; func < 3; func++) {
-            void (*idct)(uint8[] , int[] , int16[] , int, uint8[]) = NULL;
+            void (*idct)(uint8[] , int[] , int16[] , int, uint8[]) = null;
             const string name;
             int sz = 4, intra = 0;
             int block_offset[16] = { 0 };
@@ -330,7 +330,7 @@ void CHECK_LOOP_FILTER_1 (name, align, idc) {
     }
 }
 
-static void check_loop_filter () {
+public static void check_loop_filter () {
     LOCAL_ALIGNED_16 (uint8, dst, [32 * 16 * 2]);
     LOCAL_ALIGNED_16 (uint8, dst0, [32 * 16 * 2]);
     LOCAL_ALIGNED_16 (uint8, dst1, [32 * 16 * 2]);
@@ -391,7 +391,7 @@ void CHECK_LOOP_FILTER_2 (name, align, idc) {
     }
 }
 
-static void check_loop_filter_intra () {
+public static void check_loop_filter_intra () {
     LOCAL_ALIGNED_16 (uint8, dst, [32 * 16 * 2]);
     LOCAL_ALIGNED_16 (uint8, dst0, [32 * 16 * 2]);
     LOCAL_ALIGNED_16 (uint8, dst1, [32 * 16 * 2]);

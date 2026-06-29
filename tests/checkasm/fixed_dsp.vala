@@ -29,7 +29,7 @@ void randomize_buffers () {
     }
 }
 
-static void check_vector_fmul (int[] src0, int[] src1) {
+public static void check_vector_fmul (int[] src0, int[] src1) {
     LOCAL_ALIGNED_32 (int, ref, [BUF_SIZE]);
     LOCAL_ALIGNED_32 (int, new, [BUF_SIZE]);
 
@@ -42,7 +42,7 @@ static void check_vector_fmul (int[] src0, int[] src1) {
     bench_new (new, src0, src1, BUF_SIZE);
 }
 
-static void check_vector_fmul_add (int[] src0, int[] src1, int[] src2) {
+public static void check_vector_fmul_add (int[] src0, int[] src1, int[] src2) {
     LOCAL_ALIGNED_32 (int, ref, [BUF_SIZE]);
     LOCAL_ALIGNED_32 (int, new, [BUF_SIZE]);
 
@@ -55,7 +55,7 @@ static void check_vector_fmul_add (int[] src0, int[] src1, int[] src2) {
     bench_new (new, src0, src1, src2, BUF_SIZE);
 }
 
-static void check_vector_fmul_window (const int32_t *src0, int32_t *src1, int32_t *win) {
+public static void check_vector_fmul_window (const int32_t *src0, int32_t *src1, int32_t *win) {
     LOCAL_ALIGNED_32 (int32_t, ref, [BUF_SIZE]);
     LOCAL_ALIGNED_32 (int32_t, new, [BUF_SIZE]);
 
@@ -68,7 +68,7 @@ static void check_vector_fmul_window (const int32_t *src0, int32_t *src1, int32_
     bench_new (new, src0, src1, win, BUF_SIZE / 2);
 }
 
-static void check_vector_fmul_window_scaled (const int32_t *src0, int32_t *src1, int32_t *win) {
+public static void check_vector_fmul_window_scaled (const int32_t *src0, int32_t *src1, int32_t *win) {
     LOCAL_ALIGNED_16 (int16, ref, [BUF_SIZE]);
     LOCAL_ALIGNED_16 (int16, new, [BUF_SIZE]);
 
@@ -81,7 +81,7 @@ static void check_vector_fmul_window_scaled (const int32_t *src0, int32_t *src1,
     bench_new (new, src0, src1, win, BUF_SIZE / 2, 2);
 }
 
-static void check_butterflies (int[] src0, int[] src1) {
+public static void check_butterflies (int[] src0, int[] src1) {
     LOCAL_ALIGNED_16 (int, ref0, [BUF_SIZE]);
     LOCAL_ALIGNED_16 (int, ref1, [BUF_SIZE]);
     LOCAL_ALIGNED_16 (int, new0, [BUF_SIZE]);
@@ -104,7 +104,7 @@ static void check_butterflies (int[] src0, int[] src1) {
     bench_new (new0, new1, BUF_SIZE);
 }
 
-static void check_scalarproduct_fixed (int[] src0, int[] src1) {
+public static void check_scalarproduct_fixed (int[] src0, int[] src1) {
     int ref, new;
 
     declare_func (int, int[] src0, int[] src1, int len);

@@ -23,7 +23,7 @@ void randomize_buffers () {
     }
 }
 
-static void check_qmf () {
+public static void check_qmf () {
     int16 src0[PREV_SAMPLES_BUF_SIZE];
     int16 src1[PREV_SAMPLES_BUF_SIZE];
     const int16[] tmp0 = src0;

@@ -30,7 +30,7 @@ void randomize (void *buf, int len) {
 
 const float EPS = 0.005f;
 
-static void test_add_squares () {
+public static void test_add_squares () {
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [BUF_SIZE]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst1, [BUF_SIZE]);
     LOCAL_ALIGNED_16 (INTFLOAT, src, [BUF_SIZE], [2]);
@@ -48,7 +48,7 @@ static void test_add_squares () {
     bench_new (dst1, src, BUF_SIZE);
 }
 
-static void test_mul_pair_single () {
+public static void test_mul_pair_single () {
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [BUF_SIZE], [2]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst1, [BUF_SIZE], [2]);
     LOCAL_ALIGNED_16 (INTFLOAT, src0, [BUF_SIZE], [2]);
@@ -66,7 +66,7 @@ static void test_mul_pair_single () {
     bench_new (dst1, src0, src1, BUF_SIZE);
 }
 
-static void test_hybrid_analysis () {
+public static void test_hybrid_analysis () {
     LOCAL_ALIGNED_16 (INTFLOAT, dst0, [BUF_SIZE], [2]);
     LOCAL_ALIGNED_16 (INTFLOAT, dst1, [BUF_SIZE], [2]);
     LOCAL_ALIGNED_16 (INTFLOAT, in, [13], [2]);
@@ -90,7 +90,7 @@ static void test_hybrid_analysis () {
     bench_new (dst1, in, filter, STRIDE, N);
 }
 
-static void test_hybrid_analysis_ileave () {
+public static void test_hybrid_analysis_ileave () {
     LOCAL_ALIGNED_16 (INTFLOAT, in,   [2], [38][64]);
     LOCAL_ALIGNED_16 (INTFLOAT, out0, [91], [32][2]);
     LOCAL_ALIGNED_16 (INTFLOAT, out1, [91], [32][2]);
@@ -130,7 +130,7 @@ static void test_hybrid_analysis_ileave () {
     bench_new (out1, in, 3, 32);
 }
 
-static void test_hybrid_synthesis_deint () {
+public static void test_hybrid_synthesis_deint () {
     LOCAL_ALIGNED_16 (INTFLOAT, out0, [2], [38][64]);
     LOCAL_ALIGNED_16 (INTFLOAT, out1, [2], [38][64]);
     LOCAL_ALIGNED_16 (INTFLOAT, in,  [91], [32][2]);
@@ -170,7 +170,7 @@ static void test_hybrid_synthesis_deint () {
     bench_new (out1, in, 3, 32);
 }
 
-static void test_stereo_interpolate (PSDSPContext *psdsp) {
+public static void test_stereo_interpolate (PSDSPContext *psdsp) {
     int i;
     LOCAL_ALIGNED_16 (INTFLOAT, l,  [BUF_SIZE], [2]);
     LOCAL_ALIGNED_16 (INTFLOAT, r,  [BUF_SIZE], [2]);

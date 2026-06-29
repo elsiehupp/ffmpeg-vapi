@@ -32,7 +32,7 @@ void randomize_buffers () {
     }
 }
 
-static void check_decorrelate (uint8[] *ref_dst, uint8[] *ref_src, uint8[] *new_dst, uint8[] *new_src,
+public static void check_decorrelate (uint8[] *ref_dst, uint8[] *ref_src, uint8[] *new_dst, uint8[] *new_src,
                               int channels, int bits) {
     declare_func (void, uint8[] *out, int32_t **in, int channels, int len, int shift);
 

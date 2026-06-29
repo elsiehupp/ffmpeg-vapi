@@ -29,7 +29,7 @@ void randomize_buffer (void *buf) {
     }
 }
 
-static void test_vector_fmul (float[] src0, float[] src1) {
+public static void test_vector_fmul (float[] src0, float[] src1) {
     LOCAL_ALIGNED_32 (float, cdst, [LEN]);
     LOCAL_ALIGNED_32 (float, odst, [LEN]);
     int i;
@@ -50,7 +50,7 @@ static void test_vector_fmul (float[] src0, float[] src1) {
     bench_new (odst, src0, src1, LEN);
 }
 
-static void test_vector_dmul (double[] src0, double[] src1) {
+public static void test_vector_dmul (double[] src0, double[] src1) {
     LOCAL_ALIGNED_32 (double, cdst, [LEN]);
     LOCAL_ALIGNED_32 (double, odst, [LEN]);
     int i;
@@ -72,7 +72,7 @@ static void test_vector_dmul (double[] src0, double[] src1) {
 }
 
 const float ARBITRARY_FMUL_ADD_CONST = 0.005f;
-static void test_vector_fmul_add (float[] src0, float[] src1, float[] src2) {
+public static void test_vector_fmul_add (float[] src0, float[] src1, float[] src2) {
     LOCAL_ALIGNED_32 (float, cdst, [LEN]);
     LOCAL_ALIGNED_32 (float, odst, [LEN]);
     int i;
@@ -93,7 +93,7 @@ static void test_vector_fmul_add (float[] src0, float[] src1, float[] src2) {
     bench_new (odst, src0, src1, src2, LEN);
 }
 
-static void test_vector_fmul_scalar (float[] src0, float[] src1) {
+public static void test_vector_fmul_scalar (float[] src0, float[] src1) {
     LOCAL_ALIGNED_16 (float, cdst, [LEN]);
     LOCAL_ALIGNED_16 (float, odst, [LEN]);
     int i;
@@ -114,7 +114,7 @@ static void test_vector_fmul_scalar (float[] src0, float[] src1) {
 }
 
 const float ARBITRARY_FMUL_WINDOW_CONST = 0.008f;
-static void test_vector_fmul_window (float[] src0, float[] src1, float[] win) {
+public static void test_vector_fmul_window (float[] src0, float[] src1, float[] win) {
     LOCAL_ALIGNED_16 (float, cdst, [LEN]);
     LOCAL_ALIGNED_16 (float, odst, [LEN]);
     int i;
@@ -136,7 +136,7 @@ static void test_vector_fmul_window (float[] src0, float[] src1, float[] win) {
 }
 
 const float ARBITRARY_FMAC_SCALAR_CONST = 0.005f;
-static void test_vector_fmac_scalar (float[] src0, float[] src1, float[] src2) {
+public static void test_vector_fmac_scalar (float[] src0, float[] src1, float[] src2) {
     LOCAL_ALIGNED_32 (float, cdst, [LEN]);
     LOCAL_ALIGNED_32 (float, odst, [LEN]);
     int i;
@@ -160,7 +160,7 @@ static void test_vector_fmac_scalar (float[] src0, float[] src1, float[] src2) {
     bench_new (odst, src0, src1[0], LEN);
 }
 
-static void test_vector_dmul_scalar (double[] src0, double[] src1) {
+public static void test_vector_dmul_scalar (double[] src0, double[] src1) {
     LOCAL_ALIGNED_32 (double, cdst, [LEN]);
     LOCAL_ALIGNED_32 (double, odst, [LEN]);
     int i;
@@ -182,7 +182,7 @@ static void test_vector_dmul_scalar (double[] src0, double[] src1) {
 }
 
 const float ARBITRARY_DMAC_SCALAR_CONST = 0.005f;
-static void test_vector_dmac_scalar (double[] src0, double[] src1, double[] src2) {
+public static void test_vector_dmac_scalar (double[] src0, double[] src1, double[] src2) {
     LOCAL_ALIGNED_32 (double, cdst, [LEN]);
     LOCAL_ALIGNED_32 (double, odst, [LEN]);
     int i;
@@ -205,7 +205,7 @@ static void test_vector_dmac_scalar (double[] src0, double[] src1, double[] src2
     bench_new (odst, src0, src1[0], LEN);
 }
 
-static void test_butterflies_float (float[] src0, float[] src1) {
+public static void test_butterflies_float (float[] src0, float[] src1) {
     LOCAL_ALIGNED_16 (float,  cdst,  [LEN]);
     LOCAL_ALIGNED_16 (float,  odst,  [LEN]);
     LOCAL_ALIGNED_16 (float,  cdst1, [LEN]);
@@ -239,7 +239,7 @@ static void test_butterflies_float (float[] src0, float[] src1) {
 }
 
 const float ARBITRARY_SCALARPRODUCT_CONST = 0.2f;
-static void test_scalarproduct_float (float[] src0, float[] src1) {
+public static void test_scalarproduct_float (float[] src0, float[] src1) {
     float cprod, oprod;
 
     declare_func_float (float, float[] src0, float[] src1, int len);

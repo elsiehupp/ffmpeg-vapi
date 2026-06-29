@@ -42,7 +42,7 @@ struct FailingMuxerPacketData {
     uint sleep_time;
 }
 
-static int prepare_packet (AVPacket *pkt, FailingMuxerPacketData *pkt_data, int64 pts) {
+public static int prepare_packet (AVPacket *pkt, FailingMuxerPacketData *pkt_data, int64 pts) {
     int ret;
     FailingMuxerPacketData *data = av_malloc (sizeof (*data));
     if (!data) {
@@ -57,18 +57,18 @@ static int prepare_packet (AVPacket *pkt, FailingMuxerPacketData *pkt_data, int6
     return ret;
 }
 
-static int initialize_fifo_tst_muxer_chain (AVFormatContext **oc) {
+public static int initialize_fifo_tst_muxer_chain (AVFormatContext **oc) {
     int ret = 0;
     AVStream *s;
 
-    ret = avformat_alloc_output_context2 (oc, NULL, "fifo", "-");
+    ret = avformat_alloc_output_context2 (oc, null, "fifo", "-");
     if (ret) {
         fprintf (stderr, "Failed to create format context: %s\n",
                 av_err2str (ret));
         return EXIT_FAILURE;
     }
 
-    s = avformat_new_stream (*oc, NULL);
+    s = avformat_new_stream (*oc, null);
     if (!s) {
         fprintf (stderr, "Failed to create stream: %s\n",
                 av_err2str (ret));
@@ -78,7 +78,7 @@ static int initialize_fifo_tst_muxer_chain (AVFormatContext **oc) {
     return ret;
 }
 
-static int fifo_basic_test (AVFormatContext *oc, AVDictionary **opts,
+public static int fifo_basic_test (AVFormatContext *oc, AVDictionary **opts,
                              const FailingMuxerPacketData *pkt_data) {
     int ret = 0, i;
     AVPacket pkt;
@@ -109,7 +109,7 @@ static int fifo_basic_test (AVFormatContext *oc, AVDictionary **opts,
         }
     }
 
-    ret = av_write_frame (oc, NULL);
+    ret = av_write_frame (oc, null);
     if (ret < 0) {
         fprintf (stderr, "Unexpected write_frame error during flushing: %s\n",
                 av_err2str (ret));
@@ -130,7 +130,7 @@ fail:
     return ret;
 }
 
-static int fifo_overflow_drop_test (AVFormatContext *oc, AVDictionary **opts,
+public static int fifo_overflow_drop_test (AVFormatContext *oc, AVDictionary **opts,
                                    const FailingMuxerPacketData *data) {
     int ret = 0, i;
     int64 write_pkt_start, write_pkt_end, duration;
@@ -198,9 +198,9 @@ struct TestCase {
 
 const size_t BUFFER_SIZE = 64;
 
-static int run_test (const TestCase *test) {
-    AVDictionary *opts = NULL;
-    AVFormatContext *oc = NULL;
+public static int run_test (const TestCase *test) {
+    AVDictionary *opts = null;
+    AVFormatContext *oc = null;
     char buffer[BUFFER_SIZE];
     int ret, ret1;
 
@@ -245,7 +245,7 @@ const TestCase tests[] = {
         Simple test in packet-non-dropping mode, we expect to get on
         the output exactly what was on input.
         ***********************************************************/
-        {fifo_basic_test, "nonfail test", NULL,1, 0, 0, {0, 0, 0}},
+        {fifo_basic_test, "nonfail test", null,1, 0, 0, {0, 0, 0}},
 
         /***********************************************************
         Each write_packet will fail 3 times before operation is
@@ -274,10 +274,11 @@ const TestCase tests[] = {
         {fifo_overflow_drop_test, "overflow with packet dropping", "queue_size=3:drop_pkts_on_overflow=1",
          0, 0, 0, {0, 0, SLEEPTIME_50_MS}},
 
-        {NULL}
+        {null}
 };
 
-int main (int argc, string argv[]) {
+public static int main (
+    int argc, string argv[]) {
     int i, ret, ret_all = 0;
 
     for (i = 0; tests[i].test_func; i++) {
