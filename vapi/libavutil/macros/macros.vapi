@@ -22,9 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Utility Preprocessor macros
 ***********************************************************/
 
-#ifndef AVUTIL_MACROS_H
-#define AVUTIL_MACROS_H
-
 #include "libavutil/avconfig.h"
 
 #if AV_HAVE_BIGENDIAN
