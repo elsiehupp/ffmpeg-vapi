@@ -46,7 +46,7 @@ planes must be the same size. For packed sample formats, only the first data
 plane is used, and samples for each channel are interleaved. In this case,
 linesize is the buffer size, in bytes, for the 1 plane.
 ***********************************************************/
-[CCode (cheader_filename="subprojects/ffmpeg/libavutil/samplefmt.h")]
+[CCode (cname="enum AVSampleFormat",cheader_filename="subprojects/ffmpeg/libavutil/samplefmt.h")]
 public enum SampleFormat {
     [CCode (cname="AV_SAMPLE_FMT_NONE")]
     NONE,
@@ -115,7 +115,7 @@ public enum SampleFormat {
     @brief signed 64 bits
     ***********************************************************/
     [CCode (cname="AV_SAMPLE_FMT_S64")]
-    AV_SAMPLE_FMT_S64,
+    SIGNED_64_BIT,
 
     /***********************************************************
     @brief signed 64 bits, planar

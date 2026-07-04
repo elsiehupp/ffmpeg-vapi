@@ -18,8 +18,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class ApiThreadMessageTest : GLib.TestCase {
+private class ApiThreadMessageTest : GLib.TestCase {
 
     /***********************************************************
     Thread message API test
@@ -64,7 +63,9 @@ public class ApiThreadMessageTest : GLib.TestCase {
                     );
                     throw new Goto.END ();
                 }
+
             }
+
         }
 
         public static void WAIT_THREADS () throws Goto {
@@ -87,7 +88,9 @@ public class ApiThreadMessageTest : GLib.TestCase {
                     );
                     throw new Goto.END ();
                 }
+
             }
+
         }
 
         static uint get_workload (
@@ -105,6 +108,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
         public override string stringify () {
             return "SenderData";
         }
+
         public override void *thread () {
             uint ret = 0;
 
@@ -152,6 +156,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
                         ret = AVERROR (ENOMEM);
                         break;
                     }
+
                     ret = av_dict_set (
                         out meta,
                         "sig",
@@ -162,13 +167,14 @@ public class ApiThreadMessageTest : GLib.TestCase {
                         av_frame_free (out msg.frame);
                         break;
                     }
+
                     msg.frame.metadata = meta;
 
                     /***********************************************************
                     Allocate a real frame in order to simulate "real" work
                     ***********************************************************/
 
-                    msg.frame.format = AV_PIX_FMT_RGBA;
+                    msg.frame.format = LibAVUtil.PixelFormat.RGBA;
                     msg.frame.width = 320;
                     msg.frame.height = 240;
                     ret = av_frame_get_buffer (
@@ -202,8 +208,11 @@ public class ApiThreadMessageTest : GLib.TestCase {
                         av_frame_free (out msg.frame);
                         break;
                     }
+
                 }
+
             }
+
             av_log (
                 null,
                 AV_LOG_INFO,
@@ -229,6 +238,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
         public override string stringify () {
             return "ReceiverData";
         }
+
         public override void *thread () {
             uint ret = 0;
 
@@ -272,6 +282,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
                     );
                     av_frame_free (out msg.frame);
                 }
+
             }
 
             av_log (
@@ -303,9 +314,9 @@ public class ApiThreadMessageTest : GLib.TestCase {
 
     }
 
-    const uint64 MAGIC = 0xdeadc0de;
+    private const uint64 MAGIC = 0xdeadc0de;
 
-    static uint end (Goto ret) {
+    private static uint end (Goto ret) {
         av_thread_message_queue_free (out queue);
         av_freep (SenderData.instance_array);
         av_freep (ReceiverData.instance_array);
@@ -319,10 +330,11 @@ public class ApiThreadMessageTest : GLib.TestCase {
             );
             return 1;
         }
+
         return 0;
     }
 
-    static uint main (
+    private static uint main (
         uint ac,
         string[] av
     ) {
@@ -411,6 +423,7 @@ public class ApiThreadMessageTest : GLib.TestCase {
         } catch (Goto ret) {
             end (ret);
         }
+
         end (ret);
     }
 

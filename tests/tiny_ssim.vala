@@ -28,22 +28,22 @@ To improve speed, this implementation uses the standard approximation of
 overlapped 8x8 block sums, rather than the original gaussian weights.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class tiny_ssim {
+private class tiny_ssim {
 
-    static void FFSWAP<T> (out T a, out T b) {
+    private static void FFSWAP<T> (out T a, out T b) {
         T SWAP_tmp = b; b = a; a = SWAP_tmp;
     }
+
     //  #define FFMIN (a,b) ((a) > (b) ? (b) : (a))
 
-    const uint BIT_DEPTH = 8;
-    const uint PIXEL_MAX = ((1 << BIT_DEPTH)-1);
-    struct pixel : uint8 { }
+    private const uint BIT_DEPTH = 8;
+    private const uint PIXEL_MAX = ((1 << BIT_DEPTH)-1);
+    private struct pixel : uint8 { }
 
     /****************************************************************************
     structural similarity metric
     ***************************************************************************/
-    static void ssim_4x4x2_core (
+    private static void ssim_4x4x2_core (
         out pixel pix1,
         out uint stride1,
         out pixel pix2,
@@ -69,6 +69,7 @@ public class tiny_ssim {
                     ss  += b*b;
                     s12 += a*b;
                 }
+
             sums[z][0] = s1;
             sums[z][1] = s2;
             sums[z][2] = ss;
@@ -76,15 +77,17 @@ public class tiny_ssim {
             pix1 += 4;
             pix2 += 4;
         }
+
     }
 
     //  #if BIT_DEPTH > 9
-    struct type : float { }
+    private struct type : float { }
+
     //  #else
     //      typedef uint type;
     //  #endif
 
-    static float ssim_end1 (uint s1, uint s2, uint ss, uint s12 ) {
+    private static float ssim_end1 (uint s1, uint s2, uint ss, uint s12 ) {
     /***********************************************************
     Maximum value for 10-bit is: ss*64 = (2^10-1)^2*16*4*64 = 4286582784, which will overflow in some cases.
     s1*s1, s2*s2, and s1*s2 also obtain this value for edge cases: ((2^10-1)*16*4)^2 = 4286582784.
@@ -108,7 +111,7 @@ public class tiny_ssim {
             / ((float)(fs1*fs1 + fs2*fs2 + ssim_c1) * (float)(vars + ssim_c2));
     }
 
-    static float ssim_end4 (
+    private static float ssim_end4 (
         uint sum0[5 * 4], // [5][4]
         uint sum1[5 * 4], // [5][4]
         uint width_2
@@ -137,7 +140,7 @@ public class tiny_ssim {
         uint x;
         uint y;
         float ssim = 0.0f;
-        uint sum0[4] = (uint *)buf;
+        uint sum0[4] = (uint[])buf;
         uint sum1[4] = sum0 + (width_2 >> 2) + 3;
         width_2 >>= 2;
         height_2 >>= 2;
@@ -147,9 +150,11 @@ public class tiny_ssim {
                 for (x = 0; x < width_2; x+=2 )
                     ssim_4x4x2_core (out pix1[4*(x+z*stride1)], stride1, out pix2[4*(x+z*stride2)], stride2, out sum0[x] );
             }
+
             for (x = 0; x < width_2-1; x += 4 )
                 ssim += ssim_end4 (sum0+x, sum1+x, FFMIN (4,width_2-x-1) );
         }
+
     //     *cnt = (height_2-1) * (width_2-1);
         return ssim / ((height_2-1) * (width_2-1));
     }
@@ -161,18 +166,19 @@ public class tiny_ssim {
             uint d = pix1[i] - pix2[i];
             ssd += d*d;
         }
+
         return ssd;
     }
 
-    static double ssd_to_psnr (uint64 ssd, uint64 denom ) {
+    private static double ssd_to_psnr (uint64 ssd, uint64 denom ) {
         return -10*log ((double)ssd/(denom*255*255))/log (10);
     }
 
-    static double ssim_db (double ssim, double weight ) {
+    private static double ssim_db (double ssim, double weight ) {
         return 10*(log (weight)/log (10)-log (weight-ssim)/log (10));
     }
 
-    static void print_results (uint64 ssd[3], double ssim[3], uint frames, uint width, uint height) {
+    private static void print_results (uint64 ssd[3], double ssim[3], uint frames, uint width, uint height) {
         GLib.print ("PSNR Y:%.3f  U:%.3f  V:%.3f  All:%.3f | ",
                 ssd_to_psnr (ssd[0], (uint64)frames*width*height ),
                 ssd_to_psnr (ssd[1], (uint64)frames*width*height/4 ),
@@ -188,7 +194,7 @@ public class tiny_ssim {
 
     uint main (
         uint argc,
-        string argv[]
+        string[] argv
     ) {
         GLib.File f[2];
         uint8[] buf[2];
@@ -220,6 +226,7 @@ public class tiny_ssim {
             plane[i][1] = plane[i][0] + width * height;
             plane[i][2] = plane[i][1] + width * height / 4;
         }
+
         temp = malloc ((2 * width + 12) * sizeof (uint));
         seek = argc<5 ? 0 : atoi (argv[4]);
         fseek (f[seek<0], seek < 0 ? -seek : seek, SEEK_SET);

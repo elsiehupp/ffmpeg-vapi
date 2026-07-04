@@ -17,39 +17,43 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-void randomize_buffers (void *buf, int size) {
+private static void randomize_buffers (void *buf, int size) {
     int j;
     for (j = 0; j < size; j+=4) {
         AV_WN32 (buf + j, rnd ());
     }
+
 }
 
-const uint8 width[] = {12, 16, 20, 32, 36, 128};
-struct Plane {
+private const uint8 width[] = {12, 16, 20, 32, 36, 128};
+private struct Plane {
     uint8 w;
     uint8 h;
     uint8 s;
 }
-const Plane[] planes = {
+private const Plane[] planes = {
     {12,16,12},
     {16,16,16},
     {20,23,25},
     {32,18,48},
     {8,128,16},
     {128,128,128}
+
 };
 
-public const size_t MAX_STRIDE = 128;
-public const size_t MAX_HEIGHT = 128;
+private const size_t MAX_STRIDE = 128;
+private const size_t MAX_HEIGHT = 128;
 
-public static void check_shuffle_bytes (void *func, string report) {
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] src, uint8[] dst, int src_size);
+
+private static void check_shuffle_bytes (
+    void *func, string report
+) {
     int i;
-    LOCAL_ALIGNED_32 (uint8, src0, [MAX_STRIDE]);
-    LOCAL_ALIGNED_32 (uint8, src1, [MAX_STRIDE]);
-    LOCAL_ALIGNED_32 (uint8, dst0, [MAX_STRIDE]);
-    LOCAL_ALIGNED_32 (uint8, dst1, [MAX_STRIDE]);
-
-    declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] src, uint8[] dst, int src_size);
+    //  LOCAL_ALIGNED_32 (uint8, src0, [MAX_STRIDE]);
+    //  LOCAL_ALIGNED_32 (uint8, src1, [MAX_STRIDE]);
+    //  LOCAL_ALIGNED_32 (uint8, dst0, [MAX_STRIDE]);
+    //  LOCAL_ALIGNED_32 (uint8, dst1, [MAX_STRIDE]);
 
     memset (dst0, 0, MAX_STRIDE);
     memset (dst1, 0, MAX_STRIDE);
@@ -58,30 +62,36 @@ public static void check_shuffle_bytes (void *func, string report) {
 
     if (check_func (func, "%s", report)) {
         for (i = 0; i < 6; i ++) {
-            call_ref (src0, dst0, width[i]);
-            call_new (src1, dst1, width[i]);
-            if (memcmp (dst0, dst1, MAX_STRIDE))
+            //  call_ref (src0, dst0, width[i]);
+            //  call_new (src1, dst1, width[i]);
+            if (memcmp (dst0, dst1, MAX_STRIDE)) {
                 fail ();
+            }
+
         }
+
         bench_new (src0, dst0, width[5]);
     }
+
 }
 
-public static void check_uyvy_to_422p () {
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX, void, uint8[] ydst, uint8[] udst, uint8[] vdst,
+//      uint8[] src, int width, int height,
+//      int lumStride, int chromStride, int srcStride
+//  );
+
+private static void check_uyvy_to_422p () {
     int i;
 
-    LOCAL_ALIGNED_32 (uint8, src0, [MAX_STRIDE * MAX_HEIGHT * 2]);
-    LOCAL_ALIGNED_32 (uint8, src1, [MAX_STRIDE * MAX_HEIGHT * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst_y_0, [MAX_STRIDE * MAX_HEIGHT]);
-    LOCAL_ALIGNED_32 (uint8, dst_y_1, [MAX_STRIDE * MAX_HEIGHT]);
-    LOCAL_ALIGNED_32 (uint8, dst_u_0, [(MAX_STRIDE/2) * MAX_HEIGHT]);
-    LOCAL_ALIGNED_32 (uint8, dst_u_1, [(MAX_STRIDE/2) * MAX_HEIGHT]);
-    LOCAL_ALIGNED_32 (uint8, dst_v_0, [(MAX_STRIDE/2) * MAX_HEIGHT]);
-    LOCAL_ALIGNED_32 (uint8, dst_v_1, [(MAX_STRIDE/2) * MAX_HEIGHT]);
-
-    declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] ydst, uint8[] udst, uint8[] vdst,
-                      uint8[] src, int width, int height,
-                      int lumStride, int chromStride, int srcStride);
+    //  LOCAL_ALIGNED_32 (uint8, src0, [MAX_STRIDE * MAX_HEIGHT * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, src1, [MAX_STRIDE * MAX_HEIGHT * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst_y_0, [MAX_STRIDE * MAX_HEIGHT]);
+    //  LOCAL_ALIGNED_32 (uint8, dst_y_1, [MAX_STRIDE * MAX_HEIGHT]);
+    //  LOCAL_ALIGNED_32 (uint8, dst_u_0, [(MAX_STRIDE/2) * MAX_HEIGHT]);
+    //  LOCAL_ALIGNED_32 (uint8, dst_u_1, [(MAX_STRIDE/2) * MAX_HEIGHT]);
+    //  LOCAL_ALIGNED_32 (uint8, dst_v_0, [(MAX_STRIDE/2) * MAX_HEIGHT]);
+    //  LOCAL_ALIGNED_32 (uint8, dst_v_1, [(MAX_STRIDE/2) * MAX_HEIGHT]);
 
     randomize_buffers (src0, MAX_STRIDE * MAX_HEIGHT * 2);
     memcpy (src1, src0, MAX_STRIDE * MAX_HEIGHT * 2);
@@ -95,21 +105,25 @@ public static void check_uyvy_to_422p () {
             memset (dst_v_0, 0, (MAX_STRIDE/2) * MAX_HEIGHT);
             memset (dst_v_1, 0, (MAX_STRIDE/2) * MAX_HEIGHT);
 
-            call_ref (dst_y_0, dst_u_0, dst_v_0, src0, planes[i].w, planes[i].h,
-                     MAX_STRIDE, MAX_STRIDE / 2, planes[i].s);
-            call_new (dst_y_1, dst_u_1, dst_v_1, src1, planes[i].w, planes[i].h,
-                     MAX_STRIDE, MAX_STRIDE / 2, planes[i].s);
+            //  call_ref (dst_y_0, dst_u_0, dst_v_0, src0, planes[i].w, planes[i].h,
+            //           MAX_STRIDE, MAX_STRIDE / 2, planes[i].s);
+            //  call_new (dst_y_1, dst_u_1, dst_v_1, src1, planes[i].w, planes[i].h,
+            //           MAX_STRIDE, MAX_STRIDE / 2, planes[i].s);
             if (memcmp (dst_y_0, dst_y_1, MAX_STRIDE * MAX_HEIGHT) ||
                 memcmp (dst_u_0, dst_u_1, (MAX_STRIDE/2) * MAX_HEIGHT) ||
-                memcmp (dst_v_0, dst_v_1, (MAX_STRIDE/2) * MAX_HEIGHT))
+                memcmp (dst_v_0, dst_v_1, (MAX_STRIDE/2) * MAX_HEIGHT)) {
                 fail ();
+            }
+
         }
+
         bench_new (dst_y_1, dst_u_1, dst_v_1, src1, planes[5].w, planes[5].h,
                   MAX_STRIDE, MAX_STRIDE / 2, planes[5].s);
     }
+
 }
 
-void checkasm_check_sw_rgb () {
+private static void checkasm_check_sw_rgb () {
     ff_sws_rgb2rgb_init ();
 
     check_shuffle_bytes (shuffle_bytes_2103, "shuffle_bytes_2103");

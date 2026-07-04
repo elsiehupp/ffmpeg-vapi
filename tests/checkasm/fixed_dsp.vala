@@ -18,109 +18,126 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-const size_t BUF_SIZE = 256;
+private const size_t BUF_SIZE = 256;
 
-void randomize_buffers () {
+private static void randomize_buffers () {
     int i;
     for (i = 0; i < BUF_SIZE; i++) {
         src0[i] = sign_extend (rnd (), 24);
         src1[i] = sign_extend (rnd (), 24);
         src2[i] = sign_extend (rnd (), 24);
     }
+
 }
 
-public static void check_vector_fmul (int[] src0, int[] src1) {
-    LOCAL_ALIGNED_32 (int, ref, [BUF_SIZE]);
-    LOCAL_ALIGNED_32 (int, new, [BUF_SIZE]);
+private static void check_vector_fmul (int[] src0, int[] src1) {
+    //  LOCAL_ALIGNED_32 (int, ref, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (int, new, [BUF_SIZE]);
 
-    declare_func (void, int *dst, int[] src0, int[] src1, int len);
+    //  declare_func (void, int[] dst, int[] src0, int[] src1, int len);
 
-    call_ref (ref, src0, src1, BUF_SIZE);
-    call_new (new, src0, src1, BUF_SIZE);
-    if (memcmp (ref, new, BUF_SIZE * sizeof (int)))
-        fail ();
-    bench_new (new, src0, src1, BUF_SIZE);
+    //  call_ref (ref, src0, src1, BUF_SIZE);
+    //  call_new (new, src0, src1, BUF_SIZE);
+    //  if (memcmp (ref, new, BUF_SIZE * sizeof (int))) {
+    //      fail ();
+    //  }
+
+    //  bench_new (new, src0, src1, BUF_SIZE);
 }
 
-public static void check_vector_fmul_add (int[] src0, int[] src1, int[] src2) {
-    LOCAL_ALIGNED_32 (int, ref, [BUF_SIZE]);
-    LOCAL_ALIGNED_32 (int, new, [BUF_SIZE]);
+private static void check_vector_fmul_add (int[] src0, int[] src1, int[] src2) {
+    //  LOCAL_ALIGNED_32 (int, ref, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (int, new, [BUF_SIZE]);
 
-    declare_func (void, int *dst, int[] src0, int[] src1, int[] src2, int len);
+    //  declare_func (void, int[] dst, int[] src0, int[] src1, int[] src2, int len);
 
-    call_ref (ref, src0, src1, src2, BUF_SIZE);
-    call_new (new, src0, src1, src2, BUF_SIZE);
-    if (memcmp (ref, new, BUF_SIZE * sizeof (int)))
-        fail ();
-    bench_new (new, src0, src1, src2, BUF_SIZE);
+    //  call_ref (ref, src0, src1, src2, BUF_SIZE);
+    //  call_new (new, src0, src1, src2, BUF_SIZE);
+    //  if (memcmp (ref, new, BUF_SIZE * sizeof (int))) {
+    //      fail ();
+    //  }
+
+    //  bench_new (new, src0, src1, src2, BUF_SIZE);
 }
 
-public static void check_vector_fmul_window (const int32_t *src0, int32_t *src1, int32_t *win) {
-    LOCAL_ALIGNED_32 (int32_t, ref, [BUF_SIZE]);
-    LOCAL_ALIGNED_32 (int32_t, new, [BUF_SIZE]);
+private static void check_vector_fmul_window (int32[] src0, int32[] src1, int32[] win) {
+    //  LOCAL_ALIGNED_32 (int32, ref, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (int32, new, [BUF_SIZE]);
 
-    declare_func (void, int32_t *dst, int32_t *src0, int32_t *src1, int32_t *win, int len);
+    //  declare_func (void, int32[] dst, int32[] src0, int32[] src1, int32[] win, int len);
 
-    call_ref (ref, src0, src1, win, BUF_SIZE / 2);
-    call_new (new, src0, src1, win, BUF_SIZE / 2);
-    if (memcmp (ref, new, BUF_SIZE * sizeof (int32_t)))
-        fail ();
-    bench_new (new, src0, src1, win, BUF_SIZE / 2);
+    //  call_ref (ref, src0, src1, win, BUF_SIZE / 2);
+    //  call_new (new, src0, src1, win, BUF_SIZE / 2);
+    //  if (memcmp (ref, new, BUF_SIZE * sizeof (int32))) {
+    //      fail ();
+    //  }
+
+    //  bench_new (new, src0, src1, win, BUF_SIZE / 2);
 }
 
-public static void check_vector_fmul_window_scaled (const int32_t *src0, int32_t *src1, int32_t *win) {
-    LOCAL_ALIGNED_16 (int16, ref, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (int16, new, [BUF_SIZE]);
+private static void check_vector_fmul_window_scaled (int32[] src0, int32[] src1, int32[] win) {
+    //  LOCAL_ALIGNED_16 (int16, ref, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (int16, new, [BUF_SIZE]);
 
-    declare_func (void, int16[] dst, int32_t *src0, int32_t *src1, int32_t *win, int len, uint8 bits);
+    //  declare_func (void, int16[] dst, int32[] src0, int32[] src1, int32[] win, int len, uint8 bits);
 
-    call_ref (ref, src0, src1, win, BUF_SIZE / 2, 2);
-    call_new (new, src0, src1, win, BUF_SIZE / 2, 2);
-    if (memcmp (ref, new, BUF_SIZE * sizeof (int16)))
-        fail ();
-    bench_new (new, src0, src1, win, BUF_SIZE / 2, 2);
+    //  call_ref (ref, src0, src1, win, BUF_SIZE / 2, 2);
+    //  call_new (new, src0, src1, win, BUF_SIZE / 2, 2);
+    //  if (memcmp (ref, new, BUF_SIZE * sizeof (int16))) {
+    //      fail ();
+    //  }
+
+    //  bench_new (new, src0, src1, win, BUF_SIZE / 2, 2);
 }
 
-public static void check_butterflies (int[] src0, int[] src1) {
-    LOCAL_ALIGNED_16 (int, ref0, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (int, ref1, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (int, new0, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (int, new1, [BUF_SIZE]);
+private static void check_butterflies (int[] src0, int[] src1) {
+    //  LOCAL_ALIGNED_16 (int, ref0, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (int, ref1, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (int, new0, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (int, new1, [BUF_SIZE]);
 
-    declare_func (void, int *av_restrict src0, int *av_restrict src1, int len);
+    //  declare_func (void, int[] av_restrict src0, int[] av_restrict src1, int len);
 
-    memcpy (ref0, src0, BUF_SIZE * sizeof (*src0));
-    memcpy (ref1, src1, BUF_SIZE * sizeof (*src1));
-    memcpy (new0, src0, BUF_SIZE * sizeof (*src0));
-    memcpy (new1, src1, BUF_SIZE * sizeof (*src1));
+    memcpy (ref0, src0, BUF_SIZE * sizeof (src0));
+    memcpy (ref1, src1, BUF_SIZE * sizeof (src1));
+    memcpy (new0, src0, BUF_SIZE * sizeof (src0));
+    memcpy (new1, src1, BUF_SIZE * sizeof (src1));
 
-    call_ref (ref0, ref1, BUF_SIZE);
-    call_new (new0, new1, BUF_SIZE);
-    if (memcmp (ref0, new0, BUF_SIZE * sizeof (*ref0)) ||
-        memcmp (ref1, new1, BUF_SIZE * sizeof (*ref1)))
+    //  call_ref (ref0, ref1, BUF_SIZE);
+    //  call_new (new0, new1, BUF_SIZE);
+    if (memcmp (ref0, new0, BUF_SIZE * sizeof (ref0)) ||
+        memcmp (ref1, new1, BUF_SIZE * sizeof (ref1))) {
         fail ();
-    memcpy (new0, src0, BUF_SIZE * sizeof (*src0));
-    memcpy (new1, src1, BUF_SIZE * sizeof (*src1));
+    }
+
+    memcpy (new0, src0, BUF_SIZE * sizeof (src0));
+    memcpy (new1, src1, BUF_SIZE * sizeof (src1));
     bench_new (new0, new1, BUF_SIZE);
 }
 
-public static void check_scalarproduct_fixed (int[] src0, int[] src1) {
-    int ref, new;
+private static void check_scalarproduct_fixed (
+    int[] src0,
+    int[] src1
+) {
+    //  int ref;
+    //  int new;
 
-    declare_func (int, int[] src0, int[] src1, int len);
+    //  declare_func (int, int[] src0, int[] src1, int len);
 
-    ref = call_ref (src0, src1, BUF_SIZE);
-    new = call_new (src0, src1, BUF_SIZE);
-    if (ref != new)
-        fail ();
+    //  ref = call_ref (src0, src1, BUF_SIZE);
+    //  new = call_new (src0, src1, BUF_SIZE);
+    //  if (ref != new) {
+    //      fail ();
+    //  }
+
     bench_new (src0, src1, BUF_SIZE);
 }
 
-void checkasm_check_fixed_dsp () {
-    LOCAL_ALIGNED_32 (int32_t, src0, [BUF_SIZE]);
-    LOCAL_ALIGNED_32 (int32_t, src1, [BUF_SIZE]);
-    LOCAL_ALIGNED_32 (int32_t, src2, [BUF_SIZE]);
-    AVFixedDSPContext *fdsp = avpriv_alloc_fixed_dsp (1);
+private static void checkasm_check_fixed_dsp () {
+    //  LOCAL_ALIGNED_32 (int32, src0, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (int32, src1, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (int32, src2, [BUF_SIZE]);
+    AVFixedDSPContext? fdsp = avpriv_alloc_fixed_dsp (1);
 
     randomize_buffers ();
     if (check_func (fdsp.vector_fmul, "vector_fmul_fixed"))

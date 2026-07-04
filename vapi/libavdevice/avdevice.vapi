@@ -542,7 +542,7 @@ List of capabilities that can be queried:
                      type: LibAVUtil.OptionType.INT (AVCodecID value)
  - Capabilities valid for audio devices:
    - sample_format:  supported sample formats.
-                     type: LibAVUtil.OptionType.INT (AVSampleFormat value)
+                     type: LibAVUtil.OptionType.INT (LibAVUtil.SampleFormat value)
    - sample_rate:    supported sample rates.
                      type: LibAVUtil.OptionType.INT
    - channels:       supported number of channels.
@@ -588,7 +588,7 @@ Example of the usage basing on opengl output device:
  if (av_opt_query_ranges (&ranges, caps, "pixel_format", OptionSearchFlags.MULTI_COMPONENT_RANGE)) < 0)
      goto fail;
  // pick format here and set it
- av_opt_set (caps, "pixel_format", AV_PIX_FMT_YUV420P, 0);
+ av_opt_set (caps, "pixel_format", LibAVUtil.PixelFormat.YUV420P, 0);
 
  // query and set more capabilities
 
@@ -618,7 +618,7 @@ public class LibAVDevice.DeviceCapabilitiesQuery {
     public AVCodecID codec;
 
     [CCode (cname="")]
-    public AVSampleFormat sample_format;
+    public LibAVUtil.SampleFormat sample_format;
 
     [CCode (cname="")]
     public LibAVUtil.PixelFormat pixel_format;

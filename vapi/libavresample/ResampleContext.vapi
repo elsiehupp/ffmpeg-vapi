@@ -167,13 +167,13 @@ internal class LibAVResample.ResampleContext {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
     internal void ff_audio_resample_init_aarch64 (
         LibAVResample.ResampleContext? c,
-        AVSampleFormat sample_fmt
+        LibAVUtil.SampleFormat sample_fmt
     );
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/internal.h")]
     internal void ff_audio_resample_init_arm (
         LibAVResample.ResampleContext? c,
-        AVSampleFormat sample_fmt
+        LibAVUtil.SampleFormat sample_fmt
     );
 
 }

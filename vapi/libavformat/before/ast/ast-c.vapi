@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-const AVCodecTag ff_codec_ast_tags[] = {
+private const AVCodecTag ff_codec_ast_tags[] = {
     new AVCodecTag () {
         codec_id = LibAVCodec.CodecID.ADPCM_AFC,
         tag = 0

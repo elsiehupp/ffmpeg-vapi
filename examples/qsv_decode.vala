@@ -41,11 +41,11 @@ GPU video surfaces, write the decoded frames to an output file.
 //  #include <libavutil/hwcontext_qsv.h>
 //  #include <libavutil/mem.h>
 
-public static int get_format (AVCodecContext? avctx, AVPixelFormat[] pix_fmts
+private static int get_format (AVCodecContext? avctx, AVPixelFormat[] pix_fmts
 ) {
-    while (*pix_fmts != AV_PIX_FMT_NONE) {
-        if (*pix_fmts == AV_PIX_FMT_QSV) {
-            return AV_PIX_FMT_QSV;
+    while (*pix_fmts != LibAVUtil.PixelFormat.NONE) {
+        if (*pix_fmts == LibAVUtil.PixelFormat.QSV) {
+            return LibAVUtil.PixelFormat.QSV;
         }
 
         pix_fmts++;
@@ -53,10 +53,10 @@ public static int get_format (AVCodecContext? avctx, AVPixelFormat[] pix_fmts
 
     fprintf (stderr, "The QSV pixel format not offered in get_format ()\n");
 
-    return AV_PIX_FMT_NONE;
+    return LibAVUtil.PixelFormat.NONE;
 }
 
-public static int decode_packet (AVCodecContext? decoder_ctx,
+private static int decode_packet (AVCodecContext? decoder_ctx,
                          AVFrame? frame, AVFrame? sw_frame,
                          AVPacket? pkt, AVIOContext? output_ctx
 ) {
@@ -79,20 +79,22 @@ public static int decode_packet (AVCodecContext? decoder_ctx,
             return ret;
         }
 
-        /* A real program would do something useful with the decoded frame here.
-         * We just retrieve the raw data and write it to a file, which is rather
-         * useless but pedagogic. */
+        /***********************************************************
+        A real program would do something useful with the decoded frame here.
+        We just retrieve the raw data and write it to a file, which is rather
+        useless but pedagogic.
+        ***********************************************************/
         ret = av_hwframe_transfer_data (sw_frame, frame, 0);
         if (ret < 0) {
             fprintf (stderr, "Error transferring the data to system memory\n");
-            goto fail;
+            //  goto fail;
         }
 
-        for (i = 0; i < FF_ARRAY_ELEMS (sw_frame->data) && sw_frame->data[i]; i++)
-            for (j = 0; j < (sw_frame->height >> (i > 0)); j++)
-                avio_write (output_ctx, sw_frame->data[i] + j * sw_frame->linesize[i], sw_frame->width);
+        for (i = 0; i < FF_ARRAY_ELEMS (sw_frame.data) && sw_frame.data[i]; i++)
+            for (j = 0; j < (sw_frame.height >> (i > 0)); j++)
+                avio_write (output_ctx, sw_frame.data[i] + j * sw_frame.linesize[i], sw_frame.width);
 
-fail:
+//  fail:
         av_frame_unref (sw_frame);
         av_frame_unref (frame);
 
@@ -103,7 +105,7 @@ fail:
     return 0;
 }
 
-public static int main (
+private static int main (
     int argc,
     string[] argv
 ) {
@@ -113,7 +115,8 @@ public static int main (
     AVCodec? decoder;
 
     AVPacket? pkt = null;
-    AVFrame? frame = null,? sw_frame = null;
+    AVFrame? frame = null;
+    AVFrame? sw_frame = null;
 
     AVIOContext? output_ctx = null;
 
@@ -126,101 +129,118 @@ public static int main (
         return 1;
     }
 
-    /* open the input file */
+    /***********************************************************
+    open the input file
+    ***********************************************************/
     ret = avformat_open_input (&input_ctx, argv[1], null, null);
     if (ret < 0) {
         fprintf (stderr, "Cannot open input file '%s': ", argv[1]);
-        goto finish;
+        //  goto finish;
     }
 
-    /* find the first H.264 video stream */
-    for (i = 0; i < input_ctx->nb_streams; i++) {
-        AVStream? st = input_ctx->streams[i];
+    /***********************************************************
+    find the first H.264 video stream
+    ***********************************************************/
+    for (i = 0; i < input_ctx.nb_streams; i++) {
+        AVStream? st = input_ctx.streams[i];
 
-        if (st->codecpar->codec_id == AV_CODEC_ID_H264 && !video_st)
+        if (st.codecpar.codec_id == AV_CODEC_ID_H264 && !video_st)
             video_st = st;
         else
-            st->discard = AVDISCARD_ALL;
-    }
-    if (!video_st) {
-        fprintf (stderr, "No H.264 video stream in the input file\n");
-        goto finish;
+            st.discard = AVDISCARD_ALL;
     }
 
-    /* open the hardware device */
+    if (!video_st) {
+        fprintf (stderr, "No H.264 video stream in the input file\n");
+        //  goto finish;
+    }
+
+    /***********************************************************
+    open the hardware device
+    ***********************************************************/
     ret = av_hwdevice_ctx_create (&device_ref, AV_HWDEVICE_TYPE_QSV,
                                  "auto", null, 0);
     if (ret < 0) {
         fprintf (stderr, "Cannot open the hardware device\n");
-        goto finish;
+        //  goto finish;
     }
 
-    /* initialize the decoder */
+    /***********************************************************
+    initialize the decoder
+    ***********************************************************/
     decoder = avcodec_find_decoder_by_name ("h264_qsv");
     if (!decoder) {
         fprintf (stderr, "The QSV decoder is not present in libavcodec\n");
-        goto finish;
+        //  goto finish;
     }
 
     decoder_ctx = avcodec_alloc_context3 (decoder);
     if (!decoder_ctx) {
         ret = AVERROR (ENOMEM);
-        goto finish;
+        //  goto finish;
     }
-    decoder_ctx->codec_id = AV_CODEC_ID_H264;
-    if (video_st->codecpar->extradata_size) {
-        decoder_ctx->extradata = av_mallocz (video_st->codecpar->extradata_size +
+
+    decoder_ctx.codec_id = AV_CODEC_ID_H264;
+    if (video_st.codecpar.extradata_size) {
+        decoder_ctx.extradata = av_mallocz (video_st.codecpar.extradata_size +
                                             AV_INPUT_BUFFER_PADDING_SIZE);
-        if (!decoder_ctx->extradata) {
+        if (!decoder_ctx.extradata) {
             ret = AVERROR (ENOMEM);
-            goto finish;
+            //  goto finish;
         }
-        memcpy (decoder_ctx->extradata, video_st->codecpar->extradata,
-               video_st->codecpar->extradata_size);
-        decoder_ctx->extradata_size = video_st->codecpar->extradata_size;
+
+        memcpy (decoder_ctx.extradata, video_st.codecpar.extradata,
+               video_st.codecpar.extradata_size);
+        decoder_ctx.extradata_size = video_st.codecpar.extradata_size;
     }
 
 
-    decoder_ctx->hw_device_ctx = av_buffer_ref (device_ref);
-    decoder_ctx->get_format  = get_format;
+    decoder_ctx.hw_device_ctx = av_buffer_ref (device_ref);
+    decoder_ctx.get_format = get_format;
 
     ret = avcodec_open2 (decoder_ctx, null, null);
     if (ret < 0) {
         fprintf (stderr, "Error opening the decoder: ");
-        goto finish;
+        //  goto finish;
     }
 
-    /* open the output stream */
+    /***********************************************************
+    open the output stream
+    ***********************************************************/
     ret = avio_open (&output_ctx, argv[2], AVIO_FLAG_WRITE);
     if (ret < 0) {
         fprintf (stderr, "Error opening the output context: ");
-        goto finish;
+        //  goto finish;
     }
 
-    frame    = av_frame_alloc ();
+    frame = av_frame_alloc ();
     sw_frame = av_frame_alloc ();
-    pkt      = av_packet_alloc ();
+    pkt = av_packet_alloc ();
     if (!frame || !sw_frame || !pkt) {
         ret = AVERROR (ENOMEM);
-        goto finish;
+        //  goto finish;
     }
 
-    /* actual decoding */
+    /***********************************************************
+    actual decoding
+    ***********************************************************/
     while (ret >= 0) {
         ret = av_read_frame (input_ctx, pkt);
         if (ret < 0)
             break;
 
-        if (pkt->stream_index == video_st->index)
+        if (pkt.stream_index == video_st.index)
             ret = decode_packet (decoder_ctx, frame, sw_frame, pkt, output_ctx);
 
         av_packet_unref (pkt);
     }
 
-    /* flush the decoder */
+    /***********************************************************
+    flush the decoder
+    ***********************************************************/
     ret = decode_packet (decoder_ctx, frame, sw_frame, null, output_ctx);
 
-finish:
+//  finish:
     if (ret < 0)
         fprintf (stderr, "%s\n", av_err2str (ret));
 

@@ -33,16 +33,16 @@ representation to stdout.
 //  #include <libavcodec/avcodec.h>
 //  #include <libavformat/avformat.h>
 
-public static AVFormatContext? fmt_ctx = null;
-public static AVCodecContext? video_dec_ctx = null;
-public static AVStream? video_stream = null;
-public static string src_filename = null;
+private static AVFormatContext? fmt_ctx = null;
+private static AVCodecContext? video_dec_ctx = null;
+private static AVStream? video_stream = null;
+private static string src_filename = null;
 
-public static int video_stream_idx = -1;
-public static AVFrame? frame = null;
-public static int video_frame_count = 0;
+private static int video_stream_idx = -1;
+private static AVFrame? frame = null;
+private static int video_frame_count = 0;
 
-public static int decode_packet (const AVPacket? pkt
+private static int decode_packet (AVPacket? pkt
 ) {
     int ret = avcodec_send_packet (video_dec_ctx, pkt);
     if (ret < 0) {
@@ -66,24 +66,27 @@ public static int decode_packet (const AVPacket? pkt
             video_frame_count++;
             sd = av_frame_get_side_data (frame, AV_FRAME_DATA_MOTION_VECTORS);
             if (sd) {
-                const AVMotionVector? mvs = (const AVMotionVector? )sd->data;
-                for (i = 0; i < sd->size / sizeof (*mvs); i++) {
-                    const AVMotionVector? mv = &mvs[i];
-                    printf ("%d,%2d,%2d,%2d,%4d,%4d,%4d,%4d,0x%"PRIx64",%4d,%4d,%4d\n",
-                        video_frame_count, mv->source,
-                        mv->w, mv->h, mv->src_x, mv->src_y,
-                        mv->dst_x, mv->dst_y, mv->flags,
-                        mv->motion_x, mv->motion_y, mv->motion_scale);
+                AVMotionVector? mvs = (AVMotionVector? )sd.data;
+                for (i = 0; i < sd.size / sizeof (mvs); i++) {
+                    AVMotionVector? mv = &mvs[i];
+                    printf ("%d,%2d,%2d,%2d,%4d,%4d,%4d,%4d,0x%PRIx64,%4d,%4d,%4d\n",
+                        video_frame_count, mv.source,
+                        mv.w, mv.h, mv.src_x, mv.src_y,
+                        mv.dst_x, mv.dst_y, mv.flags,
+                        mv.motion_x, mv.motion_y, mv.motion_scale);
                 }
+
             }
+
             av_frame_unref (frame);
         }
+
     }
 
     return 0;
 }
 
-public static int open_codec_context (AVFormatContext? fmt_ctx, enum AVMediaType type
+private static int open_codec_context (AVFormatContext? fmt_ctx, AVMediaType type
 ) {
     int ret;
     AVStream? st;
@@ -98,7 +101,7 @@ public static int open_codec_context (AVFormatContext? fmt_ctx, enum AVMediaType
         return ret;
     } else {
         int stream_idx = ret;
-        st = fmt_ctx->streams[stream_idx];
+        st = fmt_ctx.streams[stream_idx];
 
         dec_ctx = avcodec_alloc_context3 (dec);
         if (!dec_ctx) {
@@ -106,14 +109,16 @@ public static int open_codec_context (AVFormatContext? fmt_ctx, enum AVMediaType
             return AVERROR (EINVAL);
         }
 
-        ret = avcodec_parameters_to_context (dec_ctx, st->codecpar);
+        ret = avcodec_parameters_to_context (dec_ctx, st.codecpar);
         if (ret < 0) {
             fprintf (stderr, "Failed to copy codec parameters to codec context\n");
             avcodec_free_context (&dec_ctx);
             return ret;
         }
 
-        /* Init the video decoder */
+        /***********************************************************
+        Init the video decoder
+        ***********************************************************/
         av_dict_set (&opts, "flags2", "+export_mvs", 0);
         ret = avcodec_open2 (dec_ctx, dec, &opts);
         av_dict_free (&opts);
@@ -124,14 +129,14 @@ public static int open_codec_context (AVFormatContext? fmt_ctx, enum AVMediaType
         }
 
         video_stream_idx = stream_idx;
-        video_stream = fmt_ctx->streams[video_stream_idx];
+        video_stream = fmt_ctx.streams[video_stream_idx];
         video_dec_ctx = dec_ctx;
     }
 
     return 0;
 }
 
-public static int main (
+private static int main (
     int argc,
     string[] argv
 ) {
@@ -142,6 +147,7 @@ public static int main (
         fprintf (stderr, "Usage: %s <video>\n", argv[0]);
         exit (1);
     }
+
     src_filename = argv[1];
 
     if (avformat_open_input (&fmt_ctx, src_filename, null, null) < 0) {
@@ -161,38 +167,42 @@ public static int main (
     if (!video_stream) {
         fprintf (stderr, "Could not find video stream in the input, aborting\n");
         ret = 1;
-        goto end;
+        //  goto end;
     }
 
     frame = av_frame_alloc ();
     if (!frame) {
         fprintf (stderr, "Could not allocate frame\n");
         ret = AVERROR (ENOMEM);
-        goto end;
+        //  goto end;
     }
 
     pkt = av_packet_alloc ();
     if (!pkt) {
         fprintf (stderr, "Could not allocate AVPacket\n");
         ret = AVERROR (ENOMEM);
-        goto end;
+        //  goto end;
     }
 
     printf ("framenum,source,blockw,blockh,srcx,srcy,dstx,dsty,flags,motion_x,motion_y,motion_scale\n");
 
-    /* read frames from the file */
+    /***********************************************************
+    read frames from the file
+    ***********************************************************/
     while (av_read_frame (fmt_ctx, pkt) >= 0) {
-        if (pkt->stream_index == video_stream_idx)
+        if (pkt.stream_index == video_stream_idx)
             ret = decode_packet (pkt);
         av_packet_unref (pkt);
         if (ret < 0)
             break;
     }
 
-    /* flush cached frames */
+    /***********************************************************
+    flush cached frames
+    ***********************************************************/
     decode_packet (null);
 
-end:
+//  end:
     avcodec_free_context (&video_dec_ctx);
     avformat_close_input (&fmt_ctx);
     av_frame_free (&frame);

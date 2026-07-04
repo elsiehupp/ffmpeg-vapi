@@ -20,15 +20,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class ApiH264Test : GLib.TestCase {
+private class ApiH264Test : GLib.TestCase {
 
     /***********************************************************
     H264 codec test.
     ***********************************************************/
 
 
-    static uint video_decode_example (string input_filename) {
+    private static uint video_decode_example (
+        string input_filename
+    ) {
         LibAVCodec.Codec codec = null;
         LibAVCodec.CodecContext codec_context= null;
         LibAVCodec.CodecParameters origin_par = null;
@@ -154,6 +155,7 @@ public class ApiH264Test : GLib.TestCase {
                 packet.data = null;
                 packet.size = 0;
             }
+
             if (packet.stream_index == video_stream || end_of_stream) {
                 got_frame = false;
                 if (packet.pts == AV_NOPTS_VALUE)
@@ -167,6 +169,7 @@ public class ApiH264Test : GLib.TestCase {
                     );
                     return result;
                 }
+
                 if (got_frame) {
                     number_of_written_bytes = av_image_copy_to_buffer (byte_buffer, byte_buffer_size,
                                             (uint8[])frame.data, (uint[]) frame.linesize,
@@ -179,13 +182,16 @@ public class ApiH264Test : GLib.TestCase {
                         );
                         return number_of_written_bytes;
                     }
+
                     GLib.print ("%d, %s, %s, %8ll, %8d, 0x%08lx\n", video_stream,
                         av_ts2str (frame.pts), av_ts2str (frame.pkt_dts), frame.pkt_duration,
                         number_of_written_bytes, av_adler32_update (0, (uint8[])byte_buffer, number_of_written_bytes));
                 }
+
                 av_packet_unref (out packet);
                 av_init_packet (out packet);
             }
+
             i++;
         } while (!end_of_stream || got_frame);
 

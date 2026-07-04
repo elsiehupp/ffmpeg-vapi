@@ -32,7 +32,7 @@ public enum WaveType {
 [CCode (cname="ff_generate_wave_table",cheader_filename="subprojects/ffmpeg/libavfilter/generate_wave_table.h")]
 public void ff_generate_wave_table (
     WaveType wave_type,
-    AVSampleFormat sample_fmt,
+    LibAVUtil.SampleFormat sample_fmt,
     void *table,
     int table_size,
     double min,

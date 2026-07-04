@@ -34,9 +34,9 @@ output.
 
 //  #include <libavcodec/avcodec.h>
 
-#define INBUF_SIZE 4096
+private const size_t INBUF_SIZE = 4096;
 
-public static void pgm_save (unsigned string buf, int wrap, int xsize, int ysize,
+private static void pgm_save (uchar[] buf, int wrap, int xsize, int ysize,
                      string filename
 ) {
     FILE? f;
@@ -49,8 +49,8 @@ public static void pgm_save (unsigned string buf, int wrap, int xsize, int ysize
     fclose (f);
 }
 
-public static void decode (AVCodecContext? dec_ctx, AVFrame? frame, AVPacket? pkt,
-                   const string filename
+private static void decode (AVCodecContext? dec_ctx, AVFrame? frame, AVPacket? pkt,
+                   string filename
 ) {
     char buf[1024];
     int ret;
@@ -70,28 +70,32 @@ public static void decode (AVCodecContext? dec_ctx, AVFrame? frame, AVPacket? pk
             exit (1);
         }
 
-        printf ("saving frame %3"PRId64"\n", dec_ctx->frame_num);
+        printf ("saving frame %3PRId64\n", dec_ctx.frame_num);
         fflush (stdout);
 
-        /* the picture is allocated by the decoder. no need to
-           free it */
-        snprintf (buf, sizeof (buf), "%s-%"PRId64, filename, dec_ctx->frame_num);
-        pgm_save (frame->data[0], frame->linesize[0],
-                 frame->width, frame->height, buf);
+        /***********************************************************
+        the picture is allocated by the decoder. no need to
+        free it
+        ***********************************************************/
+        snprintf (buf, sizeof (buf), "%s-%PRId64", filename, dec_ctx.frame_num);
+        pgm_save (frame.data[0], frame.linesize[0],
+                 frame.width, frame.height, buf);
     }
+
 }
 
-public static int main (
+private static int main (
     int argc,
     string[] argv
 ) {
-    const string filename, *outfilename;
+    string filename;
+    string outfilename;
     AVCodec? codec;
     AVCodecParserContext? parser;
     AVCodecContext? c = null;
     FILE? f;
     AVFrame? frame;
-    uint8_t inbuf[INBUF_SIZE + AV_INPUT_BUFFER_PADDING_SIZE];
+    uint8 inbuf[INBUF_SIZE + AV_INPUT_BUFFER_PADDING_SIZE];
     uint8[] data;
     size_t   data_size;
     int ret;
@@ -99,28 +103,33 @@ public static int main (
     AVPacket? pkt;
 
     if (argc <= 2) {
-        fprintf (stderr, "Usage: %s <input file> <output file>\n"
+        fprintf (stderr, "Usage: %s <input file> <output file>\n" +
                 "And check your input file is encoded by mpeg1video please.\n", argv[0]);
         exit (0);
     }
-    filename    = argv[1];
+
+    filename = argv[1];
     outfilename = argv[2];
 
     pkt = av_packet_alloc ();
     if (!pkt)
         exit (1);
 
-    /* set end of buffer to 0 (this ensures that no overreading happens for damaged MPEG streams) */
+    /***********************************************************
+    set end of buffer to 0 (this ensures that no overreading happens for damaged MPEG streams)
+    ***********************************************************/
     memset (inbuf + INBUF_SIZE, 0, AV_INPUT_BUFFER_PADDING_SIZE);
 
-    /* find the MPEG-1 video decoder */
+    /***********************************************************
+    find the MPEG-1 video decoder
+    ***********************************************************/
     codec = avcodec_find_decoder (AV_CODEC_ID_MPEG1VIDEO);
     if (!codec) {
         fprintf (stderr, "Codec not found\n");
         exit (1);
     }
 
-    parser = av_parser_init (codec->id);
+    parser = av_parser_init (codec.id);
     if (!parser) {
         fprintf (stderr, "parser not found\n");
         exit (1);
@@ -132,11 +141,15 @@ public static int main (
         exit (1);
     }
 
-    /* For some codecs, such as msmpeg4 and mpeg4, width and height
-       MUST be initialized there because this information is not
-       available in the bitstream. */
+    /***********************************************************
+    For some codecs, such as msmpeg4 and mpeg4, width and height
+    MUST be initialized there because this information is not
+    available in the bitstream.
+    ***********************************************************/
 
-    /* open it */
+    /***********************************************************
+    open it
+    ***********************************************************/
     if (avcodec_open2 (c, codec, null) < 0) {
         fprintf (stderr, "Could not open codec\n");
         exit (1);
@@ -155,32 +168,40 @@ public static int main (
     }
 
     do {
-        /* read raw data from the input file */
+        /***********************************************************
+        read raw data from the input file
+        ***********************************************************/
         data_size = fread (inbuf, 1, INBUF_SIZE, f);
         if (ferror (f))
             break;
         eof = !data_size;
 
-        /* use the parser to split the data into frames */
+        /***********************************************************
+        use the parser to split the data into frames
+        ***********************************************************/
         data = inbuf;
         while (data_size > 0 || eof) {
-            ret = av_parser_parse2 (parser, c, &pkt->data, &pkt->size,
+            ret = av_parser_parse2 (parser, c, &pkt.data, &pkt.size,
                                    data, data_size, AV_NOPTS_VALUE, AV_NOPTS_VALUE, 0);
             if (ret < 0) {
                 fprintf (stderr, "Error while parsing\n");
                 exit (1);
             }
+
             data      += ret;
             data_size -= ret;
 
-            if (pkt->size)
+            if (pkt.size)
                 decode (c, frame, pkt, outfilename);
             else if (eof)
                 break;
         }
+
     } while (!eof);
 
-    /* flush the decoder */
+    /***********************************************************
+    flush the decoder
+    ***********************************************************/
     decode (c, frame, null, outfilename);
 
     fclose (f);

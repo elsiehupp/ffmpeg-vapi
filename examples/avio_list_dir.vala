@@ -31,7 +31,7 @@ Show how to list directories through the libavformat AVIOContext API.
 //  #include <libavformat/avformat.h>
 //  #include <libavformat/avio.h>
 
-public static string type_string (
+private static string type_string (
     int type
 ) {
     switch (type) {
@@ -59,10 +59,11 @@ public static string type_string (
     default:
         break;
     }
+
     return "<UNKNOWN>";
 }
 
-public static int list_op (
+private static int list_op (
     string input_dir
 ) {
     AVIODirEntry? entry = null;
@@ -72,55 +73,58 @@ public static int list_op (
 
     if ((ret = avio_open_dir (&ctx, input_dir, null)) < 0) {
         av_log (null, AV_LOG_ERROR, "Cannot open directory: %s.\n", av_err2str (ret));
-        goto fail;
+        //  goto fail;
     }
 
     cnt = 0;
     for (;;) {
         if ((ret = avio_read_dir (ctx, &entry)) < 0) {
             av_log (null, AV_LOG_ERROR, "Cannot list directory: %s.\n", av_err2str (ret));
-            goto fail;
+            //  goto fail;
         }
+
         if (!entry)
             break;
-        if (entry->filemode == -1) {
+        if (entry.filemode == -1) {
             snprintf (filemode, 4, "???");
         } else {
-            snprintf (filemode, 4, "%3"PRIo64, entry->filemode);
+            snprintf (filemode, 4, "%3PRIo64", entry.filemode);
         }
-        snprintf (uid_and_gid, 20, "%"PRId64"(%"PRId64")", entry->user_id, entry->group_id);
+
+        snprintf (uid_and_gid, 20, "%PRId64(%PRId64)", entry.user_id, entry.group_id);
         if (cnt == 0)
             av_log (null, AV_LOG_INFO, "%-9s %12s %30s %10s %s %16s %16s %16s\n",
                    "TYPE", "SIZE", "NAME", "UID (GID)", "UGO", "MODIFIED",
                    "ACCESSED", "STATUS_CHANGED");
-        av_log (null, AV_LOG_INFO, "%-9s %12"PRId64" %30s %10s %s %16"PRId64" %16"PRId64" %16"PRId64"\n",
-               type_string (entry->type),
-               entry->size,
-               entry->name,
+        av_log (null, AV_LOG_INFO, "%-9s %12PRId64 %30s %10s %s %16PRId64 %16PRId64 %16PRId64\n",
+               type_string (entry.type),
+               entry.size,
+               entry.name,
                uid_and_gid,
                filemode,
-               entry->modification_timestamp,
-               entry->access_timestamp,
-               entry->status_change_timestamp);
+               entry.modification_timestamp,
+               entry.access_timestamp,
+               entry.status_change_timestamp);
         avio_free_directory_entry (&entry);
         cnt++;
     };
 
-  fail:
+//  fail:
     avio_close_dir (&ctx);
     return ret;
 }
 
-public static void usage (
+private static void usage (
     string program_name
 ) {
-    fprintf (stderr, "usage: %s input_dir\n"
-            "API example program to show how to list files in directory "
+    fprintf (stderr, "usage: %s input_dir\n" +
+            "API example program to show how to list files in directory " +
             "accessed through AVIOContext.\n", program_name);
 }
 
-public static int main (
-    int argc, string argv[]
+private static int main (
+    int argc,
+    string[] argv
 ) {
     int ret;
 

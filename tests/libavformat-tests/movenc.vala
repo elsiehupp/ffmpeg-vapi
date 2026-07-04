@@ -26,24 +26,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #include "compat/getopt.c"
 #endif
 
-const size_t HASH_SIZE = 16;
+private const size_t HASH_SIZE = 16;
 
-const uint8 h264_extradata[] = {
+private const uint8 h264_extradata[] = {
     0x01, 0x4d, 0x40, 0x1e, 0xff, 0xe1, 0x00, 0x02, 0x67, 0x4d, 0x01, 0x00, 0x02, 0x68, 0xef
 };
-const uint8 aac_extradata[] = {
+private const uint8 aac_extradata[] = {
     0x12, 0x10
 };
 
 
-const string format = "mp4";
+private const string format = "mp4";
 AVFormatContext ctx;
 uint8 iobuf[32768];
 AVDictionary opts;
 
 int write_file;
 string cur_name;
-FILE out;
+FILE out_file;
 int out_size;
 AVMD5 md5;
 uint8 hash[HASH_SIZE];
@@ -72,7 +72,7 @@ int num_warnings;
 int check_faults;
 
 
-public static void count_warnings (
+private static void count_warnings (
     void *avcl,
     int level,
     string fmt,
@@ -82,31 +82,31 @@ public static void count_warnings (
         num_warnings++;
 }
 
-public static void init_count_warnings () {
+private static void init_count_warnings () {
     av_log_set_callback (count_warnings);
     num_warnings = 0;
 }
 
-public static void reset_count_warnings () {
+private static void reset_count_warnings () {
     av_log_set_callback (av_log_default_callback);
 }
 
-public static int io_write (
+private static int io_write (
     void *opaque,
     uint8[] buf,
     int size
 ) {
     out_size += size;
     av_md5_update (md5, buf, size);
-    if (out)
-        fwrite (buf, 1, size, out);
+    if (out_file)
+        fwrite (buf, 1, size, out_file);
     return size;
 }
 
-public static int io_write_data_type (void *opaque, uint8[] buf, int size,
-                              enum AVIODataMarkerType type, int64 time) {
+private static int io_write_data_type (void *opaque, uint8[] buf, int size,
+                              AVIODataMarkerType type, int64 time) {
     char timebuf[30], content[5] = { 0 };
-    const string str;
+    string str;
     switch (type) {
     case AVIO_DATA_MARKER_HEADER:         str = "header";   break;
     case AVIO_DATA_MARKER_SYNC_POINT:     str = "sync";     break;
@@ -115,10 +115,11 @@ public static int io_write_data_type (void *opaque, uint8[] buf, int size,
     case AVIO_DATA_MARKER_TRAILER:        str = "trailer";  break;
     default:                              str = "unknown";  break;
     }
+
     if (time == AV_NOPTS_VALUE)
         snprintf (timebuf, sizeof (timebuf), "nopts");
     else
-        snprintf (timebuf, sizeof (timebuf), "%"PRId64, time);
+        snprintf (timebuf, sizeof (timebuf), "%PRId64", time);
     // There can be multiple header/trailer callbacks, only log the box type
     // for header at out_size == 0
     if (type != AVIO_DATA_MARKER_UNKNOWN &&
@@ -132,32 +133,33 @@ public static int io_write_data_type (void *opaque, uint8[] buf, int size,
     return io_write (opaque, buf, size);
 }
 
-public static void init_out (string name) {
+private static void init_out (string name) {
     char buf[100];
     cur_name = name;
-    snprintf (buf, sizeof (void *buf), "%s.%s", cur_name, format);
+    snprintf (buf, sizeof (/*void **/buf), "%s.%s", cur_name, format);
 
     av_md5_init (md5);
     if (write_file) {
-        out = fopen (buf, "wb");
-        if (!out)
+        out_file = fopen (buf, "wb");
+        if (!out_file)
             perror (void *buf);
     }
+
     out_size = 0;
 }
 
-public static void close_out () {
+private static void close_out () {
     int i;
     av_md5_final (md5, hash);
     for (i = 0; i < HASH_SIZE; i++)
         printf ("%02x", hash[i]);
     printf (" %d %s\n", out_size, cur_name);
-    if (out)
-        fclose (out);
-    out = null;
+    if (out_file)
+        fclose (out_file);
+    out_file = null;
 }
 
-public static void check_func (int value, int line, string msg, ...) {
+private static void check_func (int value, int line, string msg, ...) {
     if (!value) {
         va_list ap;
         va_start (ap, msg);
@@ -167,12 +169,16 @@ public static void check_func (int value, int line, string msg, ...) {
         check_faults++;
         va_end (ap);
     }
+
 }
-void check (value, ...) {
+private static void check (
+    void *value,
+    ...
+) {
     check_func (value, __LINE__, __VA_ARGS__);
 }
 
-public static void init_fps (int bf, int audio_preroll, int fps) {
+private static void init_fps (int bf, int audio_preroll, int fps) {
     AVStream? st;
     int iobuf_size = force_iobuf_size ? force_iobuf_size : sizeof (iobuf);
     ctx = avformat_alloc_context ();
@@ -235,11 +241,11 @@ public static void init_fps (int bf, int audio_preroll, int fps) {
     audio_dts = -audio_preroll;
 }
 
-public static void init (int bf, int audio_preroll) {
+private static void init (int bf, int audio_preroll) {
     init_fps (bf, audio_preroll, 30);
 }
 
-public static void mux_frames (int n, int c) {
+private static void mux_frames (int n, int c) {
     int end_frames = frames + n;
     while (1) {
         AVPacket pkt;
@@ -276,8 +282,11 @@ public static void mux_frames (int n, int c) {
                         next_p_pts = pkt.pts = pkt.dts + 2 * duration;
                         video_dts += duration;
                     }
+
                 }
+
             }
+
             if (!bframes)
                 pkt.pts = pkt.dts;
             if (fake_pkt_duration)
@@ -305,19 +314,20 @@ public static void mux_frames (int n, int c) {
         else
             av_write_frame (ctx, &pkt);
     }
+
 }
 
-public static void mux_gops (int n) {
+private static void mux_gops (int n) {
     mux_frames (gop_size * n, 0);
 }
 
-public static void skip_gops (int n) {
+private static void skip_gops (int n) {
     skip_write = 1;
     mux_gops (n);
     skip_write = 0;
 }
 
-public static void signal_init_ts () {
+private static void signal_init_ts () {
     AVPacket pkt;
     av_init_packet (&pkt);
     pkt.size = 0;
@@ -333,19 +343,19 @@ public static void signal_init_ts () {
     av_write_frame (ctx, &pkt);
 }
 
-public static void finish () {
+private static void finish () {
     av_write_trailer (ctx);
     avio_context_free (&ctx.pb);
     avformat_free_context (ctx);
     ctx = null;
 }
 
-public static void help () {
-    printf ("movenc-test [-w]\n"
+private static void help () {
+    printf ("movenc-test [-w]\n" +
            "-w          write output into files\n");
 }
 
-public static int main (
+private static int main (
     int argc,
     string[] argv) {
     int c;
@@ -367,6 +377,7 @@ public static int main (
             help ();
             return 0;
         }
+
     }
 
     md5 = av_md5_alloc ();

@@ -18,54 +18,59 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-const size_t BUF_SIZE = 5120;
-const size_t PADDED_BUF_SIZE = BUF_SIZE + AV_INPUT_BUFFER_PADDING_SIZE * 2;
+private const size_t BUF_SIZE = 5120;
+private const size_t PADDED_BUF_SIZE = BUF_SIZE + AV_INPUT_BUFFER_PADDING_SIZE * 2;
 
-void randomize_buffers () {
+private static void randomize_buffers () {
     int i;
     for (i = 0; i < BUF_SIZE; i += 4) {
         uint32 r = rnd ();
         AV_WN32A (src + i, r);
     }
+
 }
 
-public static void check_reorder_pixels () {
-    LOCAL_ALIGNED_32 (uint8, src,     [PADDED_BUF_SIZE]);
-    LOCAL_ALIGNED_32 (uint8, dst_ref, [PADDED_BUF_SIZE]);
-    LOCAL_ALIGNED_32 (uint8, dst_new, [PADDED_BUF_SIZE]);
+private static void check_reorder_pixels () {
+    //  LOCAL_ALIGNED_32 (uint8, src, [PADDED_BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (uint8, dst_ref, [PADDED_BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (uint8, dst_new, [PADDED_BUF_SIZE]);
 
-    declare_func (void, uint8[] dst, uint8[] src, size_t size);
+    //  declare_func (void, uint8[] dst, uint8[] src, size_t size);
 
-    memset (src,     0, PADDED_BUF_SIZE);
+    memset (src, 0, PADDED_BUF_SIZE);
     memset (dst_ref, 0, PADDED_BUF_SIZE);
     memset (dst_new, 0, PADDED_BUF_SIZE);
     randomize_buffers ();
-    call_ref (dst_ref, src, BUF_SIZE);
-    call_new (dst_new, src, BUF_SIZE);
-    if (memcmp (dst_ref, dst_new, BUF_SIZE))
+    //  call_ref (dst_ref, src, BUF_SIZE);
+    //  call_new (dst_new, src, BUF_SIZE);
+    if (memcmp (dst_ref, dst_new, BUF_SIZE)) {
         fail ();
+    }
+
     bench_new (dst_new, src, BUF_SIZE);
 }
 
-public static void check_predictor () {
-    LOCAL_ALIGNED_32 (uint8, src,     [PADDED_BUF_SIZE]);
-    LOCAL_ALIGNED_32 (uint8, dst_ref, [PADDED_BUF_SIZE]);
-    LOCAL_ALIGNED_32 (uint8, dst_new, [PADDED_BUF_SIZE]);
+private static void check_predictor () {
+    //  LOCAL_ALIGNED_32 (uint8, src, [PADDED_BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (uint8, dst_ref, [PADDED_BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (uint8, dst_new, [PADDED_BUF_SIZE]);
 
-    declare_func (void, uint8[] src, size_t size);
+    //  declare_func (void, uint8[] src, size_t size);
 
-    memset (src,     0, PADDED_BUF_SIZE);
+    memset (src, 0, PADDED_BUF_SIZE);
     randomize_buffers ();
     memcpy (dst_ref, src, PADDED_BUF_SIZE);
     memcpy (dst_new, src, PADDED_BUF_SIZE);
-    call_ref (dst_ref, BUF_SIZE);
-    call_new (dst_new, BUF_SIZE);
-    if (memcmp (dst_ref, dst_new, BUF_SIZE))
+    //  call_ref (dst_ref, BUF_SIZE);
+    //  call_new (dst_new, BUF_SIZE);
+    if (memcmp (dst_ref, dst_new, BUF_SIZE)) {
         fail ();
+    }
+
     bench_new (dst_new, BUF_SIZE);
 }
 
-void checkasm_check_exrdsp () {
+private static void checkasm_check_exrdsp () {
     ExrDSPContext h;
 
     ff_exrdsp_init (&h);

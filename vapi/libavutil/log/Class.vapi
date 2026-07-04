@@ -391,7 +391,7 @@ public class LibAVUtil.Log.Class {
     /***********************************************************
     Callback to return the supported/allowed ranges.
     ***********************************************************/
-    //  public int (*query_ranges)(struct LibAVUtil.Log.OptionRangeList **, void *obj, string key, int flags);
+    //  public int (*query_ranges)(LibAVUtil.Log.OptionRangeList **, void *obj, string key, int flags);
 
     /***********************************************************
     Return next AVOptions-enabled child or NULL

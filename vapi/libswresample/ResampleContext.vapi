@@ -75,7 +75,7 @@ internal class LibSoftwareResample.LibAVResample.ResampleContext {
     internal double factor;
 
     [CCode (cname="")]
-    internal AVSampleFormat format;
+    internal LibAVUtil.SampleFormat format;
 
     [CCode (cname="")]
     internal int felem_size;

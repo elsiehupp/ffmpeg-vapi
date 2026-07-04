@@ -43,24 +43,27 @@ e.g: - qsv_transcode input.mp4 h264_qsv output_h264.mp4 "g 60"
 //  #include <libavformat/avformat.h>
 //  #include <libavutil/opt.h>
 
-public static AVFormatContext? ifmt_ctx = null,? ofmt_ctx = null;
-public static AVBufferRef? hw_device_ctx = null;
-public static AVCodecContext? decoder_ctx = null,? encoder_ctx = null;
-public static int video_stream = -1;
+private static AVFormatContext? ifmt_ctx = null;
+private static AVFormatContext? ofmt_ctx = null;
+private static AVBufferRef? hw_device_ctx = null;
+private static AVCodecContext? decoder_ctx = null;
+private static AVCodecContext? encoder_ctx = null;
+private static int video_stream = -1;
 
 [Compact]
-public class DynamicSetting {
+private class DynamicSetting {
     public int frame_number;
     public string optstr;
 }
 
-public static DynamicSetting? dynamic_setting;
-public static int setting_number;
-public static int current_setting_number;
+private static DynamicSetting? dynamic_setting;
+private static int setting_number;
+private static int current_setting_number;
 
-public static int str_to_dict (string optstr, AVDictionary **opt
+private static int str_to_dict (string optstr, AVDictionary **opt
 ) {
-    string key, *value;
+    string key;
+    string value;
     if (strlen (optstr) == 0)
         return 0;
     key = strtok (optstr, " ");
@@ -81,11 +84,13 @@ public static int str_to_dict (string optstr, AVDictionary **opt
     } while (1);
 }
 
-public static int dynamic_set_parameter (AVCodecContext? avctx
+private static int frame_number = 0;
+
+private static int dynamic_set_parameter (
+    AVCodecContext? avctx
 ) {
     AVDictionary? opts = null;
     int ret = 0;
-    static int frame_number = 0;
     frame_number++;
     if (current_setting_number < setting_number &&
         frame_number == dynamic_setting[current_setting_number].frame_number) {
@@ -93,35 +98,40 @@ public static int dynamic_set_parameter (AVCodecContext? avctx
         ret = str_to_dict (dynamic_setting[current_setting_number++].optstr, &opts);
         if (ret < 0) {
             fprintf (stderr, "The dynamic parameter is wrong\n");
-            goto fail;
+            //  goto fail;
         }
-        /* Set common option. The dictionary will be freed and replaced
+
+        /***********************************************************
+        Set common option. The dictionary will be freed and replaced
          * by a new one containing all options not found in common option list.
          * Then this new dictionary is used to set private option. */
         if ((ret = av_opt_set_dict (avctx, &opts)) < 0)
-            goto fail;
-        /* Set codec specific option */
-        if ((ret = av_opt_set_dict (avctx->priv_data, &opts)) < 0)
-            goto fail;
-        /* There is no "framerate" option in common option list. Use "-r" to set
+            //  goto fail;
+        /***********************************************************
+        Set codec specific option */
+        if ((ret = av_opt_set_dict (avctx.priv_data, &opts)) < 0)
+            //  goto fail;
+        /***********************************************************
+        There is no "framerate" option in common option list. Use "-r" to set
          * framerate, which is compatible with ffmpeg commandline. The video is
          * assumed to be average frame rate, so set time_base to 1/framerate. */
         e = av_dict_get (opts, "r", null, 0);
         if (e) {
-            avctx->framerate = av_d2q (atof (e->value), INT_MAX);
-            encoder_ctx->time_base = av_inv_q (encoder_ctx->framerate);
+            avctx.framerate = av_d2q (atof (e.value), INT_MAX);
+            encoder_ctx.time_base = av_inv_q (encoder_ctx.framerate);
         }
+
     }
-fail:
+//  fail:
     av_dict_free (&opts);
     return ret;
 }
 
-public static int get_format (AVCodecContext? avctx, AVPixelFormat[] pix_fmts
+private static int get_format (AVCodecContext? avctx, AVPixelFormat[] pix_fmts
 ) {
-    while (*pix_fmts != AV_PIX_FMT_NONE) {
-        if (*pix_fmts == AV_PIX_FMT_QSV) {
-            return AV_PIX_FMT_QSV;
+    while (*pix_fmts != LibAVUtil.PixelFormat.NONE) {
+        if (*pix_fmts == LibAVUtil.PixelFormat.QSV) {
+            return LibAVUtil.PixelFormat.QSV;
         }
 
         pix_fmts++;
@@ -129,10 +139,10 @@ public static int get_format (AVCodecContext? avctx, AVPixelFormat[] pix_fmts
 
     fprintf (stderr, "The QSV pixel format not offered in get_format ()\n");
 
-    return AV_PIX_FMT_NONE;
+    return LibAVUtil.PixelFormat.NONE;
 }
 
-public static int open_input_file (string filename
+private static int open_input_file (string filename
 ) {
     int ret;
     AVCodec? decoder = null;
@@ -152,14 +162,15 @@ public static int open_input_file (string filename
 
     ret = av_find_best_stream (ifmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, null, 0);
     if (ret < 0) {
-        fprintf (stderr, "Cannot find a video stream in the input file. "
+        fprintf (stderr, "Cannot find a video stream in the input file. " +
                 "Error code: %s\n", av_err2str (ret));
         return ret;
     }
-    video_stream = ret;
-    video = ifmt_ctx->streams[video_stream];
 
-    switch (video->codecpar->codec_id) {
+    video_stream = ret;
+    video = ifmt_ctx.streams[video_stream];
+
+    switch (video.codecpar.codec_id) {
     case AV_CODEC_ID_H264:
         decoder = avcodec_find_decoder_by_name ("h264_qsv");
         break;
@@ -189,20 +200,22 @@ public static int open_input_file (string filename
     if (!(decoder_ctx = avcodec_alloc_context3 (decoder)))
         return AVERROR (ENOMEM);
 
-    if ((ret = avcodec_parameters_to_context (decoder_ctx, video->codecpar)) < 0) {
+    if ((ret = avcodec_parameters_to_context (decoder_ctx, video.codecpar)) < 0) {
         fprintf (stderr, "avcodec_parameters_to_context error. Error code: %s\n",
                 av_err2str (ret));
         return ret;
     }
-    decoder_ctx->framerate = av_guess_frame_rate (ifmt_ctx, video, null);
 
-    decoder_ctx->hw_device_ctx = av_buffer_ref (hw_device_ctx);
-    if (!decoder_ctx->hw_device_ctx) {
+    decoder_ctx.framerate = av_guess_frame_rate (ifmt_ctx, video, null);
+
+    decoder_ctx.hw_device_ctx = av_buffer_ref (hw_device_ctx);
+    if (!decoder_ctx.hw_device_ctx) {
         fprintf (stderr, "A hardware device reference create failed.\n");
         return AVERROR (ENOMEM);
     }
-    decoder_ctx->get_format    = get_format;
-    decoder_ctx->pkt_timebase = video->time_base;
+
+    decoder_ctx.get_format = get_format;
+    decoder_ctx.pkt_timebase = video.time_base;
     if ((ret = avcodec_open2 (decoder_ctx, decoder, null)) < 0)
         fprintf (stderr, "Failed to open codec for decoding. Error code: %s\n",
                 av_err2str (ret));
@@ -210,7 +223,7 @@ public static int open_input_file (string filename
     return ret;
 }
 
-public static int encode_write (AVPacket? enc_pkt, AVFrame? frame
+private static int encode_write (AVPacket? enc_pkt, AVFrame? frame
 ) {
     int ret = 0;
 
@@ -219,34 +232,36 @@ public static int encode_write (AVPacket? enc_pkt, AVFrame? frame
     if ((ret = dynamic_set_parameter (encoder_ctx)) < 0) {
         fprintf (stderr, "Failed to set dynamic parameter. Error code: %s\n",
                 av_err2str (ret));
-        goto end;
+        //  goto end;
     }
 
     if ((ret = avcodec_send_frame (encoder_ctx, frame)) < 0) {
         fprintf (stderr, "Error during encoding. Error code: %s\n", av_err2str (ret));
-        goto end;
+        //  goto end;
     }
+
     while (1) {
         if (ret = avcodec_receive_packet (encoder_ctx, enc_pkt))
             break;
-        enc_pkt->stream_index = 0;
-        av_packet_rescale_ts (enc_pkt, encoder_ctx->time_base,
-                             ofmt_ctx->streams[0]->time_base);
+        enc_pkt.stream_index = 0;
+        av_packet_rescale_ts (enc_pkt, encoder_ctx.time_base,
+                             ofmt_ctx.streams[0].time_base);
         if ((ret = av_interleaved_write_frame (ofmt_ctx, enc_pkt)) < 0) {
-            fprintf (stderr, "Error during writing data to output file. "
+            fprintf (stderr, "Error during writing data to output file. " +
                     "Error code: %s\n", av_err2str (ret));
             return ret;
         }
+
     }
 
-end:
+//  end:
     if (ret == AVERROR_EOF)
         return 0;
     ret = ((ret == AVERROR (EAGAIN)) ? 0:-1);
     return ret;
 }
 
-public static int dec_enc (AVPacket? pkt, AVCodec? enc_codec, string optstr
+private static int dec_enc (AVPacket? pkt, AVCodec? enc_codec, string optstr
 ) {
     AVFrame? frame;
     int ret = 0;
@@ -267,80 +282,92 @@ public static int dec_enc (AVPacket? pkt, AVCodec? enc_codec, string optstr
             return 0;
         } else if (ret < 0) {
             fprintf (stderr, "Error while decoding. Error code: %s\n", av_err2str (ret));
-            goto fail;
+            //  goto fail;
         }
-        if (!encoder_ctx->hw_frames_ctx) {
+
+        if (!encoder_ctx.hw_frames_ctx) {
             AVDictionaryEntry? e = null;
             AVDictionary? opts = null;
             AVStream? ost;
-            /* we need to ref hw_frames_ctx of decoder to initialize encoder's codec.
+            /***********************************************************
+            we need to ref hw_frames_ctx of decoder to initialize encoder's codec.
                Only after we get a decoded frame, can we obtain its hw_frames_ctx */
-            encoder_ctx->hw_frames_ctx = av_buffer_ref (decoder_ctx->hw_frames_ctx);
-            if (!encoder_ctx->hw_frames_ctx) {
+            encoder_ctx.hw_frames_ctx = av_buffer_ref (decoder_ctx.hw_frames_ctx);
+            if (!encoder_ctx.hw_frames_ctx) {
                 ret = AVERROR (ENOMEM);
-                goto fail;
+                //  goto fail;
             }
-            /* set AVCodecContext Parameters for encoder, here we keep them stay
+
+            /***********************************************************
+            set AVCodecContext Parameters for encoder, here we keep them stay
              * the same as decoder.
              */
-            encoder_ctx->time_base = av_inv_q (decoder_ctx->framerate);
-            encoder_ctx->pix_fmt   = AV_PIX_FMT_QSV;
-            encoder_ctx->width     = decoder_ctx->width;
-            encoder_ctx->height    = decoder_ctx->height;
+            encoder_ctx.time_base = av_inv_q (decoder_ctx.framerate);
+            encoder_ctx.pix_fmt = LibAVUtil.PixelFormat.QSV;
+            encoder_ctx.width = decoder_ctx.width;
+            encoder_ctx.height = decoder_ctx.height;
             if ((ret = str_to_dict (optstr, &opts)) < 0) {
                 fprintf (stderr, "Failed to set encoding parameter.\n");
-                goto fail;
+                //  goto fail;
             }
-            /* There is no "framerate" option in common option list. Use "-r" to
+
+            /***********************************************************
+            There is no "framerate" option in common option list. Use "-r" to
             * set framerate, which is compatible with ffmpeg commandline. The
             * video is assumed to be average frame rate, so set time_base to
             * 1/framerate. */
             e = av_dict_get (opts, "r", null, 0);
             if (e) {
-                encoder_ctx->framerate = av_d2q (atof (e->value), INT_MAX);
-                encoder_ctx->time_base = av_inv_q (encoder_ctx->framerate);
+                encoder_ctx.framerate = av_d2q (atof (e.value), INT_MAX);
+                encoder_ctx.time_base = av_inv_q (encoder_ctx.framerate);
             }
+
             if ((ret = avcodec_open2 (encoder_ctx, enc_codec, &opts)) < 0) {
                 fprintf (stderr, "Failed to open encode codec. Error code: %s\n",
                         av_err2str (ret));
                 av_dict_free (&opts);
-                goto fail;
+                //  goto fail;
             }
+
             av_dict_free (&opts);
 
             if (!(ost = avformat_new_stream (ofmt_ctx, enc_codec))) {
                 fprintf (stderr, "Failed to allocate stream for output format.\n");
                 ret = AVERROR (ENOMEM);
-                goto fail;
+                //  goto fail;
             }
 
-            ost->time_base = encoder_ctx->time_base;
-            ret = avcodec_parameters_from_context (ost->codecpar, encoder_ctx);
+            ost.time_base = encoder_ctx.time_base;
+            ret = avcodec_parameters_from_context (ost.codecpar, encoder_ctx);
             if (ret < 0) {
-                fprintf (stderr, "Failed to copy the stream parameters. "
+                fprintf (stderr, "Failed to copy the stream parameters. " +
                         "Error code: %s\n", av_err2str (ret));
-                goto fail;
+                //  goto fail;
             }
 
-            /* write the stream header */
+            /***********************************************************
+            write the stream header */
             if ((ret = avformat_write_header (ofmt_ctx, null)) < 0) {
-                fprintf (stderr, "Error while writing stream header. "
+                fprintf (stderr, "Error while writing stream header. " +
                         "Error code: %s\n", av_err2str (ret));
-                goto fail;
+                //  goto fail;
             }
+
         }
-        frame->pts = av_rescale_q (frame->pts, decoder_ctx->pkt_timebase,
-                                  encoder_ctx->time_base);
+
+        frame.pts = av_rescale_q (frame.pts, decoder_ctx.pkt_timebase,
+                                  encoder_ctx.time_base);
         if ((ret = encode_write (pkt, frame)) < 0)
             fprintf (stderr, "Error during encoding and writing.\n");
 
-fail:
+//  fail:
         av_frame_free (&frame);
     }
+
     return ret;
 }
 
-public static int main (
+private static int main (
     int argc,
     string[] argv
 ) {
@@ -349,16 +376,18 @@ public static int main (
     AVPacket? dec_pkt = null;
 
     if (argc < 5 || (argc - 5) % 2) {
-        av_log (null, AV_LOG_ERROR, "Usage: %s <input file> <encoder> <output file>"
+        av_log (null, AV_LOG_ERROR, "Usage: %s <input file> <encoder> <output file>" +
                " <\"encoding option set 0\"> [<frame_number> <\"encoding options set 1\">]...\n", argv[0]);
         return 1;
     }
+
     setting_number = (argc - 5) / 2;
-    dynamic_setting = av_malloc (setting_number * sizeof (*dynamic_setting));
+    dynamic_setting = av_malloc (setting_number * sizeof (dynamic_setting));
     if (!dynamic_setting) {
         ret = AVERROR (ENOMEM);
-        goto end;
+        //  goto end;
     }
+
     current_setting_number = 0;
     for (int i = 0; i < setting_number; i++) {
         dynamic_setting[i].frame_number = atoi (argv[i*2 + 5]);
@@ -368,71 +397,77 @@ public static int main (
     ret = av_hwdevice_ctx_create (&hw_device_ctx, AV_HWDEVICE_TYPE_QSV, null, null, 0);
     if (ret < 0) {
         fprintf (stderr, "Failed to create a QSV device. Error code: %s\n", av_err2str (ret));
-        goto end;
+        //  goto end;
     }
 
     dec_pkt = av_packet_alloc ();
     if (!dec_pkt) {
         fprintf (stderr, "Failed to allocate decode packet\n");
-        goto end;
+        //  goto end;
     }
 
     if ((ret = open_input_file (argv[1])) < 0)
-        goto end;
+        //  goto end;
 
     if (!(enc_codec = avcodec_find_encoder_by_name (argv[2]))) {
         fprintf (stderr, "Could not find encoder '%s'\n", argv[2]);
         ret = -1;
-        goto end;
+        //  goto end;
     }
 
     if ((ret = (avformat_alloc_output_context2 (&ofmt_ctx, null, null, argv[3]))) < 0) {
-        fprintf (stderr, "Failed to deduce output format from file extension. Error code: "
+        fprintf (stderr, "Failed to deduce output format from file extension. Error code: " +
                 "%s\n", av_err2str (ret));
-        goto end;
+        //  goto end;
     }
 
     if (!(encoder_ctx = avcodec_alloc_context3 (enc_codec))) {
         ret = AVERROR (ENOMEM);
-        goto end;
+        //  goto end;
     }
 
-    ret = avio_open (&ofmt_ctx->pb, argv[3], AVIO_FLAG_WRITE);
+    ret = avio_open (&ofmt_ctx.pb, argv[3], AVIO_FLAG_WRITE);
     if (ret < 0) {
-        fprintf (stderr, "Cannot open output file. "
+        fprintf (stderr, "Cannot open output file. " +
                 "Error code: %s\n", av_err2str (ret));
-        goto end;
+        //  goto end;
     }
 
-    /* read all packets and only transcoding video */
+    /***********************************************************
+    read all packets and only transcoding video */
     while (ret >= 0) {
         if ((ret = av_read_frame (ifmt_ctx, dec_pkt)) < 0)
             break;
 
-        if (video_stream == dec_pkt->stream_index)
+        if (video_stream == dec_pkt.stream_index)
             ret = dec_enc (dec_pkt, enc_codec, argv[4]);
 
         av_packet_unref (dec_pkt);
     }
 
-    /* flush decoder */
+    /***********************************************************
+    flush decoder */
     av_packet_unref (dec_pkt);
     if ((ret = dec_enc (dec_pkt, enc_codec, argv[4])) < 0) {
         fprintf (stderr, "Failed to flush decoder %s\n", av_err2str (ret));
-        goto end;
+        //  goto end;
     }
 
-    /* flush encoder */
+    /***********************************************************
+    flush encoder
+    ***********************************************************/
     if ((ret = encode_write (dec_pkt, null)) < 0) {
         fprintf (stderr, "Failed to flush encoder %s\n", av_err2str (ret));
-        goto end;
+        //  goto end;
     }
 
-    /* write the trailer for output stream */
+    /***********************************************************
+    write the trailer for output stream
+    ***********************************************************/
     if ((ret = av_write_trailer (ofmt_ctx)) < 0)
         fprintf (stderr, "Failed to write trailer %s\n", av_err2str (ret));
 
-end:
+//  end:
     avformat_close_input (&ifmt_ctx);
     avformat_close_input (&ofmt_ctx);
     avcodec_free_context (&decoder_ctx);

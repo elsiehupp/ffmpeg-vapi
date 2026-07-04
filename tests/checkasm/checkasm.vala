@@ -64,7 +64,7 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 //  void *checkasm_check_func (void *func, string name, ...) av_printf_format (2, 3);
 //  int checkasm_bench_func ();
 //  void checkasm_fail_func (string msg, ...) av_printf_format (1, 2);
-//  struct CheckasmPerf *checkasm_get_perf_context ();
+//  struct CheckasmPerf? checkasm_get_perf_context ();
 //  void checkasm_report (string name, ...) av_printf_format (1, 2);
 
 //  /***********************************************************
@@ -132,7 +132,7 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 //  Call the reference function
 //  ***********************************************************/
 //  void call_ref (...) {
-//      ((func_type *)func_ref)(__VA_ARGS__);
+//      ((func_type? )func_ref)(__VA_ARGS__);
 //  }
 
 //  #if ARCH_X86 && HAVE_X86ASM
@@ -243,7 +243,7 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 //  Call the function
 //  ***********************************************************/
 //  void call_new (...) {
-//      ((func_type *)func_new)(__VA_ARGS__);
+//      ((func_type? )func_new)(__VA_ARGS__);
 //  }
 //  #endif
 
@@ -289,9 +289,9 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 //  ***********************************************************/
 //  void bench_new (...) {
 //      if (checkasm_bench_func ()) {
-//          CheckasmPerf *perf = checkasm_get_perf_context ();
+//          CheckasmPerf? perf = checkasm_get_perf_context ();
 //          av_unused const int sysfd = perf.sysfd;
-//          func_type *tfunc = func_new;
+//          func_type? tfunc = func_new;
 //          uint64 tsum = 0;
 //          int ti, tcount = 0;
 //          uint64 t = 0;

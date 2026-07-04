@@ -38,72 +38,81 @@ Generate a synthetic audio signal and encode it to an output MP2 file.
 //  #include <libavutil/frame.h>
 //  #include <libavutil/samplefmt.h>
 
-/* check that a given sample format is supported by the encoder */
-public static int check_sample_fmt (AVCodec? codec, enum AVSampleFormat sample_fmt
+/***********************************************************
+check that a given sample format is supported by the encoder */
+private static int check_sample_fmt (AVCodec? codec, LibAVUtil.SampleFormat sample_fmt
 ) {
-    const enum AVSampleFormat? p = codec->sample_fmts;
+    LibAVUtil.SampleFormat? p = codec.sample_fmts;
 
-    while (*p != AV_SAMPLE_FMT_NONE) {
+    while (*p != LibAVUtil.SampleFormat.NONE) {
         if (*p == sample_fmt)
             return 1;
         p++;
     }
+
     return 0;
 }
 
-/* just pick the highest supported samplerate */
-public static int select_sample_rate (AVCodec? codec
+/***********************************************************
+just pick the highest supported samplerate */
+private static int select_sample_rate (AVCodec? codec
 ) {
-    const int *p;
+    int[] p;
     int best_samplerate = 0;
 
-    if (!codec->supported_samplerates)
+    if (!codec.supported_samplerates)
         return 44100;
 
-    p = codec->supported_samplerates;
+    p = codec.supported_samplerates;
     while (*p) {
         if (!best_samplerate || abs (44100 - *p) < abs (44100 - best_samplerate))
             best_samplerate = *p;
         p++;
     }
+
     return best_samplerate;
 }
 
-/* select layout with the highest channel count */
-public static int select_channel_layout (AVCodec? codec, AVChannelLayout? dst
+/***********************************************************
+select layout with the highest channel count */
+private static int select_channel_layout (AVCodec? codec, AVChannelLayout? dst
 ) {
-    const AVChannelLayout? p,? best_ch_layout;
-    int best_nb_channels   = 0;
+    AVChannelLayout? p,? best_ch_layout;
+    int best_nb_channels = 0;
 
-    if (!codec->ch_layouts)
+    if (!codec.ch_layouts)
         return av_channel_layout_copy (dst, &(AVChannelLayout)AV_CHANNEL_LAYOUT_STEREO);
 
-    p = codec->ch_layouts;
-    while (p->nb_channels) {
-        int nb_channels = p->nb_channels;
+    p = codec.ch_layouts;
+    while (p.nb_channels) {
+        int nb_channels = p.nb_channels;
 
         if (nb_channels > best_nb_channels) {
-            best_ch_layout   = p;
+            best_ch_layout = p;
             best_nb_channels = nb_channels;
         }
+
         p++;
     }
+
     return av_channel_layout_copy (dst, best_ch_layout);
 }
 
-public static void encode (AVCodecContext? ctx, AVFrame? frame, AVPacket? pkt,
+private static void encode (AVCodecContext? ctx, AVFrame? frame, AVPacket? pkt,
                    FILE? output
 ) {
     int ret;
 
-    /* send the frame for encoding */
+    /***********************************************************
+    send the frame for encoding */
     ret = avcodec_send_frame (ctx, frame);
     if (ret < 0) {
         fprintf (stderr, "Error sending the frame to the encoder\n");
         exit (1);
     }
 
-    /* read all the available output packets (in general there may be any
+    /***********************************************************
+    read all the available output packets (in general there may be any
     number of them */
     while (ret >= 0) {
         ret = avcodec_receive_packet (ctx, pkt);
@@ -114,16 +123,17 @@ public static void encode (AVCodecContext? ctx, AVFrame? frame, AVPacket? pkt,
             exit (1);
         }
 
-        fwrite (pkt->data, 1, pkt->size, output);
+        fwrite (pkt.data, 1, pkt.size, output);
         av_packet_unref (pkt);
     }
+
 }
 
-public static int main (
+private static int main (
     int argc,
     string[] argv
 ) {
-    const string filename;
+    string filename;
     AVCodec? codec;
     AVCodecContext? c= null;
     AVFrame? frame;
@@ -137,9 +147,11 @@ public static int main (
         fprintf (stderr, "Usage: %s <output file>\n", argv[0]);
         return 0;
     }
+
     filename = argv[1];
 
-    /* find the MP2 encoder */
+    /***********************************************************
+    find the MP2 encoder */
     codec = avcodec_find_encoder (AV_CODEC_ID_MP2);
     if (!codec) {
         fprintf (stderr, "Codec not found\n");
@@ -152,24 +164,29 @@ public static int main (
         exit (1);
     }
 
-    /* put sample parameters */
-    c->bit_rate = 64000;
+    /***********************************************************
+    put sample parameters */
+    c.bit_rate = 64000;
 
-    /* check that the encoder supports s16 pcm input */
-    c->sample_fmt = AV_SAMPLE_FMT_S16;
-    if (!check_sample_fmt (codec, c->sample_fmt)) {
+    /***********************************************************
+    check that the encoder supports s16 pcm input */
+    c.sample_fmt = LibAVUtil.SampleFormat.SIGNED_16_BIT;
+    if (!check_sample_fmt (codec, c.sample_fmt)) {
         fprintf (stderr, "Encoder does not support sample format %s",
-                av_get_sample_fmt_name (c->sample_fmt));
+                av_get_sample_fmt_name (c.sample_fmt));
         exit (1);
     }
 
-    /* select other audio parameters supported by the encoder */
-    c->sample_rate    = select_sample_rate (codec);
-    ret = select_channel_layout (codec, &c->ch_layout);
+    /***********************************************************
+    select other audio parameters supported by the encoder */
+    c.sample_rate = select_sample_rate (codec);
+    ret = select_channel_layout (codec, &c.ch_layout);
     if (ret < 0)
         exit (1);
 
-    /* open it */
+    /***********************************************************
+    open it
+    ***********************************************************/
     if (avcodec_open2 (c, codec, null) < 0) {
         fprintf (stderr, "Could not open codec\n");
         exit (1);
@@ -181,55 +198,62 @@ public static int main (
         exit (1);
     }
 
-    /* packet for holding encoded output */
+    /***********************************************************
+    packet for holding encoded output */
     pkt = av_packet_alloc ();
     if (!pkt) {
         fprintf (stderr, "could not allocate the packet\n");
         exit (1);
     }
 
-    /* frame containing input raw audio */
+    /***********************************************************
+    frame containing input raw audio */
     frame = av_frame_alloc ();
     if (!frame) {
         fprintf (stderr, "Could not allocate audio frame\n");
         exit (1);
     }
 
-    frame->nb_samples     = c->frame_size;
-    frame->format         = c->sample_fmt;
-    ret = av_channel_layout_copy (&frame->ch_layout, &c->ch_layout);
+    frame.nb_samples = c.frame_size;
+    frame.format = c.sample_fmt;
+    ret = av_channel_layout_copy (&frame.ch_layout, &c.ch_layout);
     if (ret < 0)
         exit (1);
 
-    /* allocate the data buffers */
+    /***********************************************************
+    allocate the data buffers */
     ret = av_frame_get_buffer (frame, 0);
     if (ret < 0) {
         fprintf (stderr, "Could not allocate audio data buffers\n");
         exit (1);
     }
 
-    /* encode a single tone sound */
+    /***********************************************************
+    encode a single tone sound */
     t = 0;
-    tincr = 2 * M_PI * 440.0 / c->sample_rate;
+    tincr = 2 * M_PI * 440.0 / c.sample_rate;
     for (i = 0; i < 200; i++) {
-        /* make sure the frame is writable -- makes a copy if the encoder
+        /***********************************************************
+        make sure the frame is writable -- makes a copy if the encoder
          * kept a reference internally */
         ret = av_frame_make_writable (frame);
         if (ret < 0)
             exit (1);
-        samples = (uint16[])frame->data[0];
+        samples = (uint16[])frame.data[0];
 
-        for (j = 0; j < c->frame_size; j++) {
+        for (j = 0; j < c.frame_size; j++) {
             samples[2*j] = (int)(sin (t) * 10000);
 
-            for (k = 1; k < c->ch_layout.nb_channels; k++)
+            for (k = 1; k < c.ch_layout.nb_channels; k++)
                 samples[2*j + k] = samples[2*j];
             t += tincr;
         }
+
         encode (c, frame, pkt, f);
     }
 
-    /* flush the encoder */
+    /***********************************************************
+    flush the encoder */
     encode (c, null, pkt, f);
 
     fclose (f);

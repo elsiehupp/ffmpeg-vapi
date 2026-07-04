@@ -45,8 +45,8 @@ internal class LibAVResample.AudioConvert {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_convert.h")]
     internal void ff_audio_convert_set_func (
         LibAVResample.AudioConvert? ac,
-        AVSampleFormat out_fmt,
-        AVSampleFormat in_fmt,
+        LibAVUtil.SampleFormat out_fmt,
+        LibAVUtil.SampleFormat in_fmt,
         int channels,
         int ptr_align,
         int samples_align,
@@ -68,8 +68,8 @@ internal class LibAVResample.AudioConvert {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_convert.h")]
     internal LibAVResample.AudioConvert? ff_audio_convert_alloc (
         LibAVResample.AudioResampleContext? avr,
-        AVSampleFormat out_fmt,
-        AVSampleFormat in_fmt,
+        LibAVUtil.SampleFormat out_fmt,
+        LibAVUtil.SampleFormat in_fmt,
         int channels,
         int sample_rate,
         int apply_map

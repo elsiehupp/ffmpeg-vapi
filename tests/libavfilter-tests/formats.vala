@@ -20,14 +20,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 //  #include "libavfilter/formats.c"
 
-#undef printf
+//  #undef printf
 
-public static int main (void
-) {
-    const int64_t[] cl;
+private static int main () {
+    int64[] cl;
     char buf[512];
     int i;
-    const string teststrings[] ={
+    string teststrings[] ={
         "blah",
         "1",
         "2",
@@ -56,12 +55,12 @@ public static int main (void
     }
 
     for ( i = 0; i<FF_ARRAY_ELEMS (teststrings); i++) {
-        int64_t layout = -1;
+        int64 layout = -1;
         int count = -1;
         int ret;
         ret = ff_parse_channel_layout (&layout, &count, teststrings[i], null);
 
-        printf ("%d = ff_parse_channel_layout (%016"PRIX64", %2d, %s);\n", ret ? -1 : 0, layout, count, teststrings[i]);
+        printf ("%d = ff_parse_channel_layout (%016PRIX64, %2d, %s);\n", ret ? -1 : 0, layout, count, teststrings[i]);
     }
 
     return 0;

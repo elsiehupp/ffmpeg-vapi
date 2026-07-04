@@ -142,7 +142,7 @@ release an OpenCL Command Queue
 //  }
 
 /***********************************************************
-Return that all inputs and outputs support only AV_PIX_FMT_OPENCL.
+Return that all inputs and outputs support only LibAVUtil.PixelFormat.OPENCL.
 ***********************************************************/
 [CCode (cname="ff_opencl_filter_query_formats",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public int ff_opencl_filter_query_formats (

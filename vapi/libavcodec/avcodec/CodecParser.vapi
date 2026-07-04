@@ -119,7 +119,7 @@ public abstract class CodecParser {
 @{
 ***********************************************************/
 
-typedef struct AVCodecParser {
+public struct AVCodecParser {
 #if FF_API_PARSER_CODECID
     int codec_ids[7]; /* several codec IDs are permitted */
 #else
@@ -170,7 +170,7 @@ Iterate over all registered codec parsers.
 @return the next registered codec parser or NULL when the iteration is
         finished
 ***********************************************************/
-const AVCodecParser *av_parser_iterate(void **opaque);
+AVCodecParser? av_parser_iterate(void **opaque);
 
 /***********************************************************
 @}

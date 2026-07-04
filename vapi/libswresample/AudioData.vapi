@@ -65,7 +65,7 @@ internal class LibSoftwareResample.AudioData {
     sample format
     ***********************************************************/
     [CCode (cname="")]
-    internal AVSampleFormat fmt;
+    internal LibAVUtil.SampleFormat fmt;
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     //  av_warn_unused_result

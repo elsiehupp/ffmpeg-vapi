@@ -1,5 +1,5 @@
 
-public errordomain Goto {
+private errordomain Goto {
     END,
     ERROR
 }

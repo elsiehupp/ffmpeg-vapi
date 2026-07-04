@@ -20,10 +20,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class ApiCodecParameterTest : GLib.TestCase {
+private class ApiCodecParameterTest : GLib.TestCase {
 
-    static uint try_decode_video_frame (
+    private static uint try_decode_video_frame (
         LibAVCodec.CodecContext codec_context,
         LibAVCodec.Packet packet,
         uint decode
@@ -46,6 +45,7 @@ public class ApiCodecParameterTest : GLib.TestCase {
                     );
                     throw new Goto.END ("");
                 }
+
             }
 
             frame = av_frame_alloc ();
@@ -73,6 +73,7 @@ public class ApiCodecParameterTest : GLib.TestCase {
                 if (got_frame) {
                     break;
                 }
+
             } while (packet.size > 0);
         } catch (Goto end) { }
 
@@ -82,7 +83,7 @@ public class ApiCodecParameterTest : GLib.TestCase {
         return ret;
     }
 
-    static uint find_video_stream_info (
+    private static uint find_video_stream_info (
         AVFormatContext format_context,
         uint decode
     ) {
@@ -148,7 +149,9 @@ public class ApiCodecParameterTest : GLib.TestCase {
 
                     done &= st.codec_info_nb_frames > 0;
                 }
+
             }
+
         } catch (Goto end) { }
 
         av_packet_unref (out packet);
@@ -165,7 +168,7 @@ public class ApiCodecParameterTest : GLib.TestCase {
         return ret < 0;
     }
 
-    static void dump_video_streams (AVFormatContext format_context, uint decode) {
+    private static void dump_video_streams (AVFormatContext format_context, uint decode) {
 
         for (uint i = 0; i < format_context.nb_streams; i++) {
             LibAVUtil.Option opt = null;
@@ -186,11 +189,14 @@ public class ApiCodecParameterTest : GLib.TestCase {
                     GLib.print ("    %s=%s\n", opt.name, str);
                     av_free (str);
                 }
+
             }
+
         }
+
     }
 
-    static uint open_and_probe_video_streams (
+    private static uint open_and_probe_video_streams (
         out AVFormatContext format_context,
         string filename,
         uint decode
@@ -220,7 +226,7 @@ public class ApiCodecParameterTest : GLib.TestCase {
         return ret;
     }
 
-    static uint check_video_streams (
+    private static uint check_video_streams (
         AVFormatContext fmt_ctx1,
         AVFormatContext fmt_ctx2
     ) {
@@ -256,15 +262,17 @@ public class ApiCodecParameterTest : GLib.TestCase {
                         "Field %s differs: %s %s", opt.name, str1, str2);
                     ret = AVERROR (EINVAL);
                 }
+
                 av_free (str1);
                 av_free (str2);
             }
+
         }
 
         return ret;
     }
 
-    uint main (uint argc, string argv[]) {
+    uint main (uint argc, string[] argv) {
         try {
             uint ret = 0;
             AVFormatContext format_context = null;

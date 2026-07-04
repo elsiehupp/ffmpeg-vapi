@@ -45,18 +45,18 @@ av_opt_set_channel_layout (swr, "in_channel_layout", AV_CH_LAYOUT_5POINT1, 0);
 av_opt_set_channel_layout (swr, "out_channel_layout", AV_CH_LAYOUT_STEREO, 0);
 av_opt_set_int (swr, "in_sample_rate", 48000, 0);
 av_opt_set_int (swr, "out_sample_rate", 44100, 0);
-av_opt_set_sample_fmt (swr, "in_sample_fmt", AV_SAMPLE_FMT_FLTP, 0);
-av_opt_set_sample_fmt (swr, "out_sample_fmt", AV_SAMPLE_FMT_S16, 0);
+av_opt_set_sample_fmt (swr, "in_sample_fmt", LibAVUtil.SampleFormat.FLOAT_PLANAR, 0);
+av_opt_set_sample_fmt (swr, "out_sample_fmt", LibAVUtil.SampleFormat.SIGNED_16_BIT, 0);
 @endcode
 
 The same job can be done using swr_alloc_set_opts () as well:
 @code
 LibSoftwareResample.SoftwareContext? swr = swr_alloc_set_opts (NULL, // we're allocating a new context
                         AV_CH_LAYOUT_STEREO, // out_ch_layout
-                        AV_SAMPLE_FMT_S16, // out_sample_fmt
+                        LibAVUtil.SampleFormat.SIGNED_16_BIT, // out_sample_fmt
                         44100, // out_sample_rate
                         AV_CH_LAYOUT_5POINT1, // in_ch_layout
-                        AV_SAMPLE_FMT_FLTP, // in_sample_fmt
+                        LibAVUtil.SampleFormat.FLOAT_PLANAR, // in_sample_fmt
                         48000, // in_sample_rate
                         0, // log_offset
                         NULL); // log_ctx
@@ -94,7 +94,7 @@ while (get_input (&input, &in_samples)) {
     public int out_samples = av_rescale_rnd (swr_get_delay (swr, 48000) +
                                         in_samples, 44100, 48000, AV_ROUND_UP);
     av_samples_alloc (&output, NULL, 2, out_samples,
-                        AV_SAMPLE_FMT_S16, 0);
+                        LibAVUtil.SampleFormat.SIGNED_16_BIT, 0);
     out_samples = swr_convert (
         swr, &output, out_samples,
         input, in_samples
@@ -144,19 +144,19 @@ public class LibSoftwareResample.SoftwareContext {
     input sample format
     ***********************************************************/
     [CCode (cname="")]
-    internal AVSampleFormat in_sample_fmt;
+    internal LibAVUtil.SampleFormat in_sample_fmt;
 
     /***********************************************************
-    internal internal sample format (AV_SAMPLE_FMT_FLTP or AV_SAMPLE_FMT_S16P)
+    internal internal sample format (LibAVUtil.SampleFormat.FLOAT_PLANAR or LibAVUtil.SampleFormat.SIGNED_16_BIT_PLANAR)
     ***********************************************************/
     [CCode (cname="")]
-    internal AVSampleFormat int_sample_fmt;
+    internal LibAVUtil.SampleFormat int_sample_fmt;
 
     /***********************************************************
     output sample format
     ***********************************************************/
     [CCode (cname="")]
-    internal AVSampleFormat out_sample_fmt;
+    internal LibAVUtil.SampleFormat out_sample_fmt;
 
     /***********************************************************
     input channel layout
@@ -273,7 +273,7 @@ public class LibSoftwareResample.SoftwareContext {
     User set internal sample format
     ***********************************************************/
     [CCode (cname="")]
-    internal AVSampleFormat user_int_sample_fmt;
+    internal LibAVUtil.SampleFormat user_int_sample_fmt;
 
     /***********************************************************
     User set dither method
@@ -678,15 +678,15 @@ public class LibSoftwareResample.SoftwareContext {
         void *dst,
         int len,
         uint seed,
-        AVSampleFormat noise_fmt
+        LibAVUtil.SampleFormat noise_fmt
     );
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     //  av_warn_unused_result
     internal int swri_dither_init (
         LibSoftwareResample.SoftwareContext? s,
-        AVSampleFormat out_fmt,
-        AVSampleFormat in_fmt
+        LibAVUtil.SampleFormat out_fmt,
+        LibAVUtil.SampleFormat in_fmt
     );
 
 
@@ -771,10 +771,10 @@ public class LibSoftwareResample.SoftwareContext {
     public LibSoftwareResample.SoftwareContext? swr_alloc_set_opts (
         LibSoftwareResample.SoftwareContext? s,
         int64 out_ch_layout,
-        AVSampleFormat out_sample_fmt,
+        LibAVUtil.SampleFormat out_sample_fmt,
         int out_sample_rate,
         int64 in_ch_layout,
-        AVSampleFormat in_sample_fmt,
+        LibAVUtil.SampleFormat in_sample_fmt,
         int in_sample_rate,
         int log_offset,
         void *log_ctx

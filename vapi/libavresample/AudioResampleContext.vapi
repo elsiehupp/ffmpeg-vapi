@@ -45,8 +45,8 @@ av_opt_set_int (avr, "in_channel_layout", AV_CH_LAYOUT_5POINT1, 0);
 av_opt_set_int (avr, "out_channel_layout", AV_CH_LAYOUT_STEREO, 0);
 av_opt_set_int (avr, "in_sample_rate", 48000, 0);
 av_opt_set_int (avr, "out_sample_rate", 44100, 0);
-av_opt_set_int (avr, "in_sample_fmt", AV_SAMPLE_FMT_FLTP, 0);
-av_opt_set_int (avr, "out_sample_fmt", AV_SAMPLE_FMT_S16, 0);
+av_opt_set_int (avr, "in_sample_fmt", LibAVUtil.SampleFormat.FLOAT_PLANAR, 0);
+av_opt_set_int (avr, "out_sample_fmt", LibAVUtil.SampleFormat.SIGNED_16_BIT, 0);
 @endcode
 
 Once the context is initialized, it must be opened with avresample_open (). If
@@ -76,7 +76,7 @@ while (get_input (&input, &in_linesize, &in_samples)) {
     int out_samples = avresample_get_out_samples (avr, in_samples);
 
     av_samples_alloc (&output, &out_linesize, 2, out_samples,
-                        AV_SAMPLE_FMT_S16, 0);
+                        LibAVUtil.SampleFormat.SIGNED_16_BIT, 0);
     out_samples = avresample_convert (avr, &output, out_linesize, out_samples,
                                         input, in_linesize, in_samples);
     handle_output (output, out_linesize, out_samples);
@@ -108,7 +108,7 @@ public class LibAVResample.AudioResampleContext {
     input sample format
     ***********************************************************/
     [CCode (cname="")]
-    internal AVSampleFormat in_sample_fmt;
+    internal LibAVUtil.SampleFormat in_sample_fmt;
 
     /***********************************************************
     input sample rate
@@ -126,7 +126,7 @@ public class LibAVResample.AudioResampleContext {
     output sample format
     ***********************************************************/
     [CCode (cname="")]
-    internal AVSampleFormat out_sample_fmt;
+    internal LibAVUtil.SampleFormat out_sample_fmt;
 
     /***********************************************************
     output sample rate
@@ -138,7 +138,7 @@ public class LibAVResample.AudioResampleContext {
     internal internal sample format
     ***********************************************************/
     [CCode (cname="")]
-    internal AVSampleFormat internal_sample_fmt;
+    internal LibAVUtil.SampleFormat internal_sample_fmt;
 
     /***********************************************************
     mixing coefficient type

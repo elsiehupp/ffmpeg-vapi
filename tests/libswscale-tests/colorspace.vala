@@ -28,21 +28,70 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #include "libswscale/swscale.h"
 //  #include "libswscale/rgb2rgb.h"
 
-#define SIZE    1000
-#define srcByte 0x55
-#define dstByte 0xBB
+private const size_t SIZE = 1000;
+private const uint8 srcByte = 0x55;
+private const uint8 dstByte = 0xBB;
 
-#define FUNC (s, d, n) { s, d, #n, n }
+//  #define FUNC (s, d, n) { s, d, #n, n }
 
-public static int main (
+private struct FuncInfoS {
+    int src_bpp;
+    int dst_bpp;
+    string name;
+    delegate void Func (
+        uint8[] src, uint8[] dst, int src_size
+    );
+    Func func;
+}
+private const FuncInfoS func_info[] = {
+    FUNC (2, 2, rgb12to15),
+    FUNC (2, 2, rgb15to16),
+    FUNC (2, 3, rgb15to24),
+    FUNC (2, 4, rgb15to32),
+    FUNC (2, 3, rgb16to24),
+    FUNC (2, 4, rgb16to32),
+    FUNC (3, 2, rgb24to15),
+    FUNC (3, 2, rgb24to16),
+    FUNC (3, 4, rgb24to32),
+    FUNC (4, 2, rgb32to15),
+    FUNC (4, 2, rgb32to16),
+    FUNC (4, 3, rgb32to24),
+    FUNC (2, 2, rgb16to15),
+    FUNC (2, 2, rgb12tobgr12),
+    FUNC (2, 2, rgb15tobgr15),
+    FUNC (2, 2, rgb15tobgr16),
+    FUNC (2, 3, rgb15tobgr24),
+    FUNC (2, 4, rgb15tobgr32),
+    FUNC (2, 2, rgb16tobgr15),
+    FUNC (2, 2, rgb16tobgr16),
+    FUNC (2, 3, rgb16tobgr24),
+    FUNC (2, 4, rgb16tobgr32),
+    FUNC (3, 2, rgb24tobgr15),
+    FUNC (3, 2, rgb24tobgr16),
+    FUNC (3, 3, rgb24tobgr24),
+    FUNC (3, 4, rgb24tobgr32),
+    FUNC (4, 2, rgb32tobgr15),
+    FUNC (4, 2, rgb32tobgr16),
+    FUNC (4, 3, rgb32tobgr24),
+    FUNC (4, 4, shuffle_bytes_2103), /* rgb32tobgr32 */
+    FUNC (6, 6, rgb48tobgr48_nobswap),
+    FUNC (6, 6, rgb48tobgr48_bswap),
+    FUNC (8, 6, rgb64to48_nobswap),
+    FUNC (8, 6, rgb64to48_bswap),
+    FUNC (8, 6, rgb64tobgr48_nobswap),
+    FUNC (8, 6, rgb64tobgr48_bswap),
+    FUNC (0, 0, null)
+};
+
+private static int main (
     int argc,
     string[] argv
 ) {
     int i, funcNum;
     uint8[] srcBuffer = av_malloc (SIZE);
     uint8[] dstBuffer = av_malloc (SIZE);
-    int failedNum      = 0;
-    int passedNum      = 0;
+    int failedNum = 0;
+    int passedNum = 0;
 
     if (!srcBuffer || !dstBuffer)
         return -1;
@@ -51,50 +100,6 @@ public static int main (
     ff_sws_rgb2rgb_init ();
 
     for (funcNum = 0; ; funcNum++) {
-        struct func_info_s {
-            int src_bpp;
-            int dst_bpp;
-            const string name;
-            void (*func)(const uint8[] src, uint8[] dst, int src_size);
-        } func_info[] = {
-            FUNC (2, 2, rgb12to15),
-            FUNC (2, 2, rgb15to16),
-            FUNC (2, 3, rgb15to24),
-            FUNC (2, 4, rgb15to32),
-            FUNC (2, 3, rgb16to24),
-            FUNC (2, 4, rgb16to32),
-            FUNC (3, 2, rgb24to15),
-            FUNC (3, 2, rgb24to16),
-            FUNC (3, 4, rgb24to32),
-            FUNC (4, 2, rgb32to15),
-            FUNC (4, 2, rgb32to16),
-            FUNC (4, 3, rgb32to24),
-            FUNC (2, 2, rgb16to15),
-            FUNC (2, 2, rgb12tobgr12),
-            FUNC (2, 2, rgb15tobgr15),
-            FUNC (2, 2, rgb15tobgr16),
-            FUNC (2, 3, rgb15tobgr24),
-            FUNC (2, 4, rgb15tobgr32),
-            FUNC (2, 2, rgb16tobgr15),
-            FUNC (2, 2, rgb16tobgr16),
-            FUNC (2, 3, rgb16tobgr24),
-            FUNC (2, 4, rgb16tobgr32),
-            FUNC (3, 2, rgb24tobgr15),
-            FUNC (3, 2, rgb24tobgr16),
-            FUNC (3, 3, rgb24tobgr24),
-            FUNC (3, 4, rgb24tobgr32),
-            FUNC (4, 2, rgb32tobgr15),
-            FUNC (4, 2, rgb32tobgr16),
-            FUNC (4, 3, rgb32tobgr24),
-            FUNC (4, 4, shuffle_bytes_2103), /* rgb32tobgr32 */
-            FUNC (6, 6, rgb48tobgr48_nobswap),
-            FUNC (6, 6, rgb48tobgr48_bswap),
-            FUNC (8, 6, rgb64to48_nobswap),
-            FUNC (8, 6, rgb64to48_bswap),
-            FUNC (8, 6, rgb64tobgr48_nobswap),
-            FUNC (8, 6, rgb64tobgr48_bswap),
-            FUNC (0, 0, null)
-        };
         int width;
         int failed = 0;
         int srcBpp = 0;
@@ -113,9 +118,9 @@ public static int main (
                 memset (dstBuffer, dstByte, SIZE);
 
                 for (srcOffset = 128; srcOffset < 196; srcOffset += 4) {
-                    uint8[] src     = srcBuffer + srcOffset;
-                    uint8[] dst     = dstBuffer + dstOffset;
-                    const string name = null;
+                    uint8[] src = srcBuffer + srcOffset;
+                    uint8[] dst = dstBuffer + dstOffset;
+                    string name = null;
 
                     // don't fill the screen with shit ...
                     if (failed)
@@ -123,7 +128,7 @@ public static int main (
 
                     srcBpp = func_info[funcNum].src_bpp;
                     dstBpp = func_info[funcNum].dst_bpp;
-                    name   = func_info[funcNum].name;
+                    name = func_info[funcNum].name;
 
                     func_info[funcNum].func (src, dst, width * srcBpp);
 
@@ -138,7 +143,9 @@ public static int main (
                             failed = 1;
                             break;
                         }
+
                     }
+
                     for (i = 0; i < dstOffset; i++) {
                         if (dstBuffer[i] != dstByte) {
                             av_log (null, AV_LOG_INFO,
@@ -147,7 +154,9 @@ public static int main (
                             failed = 1;
                             break;
                         }
+
                     }
+
                     for (i = dstOffset + width * dstBpp; i < SIZE; i++) {
                         if (dstBuffer[i] != dstByte) {
                             av_log (null, AV_LOG_INFO,
@@ -156,10 +165,15 @@ public static int main (
                             failed = 1;
                             break;
                         }
+
                     }
+
                 }
+
             }
+
         }
+
         if (failed)
             failedNum++;
         else if (srcBpp)

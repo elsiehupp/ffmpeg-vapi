@@ -121,7 +121,7 @@ public class SubtitleRect {
 } // namespace LibAVCodec
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-typedef struct AVSubtitleRect {
+public struct AVSubtitleRect {
     int x;         ///< top left corner  of pict, undefined when pict is not set
     int y;         ///< top left corner  of pict, undefined when pict is not set
     int w;         ///< width            of pict, undefined when pict is not set

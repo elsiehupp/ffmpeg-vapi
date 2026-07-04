@@ -16,17 +16,19 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class audiomatch {
+private class audiomatch {
 
-    static uint FFMIN (uint a, uint b) {
+    private static uint FFMIN (
+        uint a, uint b
+    ) {
         return ((a) > (b) ? (b) : (a));
     }
-    static uint FFMAX (uint a, uint b) {
+
+    private static uint FFMAX (uint a, uint b) {
         return ((a) > (b) ? (a) : (b));
     }
 
-    static int64 fsize (GLib.File f) {
+    private static int64 fsize (GLib.File f) {
         int64 end;
         int64 pos = ftell (f);
         fseek (f, 0, SEEK_END);
@@ -77,9 +79,11 @@ public class audiomatch {
                     if (fread (p, 1, 8, f[i]) != 8)
                         return 1;
                 }
+
             } else {
                 fseek (f[i], -12, SEEK_CUR);
             }
+
         }
 
         datlen = fsize (f[0]) - ftell (f[0]);
@@ -98,6 +102,7 @@ public class audiomatch {
             signal[i] = ((uint8[])(signal + i))[0] + 256*((uint8[])(signal + i))[1];
             sigamp += signal[i] * signal[i];
         }
+
         for (uint i = 0; i < datlen; i++)
             data[i] = ((uint8[])(data + i))[0] + 256*((uint8[])(data + i))[1];
 
@@ -108,15 +113,19 @@ public class audiomatch {
                 uint j = pos + i;
                 c += signal[i] * data[j];
             }
+
             if (fabs (c) > sigamp * 0.94)
                 maxshift = FFMIN (maxshift, fabs (pos)+32);
             if (fabs (c) > fabs (bestc)) {
                 bestc = c;
                 bestpos = pos;
             }
+
         }
+
         GLib.print ("presig: %d postsig:%d c:%7.4f lenerr:%d\n", bestpos, datlen - siglen - bestpos, bestc / sigamp, datlen - siglen);
 
         return 0;
     }
+
 }

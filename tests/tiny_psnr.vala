@@ -18,17 +18,16 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class tiny_psnr {
+private class tiny_psnr {
 
-    static uint FFMIN (uint a, uint b) {
+    private static uint FFMIN (uint a, uint b) {
         return ((a) > (b) ? (b) : (a));
     }
 
-    const uint F = 100;
-    const uint SIZE = 2048;
+    private const uint F = 100;
+    private const uint SIZE = 2048;
 
-    const uint64 exp16_table[21] = {
+    private const uint64 exp16_table[21] = {
             65537,
             65538,
             65540,
@@ -54,7 +53,7 @@ public class tiny_psnr {
 
     #if 0
     // 16.16 fixpoint exp ()
-    static uint exp16 (uint a){
+    private static uint exp16 (uint a){
         uint out= 1<<16;
 
         for (uint i=19;i>=0;i--){
@@ -64,10 +63,11 @@ public class tiny_psnr {
 
         return out;
     }
+
     #endif
 
     // 16.16 fixpoint log ()
-    static int64 log16 (uint64 a) {
+    private static int64 log16 (uint64 a) {
         uint out = 0;
 
         if (a < 1 << 16)
@@ -81,10 +81,11 @@ public class tiny_psnr {
             out |= 1 << i;
             a = ((a / b) << 16) + (((a % b) << 16) + b / 2) / b;
         }
+
         return out;
     }
 
-    static uint64 int_sqrt (uint64 a) {
+    private static uint64 int_sqrt (uint64 a) {
         uint64 ret = 0;
         uint64 ret_sq = 0;
         uint s;
@@ -95,11 +96,13 @@ public class tiny_psnr {
                 ret_sq = b;
                 ret   += 1ULL << s;
             }
+
         }
+
         return ret;
     }
 
-    static int16 get_s16l (uint8[] p) {
+    private static int16 get_s16l (uint8[] p) {
         //  union {
         //      uint16 u;
         //      int16  s;
@@ -114,11 +117,11 @@ public class tiny_psnr {
     //      return v.f;
     //  }
 
-    static double get_f64l (uint8[] p) {
+    private static double get_f64l (uint8[] p) {
         return av_int2double (AV_RL64 (p));
     }
 
-    static uint run_psnr (
+    private static uint run_psnr (
         GLib.File f[2],
         uint len,
         uint shift,
@@ -153,9 +156,11 @@ public class tiny_psnr {
                         if (fread (p, 1, 8, f[i]) != 8)
                             return -1;
                     }
+
                 } else {
                     fseek (f[i], -12, SEEK_CUR);
                 }
+
             }
 
             fseek (
@@ -204,12 +209,14 @@ public class tiny_psnr {
                         a = buf[0][j];
                         b = buf[1][j];
                     }
+
                     sse += (a - b) * (a - b);
                     dist = llabs (a - b);
                     if (dist > maxdist)
                         maxdist = dist;
                     break;
                 }
+
                 case 4:
                 case 8: {
                     double dist;
@@ -222,14 +229,18 @@ public class tiny_psnr {
                         a = get_f32l (buf[0] + j);
                         b = get_f32l (buf[1] + j);
                     }
+
                     dist = fabs (a - b);
                     sse_d += (a - b) * (a - b);
                     if (dist > maxdist_d)
                         maxdist_d = dist;
                     break;
                 }
+
                 }
+
             }
+
             size0 += s0;
             size1 += s1;
             if (s0 + s1 <= 0)
@@ -245,8 +256,7 @@ public class tiny_psnr {
             uint64 psnr;
             uint64 dev = int_sqrt (((sse / i) * F * F) + (((sse % i) * F * F) + i / 2) / i);
             if (sse)
-                psnr = ((2 * log16 (max << 16) + log16 (i) - log16 (sse)) *
-                        284619LL * F + (1LL << 31)) / (1LL << 32);
+                psnr = ((2 * log16 (max << 16) + log16 (i) - log16 (sse)) * 284619LL * F + (1LL << 31)) / (1LL << 32);
             else
                 psnr = 1000 * F - 1; // floating point free infinity :)
 
@@ -261,6 +271,7 @@ public class tiny_psnr {
             );
             return psnr;
             }
+
         case 4:
         case 8: {
             char psnr_str[64];
@@ -285,7 +296,9 @@ public class tiny_psnr {
             );
             return psnr;
         }
+
         }
+
         return -1;
     }
 
@@ -318,7 +331,9 @@ public class tiny_psnr {
                     fprintf (stderr, "Unsupported sample format: %s\nSupported: u8, s16, f32, f64\n", argv[3]);
                     return 1;
                 }
+
             }
+
         }
 
         if (argc < 3) {
@@ -340,7 +355,9 @@ public class tiny_psnr {
                 max_psnr = psnr;
                 max_psnr_shift = shift;
             }
+
         }
+
         if (max_psnr < 0)
             return 2;
 

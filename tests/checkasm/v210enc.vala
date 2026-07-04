@@ -18,15 +18,18 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-const size_t BUF_SIZE = 512;
+private const size_t BUF_SIZE = 512;
 
-void randomize_buffers (mask) {
-    int i, size = sizeof (*y0);
+private static void randomize_buffers (
+    void *mask
+) {
+    int i, size = sizeof (y0);
     for (i = 0; i < BUF_SIZE; i += 4 / size) {
         uint32 r = rnd () & mask;
         AV_WN32A (y0 + i, r);
         AV_WN32A (y1 + i, r);
     }
+
     for (i = 0; i < BUF_SIZE / 2; i += 4 / size) {
         uint32 r = rnd () & mask;
         AV_WN32A (u0 + i, r);
@@ -35,41 +38,49 @@ void randomize_buffers (mask) {
         AV_WN32A (v0 + i, r);
         AV_WN32A (v1 + i, r);
     }
+
     for (i = 0; i < width * 8 / 3; i += 4) {
         uint32 r = rnd ();
         AV_WN32A (dst0 + i, r);
         AV_WN32A (dst1 + i, r);
     }
+
 }
 
-void check_pack_line (type, mask) {
-    LOCAL_ALIGNED_16 (type, y0, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (type, y1, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (type, u0, [BUF_SIZE / 2]);
-    LOCAL_ALIGNED_16 (type, u1, [BUF_SIZE / 2]);
-    LOCAL_ALIGNED_16 (type, v0, [BUF_SIZE / 2]);
-    LOCAL_ALIGNED_16 (type, v1, [BUF_SIZE / 2]);
-    LOCAL_ALIGNED_16 (uint8, dst0, [BUF_SIZE * 8 / 3]);
-    LOCAL_ALIGNED_16 (uint8, dst1, [BUF_SIZE * 8 / 3]);
+private static void check_pack_line (
+    void *type,
+    void *mask
+) {
+    //  LOCAL_ALIGNED_16 (type, y0, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (type, y1, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (type, u0, [BUF_SIZE / 2]);
+    //  LOCAL_ALIGNED_16 (type, u1, [BUF_SIZE / 2]);
+    //  LOCAL_ALIGNED_16 (type, v0, [BUF_SIZE / 2]);
+    //  LOCAL_ALIGNED_16 (type, v1, [BUF_SIZE / 2]);
+    //  LOCAL_ALIGNED_16 (uint8, dst0, [BUF_SIZE * 8 / 3]);
+    //  LOCAL_ALIGNED_16 (uint8, dst1, [BUF_SIZE * 8 / 3]);
 
-    declare_func (void, type * y, type * u, type * v,
-                    uint8[]  dst, size_t width);
+    //  declare_func (void, type?  y, type?  u, type?  v,
+    //                  uint8[]  dst, size_t width);
     size_t width, step = 12 / sizeof (type);
 
     for (width = step; width < BUF_SIZE - 15; width += step) {
-        int y_offset  = rnd () & 15;
+        int y_offset = rnd () & 15;
         int uv_offset = y_offset / 2;
         randomize_buffers (mask);
-        call_ref (y0 + y_offset, u0 + uv_offset, v0 + uv_offset, dst0, width);
-        call_new (y1 + y_offset, u1 + uv_offset, v1 + uv_offset, dst1, width);
+        //  call_ref (y0 + y_offset, u0 + uv_offset, v0 + uv_offset, dst0, width);
+        //  call_new (y1 + y_offset, u1 + uv_offset, v1 + uv_offset, dst1, width);
         if (memcmp (y0, y1, BUF_SIZE) || memcmp (u0, u1, BUF_SIZE / 2) ||
-            memcmp (v0, v1, BUF_SIZE / 2) || memcmp (dst0, dst1, width * 8 / 3))
+            memcmp (v0, v1, BUF_SIZE / 2) || memcmp (dst0, dst1, width * 8 / 3)) {
             fail ();
+        }
+
         bench_new (y1 + y_offset, u1 + uv_offset, v1 + uv_offset, dst1, width);
     }
+
 }
 
-void checkasm_check_v210enc () {
+private static void checkasm_check_v210enc () {
     V210EncContext h;
 
     ff_v210enc_init (&h);

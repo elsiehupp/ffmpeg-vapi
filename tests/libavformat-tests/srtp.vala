@@ -16,9 +16,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const string aes128_80_key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
+private const string aes128_80_key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
 
-const uint8 rtp_aes128_80[] = {
+private const uint8 rtp_aes128_80[] = {
     // RTP header
     0x80, 0xe0, 0x12, 0x34, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78,
     // encrypted payload
@@ -27,7 +27,7 @@ const uint8 rtp_aes128_80[] = {
     0xa1, 0xac, 0x1b, 0xb4, 0xa0, 0x1c, 0xd5, 0x49, 0x28, 0x99,
 };
 
-const uint8 rtcp_aes128_80[] = {
+private const uint8 rtcp_aes128_80[] = {
     // RTCP header
     0x81, 0xc9, 0x00, 0x07, 0x12, 0x34, 0x56, 0x78,
     // encrypted payload
@@ -39,9 +39,9 @@ const uint8 rtcp_aes128_80[] = {
     0xe9, 0x3b, 0xc0, 0x5c, 0x0c, 0x06, 0x9f, 0xab, 0xc0, 0xde,
 };
 
-const string aes128_32_key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
+private const string aes128_32_key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
 
-const uint8 rtp_aes128_32[] = {
+private const uint8 rtp_aes128_32[] = {
     // RTP header
     0x80, 0xe0, 0x12, 0x34, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78,
     // encrypted payload
@@ -50,7 +50,7 @@ const uint8 rtp_aes128_32[] = {
     0xa1, 0xac, 0x1b, 0xb4,
 };
 
-const uint8 rtcp_aes128_32[] = {
+private const uint8 rtcp_aes128_32[] = {
     // RTCP header
     0x81, 0xc9, 0x00, 0x07, 0x12, 0x34, 0x56, 0x78,
     // encrypted payload
@@ -62,9 +62,9 @@ const uint8 rtcp_aes128_32[] = {
     0x5b, 0xd2, 0xa9, 0x9d,
 };
 
-const string aes128_80_32_key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
+private const string aes128_80_32_key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
 
-const uint8 rtp_aes128_80_32[] = {
+private const uint8 rtp_aes128_80_32[] = {
     // RTP header
     0x80, 0xe0, 0x12, 0x34, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78,
     // encrypted payload
@@ -73,7 +73,7 @@ const uint8 rtp_aes128_80_32[] = {
     0xa1, 0xac, 0x1b, 0xb4,
 };
 
-const uint8 rtcp_aes128_80_32[] = {
+private const uint8 rtcp_aes128_80_32[] = {
     // RTCP header
     0x81, 0xc9, 0x00, 0x07, 0x12, 0x34, 0x56, 0x78,
     // encrypted payload
@@ -85,14 +85,14 @@ const uint8 rtcp_aes128_80_32[] = {
     0x09, 0x16, 0xb4, 0x27, 0x9a, 0xe9, 0x92, 0x26, 0x4e, 0x10,
 };
 
-public static void print_data (uint8[] buf, int len) {
+private static void print_data (uint8[] buf, int len) {
     int i;
     for (i = 0; i < len; i++)
         printf ("%02x", buf[i]);
     printf ("\n");
 }
 
-public static int test_decrypt (struct SRTPContext? srtp, uint8[] in, int len,
+private static int test_decrypt (SRTPContext? srtp, uint8[] in, int len,
                         uint8[] out) {
     memcpy (out, in, len);
     if (!ff_srtp_decrypt (srtp, out, &len)) {
@@ -102,8 +102,8 @@ public static int test_decrypt (struct SRTPContext? srtp, uint8[] in, int len,
         return -1;
 }
 
-public static void test_encrypt (uint8[] data, int in_len, string suite,
-                         const string key) {
+private static void test_encrypt (uint8[] data, int in_len, string suite,
+                         string key) {
     SRTPContext enc = { 0 }, dec = { 0 };
     int len;
     char buf[RTP_MAX_PACKET_LENGTH];
@@ -118,15 +118,16 @@ public static void test_encrypt (uint8[] data, int in_len, string suite,
     } else {
         printf ("Decryption failed\n");
     }
+
     ff_srtp_free (&enc);
     ff_srtp_free (&dec);
 }
 
-public static int main () {
-    const string aes128_80_suite = "AES_CM_128_HMAC_SHA1_80";
-    const string aes128_32_suite = "AES_CM_128_HMAC_SHA1_32";
-    const string aes128_80_32_suite = "SRTP_AES128_CM_HMAC_SHA1_32";
-    const string test_key = "abcdefghijklmnopqrstuvwxyz1234567890ABCD";
+private static int main () {
+    private const string aes128_80_suite = "AES_CM_128_HMAC_SHA1_80";
+    private const string aes128_32_suite = "AES_CM_128_HMAC_SHA1_32";
+    private const string aes128_80_32_suite = "SRTP_AES128_CM_HMAC_SHA1_32";
+    private const string test_key = "abcdefghijklmnopqrstuvwxyz1234567890ABCD";
     uint8 buf[RTP_MAX_PACKET_LENGTH];
     SRTPContext srtp = { 0 };
     int len;

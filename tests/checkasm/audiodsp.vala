@@ -16,36 +16,53 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-const size_t MAX_SIZE = (32 * 128);
+private const size_t MAX_SIZE = (32 * 128);
 
-void randomize_float (void *buf, int len) {
+private static void randomize_float (void *buf, int len) {
     int i;
     for (i = 0; i < len; i++) {
         float f = (float)rnd () / (UINT_MAX >> 5) - 16.0f;
         buf[i] = f;
     }
+
 }
 
-void randomize_int (void *buf, len, size, bits) {
-    int i;
-    for (i = 0; i < len; i++) {
-        uint ## size ## _t r = rnd () & ((1LL << bits) - 1);
-        AV_WN ## size ## A (buf + i, -(1LL << (bits - 1)) + r);
-    }
-}
+//  private static void randomize_int (
+//      void *buf,
+//      void *len,
+//      void *size,
+//      void *bits
+//  ) {
+//      int i;
+//      for (i = 0; i < len; i++) {
+//          uint ## size ## _t r = rnd () & ((1LL << bits) - 1);
+//          AV_WN ## size ## A (buf + i, -(1LL << (bits - 1)) + r);
+//      }
 
-void checkasm_check_audiodsp () {
+//  }
+
+//  declare_func_emms (AV_CPU_FLAG_MMX, int32, int16[] v1, int16[] v2, int len);
+
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX, void, int32[] dst, int32[] src,
+//      int32 min, int32 max, uint len
+//  );
+
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX, void, float[] dst, float[] src,
+//      int len, float min, float max
+//  );
+
+private static void checkasm_check_audiodsp () {
     AudioDSPContext adsp;
 
     ff_audiodsp_init (&adsp);
 
     if (check_func (adsp.scalarproduct_int16, "audiodsp.scalarproduct_int16")) {
-        LOCAL_ALIGNED (32, int16, v1, [MAX_SIZE]);
-        LOCAL_ALIGNED (32, int16, v2, [MAX_SIZE]);
+        //  LOCAL_ALIGNED (32, int16, v1, [MAX_SIZE]);
+        //  LOCAL_ALIGNED (32, int16, v2, [MAX_SIZE]);
         uint len_bits_minus4, v1_bits, v2_bits, len;
-        int32_t res0, res1;
-
-        declare_func_emms (AV_CPU_FLAG_MMX, int32_t, int16[] v1, int16[] v2, int len);
+        int32 res0, res1;
 
         // generate random 5-12bit vector length
         len_bits_minus4 = rnd () % 8;
@@ -62,24 +79,23 @@ void checkasm_check_audiodsp () {
 
         res0 = call_ref (v1, v2, len);
         res1 = call_new (v1, v2, len);
-        if (res0 != res1)
+        if (res0 != res1) {
             fail ();
+        }
+
         bench_new (v1, v2, MAX_SIZE);
     }
 
     if (check_func (adsp.vector_clip_int32, "audiodsp.vector_clip_int32")) {
-        LOCAL_ALIGNED (32, int32_t, src,  [MAX_SIZE]);
-        LOCAL_ALIGNED (32, int32_t, dst0, [MAX_SIZE]);
-        LOCAL_ALIGNED (32, int32_t, dst1, [MAX_SIZE]);
-        int32_t val1, val2, min, max;
+        //  LOCAL_ALIGNED (32, int32, src, [MAX_SIZE]);
+        //  LOCAL_ALIGNED (32, int32, dst0, [MAX_SIZE]);
+        //  LOCAL_ALIGNED (32, int32, dst1, [MAX_SIZE]);
+        int32 val1, val2, min, max;
         int len;
 
-        declare_func_emms (AV_CPU_FLAG_MMX, void, int32_t *dst, int32_t *src,
-                          int32_t min, int32_t max, uint len);
-
-        val1 = ((int32_t)rnd ());
+        val1 = ((int32)rnd ());
         val1 = FFSIGN (val1) * (val1 & ((1 << 24) - 1));
-        val2 = ((int32_t)rnd ());
+        val2 = ((int32)rnd ());
         val2 = FFSIGN (val2) * (val2 & ((1 << 24) - 1));
 
         min = FFMIN (val1, val2);
@@ -90,22 +106,21 @@ void checkasm_check_audiodsp () {
         len = rnd () % 128;
         len = 32 * FFMAX (len, 1);
 
-        call_ref (dst0, src, min, max, len);
-        call_new (dst1, src, min, max, len);
-        if (memcmp (dst0, dst1, len * sizeof (*dst0)))
+        //  call_ref (dst0, src, min, max, len);
+        //  call_new (dst1, src, min, max, len);
+        if (memcmp (dst0, dst1, len * sizeof (dst0))) {
             fail ();
+        }
+
         bench_new (dst1, src, min, max, MAX_SIZE);
     }
 
     if (check_func (adsp.vector_clipf, "audiodsp.vector_clipf")) {
-        LOCAL_ALIGNED (32, float, src, [MAX_SIZE]);
-        LOCAL_ALIGNED (32, float, dst0, [MAX_SIZE]);
-        LOCAL_ALIGNED (32, float, dst1, [MAX_SIZE]);
+        //  LOCAL_ALIGNED (32, float, src, [MAX_SIZE]);
+        //  LOCAL_ALIGNED (32, float, dst0, [MAX_SIZE]);
+        //  LOCAL_ALIGNED (32, float, dst1, [MAX_SIZE]);
         float val1, val2, min, max;
         int i, len;
-
-        declare_func_emms (AV_CPU_FLAG_MMX, void, float *dst, float[] src,
-                          int len, float min, float max);
 
         val1 = (float)rnd () / (UINT_MAX >> 1) - 1.0f;
         val2 = (float)rnd () / (UINT_MAX >> 1) - 1.0f;
@@ -118,12 +133,15 @@ void checkasm_check_audiodsp () {
         len = rnd () % 128;
         len = 16 * FFMAX (len, 1);
 
-        call_ref (dst0, src, len, min, max);
-        call_new (dst1, src, len, min, max);
+        //  call_ref (dst0, src, len, min, max);
+        //  call_new (dst1, src, len, min, max);
         for (i = 0; i < len; i++) {
-            if (!float_near_ulp_array (dst0, dst1, 3, len))
+            if (!float_near_ulp_array (dst0, dst1, 3, len)) {
                 fail ();
+            }
+
         }
+
         bench_new (dst1, src, MAX_SIZE, min, max);
     }
 

@@ -23,63 +23,66 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #include "libavutil/mem.h"
 //  #include "libswscale/swscale_internal.h"
 
-public static const struct {
-    const string class;
-    int (*cond)(enum AVPixelFormat pix_fmt);
-} query_tab[] = {
-    {"is16BPS",     is16BPS},
-    {"isNBPS",      isNBPS},
-    {"isBE",        isBE},
-    {"isYUV",       isYUV},
+private struct QueryTab {
+    string class;
+    delegate int Cond (AVPixelFormat pix_fmt);
+    Cond cond;
+}
+
+private QueryTab query_tab[] = {
+    {"is16BPS", is16BPS},
+    {"isNBPS", isNBPS},
+    {"isBE", isBE},
+    {"isYUV", isYUV},
     {"isPlanarYUV", isPlanarYUV},
     {"isSemiPlanarYUV", isSemiPlanarYUV},
-    {"isRGB",       isRGB},
-    {"Gray",        isGray},
-    {"RGBinInt",    isRGBinInt},
-    {"BGRinInt",    isBGRinInt},
-    {"Bayer",       isBayer},
-    {"AnyRGB",      isAnyRGB},
-    {"ALPHA",       isALPHA},
-    {"Packed",      isPacked},
-    {"Planar",      isPlanar},
-    {"PackedRGB",   isPackedRGB},
-    {"PlanarRGB",   isPlanarRGB},
-    {"usePal",      usePal},
+    {"isRGB", isRGB},
+    {"Gray", isGray},
+    {"RGBinInt", isRGBinInt},
+    {"BGRinInt", isBGRinInt},
+    {"Bayer", isBayer},
+    {"AnyRGB", isAnyRGB},
+    {"ALPHA", isALPHA},
+    {"Packed", isPacked},
+    {"Planar", isPlanar},
+    {"PackedRGB", isPackedRGB},
+    {"PlanarRGB", isPlanarRGB},
+    {"usePal", usePal},
 };
 
-public static int cmp_str (const void *a, const void *b
+private static int cmp_str (void *a, void *b
 ) {
-    const string s1 = *(
+    string s1 = *(
     string[] )a;
-    const string s2 = *(
+    string s2 = *(
     string[] )b;
     return strcmp (s1, s2);
 }
 
-public static int main (void
-) {
+private static int main () {
     int i, j;
 
     for (i = 0; i < FF_ARRAY_ELEMS (query_tab); i++) {
-        const string[] pix_fmts = null;
+        string[] pix_fmts = null;
         int nb_pix_fmts = 0;
-        const AVPixFmtDescriptor? pix_desc = null;
+        AVPixFmtDescriptor? pix_desc = null;
 
         while ((pix_desc = av_pix_fmt_desc_next (pix_desc))) {
-            enum AVPixelFormat pix_fmt = av_pix_fmt_desc_get_id (pix_desc);
+            AVPixelFormat pix_fmt = av_pix_fmt_desc_get_id (pix_desc);
             if (query_tab[i].cond (pix_fmt)) {
-                const string pix_name = pix_desc->name;
-                if      (pix_fmt == AV_PIX_FMT_RGB32)   pix_name = "rgb32";
-                else if (pix_fmt == AV_PIX_FMT_RGB32_1) pix_name = "rgb32_1";
-                else if (pix_fmt == AV_PIX_FMT_BGR32)   pix_name = "bgr32";
-                else if (pix_fmt == AV_PIX_FMT_BGR32_1) pix_name = "bgr32_1";
+                string pix_name = pix_desc.name;
+                if      (pix_fmt == LibAVUtil.PixelFormat.RGB32)   pix_name = "rgb32";
+                else if (pix_fmt == LibAVUtil.PixelFormat.RGB32_1) pix_name = "rgb32_1";
+                else if (pix_fmt == LibAVUtil.PixelFormat.BGR32)   pix_name = "bgr32";
+                else if (pix_fmt == LibAVUtil.PixelFormat.BGR32_1) pix_name = "bgr32_1";
 
                 av_dynarray_add (&pix_fmts, &nb_pix_fmts, (void *)pix_name);
             }
+
         }
 
         if (pix_fmts) {
-            qsort (pix_fmts, nb_pix_fmts, sizeof (*pix_fmts), cmp_str);
+            qsort (pix_fmts, nb_pix_fmts, sizeof (pix_fmts), cmp_str);
 
             printf ("%s:\n", query_tab[i].class);
             for (j = 0; j < nb_pix_fmts; j++)
@@ -88,6 +91,8 @@ public static int main (void
 
             av_free (pix_fmts);
         }
+
     }
+
     return 0;
 }

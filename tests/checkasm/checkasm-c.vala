@@ -62,15 +62,16 @@ public enum Color {
 /***********************************************************
 List of tests to invoke
 ***********************************************************/
-struct Test {
-    const string name;
-    void (*func)();
+private struct Test {
+    string name;
+    delegate void Func ();
+    Func func;
 }
-const Test tests[] = {
+private const Test tests[] = {
 #if CONFIG_AVCODEC
     #if CONFIG_AAC_DECODER
         { "aacpsdsp", checkasm_check_aacpsdsp },
-        { "sbrdsp",   checkasm_check_sbrdsp },
+        { "sbrdsp", checkasm_check_sbrdsp },
     #endif
     #if CONFIG_ALAC_DECODER
         { "alacdsp", checkasm_check_alacdsp },
@@ -178,56 +179,58 @@ const Test tests[] = {
         { "float_dsp", checkasm_check_float_dsp },
 #endif
     { null }
+
 };
 
 /***********************************************************
 List of cpu flags to check
 ***********************************************************/
-struct Cpu {
+private struct Cpu {
     string name;
     string suffix;
     int flag;
 }
-const Cpu cpus[] = {
+private const Cpu cpus[] = {
 #if   ARCH_AARCH64
-    { "ARMV8",    "armv8",    AV_CPU_FLAG_ARMV8 },
-    { "NEON",     "neon",     AV_CPU_FLAG_NEON },
+    { "ARMV8", "armv8", AV_CPU_FLAG_ARMV8 },
+    { "NEON", "neon", AV_CPU_FLAG_NEON },
 #elif ARCH_ARM
-    { "ARMV5TE",  "armv5te",  AV_CPU_FLAG_ARMV5TE },
-    { "ARMV6",    "armv6",    AV_CPU_FLAG_ARMV6 },
-    { "ARMV6T2",  "armv6t2",  AV_CPU_FLAG_ARMV6T2 },
-    { "VFP",      "vfp",      AV_CPU_FLAG_VFP },
-    { "VFP_VM",   "vfp_vm",   AV_CPU_FLAG_VFP_VM },
-    { "VFPV3",    "vfp3",     AV_CPU_FLAG_VFPV3 },
-    { "NEON",     "neon",     AV_CPU_FLAG_NEON },
+    { "ARMV5TE", "armv5te", AV_CPU_FLAG_ARMV5TE },
+    { "ARMV6", "armv6", AV_CPU_FLAG_ARMV6 },
+    { "ARMV6T2", "armv6t2", AV_CPU_FLAG_ARMV6T2 },
+    { "VFP", "vfp", AV_CPU_FLAG_VFP },
+    { "VFP_VM", "vfp_vm", AV_CPU_FLAG_VFP_VM },
+    { "VFPV3", "vfp3", AV_CPU_FLAG_VFPV3 },
+    { "NEON", "neon", AV_CPU_FLAG_NEON },
 #elif ARCH_PPC
-    { "ALTIVEC",  "altivec",  AV_CPU_FLAG_ALTIVEC },
-    { "VSX",      "vsx",      AV_CPU_FLAG_VSX },
-    { "POWER8",   "power8",   AV_CPU_FLAG_POWER8 },
+    { "ALTIVEC", "altivec", AV_CPU_FLAG_ALTIVEC },
+    { "VSX", "vsx", AV_CPU_FLAG_VSX },
+    { "POWER8", "power8", AV_CPU_FLAG_POWER8 },
 #elif ARCH_X86
-    { "MMX",      "mmx",      AV_CPU_FLAG_MMX|AV_CPU_FLAG_CMOV },
-    { "MMXEXT",   "mmxext",   AV_CPU_FLAG_MMXEXT },
-    { "3DNOW",    "3dnow",    AV_CPU_FLAG_3DNOW },
+    { "MMX", "mmx", AV_CPU_FLAG_MMX|AV_CPU_FLAG_CMOV },
+    { "MMXEXT", "mmxext", AV_CPU_FLAG_MMXEXT },
+    { "3DNOW", "3dnow", AV_CPU_FLAG_3DNOW },
     { "3DNOWEXT", "3dnowext", AV_CPU_FLAG_3DNOWEXT },
-    { "SSE",      "sse",      AV_CPU_FLAG_SSE },
-    { "SSE2",     "sse2",     AV_CPU_FLAG_SSE2|AV_CPU_FLAG_SSE2SLOW },
-    { "SSE3",     "sse3",     AV_CPU_FLAG_SSE3|AV_CPU_FLAG_SSE3SLOW },
-    { "SSSE3",    "ssse3",    AV_CPU_FLAG_SSSE3|AV_CPU_FLAG_ATOM },
-    { "SSE4.1",   "sse4",     AV_CPU_FLAG_SSE4 },
-    { "SSE4.2",   "sse42",    AV_CPU_FLAG_SSE42 },
-    { "AES-NI",   "aesni",    AV_CPU_FLAG_AESNI },
-    { "AVX",      "avx",      AV_CPU_FLAG_AVX },
-    { "XOP",      "xop",      AV_CPU_FLAG_XOP },
-    { "FMA3",     "fma3",     AV_CPU_FLAG_FMA3 },
-    { "FMA4",     "fma4",     AV_CPU_FLAG_FMA4 },
-    { "AVX2",     "avx2",     AV_CPU_FLAG_AVX2 },
-    { "AVX-512",  "avx512",   AV_CPU_FLAG_AVX512 },
+    { "SSE", "sse", AV_CPU_FLAG_SSE },
+    { "SSE2", "sse2", AV_CPU_FLAG_SSE2|AV_CPU_FLAG_SSE2SLOW },
+    { "SSE3", "sse3", AV_CPU_FLAG_SSE3|AV_CPU_FLAG_SSE3SLOW },
+    { "SSSE3", "ssse3", AV_CPU_FLAG_SSSE3|AV_CPU_FLAG_ATOM },
+    { "SSE4.1", "sse4", AV_CPU_FLAG_SSE4 },
+    { "SSE4.2", "sse42", AV_CPU_FLAG_SSE42 },
+    { "AES-NI", "aesni", AV_CPU_FLAG_AESNI },
+    { "AVX", "avx", AV_CPU_FLAG_AVX },
+    { "XOP", "xop", AV_CPU_FLAG_XOP },
+    { "FMA3", "fma3", AV_CPU_FLAG_FMA3 },
+    { "FMA4", "fma4", AV_CPU_FLAG_FMA4 },
+    { "AVX2", "avx2", AV_CPU_FLAG_AVX2 },
+    { "AVX-512", "avx512", AV_CPU_FLAG_AVX512 },
 #endif
     { null }
+
 };
 
-struct CheckasmFuncVersion {
-    CheckasmFuncVersion *next;
+private struct CheckasmFuncVersion {
+    CheckasmFuncVersion? next;
     void *func;
     int ok;
     int cpu;
@@ -237,25 +240,158 @@ struct CheckasmFuncVersion {
 /***********************************************************
 Binary search tree node
 ***********************************************************/
-struct CheckasmFunc {
-    CheckasmFunc *child[2];
+private struct CheckasmFunc {
+    CheckasmFunc? child[2];
     CheckasmFuncVersion versions;
     /***********************************************************
     0 = red, 1 = black
     ***********************************************************/
     uint8 color;
     char name[1];
+
+    /***********************************************************
+    Deallocate a tree
+    ***********************************************************/
+    private static void destroy_func_tree (
+        CheckasmFunc? f
+    ) {
+        if (f) {
+            CheckasmFuncVersion? v = f.versions.next;
+            while (v) {
+                CheckasmFuncVersion? next = v.next;
+                free (v);
+                v = next;
+            }
+
+            destroy_func_tree (f.child[0]);
+            destroy_func_tree (f.child[1]);
+            free (f);
+        }
+
+    }
+
+    /***********************************************************
+    Print benchmark results
+    ***********************************************************/
+    private static void print_benchs (
+        CheckasmFunc? f
+    ) {
+        if (f) {
+            print_benchs (f.child[0]);
+
+            /***********************************************************
+            Only print functions with at least one assembly version
+            ***********************************************************/
+            if (f.versions.cpu || f.versions.next) {
+                CheckasmFuncVersion? v = &f.versions;
+                do {
+                    CheckasmPerf? p = &v.perf;
+                    if (p.iterations) {
+                        int decicycles = (10*p.cycles/p.iterations - state.nop_time) / 4;
+                        printf ("%s_%s: %d.%d\n", f.name, cpu_suffix (v.cpu), decicycles/10, decicycles%10);
+                    }
+
+                } while ((v = v.next));
+            }
+
+            print_benchs (f.child[1]);
+        }
+
+    }
+
+    /***********************************************************
+    Perform a tree rotation in the specified direction and return the new root
+    ***********************************************************/
+    private static CheckasmFunc? rotate_tree (
+        CheckasmFunc? f,
+        int dir
+    ) {
+        CheckasmFunc? r = f.child[dir^1];
+        f.child[dir^1] = r.child[dir];
+        r.child[dir] = f;
+        r.color = f.color;
+        f.color = 0;
+        return r;
+    }
+
+    private static bool is_red (
+        CheckasmFunc f
+    ) {
+        return ((f) && !(f).color);
+    }
+
+    /***********************************************************
+    Balance a left-leaning red-black tree at the specified node
+    ***********************************************************/
+    private static void balance_tree (
+        ref CheckasmFunc? root_ref
+    ) {
+        CheckasmFunc? f = root_ref;
+
+        if (is_red (f.child[0]) && is_red (f.child[1])) {
+            f.color ^= 1;
+            f.child[0].color = f.child[1].color = 1;
+        }
+
+        if (!is_red (f.child[0]) && is_red (f.child[1]))
+            /***********************************************************
+            Rotate left
+            ***********************************************************/
+            root_ref = rotate_tree (f, 0);
+        else if (is_red (f.child[0]) && is_red (f.child[0].child[0]))
+            /***********************************************************
+            Rotate right
+            ***********************************************************/
+            root_ref = rotate_tree (f, 1);
+    }
+
+    /***********************************************************
+    Get a node with the specified name, creating it if it doesn't exist
+    ***********************************************************/
+    private static CheckasmFunc? get_func (
+        out CheckasmFunc? root_ref,
+        string name
+    ) {
+        CheckasmFunc? f = root_ref;
+
+        if (f) {
+            /***********************************************************
+            Search the tree for a matching node
+            ***********************************************************/
+            int cmp = cmp_func_names (name, f.name);
+            if (cmp) {
+                f = get_func (&f.child[cmp > 0], name);
+
+                /***********************************************************
+                Rebalance the tree on the way up if a new node was inserted
+                ***********************************************************/
+                if (!f.versions.func)
+                    balance_tree (root);
+            }
+
+        } else {
+            /***********************************************************
+            Allocate and insert a new node into the tree
+            ***********************************************************/
+            int name_length = strlen (name);
+            f = root_ref = checkasm_malloc (sizeof (CheckasmFunc) + name_length);
+            memcpy (f.name, name, name_length + 1);
+        }
+
+        return f;
+    }
+
 }
 
 /***********************************************************
 Internal state
 ***********************************************************/
-public static struct State {
-    CheckasmFunc *funcs;
-    CheckasmFunc *current_func;
-    CheckasmFuncVersion *current_func_ver;
-    const string current_test_name;
-    const string bench_pattern;
+private struct State {
+    CheckasmFunc? funcs;
+    CheckasmFunc? current_func;
+    CheckasmFuncVersion? current_func_ver;
+    string current_test_name;
+    string bench_pattern;
     int bench_pattern_len;
     int num_checked;
     int num_failed;
@@ -267,8 +403,8 @@ public static struct State {
     int sysfd;
 
     int cpu_flag;
-    const string cpu_flag_name;
-    const string test_name;
+    string cpu_flag_name;
+    string test_name;
 }
 State state;
 
@@ -280,12 +416,16 @@ AVLFG checkasm_lfg;
 /***********************************************************
 float compare support code
 ***********************************************************/
-public static int is_negative (union av_intfloat32 u) {
+private static int is_negative (
+    /*union*/ av_intfloat32 u
+) {
     return u.i >> 31;
 }
 
-int float_near_ulp (float a, float b, uint max_ulp) {
-    union av_intfloat32 x, y;
+int float_near_ulp (
+    float a, float b, uint max_ulp
+) {
+    /*union*/ av_intfloat32 x, y;
 
     x.f = a;
     y.f = b;
@@ -309,6 +449,7 @@ int float_near_ulp_array (float[] a, float[] b, uint max_ulp,
         if (!float_near_ulp (a[i], b[i], max_ulp))
             return 0;
     }
+
     return 1;
 }
 
@@ -334,7 +475,9 @@ int float_near_abs_eps_array (
         if (!float_near_abs_eps (a[i], b[i], eps)) {
             return 0;
         }
+
     }
+
     return 1;
 }
 
@@ -359,6 +502,7 @@ int float_near_abs_eps_array_ulp (
         if (!float_near_abs_eps_ulp (a[i], b[i], eps, max_ulp))
             return 0;
     }
+
     return 1;
 }
 
@@ -383,18 +527,23 @@ int double_near_abs_eps_array (
         if (!double_near_abs_eps (a[i], b[i], eps))
             return 0;
     }
+
     return 1;
 }
 
+private static int use_color = -1;
+#if HAVE_SETCONSOLETEXTATTRIBUTE
+private static HANDLE con;
+private static WORD org_attributes;
+#endif
 /***********************************************************
 Print colored text to stderr if the terminal supports it
 ***********************************************************/
-public static void color_printf (int color, string fmt, va_list arg) {
-    static int use_color = -1;
+private static void color_printf (
+    int color, string fmt, va_list arg
+) {
 
 #if HAVE_SETCONSOLETEXTATTRIBUTE
-    static HANDLE con;
-    static WORD org_attributes;
 
     if (use_color < 0) {
         CONSOLE_SCREEN_BUFFER_INFO con_info;
@@ -405,13 +554,15 @@ public static void color_printf (int color, string fmt, va_list arg) {
         } else
             use_color = 0;
     }
+
     if (use_color)
         SetConsoleTextAttribute (con, (org_attributes & 0xfff0) | (color & 0x0f));
 #else
     if (use_color < 0) {
-        const string term = getenv ("TERM");
+        string term = getenv ("TERM");
         use_color = term && strcmp (term, "dumb") && isatty (2);
     }
+
     if (use_color)
         fprintf (stderr, "\x1b[%d;3%dm", (color & 0x08) >> 3, color & 0x07);
 #endif
@@ -427,43 +578,27 @@ public static void color_printf (int color, string fmt, va_list arg) {
         fprintf (stderr, "\x1b[0m");
 #endif
     }
-}
 
-/***********************************************************
-Deallocate a tree
-***********************************************************/
-public static void destroy_func_tree (CheckasmFunc *f) {
-    if (f) {
-        CheckasmFuncVersion *v = f.versions.next;
-        while (v) {
-            CheckasmFuncVersion *next = v.next;
-            free (v);
-            v = next;
-        }
-
-        destroy_func_tree (f.child[0]);
-        destroy_func_tree (f.child[1]);
-        free (f);
-    }
 }
 
 /***********************************************************
 Allocate a zero-initialized block, clean up and exit on failure
 ***********************************************************/
-public static void *checkasm_malloc (size_t size) {
+private static void *checkasm_malloc (size_t size) {
     void *ptr = calloc (1, size);
     if (!ptr) {
         fprintf (stderr, "checkasm: malloc failed\n");
         destroy_func_tree (state.funcs);
         exit (1);
     }
+
     return ptr;
 }
 
 /***********************************************************
 Get the suffix of the specified cpu flag
 ***********************************************************/
-const string cpu_suffix (int cpu) {
+private static string cpu_suffix (int cpu) {
     int i = FF_ARRAY_ELEMS (cpus);
 
     while (--i >= 0)
@@ -473,17 +608,17 @@ const string cpu_suffix (int cpu) {
     return "c";
 }
 
-public static int cmp_nop (const void *a, void *b) {
-    return *(const uint16[])a - *(const uint16[])b;
+private static int cmp_nop (void *a, void *b) {
+    return *(uint16[])a - *(uint16[])b;
 }
 
 /***********************************************************
 Measure the overhead of the timing code (in decicycles)
 ***********************************************************/
-public static int measure_nop_time () {
+private static int measure_nop_time () {
     uint16 nops[10000];
     int i, nop_sum = 0;
-    av_unused const int sysfd = state.sysfd;
+    //  av_unused const int sysfd = state.sysfd;
 
     uint64 t = 0;
     for (i = 0; i < 10000; i++) {
@@ -500,38 +635,13 @@ public static int measure_nop_time () {
 }
 
 /***********************************************************
-Print benchmark results
-***********************************************************/
-public static void print_benchs (CheckasmFunc *f) {
-    if (f) {
-        print_benchs (f.child[0]);
-
-        /***********************************************************
-        Only print functions with at least one assembly version
-        ***********************************************************/
-        if (f.versions.cpu || f.versions.next) {
-            CheckasmFuncVersion *v = &f.versions;
-            do {
-                CheckasmPerf *p = &v.perf;
-                if (p.iterations) {
-                    int decicycles = (10*p.cycles/p.iterations - state.nop_time) / 4;
-                    printf ("%s_%s: %d.%d\n", f.name, cpu_suffix (v.cpu), decicycles/10, decicycles%10);
-                }
-            } while ((v = v.next));
-        }
-
-        print_benchs (f.child[1]);
-    }
-}
-
-/***********************************************************
 ASCIIbetical sort except preserving natural order for numbers
 ***********************************************************/
-public static int cmp_func_names (string a, string b) {
-    const string start = a;
+private static int cmp_func_names (string a, string b) {
+    string start = a;
     int ascii_diff, digit_diff;
 
-    for (; !(ascii_diff = *(const uchar*)a - *(const uchar*)b) && *a; a++, b++);
+    for (; !(ascii_diff = *(uchar*)a - *(uchar*)b) && *a; a++, b++);
     for (; av_isdigit (*a) && av_isdigit (*b); a++, b++);
 
     if (a > start && av_isdigit (a[-1]) && (digit_diff = av_isdigit (*a) - av_isdigit (*b)))
@@ -541,78 +651,9 @@ public static int cmp_func_names (string a, string b) {
 }
 
 /***********************************************************
-Perform a tree rotation in the specified direction and return the new root
-***********************************************************/
-public static CheckasmFunc *rotate_tree (CheckasmFunc *f, int dir) {
-    CheckasmFunc *r = f.child[dir^1];
-    f.child[dir^1] = r.child[dir];
-    r.child[dir] = f;
-    r.color = f.color;
-    f.color = 0;
-    return r;
-}
-
-bool is_red (f) ((f) && !(f).color)
-
-/***********************************************************
-Balance a left-leaning red-black tree at the specified node
-***********************************************************/
-public static void balance_tree (CheckasmFunc **root) {
-    CheckasmFunc *f = *root;
-
-    if (is_red (f.child[0]) && is_red (f.child[1])) {
-        f.color ^= 1;
-        f.child[0].color = f.child[1].color = 1;
-    }
-
-    if (!is_red (f.child[0]) && is_red (f.child[1]))
-        /***********************************************************
-        Rotate left
-        ***********************************************************/
-        *root = rotate_tree (f, 0);
-    else if (is_red (f.child[0]) && is_red (f.child[0].child[0]))
-        /***********************************************************
-        Rotate right
-        ***********************************************************/
-        *root = rotate_tree (f, 1);
-}
-
-/***********************************************************
-Get a node with the specified name, creating it if it doesn't exist
-***********************************************************/
-public static CheckasmFunc *get_func (CheckasmFunc **root, string name) {
-    CheckasmFunc *f = *root;
-
-    if (f) {
-        /***********************************************************
-        Search the tree for a matching node
-        ***********************************************************/
-        int cmp = cmp_func_names (name, f.name);
-        if (cmp) {
-            f = get_func (&f.child[cmp > 0], name);
-
-            /***********************************************************
-            Rebalance the tree on the way up if a new node was inserted
-            ***********************************************************/
-            if (!f.versions.func)
-                balance_tree (root);
-        }
-    } else {
-        /***********************************************************
-        Allocate and insert a new node into the tree
-        ***********************************************************/
-        int name_length = strlen (name);
-        f = *root = checkasm_malloc (sizeof (CheckasmFunc) + name_length);
-        memcpy (f.name, name, name_length + 1);
-    }
-
-    return f;
-}
-
-/***********************************************************
 Perform tests and benchmarks for the specified cpu flag if supported by the host
 ***********************************************************/
-public static void check_cpu_flag (string name, int flag) {
+private static void check_cpu_flag (string name, int flag) {
     int old_cpu_flag = state.cpu_flag;
 
     flag |= old_cpu_flag;
@@ -630,28 +671,31 @@ public static void check_cpu_flag (string name, int flag) {
             state.current_test_name = tests[i].name;
             tests[i].func ();
         }
+
     }
+
 }
 
 /***********************************************************
 Print the name of the current CPU flag, but only do it once
 ***********************************************************/
-public static void print_cpu_name () {
+private static void print_cpu_name () {
     if (state.cpu_flag_name) {
         color_printf (COLOR_YELLOW, "%s:\n", state.cpu_flag_name);
         state.cpu_flag_name = null;
     }
+
 }
 
 #if CONFIG_LINUX_PERF
 public static int bench_init_linux () {
     struct perf_event_attr attr = {
-        .type           = PERF_TYPE_HARDWARE,
-        .size           = sizeof (struct perf_event_attr),
-        .config         = PERF_COUNT_HW_CPU_CYCLES,
-        .disabled       = 1, // start counting only on demand
+        .type = PERF_TYPE_HARDWARE,
+        .size = sizeof (perf_event_attr),
+        .config = PERF_COUNT_HW_CPU_CYCLES,
+        .disabled = 1, // start counting only on demand
         .exclude_kernel = 1,
-        .exclude_hv     = 1,
+        .exclude_hv = 1,
     };
 
     printf ("benchmarking with Linux Perf Monitoring API\n");
@@ -661,13 +705,14 @@ public static int bench_init_linux () {
         perror ("syscall");
         return -1;
     }
+
     return 0;
 }
 #endif
 
 #if !CONFIG_LINUX_PERF
 public static int bench_init_ffmpeg () {
-#ifdef AV_READ_TIME
+#if !AV_READ_TIME
     printf ("benchmarking with native FFmpeg timers\n");
     return 0;
 #else
@@ -677,7 +722,7 @@ public static int bench_init_ffmpeg () {
 }
 #endif
 
-public static int bench_init () {
+private static int bench_init () {
 #if CONFIG_LINUX_PERF
     int ret = bench_init_linux ();
 #else
@@ -691,15 +736,16 @@ public static int bench_init () {
     return 0;
 }
 
-public static void bench_uninit () {
+private static void bench_uninit () {
 #if CONFIG_LINUX_PERF
     if (state.sysfd > 0)
         close (state.sysfd);
 #endif
 }
 
-public static int main (
-    int argc, string argv[]) {
+private static int main (
+    int argc,
+    string[] argv) {
     uint seed = av_get_random_seed ();
     int i, ret = 0;
 
@@ -747,6 +793,7 @@ public static int main (
         if (state.bench_pattern) {
             print_benchs (state.funcs);
         }
+
     }
 
     destroy_func_tree (state.funcs);
@@ -759,10 +806,10 @@ Decide whether or not the specified function needs to be tested and
 allocate/initialize data structures if needed. Returns a pointer to a
 reference function if the function should be tested, otherwise null
 ***********************************************************/
-void *checkasm_check_func (void *func, string name, ...) {
+private static void *checkasm_check_func (void *func, string name, ...) {
     char name_buf[256];
     void *ref = func;
-    CheckasmFuncVersion *v;
+    CheckasmFuncVersion? v;
     int name_length;
     va_list arg;
 
@@ -778,7 +825,7 @@ void *checkasm_check_func (void *func, string name, ...) {
     v = &state.current_func.versions;
 
     if (v.func) {
-        CheckasmFuncVersion *prev;
+        CheckasmFuncVersion? prev;
         do {
             /***********************************************************
             Only test functions that haven't already been tested
@@ -817,7 +864,7 @@ int checkasm_bench_func () {
 /***********************************************************
 Indicate that the current test has failed
 ***********************************************************/
-void checkasm_fail_func (string msg, ...) {
+private static void checkasm_fail_func (string msg, ...) {
     if (state.current_func_ver.cpu && state.current_func_ver.ok) {
         va_list arg;
 
@@ -831,23 +878,27 @@ void checkasm_fail_func (string msg, ...) {
         state.current_func_ver.ok = 0;
         state.num_failed++;
     }
+
 }
 
 /***********************************************************
 Get the benchmark context of the current function
 ***********************************************************/
-CheckasmPerf *checkasm_get_perf_context () {
-    CheckasmPerf *perf = &state.current_func_ver.perf;
-    memset (perf, 0, sizeof (*perf));
+CheckasmPerf? checkasm_get_perf_context () {
+    CheckasmPerf? perf = &state.current_func_ver.perf;
+    memset (perf, 0, sizeof (perf));
     perf.sysfd = state.sysfd;
     return perf;
 }
 
+private static int prev_checked;
+private static int prev_failed;
+private static int max_length;
+
 /***********************************************************
 Print the outcome of all tests performed since the last time this function was called
 ***********************************************************/
-void checkasm_report (string name, ...) {
-    static int prev_checked, prev_failed, max_length;
+private static void checkasm_report (string name, ...) {
 
     if (state.num_checked > prev_checked) {
         int pad_length = max_length + 4;
@@ -867,7 +918,7 @@ void checkasm_report (string name, ...) {
         fprintf (stderr, "]\n");
 
         prev_checked = state.num_checked;
-        prev_failed  = state.num_failed;
+        prev_failed = state.num_failed;
     } else if (!state.cpu_flag) {
         /***********************************************************
         Calculate the amount of padding required to make the output vertically aligned
@@ -882,4 +933,5 @@ void checkasm_report (string name, ...) {
         if (length > max_length)
             max_length = length;
     }
+
 }

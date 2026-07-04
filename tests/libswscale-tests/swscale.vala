@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #include <inttypes.h>
 //  #include <stdarg.h>
 
-#undef HAVE_AV_CONFIG_H
+//  #undef HAVE_AV_CONFIG_H
 //  #include "libavutil/cpu.h"
 //  #include "libavutil/imgutils.h"
 //  #include "libavutil/mem.h"
@@ -35,74 +35,118 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 //  #include "libswscale/swscale.h"
 
-/* HACK Duplicated from swscale_internal.h.
-Should be removed when a cleaner pixel format system exists. */
-#define isGray (x)                      \
-    ((x) == AV_PIX_FMT_GRAY8       ||     \
-     (x) == AV_PIX_FMT_YA8         ||     \
-     (x) == AV_PIX_FMT_GRAY16BE    ||     \
-     (x) == AV_PIX_FMT_GRAY16LE    ||     \
-     (x) == AV_PIX_FMT_YA16BE      ||     \
-     (x) == AV_PIX_FMT_YA16LE)
-#define hasChroma (x)                   \
-    (!(isGray (x)                ||     \
-       (x) == AV_PIX_FMT_MONOBLACK ||     \
-       (x) == AV_PIX_FMT_MONOWHITE))
-#define isALPHA (x)                     \
-    ((x) == AV_PIX_FMT_BGR32   ||         \
-     (x) == AV_PIX_FMT_BGR32_1 ||         \
-     (x) == AV_PIX_FMT_RGB32   ||         \
-     (x) == AV_PIX_FMT_RGB32_1 ||         \
-     (x) == AV_PIX_FMT_YUVA420P)
-
-public static uint64_t getSSD (const uint8[] src1, const uint8[] src2,
-                       int stride1, int stride2, int w, int h
+/***********************************************************
+HACK Duplicated from swscale_internal.h.
+Should be removed when a cleaner pixel format system exists.
+***********************************************************/
+private static bool isGray (
+    LibAVUtil.PixelFormat pixel_format
 ) {
-    int x, y;
-    uint64_t ssd = 0;
+    return (
+        pixel_format == LibAVUtil.PixelFormat.GRAY8 ||
+        pixel_format == LibAVUtil.PixelFormat.YA8 ||
+        pixel_format == LibAVUtil.PixelFormat.GRAY16BE ||
+        pixel_format == LibAVUtil.PixelFormat.GRAY16LE ||
+        pixel_format == LibAVUtil.PixelFormat.YA16BE ||
+        pixel_format == LibAVUtil.PixelFormat.YA16LE
+    );
+
+}
+
+private static bool hasChroma (
+    LibAVUtil.PixelFormat pixel_format
+) {
+    return !(
+        isGray (
+            pixel_format
+        ) ||
+        pixel_format == LibAVUtil.PixelFormat.MONOBLACK ||
+        pixel_format == LibAVUtil.PixelFormat.MONOWHITE
+    );
+
+}
+
+private static bool isALPHA (
+    LibAVUtil.PixelFormat pixel_format
+) {
+    return (
+        pixel_format == LibAVUtil.PixelFormat.BGR32 ||
+        pixel_format == LibAVUtil.PixelFormat.BGR32_1 ||
+        pixel_format == LibAVUtil.PixelFormat.RGB32 ||
+        pixel_format == LibAVUtil.PixelFormat.RGB32_1 ||
+        pixel_format == LibAVUtil.PixelFormat.YUVA420P
+    );
+
+}
+
+private static uint64 getSSD (
+    uint8[] src1,
+    uint8[] src2,
+    int stride1,
+    int stride2,
+    int w,
+    int h
+) {
+    int x;
+    int y;
+    uint64 ssd = 0;
 
     for (y = 0; y < h; y++) {
         for (x = 0; x < w; x++) {
             int d = src1[x + y * stride1] - src2[x + y * stride2];
             ssd += d * d;
         }
+
     }
+
     return ssd;
 }
 
-struct Results {
-    uint64_t ssdY;
-    uint64_t ssdU;
-    uint64_t ssdV;
-    uint64_t ssdA;
-    uint32_t crc;
-};
+private struct Results {
+    uint64 ssdY;
+    uint64 ssdU;
+    uint64 ssdV;
+    uint64 ssdA;
+    uint32 crc;
+}
 
-// test by ref -> src -> dst -> out & compare out against ref
-// ref & out are YV12
-public static int doTest (const uint8[]  const ref[4], int refStride[4], int w, int h,
-                  enum AVPixelFormat srcFormat, enum AVPixelFormat dstFormat,
-                  int srcW, int srcH, int dstW, int dstH, int flags,
-                  struct Results *r
+private static AVPixelFormat cur_srcFormat;
+private static int cur_srcW;
+private static int cur_srcH;
+private static uint8[] src[4];
+private static int srcStride[4];
+
+// test by ref_data . src . dst . out & compare out against ref_data
+// ref_data & out are YV12
+public static int doTest (
+    uint8[] ref_data[4],
+    int refStride[4],
+    int w,
+    int h,
+    AVPixelFormat srcFormat,
+    AVPixelFormat dstFormat,
+    int srcW,
+    int srcH,
+    int dstW,
+    int dstH,
+    int flags,
+    Results? r
 ) {
-    const AVPixFmtDescriptor *desc_yuva420p = av_pix_fmt_desc_get (AV_PIX_FMT_YUVA420P);
-    const AVPixFmtDescriptor *desc_src      = av_pix_fmt_desc_get (srcFormat);
-    const AVPixFmtDescriptor *desc_dst      = av_pix_fmt_desc_get (dstFormat);
-    static enum AVPixelFormat cur_srcFormat;
-    static int cur_srcW, cur_srcH;
-    static const uint8[] src[4];
-    static int srcStride[4];
+    AVPixFmtDescriptor? desc_yuva420p = av_pix_fmt_desc_get (LibAVUtil.PixelFormat.YUVA420P);
+    AVPixFmtDescriptor? desc_src = av_pix_fmt_desc_get (srcFormat);
+    AVPixFmtDescriptor? desc_dst = av_pix_fmt_desc_get (dstFormat);
     uint8[] dst[4] = { 0 };
-    uint8[] out[4] = { 0 };
+    uint8[] out_data[4] = { 0 };
     int dstStride[4] = {0};
     int i;
-    uint64_t ssdY, ssdU = 0, ssdV = 0, ssdA = 0;
-    struct SwsContext *dstContext = null, *outContext = null;
-    uint32_t crc = 0;
-    int res      = 0;
+    uint64 ssdY, ssdU = 0, ssdV = 0, ssdA = 0;
+    SwsContext? dstContext = null;
+    SwsContext? outContext = null;
+    uint32 crc = 0;
+    int res = 0;
 
     if (cur_srcFormat != srcFormat || cur_srcW != srcW || cur_srcH != srcH) {
-        struct SwsContext *srcContext = null;
+        SwsContext? srcContext = null;
         int p;
 
         for (p = 0; p < 4; p++)
@@ -111,8 +155,9 @@ public static int doTest (const uint8[]  const ref[4], int refStride[4], int w, 
         res = av_image_fill_linesizes (srcStride, srcFormat, srcW);
         if (res < 0) {
             fprintf (stderr, "av_image_fill_linesizes failed\n");
-            goto end;
+            //  goto end;
         }
+
         for (p = 0; p < 4; p++) {
             srcStride[p] = FFALIGN (srcStride[p], 16);
             if (srcStride[p])
@@ -120,40 +165,47 @@ public static int doTest (const uint8[]  const ref[4], int refStride[4], int w, 
             if (srcStride[p] && !src[p]) {
                 perror ("Malloc");
                 res = -1;
-                goto end;
+                //  goto end;
             }
+
         }
-        srcContext = sws_getContext (w, h, AV_PIX_FMT_YUVA420P, srcW, srcH,
-                                    srcFormat, SWS_BILINEAR, null, null, null);
+
+        srcContext = sws_getContext (w, h, LibAVUtil.PixelFormat.YUVA420P, srcW, srcH,
+                                    srcFormat, LibSoftwareScale.SoftwareScaleFlags.BILINEAR, null, null, null);
         if (!srcContext) {
-            fprintf (stderr, "Failed to get %s ---> %s\n",
-                    desc_yuva420p->name,
-                    desc_src->name);
+            fprintf (stderr, "Failed to get %s --. %s\n",
+                    desc_yuva420p.name,
+                    desc_src.name);
             res = -1;
-            goto end;
+            //  goto end;
         }
-        sws_scale (srcContext, ref, refStride, 0, h,
-                  (uint8[]  const *) src, srcStride);
+
+        sws_scale (srcContext, ref_data, refStride, 0, h,
+                  (uint8[][]) src, srcStride);
         sws_freeContext (srcContext);
 
         cur_srcFormat = srcFormat;
-        cur_srcW      = srcW;
-        cur_srcH      = srcH;
+        cur_srcW = srcW;
+        cur_srcH = srcH;
     }
 
     res = av_image_fill_linesizes (dstStride, dstFormat, dstW);
     if (res < 0) {
         fprintf (stderr, "av_image_fill_linesizes failed\n");
-        goto end;
+        //  goto end;
     }
 
     for (i = 0; i < 4; i++) {
-        /* Image buffers passed into libswscale can be allocated any way you
-         * prefer, as long as they're aligned enough for the architecture, and
-         * they're freed appropriately (such as using av_free for buffers
-         * allocated with av_malloc). */
-        /* An extra 16 bytes is being allocated because some scalers may write
-         * out of bounds. */
+        /***********************************************************
+        Image buffers passed into libswscale can be allocated any way you
+        prefer, as long as they're aligned enough for the architecture, and
+        they're freed appropriately (such as using av_free for buffers
+        allocated with av_malloc).
+        ***********************************************************/
+        /***********************************************************
+        An extra 16 bytes is being allocated because some scalers may write
+        out of bounds.
+        ***********************************************************/
         dstStride[i] = FFALIGN (dstStride[i], 16);
         if (dstStride[i])
             dst[i] = av_mallocz (dstStride[i] * dstH + 16);
@@ -161,70 +213,75 @@ public static int doTest (const uint8[]  const ref[4], int refStride[4], int w, 
             perror ("Malloc");
             res = -1;
 
-            goto end;
+            //  goto end;
         }
+
     }
 
     dstContext = sws_getContext (srcW, srcH, srcFormat, dstW, dstH, dstFormat,
                                 flags, null, null, null);
     if (!dstContext) {
-        fprintf (stderr, "Failed to get %s ---> %s\n",
-                desc_src->name, desc_dst->name);
+        fprintf (stderr, "Failed to get %s --. %s\n",
+                desc_src.name, desc_dst.name);
         res = -1;
-        goto end;
+        //  goto end;
     }
 
-    printf (" %s %dx%d -> %s %3dx%3d flags=%2d",
-           desc_src->name, srcW, srcH,
-           desc_dst->name, dstW, dstH,
+    printf (" %s %dx%d . %s %3dx%3d flags=%2d",
+           desc_src.name, srcW, srcH,
+           desc_dst.name, dstW, dstH,
            flags);
     fflush (stdout);
 
-    sws_scale (dstContext, (const uint8[]  const*)src, srcStride, 0, srcH, dst, dstStride);
+    sws_scale (dstContext, (uint8[][])src, srcStride, 0, srcH, dst, dstStride);
 
     for (i = 0; i < 4 && dstStride[i]; i++)
         crc = av_crc (av_crc_get_table (AV_CRC_32_IEEE), crc, dst[i],
                      dstStride[i] * dstH);
 
-    if (r && crc == r->crc) {
-        ssdY = r->ssdY;
-        ssdU = r->ssdU;
-        ssdV = r->ssdV;
-        ssdA = r->ssdA;
+    if (r && crc == r.crc) {
+        ssdY = r.ssdY;
+        ssdU = r.ssdU;
+        ssdV = r.ssdV;
+        ssdA = r.ssdA;
     } else {
         for (i = 0; i < 4; i++) {
             refStride[i] = FFALIGN (refStride[i], 16);
             if (refStride[i])
-                out[i] = av_mallocz (refStride[i] * h);
-            if (refStride[i] && !out[i]) {
+                out_data[i] = av_mallocz (refStride[i] * h);
+            if (refStride[i] && !out_data[i]) {
                 perror ("Malloc");
                 res = -1;
-                goto end;
+                //  goto end;
             }
+
         }
+
         outContext = sws_getContext (dstW, dstH, dstFormat, w, h,
-                                    AV_PIX_FMT_YUVA420P, SWS_BILINEAR,
+                                    LibAVUtil.PixelFormat.YUVA420P, LibSoftwareScale.SoftwareScaleFlags.BILINEAR,
                                     null, null, null);
         if (!outContext) {
-            fprintf (stderr, "Failed to get %s ---> %s\n",
-                    desc_dst->name,
-                    desc_yuva420p->name);
+            fprintf (stderr, "Failed to get %s --. %s\n",
+                    desc_dst.name,
+                    desc_yuva420p.name);
             res = -1;
-            goto end;
+            //  goto end;
         }
-        sws_scale (outContext, (const uint8[]  const *) dst, dstStride, 0, dstH,
-                  out, refStride);
 
-        ssdY = getSSD (ref[0], out[0], refStride[0], refStride[0], w, h);
+        sws_scale (outContext, (uint8[][]) dst, dstStride, 0, dstH,
+                  out_data, refStride);
+
+        ssdY = getSSD (ref_data[0], out_data[0], refStride[0], refStride[0], w, h);
         if (hasChroma (srcFormat) && hasChroma (dstFormat)) {
             //FIXME check that output is really gray
-            ssdU = getSSD (ref[1], out[1], refStride[1], refStride[1],
+            ssdU = getSSD (ref_data[1], out_data[1], refStride[1], refStride[1],
                           (w + 1) >> 1, (h + 1) >> 1);
-            ssdV = getSSD (ref[2], out[2], refStride[2], refStride[2],
+            ssdV = getSSD (ref_data[2], out_data[2], refStride[2], refStride[2],
                           (w + 1) >> 1, (h + 1) >> 1);
         }
+
         if (isALPHA (srcFormat) && isALPHA (dstFormat))
-            ssdA = getSSD (ref[3], out[3], refStride[3], refStride[3], w, h);
+            ssdA = getSSD (ref_data[3], out_data[3], refStride[3], refStride[3], w, h);
 
         ssdY /= w * h;
         ssdU /= w * h / 4;
@@ -235,13 +292,13 @@ public static int doTest (const uint8[]  const ref[4], int refStride[4], int w, 
 
         for (i = 0; i < 4; i++)
             if (refStride[i])
-                av_free (out[i]);
+                av_free (out_data[i]);
     }
 
-    printf (" CRC=%08x SSD=%5"PRId64 ",%5"PRId64 ",%5"PRId64 ",%5"PRId64 "\n",
+    printf (" CRC=%08x SSD=%5PRId64 ,%5PRId64 ,%5PRId64 ,%5PRId64 \n",
            crc, ssdY, ssdU, ssdV, ssdA);
 
-end:
+//  end:
     sws_freeContext (dstContext);
 
     for (i = 0; i < 4; i++)
@@ -251,30 +308,35 @@ end:
     return res;
 }
 
-public static void selfTest (const uint8[]  const ref[4], int refStride[4],
-                     int w, int h,
-                     enum AVPixelFormat srcFormat_in,
-                     enum AVPixelFormat dstFormat_in
-) {
-    const int flags[] = { SWS_FAST_BILINEAR, SWS_BILINEAR, SWS_BICUBIC,
-                          SWS_X, SWS_POINT, SWS_AREA, 0 };
-    const int srcW   = w;
-    const int srcH   = h;
-    const int dstW[] = { srcW - srcW / 3, srcW, srcW + srcW / 3, 0 };
-    const int dstH[] = { srcH - srcH / 3, srcH, srcH + srcH / 3, 0 };
-    enum AVPixelFormat srcFormat, dstFormat;
-    const AVPixFmtDescriptor *desc_src, *desc_dst;
+private const LibSoftwareScale.SoftwareScaleFlags flags[] = {
+    LibSoftwareScale.SoftwareScaleFlags.FAST_BILINEAR, LibSoftwareScale.SoftwareScaleFlags.BILINEAR, LibSoftwareScale.SoftwareScaleFlags.BICUBIC,
+    LibSoftwareScale.SoftwareScaleFlags.X, LibSoftwareScale.SoftwareScaleFlags.POINT, LibSoftwareScale.SoftwareScaleFlags.AREA, 0
+};
 
-    for (srcFormat = srcFormat_in != AV_PIX_FMT_NONE ? srcFormat_in : 0;
-         srcFormat < AV_PIX_FMT_NB; srcFormat++) {
+private static void selfTest (
+    uint8[] ref_data[4], int refStride[4],
+    int w, int h,
+    AVPixelFormat srcFormat_in,
+    AVPixelFormat dstFormat_in
+) {
+    int srcW = w;
+    int srcH = h;
+    int dstW[] = { srcW - srcW / 3, srcW, srcW + srcW / 3, 0 };
+    int dstH[] = { srcH - srcH / 3, srcH, srcH + srcH / 3, 0 };
+    AVPixelFormat srcFormat, dstFormat;
+    AVPixFmtDescriptor? desc_src;
+    AVPixFmtDescriptor? desc_dst;
+
+    for (srcFormat = srcFormat_in != LibAVUtil.PixelFormat.NONE ? srcFormat_in : 0;
+         srcFormat < LibAVUtil.PixelFormat.NB; srcFormat++) {
         if (!sws_isSupportedInput (srcFormat) ||
             !sws_isSupportedOutput (srcFormat))
             continue;
 
         desc_src = av_pix_fmt_desc_get (srcFormat);
 
-        for (dstFormat = dstFormat_in != AV_PIX_FMT_NONE ? dstFormat_in : 0;
-             dstFormat < AV_PIX_FMT_NB; dstFormat++) {
+        for (dstFormat = dstFormat_in != LibAVUtil.PixelFormat.NONE ? dstFormat_in : 0;
+             dstFormat < LibAVUtil.PixelFormat.NB; dstFormat++) {
             int i, j, k;
             int res = 0;
 
@@ -284,69 +346,73 @@ public static void selfTest (const uint8[]  const ref[4], int refStride[4],
 
             desc_dst = av_pix_fmt_desc_get (dstFormat);
 
-            printf ("%s -> %s\n", desc_src->name, desc_dst->name);
+            printf ("%s . %s\n", desc_src.name, desc_dst.name);
             fflush (stdout);
 
             for (k = 0; flags[k] && !res; k++)
                 for (i = 0; dstW[i] && !res; i++)
                     for (j = 0; dstH[j] && !res; j++)
-                        res = doTest (ref, refStride, w, h,
+                        res = doTest (ref_data, refStride, w, h,
                                      srcFormat, dstFormat,
                                      srcW, srcH, dstW[i], dstH[j], flags[k],
                                      null);
-            if (dstFormat_in != AV_PIX_FMT_NONE)
+            if (dstFormat_in != LibAVUtil.PixelFormat.NONE)
                 break;
         }
-        if (srcFormat_in != AV_PIX_FMT_NONE)
+
+        if (srcFormat_in != LibAVUtil.PixelFormat.NONE)
             break;
     }
+
 }
 
-public static int fileTest (const uint8[]  const ref[4], int refStride[4],
-                    int w, int h, FILE *fp,
-                    enum AVPixelFormat srcFormat_in,
-                    enum AVPixelFormat dstFormat_in
+private static int fileTest (
+    uint8[] ref_data[4], int refStride[4],
+    int w, int h, FILE? fp,
+    AVPixelFormat srcFormat_in,
+    AVPixelFormat dstFormat_in
 ) {
     char buf[256];
 
     while (fgets (buf, sizeof (buf), fp)) {
-        struct Results r;
-        enum AVPixelFormat srcFormat;
+        Results r;
+        AVPixelFormat srcFormat;
         char srcStr[21];
         int srcW = 0, srcH = 0;
-        enum AVPixelFormat dstFormat;
+        AVPixelFormat dstFormat;
         char dstStr[21];
         int dstW = 0, dstH = 0;
         int flags;
         int ret;
 
         ret = sscanf (buf,
-                     " %20s %dx%d -> %20s %dx%d flags=%d CRC=%x"
-                     " SSD=%"SCNu64 ", %"SCNu64 ", %"SCNu64 ", %"SCNu64 "\n",
+                     " %20s %dx%d . %20s %dx%d flags=%d CRC=%x" +
+                     " SSD=%SCNu64 , %SCNu64 , %SCNu64 , %SCNu64 \n",
                      srcStr, &srcW, &srcH, dstStr, &dstW, &dstH,
                      &flags, &r.crc, &r.ssdY, &r.ssdU, &r.ssdV, &r.ssdA);
         if (ret != 12) {
             srcStr[0] = dstStr[0] = 0;
-            ret       = sscanf (buf, "%20s -> %20s\n", srcStr, dstStr);
+            ret = sscanf (buf, "%20s . %20s\n", srcStr, dstStr);
         }
 
         srcFormat = av_get_pix_fmt (srcStr);
         dstFormat = av_get_pix_fmt (dstStr);
 
-        if (srcFormat == AV_PIX_FMT_NONE || dstFormat == AV_PIX_FMT_NONE ||
+        if (srcFormat == LibAVUtil.PixelFormat.NONE || dstFormat == LibAVUtil.PixelFormat.NONE ||
             srcW > 8192U || srcH > 8192U || dstW > 8192U || dstH > 8192U) {
             fprintf (stderr, "malformed input file\n");
             return -1;
         }
-        if ((srcFormat_in != AV_PIX_FMT_NONE && srcFormat_in != srcFormat) ||
-            (dstFormat_in != AV_PIX_FMT_NONE && dstFormat_in != dstFormat))
+
+        if ((srcFormat_in != LibAVUtil.PixelFormat.NONE && srcFormat_in != srcFormat) ||
+            (dstFormat_in != LibAVUtil.PixelFormat.NONE && dstFormat_in != dstFormat))
             continue;
         if (ret != 12) {
             printf ("%s", buf);
             continue;
         }
 
-        doTest (ref, refStride, w, h,
+        doTest (ref_data, refStride, w, h,
                srcFormat, dstFormat,
                srcW, srcH, dstW, dstH, flags,
                &r);
@@ -355,76 +421,81 @@ public static int fileTest (const uint8[]  const ref[4], int refStride[4],
     return 0;
 }
 
-#define W 96
-#define H 96
+private const int W = 96;
+private const int H = 96;
 
-public static int main (
+private static int main (
     int argc,
     string[] argv
 ) {
-    enum AVPixelFormat srcFormat = AV_PIX_FMT_NONE;
-    enum AVPixelFormat dstFormat = AV_PIX_FMT_NONE;
-    uint8[] rgb_data   = av_malloc (W * H * 4);
-    const uint8[]  const rgb_src[4] = { rgb_data, null, null, null };
-    int rgb_stride[4]   = { 4 * W, 0, 0, 0 };
-    uint8[] data       = av_malloc (4 * W * H);
-    const uint8[]  const src[4] = { data, data + W * H, data + W * H * 2, data + W * H * 3 };
-    int stride[4]       = { W, W, W, W };
+    AVPixelFormat srcFormat = LibAVUtil.PixelFormat.NONE;
+    AVPixelFormat dstFormat = LibAVUtil.PixelFormat.NONE;
+    uint8[] rgb_data = av_malloc (W * H * 4);
+    uint8[] rgb_src[4] = { rgb_data, null, null, null };
+    int rgb_stride[4] = { 4 * W, 0, 0, 0 };
+    uint8[] data = av_malloc (4 * W * H);
+    uint8[] src[4] = { data, data + W * H, data + W * H * 2, data + W * H * 3 };
+    int stride[4] = { W, W, W, W };
     int x, y;
-    struct SwsContext *sws;
+    SwsContext? sws;
     AVLFG rand;
     int res = -1;
     int i;
-    FILE *fp = null;
+    FILE? fp = null;
 
     if (!rgb_data || !data)
         return -1;
 
     for (i = 1; i < argc; i += 2) {
         if (argv[i][0] != '-' || i + 1 == argc)
-            goto bad_option;
+            //  goto bad_option;
         if (!strcmp (argv[i], "-ref")) {
             fp = fopen (argv[i + 1], "r");
             if (!fp) {
                 fprintf (stderr, "could not open '%s'\n", argv[i + 1]);
-                goto error;
+                //  goto error;
             }
+
         } else if (!strcmp (argv[i], "-cpuflags")) {
-            unsigned flags = av_get_cpu_flags ();
+            uint flags = av_get_cpu_flags ();
             int ret = av_parse_cpu_caps (&flags, argv[i + 1]);
             if (ret < 0) {
                 fprintf (stderr, "invalid cpu flags %s\n", argv[i + 1]);
                 return ret;
             }
+
             av_force_cpu_flags (flags);
         } else if (!strcmp (argv[i], "-src")) {
             srcFormat = av_get_pix_fmt (argv[i + 1]);
-            if (srcFormat == AV_PIX_FMT_NONE) {
+            if (srcFormat == LibAVUtil.PixelFormat.NONE) {
                 fprintf (stderr, "invalid pixel format %s\n", argv[i + 1]);
                 return -1;
             }
+
         } else if (!strcmp (argv[i], "-dst")) {
             dstFormat = av_get_pix_fmt (argv[i + 1]);
-            if (dstFormat == AV_PIX_FMT_NONE) {
+            if (dstFormat == LibAVUtil.PixelFormat.NONE) {
                 fprintf (stderr, "invalid pixel format %s\n", argv[i + 1]);
                 return -1;
             }
+
         } else {
-bad_option:
+//  bad_option:
             fprintf (stderr, "bad option or argument missing (%s)\n", argv[i]);
-            goto error;
+            //  goto error;
         }
+
     }
 
-    sws = sws_getContext (W / 12, H / 12, AV_PIX_FMT_RGB32, W, H,
-                         AV_PIX_FMT_YUVA420P, SWS_BILINEAR, null, null, null);
+    sws = sws_getContext (W / 12, H / 12, LibAVUtil.PixelFormat.RGB32, W, H,
+                         LibAVUtil.PixelFormat.YUVA420P, LibSoftwareScale.SoftwareScaleFlags.BILINEAR, null, null, null);
 
     av_lfg_init (&rand, 1);
 
     for (y = 0; y < H; y++)
         for (x = 0; x < W * 4; x++)
             rgb_data[ x + y * 4 * W] = av_lfg_get (&rand);
-    sws_scale (sws, rgb_src, rgb_stride, 0, H / 12, (uint8[]  const *) src, stride);
+    sws_scale (sws, rgb_src, rgb_stride, 0, H / 12, (uint8[][]) src, stride);
     sws_freeContext (sws);
     av_free (rgb_data);
 
@@ -435,7 +506,7 @@ bad_option:
         selfTest (src, stride, W, H, srcFormat, dstFormat);
         res = 0;
     }
-error:
+//  error:
     av_free (data);
 
     return res;

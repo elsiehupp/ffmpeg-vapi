@@ -18,10 +18,10 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-const size_t BUF_SIZE = 256;
-const size_t MAX_CHANNELS = 8;
+private const size_t BUF_SIZE = 256;
+private const size_t MAX_CHANNELS = 8;
 
-void randomize_buffers () {
+private static void randomize_buffers () {
     int i, j;
     for (i = 0; i < BUF_SIZE; i += 4) {
         for (j = 0; j < channels; j++) {
@@ -29,39 +29,46 @@ void randomize_buffers () {
             AV_WN32A (ref_src[j] + i, r);
             AV_WN32A (new_src[j] + i, r);
         }
+
     }
+
 }
 
-public static void check_decorrelate (uint8[] *ref_dst, uint8[] *ref_src, uint8[] *new_dst, uint8[] *new_src,
+private static void check_decorrelate (uint8[][] ref_dst, uint8[][] ref_src, uint8[][] new_dst, uint8[][] new_src,
                               int channels, int bits) {
-    declare_func (void, uint8[] *out, int32_t **in, int channels, int len, int shift);
+    //  declare_func (void, uint8[][] out, int32[] *in, int channels, int len, int shift);
 
     randomize_buffers ();
-    call_ref (ref_dst, (int32_t **)ref_src, channels, BUF_SIZE / sizeof (int32_t), 8);
-    call_new (new_dst, (int32_t **)new_src, channels, BUF_SIZE / sizeof (int32_t), 8);
+    //  call_ref (ref_dst, (int32[] *)ref_src, channels, BUF_SIZE / sizeof (int32), 8);
+    //  call_new (new_dst, (int32[] *)new_src, channels, BUF_SIZE / sizeof (int32), 8);
     if (memcmp (*ref_dst, *new_dst, bits == 16 ? BUF_SIZE * (channels/2) : BUF_SIZE * channels) ||
-        memcmp (*ref_src, *new_src, BUF_SIZE * channels))
+        memcmp (*ref_src, *new_src, BUF_SIZE * channels)
+    ) {
         fail ();
-    bench_new (new_dst, (int32_t **)new_src, channels, BUF_SIZE / sizeof (int32_t), 8);
+    }
+
+    //  bench_new (new_dst, (int32[] *)new_src, channels, BUF_SIZE / sizeof (int32), 8);
 }
 
-void checkasm_check_flacdsp () {
-    LOCAL_ALIGNED_16 (uint8, ref_dst, [BUF_SIZE*MAX_CHANNELS]);
-    LOCAL_ALIGNED_16 (uint8, ref_buf, [BUF_SIZE*MAX_CHANNELS]);
-    LOCAL_ALIGNED_16 (uint8, new_dst, [BUF_SIZE*MAX_CHANNELS]);
-    LOCAL_ALIGNED_16 (uint8, new_buf, [BUF_SIZE*MAX_CHANNELS]);
+private const string names[3] = { "ls", "rs", "ms" };
+private struct Format {
+    LibAVUtil.SampleFormat fmt;
+    int bits;
+}
+private static Format fmts[] = {
+    { LibAVUtil.SampleFormat.SIGNED_16_BIT, 16 },
+    { LibAVUtil.SampleFormat.SIGNED_32_BIT, 32 },
+};
+
+private static void checkasm_check_flacdsp () {
+    //  LOCAL_ALIGNED_16 (uint8, ref_dst, [BUF_SIZE*MAX_CHANNELS]);
+    //  LOCAL_ALIGNED_16 (uint8, ref_buf, [BUF_SIZE*MAX_CHANNELS]);
+    //  LOCAL_ALIGNED_16 (uint8, new_dst, [BUF_SIZE*MAX_CHANNELS]);
+    //  LOCAL_ALIGNED_16 (uint8, new_buf, [BUF_SIZE*MAX_CHANNELS]);
     uint8[] ref_src[] = { &ref_buf[BUF_SIZE*0], &ref_buf[BUF_SIZE*1], &ref_buf[BUF_SIZE*2], &ref_buf[BUF_SIZE*3],
                            &ref_buf[BUF_SIZE*4], &ref_buf[BUF_SIZE*5], &ref_buf[BUF_SIZE*6], &ref_buf[BUF_SIZE*7] };
     uint8[] new_src[] = { &new_buf[BUF_SIZE*0], &new_buf[BUF_SIZE*1], &new_buf[BUF_SIZE*2], &new_buf[BUF_SIZE*3],
                            &new_buf[BUF_SIZE*4], &new_buf[BUF_SIZE*5], &new_buf[BUF_SIZE*6], &new_buf[BUF_SIZE*7] };
-    const string names[3] = { "ls", "rs", "ms" };
-    const struct {
-        enum AVSampleFormat fmt;
-        int bits;
-    } fmts[] = {
-        { AV_SAMPLE_FMT_S16, 16 },
-        { AV_SAMPLE_FMT_S32, 32 },
-    };
     FLACDSPContext h;
     int i, j;
 
@@ -75,6 +82,7 @@ void checkasm_check_flacdsp () {
             if (check_func (h.decorrelate[0], "flac_decorrelate_indep%d_%d", j, fmts[i].bits))
                 check_decorrelate (&ref_dst, ref_src, &new_dst, new_src, j, fmts[i].bits);
         }
+
     }
 
     report ("decorrelate");

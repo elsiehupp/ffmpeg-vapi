@@ -19,9 +19,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public static char buffer[20];
+private static char buffer[20];
 
-const string ret_str (int v) {
+private static string ret_str (int v) {
     switch (v) {
     case AVERROR_EOF:     return "-EOF";
     case AVERROR (EIO):    return "-EIO";
@@ -31,21 +31,23 @@ const string ret_str (int v) {
         snprintf (buffer, sizeof (buffer), "%2d", v);
         return buffer;
     }
+
 }
 
-public static void ts_str (char buffer[60], int64 ts, AVRational base) {
+private static void ts_str (char buffer[60], int64 ts, LibAVUtil.Rational base) {
     if (ts == AV_NOPTS_VALUE) {
         strcpy (buffer, " NOPTS   ");
         return;
     }
-    ts= av_rescale_q (ts, base, (AVRational){1, 1000000});
-    snprintf (buffer, 60, "%c%"PRId64".%06"PRId64"", ts<0 ? '-' : ' ', FFABS (ts)/1000000, FFABS (ts)%1000000);
+
+    ts= av_rescale_q (ts, base, new LibAVUtil.Rational () {numerator = 1, denominator = 1000000});
+    snprintf (buffer, 60, "%c%PRId64.%06PRId64", ts<0 ? '-' : ' ', FFABS (ts)/1000000, FFABS (ts)%1000000);
 }
 
-public static int main (
+private static int main (
     int argc,
     string[] argv) {
-    const string filename;
+    string filename;
     AVFormatContext? ic = avformat_alloc_context ();
     int i, ret, stream_id;
     int j;
@@ -70,18 +72,20 @@ public static int main (
             if (atoi (argv[i+1])) {
                 ic.flags |= AVFMT_FLAG_FAST_SEEK;
             }
+
         } else if (argv[i][0] == '-' && argv[i+1]) {
             av_dict_set (&format_opts, argv[i] + 1, argv[i+1], 0);
         } else {
             argc = 1;
         }
+
     }
 
     av_dict_set (&format_opts, "channels", "1", 0);
     av_dict_set (&format_opts, "sample_rate", "22050", 0);
 
     if (argc < 2) {
-        printf ("usage: %s input_file\n"
+        printf ("usage: %s input_file\n" +
                "\n", argv[0]);
         return 1;
     }
@@ -105,25 +109,29 @@ public static int main (
         if (firstback)   avformat_seek_file (ic, -1, INT64_MIN, seekfirst, seekfirst, 0);
         else            avformat_seek_file (ic, -1, seekfirst, seekfirst, INT64_MAX, 0);
     }
+
     for (i=0; ; i++){
         AVPacket pkt = { 0 };
-        AVStream? av_uninit (st);
+        //  AVStream? av_uninit (st);
         char ts_buf[60];
 
         if (ret>=0){
             for (j=0; j<frame_count; j++) {
-            ret= av_read_frame (ic, &pkt);
-            if (ret>=0){
-                char dts_buf[60];
-                st= ic.streams[pkt.stream_index];
-                ts_str (dts_buf, pkt.dts, st.time_base);
-                ts_str (ts_buf,  pkt.pts, st.time_base);
-                printf ("ret:%-10s st:%2d flags:%d dts:%s pts:%s pos:%7" PRId64 " size:%6d", ret_str (ret), pkt.stream_index, pkt.flags, dts_buf, ts_buf, pkt.pos, pkt.size);
-                av_packet_unref (&pkt);
-            } else
-                printf ("ret:%s", ret_str (ret)); // necessary to avoid trailing whitespace
-            printf ("\n");
+                ret = av_read_frame (ic, &pkt);
+                if (ret >= 0) {
+                    char dts_buf[60];
+                    st = ic.streams[pkt.stream_index];
+                    ts_str (dts_buf, pkt.dts, st.time_base);
+                    ts_str (ts_buf, pkt.pts, st.time_base);
+                    printf ("ret:%-10s st:%2d flags:%d dts:%s pts:%s pos:%7 PRId64  size:%6d", ret_str (ret), pkt.stream_index, pkt.flags, dts_buf, ts_buf, pkt.pos, pkt.size);
+                    av_packet_unref (&pkt);
+                } else {
+                    printf ("ret:%s", ret_str (ret)); // necessary to avoid trailing whitespace
+                }
+
+                printf ("\n");
             }
+
         }
 
         if (i>25) break;
@@ -134,6 +142,7 @@ public static int main (
             st= ic.streams[stream_id];
             timestamp= av_rescale_q (timestamp, AV_TIME_BASE_Q, st.time_base);
         }
+
         //FIXME fully test the new seek API
         if (i&1) ret = avformat_seek_file (ic, stream_id, INT64_MIN, timestamp, timestamp, 0);
         else    ret = avformat_seek_file (ic, stream_id, timestamp, timestamp, INT64_MAX, 0);

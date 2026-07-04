@@ -102,7 +102,7 @@ cleanup.
 The minimum information required to open a file is its URL, which
 is passed to avformat_open_input (), as in the following code:
 @code
-const char url = "file:in.mp3";
+string url = "file:in.mp3";
 LibAVFormat.FormatContext format_context = NULL;
 public int ret = avformat_open_input (&format_context, url, NULL, NULL);
 if (ret < 0)
@@ -3936,7 +3936,7 @@ meant to be passed to av_codec_get_id ()/av_codec_get_tag () as in the
 following code:
 @code
 uint32 tag = MKTAG ('H', '2', '6', '4');
-const struct AVCodecTag table[] = { avformat_get_riff_video_tags (), 0 }
+AVCodecTag table[] = { avformat_get_riff_video_tags (), 0 }
 LibAVCodec.CodecID id = av_codec_get_id (table, tag);
 @endcode
 ***********************************************************/

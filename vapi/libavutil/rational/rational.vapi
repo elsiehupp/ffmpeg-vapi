@@ -34,7 +34,7 @@
 #include "attributes.h"
 
 /**
- * @defgroup lavu_math_rational AVRational
+ * @defgroup lavu_math_rational LibAVUtil.Rational
  * @ingroup lavu_math
  * Rational number calculation.
  *
@@ -45,7 +45,7 @@
  * interface for manipulating rational numbers as pairs of numerators and
  * denominators.
  *
- * Many of the functions that operate on AVRational's have the suffix `_q`, in
+ * Many of the functions that operate on LibAVUtil.Rational's have the suffix `_q`, in
  * reference to the mathematical symbol "ℚ" (Q) which denotes the set of all
  * rational numbers.
  *
@@ -55,22 +55,22 @@
 /**
  * Rational number (pair of numerator and denominator).
  */
-typedef struct AVRational{
+public struct LibAVUtil.Rational{
     int num; ///< Numerator
     int den; ///< Denominator
-} AVRational;
+} LibAVUtil.Rational;
 
 /**
- * Create an AVRational.
+ * Create an LibAVUtil.Rational.
  *
  * Useful for compilers that do not support compound literals.
  *
  * @note The return value is not reduced.
  * @see av_reduce()
  */
-static inline AVRational av_make_q(int num, int den)
+static inline LibAVUtil.Rational av_make_q(int num, int den)
 {
-    AVRational r = { num, den };
+    LibAVUtil.Rational r = { num, den };
     return r;
 }
 
@@ -86,7 +86,7 @@ static inline AVRational av_make_q(int num, int den)
  *         - -1 if `a < b`
  *         - `INT_MIN` if one of the values is of the form `0 / 0`
  */
-static inline int av_cmp_q(AVRational a, AVRational b){
+static inline int av_cmp_q(LibAVUtil.Rational a, LibAVUtil.Rational b){
     const int64_t tmp= a.num * (int64_t)b.den - b.num * (int64_t)a.den;
 
     if(tmp) return (int)((tmp ^ a.den ^ b.den)>>63)|1;
@@ -96,12 +96,12 @@ static inline int av_cmp_q(AVRational a, AVRational b){
 }
 
 /**
- * Convert an AVRational to a `double`.
- * @param a AVRational to convert
+ * Convert an LibAVUtil.Rational to a `double`.
+ * @param a LibAVUtil.Rational to convert
  * @return `a` in floating-point form
  * @see av_d2q()
  */
-static inline double av_q2d(AVRational a){
+static inline double av_q2d(LibAVUtil.Rational a){
     return a.num / (double) a.den;
 }
 
@@ -125,7 +125,7 @@ int av_reduce(int *dst_num, int *dst_den, int64_t num, int64_t den, int64_t max)
  * @param c Second rational
  * @return b*c
  */
-AVRational av_mul_q(AVRational b, AVRational c) av_const;
+LibAVUtil.Rational av_mul_q(LibAVUtil.Rational b, LibAVUtil.Rational c) av_const;
 
 /**
  * Divide one rational by another.
@@ -133,7 +133,7 @@ AVRational av_mul_q(AVRational b, AVRational c) av_const;
  * @param c Second rational
  * @return b/c
  */
-AVRational av_div_q(AVRational b, AVRational c) av_const;
+LibAVUtil.Rational av_div_q(LibAVUtil.Rational b, LibAVUtil.Rational c) av_const;
 
 /**
  * Add two rationals.
@@ -141,7 +141,7 @@ AVRational av_div_q(AVRational b, AVRational c) av_const;
  * @param c Second rational
  * @return b+c
  */
-AVRational av_add_q(AVRational b, AVRational c) av_const;
+LibAVUtil.Rational av_add_q(LibAVUtil.Rational b, LibAVUtil.Rational c) av_const;
 
 /**
  * Subtract one rational from another.
@@ -149,16 +149,16 @@ AVRational av_add_q(AVRational b, AVRational c) av_const;
  * @param c Second rational
  * @return b-c
  */
-AVRational av_sub_q(AVRational b, AVRational c) av_const;
+LibAVUtil.Rational av_sub_q(LibAVUtil.Rational b, LibAVUtil.Rational c) av_const;
 
 /**
  * Invert a rational.
  * @param q value
  * @return 1 / q
  */
-static av_always_inline AVRational av_inv_q(AVRational q)
+static av_always_inline LibAVUtil.Rational av_inv_q(LibAVUtil.Rational q)
 {
-    AVRational r = { q.den, q.num };
+    LibAVUtil.Rational r = { q.den, q.num };
     return r;
 }
 
@@ -174,10 +174,10 @@ static av_always_inline AVRational av_inv_q(AVRational q)
  *
  * @param d   `double` to convert
  * @param max Maximum allowed numerator and denominator
- * @return `d` in AVRational form
+ * @return `d` in LibAVUtil.Rational form
  * @see av_q2d()
  */
-AVRational av_d2q(double d, int max) av_const;
+LibAVUtil.Rational av_d2q(double d, int max) av_const;
 
 /**
  * Find which of the two rationals is closer to another rational.
@@ -190,7 +190,7 @@ AVRational av_d2q(double d, int max) av_const;
  *         - -1 if `q2` is nearer to `q` than `q1`
  *         - 0 if they have the same distance
  */
-int av_nearer_q(AVRational q, AVRational q1, AVRational q2);
+int av_nearer_q(LibAVUtil.Rational q, LibAVUtil.Rational q1, LibAVUtil.Rational q2);
 
 /**
  * Find the value in a list of rationals nearest a given reference rational.
@@ -199,10 +199,10 @@ int av_nearer_q(AVRational q, AVRational q1, AVRational q2);
  * @param q_list Array of rationals terminated by `{0, 0}`
  * @return Index of the nearest value found in the array
  */
-int av_find_nearest_q_idx(AVRational q, const AVRational* q_list);
+int av_find_nearest_q_idx(LibAVUtil.Rational q, const LibAVUtil.Rational* q_list);
 
 /**
- * Convert an AVRational to a IEEE 32-bit `float` expressed in fixed-point
+ * Convert an LibAVUtil.Rational to a IEEE 32-bit `float` expressed in fixed-point
  * format.
  *
  * @param q Rational to be converted
@@ -210,13 +210,13 @@ int av_find_nearest_q_idx(AVRational q, const AVRational* q_list);
  *         integer.
  * @note The returned value is platform-indepedant.
  */
-uint32_t av_q2intfloat(AVRational q);
+uint32_t av_q2intfloat(LibAVUtil.Rational q);
 
 /**
  * Return the best rational so that a and b are multiple of it.
  * If the resulting denominator is larger than max_den, return def.
  */
-AVRational av_gcd_q(AVRational a, AVRational b, int max_den, AVRational def);
+LibAVUtil.Rational av_gcd_q(LibAVUtil.Rational a, LibAVUtil.Rational b, int max_den, LibAVUtil.Rational def);
 
 /**
  * @}

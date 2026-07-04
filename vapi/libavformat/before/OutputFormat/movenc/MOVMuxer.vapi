@@ -605,7 +605,7 @@ static const AVCodecTag codec_3gp_tags[] = {
 
 };
 
-const AVCodecTag codec_mp4_tags[] = {
+private const AVCodecTag codec_mp4_tags[] = {
     new AVCodecTag () {
         codec_id = LibAVCodec.CodecID.MPEG4,
         tag = MKTAG (
@@ -883,7 +883,7 @@ const AVCodecTag codec_mp4_tags[] = {
 
 };
 
-const AVCodecTag codec_ism_tags[] = {
+private const AVCodecTag codec_ism_tags[] = {
     new AVCodecTag () {
         codec_id = LibAVCodec.CodecID.WMAPRO,
         tag = MKTAG (

@@ -2922,7 +2922,7 @@ sizeof(AVCodecContext) must not be used outside libav*.
 ***********************************************************/
 
 [CCode (cname="struct AVCodecContext",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-typedef struct AVCodecContext {
+public struct AVCodecContext {
     /**
      * information on struct for av_log
      * - set by avcodec_alloc_context3
@@ -3110,7 +3110,7 @@ typedef struct AVCodecContext {
     LibAVUtil.Rational sample_aspect_ratio;
 
     /**
-     * Pixel format, see AV_PIX_FMT_xxx.
+     * Pixel format, see LibAVUtil.PixelFormat.xxx.
      * May be set by the demuxer if known from headers.
      * May be overridden by the decoder if it knows better.
      *
@@ -3125,7 +3125,7 @@ typedef struct AVCodecContext {
     enum AVPixelFormat pix_fmt;
 
     /**
-     * Nominal unaccelerated pixel format, see AV_PIX_FMT_xxx.
+     * Nominal unaccelerated pixel format, see LibAVUtil.PixelFormat.xxx.
      * - encoding: unused.
      * - decoding: Set by libavcodec before calling get_format()
      */
@@ -3223,7 +3223,7 @@ typedef struct AVCodecContext {
      * @param type 1->top field, 2->bottom field, 3->frame
      * @param offset offset into the AVFrame.data from which the slice should be read
      */
-    void (*draw_horiz_band)(struct AVCodecContext *s,
+    void (*draw_horiz_band)(AVCodecContext *s,
                             const AVFrame *src, int offset[AV_NUM_DATA_POINTERS],
                             int y, int type, int height);
 
@@ -3247,12 +3247,12 @@ typedef struct AVCodecContext {
      * multi-threaded, but not from more than one thread simultaneously.
      *
      * @param fmt list of formats which may be used in the current
-     *            configuration, terminated by AV_PIX_FMT_NONE.
+     *            configuration, terminated by LibAVUtil.PixelFormat.NONE.
      * @warning Behavior is undefined if the callback returns a value other
-     *          than one of the formats in fmt or AV_PIX_FMT_NONE.
-     * @return the chosen format or AV_PIX_FMT_NONE
+     *          than one of the formats in fmt or LibAVUtil.PixelFormat.NONE.
+     * @return the chosen format or LibAVUtil.PixelFormat.NONE
      */
-    enum AVPixelFormat (*get_format)(struct AVCodecContext *s, const enum AVPixelFormat * fmt);
+    enum AVPixelFormat (*get_format)(AVCodecContext *s, const enum AVPixelFormat * fmt);
 
     /**
      * maximum number of B-frames between non-B-frames
@@ -3526,7 +3526,7 @@ typedef struct AVCodecContext {
      * - encoding: Set by user.
      * - decoding: Set by libavcodec.
      */
-    enum AVSampleFormat sample_fmt;  ///< sample format
+    enum LibAVUtil.SampleFormat sample_fmt;  ///< sample format
 
     /**
      * Audio channel layout.
@@ -3574,7 +3574,7 @@ typedef struct AVCodecContext {
      * - decoding: Set by user.
      * Decoder will decode to this format if it can.
      */
-    enum AVSampleFormat request_sample_fmt;
+    enum LibAVUtil.SampleFormat request_sample_fmt;
 
     /**
      * Audio only. The number of "priming" samples (padding) inserted by the
@@ -3695,7 +3695,7 @@ typedef struct AVCodecContext {
      * - encoding: unused
      * - decoding: Set by libavcodec, user can override.
      */
-    int (*get_buffer2)(struct AVCodecContext *s, AVFrame *frame, int flags);
+    int (*get_buffer2)(AVCodecContext *s, AVFrame *frame, int flags);
 
     /* - encoding parameters */
     /**
@@ -4086,7 +4086,7 @@ typedef struct AVCodecContext {
      * - encoding: Set by libavcodec, user can override.
      * - decoding: Set by libavcodec, user can override.
      */
-    int (*execute)(struct AVCodecContext *c, int (*func)(struct AVCodecContext *c2, void *arg), void *arg2, int *ret, int count, int size);
+    int (*execute)(AVCodecContext *c, int (*func)(AVCodecContext *c2, void *arg), void *arg2, int *ret, int count, int size);
 
     /**
      * The codec may call this to execute several independent things.
@@ -4105,7 +4105,7 @@ typedef struct AVCodecContext {
      * - encoding: Set by libavcodec, user can override.
      * - decoding: Set by libavcodec, user can override.
      */
-    int (*execute2)(struct AVCodecContext *c, int (*func)(struct AVCodecContext *c2, void *arg, int jobnr, int threadnr), void *arg2, int *ret, int count);
+    int (*execute2)(AVCodecContext *c, int (*func)(AVCodecContext *c2, void *arg, int jobnr, int threadnr), void *arg2, int *ret, int count);
 
     /**
      * profile
@@ -4362,7 +4362,7 @@ typedef struct AVCodecContext {
      * - encoding: Set by libavcodec, user can override.
      * - decoding: unused
      */
-    int (*get_encode_buffer)(struct AVCodecContext *s, AVPacket *pkt, int flags);
+    int (*get_encode_buffer)(AVCodecContext *s, AVPacket *pkt, int flags);
 
     /**
      * Frame counter, set by libavcodec.

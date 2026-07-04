@@ -34,95 +34,112 @@ AVIOContext read callback.
 //  #include <libavutil/file.h>
 //  #include <libavutil/mem.h>
 
-struct buffer_data {
-    uint8_t[] ptr;
+private struct BufferData {
+    uint8[] ptr;
     size_t size; ///< size left in the buffer
-};
+}
 
-public static int read_packet (void *opaque, uint8[] buf, int buf_size
+private static int read_packet (
+    void *opaque,
+    uint8[] buf, int
+    buf_size
 ) {
-    struct buffer_data *bd = (struct buffer_data *)opaque;
-    buf_size = FFMIN (buf_size, bd->size);
+    BufferData? bd = (BufferData? )opaque;
+    buf_size = FFMIN (buf_size, bd.size);
 
     if (!buf_size)
         return AVERROR_EOF;
-    printf ("ptr:%p size:%zu\n", bd->ptr, bd->size);
+    printf ("ptr:%p size:%zu\n", bd.ptr, bd.size);
 
-    /* copy internal buffer data to buf */
-    memcpy (buf, bd->ptr, buf_size);
-    bd->ptr  += buf_size;
-    bd->size -= buf_size;
+    /***********************************************************
+    copy internal buffer data to buf
+    ***********************************************************/
+    memcpy (buf, bd.ptr, buf_size);
+    bd.ptr  += buf_size;
+    bd.size -= buf_size;
 
     return buf_size;
 }
 
-public static int main (
-    int argc, string argv[]
+private static int main (
+    int argc,
+    string[] argv
 ) {
     AVFormatContext? fmt_ctx = null;
     AVIOContext? avio_ctx = null;
-    uint8_t[] buffer = null,[] avio_ctx_buffer = null;
-    size_t buffer_size, avio_ctx_buffer_size = 4096;
+    uint8[] buffer = null;
+    uint8[] avio_ctx_buffer = null;
+    size_t buffer_size;
+    size_t avio_ctx_buffer_size = 4096;
     string input_filename = null;
     int ret = 0;
-    struct buffer_data bd = { 0 };
+    BufferData bd = { 0 };
 
     if (argc != 2) {
-        fprintf (stderr, "usage: %s input_file\n"
-                "API example program to show how to read from a custom buffer "
+        fprintf (stderr, "usage: %s input_file\n" +
+                "API example program to show how to read from a custom buffer " +
                 "accessed through AVIOContext.\n", argv[0]);
         return 1;
     }
+
     input_filename = argv[1];
 
-    /* slurp file content into buffer */
+    /***********************************************************
+    slurp file content into buffer
+    ***********************************************************/
     ret = av_file_map (input_filename, &buffer, &buffer_size, 0, null);
     if (ret < 0)
-        goto end;
+        //  goto end;
 
-    /* fill opaque structure used by the AVIOContext read callback */
-    bd.ptr  = buffer;
+    /***********************************************************
+    fill opaque structure used by the AVIOContext read callback
+    ***********************************************************/
+    bd.ptr = buffer;
     bd.size = buffer_size;
 
     if (!(fmt_ctx = avformat_alloc_context ())) {
         ret = AVERROR (ENOMEM);
-        goto end;
+        //  goto end;
     }
 
     avio_ctx_buffer = av_malloc (avio_ctx_buffer_size);
     if (!avio_ctx_buffer) {
         ret = AVERROR (ENOMEM);
-        goto end;
+        //  goto end;
     }
+
     avio_ctx = avio_alloc_context (avio_ctx_buffer, avio_ctx_buffer_size,
                                   0, &bd, &read_packet, null, null);
     if (!avio_ctx) {
         av_freep (&avio_ctx_buffer);
         ret = AVERROR (ENOMEM);
-        goto end;
+        //  goto end;
     }
-    fmt_ctx->pb = avio_ctx;
+
+    fmt_ctx.pb = avio_ctx;
 
     ret = avformat_open_input (&fmt_ctx, null, null, null);
     if (ret < 0) {
         fprintf (stderr, "Could not open input\n");
-        goto end;
+        //  goto end;
     }
 
     ret = avformat_find_stream_info (fmt_ctx, null);
     if (ret < 0) {
         fprintf (stderr, "Could not find stream information\n");
-        goto end;
+        //  goto end;
     }
 
     av_dump_format (fmt_ctx, 0, input_filename, 0);
 
-end:
+//  end:
     avformat_close_input (&fmt_ctx);
 
-    /* note: the internal buffer could have changed, and be != avio_ctx_buffer */
+    /***********************************************************
+    note: the internal buffer could have changed, and be != avio_ctx_buffer
+    ***********************************************************/
     if (avio_ctx)
-        av_freep (&avio_ctx->buffer);
+        av_freep (&avio_ctx.buffer);
     avio_context_free (&avio_ctx);
 
     av_file_unmap (buffer, buffer_size);

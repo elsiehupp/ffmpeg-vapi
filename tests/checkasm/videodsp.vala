@@ -18,30 +18,47 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-void randomize_buffers (int w, int h) {
+private static void randomize_buffers (int w, int h) {
     int i;
-    for (i = 0; i < w * h * sizeof (*src0); i += 4)
+    for (i = 0; i < w * h * sizeof (src0); i += 4)
         AV_WN32A (((uint8[] ) src0) + i, rnd ());
 }
 
-void iter_1d (type, fix, fix_val, var, var_start, var_end)
+private static void iter_1d (
+    void *type,
+    void *fix,
+    void *fix_val,
+    void *var,
+    void *var_start,
+    void *var_end
+) {
     for (fix = fix_val, var = var_start; var <= var_end; var++) {
-        call_ref ((type *) dst0, (const type *) (src0 + y * pw + x),
-                 bw * sizeof (type), pw * sizeof (type),
-                 bw, bh, x, y, pw, ph);
-        call_new ((type *) dst1, (const type *) (src1 + y * pw + x),
-                 bw * sizeof (type), pw * sizeof (type),
-                 bw, bh, x, y, pw, ph);
-        if (memcmp (dst0, dst1, bw * bh * sizeof (type)))
+        //  call_ref ((type? ) dst0, (type? ) (src0 + y * pw + x),
+        //           bw * sizeof (type), pw * sizeof (type),
+        //           bw, bh, x, y, pw, ph);
+        //  call_new ((type? ) dst1, (type? ) (src1 + y * pw + x),
+        //           bw * sizeof (type), pw * sizeof (type),
+        //           bw, bh, x, y, pw, ph);
+        if (memcmp (dst0, dst1, bw * bh * sizeof (type))) {
             fail ();
-        bench_new ((type *) dst1, (const type *) (src1 + y * pw + x),
+        }
+
+        bench_new ((type? ) dst1, (type? ) (src1 + y * pw + x),
                   bw * sizeof (type), pw * sizeof (type),
                   bw, bh, x, y, pw, ph);
     }
 
-void check_emu_edge_size (type, src_w, src_h, dst_w, dst_h) {
-    LOCAL_ALIGNED_16 (type, src0, [src_w * src_h]);
-    LOCAL_ALIGNED_16 (type, src1, [src_w * src_h]);
+}
+
+private static void check_emu_edge_size (
+    void *type,
+    void *src_w,
+    void *src_h,
+    void *dst_w,
+    void *dst_h
+) {
+    //  LOCAL_ALIGNED_16 (type, src0, [src_w * src_h]);
+    //  LOCAL_ALIGNED_16 (type, src1, [src_w * src_h]);
     int bw = dst_w, bh = dst_h;
     int pw = src_w, ph = src_h;
     int y, x;
@@ -53,22 +70,27 @@ void check_emu_edge_size (type, src_w, src_h, dst_w, dst_h) {
     iter_1d (type, x, 0 - src_w, y, 0 - src_h, src_h - 0);
 }
 
-void check_emu_edge (type) {
-    LOCAL_ALIGNED_16 (type, dst0, [64 * 64]);
-    LOCAL_ALIGNED_16 (type, dst1, [64 * 64]);
-    declare_func_emms (AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT,
-                        void, type *dst, type *src,
-                        size_t dst_linesize,
-                        size_t src_linesize,
-                        int block_w, int block_h,
-                        int src_x, int src_y,
-                        int src_w, int src_h);
-    check_emu_edge_size (type, 16,  1, 64, 64);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT,
+//      void, type? dst, type? src,
+//      size_t dst_linesize,
+//      size_t src_linesize,
+//      int block_w, int block_h,
+//      int src_x, int src_y,
+//      int src_w, int src_h
+//  );
+
+private static void check_emu_edge (
+    void *type
+) {
+    //  LOCAL_ALIGNED_16 (type, dst0, [64 * 64]);
+    //  LOCAL_ALIGNED_16 (type, dst1, [64 * 64]);
+    check_emu_edge_size (type, 16, 1, 64, 64);
     check_emu_edge_size (type, 16, 16, 64, 64);
     check_emu_edge_size (type, 64, 64, 64, 64);
 }
 
-void checkasm_check_videodsp () {
+private static void checkasm_check_videodsp () {
     VideoDSPContext vdsp;
 
     ff_videodsp_init (&vdsp, 8);

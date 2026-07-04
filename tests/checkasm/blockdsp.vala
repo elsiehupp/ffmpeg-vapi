@@ -18,37 +18,47 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-void randomize_buffers (size) {
+private static void randomize_buffers (
+    size_t size
+) {
     int i;
     for (i = 0; i < size; i++) {
         uint16 r = rnd ();
         AV_WN16A (buf0 + i, r);
         AV_WN16A (buf1 + i, r);
     }
+
 }
 
-void check_clear (void *func, size) {
-    if (check_func (h.func, "blockdsp." #func)) {
-        declare_func_emms (AV_CPU_FLAG_MMX, void, int16[] block);
-        randomize_buffers (size);
-        call_ref (buf0);
-        call_new (buf1);
-        if (memcmp (buf0, buf1, sizeof (*buf0) * size))
-            fail ();
-        bench_new (buf0);
-    }
-}
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, int16[] block);
 
-void checkasm_check_blockdsp () {
-    LOCAL_ALIGNED_32 (uint16, buf0, [6 * 8 * 8]);
-    LOCAL_ALIGNED_32 (uint16, buf1, [6 * 8 * 8]);
+//  private static void check_clear (
+//      void *func,
+//      void *size
+//  ) {
+//      if (check_func (h.func, "blockdsp." #func)) {
+//          randomize_buffers (size);
+//          //  call_ref (buf0);
+//          //  call_new (buf1);
+//          if (memcmp (buf0, buf1, sizeof (buf0) * size)) {
+//              fail ();
+//          }
+
+//          bench_new (buf0);
+//      }
+
+//  }
+
+private static void checkasm_check_blockdsp () {
+    //  LOCAL_ALIGNED_32 (uint16, buf0, [6 * 8 * 8]);
+    //  LOCAL_ALIGNED_32 (uint16, buf1, [6 * 8 * 8]);
 
     AVCodecContext avctx = { 0 };
     BlockDSPContext h;
 
     ff_blockdsp_init (&h, &avctx);
 
-    check_clear (clear_block,  8 * 8);
+    check_clear (clear_block, 8 * 8);
     check_clear (clear_blocks, 8 * 8 * 6);
 
     report ("blockdsp");

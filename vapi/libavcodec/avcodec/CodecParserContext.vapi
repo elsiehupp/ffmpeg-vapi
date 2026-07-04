@@ -366,7 +366,7 @@ public class CodecParserContext {
 @{
 ***********************************************************/
 
-typedef struct AVCodecParserContext {
+public struct AVCodecParserContext {
     void *priv_data;
     const struct AVCodecParser *parser;
     int64_t frame_offset; /* offset of the current frame */
@@ -516,7 +516,7 @@ typedef struct AVCodecParserContext {
 
     /**
      * The format of the coded data, corresponds to enum AVPixelFormat for video
-     * and for enum AVSampleFormat for audio.
+     * and for enum LibAVUtil.SampleFormat for audio.
      *
      * Note that a decoder can have considerable freedom in how exactly it
      * decodes the data, so the format reported here might be different from the
@@ -537,7 +537,7 @@ typedef struct AVCodecParserContext {
 #if FF_API_PARSER_CODECID
 AVCodecParserContext *av_parser_init(int codec_id);
 #else
-AVCodecParserContext *av_parser_init(enum AVCodecID codec_id);
+AVCodecParserContext *av_parser_init(AVCodecID codec_id);
 #endif
 
 /***********************************************************

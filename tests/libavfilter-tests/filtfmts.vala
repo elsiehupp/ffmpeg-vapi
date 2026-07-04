@@ -25,61 +25,92 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 //  #include "libavutil/pixdesc.h"
 //  #include "libavutil/samplefmt.h"
 
-#define FF_INTERNAL_FIELDS 1
+private const bool FF_INTERNAL_FIELDS = true;
 //  #include "libavfilter/framequeue.h"
 
 //  #include "libavfilter/avfilter.h"
 //  #include "libavfilter/formats.h"
 //  #include "libavfilter/internal.h"
 
-public static void print_formats (AVFilterContext? filter_ctx
+private static void print_formats (
+    AVFilterContext? filter_ctx
 ) {
     int i, j;
 
-#define PRINT_FMTS (inout, outin, INOUT)                                 \
-    for (i = 0; i < filter_ctx->nb_##inout##puts; i++) {                     \
-        if (filter_ctx->inout##puts[i]->type == AVMEDIA_TYPE_VIDEO) {   \
-            AVFilterFormats? fmts =                                     \
-                filter_ctx->inout##puts[i]->outin##_formats;            \
-            for (j = 0; j < fmts->nb_formats; j++)                    \
-                if (av_get_pix_fmt_name (fmts->formats[j]))               \
-                printf (#INOUT "PUT[%d] %s: fmt:%s\n",                   \
-                       i, avfilter_pad_get_name (filter_ctx->inout##put_pads, i),      \
-                       av_get_pix_fmt_name (fmts->formats[j]));          \
-        } else if (filter_ctx->inout##puts[i]->type == AVMEDIA_TYPE_AUDIO) { \
-            AVFilterFormats? fmts;                                      \
-            AVFilterChannelLayouts? layouts;                            \
-                                                                        \
-            fmts = filter_ctx->inout##puts[i]->outin##_formats;         \
-            for (j = 0; j < fmts->nb_formats; j++)                    \
-                printf (#INOUT "PUT[%d] %s: fmt:%s\n",                   \
-                       i, avfilter_pad_get_name (filter_ctx->inout##put_pads, i),      \
-                       av_get_sample_fmt_name (fmts->formats[j]));       \
-                                                                        \
-            layouts = filter_ctx->inout##puts[i]->outin##_channel_layouts; \
-            for (j = 0; j < layouts->nb_channel_layouts; j++) {                  \
-                char buf[256];                                          \
-                av_get_channel_layout_string (buf, sizeof (buf), -1,      \
-                                             layouts->channel_layouts[j]);         \
-                printf (#INOUT "PUT[%d] %s: chlayout:%s\n",              \
-                       i, avfilter_pad_get_name (filter_ctx->inout##put_pads, i), buf); \
-            }                                                           \
-        }                                                               \
-    }                                                                   \
+    for (i = 0; i < filter_ctx.nb_inputs; i++) {
+        if (filter_ctx.inputs[i].type == AVMEDIA_TYPE_VIDEO) {
+            AVFilterFormats? fmts = filter_ctx.inputs[i].out_formats;
+            for (j = 0; j < fmts.nb_formats; j++)
+                if (av_get_pix_fmt_name (fmts.formats[j]))
+                printf ("INPUT[%d] %s: fmt:%s\n",
+                       i, avfilter_pad_get_name (filter_ctx.input_pads, i),
+                       av_get_pix_fmt_name (fmts.formats[j]));
+        } else if (filter_ctx.inputs[i].type == AVMEDIA_TYPE_AUDIO) {
+            AVFilterFormats? fmts;
+            AVFilterChannelLayouts? layouts;
 
-    PRINT_FMTS (in,  out, IN);
-    PRINT_FMTS (out, in,  OUT);
+            fmts = filter_ctx.inputs[i].out_formats;
+            for (j = 0; j < fmts.nb_formats; j++)
+                printf ("INPUT[%d] %s: fmt:%s\n",
+                       i, avfilter_pad_get_name (filter_ctx.input_pads, i),
+                       av_get_sample_fmt_name (fmts.formats[j]));
+
+            layouts = filter_ctx.inputs[i].out_channel_layouts;
+            for (j = 0; j < layouts.nb_channel_layouts; j++) {
+                char buf[256];
+                av_get_channel_layout_string (buf, sizeof (buf), -1,
+                                             layouts.channel_layouts[j]);
+                printf ("INPUT[%d] %s: chlayout:%s\n",
+                       i, avfilter_pad_get_name (filter_ctx.input_pads, i), buf);
+            }
+
+        }
+
+    }
+
+    for (i = 0; i < filter_ctx.nb_outputs; i++) {
+        if (filter_ctx.outputs[i].type == AVMEDIA_TYPE_VIDEO) {
+            AVFilterFormats? fmts = filter_ctx.outputs[i].in_formats;
+            for (j = 0; j < fmts.nb_formats; j++)
+                if (av_get_pix_fmt_name (fmts.formats[j]))
+                printf ("OUTPUT[%d] %s: fmt:%s\n",
+                       i, avfilter_pad_get_name (filter_ctx.output_pads, i),
+                       av_get_pix_fmt_name (fmts.formats[j]));
+        } else if (filter_ctx.outputs[i].type == AVMEDIA_TYPE_AUDIO) {
+            AVFilterFormats? fmts;
+            AVFilterChannelLayouts? layouts;
+
+            fmts = filter_ctx.outputs[i].in_formats;
+            for (j = 0; j < fmts.nb_formats; j++)
+                printf ("OUTPUT[%d] %s: fmt:%s\n",
+                       i, avfilter_pad_get_name (filter_ctx.output_pads, i),
+                       av_get_sample_fmt_name (fmts.formats[j]));
+
+            layouts = filter_ctx.outputs[i].in_channel_layouts;
+            for (j = 0; j < layouts.nb_channel_layouts; j++) {
+                char buf[256];
+                av_get_channel_layout_string (buf, sizeof (buf), -1,
+                                             layouts.channel_layouts[j]);
+                printf ("OUTPUT[%d] %s: chlayout:%s\n",
+                       i, avfilter_pad_get_name (filter_ctx.output_pads, i), buf);
+            }
+
+        }
+
+    }
+
+
 }
 
-public static int main (
+private static int main (
     int argc,
     string[] argv
 ) {
-    const AVFilter? filter;
+    AVFilter? filter;
     AVFilterContext? filter_ctx;
     AVFilterGraph? graph_ctx;
-    const string filter_name;
-    const string filter_args = null;
+    string filter_name;
+    string filter_args = null;
     int i;
     int ret = 0;
 
@@ -94,59 +125,72 @@ public static int main (
     if (argc > 2)
         filter_args = argv[2];
 
-    /* allocate graph */
+    /***********************************************************
+    allocate graph
+    ***********************************************************/
     graph_ctx = avfilter_graph_alloc ();
     if (!graph_ctx)
         return 1;
 
-    /* get a corresponding filter and open it */
+    /***********************************************************
+    get a corresponding filter and open it
+    ***********************************************************/
     if (!(filter = avfilter_get_by_name (filter_name))) {
         fprintf (stderr, "Unrecognized filter with name '%s'\n", filter_name);
         return 1;
     }
 
-    /* open filter and add it to the graph */
+    /***********************************************************
+    open filter and add it to the graph
+    ***********************************************************/
     if (!(filter_ctx = avfilter_graph_alloc_filter (graph_ctx, filter, filter_name))) {
         fprintf (stderr, "Impossible to open filter with name '%s'\n",
                 filter_name);
         return 1;
     }
+
     if (avfilter_init_str (filter_ctx, filter_args) < 0) {
         fprintf (stderr, "Impossible to init filter '%s' with arguments '%s'\n",
                 filter_name, filter_args);
         return 1;
     }
 
-    /* create a link for each of the input pads */
-    for (i = 0; i < filter_ctx->nb_inputs; i++) {
+    /***********************************************************
+    create a link for each of the input pads
+    ***********************************************************/
+    for (i = 0; i < filter_ctx.nb_inputs; i++) {
         AVFilterLink? link = av_mallocz (sizeof (AVFilterLink));
         if (!link) {
             fprintf (stderr, "Unable to allocate memory for filter input link\n");
             ret = 1;
-            goto fail;
+            //  goto fail;
         }
-        link->type = avfilter_pad_get_type (filter_ctx->input_pads, i);
-        filter_ctx->inputs[i] = link;
+
+        link.type = avfilter_pad_get_type (filter_ctx.input_pads, i);
+        filter_ctx.inputs[i] = link;
     }
-    for (i = 0; i < filter_ctx->nb_outputs; i++) {
+
+    for (i = 0; i < filter_ctx.nb_outputs; i++) {
         AVFilterLink? link = av_mallocz (sizeof (AVFilterLink));
         if (!link) {
             fprintf (stderr, "Unable to allocate memory for filter output link\n");
             ret = 1;
-            goto fail;
+            //  goto fail;
         }
-        link->type = avfilter_pad_get_type (filter_ctx->output_pads, i);
-        filter_ctx->outputs[i] = link;
+
+        link.type = avfilter_pad_get_type (filter_ctx.output_pads, i);
+        filter_ctx.outputs[i] = link;
     }
 
-    if (filter->query_formats)
-        ret = filter->query_formats (filter_ctx);
-    else
+    if (filter.query_formats) {
+        ret = filter.query_formats (filter_ctx);
+    } else {
         ret = ff_default_query_formats (filter_ctx);
+    }
 
     print_formats (filter_ctx);
 
-fail:
+//  fail:
     avfilter_free (filter_ctx);
     avfilter_graph_free (&graph_ctx);
     fflush (stdout);

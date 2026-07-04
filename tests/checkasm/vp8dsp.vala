@@ -18,9 +18,14 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-const size_t PIXEL_STRIDE = 16;
+private const size_t PIXEL_STRIDE = 16;
 
-void randomize_buffers (src, dst, stride, coef) {
+private static void randomize_buffers (
+    void *src,
+    void *dst,
+    void *stride,
+    void *coef
+) {
     int x, y;
     for (y = 0; y < 4; y++) {
         AV_WN32A ((src) + y * (stride), rnd ());
@@ -29,33 +34,36 @@ void randomize_buffers (src, dst, stride, coef) {
             (coef)[y * 4 + x] = (src)[y * (stride) + x] -
                                 (dst)[y * (stride) + x];
     }
+
 }
 
-public static void dct4x4 (int16[] coef) {
+private static void dct4x4 (int16[] coef) {
     int i;
     for (i = 0; i < 4; i++) {
-        const int a1 = (coef[i*4 + 0] + coef[i*4 + 3]) * 8;
-        const int b1 = (coef[i*4 + 1] + coef[i*4 + 2]) * 8;
-        const int c1 = (coef[i*4 + 1] - coef[i*4 + 2]) * 8;
-        const int d1 = (coef[i*4 + 0] - coef[i*4 + 3]) * 8;
+        int a1 = (coef[i*4 + 0] + coef[i*4 + 3]) * 8;
+        int b1 = (coef[i*4 + 1] + coef[i*4 + 2]) * 8;
+        int c1 = (coef[i*4 + 1] - coef[i*4 + 2]) * 8;
+        int d1 = (coef[i*4 + 0] - coef[i*4 + 3]) * 8;
         coef[i*4 + 0] =  a1 + b1;
         coef[i*4 + 1] = (c1 * 2217 + d1 * 5352 + 14500) >> 12;
         coef[i*4 + 2] =  a1 - b1;
         coef[i*4 + 3] = (d1 * 2217 - c1 * 5352 +  7500) >> 12;
     }
+
     for (i = 0; i < 4; i++) {
-        const int a1 = coef[i + 0*4] + coef[i + 3*4];
-        const int b1 = coef[i + 1*4] + coef[i + 2*4];
-        const int c1 = coef[i + 1*4] - coef[i + 2*4];
-        const int d1 = coef[i + 0*4] - coef[i + 3*4];
+        int a1 = coef[i + 0*4] + coef[i + 3*4];
+        int b1 = coef[i + 1*4] + coef[i + 2*4];
+        int c1 = coef[i + 1*4] - coef[i + 2*4];
+        int d1 = coef[i + 0*4] - coef[i + 3*4];
         coef[i + 0*4] =  (a1 + b1 + 7) >> 4;
         coef[i + 1*4] = ((c1 * 2217 + d1 * 5352 + 12000) >> 16) + !!d1;
         coef[i + 2*4] =  (a1 - b1 + 7) >> 4;
         coef[i + 3*4] =  (d1 * 2217 - c1 * 5352 + 51000) >> 16;
     }
+
 }
 
-public static void wht4x4 (int16[] coef) {
+private static void wht4x4 (int16[] coef) {
     int i;
     for (i = 0; i < 4; i++) {
         int a1 = coef[0 * 4 + i];
@@ -75,6 +83,7 @@ public static void wht4x4 (int16[] coef) {
         coef[2 * 4 + i] = d1;
         coef[3 * 4 + i] = b1;
     }
+
     for (i = 0; i < 4; i++) {
         int a1 = coef[i * 4 + 0];
         int b1 = coef[i * 4 + 1];
@@ -93,19 +102,25 @@ public static void wht4x4 (int16[] coef) {
         coef[i * 4 + 2] = d1 * 2;
         coef[i * 4 + 3] = b1 * 2;
     }
+
 }
 
-public static void check_idct () {
-    LOCAL_ALIGNED_16 (uint8, src,  [4 * 4]);
-    LOCAL_ALIGNED_16 (uint8, dst,  [4 * 4]);
-    LOCAL_ALIGNED_16 (uint8, dst0, [4 * 4]);
-    LOCAL_ALIGNED_16 (uint8, dst1, [4 * 4]);
-    LOCAL_ALIGNED_16 (int16, coef, [4 * 4]);
-    LOCAL_ALIGNED_16 (int16, subcoef0, [4 * 4]);
-    LOCAL_ALIGNED_16 (int16, subcoef1, [4 * 4]);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] dst, int16[] block, size_t stride);
+
+delegate void Idct (
+    uint8[] a, int16[] b, size_t c
+);
+
+private static void check_idct () {
+    //  LOCAL_ALIGNED_16 (uint8, src, [4 * 4]);
+    //  LOCAL_ALIGNED_16 (uint8, dst, [4 * 4]);
+    //  LOCAL_ALIGNED_16 (uint8, dst0, [4 * 4]);
+    //  LOCAL_ALIGNED_16 (uint8, dst1, [4 * 4]);
+    //  LOCAL_ALIGNED_16 (int16, coef, [4 * 4]);
+    //  LOCAL_ALIGNED_16 (int16, subcoef0, [4 * 4]);
+    //  LOCAL_ALIGNED_16 (int16, subcoef1, [4 * 4]);
     VP8DSPContext d;
     int dc;
-    declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] dst, int16[] block, size_t stride);
 
     ff_vp8dsp_init (&d);
     randomize_buffers (src, dst, 4, coef);
@@ -113,7 +128,8 @@ public static void check_idct () {
     dct4x4 (coef);
 
     for (dc = 0; dc <= 1; dc++) {
-        void (*idct)(uint8[] , int16[] , size_t) = dc ? d.vp8_idct_dc_add : d.vp8_idct_add;
+
+        Idct idct = dc ? d.vp8_idct_dc_add : d.vp8_idct_add;
 
         if (check_func (idct, "vp8_idct_%sadd", dc ? "dc_" : "")) {
             if (dc) {
@@ -122,42 +138,47 @@ public static void check_idct () {
             } else {
                 memcpy (subcoef0, coef, 4 * 4 * sizeof (int16));
             }
+
             memcpy (dst0, dst, 4 * 4);
             memcpy (dst1, dst, 4 * 4);
             memcpy (subcoef1, subcoef0, 4 * 4 * sizeof (int16));
             // Note, this uses a pixel stride of 4, even though the real decoder uses a stride as a
             // multiple of 16. If optimizations want to take advantage of that, this test needs to be
             // updated to make it more like the h264dsp tests.
-            call_ref (dst0, subcoef0, 4);
-            call_new (dst1, subcoef1, 4);
+            //  call_ref (dst0, subcoef0, 4);
+            //  call_new (dst1, subcoef1, 4);
             if (memcmp (dst0, dst1, 4 * 4) ||
-                memcmp (subcoef0, subcoef1, 4 * 4 * sizeof (int16)))
+                memcmp (subcoef0, subcoef1, 4 * 4 * sizeof (int16))) {
                 fail ();
+            }
 
             bench_new (dst1, subcoef1, 4);
         }
+
     }
+
 }
 
-public static void check_idct_dc4 () {
-    LOCAL_ALIGNED_16 (uint8, src,  [4 * 4 * 4]);
-    LOCAL_ALIGNED_16 (uint8, dst,  [4 * 4 * 4]);
-    LOCAL_ALIGNED_16 (uint8, dst0, [4 * 4 * 4]);
-    LOCAL_ALIGNED_16 (uint8, dst1, [4 * 4 * 4]);
-    LOCAL_ALIGNED_16 (int16, coef, [4], [4 * 4]);
-    LOCAL_ALIGNED_16 (int16, subcoef0, [4], [4 * 4]);
-    LOCAL_ALIGNED_16 (int16, subcoef1, [4], [4 * 4]);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] dst, int16 block[4][16], size_t stride);
+
+private static void check_idct_dc4 () {
+    //  LOCAL_ALIGNED_16 (uint8, src, [4 * 4 * 4]);
+    //  LOCAL_ALIGNED_16 (uint8, dst, [4 * 4 * 4]);
+    //  LOCAL_ALIGNED_16 (uint8, dst0, [4 * 4 * 4]);
+    //  LOCAL_ALIGNED_16 (uint8, dst1, [4 * 4 * 4]);
+    //  LOCAL_ALIGNED_16 (int16, coef, [4], [4 * 4]);
+    //  LOCAL_ALIGNED_16 (int16, subcoef0, [4], [4 * 4]);
+    //  LOCAL_ALIGNED_16 (int16, subcoef1, [4], [4 * 4]);
     VP8DSPContext d;
     int i, chroma;
-    declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] dst, int16 block[4][16], size_t stride);
 
     ff_vp8dsp_init (&d);
 
     for (chroma = 0; chroma <= 1; chroma++) {
-        void (*idct4dc)(uint8[] , int16[4][16], size_t) = chroma ? d.vp8_idct_dc_add4uv : d.vp8_idct_dc_add4y;
+        //  void (*idct4dc)(uint8[] , int16[4][16], size_t) = chroma ? d.vp8_idct_dc_add4uv : d.vp8_idct_dc_add4y;
         if (check_func (idct4dc, "vp8_idct_dc_add4%s", chroma ? "uv" : "y")) {
             size_t stride = chroma ? 8 : 16;
-            int w      = chroma ? 2 : 4;
+            int w = chroma ? 2 : 4;
             for (i = 0; i < 4; i++) {
                 int blockx = 4 * (i % w);
                 int blocky = 4 * (i / w);
@@ -170,28 +191,32 @@ public static void check_idct_dc4 () {
             memcpy (dst1, dst, 4 * 4 * 4);
             memcpy (subcoef0, coef, 4 * 4 * 4 * sizeof (int16));
             memcpy (subcoef1, coef, 4 * 4 * 4 * sizeof (int16));
-            call_ref (dst0, subcoef0, stride);
-            call_new (dst1, subcoef1, stride);
+            //  call_ref (dst0, subcoef0, stride);
+            //  call_new (dst1, subcoef1, stride);
             if (memcmp (dst0, dst1, 4 * 4 * 4) ||
-                memcmp (subcoef0, subcoef1, 4 * 4 * 4 * sizeof (int16)))
+                memcmp (subcoef0, subcoef1, 4 * 4 * 4 * sizeof (int16))) {
                 fail ();
+            }
+
             bench_new (dst1, subcoef1, stride);
         }
+
     }
 
 }
 
-public static void check_luma_dc_wht () {
-    LOCAL_ALIGNED_16 (int16, dc, [4 * 4]);
-    LOCAL_ALIGNED_16 (int16, dc0, [4 * 4]);
-    LOCAL_ALIGNED_16 (int16, dc1, [4 * 4]);
-    int16 block[4][4][16];
-    LOCAL_ALIGNED_16 (int16, block0, [4], [4][16]);
-    LOCAL_ALIGNED_16 (int16, block1, [4], [4][16]);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, int16 block[4][4][16], int16 dc[16]);
+
+private static void check_luma_dc_wht () {
+    //  LOCAL_ALIGNED_16 (int16, dc, [4 * 4]);
+    //  LOCAL_ALIGNED_16 (int16, dc0, [4 * 4]);
+    //  LOCAL_ALIGNED_16 (int16, dc1, [4 * 4]);
+    //  int16 block[4][4][16];
+    //  LOCAL_ALIGNED_16 (int16, block0, [4], [4][16]);
+    //  LOCAL_ALIGNED_16 (int16, block1, [4], [4][16]);
     VP8DSPContext d;
     int dc_only;
     int blockx, blocky;
-    declare_func_emms (AV_CPU_FLAG_MMX, void, int16 block[4][4][16], int16 dc[16]);
 
     ff_vp8dsp_init (&d);
 
@@ -204,11 +229,13 @@ public static void check_luma_dc_wht () {
             dc[blocky * 4 + blockx] = block[blocky][blockx][0];
             block[blocky][blockx][0] = rnd ();
         }
+
     }
+
     wht4x4 (dc);
 
     for (dc_only = 0; dc_only <= 1; dc_only++) {
-        void (*idct)(int16 [4][4][16], int16 [16]) = dc_only ? d.vp8_luma_dc_wht_dc : d.vp8_luma_dc_wht;
+        //  void (*idct)(int16 [4][4][16], int16 [16]) = dc_only ? d.vp8_luma_dc_wht_dc : d.vp8_luma_dc_wht;
 
         if (check_func (idct, "vp8_luma_dc_wht%s", dc_only ? "_dc" : "")) {
             if (dc_only) {
@@ -217,64 +244,74 @@ public static void check_luma_dc_wht () {
             } else {
                 memcpy (dc0, dc, 16 * sizeof (int16));
             }
+
             memcpy (dc1, dc0, 16 * sizeof (int16));
             memcpy (block0, block, 4 * 4 * 16 * sizeof (int16));
             memcpy (block1, block, 4 * 4 * 16 * sizeof (int16));
-            call_ref (block0, dc0);
-            call_new (block1, dc1);
+            //  call_ref (block0, dc0);
+            //  call_new (block1, dc1);
             if (memcmp (block0, block1, 4 * 4 * 16 * sizeof (int16)) ||
-                memcmp (dc0, dc1, 16 * sizeof (int16)))
+                memcmp (dc0, dc1, 16 * sizeof (int16))) {
                 fail ();
+            }
+
             bench_new (block1, dc1);
         }
+
     }
+
 }
 
-const size_t SRC_BUF_STRIDE = 32
-const size_t SRC_BUF_SIZE = (((size << (size < 16)) + 5) * SRC_BUF_STRIDE);
+private const size_t SRC_BUF_STRIDE = 32;
+private const size_t SRC_BUF_SIZE = (((size << (size < 16)) + 5) * SRC_BUF_STRIDE);
 // The mc subpixel interpolation filter needs the 2 previous pixels in either
 // direction, the +1 is to make sure the actual load addresses always are
 // unaligned.
-const size_t src = (buf + 2 * SRC_BUF_STRIDE + 2 + 1);
+private const size_t src = (buf + 2 * SRC_BUF_STRIDE + 2 + 1);
 
-#undef randomize_buffers
-void randomize_buffers () {
+//  #undef randomize_buffers
+private static void randomize_buffers () {
     int k;
     for (k = 0; k < SRC_BUF_SIZE; k += 4) {
         AV_WN32A (buf + k, rnd ());
     }
+
 }
 
-public static void check_mc () {
-    LOCAL_ALIGNED_16 (uint8, buf, [32 * 32]);
-    LOCAL_ALIGNED_16 (uint8, dst0, [16 * 16]);
-    LOCAL_ALIGNED_16 (uint8, dst1, [16 * 16]);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , size_t, uint8[] , size_t, int, int, int);
+
+private const string dx_names[] = { "", "h4", "h6" };
+private const string dy_names[] = { "", "v4", "v6" };
+
+private static void check_mc () {
+    //  LOCAL_ALIGNED_16 (uint8, buf, [32 * 32]);
+    //  LOCAL_ALIGNED_16 (uint8, dst0, [16 * 16]);
+    //  LOCAL_ALIGNED_16 (uint8, dst1, [16 * 16]);
     VP8DSPContext d;
     int type, k, dx, dy;
-    declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , size_t, uint8[] , size_t, int, int, int);
 
     ff_vp78dsp_init (&d);
 
     for (type = 0; type < 2; type++) {
         vp8_mc_func (*tab)[3][3] = type ? d.put_vp8_bilinear_pixels_tab : d.put_vp8_epel_pixels_tab;
         for (k = 1; k < 8; k++) {
-            int hsize  = k / 3;
-            int size   = 16 >> hsize;
+            int hsize = k / 3;
+            int size = 16 >> hsize;
             int height = (size << 1) >> (k % 3);
             for (dy = 0; dy < 3; dy++) {
                 for (dx = 0; dx < 3; dx++) {
                     char str[100];
                     if (dx || dy) {
                         if (type == 0) {
-                            const string dx_names[] = { "", "h4", "h6" };
-                            const string dy_names[] = { "", "v4", "v6" };
                             snprintf (str, sizeof (str), "epel%d_%s%s", size, dx_names[dx], dy_names[dy]);
                         } else {
                             snprintf (str, sizeof (str), "bilin%d_%s%s", size, dx ? "h" : "", dy ? "v" : "");
                         }
+
                     } else {
                         snprintf (str, sizeof (str), "pixels%d", size);
                     }
+
                     if (check_func (tab[hsize][dy][dx], "vp8_put_%s", str)) {
                         int mx, my;
                         int i;
@@ -285,6 +322,7 @@ public static void check_mc () {
                             mx = dx ? 1 + (rnd () % 7) : 0;
                             my = dy ? 1 + (rnd () % 7) : 0;
                         }
+
                         randomize_buffers ();
                         for (i = -2; i <= 3; i++) {
                             int val = (i == -1 || i == 2) ? 0 : 0xff;
@@ -293,36 +331,64 @@ public static void check_mc () {
                             src[i                 ] = val;
                             src[i * SRC_BUF_STRIDE] = val;
                         }
-                        call_ref (dst0, size, src, SRC_BUF_STRIDE, height, mx, my);
-                        call_new (dst1, size, src, SRC_BUF_STRIDE, height, mx, my);
-                        if (memcmp (dst0, dst1, size * height))
+
+                        //  call_ref (dst0, size, src, SRC_BUF_STRIDE, height, mx, my);
+                        //  call_new (dst1, size, src, SRC_BUF_STRIDE, height, mx, my);
+                        if (memcmp (dst0, dst1, size * height)) {
                             fail ();
+                        }
+
                         bench_new (dst1, size, src, SRC_BUF_STRIDE, height, mx, my);
                     }
+
                 }
+
             }
+
         }
+
     }
+
 }
 
-#undef randomize_buffers
+//  #undef randomize_buffers
 
-void setpx (a, b, c) {
+private static void setpx (
+    void *a,
+    void *b,
+    void *c
+) {
     buf[(a) + (b) * jstride] = av_clip_uint8 (c);
 }
+
 // Set the pixel to c +/- [0,d]
-void setdx (a, b, c, d) {
+private static void setdx (
+    void *a,
+    void *b,
+    void *c,
+    void *d
+) {
     setpx (a, b, c - (d) + (rnd () % ((d) * 2 + 1)));
 }
+
 // Set the pixel to c +/- [d,d+e] (making sure it won't be clipped)
-void setdx2 (a, b, o, c, d, e) {
+private static void setdx2 (
+    void *a,
+    void *b,
+    void *o,
+    void *c,
+    void *d,
+    void *e
+) {
     setpx (a, b, o = c + ((d) + (rnd () % (e))) * (c >= 128 ? -1 : 1));
 }
 
-public static void randomize_loopfilter_buffers (int lineoff, int str,
-                                         int dir, int flim_E, int flim_I,
-                                         int hev_thresh, uint8[] buf,
-                                         int force_hev) {
+private static void randomize_loopfilter_buffers (
+    int lineoff, int str,
+    int dir, int flim_E, int flim_I,
+    int hev_thresh, uint8[] buf,
+    int force_hev
+) {
     uint32 mask = 0xff;
     int off = dir ? lineoff : lineoff * str;
     int istride = dir ? 1 : str;
@@ -334,42 +400,49 @@ public static void randomize_loopfilter_buffers (int lineoff, int str,
         // force_hev 1 will make sure all rows trigger hev, while force_hev -1
         // makes none of them trigger it.
         int idx = off + i * istride, p2, p1, p0, q0, q1, q2;
-        setpx (idx,  0, q0 = rnd () & mask);
+        setpx (idx, 0, q0 = rnd () & mask);
         if (i == 0 && force_hev >= 0 || force_hev > 0)
             setdx2 (idx, 1, q1, q0, hev_thresh + 1, flim_I - hev_thresh - 1);
         else
-            setdx (idx,  1, q1 = q0, hev_thresh);
-        setdx (idx,  2, q2 = q1, flim_I);
-        setdx (idx,  3, q2,      flim_I);
+            setdx (idx, 1, q1 = q0, hev_thresh);
+        setdx (idx, 2, q2 = q1, flim_I);
+        setdx (idx, 3, q2, flim_I);
         setdx (idx, -1, p0 = q0, flim_E >> 2);
         if (i == 2 && force_hev >= 0 || force_hev > 0)
             setdx2 (idx, -2, p1, p0, hev_thresh + 1, flim_I - hev_thresh - 1);
         else
             setdx (idx, -2, p1 = p0, hev_thresh);
         setdx (idx, -3, p2 = p1, flim_I);
-        setdx (idx, -4, p2,      flim_I);
+        setdx (idx, -4, p2, flim_I);
     }
+
 }
 
 // Fill the buffer with random pixels
-public static void fill_loopfilter_buffers (uint8[] buf, size_t stride, int w, int h) {
+private static void fill_loopfilter_buffers (uint8[] buf, size_t stride, int w, int h) {
     int x, y;
     for (y = 0; y < h; y++)
         for (x = 0; x < w; x++)
             buf[y * stride + x] = rnd () & 0xff;
 }
 
-void randomize_buffers (void *buf, lineoff, str, force_hev) {
+private static void randomize_buffers (
+    void *buf,
+    void *lineoff,
+    void *str,
+    void *force_hev
+) {
     randomize_loopfilter_buffers (lineoff, str, dir, flim_E, flim_I, hev_thresh, buf, force_hev);
 }
 
-public static void check_loopfilter_16y () {
-    LOCAL_ALIGNED_16 (uint8, base0, [32 + 16 * 16]);
-    LOCAL_ALIGNED_16 (uint8, base1, [32 + 16 * 16]);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , size_t, int, int, int);
+
+private static void check_loopfilter_16y () {
+    //  LOCAL_ALIGNED_16 (uint8, base0, [32 + 16 * 16]);
+    //  LOCAL_ALIGNED_16 (uint8, base1, [32 + 16 * 16]);
     VP8DSPContext d;
     int dir, edge, force_hev;
     int flim_E = 20, flim_I = 10, hev_thresh = 7;
-    declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , size_t, int, int, int);
 
     ff_vp8dsp_init (&d);
 
@@ -379,42 +452,50 @@ public static void check_loopfilter_16y () {
         uint8[] buf0 = base0 + midoff_aligned;
         uint8[] buf1 = base1 + midoff_aligned;
         for (edge = 0; edge < 2; edge++) {
-            void (*func)(uint8[] , size_t, int, int, int) = null;
+            //  void (*func)(uint8[] , size_t, int, int, int) = null;
             switch (dir << 1 | edge) {
             case (0 << 1) | 0: func = d.vp8_h_loop_filter16y; break;
             case (1 << 1) | 0: func = d.vp8_v_loop_filter16y; break;
             case (0 << 1) | 1: func = d.vp8_h_loop_filter16y_inner; break;
             case (1 << 1) | 1: func = d.vp8_v_loop_filter16y_inner; break;
             }
+
             if (check_func (func, "vp8_loop_filter16y%s_%s", edge ? "_inner" : "", dir ? "v" : "h")) {
                 for (force_hev = -1; force_hev <= 1; force_hev++) {
                     fill_loopfilter_buffers (buf0 - midoff, 16, 16, 16);
                     randomize_buffers (buf0, 0, 16, force_hev);
                     randomize_buffers (buf0, 8, 16, force_hev);
                     memcpy (buf1 - midoff, buf0 - midoff, 16 * 16);
-                    call_ref (buf0, 16, flim_E, flim_I, hev_thresh);
-                    call_new (buf1, 16, flim_E, flim_I, hev_thresh);
-                    if (memcmp (buf0 - midoff, buf1 - midoff, 16 * 16))
+                    //  call_ref (buf0, 16, flim_E, flim_I, hev_thresh);
+                    //  call_new (buf1, 16, flim_E, flim_I, hev_thresh);
+                    if (memcmp (buf0 - midoff, buf1 - midoff, 16 * 16)) {
                         fail ();
+                    }
+
                 }
+
                 fill_loopfilter_buffers (buf0 - midoff, 16, 16, 16);
                 randomize_buffers (buf0, 0, 16, 0);
                 randomize_buffers (buf0, 8, 16, 0);
                 bench_new (buf0, 16, flim_E, flim_I, hev_thresh);
             }
+
         }
+
     }
+
 }
 
-public static void check_loopfilter_8uv () {
-    LOCAL_ALIGNED_16 (uint8, base0u, [32 + 16 * 16]);
-    LOCAL_ALIGNED_16 (uint8, base0v, [32 + 16 * 16]);
-    LOCAL_ALIGNED_16 (uint8, base1u, [32 + 16 * 16]);
-    LOCAL_ALIGNED_16 (uint8, base1v, [32 + 16 * 16]);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , uint8[] , size_t, int, int, int);
+
+private static void check_loopfilter_8uv () {
+    //  LOCAL_ALIGNED_16 (uint8, base0u, [32 + 16 * 16]);
+    //  LOCAL_ALIGNED_16 (uint8, base0v, [32 + 16 * 16]);
+    //  LOCAL_ALIGNED_16 (uint8, base1u, [32 + 16 * 16]);
+    //  LOCAL_ALIGNED_16 (uint8, base1v, [32 + 16 * 16]);
     VP8DSPContext d;
     int dir, edge, force_hev;
     int flim_E = 20, flim_I = 10, hev_thresh = 7;
-    declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , uint8[] , size_t, int, int, int);
 
     ff_vp8dsp_init (&d);
 
@@ -426,13 +507,14 @@ public static void check_loopfilter_8uv () {
         uint8[] buf1u = base1u + midoff_aligned;
         uint8[] buf1v = base1v + midoff_aligned;
         for (edge = 0; edge < 2; edge++) {
-            void (*func)(uint8[] , uint8[] , size_t, int, int, int) = null;
+            //  void (*func)(uint8[] , uint8[] , size_t, int, int, int) = null;
             switch (dir << 1 | edge) {
             case (0 << 1) | 0: func = d.vp8_h_loop_filter8uv; break;
             case (1 << 1) | 0: func = d.vp8_v_loop_filter8uv; break;
             case (0 << 1) | 1: func = d.vp8_h_loop_filter8uv_inner; break;
             case (1 << 1) | 1: func = d.vp8_v_loop_filter8uv_inner; break;
             }
+
             if (check_func (func, "vp8_loop_filter8uv%s_%s", edge ? "_inner" : "", dir ? "v" : "h")) {
                 for (force_hev = -1; force_hev <= 1; force_hev++) {
                     fill_loopfilter_buffers (buf0u - midoff, 16, 16, 16);
@@ -442,29 +524,36 @@ public static void check_loopfilter_8uv () {
                     memcpy (buf1u - midoff, buf0u - midoff, 16 * 16);
                     memcpy (buf1v - midoff, buf0v - midoff, 16 * 16);
 
-                    call_ref (buf0u, buf0v, 16, flim_E, flim_I, hev_thresh);
-                    call_new (buf1u, buf1v, 16, flim_E, flim_I, hev_thresh);
+                    //  call_ref (buf0u, buf0v, 16, flim_E, flim_I, hev_thresh);
+                    //  call_new (buf1u, buf1v, 16, flim_E, flim_I, hev_thresh);
                     if (memcmp (buf0u - midoff, buf1u - midoff, 16 * 16) ||
-                        memcmp (buf0v - midoff, buf1v - midoff, 16 * 16))
+                        memcmp (buf0v - midoff, buf1v - midoff, 16 * 16)) {
                         fail ();
+                    }
+
                 }
+
                 fill_loopfilter_buffers (buf0u - midoff, 16, 16, 16);
                 fill_loopfilter_buffers (buf0v - midoff, 16, 16, 16);
                 randomize_buffers (buf0u, 0, 16, 0);
                 randomize_buffers (buf0v, 0, 16, 0);
                 bench_new (buf0u, buf0v, 16, flim_E, flim_I, hev_thresh);
             }
+
         }
+
     }
+
 }
 
-public static void check_loopfilter_simple () {
-    LOCAL_ALIGNED_16 (uint8, base0, [32 + 16 * 16]);
-    LOCAL_ALIGNED_16 (uint8, base1, [32 + 16 * 16]);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , size_t, int);
+
+private static void check_loopfilter_simple () {
+    //  LOCAL_ALIGNED_16 (uint8, base0, [32 + 16 * 16]);
+    //  LOCAL_ALIGNED_16 (uint8, base1, [32 + 16 * 16]);
     VP8DSPContext d;
     int dir;
     int flim_E = 20, flim_I = 30, hev_thresh = 0;
-    declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , size_t, int);
 
     ff_vp8dsp_init (&d);
 
@@ -473,22 +562,26 @@ public static void check_loopfilter_simple () {
         int midoff_aligned = dir ? 4 * 16 : 16;
         uint8[] buf0 = base0 + midoff_aligned;
         uint8[] buf1 = base1 + midoff_aligned;
-        void (*func)(uint8[] , size_t, int) = dir ? d.vp8_v_loop_filter_simple : d.vp8_h_loop_filter_simple;
+        //  void (*func)(uint8[] , size_t, int) = dir ? d.vp8_v_loop_filter_simple : d.vp8_h_loop_filter_simple;
         if (check_func (func, "vp8_loop_filter_simple_%s", dir ? "v" : "h")) {
             fill_loopfilter_buffers (buf0 - midoff, 16, 16, 16);
             randomize_buffers (buf0, 0, 16, -1);
             randomize_buffers (buf0, 8, 16, -1);
             memcpy (buf1 - midoff, buf0 - midoff, 16 * 16);
-            call_ref (buf0, 16, flim_E);
-            call_new (buf1, 16, flim_E);
-            if (memcmp (buf0 - midoff, buf1 - midoff, 16 * 16))
+            //  call_ref (buf0, 16, flim_E);
+            //  call_new (buf1, 16, flim_E);
+            if (memcmp (buf0 - midoff, buf1 - midoff, 16 * 16)) {
                 fail ();
+            }
+
             bench_new (buf0, 16, flim_E);
         }
+
     }
+
 }
 
-void checkasm_check_vp8dsp () {
+private static void checkasm_check_vp8dsp () {
     check_idct ();
     check_idct_dc4 ();
     check_luma_dc_wht ();

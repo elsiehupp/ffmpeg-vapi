@@ -20,9 +20,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 /***********************************************************
 Based on libavutil/base64.c
 ***********************************************************/
-public class base64 {
+private class base64 {
 
-    static void putb64 (
+    private static void putb64 (
         out char[] b64,
         out uint i_bits,
         out uint i_shift,
@@ -52,6 +52,7 @@ public class base64 {
                     out out_len
                 );
         }
+
         while (i_shift > 0)
             putb64 (
                 out b64,

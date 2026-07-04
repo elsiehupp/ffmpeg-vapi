@@ -20,13 +20,12 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class rotozoom {
+private class rotozoom {
 
-    const uint FIXP = (1 << 16);
-    const uint MY_PI = 205887; // (M_PI * FIX)
+    private const uint FIXP = (1 << 16);
+    private const uint MY_PI = 205887; // (M_PI * FIX)
 
-    static int64 int_pow (
+    private static int64 int_pow (
         int64 a,
         uint p
     ) {
@@ -40,7 +39,7 @@ public class rotozoom {
         return v;
     }
 
-    static int64 int_sin (int64 a) {
+    private static int64 int_sin (int64 a) {
         if (a < 0)
             a = MY_PI - a;  // 0..inf
         a %= 2 * MY_PI;     // 0..2PI
@@ -53,14 +52,14 @@ public class rotozoom {
         return a - int_pow (a, 3) / 6 + int_pow (a, 5) / 120 - int_pow (a, 7) / 5040;
     }
 
-    static uchar tab_r[256 * 256];
-    static uchar tab_g[256 * 256];
-    static uchar tab_b[256 * 256];
+    private static uchar tab_r[256 * 256];
+    private static uchar tab_g[256 * 256];
+    private static uchar tab_b[256 * 256];
 
-    static uint h_cos[360];
-    static uint h_sin[360];
+    private static uint h_cos[360];
+    private static uint h_sin[360];
 
-    static uint ipol (uint8[] src, uint x, uint y) {
+    private static uint ipol (uint8[] src, uint x, uint y) {
         uint int_x = x >> 16;
         uint int_y = y >> 16;
         uint frac_x = x & 0xFFFF;
@@ -75,7 +74,7 @@ public class rotozoom {
         return (((1 << 16) - frac_y) * s0 + frac_y * s1) >> 24;
     }
 
-    static void gen_image (uint num, uint width, uint height) {
+    private static void gen_image (uint num, uint width, uint height) {
         uint c = h_cos[num % 360];
         uint s = h_sin[num % 360];
 
@@ -120,13 +119,15 @@ public class rotozoom {
                     )
                 );
             }
+
         }
+
     }
 
-    const uint W = 256;
-    const uint H = 256;
+    private const uint W = 256;
+    private const uint H = 256;
 
-    static uint init_demo (string filename) {
+    private static uint init_demo (string filename) {
         uint height;
         uint radian;
         char line[3 * W];
@@ -149,7 +150,9 @@ public class rotozoom {
                 tab_g[W * i + j] = line[3 * j + 1];
                 tab_b[W * i + j] = line[3 * j + 2];
             }
+
         }
+
         fclose (input_file);
 
         /***********************************************************
@@ -223,6 +226,7 @@ public class rotozoom {
                     rgb_tab
                 );
             }
+
         }
 
         free (rgb_tab);

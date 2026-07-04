@@ -32,17 +32,17 @@ Show metadata from an input file.
 //  #include <libavformat/avformat.h>
 //  #include <libavutil/dict.h>
 
-public static int main (
+private static int main (
     int argc,
     string[] argv
 ) {
     AVFormatContext? fmt_ctx = null;
-    const AVDictionaryEntry? tag = null;
+    AVDictionaryEntry? tag = null;
     int ret;
 
     if (argc != 2) {
-        printf ("usage: %s <input_file>\n"
-               "example program to demonstrate the use of the libavformat metadata API.\n"
+        printf ("usage: %s <input_file>\n" +
+               "example program to demonstrate the use of the libavformat metadata API.\n" +
                "\n", argv[0]);
         return 1;
     }
@@ -55,8 +55,8 @@ public static int main (
         return ret;
     }
 
-    while ((tag = av_dict_iterate (fmt_ctx->metadata, tag)))
-        printf ("%s=%s\n", tag->key, tag->value);
+    while ((tag = av_dict_iterate (fmt_ctx.metadata, tag)))
+        printf ("%s=%s\n", tag.key, tag.value);
 
     avformat_close_input (&fmt_ctx);
     return 0;

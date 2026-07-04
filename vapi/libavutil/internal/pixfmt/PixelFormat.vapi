@@ -60,7 +60,7 @@ For all the 8 bits per pixel formats, an RGB32 palette is in data[1] like
 for pal8. This palette is filled in automatically by the function
 allocating the picture.
 ***********************************************************/
-[CCode (cname="enum AVPixelFormat", cprefix="AV_PIX_FMT_",cheader_filename="subprojects/ffmpeg/libavutil/pixfmt.h")]
+[CCode (cname="enum AVPixelFormat", cprefix="LibAVUtil.PixelFormat.",cheader_filename="subprojects/ffmpeg/libavutil/pixfmt.h")]
 public enum PixelFormat {
     NONE,
 
@@ -1288,7 +1288,7 @@ The pixel formats from which it chooses one, are determined by the
 pix_fmt_list parameter.
 
  *
-@param[in] pix_fmt_list AV_PIX_FMT_NONE terminated array of pixel formats to choose from
+@param[in] pix_fmt_list LibAVUtil.PixelFormat.NONE terminated array of pixel formats to choose from
 @param[in] src_pix_fmt source pixel format
 @param[in] has_alpha Whether the source pixel format alpha channel is used.
 @param[out] loss_ptr Combination of flags informing you what kind of losses will occur.
@@ -1298,7 +1298,7 @@ enum AVPixelFormat avcodec_find_best_pix_fmt_of_list(const enum AVPixelFormat *p
                                             enum AVPixelFormat src_pix_fmt,
                                             int has_alpha, int *loss_ptr);
 
-enum AVPixelFormat avcodec_default_get_format(struct AVCodecContext *s, const enum AVPixelFormat * fmt);
+enum AVPixelFormat avcodec_default_get_format(AVCodecContext *s, const enum AVPixelFormat * fmt);
 
 /***********************************************************
 @}

@@ -68,7 +68,7 @@ internal class LibAVResample.AudioData {
     sample format
     ***********************************************************/
     [CCode (cname="")]
-    internal AVSampleFormat sample_fmt;
+    internal LibAVUtil.SampleFormat sample_fmt;
 
     /***********************************************************
     channel count
@@ -169,7 +169,7 @@ internal class LibAVResample.AudioData {
         int plane_size,
         int channels,
         int nb_samples,
-        AVSampleFormat sample_fmt,
+        LibAVUtil.SampleFormat sample_fmt,
         int read_only,
         string name
     );
@@ -189,7 +189,7 @@ internal class LibAVResample.AudioData {
     internal LibAVResample.AudioData? ff_audio_data_alloc (
         int channels,
         int nb_samples,
-        AVSampleFormat sample_fmt,
+        LibAVUtil.SampleFormat sample_fmt,
         string name
     );
 
@@ -306,7 +306,7 @@ internal class LibAVResample.AudioData {
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_data.h")]
     internal int ff_sample_fmt_is_planar (
-        AVSampleFormat sample_fmt,
+        LibAVUtil.SampleFormat sample_fmt,
         int channels
     );
 

@@ -18,7 +18,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 //  #include "libavfilter/vf_nlmeans.c"
 
-public static void display_integral (const uint32_t *ii, int w, int h, int lz_32
+private static void display_integral (
+    uint32[] ii,
+    int w, int h, int lz_32
 ) {
     int x, y;
 
@@ -27,40 +29,43 @@ public static void display_integral (const uint32_t *ii, int w, int h, int lz_32
             printf (" %7x", ii[y*lz_32 + x]);
         printf ("\n");
     }
+
     printf ("---------------\n");
 }
 
-public static int main (void
-) {
+// arbitrary test source of size 6x5 and linesize=8
+private const int w = 6;
+private const int h = 5;
+private const int lz = 8;
+private const uint8 src[] = {
+    0xb0, 0x71, 0xfb, 0xd8, 0x01, 0xd9, /***/ 0x01, 0x02,
+    0x51, 0x8e, 0x41, 0x0f, 0x84, 0x58, /***/ 0x03, 0x04,
+    0xc7, 0x8d, 0x07, 0x70, 0x5c, 0x47, /***/ 0x05, 0x06,
+    0x09, 0x4e, 0xfc, 0x74, 0x8f, 0x9a, /***/ 0x07, 0x08,
+    0x60, 0x8e, 0x20, 0xaa, 0x95, 0x7d, /***/ 0x09, 0x0a,
+};
+
+private const int e = 3;
+private const int ii_w = w + e * 2;
+private const int ii_h = h + e * 2;
+
+// align to 4 the linesize, "+1" is for the space of the left 0-column
+private const int ii_lz_32 = ((ii_w + 1) + 3) & ~3;
+
+private static int main () {
     int ret = 0, xoff, yoff;
-    uint32_t *ii_start;
-    uint32_t *ii_start2;
+    uint32[] ii_start;
+    uint32[] ii_start2;
     NLMeansDSPContext dsp = {0};
 
-    // arbitrary test source of size 6x5 and linesize=8
-    const int w = 6, h = 5, lz = 8;
-    static const uint8_t src[] = {
-        0xb0, 0x71, 0xfb, 0xd8, 0x01, 0xd9, /***/ 0x01, 0x02,
-        0x51, 0x8e, 0x41, 0x0f, 0x84, 0x58, /***/ 0x03, 0x04,
-        0xc7, 0x8d, 0x07, 0x70, 0x5c, 0x47, /***/ 0x05, 0x06,
-        0x09, 0x4e, 0xfc, 0x74, 0x8f, 0x9a, /***/ 0x07, 0x08,
-        0x60, 0x8e, 0x20, 0xaa, 0x95, 0x7d, /***/ 0x09, 0x0a,
-    };
-
-    const int e = 3;
-    const int ii_w = w+e*2, ii_h = h+e*2;
-
-    // align to 4 the linesize, "+1" is for the space of the left 0-column
-    const int ii_lz_32 = ((ii_w + 1) + 3) & ~3;
-
     // "+1" is for the space of the top 0-line
-    uint32_t *ii  = av_mallocz_array (ii_h + 1, ii_lz_32 * sizeof (*ii));
-    uint32_t *ii2 = av_mallocz_array (ii_h + 1, ii_lz_32 * sizeof (*ii2));
+    uint32[] ii = av_mallocz_array (ii_h + 1, ii_lz_32 * sizeof (ii));
+    uint32[] ii2 = av_mallocz_array (ii_h + 1, ii_lz_32 * sizeof (ii2));
 
     if (!ii || !ii2)
         return -1;
 
-    ii_start  = ii  + ii_lz_32 + 1; // skip top 0-line and left 0-column
+    ii_start = ii  + ii_lz_32 + 1; // skip top 0-line and left 0-column
     ii_start2 = ii2 + ii_lz_32 + 1; // skip top 0-line and left 0-column
 
     ff_nlmeans_init (&dsp);
@@ -80,15 +85,17 @@ public static int main (void
                                               ii_w, ii_h);
             display_integral (ii_start2, ii_w, ii_h, ii_lz_32);
 
-            if (memcmp (ii, ii2, (ii_h+1) * ii_lz_32 * sizeof (*ii))) {
+            if (memcmp (ii, ii2, (ii_h+1) * ii_lz_32 * sizeof (ii))) {
                 printf ("Integral mismatch\n");
                 ret = 1;
-                goto end;
+                //  goto end;
             }
+
         }
+
     }
 
-end:
+//  end:
     av_freep (&ii);
     av_freep (&ii2);
     return ret;

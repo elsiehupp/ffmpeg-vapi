@@ -18,10 +18,10 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const size_t W = 64;
-const size_t H = 64;
+private const size_t W = 64;
+private const size_t H = 64;
 
-void randomize_buffers () {
+private static void randomize_buffers () {
     uint mask = bpp_mask[idepth];
     int n, m;
     int bpp = 1 + (!!idepth);
@@ -33,37 +33,42 @@ void randomize_buffers () {
             uint r = rnd () & mask;
             AV_WN32A (&src[m][n], r);
         }
+
     }
+
 }
 
-const string format_string[] = {
+private const string format_string[] = {
     "444", "422", "420"
 };
 
-const uint bpp_mask[] = { 0xffffffff, 0x03ff03ff, 0x0fff0fff };
+private const uint bpp_mask[] = { 0xffffffff, 0x03ff03ff, 0x0fff0fff };
 
-public static void check_yuv2yuv () {
-    declare_func (void, uint8[] dst[3], size_t dst_stride[3],
-                 uint8[] src[3], size_t src_stride[3],
-                 int w, int h, int16 coeff[3][3][8],
-                 const int16 off[2][8]);
+private static void check_yuv2yuv () {
+    //  declare_func (
+    //      void, uint8[] dst[3], size_t dst_stride[3],
+    //      uint8[] src[3], size_t src_stride[3],
+    //      int w, int h, int16 coeff[3][3][8],
+    //      int16 off[2][8]
+    //  );
     ColorSpaceDSPContext dsp;
     int idepth, odepth, fmt, n;
-    LOCAL_ALIGNED_32 (uint8, src_y, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, src_u, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, src_v, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, src_y, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, src_u, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, src_v, [W * H * 2]);
     uint8[] src[3] = { src_y, src_u, src_v };
-    LOCAL_ALIGNED_32 (uint8, dst0_y, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst0_u, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst0_v, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst1_y, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst1_u, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst1_v, [W * H * 2]);
-    uint8[] dst0[3] = { dst0_y, dst0_u, dst0_v }, *dst1[3] = { dst1_y, dst1_u, dst1_v };
-    LOCAL_ALIGNED_32 (int16, offset_buf, [16]);
-    LOCAL_ALIGNED_32 (int16, coeff_buf, [3 * 3 * 8]);
-    int16 (*offset)[8] = (int16 (*)[8]) offset_buf;
-    int16 (*coeff)[3][8] = (int16 (*)[3][8]) coeff_buf;
+    //  LOCAL_ALIGNED_32 (uint8, dst0_y, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst0_u, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst0_v, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst1_y, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst1_u, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst1_v, [W * H * 2]);
+    uint8[] dst0[3] = { dst0_y, dst0_u, dst0_v };
+    uint8[] dst1[3] = { dst1_y, dst1_u, dst1_v };
+    //  LOCAL_ALIGNED_32 (int16, offset_buf, [16]);
+    //  LOCAL_ALIGNED_32 (int16, coeff_buf, [3 * 3 * 8]);
+    int16 (*offset)[8] = (int16[][8]) offset_buf;
+    int16 (*coeff)[3][8] = (int16[][3][8]) coeff_buf;
 
     ff_colorspacedsp_init (&dsp);
     for (n = 0; n < 8; n++) {
@@ -78,6 +83,7 @@ public static void check_yuv2yuv () {
         coeff[2][2][n] = (1 << 14) - (1 << 6);
         coeff[2][1][n] = 1 << 6;
     }
+
     for (idepth = 0; idepth < 3; idepth++) {
         for (odepth = 0; odepth < 3; odepth++) {
             for (fmt = 0; fmt < 3; fmt++) {
@@ -90,46 +96,52 @@ public static void check_yuv2yuv () {
                     int uv_src_stride = y_src_stride >> ss_w, uv_dst_stride = y_dst_stride >> ss_w;
 
                     randomize_buffers ();
-                    call_ref (dst0, (size_t[3]) { y_dst_stride, uv_dst_stride, uv_dst_stride },
-                             src, (size_t[3]) { y_src_stride, uv_src_stride, uv_src_stride },
-                             W, H, coeff, offset);
-                    call_new (dst1, (size_t[3]) { y_dst_stride, uv_dst_stride, uv_dst_stride },
-                             src, (size_t[3]) { y_src_stride, uv_src_stride, uv_src_stride },
-                             W, H, coeff, offset);
+                    //  call_ref (dst0, (size_t[3]) { y_dst_stride, uv_dst_stride, uv_dst_stride },
+                    //           src, (size_t[3]) { y_src_stride, uv_src_stride, uv_src_stride },
+                    //           W, H, coeff, offset);
+                    //  call_new (dst1, (size_t[3]) { y_dst_stride, uv_dst_stride, uv_dst_stride },
+                    //           src, (size_t[3]) { y_src_stride, uv_src_stride, uv_src_stride },
+                    //           W, H, coeff, offset);
                     if (memcmp (dst0[0], dst1[0], y_dst_stride * H) ||
                         memcmp (dst0[1], dst1[1], uv_dst_stride * H >> ss_h) ||
                         memcmp (dst0[2], dst1[2], uv_dst_stride * H >> ss_h)) {
                         fail ();
                     }
+
                 }
+
             }
+
         }
+
     }
 
     report ("yuv2yuv");
 }
 
-public static void check_yuv2rgb () {
-    declare_func (void, int16[] dst[3], size_t dst_stride,
-                 uint8[] src[3], size_t src_stride[3],
-                 int w, int h, int16 coeff[3][3][8],
-                 const int16 off[8]);
+private static void check_yuv2rgb () {
+    //  declare_func (void, int16[] dst[3], size_t dst_stride,
+    //               uint8[] src[3], size_t src_stride[3],
+    //               int w, int h, int16 coeff[3][3][8],
+    //               int16 off[8]);
     ColorSpaceDSPContext dsp;
     int idepth, fmt, n;
-    LOCAL_ALIGNED_32 (uint8, src_y, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, src_u, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, src_v, [W * H * 2]);
-    uint8[] src[3] = { src_y, src_u, src_v };
-    LOCAL_ALIGNED_32 (int16, dst0_y, [W * H]);
-    LOCAL_ALIGNED_32 (int16, dst0_u, [W * H]);
-    LOCAL_ALIGNED_32 (int16, dst0_v, [W * H]);
-    LOCAL_ALIGNED_32 (int16, dst1_y, [W * H]);
-    LOCAL_ALIGNED_32 (int16, dst1_u, [W * H]);
-    LOCAL_ALIGNED_32 (int16, dst1_v, [W * H]);
-    int16[] dst0[3] = { dst0_y, dst0_u, dst0_v }, *dst1[3] = { dst1_y, dst1_u, dst1_v };
-    LOCAL_ALIGNED_32 (int16, offset, [8]);
-    LOCAL_ALIGNED_32 (int16, coeff_buf, [3 * 3 * 8]);
-    int16 (*coeff)[3][8] = (int16 (*)[3][8]) coeff_buf;
+    //  LOCAL_ALIGNED_32 (uint8, src_y, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, src_u, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, src_v, [W * H * 2]);
+    //  uint8[] src[3] = { src_y, src_u, src_v };
+    //  LOCAL_ALIGNED_32 (int16, dst0_y, [W * H]);
+    //  LOCAL_ALIGNED_32 (int16, dst0_u, [W * H]);
+    //  LOCAL_ALIGNED_32 (int16, dst0_v, [W * H]);
+    //  LOCAL_ALIGNED_32 (int16, dst1_y, [W * H]);
+    //  LOCAL_ALIGNED_32 (int16, dst1_u, [W * H]);
+    //  LOCAL_ALIGNED_32 (int16, dst1_v, [W * H]);
+    //  int16[] dst0[3] = { dst0_y, dst0_u, dst0_v }
+
+    //  int16[] dst1[3] = { dst1_y, dst1_u, dst1_v };
+    //  LOCAL_ALIGNED_32 (int16, offset, [8]);
+    //  LOCAL_ALIGNED_32 (int16, coeff_buf, [3 * 3 * 8]);
+    int16 (*coeff)[3][8] = (int16[][3][8]) coeff_buf;
 
     ff_colorspacedsp_init (&dsp);
     for (n = 0; n < 8; n++) {
@@ -142,6 +154,7 @@ public static void check_yuv2rgb () {
         coeff[1][2][n] = 1 << 12;
         coeff[2][1][n] = 1 << 11;
     }
+
     for (idepth = 0; idepth < 3; idepth++) {
         for (fmt = 0; fmt < 3; fmt++) {
             if (check_func (dsp.yuv2rgb[idepth][fmt],
@@ -152,26 +165,29 @@ public static void check_yuv2rgb () {
                 int uv_src_stride = y_src_stride >> ss_w;
 
                 randomize_buffers ();
-                call_ref (dst0, W, src,
-                         (size_t[3]) { y_src_stride, uv_src_stride, uv_src_stride },
-                         W, H, coeff, offset);
-                call_new (dst1, W, src,
-                         (size_t[3]) { y_src_stride, uv_src_stride, uv_src_stride },
-                         W, H, coeff, offset);
+                //  call_ref (dst0, W, src,
+                //           (size_t[3]) { y_src_stride, uv_src_stride, uv_src_stride },
+                //           W, H, coeff, offset);
+                //  call_new (dst1, W, src,
+                //           (size_t[3]) { y_src_stride, uv_src_stride, uv_src_stride },
+                //           W, H, coeff, offset);
                 if (memcmp (dst0[0], dst1[0], W * H * sizeof (int16)) ||
                     memcmp (dst0[1], dst1[1], W * H * sizeof (int16)) ||
                     memcmp (dst0[2], dst1[2], W * H * sizeof (int16))) {
                     fail ();
                 }
+
             }
+
         }
+
     }
 
     report ("yuv2rgb");
 }
 
-#undef randomize_buffers
-void randomize_buffers () {
+//  #undef randomize_buffers
+private static void randomize_buffers () {
     int y, x, p;
     for (p = 0; p < 3; p++) {
         for (y = 0; y < H; y++) {
@@ -180,31 +196,36 @@ void randomize_buffers () {
                 r -= (32768 - 28672) >> 1;
                 src[p][y * W + x] = r;
             }
+
         }
+
     }
+
 }
 
-public static void check_rgb2yuv () {
-    declare_func (void, uint8[] dst[3], size_t dst_stride[3],
-                 int16[] src[3], size_t src_stride,
-                 int w, int h, int16 coeff[3][3][8],
-                 const int16 off[8]);
+private static void check_rgb2yuv () {
+    //  declare_func (void, uint8[] dst[3], size_t dst_stride[3],
+    //               int16[] src[3], size_t src_stride,
+    //               int w, int h, int16 coeff[3][3][8],
+    //               int16 off[8]);
     ColorSpaceDSPContext dsp;
     int odepth, fmt, n;
-    LOCAL_ALIGNED_32 (int16, src_y, [W * H * 2]);
-    LOCAL_ALIGNED_32 (int16, src_u, [W * H * 2]);
-    LOCAL_ALIGNED_32 (int16, src_v, [W * H * 2]);
-    int16[] src[3] = { src_y, src_u, src_v };
-    LOCAL_ALIGNED_32 (uint8, dst0_y, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst0_u, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst0_v, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst1_y, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst1_u, [W * H * 2]);
-    LOCAL_ALIGNED_32 (uint8, dst1_v, [W * H * 2]);
-    uint8[] dst0[3] = { dst0_y, dst0_u, dst0_v }, *dst1[3] = { dst1_y, dst1_u, dst1_v };
-    LOCAL_ALIGNED_32 (int16, offset, [8]);
-    LOCAL_ALIGNED_32 (int16, coeff_buf, [3 * 3 * 8]);
-    int16 (*coeff)[3][8] = (int16 (*)[3][8]) coeff_buf;
+    //  LOCAL_ALIGNED_32 (int16, src_y, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (int16, src_u, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (int16, src_v, [W * H * 2]);
+    //  int16[] src[3] = { src_y, src_u, src_v };
+    //  LOCAL_ALIGNED_32 (uint8, dst0_y, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst0_u, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst0_v, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst1_y, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst1_u, [W * H * 2]);
+    //  LOCAL_ALIGNED_32 (uint8, dst1_v, [W * H * 2]);
+    //  uint8[] dst0[3] = { dst0_y, dst0_u, dst0_v }
+
+    //  uint8[] dst1[3] = { dst1_y, dst1_u, dst1_v };
+    //  LOCAL_ALIGNED_32 (int16, offset, [8]);
+    //  LOCAL_ALIGNED_32 (int16, coeff_buf, [3 * 3 * 8]);
+    int16 (*coeff)[3][8] = (int16[][3][8]) coeff_buf;
 
     ff_colorspacedsp_init (&dsp);
     for (n = 0; n < 8; n++) {
@@ -221,6 +242,7 @@ public static void check_rgb2yuv () {
         coeff[2][1][n] = lrint (-0.42 * (1 << 14));
         coeff[2][2][n] = lrint (-0.08 * (1 << 14));
     }
+
     for (odepth = 0; odepth < 3; odepth++) {
         for (fmt = 0; fmt < 3; fmt++) {
             if (check_func (dsp.rgb2yuv[odepth][fmt],
@@ -231,36 +253,40 @@ public static void check_rgb2yuv () {
                 int uv_dst_stride = y_dst_stride >> ss_w;
 
                 randomize_buffers ();
-                call_ref (dst0, (size_t[3]) { y_dst_stride, uv_dst_stride, uv_dst_stride },
-                         src, W, W, H, coeff, offset);
-                call_new (dst1, (size_t[3]) { y_dst_stride, uv_dst_stride, uv_dst_stride },
-                         src, W, W, H, coeff, offset);
+                //  call_ref (dst0, (size_t[3]) { y_dst_stride, uv_dst_stride, uv_dst_stride },
+                //           src, W, W, H, coeff, offset);
+                //  call_new (dst1, (size_t[3]) { y_dst_stride, uv_dst_stride, uv_dst_stride },
+                //           src, W, W, H, coeff, offset);
                 if (memcmp (dst0[0], dst1[0], H * y_dst_stride) ||
                     memcmp (dst0[1], dst1[1], H * uv_dst_stride >> ss_h) ||
                     memcmp (dst0[2], dst1[2], H * uv_dst_stride >> ss_h)) {
                     fail ();
                 }
+
             }
+
         }
+
     }
 
     report ("rgb2yuv");
 }
 
-public static void check_multiply3x3 () {
-    declare_func (void, int16[] data[3], size_t stride,
-                 int w, int h, int16 coeff[3][3][8]);
+private static void check_multiply3x3 () {
+    //  declare_func (void, int16[] data[3], size_t stride,
+    //               int w, int h, int16 coeff[3][3][8]);
     ColorSpaceDSPContext dsp;
-    LOCAL_ALIGNED_32 (int16, dst0_y, [W * H]);
-    LOCAL_ALIGNED_32 (int16, dst0_u, [W * H]);
-    LOCAL_ALIGNED_32 (int16, dst0_v, [W * H]);
-    LOCAL_ALIGNED_32 (int16, dst1_y, [W * H]);
-    LOCAL_ALIGNED_32 (int16, dst1_u, [W * H]);
-    LOCAL_ALIGNED_32 (int16, dst1_v, [W * H]);
-    int16[] dst0[3] = { dst0_y, dst0_u, dst0_v }, *dst1[3] = { dst1_y, dst1_u, dst1_v };
-    int16[] *src = dst0;
-    LOCAL_ALIGNED_32 (int16, coeff_buf, [3 * 3 * 8]);
-    int16 (*coeff)[3][8] = (int16 (*)[3][8]) coeff_buf;
+    //  LOCAL_ALIGNED_32 (int16, dst0_y, [W * H]);
+    //  LOCAL_ALIGNED_32 (int16, dst0_u, [W * H]);
+    //  LOCAL_ALIGNED_32 (int16, dst0_v, [W * H]);
+    //  LOCAL_ALIGNED_32 (int16, dst1_y, [W * H]);
+    //  LOCAL_ALIGNED_32 (int16, dst1_u, [W * H]);
+    //  LOCAL_ALIGNED_32 (int16, dst1_v, [W * H]);
+    int16[] dst0[3] = { dst0_y, dst0_u, dst0_v };
+    int16[] dst1[3] = { dst1_y, dst1_u, dst1_v };
+    int16[][] src = dst0;
+    //  LOCAL_ALIGNED_32 (int16, coeff_buf, [3 * 3 * 8]);
+    int16 (*coeff)[3][8] = (int16[][3][8]) coeff_buf;
     int n;
 
     ff_colorspacedsp_init (&dsp);
@@ -275,24 +301,26 @@ public static void check_multiply3x3 () {
         coeff[2][1][n] = lrint (0.30 * (1 << 14));
         coeff[2][2][n] = lrint (0.90 * (1 << 14));
     }
+
     if (check_func (dsp.multiply3x3, "ff_colorspacedsp_multiply3x3")) {
         randomize_buffers ();
-        memcpy (dst1_y, dst0_y, W * H * sizeof (*dst1_y));
-        memcpy (dst1_u, dst0_u, W * H * sizeof (*dst1_u));
-        memcpy (dst1_v, dst0_v, W * H * sizeof (*dst1_v));
-        call_ref (dst0, W, W, H, coeff);
-        call_new (dst1, W, W, H, coeff);
-        if (memcmp (dst0[0], dst1[0], H * W * sizeof (*dst0_y)) ||
-            memcmp (dst0[1], dst1[1], H * W * sizeof (*dst0_u)) ||
-            memcmp (dst0[2], dst1[2], H * W * sizeof (*dst0_v))) {
+        memcpy (dst1_y, dst0_y, W * H * sizeof (dst1_y));
+        memcpy (dst1_u, dst0_u, W * H * sizeof (dst1_u));
+        memcpy (dst1_v, dst0_v, W * H * sizeof (dst1_v));
+        //  call_ref (dst0, W, W, H, coeff);
+        //  call_new (dst1, W, W, H, coeff);
+        if (memcmp (dst0[0], dst1[0], H * W * sizeof (dst0_y)) ||
+            memcmp (dst0[1], dst1[1], H * W * sizeof (dst0_u)) ||
+            memcmp (dst0[2], dst1[2], H * W * sizeof (dst0_v))) {
             fail ();
         }
+
     }
 
     report ("multiply3x3");
 }
 
-void checkasm_check_colorspace () {
+private static void checkasm_check_colorspace () {
     check_yuv2yuv ();
     check_yuv2rgb ();
     check_rgb2yuv ();

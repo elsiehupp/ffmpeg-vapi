@@ -35,8 +35,8 @@ internal class LibAVResample.DitherContext {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/dither.h")]
     internal LibAVResample.DitherContext? ff_dither_alloc (
         LibAVResample.AudioResampleContext? avr,
-        AVSampleFormat out_fmt,
-        AVSampleFormat in_fmt,
+        LibAVUtil.SampleFormat out_fmt,
+        LibAVUtil.SampleFormat in_fmt,
         int channels,
         int sample_rate,
         int apply_map

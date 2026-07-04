@@ -31,7 +31,7 @@ internal class LibSoftwareResample.Resampler {
         int phase_shift,
         int linear,
         double cutoff,
-        AVSampleFormat format,
+        LibAVUtil.SampleFormat format,
         SoftwareResampleFilterType filter_type,
         double kaiser_beta,
         double precision,

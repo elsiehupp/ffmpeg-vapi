@@ -19,15 +19,15 @@ along with FFmpeg; if not, write to the Free Software * Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-const size_t MAX_TST_PACKETS = 128;
-const int SLEEPTIME_50_MS = 50000;
-const int SLEEPTIME_10_MS = 10000;
+private const size_t MAX_TST_PACKETS = 128;
+private const int SLEEPTIME_50_MS = 50000;
+private const int SLEEPTIME_10_MS = 10000;
 
 /***********************************************************
 This is structure of data sent in packets to
 failing muxer
 ***********************************************************/
-struct FailingMuxerPacketData {
+private struct FailingMuxerPacketData {
     /***********************************************************
     return value of write_packet call
     ***********************************************************/
@@ -42,14 +42,15 @@ struct FailingMuxerPacketData {
     uint sleep_time;
 }
 
-public static int prepare_packet (AVPacket *pkt, FailingMuxerPacketData *pkt_data, int64 pts) {
+private static int prepare_packet (AVPacket? pkt, FailingMuxerPacketData? pkt_data, int64 pts) {
     int ret;
-    FailingMuxerPacketData *data = av_malloc (sizeof (*data));
+    FailingMuxerPacketData? data = av_malloc (sizeof (data));
     if (!data) {
         return AVERROR (ENOMEM);
     }
+
     memcpy (data, pkt_data, sizeof (FailingMuxerPacketData));
-    ret = av_packet_from_data (pkt, (uint8[]) data, sizeof (*data));
+    ret = av_packet_from_data (pkt, (uint8[]) data, sizeof (data));
 
     pkt.pts = pkt.dts = pts;
     pkt.duration = 1;
@@ -57,9 +58,9 @@ public static int prepare_packet (AVPacket *pkt, FailingMuxerPacketData *pkt_dat
     return ret;
 }
 
-public static int initialize_fifo_tst_muxer_chain (AVFormatContext **oc) {
+private static int initialize_fifo_tst_muxer_chain (out AVFormatContext? oc) {
     int ret = 0;
-    AVStream *s;
+    AVStream? s;
 
     ret = avformat_alloc_output_context2 (oc, null, "fifo", "-");
     if (ret) {
@@ -78,8 +79,8 @@ public static int initialize_fifo_tst_muxer_chain (AVFormatContext **oc) {
     return ret;
 }
 
-public static int fifo_basic_test (AVFormatContext *oc, AVDictionary **opts,
-                             const FailingMuxerPacketData *pkt_data) {
+private static int fifo_basic_test (AVFormatContext? oc, AVDictionary **opts,
+                             FailingMuxerPacketData? pkt_data) {
     int ret = 0, i;
     AVPacket pkt;
 
@@ -90,7 +91,7 @@ public static int fifo_basic_test (AVFormatContext *oc, AVDictionary **opts,
     if (ret) {
         fprintf (stderr, "Unexpected write_header failure: %s\n",
                 av_err2str (ret));
-        goto fail;
+        //  goto fail;
     }
 
     for (i = 0; i < 15; i++ ) {
@@ -98,40 +99,42 @@ public static int fifo_basic_test (AVFormatContext *oc, AVDictionary **opts,
         if (ret < 0) {
             fprintf (stderr, "Failed to prepare test packet: %s\n",
                     av_err2str (ret));
-            goto write_trailer_and_fail;
+            //  goto write_trailer_and_fail;
         }
+
         ret = av_write_frame (oc, &pkt);
         av_packet_unref (&pkt);
         if (ret < 0) {
             fprintf (stderr, "Unexpected write_frame error: %s\n",
                     av_err2str (ret));
-            goto write_trailer_and_fail;
+            //  goto write_trailer_and_fail;
         }
+
     }
 
     ret = av_write_frame (oc, null);
     if (ret < 0) {
         fprintf (stderr, "Unexpected write_frame error during flushing: %s\n",
                 av_err2str (ret));
-        goto write_trailer_and_fail;
+        //  goto write_trailer_and_fail;
     }
 
     ret = av_write_trailer (oc);
     if (ret < 0) {
         fprintf (stderr, "Unexpected write_trailer error during flushing: %s\n",
                 av_err2str (ret));
-        goto fail;
+        //  goto fail;
     }
 
     return ret;
-write_trailer_and_fail:
+//  write_trailer_and_fail:
     av_write_trailer (oc);
-fail:
+//  fail:
     return ret;
 }
 
-public static int fifo_overflow_drop_test (AVFormatContext *oc, AVDictionary **opts,
-                                   const FailingMuxerPacketData *data) {
+private static int fifo_overflow_drop_test (AVFormatContext? oc, AVDictionary **opts,
+                                   FailingMuxerPacketData? data) {
     int ret = 0, i;
     int64 write_pkt_start, write_pkt_end, duration;
     AVPacket pkt;
@@ -151,26 +154,29 @@ public static int fifo_overflow_drop_test (AVFormatContext *oc, AVDictionary **o
         if (ret < 0) {
             fprintf (stderr, "Failed to prepare test packet: %s\n",
                     av_err2str (ret));
-            goto fail;
+            //  goto fail;
         }
+
         ret = av_write_frame (oc, &pkt);
         av_packet_unref (&pkt);
         if (ret < 0) {
             break;
         }
+
     }
+
     write_pkt_end = av_gettime_relative ();
     duration = write_pkt_end - write_pkt_start;
     if (duration > (SLEEPTIME_50_MS*6)/2) {
-        fprintf (stderr, "Writing packets to fifo muxer took too much time while testing"
+        fprintf (stderr, "Writing packets to fifo muxer took too much time while testing" +
                         "buffer overflow with drop_pkts_on_overflow was on.\n");
         ret = AVERROR_BUG;
-        goto fail;
+        //  goto fail;
     }
 
     if (ret) {
         fprintf (stderr, "Unexpected write_packet error: %s\n", av_err2str (ret));
-        goto fail;
+        //  goto fail;
     }
 
     ret = av_write_trailer (oc);
@@ -178,15 +184,21 @@ public static int fifo_overflow_drop_test (AVFormatContext *oc, AVDictionary **o
         fprintf (stderr, "Unexpected write_trailer error: %s\n", av_err2str (ret));
 
     return ret;
-fail:
+//  fail:
     av_write_trailer (oc);
     return ret;
 }
 
-struct TestCase {
-    int (*test_func)(AVFormatContext *, AVDictionary **,const FailingMuxerPacketData *pkt_data);
-    const string test_name;
-    const string options;
+private struct TestCase {
+    delegate int TestFunc (
+        AVFormatContext? format_context,
+        out AVDictionary? dictionary,
+        FailingMuxerPacketData? pkt_data
+    );
+
+    TestFunc test_func;
+    string test_name;
+    string options;
 
     uint8 print_summary_on_deinit;
     int write_header_ret;
@@ -196,26 +208,27 @@ struct TestCase {
 }
 
 
-const size_t BUFFER_SIZE = 64;
+private const size_t BUFFER_SIZE = 64;
 
-public static int run_test (const TestCase *test) {
-    AVDictionary *opts = null;
-    AVFormatContext *oc = null;
+private static int run_test (TestCase? test) {
+    AVDictionary? opts = null;
+    AVFormatContext? oc = null;
     char buffer[BUFFER_SIZE];
     int ret, ret1;
 
     ret = initialize_fifo_tst_muxer_chain (&oc);
     if (ret < 0) {
         fprintf (stderr, "Muxer initialization failed: %s\n", av_err2str (ret));
-        goto end;
+        //  goto end;
     }
 
     if (test.options) {
         ret = av_dict_parse_string (&opts, test.options, "=", ":", 0);
         if (ret < 0) {
             fprintf (stderr, "Failed to parse options: %s\n", av_err2str (ret));
-            goto end;
+            //  goto end;
         }
+
     }
 
     snprintf (buffer, BUFFER_SIZE,
@@ -227,12 +240,12 @@ public static int run_test (const TestCase *test) {
     if (ret < 0 || ret1 < 0) {
         fprintf (stderr, "Failed to set options for test muxer: %s\n",
                 av_err2str (ret));
-        goto end;
+        //  goto end;
     }
 
     ret = test.test_func (oc, &opts, &test.pkt_data);
 
-end:
+//  end:
     printf ("%s: %s\n", test.test_name, ret < 0 ? "fail" : "ok");
     avformat_free_context (oc);
     av_dict_free (&opts);
@@ -240,45 +253,96 @@ end:
 }
 
 
-const TestCase tests[] = {
-        /***********************************************************
-        Simple test in packet-non-dropping mode, we expect to get on
-        the output exactly what was on input.
-        ***********************************************************/
-        {fifo_basic_test, "nonfail test", null,1, 0, 0, {0, 0, 0}},
+private const TestCase tests[] = {
+    /***********************************************************
+    Simple test in packet-non-dropping mode, we expect to get on
+    the output exactly what was on input.
+    ***********************************************************/
+    {
+        fifo_basic_test,
+        "nonfail test",
+        null,
+        1,
+        0,
+        0,
+        {
+            0,
+            0,
+            0
+        }
 
-        /***********************************************************
-        Each write_packet will fail 3 times before operation is
-        successful. If recovery Since recovery is on, fifo muxer
-        should not return any errors.
-        ***********************************************************/
-        {fifo_basic_test, "recovery test", "attempt_recovery=1:recovery_wait_time=0",
-         0, 0, 0, {AVERROR (ETIMEDOUT), 3, 0}},
+    },
 
-        /***********************************************************
-        By setting low queue_size and sending packets with longer
-        processing time, this test will cause queue to overflow,
-        since drop_pkts_on_overflow is off by default, all packets
-        should be processed and fifo should block on full queue.
-        ***********************************************************/
-        {fifo_basic_test, "overflow without packet dropping","queue_size=3",
-         1, 0, 0, {0, 0, SLEEPTIME_10_MS}},
+    /***********************************************************
+    Each write_packet will fail 3 times before operation is
+    successful. If recovery Since recovery is on, fifo muxer
+    should not return any errors.
+    ***********************************************************/
+    {
+        fifo_basic_test,
+        "recovery test",
+        "attempt_recovery=1:recovery_wait_time=0",
+        0,
+        0,
+        0,
+        {
+            AVERROR (ETIMEDOUT),
+            3,
+            0
+        }
 
-        /***********************************************************
-        The test as the upper one, except that drop_on_overflow is
-        turned on. In this case fifo should not block when the queue
-        is full and slow down producer, so the test measures time
-        producer spends on write_packet calls which should be
-        significantly less than number_of_pkts * 50 MS.
-        ***********************************************************/
-        {fifo_overflow_drop_test, "overflow with packet dropping", "queue_size=3:drop_pkts_on_overflow=1",
-         0, 0, 0, {0, 0, SLEEPTIME_50_MS}},
+    },
 
-        {null}
+    /***********************************************************
+    By setting low queue_size and sending packets with longer
+    processing time, this test will cause queue to overflow,
+    since drop_pkts_on_overflow is off by default, all packets
+    should be processed and fifo should block on full queue.
+    ***********************************************************/
+    {
+        fifo_basic_test,
+        "overflow without packet dropping",
+        "queue_size=3",
+        1,
+        0,
+        0,
+        {
+            0,
+            0,
+            SLEEPTIME_10_MS
+        }
+
+    },
+
+    /***********************************************************
+    The test as the upper one, except that drop_on_overflow is
+    turned on. In this case fifo should not block when the queue
+    is full and slow down producer, so the test measures time
+    producer spends on write_packet calls which should be
+    significantly less than number_of_pkts * 50 MS.
+    ***********************************************************/
+    {
+        fifo_overflow_drop_test,
+        "overflow with packet dropping",
+        "queue_size=3:drop_pkts_on_overflow=1",
+        0,
+        0,
+        0,
+        {
+            0,
+            0,
+            SLEEPTIME_50_MS
+        }
+
+    },
+
+    {null}
+
 };
 
-public static int main (
-    int argc, string argv[]) {
+private static int main (
+    int argc,
+    string[] argv) {
     int i, ret, ret_all = 0;
 
     for (i = 0; tests[i].test_func; i++) {

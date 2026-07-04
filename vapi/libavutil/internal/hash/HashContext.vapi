@@ -51,7 +51,7 @@ A basic template for using the Generic Hashing API follows:
 
 @code
 HashContext hash_context = null;
-const string hash_name = null;
+string hash_name = null;
 uint8[] output_buf = null;
 
 // Select from a string returned by av_hash_names ()

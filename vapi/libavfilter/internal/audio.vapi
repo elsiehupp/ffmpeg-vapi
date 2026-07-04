@@ -21,25 +21,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFilter {
 
 [CCode (cname="ff_packed_sample_fmts_array",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
-public static const AVSampleFormat ff_packed_sample_fmts_array[];
+public static const LibAVUtil.SampleFormat ff_packed_sample_fmts_array[];
 //  = {
-//      AV_SAMPLE_FMT_U8,
-//      AV_SAMPLE_FMT_S16,
-//      AV_SAMPLE_FMT_S32,
-//      AV_SAMPLE_FMT_FLT,
-//      AV_SAMPLE_FMT_DBL,
-//      AV_SAMPLE_FMT_NONE
+//      LibAVUtil.SampleFormat.UNSIGNED_8_BIT,
+//      LibAVUtil.SampleFormat.SIGNED_16_BIT,
+//      LibAVUtil.SampleFormat.SIGNED_32_BIT,
+//      LibAVUtil.SampleFormat.FLOAT,
+//      LibAVUtil.SampleFormat.DOUBLE,
+//      LibAVUtil.SampleFormat.NONE
 //  };
 
 [CCode (cname="ff_planar_sample_fmts_array",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
-public static const AVSampleFormat ff_planar_sample_fmts_array[];
+public static const LibAVUtil.SampleFormat ff_planar_sample_fmts_array[];
 //   = {
-//      AV_SAMPLE_FMT_U8P,
-//      AV_SAMPLE_FMT_S16P,
-//      AV_SAMPLE_FMT_S32P,
-//      AV_SAMPLE_FMT_FLTP,
-//      AV_SAMPLE_FMT_DBLP,
-//      AV_SAMPLE_FMT_NONE
+//      LibAVUtil.SampleFormat.UNSIGNED_8_BIT_PLANAR,
+//      LibAVUtil.SampleFormat.SIGNED_16_BIT_PLANAR,
+//      LibAVUtil.SampleFormat.SIGNED_32_BIT_PLANAR,
+//      LibAVUtil.SampleFormat.FLOAT_PLANAR,
+//      LibAVUtil.SampleFormat.DOUBLE_PLANAR,
+//      LibAVUtil.SampleFormat.NONE
 //  };
 
 /***********************************************************

@@ -18,10 +18,10 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-const size_t BUF_UNITS = 8;
-const size_t BUF_SIZE = (BUF_UNITS * 128 + 8 * BUF_UNITS);
+private const size_t BUF_UNITS = 8;
+private const size_t BUF_SIZE = (BUF_UNITS * 128 + 8 * BUF_UNITS);
 
-void randomize_buffers () {
+private static void randomize_buffers () {
     int i;
     for (i = 0; i < BUF_SIZE; i += 4) {
         uint32 r = rnd ();
@@ -34,11 +34,15 @@ void randomize_buffers () {
         AV_WN32A (dst0_ + i, r);
         AV_WN32A (dst1_ + i, r);
     }
+
 }
 
-void check_get_pixels (type) {
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, int16[] block, uint8[] pixels, size_t line_size);
+
+private static void check_get_pixels (
+    void *type
+) {
     int i;
-    declare_func_emms (AV_CPU_FLAG_MMX, void, int16[] block, uint8[] pixels, size_t line_size);
 
     for (i = 0; i < BUF_UNITS; i++) {
         /***********************************************************
@@ -50,18 +54,23 @@ void check_get_pixels (type) {
         ***********************************************************/
         int dst_offset = i * 64;
         randomize_buffers ();
-        call_ref (dst0 + dst_offset, src10 + src_offset, 8);
-        call_new (dst1 + dst_offset, src11 + src_offset, 8);
+        //  call_ref (dst0 + dst_offset, src10 + src_offset, 8);
+        //  call_new (dst1 + dst_offset, src11 + src_offset, 8);
         if (memcmp (src10, src11, BUF_SIZE)|| memcmp (dst0, dst1, BUF_SIZE)) {
             fail ();
         }
+
         bench_new (dst1 + dst_offset, src11 + src_offset, 8);
     }
+
 }
 
-void check_diff_pixels (type) {
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, int16[] av_restrict block, uint8[] s1, uint8[] s2, size_t stride);
+
+private static void check_diff_pixels (
+    void *type
+) {
     int i;
-    declare_func_emms (AV_CPU_FLAG_MMX, void, int16[] av_restrict block, uint8[] s1, uint8[] s2, size_t stride);
 
     for (i = 0; i < BUF_UNITS; i++) {
         /***********************************************************
@@ -73,26 +82,29 @@ void check_diff_pixels (type) {
         ***********************************************************/
         int dst_offset = i * 64;
         randomize_buffers ();
-        call_ref (dst0 + dst_offset, src10 + src_offset, src20 + src_offset, 8);
-        call_new (dst1 + dst_offset, src11 + src_offset, src21 + src_offset, 8);
-        if (memcmp (src10, src11, BUF_SIZE) || memcmp (src20, src21, BUF_SIZE) || memcmp (dst0, dst1, BUF_SIZE))
+        //  call_ref (dst0 + dst_offset, src10 + src_offset, src20 + src_offset, 8);
+        //  call_new (dst1 + dst_offset, src11 + src_offset, src21 + src_offset, 8);
+        if (memcmp (src10, src11, BUF_SIZE) || memcmp (src20, src21, BUF_SIZE) || memcmp (dst0, dst1, BUF_SIZE)) {
             fail ();
+        }
+
         bench_new (dst1 + dst_offset, src11 + src_offset, src21 + src_offset, 8);
     }
+
 }
 
-void checkasm_check_pixblockdsp () {
-    LOCAL_ALIGNED_16 (uint8, src10, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (uint8, src11, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (uint8, src20, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (uint8, src21, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (uint8, dst0_, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (uint8, dst1_, [BUF_SIZE]);
+private static void checkasm_check_pixblockdsp () {
+    //  LOCAL_ALIGNED_16 (uint8, src10, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (uint8, src11, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (uint8, src20, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (uint8, src21, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (uint8, dst0_, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (uint8, dst1_, [BUF_SIZE]);
     uint16[] dst0 = (uint16[] )dst0_;
     uint16[] dst1 = (uint16[] )dst1_;
     PixblockDSPContext h;
-    AVCodecContext avctx = {
-        .bits_per_raw_sample = 8,
+    AVCodecContext avctx = new AVCodecContext () {
+        bits_per_raw_sample = 8
     };
 
     ff_pixblockdsp_init (&h, &avctx);

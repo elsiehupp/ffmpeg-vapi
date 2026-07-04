@@ -18,61 +18,71 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-void randomize_buffers (void *buf, int size) {
+private static void randomize_buffers (void *buf, int size) {
     int j;
     for (j = 0; j < size; j++) {
         int16 r = rnd ();
         AV_WN16A (buf + j, r);
     }
+
 }
 
-public static void check_idct (HEVCDSPContext h, int bit_depth) {
+private static void check_idct (HEVCDSPContext h, int bit_depth) {
     int i;
-    LOCAL_ALIGNED (32, int16, coeffs0, [32 * 32]);
-    LOCAL_ALIGNED (32, int16, coeffs1, [32 * 32]);
+    //  LOCAL_ALIGNED (32, int16, coeffs0, [32 * 32]);
+    //  LOCAL_ALIGNED (32, int16, coeffs1, [32 * 32]);
 
     for (i = 2; i <= 5; i++) {
         int block_size = 1 << i;
         int size = block_size * block_size;
         int col_limit = block_size;
-        declare_func (void, int16[] coeffs, int col_limit);
+        //  declare_func (void, int16[] coeffs, int col_limit);
 
         randomize_buffers (coeffs0, size);
-        memcpy (coeffs1, coeffs0, sizeof (*coeffs0) * size);
+        memcpy (coeffs1, coeffs0, sizeof (coeffs0) * size);
         if (check_func (h.idct[i - 2], "hevc_idct_%dx%d_%d", block_size, block_size, bit_depth)) {
-            call_ref (coeffs0, col_limit);
-            call_new (coeffs1, col_limit);
-            if (memcmp (coeffs0, coeffs1, sizeof (*coeffs0) * size))
+            //  call_ref (coeffs0, col_limit);
+            //  call_new (coeffs1, col_limit);
+            if (memcmp (coeffs0, coeffs1, sizeof (coeffs0) * size)) {
                 fail ();
+            }
+
             bench_new (coeffs1, col_limit);
         }
+
     }
+
 }
 
-public static void check_idct_dc (HEVCDSPContext h, int bit_depth) {
+//  declare_func_emms (AV_CPU_FLAG_MMXEXT, void, int16[] coeffs);
+
+private static void check_idct_dc (HEVCDSPContext h, int bit_depth) {
     int i;
-    LOCAL_ALIGNED (32, int16, coeffs0, [32 * 32]);
-    LOCAL_ALIGNED (32, int16, coeffs1, [32 * 32]);
+    //  LOCAL_ALIGNED (32, int16, coeffs0, [32 * 32]);
+    //  LOCAL_ALIGNED (32, int16, coeffs1, [32 * 32]);
 
     for (i = 2; i <= 5; i++) {
         int block_size = 1 << i;
         int size = block_size * block_size;
-        declare_func_emms (AV_CPU_FLAG_MMXEXT, void, int16[] coeffs);
 
         randomize_buffers (coeffs0, size);
-        memcpy (coeffs1, coeffs0, sizeof (*coeffs0) * size);
+        memcpy (coeffs1, coeffs0, sizeof (coeffs0) * size);
 
         if (check_func (h.idct_dc[i - 2], "hevc_idct_%dx%d_dc_%d", block_size, block_size, bit_depth)) {
-            call_ref (coeffs0);
-            call_new (coeffs1);
-            if (memcmp (coeffs0, coeffs1, sizeof (*coeffs0) * size))
+            //  call_ref (coeffs0);
+            //  call_new (coeffs1);
+            if (memcmp (coeffs0, coeffs1, sizeof (coeffs0) * size)) {
                 fail ();
+            }
+
             bench_new (coeffs1);
         }
+
     }
+
 }
 
-void checkasm_check_hevc_idct () {
+private static void checkasm_check_hevc_idct () {
     int bit_depth;
 
     for (bit_depth = 8; bit_depth <= 12; bit_depth += 2) {
@@ -81,6 +91,7 @@ void checkasm_check_hevc_idct () {
         ff_hevc_dsp_init (&h, bit_depth);
         check_idct_dc (h, bit_depth);
     }
+
     report ("idct_dc");
 
     for (bit_depth = 8; bit_depth <= 12; bit_depth += 2) {
@@ -89,5 +100,6 @@ void checkasm_check_hevc_idct () {
         ff_hevc_dsp_init (&h, bit_depth);
         check_idct (h, bit_depth);
     }
+
     report ("idct");
 }

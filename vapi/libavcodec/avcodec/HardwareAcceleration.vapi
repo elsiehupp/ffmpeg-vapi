@@ -92,7 +92,7 @@ public class HardwareAcceleration {
 @{
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-typedef struct AVHWAccel {
+public struct AVHWAccel {
     /**
      * Name of the hardware accelerated codec.
      * The name is globally unique among encoders and among decoders (but an

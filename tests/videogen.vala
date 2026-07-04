@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 Generate a synthetic YUV video sequence suitable for codec testing.
 NOTE: No floats are used to guarantee bitexact output.
 ***********************************************************/
-public static uint myrnd (out uint seed_ptr, uint n) {
+private static uint myrnd (out uint seed_ptr, uint n) {
     uint seed;
     uint val;
 
@@ -33,22 +33,23 @@ public static uint myrnd (out uint seed_ptr, uint n) {
     } else {
         val = seed % n;
     }
+
     seed_ptr = seed;
     return val;
 }
 
-const uint NOISE_X = 10;
-const uint NOISE_Y = 30;
-const uint NOISE_W = 26;
+private const uint NOISE_X = 10;
+private const uint NOISE_Y = 30;
+private const uint NOISE_W = 26;
 
-const uint FRAC_BITS = 8;
-const uint FRAC_ONE = 1 << FRAC_BITS;
+private const uint FRAC_BITS = 8;
+private const uint FRAC_ONE = 1 << FRAC_BITS;
 
 /***********************************************************
 cosine approximate with 1-x^2
 ***********************************************************/
 
-public static uint int_cos (uint a) {
+private static uint int_cos (uint a) {
     uint v, neg;
     a = a & (FRAC_ONE - 1);
     if (a >= (FRAC_ONE / 2))
@@ -58,14 +59,15 @@ public static uint int_cos (uint a) {
         neg = -1;
         a = (FRAC_ONE / 2) - a;
     }
+
     v = FRAC_ONE - ((a * a) >> 4);
     v = (v ^ neg) - neg;
     return v;
 }
 
-const uint NB_OBJS = 10;
+private const uint NB_OBJS = 10;
 
-public struct VObj {
+private struct VObj {
     uint x;
     uint y;
 
@@ -77,11 +79,11 @@ public struct VObj {
     uint b;
 }
 
-public static VObj objs[NB_OBJS];
+private static VObj objs[NB_OBJS];
 
-public static uint seed = 1;
+private static uint seed = 1;
 
-public static void gen_image (uint num, uint width, uint height) {
+private static void gen_image (uint num, uint width, uint height) {
     uint r, g, b, x, y, i, dx, dy, x1, y1;
     uint seed1;
 
@@ -95,6 +97,7 @@ public static void gen_image (uint num, uint width, uint height) {
             objs[i].g = myrnd (out seed, 256);
             objs[i].b = myrnd (out seed, 256);
         }
+
     }
 
     /***********************************************************
@@ -116,6 +119,7 @@ public static void gen_image (uint num, uint width, uint height) {
             b =  ((x1       * 5) >> FRAC_BITS) & 0xff;
             put_pixel (x, y, r, g, b);
         }
+
     }
 
     /***********************************************************
@@ -130,6 +134,7 @@ public static void gen_image (uint num, uint width, uint height) {
             b = myrnd (out seed1, 256);
             put_pixel (x + NOISE_X, y + NOISE_Y, r, g, b);
         }
+
     }
 
     /***********************************************************
@@ -153,13 +158,16 @@ public static void gen_image (uint num, uint width, uint height) {
                 b += myrnd (out seed1, 50);
                 put_pixel (x + p.x, y + p.y, r, g, b);
             }
+
         }
+
         p.x += myrnd (out seed, 21) - 10;
         p.y += myrnd (out seed, 21) - 10;
     }
+
 }
 
-void print_help (string name) {
+private static void print_help (string name) {
     GLib.print ("usage: %s file|dir [width=%i] [height=%i]\n" +
         "generate a test video stream\n",
         name,
@@ -189,6 +197,7 @@ uint main (
         width = atoi (argv[2]);
         if (width < 1) print_help (argv[0]);
     }
+
     height = DEFAULT_HEIGHT;
     if (argc > 3) {
         height = atoi (argv[3]);
@@ -208,6 +217,7 @@ uint main (
         } else {
             pgmyuv_save (null, width, height, rgb_tab);
         }
+
     }
 
     free (rgb_tab);

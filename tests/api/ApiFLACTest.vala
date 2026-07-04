@@ -21,8 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class ApiFLACTest : GLib.TestCase {
+private class ApiFLACTest : GLib.TestCase {
 
     /***********************************************************
     FLAC codec test.
@@ -31,14 +30,14 @@ public class ApiFLACTest : GLib.TestCase {
     ***********************************************************/
 
 
-    const uint NUMBER_OF_AUDIO_FRAMES = 200;
-    const uint NAME_BUFF_SIZE = 100;
+    private const uint NUMBER_OF_AUDIO_FRAMES = 200;
+    private const uint NAME_BUFF_SIZE = 100;
 
     /***********************************************************
     generate i-th frame of test audio
     ***********************************************************/
 
-    static uint generate_raw_frame (
+    private static uint generate_raw_frame (
         out uint16[] frame_data,
         uint16 i,
         uint16 sample_rate,
@@ -50,13 +49,15 @@ public class ApiFLACTest : GLib.TestCase {
             for (uint16 k = 1; k < channels; k++) {
                 frame_data[channels * j + k] = frame_data[channels * j] * (k + 1);
             }
+
         }
+
         return 0;
     }
 
-    static uint init_encoder (
+    private static uint init_encoder (
         LibAVCodec.Codec enc,
-        out LibAVCodec.CodecContext enc_ctx,
+        out LibAVCodec.CodecContext enc_ctx_out,
         int64 ch_layout,
         uint sample_rate
     ) {
@@ -83,7 +84,7 @@ public class ApiFLACTest : GLib.TestCase {
             return AVERROR (ENOMEM);
         }
 
-        codec_context.sample_fmt = AV_SAMPLE_FMT_S16;
+        codec_context.sample_fmt = LibAVUtil.SampleFormat.SIGNED_16_BIT;
         codec_context.sample_rate = sample_rate;
         codec_context.channel_layout = ch_layout;
 
@@ -97,13 +98,13 @@ public class ApiFLACTest : GLib.TestCase {
             return result;
         }
 
-        *enc_ctx = codec_context;
+        enc_ctx_out = codec_context;
         return 0;
     }
 
-    static uint init_decoder (
+    private static uint init_decoder (
         LibAVCodec.Codec dec,
-        out LibAVCodec.CodecContext dec_ctx,
+        out LibAVCodec.CodecContext dec_ctx_out,
         int64 ch_layout
     ) {
         LibAVCodec.CodecContext codec_context;
@@ -119,7 +120,7 @@ public class ApiFLACTest : GLib.TestCase {
             return AVERROR (ENOMEM);
         }
 
-        codec_context.request_sample_fmt = AV_SAMPLE_FMT_S16;
+        codec_context.request_sample_fmt = LibAVUtil.SampleFormat.SIGNED_16_BIT;
         /***********************************************************
         XXX: FLAC ignores it for some reason
     ***********************************************************/
@@ -137,11 +138,11 @@ public class ApiFLACTest : GLib.TestCase {
             return result;
         }
 
-        *dec_ctx = codec_context;
+        dec_ctx_out = codec_context;
         return 0;
     }
 
-    static uint run_test (
+    private static uint run_test (
         LibAVCodec.Codec enc,
         LibAVCodec.Codec dec,
         LibAVCodec.CodecContext enc_ctx,
@@ -226,6 +227,7 @@ public class ApiFLACTest : GLib.TestCase {
                 );
                 return 1;
             }
+
             Posix.memcpy (raw_in + in_offset, in_frame.data[0], in_frame_bytes);
             in_offset += in_frame_bytes;
             result = avcodec_encode_audio2 (enc_ctx, out enc_pkt, in_frame, out got_output);
@@ -289,6 +291,7 @@ public class ApiFLACTest : GLib.TestCase {
                         );
                         return AVERROR_UNKNOWN;
                     }
+
                     out_frame_bytes = out_frame.nb_samples * out_frame.channels * sizeof (uint16);
                     if (out_frame_bytes > out_frame.linesize[0]) {
                         av_log (
@@ -298,10 +301,13 @@ public class ApiFLACTest : GLib.TestCase {
                         );
                         return 1;
                     }
+
                     Posix.memcpy (raw_out + out_offset, out_frame.data[0], out_frame_bytes);
                     out_offset += out_frame_bytes;
                 }
+
             }
+
             av_packet_unref (out enc_pkt);
         }
 
@@ -327,13 +333,13 @@ public class ApiFLACTest : GLib.TestCase {
         return 0;
     }
 
-    static uint close_encoder (out LibAVCodec.CodecContext enc_ctx) {
+    private static uint close_encoder (out LibAVCodec.CodecContext enc_ctx) {
         avcodec_close (*enc_ctx);
         av_freep (enc_ctx);
         return 0;
     }
 
-    static uint close_decoder (out LibAVCodec.CodecContext dec_ctx) {
+    private static uint close_decoder (out LibAVCodec.CodecContext dec_ctx) {
         avcodec_close (*dec_ctx);
         av_freep (dec_ctx);
         return 0;
@@ -389,6 +395,7 @@ public class ApiFLACTest : GLib.TestCase {
                 close_encoder (out enc_ctx);
                 close_decoder (out dec_ctx);
             }
+
         }
 
         return 0;

@@ -18,9 +18,9 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-const size_t BUF_SIZE = 512;
+private const size_t BUF_SIZE = 512;
 
-void randomize_buffers () {
+private static void randomize_buffers () {
     int i;
     for (i = 0; i < BUF_SIZE; i += 4) {
         uint32 r = rnd ();
@@ -30,11 +30,14 @@ void randomize_buffers () {
         AV_WN32A (dst0 + i, r);
         AV_WN32A (dst1 + i, r);
     }
+
 }
 
-void check_bswap (type) {
+private static void check_bswap (
+    void *type
+) {
     int w;
-    declare_func (void, type *dst, type *src, int w);
+    //  declare_func (void, type? dst, type? src, int w);
 
     for (w = 0; w < BUF_SIZE / sizeof (type); w++) {
         int offset = (BUF_SIZE / sizeof (type) - w) & 15;
@@ -42,19 +45,22 @@ void check_bswap (type) {
         Test various alignments
         ***********************************************************/
         randomize_buffers ();
-        call_ref ((type *)dst0 + offset, (type *)src0 + offset, w);
-        call_new ((type *)dst1 + offset, (type *)src1 + offset, w);
-        if (memcmp (src0, src1, BUF_SIZE) || memcmp (dst0, dst1, BUF_SIZE))
+        //  call_ref ((type? )dst0 + offset, (type? )src0 + offset, w);
+        //  call_new ((type? )dst1 + offset, (type? )src1 + offset, w);
+        if (memcmp (src0, src1, BUF_SIZE) || memcmp (dst0, dst1, BUF_SIZE)) {
             fail ();
-        bench_new ((type *)dst1 + offset, (type *)src1 + offset, w);
+        }
+
+        bench_new ((type? )dst1 + offset, (type? )src1 + offset, w);
     }
+
 }
 
-void checkasm_check_bswapdsp () {
-    LOCAL_ALIGNED_16 (uint8, src0, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (uint8, src1, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (uint8, dst0, [BUF_SIZE]);
-    LOCAL_ALIGNED_16 (uint8, dst1, [BUF_SIZE]);
+private static void checkasm_check_bswapdsp () {
+    //  LOCAL_ALIGNED_16 (uint8, src0, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (uint8, src1, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (uint8, dst0, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (uint8, dst1, [BUF_SIZE]);
     BswapDSPContext h;
 
     ff_bswapdsp_init (&h);

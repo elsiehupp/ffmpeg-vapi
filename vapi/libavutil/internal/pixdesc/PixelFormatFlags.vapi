@@ -23,18 +23,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVUtil {
 
 [Flags]
-[CCode (cprefix="AV_PIX_FMT_FLAG_",cheader_filename="subprojects/ffmpeg/libavutil/pixdesc.h")]
+[CCode (cprefix="LibAVUtil.PixelFormat.FLAG_",cheader_filename="subprojects/ffmpeg/libavutil/pixdesc.h")]
 public enum PixelFormatFlags {
     /***********************************************************
     @brief Pixel format is big-endian.
     ***********************************************************/
-    [CCode (cname="AV_PIX_FMT_FLAG_BE")]
+    [CCode (cname="LibAVUtil.PixelFormat.FLAG_BE")]
     BIG_ENDIAN,
 
     /***********************************************************
     @brief Pixel format has a palette in data[1], values are indexes in this palette.
     ***********************************************************/
-    [CCode (cname="AV_PIX_FMT_FLAG_PAL")]
+    [CCode (cname="LibAVUtil.PixelFormat.FLAG_PAL")]
     PALETTE,
 
     /***********************************************************
@@ -45,7 +45,7 @@ public enum PixelFormatFlags {
     /***********************************************************
     @brief Pixel format is a hardware accelerated format.
     ***********************************************************/
-    [CCode (cname="AV_PIX_FMT_FLAG_HWACCEL")]
+    [CCode (cname="LibAVUtil.PixelFormat.FLAG_HWACCEL")]
     HARDWARE_ACCELERATED,
 
     /***********************************************************
@@ -68,13 +68,13 @@ public enum PixelFormatFlags {
 
     @deprecated This flag is deprecated, and will be removed. When it is removed,
     the extra palette allocation in Frame.data[1] is removed as well. Only
-    actual paletted formats (as indicated by AV_PIX_FMT_FLAG_PAL) will have a
+    actual paletted formats (as indicated by LibAVUtil.PixelFormat.FLAG_PAL) will have a
     palette. Starting with FFmpeg versions which have this flag deprecated, the
     extra "pseudo" palette is already ignored, and API users are not required to
-    allocate a palette for AV_PIX_FMT_FLAG_PSEUDOPAL formats (it was required
+    allocate a palette for LibAVUtil.PixelFormat.FLAG_PSEUDOPAL formats (it was required
     before the deprecation, though).
     ***********************************************************/
-    [CCode (cname="AV_PIX_FMT_FLAG_PSEUDOPAL")]
+    [CCode (cname="LibAVUtil.PixelFormat.FLAG_PSEUDOPAL")]
     PSEUDO_PALETTE,
 
     /***********************************************************

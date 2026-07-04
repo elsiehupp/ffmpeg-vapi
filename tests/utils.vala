@@ -19,13 +19,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 
-const uint SCALEBITS = 8;
-const uint ONE_HALF = (1 << (SCALEBITS - 1));
-public static uint FIX (float x) {
+private const uint SCALEBITS = 8;
+private const uint ONE_HALF = (1 << (SCALEBITS - 1));
+private static uint FIX (float x) {
     return ((uint) (x * (1 << SCALEBITS) + 0.5));
 }
 
-public static void err_if (bool expr) {
+private static void err_if (bool expr) {
     if (expr) {
         fprintf (
             stderr,
@@ -34,9 +34,10 @@ public static void err_if (bool expr) {
         );
         exit (1);
     }
+
 }
 
-public static void rgb24_to_yuv420p (
+private static void rgb24_to_yuv420p (
     uchar[] lum,
     uchar[] cb,
     uchar[] cr,
@@ -107,20 +108,22 @@ public static void rgb24_to_yuv420p (
             p   += -wrap3 + 2 * 3;
             lum += -wrap  + 2;
         }
+
         p   += wrap3;
         lum += wrap;
     }
+
 }
 
 /***********************************************************
 cif format
 ***********************************************************/
 
-const uint DEFAULT_WIDTH = 352;
-const uint DEFAULT_HEIGHT = 288;
-const uint DEFAULT_NB_PICT = 50;
+private const uint DEFAULT_WIDTH = 352;
+private const uint DEFAULT_HEIGHT = 288;
+private const uint DEFAULT_NB_PICT = 50;
 
-public static void pgmyuv_save (
+private static void pgmyuv_save (
     string filename,
     uint width,
     uint height,
@@ -161,16 +164,19 @@ public static void pgmyuv_save (
             cb += w2;
             cr += w2;
         }
+
         fclose (f);
     } else {
         for (uint i = 0; i < h2; i++) {
             err_if (fwrite (cb, 1, w2, f) != w2);
             cb += w2;
         }
+
         for (uint i = 0; i < h2; i++) {
             err_if (fwrite (cr, 1, w2, f) != w2);
             cr += w2;
         }
+
     }
 
     free (lum_tab);
@@ -178,12 +184,12 @@ public static void pgmyuv_save (
     free (cr_tab);
 }
 
-public static uchar[] rgb_tab;
-public static uint width_2;
-public static uint height_2;
-public static uint wrap;
+private static uchar[] rgb_tab;
+private static uint width_2;
+private static uint height_2;
+private static uint wrap;
 
-public static void put_pixel (
+private static void put_pixel (
     uint x,
     uint y,
     uint r,

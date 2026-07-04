@@ -130,7 +130,8 @@ allocating core structures, etc.
 @{
 ***********************************************************/
 
-/* Exported side data.
+/***********************************************************
+Exported side data.
    These flags can be passed in AVCodecContext.export_side_data before initialization.
 */
 

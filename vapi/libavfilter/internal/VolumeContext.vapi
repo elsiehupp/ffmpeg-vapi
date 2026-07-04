@@ -136,7 +136,7 @@ public class VolumeContext {
     public int planes;
 
     [CCode (cname="")]
-    public AVSampleFormat sample_fmt;
+    public LibAVUtil.SampleFormat sample_fmt;
 
     public delegate void ScaleSamplesDelegate (
         uint8[] dst,

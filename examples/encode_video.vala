@@ -36,14 +36,16 @@ Generate synthetic video data and encode it to an output file.
 //  #include <libavutil/opt.h>
 //  #include <libavutil/imgutils.h>
 
-public static void encode (AVCodecContext? enc_ctx, AVFrame? frame, AVPacket? pkt,
+private static void encode (AVCodecContext? enc_ctx, AVFrame? frame, AVPacket? pkt,
                    FILE? outfile
 ) {
     int ret;
 
-    /* send the frame to the encoder */
+    /***********************************************************
+    send the frame to the encoder
+    ***********************************************************/
     if (frame)
-        printf ("Send frame %3"PRId64"\n", frame->pts);
+        printf ("Send frame %3PRId64\n", frame.pts);
 
     ret = avcodec_send_frame (enc_ctx, frame);
     if (ret < 0) {
@@ -60,33 +62,37 @@ public static void encode (AVCodecContext? enc_ctx, AVFrame? frame, AVPacket? pk
             exit (1);
         }
 
-        printf ("Write packet %3"PRId64" (size=%5d)\n", pkt->pts, pkt->size);
-        fwrite (pkt->data, 1, pkt->size, outfile);
+        printf ("Write packet %3PRId64 (size=%5d)\n", pkt.pts, pkt.size);
+        fwrite (pkt.data, 1, pkt.size, outfile);
         av_packet_unref (pkt);
     }
+
 }
 
-public static int main (
+private static int main (
     int argc,
     string[] argv
 ) {
-    const string filename, *codec_name;
+    string filename;
+    string codec_name;
     AVCodec? codec;
     AVCodecContext? c = null;
     int i, ret, x, y;
     FILE? f;
     AVFrame? frame;
     AVPacket? pkt;
-    uint8_t endcode[] = { 0, 0, 1, 0xb7 };
+    uint8 endcode[] = { 0, 0, 1, 0xb7 };
 
     if (argc <= 2) {
         fprintf (stderr, "Usage: %s <output file> <codec name>\n", argv[0]);
         exit (0);
     }
+
     filename = argv[1];
     codec_name = argv[2];
 
-    /* find the mpeg1video encoder */
+    /***********************************************************
+    find the mpeg1video encoder */
     codec = avcodec_find_encoder_by_name (codec_name);
     if (!codec) {
         fprintf (stderr, "Codec '%s' not found\n", codec_name);
@@ -103,29 +109,34 @@ public static int main (
     if (!pkt)
         exit (1);
 
-    /* put sample parameters */
-    c->bit_rate = 400000;
-    /* resolution must be a multiple of two */
-    c->width = 352;
-    c->height = 288;
-    /* frames per second */
-    c->time_base = (AVRational){1, 25};
-    c->framerate = (AVRational){25, 1};
+    /***********************************************************
+    put sample parameters */
+    c.bit_rate = 400000;
+    /***********************************************************
+    resolution must be a multiple of two */
+    c.width = 352;
+    c.height = 288;
+    /***********************************************************
+    frames per second */
+    c.time_base = new LibAVUtil.Rational () {numerator = 1, denominator = 25};
+    c.framerate = new LibAVUtil.Rational () {numerator = 25, denominator = 1};
 
-    /* emit one intra frame every ten frames
+    /***********************************************************
+    emit one intra frame every ten frames
     check frame pict_type before passing frame
-    to encoder, if frame->pict_type is AV_PICTURE_TYPE_I
+    to encoder, if frame.pict_type is AV_PICTURE_TYPE_I
     then gop_size is ignored and the output of encoder
     will always be I frame irrespective to gop_size
     ***********************************************************/
-    c->gop_size = 10;
-    c->max_b_frames = 1;
-    c->pix_fmt = AV_PIX_FMT_YUV420P;
+    c.gop_size = 10;
+    c.max_b_frames = 1;
+    c.pix_fmt = LibAVUtil.PixelFormat.YUV420P;
 
-    if (codec->id == AV_CODEC_ID_H264)
-        av_opt_set (c->priv_data, "preset", "slow", 0);
+    if (codec.id == AV_CODEC_ID_H264)
+        av_opt_set (c.priv_data, "preset", "slow", 0);
 
-    /* open it */
+    /***********************************************************
+    open it */
     ret = avcodec_open2 (c, codec, null);
     if (ret < 0) {
         fprintf (stderr, "Could not open codec: %s\n", av_err2str (ret));
@@ -143,9 +154,10 @@ public static int main (
         fprintf (stderr, "Could not allocate video frame\n");
         exit (1);
     }
-    frame->format = c->pix_fmt;
-    frame->width  = c->width;
-    frame->height = c->height;
+
+    frame.format = c.pix_fmt;
+    frame.width = c.width;
+    frame.height = c.height;
 
     ret = av_frame_get_buffer (frame, 0);
     if (ret < 0) {
@@ -153,11 +165,14 @@ public static int main (
         exit (1);
     }
 
-    /* encode 1 second of video */
+    /***********************************************************
+    encode 1 second of video
+    ***********************************************************/
     for (i = 0; i < 25; i++) {
         fflush (stdout);
 
-        /* Make sure the frame data is writable.
+        /***********************************************************
+        Make sure the frame data is writable.
            On the first round, the frame is fresh from av_frame_get_buffer ()
            and therefore we know it is writable.
            But on the next rounds, encode () will have called
@@ -171,42 +186,50 @@ public static int main (
         if (ret < 0)
             exit (1);
 
-        /* Prepare a dummy image.
+        /***********************************************************
+        Prepare a dummy image.
            In real code, this is where you would have your own logic for
            filling the frame. FFmpeg does not care what you put in the
            frame.
          */
-        /* Y */
-        for (y = 0; y < c->height; y++) {
-            for (x = 0; x < c->width; x++) {
-                frame->data[0][y * frame->linesize[0] + x] = x + y + i * 3;
+        /***********************************************************
+        Y */
+        for (y = 0; y < c.height; y++) {
+            for (x = 0; x < c.width; x++) {
+                frame.data[0][y * frame.linesize[0] + x] = x + y + i * 3;
             }
+
         }
 
-        /* Cb and Cr */
-        for (y = 0; y < c->height/2; y++) {
-            for (x = 0; x < c->width/2; x++) {
-                frame->data[1][y * frame->linesize[1] + x] = 128 + y + i * 2;
-                frame->data[2][y * frame->linesize[2] + x] = 64 + x + i * 5;
+        /***********************************************************
+        Cb and Cr */
+        for (y = 0; y < c.height/2; y++) {
+            for (x = 0; x < c.width/2; x++) {
+                frame.data[1][y * frame.linesize[1] + x] = 128 + y + i * 2;
+                frame.data[2][y * frame.linesize[2] + x] = 64 + x + i * 5;
             }
+
         }
 
-        frame->pts = i;
+        frame.pts = i;
 
-        /* encode the image */
+        /***********************************************************
+        encode the image */
         encode (c, frame, pkt, f);
     }
 
-    /* flush the encoder */
+    /***********************************************************
+    flush the encoder */
     encode (c, null, pkt, f);
 
-    /* Add sequence end code to have a real MPEG file.
+    /***********************************************************
+    Add sequence end code to have a real MPEG file.
        It makes only sense because this tiny examples writes packets
        directly. This is called "elementary stream" and only works for some
        codecs. To create a valid file, you usually need to write packets
        into a proper file format or protocol; see mux.c.
     ***********************************************************/
-    if (codec->id == AV_CODEC_ID_MPEG1VIDEO || codec->id == AV_CODEC_ID_MPEG2VIDEO)
+    if (codec.id == AV_CODEC_ID_MPEG1VIDEO || codec.id == AV_CODEC_ID_MPEG2VIDEO)
         fwrite (endcode, 1, sizeof (endcode), f);
     fclose (f);
 

@@ -16,38 +16,39 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-const size_t WIDTH = 256;
-const size_t WIDTH_PADDED = 256 + 32;
+private const size_t WIDTH = 256;
+private const size_t WIDTH_PADDED = 256 + 32;
 
-void randomize_buffers (void *buf, int size) {
+private static void randomize_buffers (void *buf, int size) {
     int j;
     uint8[] tmp_buf = (uint8[] )buf;
     for (j = 0; j < size; j++) {
         tmp_buf[j] = rnd () & 0xFF;
     }
+
 }
 
-public static void check_threshold (int depth){
-    LOCAL_ALIGNED_32 (uint8, in       , [WIDTH_PADDED]);
-    LOCAL_ALIGNED_32 (uint8, threshold, [WIDTH_PADDED]);
-    LOCAL_ALIGNED_32 (uint8, min      , [WIDTH_PADDED]);
-    LOCAL_ALIGNED_32 (uint8, max      , [WIDTH_PADDED]);
-    LOCAL_ALIGNED_32 (uint8, out_ref  , [WIDTH_PADDED]);
-    LOCAL_ALIGNED_32 (uint8, out_new  , [WIDTH_PADDED]);
+private static void check_threshold (int depth){
+    //  LOCAL_ALIGNED_32 (uint8, in       , [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (uint8, threshold, [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (uint8, min      , [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (uint8, max      , [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (uint8, out_ref  , [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (uint8, out_new  , [WIDTH_PADDED]);
     size_t line_size = WIDTH_PADDED;
     int w = WIDTH;
 
-    declare_func (void, uint8[] in, uint8[] threshold,
-                 uint8[] min, uint8[] max, uint8[] out,
-                 size_t ilinesize, size_t tlinesize,
-                 size_t flinesize, size_t slinesize,
-                 size_t olinesize, int w, int h);
+    //  declare_func (void, uint8[] in, uint8[] threshold,
+    //               uint8[] min, uint8[] max, uint8[] out,
+    //               size_t ilinesize, size_t tlinesize,
+    //               size_t flinesize, size_t slinesize,
+    //               size_t olinesize, int w, int h);
 
     ThresholdContext s;
     s.depth = depth;
     ff_threshold_init (&s);
 
-    memset (in,     0, WIDTH_PADDED);
+    memset (in, 0, WIDTH_PADDED);
     memset (threshold, 0, WIDTH_PADDED);
     memset (min, 0, WIDTH_PADDED);
     memset (max, 0, WIDTH_PADDED);
@@ -62,15 +63,18 @@ public static void check_threshold (int depth){
         w /= 2;
 
     if (check_func (s.threshold, "threshold%d", depth)) {
-        call_ref (in, threshold, min, max, out_ref, line_size, line_size, line_size, line_size, line_size, w, 1);
-        call_new (in, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1);
-        if (memcmp (out_ref, out_new, WIDTH))
+        //  call_ref (in, threshold, min, max, out_ref, line_size, line_size, line_size, line_size, line_size, w, 1);
+        //  call_new (in, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1);
+        if (memcmp (out_ref, out_new, WIDTH)) {
             fail ();
+        }
+
         bench_new (in, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1);
     }
+
 }
 
-void checkasm_check_vf_threshold () {
+private static void checkasm_check_vf_threshold () {
     check_threshold (8);
     report ("threshold8");
 

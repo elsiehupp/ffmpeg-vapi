@@ -20,18 +20,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class ApiBandTest : GLib.TestCase {
+private class ApiBandTest : GLib.TestCase {
 
     /***********************************************************
     draw_horiz_band test.
     ***********************************************************/
 
-    static uint8[] slice_byte_buffer;
-    static uint8 slice_byte_buffer_size;
-    static uint draw_horiz_band_called;
+    private static uint8[] slice_byte_buffer;
+    private static uint8 slice_byte_buffer_size;
+    private static uint draw_horiz_band_called;
 
-    static void draw_horiz_band (
+    private static void draw_horiz_band (
         LibAVCodec.CodecContext codec_context,
         LibAVUtil.Frame frame,
         uint offset[4],
@@ -57,17 +56,20 @@ public class ApiBandTest : GLib.TestCase {
             Posix.memcpy (slice_byte_buffer + codec_context.width * slice_position + i * codec_context.width,
                 frame.data[0] + offset[0] + i * frame.linesize[0], codec_context.width);
         }
+
         for (uint i = 0; i < chroma_h; i++) {
             Posix.memcpy (slice_byte_buffer + codec_context.width * codec_context.height + chroma_w * shift_slice_position + i * chroma_w,
                 frame.data[1] + offset[1] + i * frame.linesize[1], chroma_w);
         }
+
         for (uint i = 0; i < chroma_h; i++) {
             Posix.memcpy (slice_byte_buffer + codec_context.width * codec_context.height + chroma_w * shift_height + chroma_w * shift_slice_position + i * chroma_w,
                 frame.data[2] + offset[2] + i * frame.linesize[2], chroma_w);
         }
+
     }
 
-    static uint video_decode (string input_filename) {
+    private static uint video_decode (string input_filename) {
         LibAVCodec.Codec codec = null;
         LibAVCodec.CodecContext codec_context= null;
         LibAVCodec.CodecParameters origin_par = null;
@@ -205,6 +207,7 @@ public class ApiBandTest : GLib.TestCase {
             );
             return AVERROR (ENOMEM);
         }
+
         memset (slice_byte_buffer, 0, byte_buffer_size);
         slice_byte_buffer_size = byte_buffer_size;
 
@@ -214,11 +217,14 @@ public class ApiBandTest : GLib.TestCase {
                 if (av_read_frame (format_context, out packet) < 0) {
                     end_of_stream = true;
                 }
+
             }
+
             if (end_of_stream) {
                 packet.data = null;
                 packet.size = 0;
             }
+
             if (packet.stream_index == video_stream || end_of_stream) {
                 got_frame = false;
                 result = avcodec_decode_video2 (codec_context, frame, out got_frame, out packet);
@@ -230,6 +236,7 @@ public class ApiBandTest : GLib.TestCase {
                     );
                     return result;
                 }
+
                 if (got_frame) {
                     number_of_written_bytes = av_image_copy_to_buffer (byte_buffer, byte_buffer_size,
                                             (uint8[])frame.data, (uint[]) frame.linesize,
@@ -242,6 +249,7 @@ public class ApiBandTest : GLib.TestCase {
                         );
                         return number_of_written_bytes;
                     }
+
                     if (draw_horiz_band_called == 0) {
                         av_log (
                             null,
@@ -250,6 +258,7 @@ public class ApiBandTest : GLib.TestCase {
                         );
                         return -1;
                     }
+
                     if (av_adler32_update (0, (uint8[])byte_buffer, number_of_written_bytes) !=
                         av_adler32_update (0, (uint8[])slice_byte_buffer, number_of_written_bytes)) {
                         av_log (
@@ -259,10 +268,13 @@ public class ApiBandTest : GLib.TestCase {
                         );
                         return -1;
                     }
+
                 }
+
                 av_packet_unref (out packet);
                 av_init_packet (out packet);
             }
+
         } while (!end_of_stream || got_frame);
 
         av_packet_unref (out packet);

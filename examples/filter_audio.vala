@@ -26,7 +26,7 @@ This example will generate a sine wave audio, pass it through a simple filter
 chain, and then compute the MD5 checksum of the output data.
 
 The filter chain it uses is:
-(input) -> abuffer -> volume -> aformat -> abuffersink -> (output)
+(input) . abuffer . volume . aformat . abuffersink . (output)
 
 abuffer: This provides the endpoint where you can feed the decoded samples.
 volume: In this example we hardcode it to 0.90.
@@ -51,39 +51,43 @@ abuffersink: This provides the endpoint where you can read the samples after
 //  #include <libavfilter/buffersink.h>
 //  #include <libavfilter/buffersrc.h>
 
-#define INPUT_SAMPLERATE     48000
-#define INPUT_FORMAT         AV_SAMPLE_FMT_FLTP
-#define INPUT_CHANNEL_LAYOUT (AVChannelLayout)AV_CHANNEL_LAYOUT_5POINT0
+private const size_t INPUT_SAMPLERATE = 48000;
+private const LibAVUtil.SampleFormat INPUT_FORMAT = LibAVUtil.SampleFormat.FLOAT_PLANAR;
+private const AVChannelLayout INPUT_CHANNEL_LAYOUT = (AVChannelLayout)AV_CHANNEL_LAYOUT_5POINT0;
 
-#define VOLUME_VAL 0.90
+private const float VOLUME_VAL = 0.90;
 
-public static int init_filter_graph (AVFilterGraph **graph, AVFilterContext **src,
-                             AVFilterContext **sink
+private static int init_filter_graph (
+    out AVFilterGraph? graph_out,
+    out AVFilterContext? src_out,
+    out AVFilterContext? sink_out
 ) {
     AVFilterGraph? filter_graph;
     AVFilterContext? abuffer_ctx;
-    const AVFilter ? abuffer;
+    AVFilter ? abuffer;
     AVFilterContext? volume_ctx;
-    const AVFilter ? volume;
+    AVFilter ? volume;
     AVFilterContext? aformat_ctx;
-    const AVFilter ? aformat;
+    AVFilter ? aformat;
     AVFilterContext? abuffersink_ctx;
-    const AVFilter ? abuffersink;
+    AVFilter ? abuffersink;
 
     AVDictionary? options_dict = null;
-    uint8_t options_str[1024];
-    uint8_t ch_layout[64];
+    uint8 options_str[1024];
+    uint8 ch_layout[64];
 
     int err;
 
-    /* Create a new filtergraph, which will contain all the filters. */
+    /***********************************************************
+    Create a new filtergraph, which will contain all the filters. */
     filter_graph = avfilter_graph_alloc ();
     if (!filter_graph) {
         fprintf (stderr, "Unable to create filter graph.\n");
         return AVERROR (ENOMEM);
     }
 
-    /* Create the abuffer filter;
+    /***********************************************************
+    Create the abuffer filter;
     it will be used for feeding the data into the graph. */
     abuffer = avfilter_get_by_name ("abuffer");
     if (!abuffer) {
@@ -97,14 +101,16 @@ public static int init_filter_graph (AVFilterGraph **graph, AVFilterContext **sr
         return AVERROR (ENOMEM);
     }
 
-    /* Set the filter options through the AVOptions API. */
+    /***********************************************************
+    Set the filter options through the AVOptions API. */
     av_channel_layout_describe (&INPUT_CHANNEL_LAYOUT, ch_layout, sizeof (ch_layout));
-    av_opt_set    (abuffer_ctx, "channel_layout", ch_layout,                            AV_OPT_SEARCH_CHILDREN);
-    av_opt_set    (abuffer_ctx, "sample_fmt",     av_get_sample_fmt_name (INPUT_FORMAT), AV_OPT_SEARCH_CHILDREN);
-    av_opt_set_q  (abuffer_ctx, "time_base",      (AVRational){ 1, INPUT_SAMPLERATE },  AV_OPT_SEARCH_CHILDREN);
-    av_opt_set_int (abuffer_ctx, "sample_rate",    INPUT_SAMPLERATE,                     AV_OPT_SEARCH_CHILDREN);
+    av_opt_set    (abuffer_ctx, "channel_layout", ch_layout, AV_OPT_SEARCH_CHILDREN);
+    av_opt_set    (abuffer_ctx, "sample_fmt", av_get_sample_fmt_name (INPUT_FORMAT), AV_OPT_SEARCH_CHILDREN);
+    av_opt_set_q  (abuffer_ctx, "time_base", new LibAVUtil.Rational () { numerator = 1, denominator = INPUT_SAMPLERATE }, AV_OPT_SEARCH_CHILDREN);
+    av_opt_set_int (abuffer_ctx, "sample_rate", INPUT_SAMPLERATE, AV_OPT_SEARCH_CHILDREN);
 
-    /* Now initialize the filter; we pass null options, since we have already
+    /***********************************************************
+    Now initialize the filter; we pass null options, since we have already
     set all the options above. */
     err = avfilter_init_str (abuffer_ctx, null);
     if (err < 0) {
@@ -112,7 +118,8 @@ public static int init_filter_graph (AVFilterGraph **graph, AVFilterContext **sr
         return err;
     }
 
-    /* Create volume filter. */
+    /***********************************************************
+    Create volume filter. */
     volume = avfilter_get_by_name ("volume");
     if (!volume) {
         fprintf (stderr, "Could not find the volume filter.\n");
@@ -125,7 +132,8 @@ public static int init_filter_graph (AVFilterGraph **graph, AVFilterContext **sr
         return AVERROR (ENOMEM);
     }
 
-    /* A different way of passing the options is as key/value pairs in a
+    /***********************************************************
+    A different way of passing the options is as key/value pairs in a
     dictionary. */
     av_dict_set (&options_dict, "volume", AV_STRINGIFY (VOLUME_VAL), 0);
     err = avfilter_init_dict (volume_ctx, &options_dict);
@@ -135,7 +143,8 @@ public static int init_filter_graph (AVFilterGraph **graph, AVFilterContext **sr
         return err;
     }
 
-    /* Create the aformat filter;
+    /***********************************************************
+    Create the aformat filter;
     it ensures that the output is of the format we want. */
     aformat = avfilter_get_by_name ("aformat");
     if (!aformat) {
@@ -149,18 +158,20 @@ public static int init_filter_graph (AVFilterGraph **graph, AVFilterContext **sr
         return AVERROR (ENOMEM);
     }
 
-    /* A third way of passing the options is in a string of the form
+    /***********************************************************
+    A third way of passing the options is in a string of the form
     key1=value1:key2=value2.... */
     snprintf (options_str, sizeof (options_str),
              "sample_fmts=%s:sample_rates=%d:channel_layouts=stereo",
-             av_get_sample_fmt_name (AV_SAMPLE_FMT_S16), 44100);
+             av_get_sample_fmt_name (LibAVUtil.SampleFormat.SIGNED_16_BIT), 44100);
     err = avfilter_init_str (aformat_ctx, options_str);
     if (err < 0) {
         av_log (null, AV_LOG_ERROR, "Could not initialize the aformat filter.\n");
         return err;
     }
 
-    /* Finally create the abuffersink filter;
+    /***********************************************************
+    Finally create the abuffersink filter;
     it will be used to get the filtered data out of the graph. */
     abuffersink = avfilter_get_by_name ("abuffersink");
     if (!abuffersink) {
@@ -174,14 +185,16 @@ public static int init_filter_graph (AVFilterGraph **graph, AVFilterContext **sr
         return AVERROR (ENOMEM);
     }
 
-    /* This filter takes no options. */
+    /***********************************************************
+    This filter takes no options. */
     err = avfilter_init_str (abuffersink_ctx, null);
     if (err < 0) {
         fprintf (stderr, "Could not initialize the abuffersink instance.\n");
         return err;
     }
 
-    /* Connect the filters;
+    /***********************************************************
+    Connect the filters;
     in this simple case the filters just form a linear chain. */
     err = avfilter_link (abuffer_ctx, 0, volume_ctx, 0);
     if (err >= 0)
@@ -193,83 +206,92 @@ public static int init_filter_graph (AVFilterGraph **graph, AVFilterContext **sr
         return err;
     }
 
-    /* Configure the graph. */
+    /***********************************************************
+    Configure the graph. */
     err = avfilter_graph_config (filter_graph, null);
     if (err < 0) {
         av_log (null, AV_LOG_ERROR, "Error configuring the filter graph\n");
         return err;
     }
 
-    *graph = filter_graph;
-    *src   = abuffer_ctx;
-    *sink  = abuffersink_ctx;
+    graph_out = filter_graph;
+    src_out = abuffer_ctx;
+    sink_out = abuffersink_ctx;
 
     return 0;
 }
 
-/* Do something useful with the filtered data: this simple
+/***********************************************************
+Do something useful with the filtered data: this simple
 example just prints the MD5 checksum of each plane to stdout. */
-public static int process_output (struct AVMD5? md5, AVFrame? frame
+private static int process_output (AVMD5? md5, AVFrame? frame
 ) {
-    int planar     = av_sample_fmt_is_planar (frame->format);
-    int channels   = frame->ch_layout.nb_channels;
-    int planes     = planar ? channels : 1;
-    int bps        = av_get_bytes_per_sample (frame->format);
-    int plane_size = bps * frame->nb_samples * (planar ? 1 : channels);
+    int planar = av_sample_fmt_is_planar (frame.format);
+    int channels = frame.ch_layout.nb_channels;
+    int planes = planar ? channels : 1;
+    int bps = av_get_bytes_per_sample (frame.format);
+    int plane_size = bps * frame.nb_samples * (planar ? 1 : channels);
     int i, j;
 
     for (i = 0; i < planes; i++) {
-        uint8_t checksum[16];
+        uint8 checksum[16];
 
         av_md5_init (md5);
-        av_md5_sum (checksum, frame->extended_data[i], plane_size);
+        av_md5_sum (checksum, frame.extended_data[i], plane_size);
 
         fprintf (stdout, "plane %d: 0x", i);
         for (j = 0; j < sizeof (checksum); j++)
             fprintf (stdout, "%02X", checksum[j]);
         fprintf (stdout, "\n");
     }
+
     fprintf (stdout, "\n");
 
     return 0;
 }
 
-/* Construct a frame of audio data to be filtered;
+private const size_t FRAME_SIZE = 1024;
+
+/***********************************************************
+Construct a frame of audio data to be filtered;
 this simple example just synthesizes a sine wave. */
-public static int get_input (AVFrame? frame, int frame_num
+private static int get_input (AVFrame? frame, int frame_num
 ) {
     int err, i, j;
 
-#define FRAME_SIZE 1024
-
-    /* Set up the frame properties and allocate the buffer for the data. */
-    frame->sample_rate    = INPUT_SAMPLERATE;
-    frame->format         = INPUT_FORMAT;
-    av_channel_layout_copy (&frame->ch_layout, &INPUT_CHANNEL_LAYOUT);
-    frame->nb_samples     = FRAME_SIZE;
-    frame->pts            = frame_num * FRAME_SIZE;
+    /***********************************************************
+    Set up the frame properties and allocate the buffer for the data. */
+    frame.sample_rate = INPUT_SAMPLERATE;
+    frame.format = INPUT_FORMAT;
+    av_channel_layout_copy (&frame.ch_layout, &INPUT_CHANNEL_LAYOUT);
+    frame.nb_samples = FRAME_SIZE;
+    frame.pts = frame_num * FRAME_SIZE;
 
     err = av_frame_get_buffer (frame, 0);
     if (err < 0)
         return err;
 
-    /* Fill the data for each channel. */
+    /***********************************************************
+    Fill the data for each channel.
+    ***********************************************************/
     for (i = 0; i < 5; i++) {
-        float *data = (float*)frame->extended_data[i];
+        float[] data = (float*)frame.extended_data[i];
 
-        for (j = 0; j < frame->nb_samples; j++)
+        for (j = 0; j < frame.nb_samples; j++)
             data[j] = sin (2 * M_PI * (frame_num + j) * (i + 1) / FRAME_SIZE);
     }
 
     return 0;
 }
 
-public static int main (
-    int argc, string argv[]
+private static int main (
+    int argc,
+    string[] argv
 ) {
-    struct AVMD5? md5;
+    AVMD5? md5;
     AVFilterGraph? graph;
-    AVFilterContext? src,? sink;
+    AVFilterContext? src;
+    AVFilterContext? sink;
     AVFrame? frame;
     float duration;
     int err, nb_frames, i;
@@ -279,15 +301,16 @@ public static int main (
         return 1;
     }
 
-    duration  = atof (argv[1]);
+    duration = atof (argv[1]);
     nb_frames = duration * INPUT_SAMPLERATE / FRAME_SIZE;
     if (nb_frames <= 0) {
         fprintf (stderr, "Invalid duration: %s\n", argv[1]);
         return 1;
     }
 
-    /* Allocate the frame we will be using to store the data. */
-    frame  = av_frame_alloc ();
+    /***********************************************************
+    Allocate the frame we will be using to store the data. */
+    frame = av_frame_alloc ();
     if (!frame) {
         fprintf (stderr, "Error allocating the frame\n");
         return 1;
@@ -300,7 +323,8 @@ public static int main (
         return 1;
     }
 
-    /* Set up the filtergraph. */
+    /***********************************************************
+    Set up the filtergraph. */
     err = init_filter_graph (&graph, &src, &sink);
     if (err < 0) {
         av_frame_free (&frame);
@@ -309,45 +333,56 @@ public static int main (
         return 1;
     }
 
-    /* the main filtering loop */
+    /***********************************************************
+    the main filtering loop
+    ***********************************************************/
     for (i = 0; i < nb_frames; i++) {
-        /* get an input frame to be filtered */
+        /***********************************************************
+        get an input frame to be filtered */
         err = get_input (frame, i);
         if (err < 0) {
             fprintf (stderr, "Error generating input frame:");
-            goto fail;
+            //  goto fail;
         }
 
-        /* Send the frame to the input of the filtergraph. */
+        /***********************************************************
+        Send the frame to the input of the filtergraph. */
         err = av_buffersrc_add_frame (src, frame);
         if (err < 0) {
             av_frame_unref (frame);
             fprintf (stderr, "Error submitting the frame to the filtergraph:");
-            goto fail;
+            //  goto fail;
         }
 
-        /* Get all the filtered output that is available. */
+        /***********************************************************
+        Get all the filtered output that is available. */
         while ((err = av_buffersink_get_frame (sink, frame)) >= 0) {
-            /* now do something with our filtered frame */
+            /***********************************************************
+            now do something with our filtered frame */
             err = process_output (md5, frame);
             if (err < 0) {
                 fprintf (stderr, "Error processing the filtered frame:");
-                goto fail;
+                //  goto fail;
             }
+
             av_frame_unref (frame);
         }
 
         if (err == AVERROR (EAGAIN)) {
-            /* Need to feed more frames in. */
+            /***********************************************************
+            Need to feed more frames in. */
             continue;
         } else if (err == AVERROR_EOF) {
-            /* Nothing more to do, finish. */
+            /***********************************************************
+            Nothing more to do, finish. */
             break;
         } else if (err < 0) {
-            /* An error occurred. */
+            /***********************************************************
+            An error occurred. */
             fprintf (stderr, "Error filtering the data:");
-            goto fail;
+            //  goto fail;
         }
+
     }
 
     avfilter_graph_free (&graph);
@@ -356,7 +391,7 @@ public static int main (
 
     return 0;
 
-fail:
+//  fail:
     avfilter_graph_free (&graph);
     av_frame_free (&frame);
     av_freep (&md5);

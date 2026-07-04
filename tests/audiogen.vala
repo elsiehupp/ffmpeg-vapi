@@ -18,42 +18,42 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class audiogen {
+private class audiogen {
     /***********************************************************
     Generate a synthetic stereo sound.
     NOTE: No floats are used to guarantee bitexact output.
     ***********************************************************/
-    const uint MAX_CHANNELS = 12;
+    private const uint MAX_CHANNELS = 12;
 
-    static uint myrnd (
-        out uint seed_ptr,
+    private static uint myrnd (
+        ref uint seed_ptr,
         uint n
     ) {
         uint seed;
         uint val;
 
-        seed = *seed_ptr;
+        seed = seed_ptr;
         seed = (seed * 314159) + 1;
         if (n == 256) {
             val = seed >> 24;
         } else {
             val = seed % n;
         }
-        *seed_ptr = seed;
+
+        seed_ptr = seed;
         return val;
     }
 
-    const uint FRAC_BITS = 16;
-    const uint FRAC_ONE = (1 << FRAC_BITS);
+    private const uint FRAC_BITS = 16;
+    private const uint FRAC_ONE = (1 << FRAC_BITS);
 
-    const uint COS_TABLE_BITS = 7;
+    private const uint COS_TABLE_BITS = 7;
 
     /***********************************************************
     integer cosine
     ***********************************************************/
 
-    const ushort cos_table[(1 << COS_TABLE_BITS) + 2] = {
+    private const ushort cos_table[(1 << COS_TABLE_BITS) + 2] = {
         0x8000, 0x7ffe, 0x7ff6, 0x7fea, 0x7fd9, 0x7fc2, 0x7fa7, 0x7f87,
         0x7f62, 0x7f38, 0x7f0a, 0x7ed6, 0x7e9d, 0x7e60, 0x7e1e, 0x7dd6,
         0x7d8a, 0x7d3a, 0x7ce4, 0x7c89, 0x7c2a, 0x7bc6, 0x7b5d, 0x7aef,
@@ -73,9 +73,9 @@ public class audiogen {
         0x0000, 0x0000,
     };
 
-    const uint CSHIFT = (FRAC_BITS - COS_TABLE_BITS - 2);
+    private const uint CSHIFT = (FRAC_BITS - COS_TABLE_BITS - 2);
 
-    static uint int_cos (uint a) {
+    private static uint int_cos (uint a) {
         uint neg;
         uint v;
         uint f;
@@ -93,6 +93,7 @@ public class audiogen {
             neg = -1;
             a = (FRAC_ONE / 2) - a;
         }
+
         p = cos_table + (a >> CSHIFT);
         /***********************************************************
         Linear interpolation
@@ -107,24 +108,24 @@ public class audiogen {
 
     GLib.File outfile;
 
-    static void put16 (int16 v) {
+    private static void put16 (int16 v) {
         fputc (v       & 0xff, outfile);
         fputc ((v >> 8) & 0xff, outfile);
     }
 
-    static void put32 (uint32 v) {
+    private static void put32 (uint32 v) {
         fputc (v        & 0xff, outfile);
         fputc ((v >>  8) & 0xff, outfile);
         fputc ((v >> 16) & 0xff, outfile);
         fputc ((v >> 24) & 0xff, outfile);
     }
 
-    const size_t HEADER_SIZE = 46;
-    const size_t FMT_SIZE = 18;
-    const size_t SAMPLE_SIZE = 2;
-    const uint WFORMAT_PCM = 0x0001;
+    private const size_t HEADER_SIZE = 46;
+    private const size_t FMT_SIZE = 18;
+    private const size_t SAMPLE_SIZE = 2;
+    private const uint WFORMAT_PCM = 0x0001;
 
-    static void put_wav_header (
+    private static void put_wav_header (
         uint sample_rate,
         uint channels,
         uint nb_samples
@@ -178,6 +179,7 @@ public class audiogen {
                 fprintf (stderr, "invalid sample rate: %d\n", sample_rate);
                 return 1;
             }
+
         }
 
         if (argc > 3) {
@@ -186,6 +188,7 @@ public class audiogen {
                 fprintf (stderr, "invalid number of channels: %d\n", nb_channels);
                 return 1;
             }
+
         }
 
         if (argc > 4)
@@ -257,6 +260,7 @@ public class audiogen {
             tabf1[j] = 100 + myrnd (out seed, 5000);
             tabf2[j] = 100 + myrnd (out seed, 5000);
         }
+
         for (uint i = 0; i < 1 * sample_rate; i++) {
             for (uint j = 0; j < nb_channels; j++) {
                 v = (int_cos (taba[j]) * 10000) >> FRAC_BITS;
@@ -264,6 +268,7 @@ public class audiogen {
                 f = tabf1[j] + (((tabf2[j] - tabf1[j]) * i) / sample_rate);
                 taba[j] += (f * FRAC_ONE) / sample_rate;
             }
+
         }
 
         /***********************************************************
@@ -282,6 +287,7 @@ public class audiogen {
                 a    += (500 * FRAC_ONE) / sample_rate;
                 ampa += (2 * FRAC_ONE) / sample_rate;
             }
+
         }
 
         fclose (outfile);

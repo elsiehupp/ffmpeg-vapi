@@ -18,7 +18,7 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public static void test (
+private static void test (
     string pattern,
     string host) {
     int res = ff_http_match_no_proxy (pattern, host);
@@ -27,7 +27,7 @@ public static void test (
            host);
 }
 
-public static int main () {
+private static int main () {
     test (null, "domain.com");
     test ("example.com domain.com", "domain.com");
     test ("example.com other.com", "domain.com");

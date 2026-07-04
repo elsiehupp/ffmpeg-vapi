@@ -18,23 +18,27 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-const size_t BUF_SIZE = 1024;
+private const size_t BUF_SIZE = 1024;
 
-void randomize_input (len) {
+private static void randomize_input (
+    void *len
+) {
     int k;
     for (k = 0; k < len; k++) {
         in[k] = rnd () - INT32_MAX;
     }
+
     for (     ; k < BUF_SIZE; k++) {
         in[k] = INT32_MAX;
     }
+
 }
 
-void checkasm_check_fmtconvert () {
+private static void checkasm_check_fmtconvert () {
     FmtConvertContext c;
-    LOCAL_ALIGNED (32, float,   dst0, [BUF_SIZE]);
-    LOCAL_ALIGNED (32, float,   dst1, [BUF_SIZE]);
-    LOCAL_ALIGNED (32, int32_t, in,   [BUF_SIZE]);
+    //  LOCAL_ALIGNED (32, float, dst0, [BUF_SIZE]);
+    //  LOCAL_ALIGNED (32, float, dst1, [BUF_SIZE]);
+    //  LOCAL_ALIGNED (32, int32, in, [BUF_SIZE]);
     float scale_arr[128];
     int length[] = {8, 16, 24, 56, 72, 128, 512, 520, 656, 768, 992};
     int i, j;
@@ -44,19 +48,19 @@ void checkasm_check_fmtconvert () {
 
     ff_fmt_convert_init (&c, null);
 
-    memset (dst0, 0, sizeof (*dst0) * BUF_SIZE);
-    memset (dst1, 0, sizeof (*dst1) * BUF_SIZE);
+    memset (dst0, 0, sizeof (dst0) * BUF_SIZE);
+    memset (dst1, 0, sizeof (dst1) * BUF_SIZE);
 
     if (check_func (c.int32_to_float_fmul_scalar, "int32_to_float_fmul_scalar")) {
-        declare_func (void, float *, int32_t *, float, int);
+        //  declare_func (void, float[] , int32[] , float, int);
 
         for (i = 0; i < FF_ARRAY_ELEMS (scale_arr); i++) {
             for (j = 0; j < FF_ARRAY_ELEMS (length); j++) {
 
                 randomize_input (length[j]);
 
-                call_ref (dst0, in, scale_arr[i], length[j]);
-                call_new (dst1, in, scale_arr[i], length[j]);
+                //  call_ref (dst0, in, scale_arr[i], length[j]);
+                //  call_new (dst1, in, scale_arr[i], length[j]);
 
                 if (!float_near_ulp_array (dst0, dst1, 3, length[j])) {
                     fail ();
@@ -65,19 +69,22 @@ void checkasm_check_fmtconvert () {
 
                 bench_new (dst1, in, scale_arr[i], length[j]);
             }
+
         }
+
     }
+
     if (check_func (c.int32_to_float_fmul_array8, "int32_to_float_fmul_array8")) {
-        declare_func (void, FmtConvertContext? , float? , int32_t? ,
-                     float[] , int);
+        //  declare_func (void, FmtConvertContext? , float? , int32? ,
+        //               float[] , int);
 
         for (i = 0; i < 4; i++) {
             for (j = 0; j < FF_ARRAY_ELEMS (length); j++) {
 
                 randomize_input (length[j]);
 
-                call_ref (&c, dst0, in, scale_arr, length[j]);
-                call_new (&c, dst1, in, scale_arr, length[j]);
+                //  call_ref (&c, dst0, in, scale_arr, length[j]);
+                //  call_new (&c, dst1, in, scale_arr, length[j]);
 
                 if (!float_near_ulp_array (dst0, dst1, 3, length[j])) {
                     fail ();
@@ -87,7 +94,10 @@ void checkasm_check_fmtconvert () {
 
                 bench_new (&c, dst1, in, scale_arr, length[j]);
             }
+
         }
+
     }
+
     report ("fmtconvert");
 }

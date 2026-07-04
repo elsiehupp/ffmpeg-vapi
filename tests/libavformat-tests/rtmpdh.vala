@@ -16,8 +16,9 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-public static int test_random_shared_secret () {
-    FF_DH? peer1 = null,? peer2 = null;
+private static int test_random_shared_secret () {
+    FF_DH? peer1 = null;
+    FF_DH? peer2 = null;
     int ret;
     uint8 pubkey1[128], pubkey2[128];
     uint8 sharedkey1[128], sharedkey2[128];
@@ -26,45 +27,46 @@ public static int test_random_shared_secret () {
     peer2 = ff_dh_init (1024);
     if (!peer1 || !peer2) {
         ret = AVERROR (ENOMEM);
-        goto fail;
+        //  goto fail;
     }
+
     if ((ret = ff_dh_generate_public_key (peer1)) < 0)
-        goto fail;
+        //  goto fail;
     if ((ret = ff_dh_generate_public_key (peer2)) < 0)
-        goto fail;
+        //  goto fail;
     if ((ret = ff_dh_write_public_key (peer1, pubkey1, sizeof (pubkey1))) < 0)
-        goto fail;
+        //  goto fail;
     if ((ret = ff_dh_write_public_key (peer2, pubkey2, sizeof (pubkey2))) < 0)
-        goto fail;
+        //  goto fail;
     if ((ret = ff_dh_compute_shared_secret_key (peer1, pubkey2, sizeof (pubkey2),
                                                sharedkey1, sizeof (sharedkey1))) < 0)
-        goto fail;
+        //  goto fail;
     if ((ret = ff_dh_compute_shared_secret_key (peer2, pubkey1, sizeof (pubkey1),
                                                sharedkey2, sizeof (sharedkey2))) < 0)
-        goto fail;
+        //  goto fail;
     if (memcmp (sharedkey1, sharedkey2, sizeof (sharedkey1))) {
         printf ("Mismatched generated shared key\n");
         ret = AVERROR_INVALIDDATA;
     } else {
         printf ("Generated shared key ok\n");
     }
-fail:
+//  fail:
     ff_dh_free (peer1);
     ff_dh_free (peer2);
     return ret;
 }
 
-const string private_key =
-    "976C18FCADC255B456564F74F3EEDA59D28AF6B744D743F2357BFD2404797EF896EF1A"
-    "7C1CBEAAA3AB60AF3192D189CFF3F991C9CBBFD78119FCA2181384B94011943B6D6F28"
-    "9E1B708E2D1A0C7771169293F03DA27E561F15F16F0AC9BC858C77A80FA98FD088A232"
+private const string private_key =
+    "976C18FCADC255B456564F74F3EEDA59D28AF6B744D743F2357BFD2404797EF896EF1A" +
+    "7C1CBEAAA3AB60AF3192D189CFF3F991C9CBBFD78119FCA2181384B94011943B6D6F28" +
+    "9E1B708E2D1A0C7771169293F03DA27E561F15F16F0AC9BC858C77A80FA98FD088A232" +
     "19D08BE6F165DE0B02034B18705829FAD0ACB26A5B75EF";
-const string public_key =
-    "F272ECF8362257C5D2C3CC2229CF9C0A03225BC109B1DBC76A68C394F256ACA3EF5F64"
-    "FC270C26382BF315C19E97A76104A716FC998A651E8610A3AE6CF65D8FAE5D3F32EEA0"
-    "0B32CB9609B494116A825D7142D17B88E3D20EDD98743DE29CF37A23A9F6A58B960591"
+private const string public_key =
+    "F272ECF8362257C5D2C3CC2229CF9C0A03225BC109B1DBC76A68C394F256ACA3EF5F64" +
+    "FC270C26382BF315C19E97A76104A716FC998A651E8610A3AE6CF65D8FAE5D3F32EEA0" +
+    "0B32CB9609B494116A825D7142D17B88E3D20EDD98743DE29CF37A23A9F6A58B960591" +
     "3157D5965FCB46DDA73A1F08DD897BAE88DFE6FC937CBA";
-const uint8 public_key_bin[] = {
+private const uint8 public_key_bin[] = {
     0xf2, 0x72, 0xec, 0xf8, 0x36, 0x22, 0x57, 0xc5, 0xd2, 0xc3, 0xcc, 0x22,
     0x29, 0xcf, 0x9c, 0x0a, 0x03, 0x22, 0x5b, 0xc1, 0x09, 0xb1, 0xdb, 0xc7,
     0x6a, 0x68, 0xc3, 0x94, 0xf2, 0x56, 0xac, 0xa3, 0xef, 0x5f, 0x64, 0xfc,
@@ -77,7 +79,7 @@ const uint8 public_key_bin[] = {
     0x96, 0x5f, 0xcb, 0x46, 0xdd, 0xa7, 0x3a, 0x1f, 0x08, 0xdd, 0x89, 0x7b,
     0xae, 0x88, 0xdf, 0xe6, 0xfc, 0x93, 0x7c, 0xba
 };
-const uint8 peer_public_key[] = {
+private const uint8 peer_public_key[] = {
     0x58, 0x66, 0x05, 0x49, 0x94, 0x23, 0x2b, 0x66, 0x52, 0x13, 0xff, 0x46,
     0xf2, 0xb3, 0x79, 0xa9, 0xee, 0xae, 0x1a, 0x13, 0xf0, 0x71, 0x52, 0xfb,
     0x93, 0x4e, 0xee, 0x97, 0x05, 0x73, 0x50, 0x7d, 0xaf, 0x02, 0x07, 0x72,
@@ -90,7 +92,7 @@ const uint8 peer_public_key[] = {
     0x9d, 0xb5, 0x50, 0xe3, 0x99, 0xda, 0xe0, 0xa6, 0x14, 0xc9, 0x80, 0x12,
     0xf9, 0x3c, 0xac, 0x06, 0x02, 0x7a, 0xde, 0x74
 };
-const uint8 shared_secret[] = {
+private const uint8 shared_secret[] = {
     0xb2, 0xeb, 0xcb, 0x71, 0xf3, 0x61, 0xfb, 0x5b, 0x4e, 0x5c, 0x4c, 0xcf,
     0x5c, 0x08, 0x5f, 0x96, 0x26, 0x77, 0x1d, 0x31, 0xf1, 0xe1, 0xf7, 0x4b,
     0x92, 0xac, 0x82, 0x2a, 0x88, 0xc7, 0x83, 0xe1, 0xc7, 0xf3, 0xd3, 0x1a,
@@ -104,7 +106,7 @@ const uint8 shared_secret[] = {
     0x65, 0xb0, 0xce, 0xc6, 0xb2, 0x8f, 0x5b, 0xb0
 };
 
-public static int test_ref_data () {
+private static int test_ref_data () {
     FF_DH? dh;
     int ret = AVERROR (ENOMEM);
     uint8 pubkey_test[128];
@@ -112,37 +114,38 @@ public static int test_ref_data () {
 
     dh = ff_dh_init (1024);
     if (!dh)
-        goto fail;
+        //  goto fail;
     bn_hex2bn (dh.priv_key, private_key, ret);
     if (!ret)
-        goto fail;
+        //  goto fail;
     bn_hex2bn (dh.pub_key, public_key, ret);
     if (!ret)
-        goto fail;
+        //  goto fail;
     if ((ret = ff_dh_write_public_key (dh, pubkey_test, sizeof (pubkey_test))) < 0)
-        goto fail;
+        //  goto fail;
     if (memcmp (pubkey_test, public_key_bin, sizeof (pubkey_test))) {
         printf ("Mismatched generated public key\n");
         ret = AVERROR_INVALIDDATA;
-        goto fail;
+        //  goto fail;
     } else {
         printf ("Generated public key ok\n");
     }
+
     if ((ret = ff_dh_compute_shared_secret_key (dh, peer_public_key, sizeof (peer_public_key),
                                                sharedkey_test, sizeof (sharedkey_test))) < 0)
-        goto fail;
+        //  goto fail;
     if (memcmp (shared_secret, sharedkey_test, sizeof (sharedkey_test))) {
         printf ("Mismatched generated shared key\n");
         ret = AVERROR_INVALIDDATA;
     } else {
         printf ("Generated shared key ok\n");
     }
-fail:
+//  fail:
     ff_dh_free (dh);
     return ret;
 }
 
-public static int main () {
+private static int main () {
     avformat_network_init ();
     if (test_random_shared_secret () < 0)
         return 1;

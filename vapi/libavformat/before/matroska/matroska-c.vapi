@@ -27,7 +27,7 @@ namespace LibAVFormat {
     or ff_codec_wav_tags[], add it also to additional_audio_tags[]
     or additional_video_tags[] in matroskaenc.c
 ***********************************************************/
-const CodecTags ff_mkv_codec_tags[] = {
+private const CodecTags ff_mkv_codec_tags[] = {
     {
         "A_AAC",
         LibAVCodec.CodecID.AAC
@@ -309,7 +309,7 @@ const CodecTags ff_mkv_codec_tags[] = {
         LibAVCodec.CodecID.NONE}
 }
 
-const CodecTags ff_webm_codec_tags[] = {
+private const CodecTags ff_webm_codec_tags[] = {
     {
         "V_VP8",
         LibAVCodec.CodecID.VP8
@@ -351,7 +351,7 @@ const CodecTags ff_webm_codec_tags[] = {
         LibAVCodec.CodecID.NONE}
 }
 
-const CodecMime ff_mkv_image_mime_tags[] = {
+private const CodecMime ff_mkv_image_mime_tags[] = {
     {
         "image/gif",
         LibAVCodec.CodecID.GIF
@@ -375,7 +375,7 @@ const CodecMime ff_mkv_image_mime_tags[] = {
 
 }
 
-const CodecMime ff_mkv_mime_tags[] = {
+private const CodecMime ff_mkv_mime_tags[] = {
     {
         "text/plain",
         LibAVCodec.CodecID.TEXT
@@ -403,7 +403,7 @@ const CodecMime ff_mkv_mime_tags[] = {
 
 }
 
-const AVMetadataConv ff_mkv_metadata_conv[] = {
+private const AVMetadataConv ff_mkv_metadata_conv[] = {
     {
         "LEAD_PERFORMER",
         "performer"

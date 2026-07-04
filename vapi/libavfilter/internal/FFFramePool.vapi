@@ -70,7 +70,7 @@ public FFFramePool? ff_frame_pool_audio_init (
     AllocDelegate alloc,
     int channels,
     int samples,
-    AVSampleFormat format,
+    LibAVUtil.SampleFormat format,
     int align
 );
 
@@ -117,7 +117,7 @@ public int ff_frame_pool_get_audio_config (
     FFFramePool? pool,
     out int channels,
     out int nb_samples,
-    AVSampleFormat? format,
+    LibAVUtil.SampleFormat? format,
     out int align
 );
 

@@ -73,7 +73,7 @@ Struct to use for initializing a buffersink context.
 [Compact]
 public class AVBufferSinkParams {
     /***********************************************************
-    list of allowed pixel formats, terminated by AV_PIX_FMT_NONE
+    list of allowed pixel formats, terminated by LibAVUtil.PixelFormat.NONE
     ***********************************************************/
     [CCode (cname="")]
     public LibAVUtil.PixelFormat[] pixel_fmts;
@@ -94,10 +94,10 @@ Struct to use for initializing an abuffersink context.
 [Compact]
 public class AVABufferSinkParams {
     /***********************************************************
-    list of allowed sample formats, terminated by AV_SAMPLE_FMT_NONE
+    list of allowed sample formats, terminated by LibAVUtil.SampleFormat.NONE
     ***********************************************************/
     [CCode (cname="")]
-    public AVSampleFormat? sample_fmts;
+    public LibAVUtil.SampleFormat? sample_fmts;
 
     /***********************************************************
     list of allowed channel layouts, terminated by -1

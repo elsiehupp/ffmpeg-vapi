@@ -35,29 +35,31 @@ e.g: - vaapi_transcode input.mp4 h264_vaapi output_h264.mp4
 //  #include <libavcodec/avcodec.h>
 //  #include <libavformat/avformat.h>
 
-public static AVFormatContext? ifmt_ctx = null,? ofmt_ctx = null;
-public static AVBufferRef? hw_device_ctx = null;
-public static AVCodecContext? decoder_ctx = null,? encoder_ctx = null;
-public static int video_stream = -1;
-public static AVStream? ost;
-public static int initialized = 0;
+private static AVFormatContext? ifmt_ctx = null;
+private static AVFormatContext? ofmt_ctx = null;
+private static AVBufferRef? hw_device_ctx = null;
+private static AVCodecContext? decoder_ctx = null;
+private static AVCodecContext? encoder_ctx = null;
+private static int video_stream = -1;
+private static AVStream? ost;
+private static int initialized = 0;
 
-public static AVPixelFormat get_vaapi_format (
+private static AVPixelFormat get_vaapi_format (
     AVCodecContext? ctx,
     AVPixelFormat[] pix_fmts
 ) {
     AVPixelFormat? p;
 
-    for (p = pix_fmts; *p != AV_PIX_FMT_NONE; p++) {
-        if (*p == AV_PIX_FMT_VAAPI)
+    for (p = pix_fmts; *p != LibAVUtil.PixelFormat.NONE; p++) {
+        if (*p == LibAVUtil.PixelFormat.VAAPI)
             return *p;
     }
 
     fprintf (stderr, "Unable to decode this file using VA-API.\n");
-    return AV_PIX_FMT_NONE;
+    return LibAVUtil.PixelFormat.NONE;
 }
 
-public static int open_input_file (
+private static int open_input_file (
     string filename
 ) {
     int ret;
@@ -78,28 +80,30 @@ public static int open_input_file (
 
     ret = av_find_best_stream (ifmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &decoder, 0);
     if (ret < 0) {
-        fprintf (stderr, "Cannot find a video stream in the input file. "
+        fprintf (stderr, "Cannot find a video stream in the input file. " +
                 "Error code: %s\n", av_err2str (ret));
         return ret;
     }
+
     video_stream = ret;
 
     if (!(decoder_ctx = avcodec_alloc_context3 (decoder)))
         return AVERROR (ENOMEM);
 
-    video = ifmt_ctx->streams[video_stream];
-    if ((ret = avcodec_parameters_to_context (decoder_ctx, video->codecpar)) < 0) {
+    video = ifmt_ctx.streams[video_stream];
+    if ((ret = avcodec_parameters_to_context (decoder_ctx, video.codecpar)) < 0) {
         fprintf (stderr, "avcodec_parameters_to_context error. Error code: %s\n",
                 av_err2str (ret));
         return ret;
     }
 
-    decoder_ctx->hw_device_ctx = av_buffer_ref (hw_device_ctx);
-    if (!decoder_ctx->hw_device_ctx) {
+    decoder_ctx.hw_device_ctx = av_buffer_ref (hw_device_ctx);
+    if (!decoder_ctx.hw_device_ctx) {
         fprintf (stderr, "A hardware device reference create failed.\n");
         return AVERROR (ENOMEM);
     }
-    decoder_ctx->get_format    = get_vaapi_format;
+
+    decoder_ctx.get_format = get_vaapi_format;
 
     if ((ret = avcodec_open2 (decoder_ctx, decoder, null)) < 0)
         fprintf (stderr, "Failed to open codec for decoding. Error code: %s\n",
@@ -108,7 +112,7 @@ public static int open_input_file (
     return ret;
 }
 
-public static int encode_write (
+private static int encode_write (
     AVPacket? enc_pkt,
     AVFrame? frame
 ) {
@@ -118,32 +122,34 @@ public static int encode_write (
 
     if ((ret = avcodec_send_frame (encoder_ctx, frame)) < 0) {
         fprintf (stderr, "Error during encoding. Error code: %s\n", av_err2str (ret));
-        goto end;
+        //  goto end;
     }
+
     while (1) {
         ret = avcodec_receive_packet (encoder_ctx, enc_pkt);
         if (ret)
             break;
 
-        enc_pkt->stream_index = 0;
-        av_packet_rescale_ts (enc_pkt, ifmt_ctx->streams[video_stream]->time_base,
-                             ofmt_ctx->streams[0]->time_base);
+        enc_pkt.stream_index = 0;
+        av_packet_rescale_ts (enc_pkt, ifmt_ctx.streams[video_stream].time_base,
+                             ofmt_ctx.streams[0].time_base);
         ret = av_interleaved_write_frame (ofmt_ctx, enc_pkt);
         if (ret < 0) {
-            fprintf (stderr, "Error during writing data to output file. "
+            fprintf (stderr, "Error during writing data to output file. " +
                     "Error code: %s\n", av_err2str (ret));
             return -1;
         }
+
     }
 
-end:
+//  end:
     if (ret == AVERROR_EOF)
         return 0;
     ret = ((ret == AVERROR (EAGAIN)) ? 0:-1);
     return ret;
 }
 
-public static int dec_enc (
+private static int dec_enc (
     AVPacket? pkt,
     AVCodec? enc_codec
 ) {
@@ -166,51 +172,57 @@ public static int dec_enc (
             return 0;
         } else if (ret < 0) {
             fprintf (stderr, "Error while decoding. Error code: %s\n", av_err2str (ret));
-            goto fail;
+            //  goto fail;
         }
 
         if (!initialized) {
-            /* we need to ref hw_frames_ctx of decoder to initialize encoder's codec.
-               Only after we get a decoded frame, can we obtain its hw_frames_ctx */
-            encoder_ctx->hw_frames_ctx = av_buffer_ref (decoder_ctx->hw_frames_ctx);
-            if (!encoder_ctx->hw_frames_ctx) {
+            /***********************************************************
+            we need to ref hw_frames_ctx of decoder to initialize encoder's codec.
+            Only after we get a decoded frame, can we obtain its hw_frames_ctx
+            ***********************************************************/
+            encoder_ctx.hw_frames_ctx = av_buffer_ref (decoder_ctx.hw_frames_ctx);
+            if (!encoder_ctx.hw_frames_ctx) {
                 ret = AVERROR (ENOMEM);
-                goto fail;
+                //  goto fail;
             }
-            /* set AVCodecContext Parameters for encoder, here we keep them stay
-             * the same as decoder.
-             * xxx: now the sample can't handle resolution change case.
-             */
-            encoder_ctx->time_base = av_inv_q (decoder_ctx->framerate);
-            encoder_ctx->pix_fmt   = AV_PIX_FMT_VAAPI;
-            encoder_ctx->width     = decoder_ctx->width;
-            encoder_ctx->height    = decoder_ctx->height;
+
+            /***********************************************************
+            set AVCodecContext Parameters for encoder, here we keep them stay
+            the same as decoder.
+            xxx: now the sample can't handle resolution change case.
+            ***********************************************************/
+            encoder_ctx.time_base = av_inv_q (decoder_ctx.framerate);
+            encoder_ctx.pix_fmt = LibAVUtil.PixelFormat.VAAPI;
+            encoder_ctx.width = decoder_ctx.width;
+            encoder_ctx.height = decoder_ctx.height;
 
             if ((ret = avcodec_open2 (encoder_ctx, enc_codec, null)) < 0) {
                 fprintf (stderr, "Failed to open encode codec. Error code: %s\n",
                         av_err2str (ret));
-                goto fail;
+                //  goto fail;
             }
 
             if (!(ost = avformat_new_stream (ofmt_ctx, enc_codec))) {
                 fprintf (stderr, "Failed to allocate stream for output format.\n");
                 ret = AVERROR (ENOMEM);
-                goto fail;
+                //  goto fail;
             }
 
-            ost->time_base = encoder_ctx->time_base;
-            ret = avcodec_parameters_from_context (ost->codecpar, encoder_ctx);
+            ost.time_base = encoder_ctx.time_base;
+            ret = avcodec_parameters_from_context (ost.codecpar, encoder_ctx);
             if (ret < 0) {
-                fprintf (stderr, "Failed to copy the stream parameters. "
+                fprintf (stderr, "Failed to copy the stream parameters. " +
                         "Error code: %s\n", av_err2str (ret));
-                goto fail;
+                //  goto fail;
             }
 
-            /* write the stream header */
+            /***********************************************************
+            write the stream header
+            ***********************************************************/
             if ((ret = avformat_write_header (ofmt_ctx, null)) < 0) {
-                fprintf (stderr, "Error while writing stream header. "
+                fprintf (stderr, "Error while writing stream header. " +
                         "Error code: %s\n", av_err2str (ret));
-                goto fail;
+                //  goto fail;
             }
 
             initialized = 1;
@@ -219,13 +231,14 @@ public static int dec_enc (
         if ((ret = encode_write (pkt, frame)) < 0)
             fprintf (stderr, "Error during encoding and writing.\n");
 
-fail:
+//  fail:
         av_frame_free (&frame);
     }
+
     return ret;
 }
 
-public static int main (
+private static int main (
     int argc,
     string[] argv
 ) {
@@ -234,8 +247,8 @@ public static int main (
     AVPacket? dec_pkt;
 
     if (argc != 4) {
-        fprintf (stderr, "Usage: %s <input file> <encode codec> <output file>\n"
-                "The output format is guessed according to the file extension.\n"
+        fprintf (stderr, "Usage: %s <input file> <encode codec> <output file>\n" +
+                "The output format is guessed according to the file extension.\n" +
                 "\n", argv[0]);
         return -1;
     }
@@ -249,58 +262,66 @@ public static int main (
     dec_pkt = av_packet_alloc ();
     if (!dec_pkt) {
         fprintf (stderr, "Failed to allocate decode packet\n");
-        goto end;
+        //  goto end;
     }
 
     if ((ret = open_input_file (argv[1])) < 0)
-        goto end;
+        //  goto end;
 
     if (!(enc_codec = avcodec_find_encoder_by_name (argv[2]))) {
         fprintf (stderr, "Could not find encoder '%s'\n", argv[2]);
         ret = -1;
-        goto end;
+        //  goto end;
     }
 
     if ((ret = (avformat_alloc_output_context2 (&ofmt_ctx, null, null, argv[3]))) < 0) {
-        fprintf (stderr, "Failed to deduce output format from file extension. Error code: "
+        fprintf (stderr, "Failed to deduce output format from file extension. Error code: " +
                 "%s\n", av_err2str (ret));
-        goto end;
+        //  goto end;
     }
 
     if (!(encoder_ctx = avcodec_alloc_context3 (enc_codec))) {
         ret = AVERROR (ENOMEM);
-        goto end;
+        //  goto end;
     }
 
-    ret = avio_open (&ofmt_ctx->pb, argv[3], AVIO_FLAG_WRITE);
+    ret = avio_open (&ofmt_ctx.pb, argv[3], AVIO_FLAG_WRITE);
     if (ret < 0) {
-        fprintf (stderr, "Cannot open output file. "
+        fprintf (stderr, "Cannot open output file. " +
                 "Error code: %s\n", av_err2str (ret));
-        goto end;
+        //  goto end;
     }
 
-    /* read all packets and only transcoding video */
+    /***********************************************************
+    read all packets and only transcoding video
+    ***********************************************************/
     while (ret >= 0) {
         if ((ret = av_read_frame (ifmt_ctx, dec_pkt)) < 0)
             break;
 
-        if (video_stream == dec_pkt->stream_index)
+        if (video_stream == dec_pkt.stream_index)
             ret = dec_enc (dec_pkt, enc_codec);
 
         av_packet_unref (dec_pkt);
     }
 
-    /* flush decoder */
+    /***********************************************************
+    flush decoder
+    ***********************************************************/
     av_packet_unref (dec_pkt);
     ret = dec_enc (dec_pkt, enc_codec);
 
-    /* flush encoder */
+    /***********************************************************
+    flush encoder
+    ***********************************************************/
     ret = encode_write (dec_pkt, null);
 
-    /* write the trailer for output stream */
+    /***********************************************************
+    write the trailer for output stream
+    ***********************************************************/
     av_write_trailer (ofmt_ctx);
 
-end:
+//  end:
     avformat_close_input (&ifmt_ctx);
     avformat_close_input (&ofmt_ctx);
     avcodec_free_context (&decoder_ctx);

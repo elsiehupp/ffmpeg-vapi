@@ -34,7 +34,7 @@ LibAVCodec external API header
 [CCode (cname="enum AVCodecConfig",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public enum CodecConfig {
     /***********************************************************
-    AVPixelFormat, terminated by AV_PIX_FMT_NONE
+    AVPixelFormat, terminated by LibAVUtil.PixelFormat.NONE
     ***********************************************************/
     [CCode (cname="AV_CODEC_CONFIG_PIX_FORMAT")]
     PIXEL_FORMAT,
@@ -52,7 +52,7 @@ public enum CodecConfig {
     SAMPLE_RATE,
 
     /***********************************************************
-    AVSampleFormat, terminated by AV_SAMPLE_FMT_NONE
+    LibAVUtil.SampleFormat, terminated by LibAVUtil.SampleFormat.NONE
     ***********************************************************/
     [CCode (cname="AV_CODEC_CONFIG_SAMPLE_FORMAT")]
     SAMPLE_FORMAT,

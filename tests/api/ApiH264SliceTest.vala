@@ -20,16 +20,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
-[CCode (cname="", cheader="")]
-public class ApiH264SliceTest : GLib.TestCase {
+private class ApiH264SliceTest : GLib.TestCase {
 
-    const uint MAX_SLICES = 8;
+    private const uint MAX_SLICES = 8;
 
-    static uint header = 0;
+    private static uint header = 0;
 
-    static uint64 frame_cnt = 0;
+    private static uint64 frame_cnt = 0;
 
-    static uint decode (
+    private static uint decode (
         LibAVCodec.CodecContext dec_ctx,
         LibAVUtil.Frame frame,
         LibAVCodec.Packet packet
@@ -66,14 +65,16 @@ public class ApiH264SliceTest : GLib.TestCase {
                     "#codec_id 0: rawvideo\n" +
                     "#dimensions 0: 352x288\n" +
                     "#sar 0: 128/117\n" +
-                    "#stream#, dts,        pts, duration,     size, hash\n"
+                    "#stream#, dts, pts, duration, size, hash\n"
                 );
                 header = 1;
             }
+
             desc = av_pix_fmt_desc_get (dec_ctx.pix_fmt);
             if ((ret = av_hash_alloc (out hash, "md5")) < 0) {
                 return ret;
             }
+
             av_hash_init (hash);
 
             for (uint i = 0; i < frame.height; i++)
@@ -84,27 +85,28 @@ public class ApiH264SliceTest : GLib.TestCase {
                 av_hash_update (hash, out frame.data[2][i * frame.linesize[2]], frame.width >> desc.log2_chroma_w);
 
             av_hash_final_hex (hash, sum, av_hash_get_size (hash) * 2 + 1);
-            GLib.print ("0, %10ll, %10ll,        1, %8d, %s\n",
+            GLib.print ("0, %10ll, %10ll, 1, %8d, %s\n",
                 frame_cnt, frame_cnt,
                 (frame.width * frame.height + 2 * (frame.height >> desc.log2_chroma_h) * (frame.width >> desc.log2_chroma_w)), sum);
             frame_cnt += 1;
             av_hash_freep (out hash);
         }
+
         return 0;
     }
 
-    static LibAVCodec.Codec codec = null;
-    static LibAVCodec.CodecContext codec_context = null;
-    static LibAVUtil.Frame frame = null;
-    static uint threads;
-    static LibAVCodec.Packet packet;
-    static GLib.File file = null;
-    static char[] nal = null;
-    static uint nals = 0;
-    static uint ret = 0;
-    static char[] p;
+    private static LibAVCodec.Codec codec = null;
+    private static LibAVCodec.CodecContext codec_context = null;
+    private static LibAVUtil.Frame frame = null;
+    private static uint threads;
+    private static LibAVCodec.Packet packet;
+    private static GLib.File file = null;
+    private static char[] nal = null;
+    private static uint nals = 0;
+    private static uint ret = 0;
+    private static char[] p;
 
-    static uint do_main () throws Goto {
+    private static uint do_main () throws Goto {
 
         nal = av_malloc (MAX_SLICES * UINT16_MAX + AV_INPUT_BUFFER_PADDING_SIZE);
         if (nal == null)
@@ -150,6 +152,7 @@ public class ApiH264SliceTest : GLib.TestCase {
             ret = -1;
             throw new Goto.ERROR ("");
         }
+
     #else
         fprintf (
             stderr,
@@ -188,6 +191,7 @@ public class ApiH264SliceTest : GLib.TestCase {
                 perror ("Couldn't read data");
                 throw new Goto.ERROR ("");
             }
+
             p += ret;
 
             if (++nals >= threads) {
@@ -197,10 +201,12 @@ public class ApiH264SliceTest : GLib.TestCase {
                 if ((decret = decode (codec_context, frame, packet)) < 0) {
                     throw new Goto.ERROR ("");
                 }
+
                 memset (nal, 0, MAX_SLICES * UINT16_MAX + AV_INPUT_BUFFER_PADDING_SIZE);
                 nals = 0;
                 p = nal;
             }
+
         }
 
         if (nals) {
@@ -209,12 +215,13 @@ public class ApiH264SliceTest : GLib.TestCase {
             if ((ret = decode (codec_context, frame, packet)) < 0) {
                 throw new Goto.ERROR ("");
             }
+
         }
 
         return decode (codec_context, frame, null);
     }
 
-    static uint main (
+    private static uint main (
         uint argc,
         string[] argv
     ) {

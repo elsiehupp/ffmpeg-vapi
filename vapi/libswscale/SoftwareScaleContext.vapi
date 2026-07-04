@@ -1546,8 +1546,8 @@ internal class LibSoftwareScale.SoftwareScaleContext {
     //      return !(desc->flags & PixelFormatFlags.PALETTE) &&
     //             !(desc->flags & PixelFormatFlags.HARDWARE_ACCELERATED) &&
     //             desc->nb_components <= 2 &&
-    //             pix_fmt != AV_PIX_FMT_MONOBLACK &&
-    //             pix_fmt != AV_PIX_FMT_MONOWHITE;
+    //             pix_fmt != LibAVUtil.PixelFormat.MONOBLACK &&
+    //             pix_fmt != LibAVUtil.PixelFormat.MONOWHITE;
     //  }
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1556,24 +1556,24 @@ internal class LibSoftwareScale.SoftwareScaleContext {
         LibAVUtil.PixelFormat pix_fmt
     );
     //  {
-    //      return pix_fmt == AV_PIX_FMT_RGB48BE     ||
-    //             pix_fmt == AV_PIX_FMT_RGB48LE     ||
-    //             pix_fmt == AV_PIX_FMT_RGB32       ||
-    //             pix_fmt == AV_PIX_FMT_RGB32_1     ||
-    //             pix_fmt == AV_PIX_FMT_RGB24       ||
-    //             pix_fmt == AV_PIX_FMT_RGB565BE    ||
-    //             pix_fmt == AV_PIX_FMT_RGB565LE    ||
-    //             pix_fmt == AV_PIX_FMT_RGB555BE    ||
-    //             pix_fmt == AV_PIX_FMT_RGB555LE    ||
-    //             pix_fmt == AV_PIX_FMT_RGB444BE    ||
-    //             pix_fmt == AV_PIX_FMT_RGB444LE    ||
-    //             pix_fmt == AV_PIX_FMT_RGB8        ||
-    //             pix_fmt == AV_PIX_FMT_RGB4        ||
-    //             pix_fmt == AV_PIX_FMT_RGB4_BYTE   ||
-    //             pix_fmt == AV_PIX_FMT_RGBA64BE    ||
-    //             pix_fmt == AV_PIX_FMT_RGBA64LE    ||
-    //             pix_fmt == AV_PIX_FMT_MONOBLACK   ||
-    //             pix_fmt == AV_PIX_FMT_MONOWHITE;
+    //      return pix_fmt == LibAVUtil.PixelFormat.RGB48BE     ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB48LE     ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB32       ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB32_1     ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB24       ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB565BE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB565LE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB555BE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB555LE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB444BE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB444LE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB8        ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB4        ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGB4_BYTE   ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGBA64BE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.RGBA64LE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.MONOBLACK   ||
+    //             pix_fmt == LibAVUtil.PixelFormat.MONOWHITE;
     //  }
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1582,24 +1582,24 @@ internal class LibSoftwareScale.SoftwareScaleContext {
         LibAVUtil.PixelFormat pix_fmt
     );
     //  {
-    //      return pix_fmt == AV_PIX_FMT_BGR48BE     ||
-    //             pix_fmt == AV_PIX_FMT_BGR48LE     ||
-    //             pix_fmt == AV_PIX_FMT_BGR32       ||
-    //             pix_fmt == AV_PIX_FMT_BGR32_1     ||
-    //             pix_fmt == AV_PIX_FMT_BGR24       ||
-    //             pix_fmt == AV_PIX_FMT_BGR565BE    ||
-    //             pix_fmt == AV_PIX_FMT_BGR565LE    ||
-    //             pix_fmt == AV_PIX_FMT_BGR555BE    ||
-    //             pix_fmt == AV_PIX_FMT_BGR555LE    ||
-    //             pix_fmt == AV_PIX_FMT_BGR444BE    ||
-    //             pix_fmt == AV_PIX_FMT_BGR444LE    ||
-    //             pix_fmt == AV_PIX_FMT_BGR8        ||
-    //             pix_fmt == AV_PIX_FMT_BGR4        ||
-    //             pix_fmt == AV_PIX_FMT_BGR4_BYTE   ||
-    //             pix_fmt == AV_PIX_FMT_BGRA64BE    ||
-    //             pix_fmt == AV_PIX_FMT_BGRA64LE    ||
-    //             pix_fmt == AV_PIX_FMT_MONOBLACK   ||
-    //             pix_fmt == AV_PIX_FMT_MONOWHITE;
+    //      return pix_fmt == LibAVUtil.PixelFormat.BGR48BE     ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR48LE     ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR32       ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR32_1     ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR24       ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR565BE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR565LE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR555BE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR555LE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR444BE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR444LE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR8        ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR4        ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGR4_BYTE   ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGRA64BE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.BGRA64LE    ||
+    //             pix_fmt == LibAVUtil.PixelFormat.MONOBLACK   ||
+    //             pix_fmt == LibAVUtil.PixelFormat.MONOWHITE;
     //  }
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1626,7 +1626,7 @@ internal class LibSoftwareScale.SoftwareScaleContext {
     //      av_assert0 (desc);
 
     //      return (desc->flags & PixelFormatFlags.RGB) ||
-    //              pix_fmt == AV_PIX_FMT_MONOBLACK || pix_fmt == AV_PIX_FMT_MONOWHITE;
+    //              pix_fmt == LibAVUtil.PixelFormat.MONOBLACK || pix_fmt == LibAVUtil.PixelFormat.MONOWHITE;
     //  }
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1652,7 +1652,7 @@ internal class LibSoftwareScale.SoftwareScaleContext {
 
     //      av_assert0 (desc);
 
-    //      if (pix_fmt == AV_PIX_FMT_PAL8)
+    //      if (pix_fmt == LibAVUtil.PixelFormat.PAL8)
     //          return 1;
 
     //      return desc->flags & PixelFormatFlags.ALPHA;
@@ -1669,8 +1669,8 @@ internal class LibSoftwareScale.SoftwareScaleContext {
     //      av_assert0 (desc);
 
     //      return (desc->nb_components >= 2 && !(desc->flags & PixelFormatFlags.PLANAR)) ||
-    //              pix_fmt == AV_PIX_FMT_PAL8 ||
-    //              pix_fmt == AV_PIX_FMT_MONOBLACK || pix_fmt == AV_PIX_FMT_MONOWHITE;
+    //              pix_fmt == LibAVUtil.PixelFormat.PAL8 ||
+    //              pix_fmt == LibAVUtil.PixelFormat.MONOBLACK || pix_fmt == LibAVUtil.PixelFormat.MONOWHITE;
     //  }
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale_internal.h")]
@@ -1720,12 +1720,12 @@ internal class LibSoftwareScale.SoftwareScaleContext {
     );
     //  {
     //      switch (pix_fmt) {
-    //      case AV_PIX_FMT_PAL8:
-    //      case AV_PIX_FMT_BGR4_BYTE:
-    //      case AV_PIX_FMT_BGR8:
-    //      case AV_PIX_FMT_GRAY8:
-    //      case AV_PIX_FMT_RGB4_BYTE:
-    //      case AV_PIX_FMT_RGB8:
+    //      case LibAVUtil.PixelFormat.PAL8:
+    //      case LibAVUtil.PixelFormat.BGR4_BYTE:
+    //      case LibAVUtil.PixelFormat.BGR8:
+    //      case LibAVUtil.PixelFormat.GRAY8:
+    //      case LibAVUtil.PixelFormat.RGB4_BYTE:
+    //      case LibAVUtil.PixelFormat.RGB8:
     //          return 1;
 
     //      default:

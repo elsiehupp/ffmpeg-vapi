@@ -55,7 +55,7 @@ internal class LibAVResample.AudioMix {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavresample/audio_mix.h")]
     internal void ff_audio_mix_set_func (
         LibAVResample.AudioMix? am,
-        AVSampleFormat fmt,
+        LibAVUtil.SampleFormat fmt,
         LibAVResample.AudioMixCoeffType coeff_type,
         int in_channels,
         int out_channels,

@@ -81,8 +81,8 @@ internal class LibSoftwareResample.AudioConvert {
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/audioconvert.h")]
     internal LibSoftwareResample.AudioConvert? swri_audio_convert_alloc (
-        AVSampleFormat out_fmt,
-        AVSampleFormat in_fmt,
+        LibAVUtil.SampleFormat out_fmt,
+        LibAVUtil.SampleFormat in_fmt,
         int channels,
         int[] ch_map,
         int flags
@@ -114,24 +114,24 @@ internal class LibSoftwareResample.AudioConvert {
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     internal void swri_audio_convert_init_aarch64 (
         LibSoftwareResample.AudioConvert? ac,
-        AVSampleFormat out_fmt,
-        AVSampleFormat in_fmt,
+        LibAVUtil.SampleFormat out_fmt,
+        LibAVUtil.SampleFormat in_fmt,
         int channels
     );
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     internal void swri_audio_convert_init_arm (
         LibSoftwareResample.AudioConvert? ac,
-        AVSampleFormat out_fmt,
-        AVSampleFormat in_fmt,
+        LibAVUtil.SampleFormat out_fmt,
+        LibAVUtil.SampleFormat in_fmt,
         int channels
     );
 
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample_internal.h")]
     internal void swri_audio_convert_init_x86 (
         LibSoftwareResample.AudioConvert? ac,
-        AVSampleFormat out_fmt,
-        AVSampleFormat in_fmt,
+        LibAVUtil.SampleFormat out_fmt,
+        LibAVUtil.SampleFormat in_fmt,
         int channels
     );
 
