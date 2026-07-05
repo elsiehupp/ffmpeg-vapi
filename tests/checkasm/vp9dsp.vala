@@ -131,42 +131,52 @@ private static void randomize_buffers () {
 }
 
 // wht function copied from libvpx
-public static void fwht_1d (double[] out, double[] in, int sz) {
-    double t0 = in[0] + in[1];
-    double t3 = in[3] - in[2];
+public static void fwht_1d (
+    double[] double_array_out, double[] double_array_in, int sz
+) {
+    double t0 = double_array_in[0] + double_array_in[1];
+    double t3 = double_array_in[3] - double_array_in[2];
     double t4 = trunc ((t0 - t3) * 0.5);
-    double t1 = t4 - in[1];
-    double t2 = t4 - in[2];
+    double t1 = t4 - double_array_in[1];
+    double t2 = t4 - double_array_in[2];
 
-    out[0] = t0 - t2;
-    out[1] = t2;
-    out[2] = t3 + t1;
-    out[3] = t1;
+    double_array_out[0] = t0 - t2;
+    double_array_out[1] = t2;
+    double_array_out[2] = t3 + t1;
+    double_array_out[3] = t1;
 }
 
 // standard DCT-II
-public static void fdct_1d (double[] out, double[] in, int sz) {
+public static void fdct_1d (
+    double[] double_array_out,
+    double[] double_array_in,
+    int sz
+) {
     int k, n;
 
     for (k = 0; k < sz; k++) {
-        out[k] = 0.0;
+        double_array_out[k] = 0.0;
         for (n = 0; n < sz; n++)
-            out[k] += in[n] * cos (M_PI * (2 * n + 1) * k / (sz * 2.0));
+            double_array_out[k] += double_array_in[n] * cos (M_PI * (2 * n + 1) * k / (sz * 2.0));
     }
 
-    out[0] *= M_SQRT1_2;
+    double_array_out[0] *= M_SQRT1_2;
 }
 
 // see "Towards jointly optimal spatial prediction and adaptive transform in
 // video/image coding", by J. Han, A. Saxena, and K. Rose
 // IEEE Proc. ICASSP, pp. 726-729, Mar. 2010.
-private static void fadst4_1d (double[] out, double[] in, int sz) {
+private static void fadst4_1d (
+    double[] double_array_out,
+    double[] double_array_in,
+    int sz
+) {
     int k, n;
 
     for (k = 0; k < sz; k++) {
-        out[k] = 0.0;
+        double_array_out[k] = 0.0;
         for (n = 0; n < sz; n++)
-            out[k] += in[n] * sin (M_PI * (n + 1) * (2 * k + 1) / (sz * 2.0 + 1.0));
+            double_array_out[k] += double_array_in[n] * sin (M_PI * (n + 1) * (2 * k + 1) / (sz * 2.0 + 1.0));
     }
 
 }
@@ -174,19 +184,25 @@ private static void fadst4_1d (double[] out, double[] in, int sz) {
 // see "A Butterfly Structured Design of The Hybrid Transform Coding Scheme",
 // by Jingning Han, Yaowu Xu, and Debargha Mukherjee
 // http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41418.pdf
-public static void fadst_1d (double[] out, double[] in, int sz) {
+public static void fadst_1d (
+    double[] double_array_out,
+    double[] double_array_in,
+    int sz
+) {
     int k, n;
 
     for (k = 0; k < sz; k++) {
-        out[k] = 0.0;
+        double_array_out[k] = 0.0;
         for (n = 0; n < sz; n++)
-            out[k] += in[n] * sin (M_PI * (2 * n + 1) * (2 * k + 1) / (sz * 4.0));
+            double_array_out[k] += double_array_in[n] * sin (M_PI * (2 * n + 1) * (2 * k + 1) / (sz * 4.0));
     }
 
 }
 
 delegate void Ftx1dFn (
-    double[] out, double[] in, int sz
+    double[] double_array_out,
+    double[] double_array_in,
+    int sz
 );
 
 //  private const double scaling_factors[5][4] = {
@@ -222,8 +238,11 @@ delegate void Ftx1dFn (
 //  };
 
 private static void ftx_2d (
-    double[] out, double[] in, TxfmMode tx,
-    TxfmType txtp, int sz
+    double[] double_array_out,
+    double[] double_array_in,
+    TxfmMode tx,
+    TxfmType txtp,
+    int sz
 ) {
     double temp[1024];
     double scaling_factor = scaling_factors[tx][txtp];
@@ -233,7 +252,7 @@ private static void ftx_2d (
     for (i = 0; i < sz; ++i) {
         double temp_out[32];
 
-        ftx1d_tbl[tx][txtp][0](temp_out, &in[i * sz], sz);
+        ftx1d_tbl[tx][txtp][0](temp_out, &double_array_in[i * sz], sz);
         // scale and transpose
         for (j = 0; j < sz; ++j)
             temp[j * sz + i] = temp_out[j] * scaling_factor;
@@ -241,11 +260,16 @@ private static void ftx_2d (
 
     // rows
     for (i = 0; i < sz; i++)
-        ftx1d_tbl[tx][txtp][1](&out[i * sz], &temp[i * sz], sz);
+        ftx1d_tbl[tx][txtp][1](&double_array_out[i * sz], &temp[i * sz], sz);
 }
 
-private static void ftx (int16[] buf, TxfmMode tx,
-                TxfmType txtp, int sz, int bit_depth) {
+private static void ftx (
+    int16[] buf,
+    TxfmMode tx,
+    TxfmType txtp,
+    int sz,
+    int bit_depth
+) {
     double ind[1024], outd[1024];
     int n;
 
@@ -268,8 +292,8 @@ private static void ftx (int16[] buf, TxfmMode tx,
 }
 
 private static int copy_subcoefs (
-    int16[] out,
-    int16[] in,
+    int16[] int16_array_out,
+    int16[] int16_array_in,
     TxfmMode tx,
     TxfmType txtp,
     int sz,
@@ -296,9 +320,9 @@ private static int copy_subcoefs (
 
         // copy coef
         if (bit_depth == 8) {
-            out[rc] = in[rc];
+            int16_array_out[rc] = int16_array_in[rc];
         } else {
-            AV_COPY32 (&out[rc * 2], &in[rc * 2]);
+            AV_COPY32 (&int16_array_out[rc * 2], &int16_array_in[rc * 2]);
         }
 
     }
@@ -310,9 +334,9 @@ private static int copy_subcoefs (
 
         // zero
         if (bit_depth == 8) {
-            out[rc] = 0;
+            int16_array_out[rc] = 0;
         } else {
-            AV_ZERO32 (&out[rc * 2]);
+            AV_ZERO32 (&int16_array_out[rc * 2]);
         }
 
     }
@@ -447,10 +471,17 @@ private static void setsx (
 }
 
 private static void randomize_loopfilter_buffers (
-    int bidx, int lineoff, int str,
-    int bit_depth, int dir, int[] E,
-    int[] F, int[] H, int[] I,
-    uint8[] buf0, uint8[] buf1
+    int bidx,
+    int lineoff,
+    int str,
+    int bit_depth,
+    int dir,
+    int[] E,
+    int[] F,
+    int[] H,
+    int[] I,
+    uint8[] buf0,
+    uint8[] buf1
 ) {
     uint32 mask = (1 << bit_depth) - 1;
     int off = dir ? lineoff : lineoff * 16;
@@ -524,7 +555,9 @@ private static void randomize_buffers (
 
 }
 
-uint M (out uint a) {
+private static uint M (
+    out uint a
+) {
     return (((a)[1] << 8) | (a)[0]);
 }
 

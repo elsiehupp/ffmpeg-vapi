@@ -20,12 +20,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
+private class ApiH264TestApplication : GLib.Application {}
+
+/***********************************************************
+H264 codec test.
+***********************************************************/
 private class ApiH264Test : GLib.TestCase {
-
-    /***********************************************************
-    H264 codec test.
-    ***********************************************************/
-
 
     private static uint video_decode_example (
         string input_filename
@@ -148,9 +148,13 @@ private class ApiH264Test : GLib.TestCase {
         int i = 0;
         av_init_packet (out packet);
         do {
-            if (!end_of_stream)
-                if (av_read_frame (format_context, out packet) < 0)
+            if (!end_of_stream) {
+                if (av_read_frame (format_context, out packet) < 0) {
                     end_of_stream = true;
+                }
+
+            }
+
             if (end_of_stream) {
                 packet.data = null;
                 packet.size = 0;
@@ -158,8 +162,10 @@ private class ApiH264Test : GLib.TestCase {
 
             if (packet.stream_index == video_stream || end_of_stream) {
                 got_frame = false;
-                if (packet.pts == AV_NOPTS_VALUE)
+                if (packet.pts == AV_NOPTS_VALUE) {
                     packet.pts = packet.dts = i;
+                }
+
                 result = avcodec_decode_video2 (codec_context, frame, out got_frame, out packet);
                 if (result < 0) {
                     av_log (
@@ -204,7 +210,7 @@ private class ApiH264Test : GLib.TestCase {
         return 0;
     }
 
-    uint main (
+    private static int main (
         uint argc,
         string[] argv
     ) {
@@ -217,8 +223,9 @@ private class ApiH264Test : GLib.TestCase {
             return 1;
         }
 
-        if (video_decode_example (argv[1]) != 0)
+        if (video_decode_example (argv[1]) != 0) {
             return 1;
+        }
 
         return 0;
     }

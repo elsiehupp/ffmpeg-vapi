@@ -65,11 +65,13 @@ private static void checkasm_check_bswapdsp () {
 
     ff_bswapdsp_init (&h);
 
-    if (check_func (h.bswap_buf, "bswap_buf"))
+    if (check_func (h.bswap_buf, "bswap_buf")) {
         check_bswap (uint32);
+    }
 
-    if (check_func (h.bswap16_buf, "bswap16_buf"))
+    if (check_func (h.bswap16_buf, "bswap16_buf")) {
         check_bswap (uint16);
+    }
 
     report ("bswap");
 }

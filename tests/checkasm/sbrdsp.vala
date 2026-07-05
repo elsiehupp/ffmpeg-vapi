@@ -16,7 +16,10 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-private static void randomize (void *buf, int len) {
+private static void randomize (
+    void *buf,
+    int len
+) {
     int i;
     for (i = 0; i < len; i++) {
         INTFLOAT f = (INTFLOAT)rnd () / UINT_MAX;

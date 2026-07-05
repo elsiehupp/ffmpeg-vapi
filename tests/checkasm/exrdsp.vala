@@ -75,13 +75,15 @@ private static void checkasm_check_exrdsp () {
 
     ff_exrdsp_init (&h);
 
-    if (check_func (h.reorder_pixels, "reorder_pixels"))
+    if (check_func (h.reorder_pixels, "reorder_pixels")) {
         check_reorder_pixels ();
+    }
 
     report ("reorder_pixels");
 
-    if (check_func (h.predictor, "predictor"))
+    if (check_func (h.predictor, "predictor")) {
         check_predictor ();
+    }
 
     report ("predictor");
 }

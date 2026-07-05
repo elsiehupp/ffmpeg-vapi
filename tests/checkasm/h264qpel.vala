@@ -66,7 +66,7 @@ private static void checkasm_check_h264qpel () {
             ff_h264qpel_init (&h, bit_depth);
             for (i = 0; i < (op ? 3 : 4); i++) {
                 int size = 16 >> i;
-                for (j = 0; j < 16; j++)
+                for (j = 0; j < 16; j++) {
                     if (check_func (tab[i][j], "%s_h264_qpel_%d_mc%d%d_%d", op_name, size, j & 3, j >> 2, bit_depth)) {
                         randomize_buffers ();
                         //  call_ref (dst0, src0, size * SIZEOF_PIXEL);
@@ -77,6 +77,8 @@ private static void checkasm_check_h264qpel () {
 
                         bench_new (dst1, src1, size * SIZEOF_PIXEL);
                     }
+
+                }
 
             }
 

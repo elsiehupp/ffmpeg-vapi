@@ -109,13 +109,15 @@ private static void checkasm_check_pixblockdsp () {
 
     ff_pixblockdsp_init (&h, &avctx);
 
-    if (check_func (h.get_pixels, "get_pixels"))
+    if (check_func (h.get_pixels, "get_pixels")) {
         check_get_pixels (uint8);
+    }
 
     report ("get_pixels");
 
-    if (check_func (h.diff_pixels, "diff_pixels"))
+    if (check_func (h.diff_pixels, "diff_pixels")) {
         check_diff_pixels (uint8);
+    }
 
     report ("diff_pixels");
 }

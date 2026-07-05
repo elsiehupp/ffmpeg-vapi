@@ -50,7 +50,7 @@ private static void checkasm_check_synth_filter () {
         float scale = 1.0f;
         int i, offset0 = 0, offset1 = 0, offset_b = 0;
 
-        //  declare_func (void, FFTContext? , float[] , int[] , float[32], float[512], float[32], float[32], float);
+        //  declare_func (void, FFTContext?, float[], int[], float[32], float[512], float[32], float[32], float);
 
         memset (buf2_0, 0, sizeof (buf2_0) * BUF_SIZE);
         memset (buf2_1, 0, sizeof (buf2_1) * BUF_SIZE);

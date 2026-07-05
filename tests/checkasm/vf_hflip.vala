@@ -19,14 +19,22 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 private const size_t WIDTH = 256;
 private const size_t WIDTH_PADDED = 256 + 32;
 
-private static void randomize_buffers (void *buf, int size) {
+private static void randomize_buffers (
+    void *buf,
+    int size
+) {
     int j;
     uint8[] tmp_buf = (uint8[] )buf;
-    for (j = 0; j < size; j++)
+    for (j = 0; j < size; j++) {
         tmp_buf[j] = rnd () & 0xFF;
+    }
+
 }
 
-private static void check_hflip (int step, string report_name){
+private static void check_hflip (
+    int step,
+    string report_name
+) {
     //  LOCAL_ALIGNED_32 (uint8, src, [WIDTH_PADDED]);
     //  LOCAL_ALIGNED_32 (uint8, dst_ref, [WIDTH_PADDED]);
     //  LOCAL_ALIGNED_32 (uint8, dst_new, [WIDTH_PADDED]);
@@ -44,8 +52,10 @@ private static void check_hflip (int step, string report_name){
 
     if (step == 2) {
         w /= 2;
-        for (i = 0; i < 4; i++)
+        for (i = 0; i < 4; i++) {
             step_array[i] = step;
+        }
+
     }
 
     ff_hflip_init (&s, step_array, 4);
@@ -64,6 +74,7 @@ private static void check_hflip (int step, string report_name){
     }
 
 }
+
 private static void checkasm_check_vf_hflip () {
     check_hflip (1, "byte");
     report ("hflip_byte");

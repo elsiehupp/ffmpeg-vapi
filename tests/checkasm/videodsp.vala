@@ -18,10 +18,15 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-private static void randomize_buffers (int w, int h) {
+private static void randomize_buffers (
+    int w,
+    int h
+) {
     int i;
-    for (i = 0; i < w * h * sizeof (src0); i += 4)
+    for (i = 0; i < w * h * sizeof (src0); i += 4) {
         AV_WN32A (((uint8[] ) src0) + i, rnd ());
+    }
+
 }
 
 private static void iter_1d (
@@ -94,8 +99,9 @@ private static void checkasm_check_videodsp () {
     VideoDSPContext vdsp;
 
     ff_videodsp_init (&vdsp, 8);
-    if (check_func (vdsp.emulated_edge_mc, "emulated_edge_mc_8"))
+    if (check_func (vdsp.emulated_edge_mc, "emulated_edge_mc_8")) {
         check_emu_edge (uint8);
+    }
 
     report ("emulated_edge_mc");
 }

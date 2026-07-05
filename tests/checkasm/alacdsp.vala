@@ -65,8 +65,8 @@ private static void randomize_buffers () {
     for (i = 0; i < BUF_SIZE; i++) {
         for (j = 0; j < ch; j++) {
             int32 r = sign_extend (rnd (), 24);
-            ref[j][i] = r;
-            new[j][i] = r;
+            //  ref[j][i] = r;
+            //  new[j][i] = r;
             r = rnd () & 0xFF;
             ref_ebb[j][i] = r;
             new_ebb[j][i] = r;

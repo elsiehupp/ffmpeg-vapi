@@ -19,13 +19,17 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 ***********************************************************/
 
 private static uint32 get_v210 () {
-    uint32 t0 = rnd () & 0x3ff,
-             t1 = rnd () & 0x3ff,
-             t2 = rnd () & 0x3ff;
-    uint32 value =  t0
-                   | (t1 << 10)
-                   | (t2 << 20);
-    return value;
+    uint32 t0 = rnd () & 0x3ff;
+    uint32 t1 = rnd () & 0x3ff;
+    uint32 t2 = rnd () & 0x3ff;
+    uint32 value =
+
+    return (
+        t0 |
+        (t1 << 10) |
+        (t2 << 20)
+    );
+
 }
 
 private const size_t NUM_SAMPLES = 2048;

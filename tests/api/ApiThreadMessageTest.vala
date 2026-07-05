@@ -18,6 +18,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
+private class ApiThreadMessageTestApplication : GLib.Application {}
+
 private class ApiThreadMessageTest : GLib.TestCase {
 
     /***********************************************************
@@ -334,7 +336,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
         return 0;
     }
 
-    private static uint main (
+    private static int main (
         uint ac,
         string[] av
     ) {

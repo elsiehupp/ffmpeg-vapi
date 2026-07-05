@@ -18,10 +18,15 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
-private static void randomize_buffer (void *buf, int size) {
+private static void randomize_buffer (
+    void *buf,
+    int size
+) {
     int i;
-    for (i = 0; i < size / 4; i++)
+    for (i = 0; i < size / 4; i++) {
         ((uint32[] )buf)[i] = rnd ();
+    }
+
 }
 
 private const int w = 123;  // source width

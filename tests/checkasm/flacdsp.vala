@@ -34,9 +34,15 @@ private static void randomize_buffers () {
 
 }
 
-private static void check_decorrelate (uint8[][] ref_dst, uint8[][] ref_src, uint8[][] new_dst, uint8[][] new_src,
-                              int channels, int bits) {
-    //  declare_func (void, uint8[][] out, int32[] *in, int channels, int len, int shift);
+private static void check_decorrelate (
+    ref uint8[] ref_dst,
+    ref uint8[] ref_src,
+    ref uint8[] new_dst,
+    ref uint8[] new_src,
+    int channels,
+    int bits
+) {
+    //  declare_func (void, ref uint8[] out, int32[] *in, int channels, int len, int shift);
 
     randomize_buffers ();
     //  call_ref (ref_dst, (int32[] *)ref_src, channels, BUF_SIZE / sizeof (int32), 8);
@@ -55,6 +61,7 @@ private struct Format {
     LibAVUtil.SampleFormat fmt;
     int bits;
 }
+
 private static Format fmts[] = {
     { LibAVUtil.SampleFormat.SIGNED_16_BIT, 16 },
     { LibAVUtil.SampleFormat.SIGNED_32_BIT, 32 },
@@ -74,13 +81,19 @@ private static void checkasm_check_flacdsp () {
 
     for (i = 0; i < 2; i++) {
         ff_flacdsp_init (&h, fmts[i].fmt, 2, 0);
-        for (j = 0; j < 3; j++)
-            if (check_func (h.decorrelate[j], "flac_decorrelate_%s_%d", names[j], fmts[i].bits))
+        for (j = 0; j < 3; j++) {
+            if (check_func (h.decorrelate[j], "flac_decorrelate_%s_%d", names[j], fmts[i].bits)) {
                 check_decorrelate (&ref_dst, ref_src, &new_dst, new_src, 2, fmts[i].bits);
+            }
+
+        }
+
         for (j = 2; j <= MAX_CHANNELS; j += 2) {
             ff_flacdsp_init (&h, fmts[i].fmt, j, 0);
-            if (check_func (h.decorrelate[0], "flac_decorrelate_indep%d_%d", j, fmts[i].bits))
+            if (check_func (h.decorrelate[0], "flac_decorrelate_indep%d_%d", j, fmts[i].bits)) {
                 check_decorrelate (&ref_dst, ref_src, &new_dst, new_src, j, fmts[i].bits);
+            }
+
         }
 
     }

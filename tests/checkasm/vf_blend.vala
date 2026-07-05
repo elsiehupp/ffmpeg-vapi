@@ -109,8 +109,9 @@ private static void check_and_report (
 ) {
     param.mode = val;
     ff_blend_init (&param, depth - 1);
-    if (check_func (param.blend, #name))
+    if (check_func (param.blend, #name)) {
         check_blend_func (depth);
+    }
 
     check_and_report (addition, BLEND_ADDITION, 1);
     check_and_report (grainmerge, BLEND_GRAINMERGE, 1);

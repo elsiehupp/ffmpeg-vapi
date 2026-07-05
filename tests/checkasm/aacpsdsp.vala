@@ -20,7 +20,10 @@ private const size_t N = 32;
 private const size_t STRIDE = 128;
 private const size_t BUF_SIZE = (N * STRIDE);
 
-private static void randomize (void *buf, int len) {
+private static void randomize (
+    void *buf,
+    int len
+) {
     int i;
     for (i = 0; i < len; i++) {
         INTFLOAT f = (INTFLOAT)rnd () / UINT_MAX;
@@ -181,7 +184,9 @@ private static void test_hybrid_synthesis_deint () {
     bench_new (out1, in, 3, 32);
 }
 
-private static void test_stereo_interpolate (PSDSPContext? psdsp) {
+private static void test_stereo_interpolate (
+    PSDSPContext? psdsp
+) {
     int i;
     //  LOCAL_ALIGNED_16 (INTFLOAT, l, [BUF_SIZE], [2]);
     //  LOCAL_ALIGNED_16 (INTFLOAT, r, [BUF_SIZE], [2]);
@@ -229,24 +234,34 @@ private static void checkasm_check_aacpsdsp () {
 
     ff_psdsp_init (&psdsp);
 
-    if (check_func (psdsp.add_squares, "ps_add_squares"))
+    if (check_func (psdsp.add_squares, "ps_add_squares")) {
         test_add_squares ();
+    }
+
     report ("add_squares");
 
-    if (check_func (psdsp.mul_pair_single, "ps_mul_pair_single"))
+    if (check_func (psdsp.mul_pair_single, "ps_mul_pair_single")) {
         test_mul_pair_single ();
+    }
+
     report ("mul_pair_single");
 
-    if (check_func (psdsp.hybrid_analysis, "ps_hybrid_analysis"))
+    if (check_func (psdsp.hybrid_analysis, "ps_hybrid_analysis")) {
         test_hybrid_analysis ();
+    }
+
     report ("hybrid_analysis");
 
-    if (check_func (psdsp.hybrid_analysis_ileave, "ps_hybrid_analysis_ileave"))
+    if (check_func (psdsp.hybrid_analysis_ileave, "ps_hybrid_analysis_ileave")) {
         test_hybrid_analysis_ileave ();
+    }
+
     report ("hybrid_analysis_ileave");
 
-    if (check_func (psdsp.hybrid_synthesis_deint, "ps_hybrid_synthesis_deint"))
+    if (check_func (psdsp.hybrid_synthesis_deint, "ps_hybrid_synthesis_deint")) {
         test_hybrid_synthesis_deint ();
+    }
+
     report ("hybrid_synthesis_deint");
 
     test_stereo_interpolate (&psdsp);

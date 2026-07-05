@@ -68,7 +68,9 @@ private static void checkasm_check_afir () {
     randomize_buffer (src1);
     randomize_buffer (src2);
 
-    if (check_func (fir.fcmul_add, "fcmul_add"))
+    if (check_func (fir.fcmul_add, "fcmul_add")) {
         test_fcmul_add (src0, src1, src2);
+    }
+
     report ("fcmul_add");
 }

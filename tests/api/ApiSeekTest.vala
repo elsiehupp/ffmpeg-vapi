@@ -20,6 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
+private class ApiSeekTestApplication : GLib.Application {}
+
 private class ApiSeekTest : GLib.TestCase {
 
     /***********************************************************
@@ -27,15 +29,20 @@ private class ApiSeekTest : GLib.TestCase {
     ***********************************************************/
 
 
-    int64[] pts_array;
-    uint32[] crc_array;
-    uint size_of_array;
-    uint number_of_elements;
+    private static int64[] pts_array;
+    private static uint32[] crc_array;
+    private static uint size_of_array;
+    private static uint number_of_elements;
 
-    private static uint add_crc_to_array (uint32 crc, int64 pts) {
+    private static uint add_crc_to_array (
+        uint32 crc,
+        int64 pts
+    ) {
         if (size_of_array <= number_of_elements) {
-            if (size_of_array == 0)
+            if (size_of_array == 0) {
                 size_of_array = 10;
+            }
+
             size_of_array *= 2;
             crc_array = av_realloc_f (crc_array, size_of_array, sizeof (uint32));
             pts_array = av_realloc_f (pts_array, size_of_array, sizeof (int64));
@@ -56,7 +63,10 @@ private class ApiSeekTest : GLib.TestCase {
         return 0;
     }
 
-    private static uint compare_crc_in_array (uint32 crc, int64 pts) {
+    private static uint compare_crc_in_array (
+        uint32 crc,
+        int64 pts
+    ) {
         for (uint i = 0; i < number_of_elements; i++) {
             if (pts_array[i] == pts) {
                 if (crc_array[i] == crc) {
@@ -136,9 +146,13 @@ private class ApiSeekTest : GLib.TestCase {
 
         av_init_packet (out packet);
         do {
-            if (!end_of_stream)
-                if (av_read_frame (format_context, out packet) < 0)
+            if (!end_of_stream) {
+                if (av_read_frame (format_context, out packet) < 0) {
                     end_of_stream = 1;
+                }
+
+            }
+
             if (end_of_stream) {
                 packet.data = null;
                 packet.size = 0;
@@ -178,18 +192,24 @@ private class ApiSeekTest : GLib.TestCase {
                         return number_of_written_bytes;
                     }
 
-                    if ((!no_seeking) && (frame.pts > ts_end))
+                    if ((!no_seeking) && (frame.pts > ts_end)) {
                         break;
+                    }
+
                     crc = av_adler32_update (0, (uint8[])byte_buffer, number_of_written_bytes);
                     GLib.print ("%10ll, 0x%08l\n", frame.pts, crc);
                     if (no_seeking) {
-                        if (add_crc_to_array (crc, frame.pts) < 0)
+                        if (add_crc_to_array (crc, frame.pts) < 0) {
                             return -1;
+                        }
+
                     }
 
                     else {
-                        if (compare_crc_in_array (crc, frame.pts) < 0)
+                        if (compare_crc_in_array (crc, frame.pts) < 0) {
                             return -1;
+                        }
+
                     }
 
                 }
@@ -206,7 +226,9 @@ private class ApiSeekTest : GLib.TestCase {
         return 0;
     }
 
-    private static ulong read_seek_range (string string_with_number) {
+    private static ulong read_seek_range (
+        string string_with_number
+    ) {
         ulong number;
         char[] end_of_string = null;
         number = strtol (string_with_number, out end_of_string, 10);
@@ -234,7 +256,11 @@ private class ApiSeekTest : GLib.TestCase {
         return number;
     }
 
-    private static uint seek_test (string input_filename, string start, string end) {
+    private static uint seek_test (
+        string input_filename,
+        string start,
+        string end
+    ) {
         try {
             LibAVCodec.Codec codec = null;
             LibAVCodec.CodecContext codec_context= null;
@@ -353,14 +379,17 @@ private class ApiSeekTest : GLib.TestCase {
             }
 
             result = compute_crc_of_packets (format_context, video_stream, codec_context, frame, 0, 0, 1);
-            if (result != 0)
+            if (result != 0) {
                 throw new Goto.END ("");
+            }
 
             for (uint i = start_ts; i < end_ts; i += 100) {
                 for (uint j = i + 100; j < end_ts; j += 100) {
                     result = compute_crc_of_packets (format_context, video_stream, codec_context, frame, i, j, 0);
-                    if (result != 0)
+                    if (result != 0) {
                         break;
+                    }
+
                 }
 
             }
@@ -376,7 +405,7 @@ private class ApiSeekTest : GLib.TestCase {
         return result;
     }
 
-    uint main (
+    private static int main (
         uint argc,
         string[] argv
     ) {
@@ -389,8 +418,9 @@ private class ApiSeekTest : GLib.TestCase {
             return 1;
         }
 
-        if (seek_test (argv[1], argv[2], argv[3]) != 0)
+        if (seek_test (argv[1], argv[2], argv[3]) != 0) {
             return 1;
+        }
 
         return 0;
     }

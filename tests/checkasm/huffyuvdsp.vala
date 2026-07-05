@@ -18,15 +18,25 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-private static void randomize_buffers (void *buf, int size) {
+private static void randomize_buffers (
+    void *buf,
+    int size
+) {
     int j;
-    for (j = 0; j < size; j++)
+    for (j = 0; j < size; j++) {
         buf[j] = rnd () & 0xFFFF;
+    }
+
 }
 
 //  declare_func_emms (AV_CPU_FLAG_MMX, void, uint16[] dst, uint16[] src, uint mask, int w);
 
-private static void check_add_int16 (HuffYUVDSPContext c, uint mask, int width, string name) {
+private static void check_add_int16 (
+    HuffYUVDSPContext c,
+    uint mask,
+    int width,
+    string name
+) {
     uint16[] src0 = av_mallocz (width * sizeof (uint16));
     uint16[] src1 = av_mallocz (width * sizeof (uint16));
     uint16[] dst0 = av_mallocz (width * sizeof (uint16));
@@ -61,13 +71,15 @@ private static void checkasm_check_huffyuvdsp () {
 
     ff_huffyuvdsp_init (&c, LibAVUtil.PixelFormat.YUV422P);
 
-    /*! test width not multiple of mmsize
-***********************************************************/
+    /***********************************************************
+    ! test width not multiple of mmsize
+    ***********************************************************/
     check_add_int16 (c, 65535, width, "add_int16_rnd_width");
     report ("add_int16_rnd_width");
 
-    /*! test always with the same size (for perf test)
-***********************************************************/
+    /***********************************************************
+    ! test always with the same size (for perf test)
+    ***********************************************************/
     check_add_int16 (c, 65535, 16*128, "add_int16_128");
     report ("add_int16_128");
 }

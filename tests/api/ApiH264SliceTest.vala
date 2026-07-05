@@ -20,6 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
+private class ApiH264SliceTestApplication : GLib.Application {}
+
 private class ApiH264SliceTest : GLib.TestCase {
 
     private const uint MAX_SLICES = 8;
@@ -77,12 +79,17 @@ private class ApiH264SliceTest : GLib.TestCase {
 
             av_hash_init (hash);
 
-            for (uint i = 0; i < frame.height; i++)
+            for (uint i = 0; i < frame.height; i++) {
                 av_hash_update (hash, out frame.data[0][i * frame.linesize[0]], frame.width);
-            for (uint i = 0; i < frame.height >> desc.log2_chroma_h; i++)
+            }
+
+            for (uint i = 0; i < frame.height >> desc.log2_chroma_h; i++) {
                 av_hash_update (hash, out frame.data[1][i * frame.linesize[1]], frame.width >> desc.log2_chroma_w);
-            for (uint i = 0; i < frame.height >> desc.log2_chroma_h; i++)
+            }
+
+            for (uint i = 0; i < frame.height >> desc.log2_chroma_h; i++) {
                 av_hash_update (hash, out frame.data[2][i * frame.linesize[2]], frame.width >> desc.log2_chroma_w);
+            }
 
             av_hash_final_hex (hash, sum, av_hash_get_size (hash) * 2 + 1);
             GLib.print ("0, %10ll, %10ll, 1, %8d, %s\n",
@@ -107,10 +114,11 @@ private class ApiH264SliceTest : GLib.TestCase {
     private static char[] p;
 
     private static uint do_main () throws Goto {
-
         nal = av_malloc (MAX_SLICES * UINT16_MAX + AV_INPUT_BUFFER_PADDING_SIZE);
-        if (nal == null)
+        if (nal == null) {
             throw new Goto.ERROR ("");
+        }
+
         p = nal;
 
         if (!(codec = avcodec_find_decoder (LibAVCodec.CodecID.H264))) {
@@ -182,8 +190,9 @@ private class ApiH264SliceTest : GLib.TestCase {
         while (true) {
             uint16 size = 0;
             size_t ret = fread (out size, 1, sizeof (uint16), file);
-            if (ret != sizeof (uint16))
+            if (ret != sizeof (uint16)) {
                 break;
+            }
 
             size = av_be2ne16 (size);
             ret = fread (p, 1, size, file);
@@ -221,7 +230,7 @@ private class ApiH264SliceTest : GLib.TestCase {
         return decode (codec_context, frame, null);
     }
 
-    private static uint main (
+    private static int main (
         uint argc,
         string[] argv
     ) {
@@ -230,10 +239,11 @@ private class ApiH264SliceTest : GLib.TestCase {
             return -1;
         }
 
-        if (!(threads = strtoul (argv[1], null, 0)))
+        if (!(threads = strtoul (argv[1], null, 0))) {
             threads = 1;
-        else if (threads > MAX_SLICES)
+        } else if (threads > MAX_SLICES) {
             threads = MAX_SLICES;
+        }
 
     #if _WIN32
         setmode (fileno (stdout), O_BINARY);

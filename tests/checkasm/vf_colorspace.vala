@@ -42,7 +42,11 @@ private const string format_string[] = {
     "444", "422", "420"
 };
 
-private const uint bpp_mask[] = { 0xffffffff, 0x03ff03ff, 0x0fff0fff };
+private const int64 bpp_mask[] = {
+    0xffffffff,
+    0x03ff03ff,
+    0x0fff0fff
+};
 
 private static void check_yuv2yuv () {
     //  declare_func (

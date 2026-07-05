@@ -18,12 +18,13 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-private const uint32 pixel_mask[3] = {
+private const int32 pixel_mask[3] = {
     0xffffffff,
     0x01ff01ff,
     0x03ff03ff
 };
-private const uint32 pixel_mask_lf[3] = {
+
+private const int32 pixel_mask_lf[3] = {
     0xff0fff0f,
     0x01ff000f,
     0x03ff000f
@@ -210,7 +211,7 @@ private static void check_idct () {
                 dct8x8 (coef, bit_depth);
 
             for (dc = 0; dc <= 1; dc++) {
-                //  void (*idct)(uint8[] , int16[] , int) = null;
+                //  void (*idct)(uint8[], int16[], int) = null;
                 switch ((sz << 1) | dc) {
                 case (4 << 1) | 0: idct = h.h264_idct_add; break;
                 case (4 << 1) | 1: idct = h.h264_idct_dc_add; break;
@@ -267,7 +268,7 @@ private static void check_idct_multiple () {
     for (bit_depth = 8; bit_depth <= 10; bit_depth++) {
         ff_h264dsp_init (&h, bit_depth, 1);
         for (func = 0; func < 3; func++) {
-            //  void (*idct)(uint8[] , int[] , int16[] , int, uint8[]) = null;
+            //  void (*idct)(uint8[], int[], int16[], int, uint8[]) = null;
             string name;
             int sz = 4, intra = 0;
             int block_offset[16] = { 0 };

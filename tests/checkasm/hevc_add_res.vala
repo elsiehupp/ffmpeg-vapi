@@ -18,7 +18,10 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-private static void randomize_buffers (void *buf, int size) {
+private static void randomize_buffers (
+    void *buf,
+    int size
+) {
     int j;
     for (j = 0; j < size; j++) {
         int16 r = rnd ();
@@ -27,10 +30,15 @@ private static void randomize_buffers (void *buf, int size) {
 
 }
 
-private static void randomize_buffers2 (void *buf, int size) {
+private static void randomize_buffers2 (
+    void *buf,
+    int size
+) {
     int j;
-    for (j = 0; j < size; j++)
+    for (j = 0; j < size; j++) {
         AV_WN16A (buf + j * 2, rnd () & 0x3FF);
+    }
+
 }
 
 //  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] dst, int16[] res, size_t stride);

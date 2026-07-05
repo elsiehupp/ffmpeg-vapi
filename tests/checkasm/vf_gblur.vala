@@ -21,11 +21,16 @@ private const size_t HEIGHT = 256;
 private const size_t PIXELS = (WIDTH * HEIGHT);
 private const size_t BUF_SIZE = (PIXELS * 4);
 
-private static void randomize_buffers (void *buf, int size) {
+private static void randomize_buffers (
+    void *buf,
+    int size
+) {
     int j;
     float[] tmp_buf = (float[] )buf;
-    for (j = 0; j < size; j++)
+    for (j = 0; j < size; j++) {
         tmp_buf[j] = (float)(rnd () & 0xFF);
+    }
+
 }
 
 private static void checkasm_check_vf_gblur () {

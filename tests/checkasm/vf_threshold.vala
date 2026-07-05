@@ -19,7 +19,10 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 private const size_t WIDTH = 256;
 private const size_t WIDTH_PADDED = 256 + 32;
 
-private static void randomize_buffers (void *buf, int size) {
+private static void randomize_buffers (
+    void *buf,
+    int size
+) {
     int j;
     uint8[] tmp_buf = (uint8[] )buf;
     for (j = 0; j < size; j++) {
@@ -28,18 +31,20 @@ private static void randomize_buffers (void *buf, int size) {
 
 }
 
-private static void check_threshold (int depth){
-    //  LOCAL_ALIGNED_32 (uint8, in       , [WIDTH_PADDED]);
+private static void check_threshold (
+    int depth
+) {
+    //  LOCAL_ALIGNED_32 (uint8, in, [WIDTH_PADDED]);
     //  LOCAL_ALIGNED_32 (uint8, threshold, [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, min      , [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, max      , [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, out_ref  , [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, out_new  , [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (uint8, min, [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (uint8, max, [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (uint8, out_ref, [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (uint8, out_new, [WIDTH_PADDED]);
     size_t line_size = WIDTH_PADDED;
     int w = WIDTH;
 
-    //  declare_func (void, uint8[] in, uint8[] threshold,
-    //               uint8[] min, uint8[] max, uint8[] out,
+    //  declare_func (void, uint8[] input, uint8[] threshold,
+    //               uint8[] min, uint8[] max, uint8[] output,
     //               size_t ilinesize, size_t tlinesize,
     //               size_t flinesize, size_t slinesize,
     //               size_t olinesize, int w, int h);
@@ -48,28 +53,29 @@ private static void check_threshold (int depth){
     s.depth = depth;
     ff_threshold_init (&s);
 
-    memset (in, 0, WIDTH_PADDED);
+    memset (input, 0, WIDTH_PADDED);
     memset (threshold, 0, WIDTH_PADDED);
     memset (min, 0, WIDTH_PADDED);
     memset (max, 0, WIDTH_PADDED);
     memset (out_ref, 0, WIDTH_PADDED);
     memset (out_new, 0, WIDTH_PADDED);
-    randomize_buffers (in, WIDTH);
+    randomize_buffers (input, WIDTH);
     randomize_buffers (threshold, WIDTH);
     randomize_buffers (min, WIDTH);
     randomize_buffers (max, WIDTH);
 
-    if (depth == 16)
+    if (depth == 16) {
         w /= 2;
+    }
 
     if (check_func (s.threshold, "threshold%d", depth)) {
-        //  call_ref (in, threshold, min, max, out_ref, line_size, line_size, line_size, line_size, line_size, w, 1);
-        //  call_new (in, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1);
+        //  call_ref (input, threshold, min, max, out_ref, line_size, line_size, line_size, line_size, line_size, w, 1);
+        //  call_new (input, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1);
         if (memcmp (out_ref, out_new, WIDTH)) {
             fail ();
         }
 
-        bench_new (in, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1);
+        bench_new (input, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1);
     }
 
 }

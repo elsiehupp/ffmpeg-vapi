@@ -85,11 +85,13 @@ private static void checkasm_check_v210enc () {
 
     ff_v210enc_init (&h);
 
-    if (check_func (h.pack_line_8, "v210_planar_pack_8"))
+    if (check_func (h.pack_line_8, "v210_planar_pack_8")) {
         check_pack_line (uint8, 0xffffffff);
+    }
 
-    if (check_func (h.pack_line_10, "v210_planar_pack_10"))
+    if (check_func (h.pack_line_10, "v210_planar_pack_10")) {
         check_pack_line (uint16, 0x03ff03ff);
+    }
 
     report ("planar_pack");
 }

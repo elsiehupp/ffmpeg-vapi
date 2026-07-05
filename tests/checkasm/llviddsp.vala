@@ -18,11 +18,16 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-private static void randomize_buffers (void *buf, int size) {
+private static void randomize_buffers (
+    void *buf,
+    int size
+) {
     int j;
     uint8[] tmp_buf = (uint8[] )buf;
-    for (j = 0; j < size; j++)
+    for (j = 0; j < size; j++) {
         tmp_buf[j] = rnd () & 0xFF;
+    }
+
 }
 
 private static void init_buffer (

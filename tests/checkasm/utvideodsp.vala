@@ -36,8 +36,10 @@ private static void randomize_plane (
     int w, h;
     type?  tmp = buf;
     for (h = 0; h < HEIGHT; h++) {
-        for (w = 0; w < WIDTH; w++)
+        for (w = 0; w < WIDTH; w++) {
             tmp[w] = rnd () & 0xFF;
+        }
+
         tmp += WIDTH_PADDED;
     }
 
@@ -102,13 +104,15 @@ private static void checkasm_check_utvideodsp () {
 
     ff_utvideodsp_init (&h);
 
-    if (check_func (h.restore_rgb_planes, "restore_rgb_planes"))
+    if (check_func (h.restore_rgb_planes, "restore_rgb_planes")) {
         check_restore_rgb_planes ();
+    }
 
     report ("restore_rgb_planes");
 
-    if (check_func (h.restore_rgb_planes10, "restore_rgb_planes10"))
+    if (check_func (h.restore_rgb_planes10, "restore_rgb_planes10")) {
         check_restore_rgb_planes10 ();
+    }
 
     report ("restore_rgb_planes10");
 }

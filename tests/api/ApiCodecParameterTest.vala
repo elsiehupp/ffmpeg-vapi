@@ -20,6 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
+private class ApiCodecParameterTestApplication : GLib.Application {}
+
 private class ApiCodecParameterTest : GLib.TestCase {
 
     private static uint try_decode_video_frame (
@@ -65,8 +67,10 @@ private class ApiCodecParameterTest : GLib.TestCase {
             do {
                 ret = avcodec_decode_video2 (codec_context, frame, out got_frame, packet);
                 av_assert0 (decode || (!decode && !got_frame));
-                if (ret < 0)
+                if (ret < 0) {
                     break;
+                }
+
                 packet.data += ret;
                 packet.size -= ret;
 
@@ -144,8 +148,9 @@ private class ApiCodecParameterTest : GLib.TestCase {
                     st = format_context.streams[i];
                     codec_context = st.codec;
 
-                    if (codec_context.codec_type != AVMEDIA_TYPE_VIDEO)
+                    if (codec_context.codec_type != AVMEDIA_TYPE_VIDEO) {
                         continue;
+                    }
 
                     done &= st.codec_info_nb_frames > 0;
                 }
@@ -168,7 +173,10 @@ private class ApiCodecParameterTest : GLib.TestCase {
         return ret < 0;
     }
 
-    private static void dump_video_streams (AVFormatContext format_context, uint decode) {
+    private static void dump_video_streams (
+        AVFormatContext format_context,
+        uint decode
+    ) {
 
         for (uint i = 0; i < format_context.nb_streams; i++) {
             LibAVUtil.Option opt = null;
@@ -179,11 +187,13 @@ private class ApiCodecParameterTest : GLib.TestCase {
             while (opt = av_opt_next (codec_context, opt)) {
                 uint8[] str;
 
-                if (opt.type == AV_OPT_TYPE_CONST)
+                if (opt.type == AV_OPT_TYPE_CONST) {
                     continue;
+                }
 
-                if (!strcmp (opt.name, "frame_number"))
+                if (!strcmp (opt.name, "frame_number")) {
                     continue;
+                }
 
                 if (av_opt_get (codec_context, opt.name, 0, out str) >= 0) {
                     GLib.print ("    %s=%s\n", opt.name, str);
@@ -240,18 +250,21 @@ private class ApiCodecParameterTest : GLib.TestCase {
             LibAVCodec.CodecContext codec_ctx1 = st1.codec;
             LibAVCodec.CodecContext codec_ctx2 = st2.codec;
 
-            if (codec_ctx1.codec_type != AVMEDIA_TYPE_VIDEO)
+            if (codec_ctx1.codec_type != AVMEDIA_TYPE_VIDEO) {
                 continue;
+            }
 
             while (opt = av_opt_next (codec_ctx1, opt)) {
                 uint8[] str1 = null;
                 uint8[] str2 = null;
 
-                if (opt.type == AV_OPT_TYPE_CONST)
+                if (opt.type == AV_OPT_TYPE_CONST) {
                     continue;
+                }
 
-                if (!strcmp (opt.name, "frame_number"))
+                if (!strcmp (opt.name, "frame_number")) {
                     continue;
+                }
 
                 av_assert0 (av_opt_get (codec_ctx1, opt.name, 0, out str1) >= 0);
                 av_assert0 (av_opt_get (codec_ctx2, opt.name, 0, out str2) >= 0);
@@ -272,7 +285,10 @@ private class ApiCodecParameterTest : GLib.TestCase {
         return ret;
     }
 
-    uint main (uint argc, string[] argv) {
+    private static int main (
+        uint argc,
+        string[] argv
+    ) {
         try {
             uint ret = 0;
             AVFormatContext format_context = null;

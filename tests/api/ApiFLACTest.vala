@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
+private class ApiFLACTestApplication : GLib.Application {}
+
 private class ApiFLACTest : GLib.TestCase {
 
     /***********************************************************
@@ -123,7 +125,7 @@ private class ApiFLACTest : GLib.TestCase {
         codec_context.request_sample_fmt = LibAVUtil.SampleFormat.SIGNED_16_BIT;
         /***********************************************************
         XXX: FLAC ignores it for some reason
-    ***********************************************************/
+        ***********************************************************/
 
         codec_context.request_channel_layout = ch_layout;
         codec_context.channel_layout = ch_layout;
@@ -333,19 +335,26 @@ private class ApiFLACTest : GLib.TestCase {
         return 0;
     }
 
-    private static uint close_encoder (out LibAVCodec.CodecContext enc_ctx) {
+    private static uint close_encoder (
+        out LibAVCodec.CodecContext enc_ctx
+    ) {
         avcodec_close (*enc_ctx);
         av_freep (enc_ctx);
         return 0;
     }
 
-    private static uint close_decoder (out LibAVCodec.CodecContext dec_ctx) {
+    private static uint close_decoder (
+        out LibAVCodec.CodecContext dec_ctx
+    ) {
         avcodec_close (*dec_ctx);
         av_freep (dec_ctx);
         return 0;
     }
 
-    uint main () {
+    private static int main (
+        int argc,
+        string[] argv
+    ) {
         LibAVCodec.Codec enc = null;
         LibAVCodec.Codec dec = null;
         LibAVCodec.CodecContext enc_ctx = null;
@@ -386,12 +395,18 @@ private class ApiFLACTest : GLib.TestCase {
 
         for (cl = 0; cl < FF_ARRAY_ELEMS (channel_layouts); cl++) {
             for (sr = 0; sr < FF_ARRAY_ELEMS (sample_rates); sr++) {
-                if (init_encoder (enc, out enc_ctx, channel_layouts[cl], sample_rates[sr]) != 0)
+                if (init_encoder (enc, out enc_ctx, channel_layouts[cl], sample_rates[sr]) != 0) {
                     return 1;
-                if (init_decoder (dec, out dec_ctx, channel_layouts[cl]) != 0)
+                }
+
+                if (init_decoder (dec, out dec_ctx, channel_layouts[cl]) != 0) {
                     return 1;
-                if (run_test (enc, dec, enc_ctx, dec_ctx) != 0)
+                }
+
+                if (run_test (enc, dec, enc_ctx, dec_ctx) != 0) {
                     return 1;
+                }
+
                 close_encoder (out enc_ctx);
                 close_decoder (out dec_ctx);
             }

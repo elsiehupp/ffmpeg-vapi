@@ -52,8 +52,9 @@ private static void checkasm_check_g722dsp () {
 
     ff_g722dsp_init (&h);
 
-    if (check_func (h.apply_qmf, "g722_apply_qmf"))
+    if (check_func (h.apply_qmf, "g722_apply_qmf")) {
         check_qmf ();
+    }
 
     report ("apply_qmf");
 }

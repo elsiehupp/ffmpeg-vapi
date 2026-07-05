@@ -20,6 +20,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ***********************************************************/
 
+private class ApiBandTestApplication : GLib.Application {}
+
 private class ApiBandTest : GLib.TestCase {
 
     /***********************************************************
@@ -69,7 +71,9 @@ private class ApiBandTest : GLib.TestCase {
 
     }
 
-    private static uint video_decode (string input_filename) {
+    private static int video_decode (
+        string input_filename
+    ) {
         LibAVCodec.Codec codec = null;
         LibAVCodec.CodecContext codec_context= null;
         LibAVCodec.CodecParameters origin_par = null;
@@ -287,7 +291,7 @@ private class ApiBandTest : GLib.TestCase {
         return 0;
     }
 
-    uint main (
+    private static int main (
         uint argc,
         string[] argv
     ) {
@@ -301,8 +305,9 @@ private class ApiBandTest : GLib.TestCase {
             return 1;
         }
 
-        if (video_decode (argv[1]) != 0)
+        if (video_decode (argv[1]) != 0) {
             return 1;
+        }
 
         return 0;
     }

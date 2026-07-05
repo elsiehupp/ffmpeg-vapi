@@ -30,14 +30,17 @@ private static void randomize_buffers (
     for (y = 0; y < 4; y++) {
         AV_WN32A ((src) + y * (stride), rnd ());
         AV_WN32A ((dst) + y * (stride), rnd ());
-        for (x = 0; x < 4; x++)
-            (coef)[y * 4 + x] = (src)[y * (stride) + x] -
-                                (dst)[y * (stride) + x];
+        for (x = 0; x < 4; x++) {
+            (coef)[y * 4 + x] = (src)[y * (stride) + x] - (dst)[y * (stride) + x];
+        }
+
     }
 
 }
 
-private static void dct4x4 (int16[] coef) {
+private static void dct4x4 (
+    int16[] coef
+) {
     int i;
     for (i = 0; i < 4; i++) {
         int a1 = (coef[i*4 + 0] + coef[i*4 + 3]) * 8;
@@ -63,7 +66,9 @@ private static void dct4x4 (int16[] coef) {
 
 }
 
-private static void wht4x4 (int16[] coef) {
+private static void wht4x4 (
+    int16[] coef
+) {
     int i;
     for (i = 0; i < 4; i++) {
         int a1 = coef[0 * 4 + i];
@@ -108,7 +113,9 @@ private static void wht4x4 (int16[] coef) {
 //  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] dst, int16[] block, size_t stride);
 
 delegate void Idct (
-    uint8[] a, int16[] b, size_t c
+    uint8[] a,
+    int16[] b,
+    size_t c
 );
 
 private static void check_idct () {
@@ -175,7 +182,7 @@ private static void check_idct_dc4 () {
     ff_vp8dsp_init (&d);
 
     for (chroma = 0; chroma <= 1; chroma++) {
-        //  void (*idct4dc)(uint8[] , int16[4][16], size_t) = chroma ? d.vp8_idct_dc_add4uv : d.vp8_idct_dc_add4y;
+        //  void (*idct4dc)(uint8[], int16[4][16], size_t) = chroma ? d.vp8_idct_dc_add4uv : d.vp8_idct_dc_add4y;
         if (check_func (idct4dc, "vp8_idct_dc_add4%s", chroma ? "uv" : "y")) {
             size_t stride = chroma ? 8 : 16;
             int w = chroma ? 2 : 4;
@@ -278,7 +285,7 @@ private static void randomize_buffers () {
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , size_t, uint8[] , size_t, int, int, int);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[], size_t, uint8[], size_t, int, int, int);
 
 private const string dx_names[] = { "", "h4", "h6" };
 private const string dy_names[] = { "", "v4", "v6" };
@@ -384,9 +391,13 @@ private static void setdx2 (
 }
 
 private static void randomize_loopfilter_buffers (
-    int lineoff, int str,
-    int dir, int flim_E, int flim_I,
-    int hev_thresh, uint8[] buf,
+    int lineoff,
+    int str,
+    int dir,
+    int flim_E,
+    int flim_I,
+    int hev_thresh,
+    uint8[] buf,
     int force_hev
 ) {
     uint32 mask = 0xff;
@@ -401,17 +412,21 @@ private static void randomize_loopfilter_buffers (
         // makes none of them trigger it.
         int idx = off + i * istride, p2, p1, p0, q0, q1, q2;
         setpx (idx, 0, q0 = rnd () & mask);
-        if (i == 0 && force_hev >= 0 || force_hev > 0)
+        if (i == 0 && force_hev >= 0 || force_hev > 0) {
             setdx2 (idx, 1, q1, q0, hev_thresh + 1, flim_I - hev_thresh - 1);
-        else
+        } else {
             setdx (idx, 1, q1 = q0, hev_thresh);
+        }
+
         setdx (idx, 2, q2 = q1, flim_I);
         setdx (idx, 3, q2, flim_I);
         setdx (idx, -1, p0 = q0, flim_E >> 2);
-        if (i == 2 && force_hev >= 0 || force_hev > 0)
+        if (i == 2 && force_hev >= 0 || force_hev > 0) {
             setdx2 (idx, -2, p1, p0, hev_thresh + 1, flim_I - hev_thresh - 1);
-        else
+        } else {
             setdx (idx, -2, p1 = p0, hev_thresh);
+        }
+
         setdx (idx, -3, p2 = p1, flim_I);
         setdx (idx, -4, p2, flim_I);
     }
@@ -419,11 +434,20 @@ private static void randomize_loopfilter_buffers (
 }
 
 // Fill the buffer with random pixels
-private static void fill_loopfilter_buffers (uint8[] buf, size_t stride, int w, int h) {
+private static void fill_loopfilter_buffers (
+    uint8[] buf,
+    size_t stride,
+    int w,
+    int h
+) {
     int x, y;
-    for (y = 0; y < h; y++)
-        for (x = 0; x < w; x++)
+    for (y = 0; y < h; y++) {
+        for (x = 0; x < w; x++) {
             buf[y * stride + x] = rnd () & 0xff;
+        }
+
+    }
+
 }
 
 private static void randomize_buffers (
@@ -435,7 +459,7 @@ private static void randomize_buffers (
     randomize_loopfilter_buffers (lineoff, str, dir, flim_E, flim_I, hev_thresh, buf, force_hev);
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , size_t, int, int, int);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[], size_t, int, int, int);
 
 private static void check_loopfilter_16y () {
     //  LOCAL_ALIGNED_16 (uint8, base0, [32 + 16 * 16]);
@@ -452,7 +476,7 @@ private static void check_loopfilter_16y () {
         uint8[] buf0 = base0 + midoff_aligned;
         uint8[] buf1 = base1 + midoff_aligned;
         for (edge = 0; edge < 2; edge++) {
-            //  void (*func)(uint8[] , size_t, int, int, int) = null;
+            //  void (*func)(uint8[], size_t, int, int, int) = null;
             switch (dir << 1 | edge) {
             case (0 << 1) | 0: func = d.vp8_h_loop_filter16y; break;
             case (1 << 1) | 0: func = d.vp8_v_loop_filter16y; break;
@@ -486,7 +510,7 @@ private static void check_loopfilter_16y () {
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , uint8[] , size_t, int, int, int);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[], uint8[], size_t, int, int, int);
 
 private static void check_loopfilter_8uv () {
     //  LOCAL_ALIGNED_16 (uint8, base0u, [32 + 16 * 16]);
@@ -507,7 +531,7 @@ private static void check_loopfilter_8uv () {
         uint8[] buf1u = base1u + midoff_aligned;
         uint8[] buf1v = base1v + midoff_aligned;
         for (edge = 0; edge < 2; edge++) {
-            //  void (*func)(uint8[] , uint8[] , size_t, int, int, int) = null;
+            //  void (*func)(uint8[], uint8[], size_t, int, int, int) = null;
             switch (dir << 1 | edge) {
             case (0 << 1) | 0: func = d.vp8_h_loop_filter8uv; break;
             case (1 << 1) | 0: func = d.vp8_v_loop_filter8uv; break;
@@ -546,7 +570,7 @@ private static void check_loopfilter_8uv () {
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] , size_t, int);
+//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[], size_t, int);
 
 private static void check_loopfilter_simple () {
     //  LOCAL_ALIGNED_16 (uint8, base0, [32 + 16 * 16]);
@@ -562,7 +586,7 @@ private static void check_loopfilter_simple () {
         int midoff_aligned = dir ? 4 * 16 : 16;
         uint8[] buf0 = base0 + midoff_aligned;
         uint8[] buf1 = base1 + midoff_aligned;
-        //  void (*func)(uint8[] , size_t, int) = dir ? d.vp8_v_loop_filter_simple : d.vp8_h_loop_filter_simple;
+        //  void (*func)(uint8[], size_t, int) = dir ? d.vp8_v_loop_filter_simple : d.vp8_h_loop_filter_simple;
         if (check_func (func, "vp8_loop_filter_simple_%s", dir ? "v" : "h")) {
             fill_loopfilter_buffers (buf0 - midoff, 16, 16, 16);
             randomize_buffers (buf0, 0, 16, -1);
