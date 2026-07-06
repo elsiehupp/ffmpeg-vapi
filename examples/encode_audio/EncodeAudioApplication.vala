@@ -49,8 +49,12 @@ private class EncodeAudioApplication : GLib.Application {
     ) {
         LibAVUtil.SampleFormat? p = codec.sample_fmts;
 
-        while (*p != LibAVUtil.SampleFormat.NONE) {
-            if (*p == sample_fmt) {
+        while (
+            *p != LibAVUtil.SampleFormat.NONE
+        ) {
+            if (
+                *p == sample_fmt
+            ) {
                 return true;
             }
 
@@ -70,12 +74,15 @@ private class EncodeAudioApplication : GLib.Application {
         int best_samplerate = 0;
 
         if (
-            !codec.supported_samplerates) {
+            !codec.supported_samplerates
+        ) {
             return 44100;
         }
 
         p = codec.supported_samplerates;
-        while (*p) {
+        while (
+            *p
+        ) {
             if (
                 !best_samplerate ||
                 abs (
@@ -105,19 +112,23 @@ private class EncodeAudioApplication : GLib.Application {
         int best_nb_channels = 0;
 
         if (
-            !codec.ch_layouts) {
-            return av_channel_layout_copy (dst, &(AVChannelLayout)AV_CHANNEL_LAYOUT_STEREO
+            !codec.ch_layouts
+        ) {
+            return av_channel_layout_copy (
+                dst, &(AVChannelLayout)AV_CHANNEL_LAYOUT_STEREO
             );
 
         }
 
         p = codec.ch_layouts;
         while (
-            p.nb_channels) {
+            p.nb_channels
+        ) {
             int nb_channels = p.nb_channels;
 
             if (
-                nb_channels > best_nb_channels) {
+                nb_channels > best_nb_channels
+            ) {
                 best_ch_layout = p;
                 best_nb_channels = nb_channels;
             }
@@ -125,7 +136,8 @@ private class EncodeAudioApplication : GLib.Application {
             p++;
         }
 
-        return av_channel_layout_copy (dst, best_ch_layout
+        return av_channel_layout_copy (
+            dst, best_ch_layout
         );
 
     }
@@ -141,7 +153,8 @@ private class EncodeAudioApplication : GLib.Application {
         /***********************************************************
         send the frame for encoding
         ***********************************************************/
-        ret = avcodec_send_frame (ctx, frame
+        ret = avcodec_send_frame (
+            ctx, frame
         );
 
         if (
@@ -159,16 +172,20 @@ private class EncodeAudioApplication : GLib.Application {
         }
 
         /***********************************************************
-        read all the available output packets (in general there may be any
+        read all the available output packets (
+            in general there may be any
         number of them
         ***********************************************************/
         while (
-            ret >= 0) {
-            ret = avcodec_receive_packet (ctx, pkt
+            ret >= 0
+        ) {
+            ret = avcodec_receive_packet (
+            ctx, pkt
             );
 
             if (
-                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR (
+                    EAGAIN) ||
                 ret == AVERROR_EOF
             ) {
                 return;
@@ -213,7 +230,8 @@ private class EncodeAudioApplication : GLib.Application {
         float t, tincr;
 
         if (
-            argc <= 1) {
+            argc <= 1
+        ) {
             fprintf (
                 stderr,
                 "Usage: %s <output file>\n",
@@ -228,11 +246,13 @@ private class EncodeAudioApplication : GLib.Application {
         /***********************************************************
         find the MP2 encoder
         ***********************************************************/
-        codec = avcodec_find_encoder (AV_CODEC_ID_MP2
+        codec = avcodec_find_encoder (
+            AV_CODEC_ID_MP2
         );
 
         if (
-            !codec) {
+            !codec
+        ) {
             fprintf (
                 stderr,
                 "Codec not found\n"
@@ -244,11 +264,13 @@ private class EncodeAudioApplication : GLib.Application {
 
         }
 
-        codec_context = avcodec_alloc_context3 (codec
+        codec_context = avcodec_alloc_context3 (
+            codec
         );
 
         if (
-            !codec_context) {
+            !codec_context
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate audio codec context\n"
@@ -270,7 +292,8 @@ private class EncodeAudioApplication : GLib.Application {
         ***********************************************************/
         codec_context.sample_fmt = LibAVUtil.SampleFormat.SIGNED_16_BIT;
         if (
-            !check_sample_fmt (codec, codec_context.sample_fmt)
+            !check_sample_fmt (
+                codec, codec_context.sample_fmt)
         ) {
             fprintf (
                 stderr,
@@ -288,10 +311,12 @@ private class EncodeAudioApplication : GLib.Application {
         /***********************************************************
         select other audio parameters supported by the encoder
         ***********************************************************/
-        codec_context.sample_rate = select_sample_rate (codec
+        codec_context.sample_rate = select_sample_rate (
+            codec
         );
 
-        ret = select_channel_layout (codec, &codec_context.ch_layout
+        ret = select_channel_layout (
+            codec, &codec_context.ch_layout
         );
 
         if (
@@ -308,7 +333,9 @@ private class EncodeAudioApplication : GLib.Application {
         ***********************************************************/
         if (
             avcodec_open2 (
-                codec_context, codec, null) < 0) {
+                codec_context, codec, null
+            ) < 0
+        ) {
             fprintf (
                 stderr,
                 "Could not open codec\n"
@@ -326,7 +353,8 @@ private class EncodeAudioApplication : GLib.Application {
         );
 
         if (
-            !file) {
+            !file
+        ) {
             fprintf (
                 stderr,
                 "Could not open %s\n",
@@ -344,7 +372,8 @@ private class EncodeAudioApplication : GLib.Application {
         ***********************************************************/
         pkt = av_packet_alloc ();
         if (
-            !pkt) {
+            !pkt
+        ) {
             fprintf (
                 stderr,
                 "could not allocate the packet\n"
@@ -361,7 +390,8 @@ private class EncodeAudioApplication : GLib.Application {
         ***********************************************************/
         frame = av_frame_alloc ();
         if (
-            !frame) {
+            !frame
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate audio frame\n"
@@ -375,7 +405,8 @@ private class EncodeAudioApplication : GLib.Application {
 
         frame.nb_samples = codec_context.frame_size;
         frame.format = codec_context.sample_fmt;
-        ret = av_channel_layout_copy (&frame.ch_layout, &codec_context.ch_layout
+        ret = av_channel_layout_copy (
+            &frame.ch_layout, &codec_context.ch_layout
         );
 
         if (
@@ -390,7 +421,8 @@ private class EncodeAudioApplication : GLib.Application {
         /***********************************************************
         allocate the data buffers
         ***********************************************************/
-        ret = av_frame_get_buffer (frame, 0
+        ret = av_frame_get_buffer (
+            frame, 0
         );
 
         if (
@@ -421,7 +453,8 @@ private class EncodeAudioApplication : GLib.Application {
             make sure the frame is writable -- makes a copy if the encoder
             kept a reference internally
             ***********************************************************/
-            ret = av_frame_make_writable (frame
+            ret = av_frame_make_writable (
+                frame
             );
 
             if (
@@ -433,14 +466,18 @@ private class EncodeAudioApplication : GLib.Application {
 
             }
 
-            samples = (uint16[])frame.data[0];
+            samples = (
+                uint16[])frame.data[0];
 
             for (
                 j = 0;
                 j < codec_context.frame_size;
                 j++
             ) {
-                samples[2*j] = (int)(sin (t) * 10000
+                samples[2 * j] = (int)(
+                    sin (
+                        t
+                    ) * 10000
                 );
 
                 for (

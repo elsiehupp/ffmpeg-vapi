@@ -26,8 +26,10 @@ private static uint32 get_v210 () {
 
     return (
         t0 |
-        (t1 << 10) |
-        (t2 << 20)
+        (
+            t1 << 10) |
+        (
+            t2 << 20)
     );
 
 }
@@ -98,10 +100,18 @@ private static void checkasm_check_v210dec () {
         );
 
         if (
-            memcmp (src0, src1, NUM_SAMPLES/3 * sizeof (src0[0])) ||
-            memcmp (y0, y1, pixels * sizeof (y0[0])) ||
-            memcmp (u0, u1, pixels/2 * sizeof (u0[0])) ||
-            memcmp (v0, v1, pixels/2 * sizeof (v0[0]))
+            memcmp (
+                src0, src1, NUM_SAMPLES/3 * sizeof (
+                    src0[0])) ||
+            memcmp (
+                y0, y1, pixels * sizeof (
+                    y0[0])) ||
+            memcmp (
+                u0, u1, pixels/2 * sizeof (
+                    u0[0])) ||
+            memcmp (
+                v0, v1, pixels/2 * sizeof (
+                    v0[0]))
         ) {
             fail ();
         }

@@ -24,7 +24,8 @@ private static void randomize_buffers (
     int size
 ) {
     int j;
-    uint8[] tmp_buf = (uint8[] )buf;
+    uint8[] tmp_buf = (
+        uint8[] )buf;
     for (
         j = 0;
         j < size;

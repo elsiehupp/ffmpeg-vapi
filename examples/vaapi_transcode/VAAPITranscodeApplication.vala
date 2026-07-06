@@ -57,7 +57,9 @@ private class VAAPITranscodeApplication : GLib.Application {
             *p != LibAVUtil.PixelFormat.NONE;
             p++
         ) {
-            if (*p == LibAVUtil.PixelFormat.VAAPI) {
+            if (
+                *p == LibAVUtil.PixelFormat.VAAPI
+            ) {
                 return *p;
             }
 
@@ -78,7 +80,8 @@ private class VAAPITranscodeApplication : GLib.Application {
         AVCodec? decoder = null;
         AVStream? video = null;
 
-        ret = avformat_open_input (&ifmt_ctx, filename, null, null
+        ret = avformat_open_input (
+            &ifmt_ctx, filename, null, null
         );
 
         if (
@@ -87,13 +90,17 @@ private class VAAPITranscodeApplication : GLib.Application {
             fprintf (
                 stderr,
                 "Cannot open input file '%s', Error code: %s\n",
-                    filename, av_err2str (ret)
+                filename,
+                av_err2str (
+                    ret
+                )
             );
 
             return ret;
         }
 
-        ret = avformat_find_stream_info (ifmt_ctx, null
+        ret = avformat_find_stream_info (
+            ifmt_ctx, null
         );
 
         if (
@@ -109,7 +116,8 @@ private class VAAPITranscodeApplication : GLib.Application {
             return ret;
         }
 
-        ret = av_find_best_stream (ifmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &decoder, 0
+        ret = av_find_best_stream (
+            ifmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &decoder, 0
         );
 
         if (
@@ -127,18 +135,22 @@ private class VAAPITranscodeApplication : GLib.Application {
 
         video_stream = ret;
 
-        decoder_ctx = avcodec_alloc_context3 (decoder
+        decoder_ctx = avcodec_alloc_context3 (
+            decoder
         );
 
         if (
-            !decoder_ctx) {
-            return AVERROR (ENOMEM
+            !decoder_ctx
+        ) {
+            return AVERROR (
+            ENOMEM
             );
 
         }
 
         video = ifmt_ctx.streams[video_stream];
-        ret = avcodec_parameters_to_context (decoder_ctx, video.codecpar
+        ret = avcodec_parameters_to_context (
+            decoder_ctx, video.codecpar
         );
 
         if (
@@ -154,24 +166,28 @@ private class VAAPITranscodeApplication : GLib.Application {
             return ret;
         }
 
-        decoder_ctx.hw_device_ctx = av_buffer_ref (hw_device_ctx
+        decoder_ctx.hw_device_ctx = av_buffer_ref (
+            hw_device_ctx
         );
 
         if (
-            !decoder_ctx.hw_device_ctx) {
+            !decoder_ctx.hw_device_ctx
+        ) {
             fprintf (
                 stderr,
                 "A hardware device reference create failed.\n"
             );
 
-            return AVERROR (ENOMEM
+            return AVERROR (
+                ENOMEM
             );
 
         }
 
         decoder_ctx.get_format = get_vaapi_format;
 
-        ret = avcodec_open2 (decoder_ctx, decoder, null
+        ret = avcodec_open2 (
+            decoder_ctx, decoder, null
         );
 
         if (
@@ -199,7 +215,8 @@ private class VAAPITranscodeApplication : GLib.Application {
             enc_pkt
         );
 
-        ret = avcodec_send_frame (encoder_ctx, frame
+        ret = avcodec_send_frame (
+            encoder_ctx, frame
         );
 
         if (
@@ -212,26 +229,31 @@ private class VAAPITranscodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         while (
-            true) {
-            ret = avcodec_receive_packet (encoder_ctx, enc_pkt
+            true
+        ) {
+            ret = avcodec_receive_packet (
+            encoder_ctx, enc_pkt
             );
 
             if (
-                ret) {
+                ret
+            ) {
                 break;
             }
 
             enc_pkt.stream_index = 0;
             av_packet_rescale_ts (
                 enc_pkt, ifmt_ctx.streams[video_stream].time_base,
-                                ofmt_ctx.streams[0].time_base
+                ofmt_ctx.streams[0].time_base
             );
 
-            ret = av_interleaved_write_frame (ofmt_ctx, enc_pkt
+            ret = av_interleaved_write_frame (
+                ofmt_ctx, enc_pkt
             );
 
             if (
@@ -251,11 +273,16 @@ private class VAAPITranscodeApplication : GLib.Application {
 
     //  end:
         if (
-            ret == AVERROR_EOF) {
+            ret == AVERROR_EOF
+        ) {
             return 0;
         }
 
-        ret = ((ret == AVERROR (EAGAIN)) ? 0:-1
+        ret = (
+            ret == AVERROR (
+                EAGAIN)
+            ? 0
+            : -1
         );
 
         return ret;
@@ -268,7 +295,8 @@ private class VAAPITranscodeApplication : GLib.Application {
         AVFrame? frame;
         int ret = 0;
 
-        ret = avcodec_send_packet (decoder_ctx, pkt
+        ret = avcodec_send_packet (
+            decoder_ctx, pkt
         );
 
         if (
@@ -285,20 +313,25 @@ private class VAAPITranscodeApplication : GLib.Application {
         }
 
         while (
-            ret >= 0) {
+            ret >= 0
+        ) {
             frame = av_frame_alloc ();
             if (
-                !frame) {
-                return AVERROR (ENOMEM
+                !frame
+            ) {
+                return AVERROR (
+                    ENOMEM
                 );
 
             }
 
-            ret = avcodec_receive_frame (decoder_ctx, frame
+            ret = avcodec_receive_frame (
+                decoder_ctx, frame
             );
 
             if (
-                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR (
+                    EAGAIN) ||
                 ret == AVERROR_EOF
             ) {
                 av_frame_free (
@@ -316,24 +349,32 @@ private class VAAPITranscodeApplication : GLib.Application {
                         ret)
                 );
 
-                throw new Goto.FAIL ("");
+                throw new Goto.FAIL (
+                    "");
             }
 
             if (
-                !initialized) {
+                !initialized
+            ) {
                 /***********************************************************
                 we need to ref hw_frames_ctx of decoder to initialize encoder's codec.
                 Only after we get a decoded frame, can we obtain its hw_frames_ctx
                 ***********************************************************/
-                encoder_ctx.hw_frames_ctx = av_buffer_ref (decoder_ctx.hw_frames_ctx
+                encoder_ctx.hw_frames_ctx = av_buffer_ref (
+                    decoder_ctx.hw_frames_ctx
                 );
 
                 if (
-                    !encoder_ctx.hw_frames_ctx) {
-                    ret = AVERROR (ENOMEM
+                    !encoder_ctx.hw_frames_ctx
+                ) {
+                    ret = AVERROR (
+                        ENOMEM
                     );
 
-                    throw new Goto.FAIL ("");
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
                 /***********************************************************
@@ -341,14 +382,16 @@ private class VAAPITranscodeApplication : GLib.Application {
                 the same as decoder.
                 xxx: now the sample can't handle resolution change case.
                 ***********************************************************/
-                encoder_ctx.time_base = av_inv_q (decoder_ctx.framerate
+                encoder_ctx.time_base = av_inv_q (
+                    decoder_ctx.framerate
                 );
 
                 encoder_ctx.pix_fmt = LibAVUtil.PixelFormat.VAAPI;
                 encoder_ctx.width = decoder_ctx.width;
                 encoder_ctx.height = decoder_ctx.height;
 
-                ret = avcodec_open2 (encoder_ctx, enc_codec, null
+                ret = avcodec_open2 (
+                    encoder_ctx, enc_codec, null
                 );
 
                 if (
@@ -357,31 +400,42 @@ private class VAAPITranscodeApplication : GLib.Application {
                     fprintf (
                         stderr,
                         "Failed to open encode codec. Error code: %s\n",
-                            av_err2str (
-                                ret)
+                        av_err2str (
+                            ret
+                        )
                     );
 
-                    throw new Goto.FAIL ("");
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
-                ost = avformat_new_stream (ofmt_ctx, enc_codec
+                ost = avformat_new_stream (
+                    ofmt_ctx, enc_codec
                 );
 
                 if (
-                    !ost) {
+                    !ost
+                ) {
                     fprintf (
                         stderr,
                         "Failed to allocate stream for output format.\n"
                     );
 
-                    ret = AVERROR (ENOMEM
+                    ret = AVERROR (
+                        ENOMEM
                     );
 
-                    throw new Goto.FAIL ("");
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
                 ost.time_base = encoder_ctx.time_base;
-                ret = avcodec_parameters_from_context (ost.codecpar, encoder_ctx
+                ret = avcodec_parameters_from_context (
+                    ost.codecpar, encoder_ctx
                 );
 
                 if (
@@ -391,16 +445,21 @@ private class VAAPITranscodeApplication : GLib.Application {
                         stderr,
                         "Failed to copy the stream parameters. Error code: %s\n",
                         av_err2str (
-                            ret)
+                            ret
+                        )
                     );
 
-                    throw new Goto.FAIL ("");
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
                 /***********************************************************
                 write the stream header
                 ***********************************************************/
-                ret = avformat_write_header (ofmt_ctx, null
+                ret = avformat_write_header (
+                    ofmt_ctx, null
                 );
 
                 if (
@@ -410,16 +469,21 @@ private class VAAPITranscodeApplication : GLib.Application {
                         stderr,
                         "Error while writing stream header. Error code: %s\n",
                         av_err2str (
-                            ret)
+                            ret
+                        )
                     );
 
-                    throw new Goto.FAIL ("");
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
                 initialized = 1;
             }
 
-            ret = encode_write (pkt, frame
+            ret = encode_write (
+                pkt, frame
             );
 
             if (
@@ -451,7 +515,8 @@ private class VAAPITranscodeApplication : GLib.Application {
         AVPacket? dec_pkt;
 
         if (
-            argc != 4) {
+            argc != 4
+        ) {
             fprintf (
                 stderr,
                 "Usage: %s <input file> <encode codec> <output file>\n" +
@@ -463,7 +528,8 @@ private class VAAPITranscodeApplication : GLib.Application {
             return -1;
         }
 
-        ret = av_hwdevice_ctx_create (&hw_device_ctx, AV_HWDEVICE_TYPE_VAAPI, null, null, 0
+        ret = av_hwdevice_ctx_create (
+            &hw_device_ctx, AV_HWDEVICE_TYPE_VAAPI, null, null, 0
         );
 
         if (
@@ -481,29 +547,35 @@ private class VAAPITranscodeApplication : GLib.Application {
 
         dec_pkt = av_packet_alloc ();
         if (
-            !dec_pkt) {
+            !dec_pkt
+        ) {
             fprintf (
                 stderr,
                 "Failed to allocate decode packet\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = open_input_file (argv[1]
+        ret = open_input_file (
+            argv[1]
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
-        enc_codec = avcodec_find_encoder_by_name (argv[2]
+        enc_codec = avcodec_find_encoder_by_name (
+            argv[2]
         );
 
         if (
-            !enc_codec) {
+            !enc_codec
+        ) {
             fprintf (
                 stderr,
                 "Could not find encoder '%s'\n",
@@ -511,10 +583,13 @@ private class VAAPITranscodeApplication : GLib.Application {
             );
 
             ret = -1;
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = (avformat_alloc_output_context2 (&ofmt_ctx, null, null, argv[3])
+        ret = (
+            avformat_alloc_output_context2 (
+                &ofmt_ctx, null, null, argv[3])
         );
 
         if (
@@ -527,21 +602,27 @@ private class VAAPITranscodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        encoder_ctx = avcodec_alloc_context3 (enc_codec
+        encoder_ctx = avcodec_alloc_context3 (
+            enc_codec
         );
 
         if (
-            !encoder_ctx) {
-            ret = AVERROR (ENOMEM
+            !encoder_ctx
+        ) {
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = avio_open (&ofmt_ctx.pb, argv[3], AVIO_FLAG_WRITE
+        ret = avio_open (
+            &ofmt_ctx.pb, argv[3], AVIO_FLAG_WRITE
         );
 
         if (
@@ -554,15 +635,18 @@ private class VAAPITranscodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
         read all packets and only transcoding video
         ***********************************************************/
         while (
-            ret >= 0) {
-            ret = av_read_frame (ifmt_ctx, dec_pkt
+            ret >= 0
+        ) {
+            ret = av_read_frame (
+            ifmt_ctx, dec_pkt
             );
 
             if (
@@ -572,8 +656,10 @@ private class VAAPITranscodeApplication : GLib.Application {
             }
 
             if (
-                video_stream == dec_pkt.stream_index) {
-                ret = dec_enc (dec_pkt, enc_codec
+                video_stream == dec_pkt.stream_index
+            ) {
+                ret = dec_enc (
+                dec_pkt, enc_codec
                 );
 
             }
@@ -591,13 +677,15 @@ private class VAAPITranscodeApplication : GLib.Application {
             dec_pkt
         );
 
-        ret = dec_enc (dec_pkt, enc_codec
+        ret = dec_enc (
+            dec_pkt, enc_codec
         );
 
         /***********************************************************
         flush encoder
         ***********************************************************/
-        ret = encode_write (dec_pkt, null
+        ret = encode_write (
+            dec_pkt, null
         );
 
         /***********************************************************

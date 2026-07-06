@@ -65,13 +65,16 @@ private class DecodeAudioApplication : GLib.Application {
 
         for (
             i = 0;
-            i < FF_ARRAY_ELEMS (sample_fmt_entries);
+            i < FF_ARRAY_ELEMS (
+                sample_fmt_entries);
             i++
         ) {
             SampleFormatEntry? entry = &sample_fmt_entries[i];
             if (
-                sample_fmt == entry.sample_fmt) {
-                fmt_out = AV_NE (entry.fmt_be, entry.fmt_le
+                sample_fmt == entry.sample_fmt
+            ) {
+                fmt_out = AV_NE (
+                    entry.fmt_be, entry.fmt_le
                 );
 
                 return 0;
@@ -101,7 +104,8 @@ private class DecodeAudioApplication : GLib.Application {
         /***********************************************************
         send the packet with the compressed data to the decoder
         ***********************************************************/
-        ret = avcodec_send_packet (dec_ctx, pkt
+        ret = avcodec_send_packet (
+            dec_ctx, pkt
         );
 
         if (
@@ -119,15 +123,19 @@ private class DecodeAudioApplication : GLib.Application {
         }
 
         /***********************************************************
-        read all the output frames (in general there may be any number of them
+        read all the output frames (
+            in general there may be any number of them
         ***********************************************************/
         while (
-            ret >= 0) {
-            ret = avcodec_receive_frame (dec_ctx, frame
+            ret >= 0
+        ) {
+            ret = avcodec_receive_frame (
+                dec_ctx, frame
             );
 
             if (
-                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR (
+                    EAGAIN) ||
                 ret == AVERROR_EOF
             ) {
                 return;
@@ -145,11 +153,13 @@ private class DecodeAudioApplication : GLib.Application {
 
             }
 
-            data_size = av_get_bytes_per_sample (dec_ctx.sample_fmt
+            data_size = av_get_bytes_per_sample (
+                dec_ctx.sample_fmt
             );
 
             if (
-                data_size < 0) {
+                data_size < 0
+            ) {
                 /***********************************************************
                 This should not occur, checking just for paranoia
                 ***********************************************************/
@@ -209,7 +219,8 @@ private class DecodeAudioApplication : GLib.Application {
         string fmt;
 
         if (
-            argc <= 2) {
+            argc <= 2
+        ) {
             fprintf (
                 stderr,
                 "Usage: %s <input file> <output file>\n",
@@ -227,7 +238,8 @@ private class DecodeAudioApplication : GLib.Application {
 
         pkt = av_packet_alloc ();
         if (
-            !pkt) {
+            !pkt
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate AVPacket\n"
@@ -245,11 +257,13 @@ private class DecodeAudioApplication : GLib.Application {
         /***********************************************************
         find the MPEG audio decoder
         ***********************************************************/
-        codec = avcodec_find_decoder (AV_CODEC_ID_MP2
+        codec = avcodec_find_decoder (
+            AV_CODEC_ID_MP2
         );
 
         if (
-            !codec) {
+            !codec
+        ) {
             fprintf (
                 stderr,
                 "Codec not found\n"
@@ -261,11 +275,13 @@ private class DecodeAudioApplication : GLib.Application {
 
         }
 
-        parser = av_parser_init (codec.id
+        parser = av_parser_init (
+            codec.id
         );
 
         if (
-            !parser) {
+            !parser
+        ) {
             fprintf (
                 stderr,
                 "Parser not found\n"
@@ -277,11 +293,13 @@ private class DecodeAudioApplication : GLib.Application {
 
         }
 
-        codec_context = avcodec_alloc_context3 (codec
+        codec_context = avcodec_alloc_context3 (
+            codec
         );
 
         if (
-            !codec_context) {
+            !codec_context
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate audio codec context\n"
@@ -298,7 +316,9 @@ private class DecodeAudioApplication : GLib.Application {
         ***********************************************************/
         if (
             avcodec_open2 (
-                codec_context, codec, null) < 0) {
+                codec_context, codec, null
+            ) < 0
+        ) {
             fprintf (
                 stderr,
                 "Could not open codec\n"
@@ -310,11 +330,13 @@ private class DecodeAudioApplication : GLib.Application {
 
         }
 
-        file = fopen (filename, "rb"
+        file = fopen (
+            filename, "rb"
         );
 
         if (
-            !file) {
+            !file
+        ) {
             fprintf (
                 stderr,
                 "Could not open %s\n",
@@ -327,11 +349,13 @@ private class DecodeAudioApplication : GLib.Application {
 
         }
 
-        outfile = fopen (outfilename, "wb"
+        outfile = fopen (
+            outfilename, "wb"
         );
 
         if (
-            !outfile) {
+            !outfile
+        ) {
             fprintf (
                 stderr,
                 "Could not open %s\n",
@@ -348,16 +372,20 @@ private class DecodeAudioApplication : GLib.Application {
         decode until eof
         ***********************************************************/
         data = inbuf;
-        data_size = fread (inbuf, 1, AUDIO_INBUF_SIZE, file
+        data_size = fread (
+            inbuf, 1, AUDIO_INBUF_SIZE, file
         );
 
         while (
-            data_size > 0) {
+            data_size > 0
+        ) {
             if (
-                !decoded_frame) {
+                !decoded_frame
+            ) {
                 decoded_frame = av_frame_alloc ();
                 if (
-                    decoded_frame == null) {
+                    decoded_frame == null
+                ) {
                     fprintf (
                         stderr,
                         "Could not allocate audio frame\n"
@@ -371,7 +399,8 @@ private class DecodeAudioApplication : GLib.Application {
 
             }
 
-            ret = av_parser_parse2 (parser, codec_context, &pkt.data, &pkt.size,
+            ret = av_parser_parse2 (
+                parser, codec_context, &pkt.data, &pkt.size,
                                 data, data_size,
                                 AV_NOPTS_VALUE, AV_NOPTS_VALUE, 0
             );
@@ -394,7 +423,8 @@ private class DecodeAudioApplication : GLib.Application {
             data_size -= ret;
 
             if (
-                pkt.size) {
+                pkt.size
+            ) {
                 decode (
                     codec_context, pkt, decoded_frame, outfile
                 );
@@ -402,18 +432,21 @@ private class DecodeAudioApplication : GLib.Application {
             }
 
             if (
-                data_size < AUDIO_REFILL_THRESH) {
+                data_size < AUDIO_REFILL_THRESH
+            ) {
                 memmove (
                     inbuf, data, data_size
                 );
 
                 data = inbuf;
-                len = fread (data + data_size, 1,
-                            AUDIO_INBUF_SIZE - data_size, file
+                len = fread (
+                    data + data_size, 1,
+                    AUDIO_INBUF_SIZE - data_size, file
                 );
 
                 if (
-                    len > 0) {
+                    len > 0
+                ) {
                     data_size += len;
                 }
 
@@ -439,7 +472,8 @@ private class DecodeAudioApplication : GLib.Application {
             av_sample_fmt_is_planar (
                 sfmt)
         ) {
-            string packed = av_get_sample_fmt_name (sfmt
+            string packed = av_get_sample_fmt_name (
+            sfmt
             );
 
             printf (
@@ -448,19 +482,22 @@ private class DecodeAudioApplication : GLib.Application {
                 packed ? packed : "?"
             );
 
-            sfmt = av_get_packed_sample_fmt (sfmt
+            sfmt = av_get_packed_sample_fmt (
+                sfmt
             );
 
         }
 
         n_channels = codec_context.ch_layout.nb_channels;
-        ret = get_format_from_sample_fmt (&fmt, sfmt
+        ret = get_format_from_sample_fmt (
+            &fmt, sfmt
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         printf (

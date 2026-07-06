@@ -28,6 +28,7 @@ private static void randomize_buffers (
         i < w * h * sizeof (
             src0
         );
+
         i += 4
     ) {
         AV_WN32A (
@@ -53,7 +54,8 @@ private static void iter_1d (
     ) {
         call_ref (
             (type[])dst0,
-            (type[])(
+            (
+                type[])(
                 src0 + y * pw + x
             ),
             bw * sizeof (
@@ -71,21 +73,39 @@ private static void iter_1d (
         );
 
         call_new (
-            (type[])dst1, (type[])(src1 + y * pw + x),
-            bw * sizeof (type), pw * sizeof (type),
+            (type[])dst1, (
+                type[])(src1 + y * pw + x),
+            bw * sizeof (
+                type), pw * sizeof (
+                    type),
             bw, bh, x, y, pw, ph
         );
 
         if (
             memcmp (
-                dst0, dst1, bw * bh * sizeof (type))
+                dst0, dst1, bw * bh * sizeof (
+                    type))
         ) {
             fail ();
         }
 
-        bench_new ((type[])dst1, (type[])(src1 + y * pw + x),
-                  bw * sizeof (type), pw * sizeof (type),
-                  bw, bh, x, y, pw, ph
+        bench_new (
+            (type[])dst1,
+            (type[])(
+                src1 + y * pw + x
+            ),
+            bw * sizeof (
+                type
+            ),
+            pw * sizeof (
+                type
+            ),
+            bw,
+            bh,
+            x,
+            y,
+            pw,
+            ph
         );
 
     }
@@ -120,7 +140,8 @@ private static void check_emu_edge_size (
     );
 
     memcpy (
-        src1, src0, pw * ph * sizeof (type)
+        src1, src0, pw * ph * sizeof (
+            type)
     );
 
     iter_1d (

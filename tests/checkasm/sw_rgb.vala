@@ -233,19 +233,23 @@ private static void check_uyvy_to_422p () {
             );
 
             memset (
-                dst_u_0, 0, (MAX_STRIDE / 2) * MAX_HEIGHT
+                dst_u_0, 0, (
+                    MAX_STRIDE / 2) * MAX_HEIGHT
             );
 
             memset (
-                dst_u_1, 0, (MAX_STRIDE / 2) * MAX_HEIGHT
+                dst_u_1, 0, (
+                    MAX_STRIDE / 2) * MAX_HEIGHT
             );
 
             memset (
-                dst_v_0, 0, (MAX_STRIDE / 2) * MAX_HEIGHT
+                dst_v_0, 0, (
+                    MAX_STRIDE / 2) * MAX_HEIGHT
             );
 
             memset (
-                dst_v_1, 0, (MAX_STRIDE / 2) * MAX_HEIGHT
+                dst_v_1, 0, (
+                    MAX_STRIDE / 2) * MAX_HEIGHT
             );
 
             call_ref (
@@ -260,11 +264,21 @@ private static void check_uyvy_to_422p () {
 
             if (
                 memcmp (
-                    dst_y_0, dst_y_1, MAX_STRIDE * MAX_HEIGHT) ||
+                    dst_y_0, dst_y_1,
+                    MAX_STRIDE * MAX_HEIGHT
+                ) ||
                 memcmp (
-                    dst_u_0, dst_u_1, (MAX_STRIDE / 2) * MAX_HEIGHT) ||
+                    dst_u_0, dst_u_1,
+                    (
+                        MAX_STRIDE / 2
+                    ) * MAX_HEIGHT
+                ) ||
                 memcmp (
-                    dst_v_0, dst_v_1, (MAX_STRIDE / 2) * MAX_HEIGHT)
+                    dst_v_0, dst_v_1,
+                    (
+                        MAX_STRIDE / 2
+                    ) * MAX_HEIGHT
+                )
             ) {
                 fail ();
             }

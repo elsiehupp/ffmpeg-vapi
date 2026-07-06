@@ -43,7 +43,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
         int ret, n, reply_code;
         uint8[] resource = null;
         while (
-            (ret = avio_handshake (client)) > 0
+            (ret = avio_handshake (
+                client)) > 0
         ) {
             av_opt_get (
                 client, "resource", AV_OPT_SEARCH_CHILDREN, &resource
@@ -51,13 +52,15 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
 
 
             /***********************************************************
-            check for strlen (resource) is necessary, because av_opt_get ()
+            check for strlen (
+                resource) is necessary, because av_opt_get ()
 
             may return empty string.
             ***********************************************************/
             if (
                 resource &&
-                strlen (resource)
+                strlen (
+                    resource)
             ) {
                 break;
             }
@@ -71,7 +74,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         av_log (
@@ -92,7 +96,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
             reply_code = AVERROR_HTTP_NOT_FOUND;
         }
 
-        ret = av_opt_set_int (client, "reply_code", reply_code, AV_OPT_SEARCH_CHILDREN
+        ret = av_opt_set_int (
+            client, "reply_code", reply_code, AV_OPT_SEARCH_CHILDREN
         );
 
         if (
@@ -105,7 +110,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         av_log (
@@ -114,13 +120,16 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
             reply_code
         );
 
-        while ((ret = avio_handshake (client)) > 0
+        while (
+            (ret = avio_handshake (
+                client)) > 0
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         fprintf (
@@ -131,7 +140,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
         if (
             reply_code != 200
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         fprintf (
@@ -139,7 +149,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
             "Opening input file.\n"
         );
 
-        ret = avio_open2 (&input, in_uri, AVIO_FLAG_READ, null, null
+        ret = avio_open2 (
+            &input, in_uri, AVIO_FLAG_READ, null, null
         );
 
         if (
@@ -152,14 +163,18 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
                 av_err2str (
                     ret)
             );
-            throw new Goto.END ("");
+
+            throw new Goto.END (
+                "");
         }
 
         for (
             ;
             ;
         ) {
-            n = avio_read (input, buf, sizeof (buf)
+            n = avio_read (
+            input, buf, sizeof (
+                buf)
             );
 
             if (
@@ -256,7 +271,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
 
         avformat_network_init ();
 
-        ret = av_dict_set (&options, "listen", "2", 0
+        ret = av_dict_set (
+            &options, "listen", "2", 0
         );
 
         if (
@@ -272,7 +288,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
             return ret;
         }
 
-        ret = avio_open2 (&server, out_uri, AVIO_FLAG_WRITE, null, &options
+        ret = avio_open2 (
+            &server, out_uri, AVIO_FLAG_WRITE, null, &options
         );
 
         if (
@@ -297,13 +314,15 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
             ;
             ;
         ) {
-            ret = avio_accept (server, &client
+            ret = avio_accept (
+            server, &client
             );
 
             if (
                 ret < 0
             ) {
-                throw new Goto.END ("");
+                throw new Goto.END (
+                "");
             }
 
             fprintf (
@@ -324,10 +343,12 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
                     "Fork failed"
                 );
 
-                ret = AVERROR (errno
+                ret = AVERROR (
+                    errno
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             if (

@@ -60,7 +60,8 @@ private class TranscodeAACApplication : GLib.Application {
     @param      filename             File to be opened
     @param[out] input_format_context_out Format context of opened file
     @param[out] input_codec_context_out  Codec context of opened file
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int open_input_file (
         string filename,
@@ -86,7 +87,10 @@ private class TranscodeAACApplication : GLib.Application {
             fprintf (
                 stderr,
                 "Could not open input file '%s' (error '%s')\n",
-                    filename, av_err2str (error)
+                filename,
+                av_err2str (
+                    error
+                )
             );
 
             input_format_context_out = null;
@@ -94,9 +98,11 @@ private class TranscodeAACApplication : GLib.Application {
         }
 
         /***********************************************************
-        Get information on the input file (number of streams etc.).
+        Get information on the input file (
+            number of streams etc.).
         ***********************************************************/
-        error = avformat_find_stream_info (input_format_context_out, null
+        error = avformat_find_stream_info (
+            input_format_context_out, null
         );
 
         if (
@@ -104,7 +110,8 @@ private class TranscodeAACApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Could not open find stream info (error '%s')\n",
+                "Could not open find stream info (
+                    error '%s')\n",
                     av_err2str (
                         error)
             );
@@ -120,7 +127,8 @@ private class TranscodeAACApplication : GLib.Application {
         Make sure that there is only one stream in the input file.
         ***********************************************************/
         if (
-            input_format_context_out.nb_streams != 1) {
+            input_format_context_out.nb_streams != 1
+        ) {
             fprintf (
                 stderr,
                 "Expected one audio input stream, but found %d\n",
@@ -139,11 +147,13 @@ private class TranscodeAACApplication : GLib.Application {
         /***********************************************************
         Find a decoder for the audio stream.
         ***********************************************************/
-        input_codec = avcodec_find_decoder (stream.codecpar.codec_id
+        input_codec = avcodec_find_decoder (
+            stream.codecpar.codec_id
         );
 
         if (
-            !input_codec) {
+            !input_codec
+        ) {
             fprintf (
                 stderr,
                 "Could not find input codec\n"
@@ -159,11 +169,13 @@ private class TranscodeAACApplication : GLib.Application {
         /***********************************************************
         Allocate a new decoding context.
         ***********************************************************/
-        avctx = avcodec_alloc_context3 (input_codec
+        avctx = avcodec_alloc_context3 (
+            input_codec
         );
 
         if (
-            !avctx) {
+            !avctx
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate a decoding context\n"
@@ -173,7 +185,8 @@ private class TranscodeAACApplication : GLib.Application {
                 input_format_context_out
             );
 
-            return AVERROR (ENOMEM
+            return AVERROR (
+                ENOMEM
             );
 
         }
@@ -181,7 +194,8 @@ private class TranscodeAACApplication : GLib.Application {
         /***********************************************************
         Initialize the stream parameters with demuxer information.
         ***********************************************************/
-        error = avcodec_parameters_to_context (avctx, stream.codecpar
+        error = avcodec_parameters_to_context (
+            avctx, stream.codecpar
         );
 
         if (
@@ -201,7 +215,8 @@ private class TranscodeAACApplication : GLib.Application {
         /***********************************************************
         Open the decoder for the audio stream to use it later.
         ***********************************************************/
-        error = avcodec_open2 (avctx, input_codec, null
+        error = avcodec_open2 (
+            avctx, input_codec, null
         );
 
         if (
@@ -209,7 +224,8 @@ private class TranscodeAACApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Could not open input codec (error '%s')\n",
+                "Could not open input codec (
+                    error '%s')\n",
                     av_err2str (
                         error)
             );
@@ -246,7 +262,8 @@ private class TranscodeAACApplication : GLib.Application {
     @param      input_codec_context   Codec context of input file
     @param[out] output_format_context Format context of output file
     @param[out] output_codec_context  Codec context of output file
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int open_output_file (
         string filename,
@@ -274,7 +291,10 @@ private class TranscodeAACApplication : GLib.Application {
             fprintf (
                 stderr,
                 "Could not open output file '%s' (error '%s')\n",
-                    filename, av_err2str (error)
+                filename,
+                av_err2str (
+                    error
+                )
             );
 
             return error;
@@ -285,19 +305,22 @@ private class TranscodeAACApplication : GLib.Application {
         ***********************************************************/
         output_format_context_out = avformat_alloc_context ();
         if (
-            !output_format_context_out) {
+            !output_format_context_out
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate output format context\n"
             );
 
-            return AVERROR (ENOMEM
+            return AVERROR (
+                ENOMEM
             );
 
         }
 
         /***********************************************************
-        Associate the output file (pointer) with the container format context.
+        Associate the output file (
+            pointer) with the container format context.
         ***********************************************************/
         output_format_context_out.pb = output_io_context;
 
@@ -310,80 +333,97 @@ private class TranscodeAACApplication : GLib.Application {
         );
 
         if (
-            !output_format_context_out.oformat) {
+            !output_format_context_out.oformat
+        ) {
             fprintf (
                 stderr,
                 "Could not find output file format\n"
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         }
 
-        output_format_context_out.url = av_strdup (filename
+        output_format_context_out.url = av_strdup (
+            filename
         );
 
         if (
-            !output_format_context_out.url) {
+            !output_format_context_out.url
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate url.\n"
             );
 
-            error = AVERROR (ENOMEM
+            error = AVERROR (
+                ENOMEM
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         }
 
         /***********************************************************
         Find the encoder to be used by its name.
         ***********************************************************/
-        output_codec = avcodec_find_encoder (AV_CODEC_ID_AAC
+        output_codec = avcodec_find_encoder (
+            AV_CODEC_ID_AAC
         );
 
         if (
-            !output_codec) {
+            !output_codec
+        ) {
             fprintf (
                 stderr,
                 "Could not find an AAC encoder.\n"
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         }
 
         /***********************************************************
         Create a new audio stream in the output file container.
         ***********************************************************/
-        stream = avformat_new_stream (output_format_context_out, null
+        stream = avformat_new_stream (
+            output_format_context_out, null
         );
 
         if (
-            !stream) {
+            !stream
+        ) {
             fprintf (
                 stderr,
                 "Could not create new stream\n"
             );
 
-            error = AVERROR (ENOMEM
+            error = AVERROR (
+                ENOMEM
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         }
 
-        avctx = avcodec_alloc_context3 (output_codec
+        avctx = avcodec_alloc_context3 (
+            output_codec
         );
 
         if (
-            !avctx) {
+            !avctx
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate an encoding context\n"
             );
 
-            error = AVERROR (ENOMEM
+            error = AVERROR (
+                ENOMEM
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         }
 
         /***********************************************************
@@ -405,7 +445,8 @@ private class TranscodeAACApplication : GLib.Application {
         stream.time_base.num = 1;
 
         /***********************************************************
-        Some container formats (like MP4) require global headers to be present.
+        Some container formats (
+            like MP4) require global headers to be present.
         Mark the encoder so that it behaves accordingly.
         ***********************************************************/
         if (
@@ -415,7 +456,8 @@ private class TranscodeAACApplication : GLib.Application {
         /***********************************************************
         Open the encoder for the audio stream to use it later.
         ***********************************************************/
-        error = avcodec_open2 (avctx, output_codec, null
+        error = avcodec_open2 (
+            avctx, output_codec, null
         );
 
         if (
@@ -423,15 +465,18 @@ private class TranscodeAACApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Could not open output codec (error '%s')\n",
+                "Could not open output codec (
+                    error '%s')\n",
                     av_err2str (
                         error)
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         }
 
-        error = avcodec_parameters_from_context (stream.codecpar, avctx
+        error = avcodec_parameters_from_context (
+            stream.codecpar, avctx
         );
 
         if (
@@ -442,7 +487,8 @@ private class TranscodeAACApplication : GLib.Application {
                 "Could not initialize stream parameters\n"
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         }
 
         /***********************************************************
@@ -472,20 +518,23 @@ private class TranscodeAACApplication : GLib.Application {
     /***********************************************************
     Initialize one data packet for reading or writing.
     @param[out] packet Packet to be initialized
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int init_packet (
         ref AVPacket? packet
     ) {
         packet = av_packet_alloc ();
         if (
-            !packet) {
+            !packet
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate packet\n"
             );
 
-            return AVERROR (ENOMEM
+            return AVERROR (
+                ENOMEM
             );
 
         }
@@ -496,20 +545,23 @@ private class TranscodeAACApplication : GLib.Application {
     /***********************************************************
     Initialize one audio frame for reading from the input file.
     @param[out] frame Frame to be initialized
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int init_input_frame (
         ref AVFrame? frame
     ) {
         frame = av_frame_alloc ();
         if (
-            !frame) {
+            !frame
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate input frame\n"
             );
 
-            return AVERROR (ENOMEM
+            return AVERROR (
+                ENOMEM
             );
 
         }
@@ -524,7 +576,8 @@ private class TranscodeAACApplication : GLib.Application {
     @param      input_codec_context  Codec context of the input file
     @param      output_codec_context Codec context of the output file
     @param[out] resample_context     Resample context for the required conversion
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int init_resampler (
         AVCodecContext? input_codec_context,
@@ -537,18 +590,21 @@ private class TranscodeAACApplication : GLib.Application {
             Create a resampler context for the conversion.
             Set the conversion parameters.
             ***********************************************************/
-            error = swr_alloc_set_opts2 (resample_context,
-                                                &output_codec_context.ch_layout,
-                                                output_codec_context.sample_fmt,
-                                                output_codec_context.sample_rate,
-                                                &input_codec_context.ch_layout,
-                                                input_codec_context.sample_fmt,
-                                                input_codec_context.sample_rate,
-                                                0, null
+            error = swr_alloc_set_opts2 (
+                resample_context,
+                &output_codec_context.ch_layout,
+                output_codec_context.sample_fmt,
+                output_codec_context.sample_rate,
+                &input_codec_context.ch_layout,
+                input_codec_context.sample_fmt,
+                input_codec_context.sample_rate,
+                0,
+                null
             );
 
             if (
-                error < 0) {
+                error < 0
+            ) {
                 fprintf (
                     stderr,
                     "Could not allocate resample context\n"
@@ -569,11 +625,13 @@ private class TranscodeAACApplication : GLib.Application {
             /***********************************************************
             Open the resampler with the specified parameters.
             ***********************************************************/
-            error = swr_init (*resample_context
+            error = swr_init (
+                *resample_context
             );
 
             if (
-                error < 0) {
+                error < 0
+            ) {
                 fprintf (
                     stderr,
                     "Could not open resample context\n"
@@ -593,7 +651,8 @@ private class TranscodeAACApplication : GLib.Application {
     Initialize a FIFO buffer for the audio samples to be encoded.
     @param[out] fifo                 Sample buffer
     @param      output_codec_context Codec context of the output file
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int init_fifo (
         ref AVAudioFifo? fifo,
@@ -608,13 +667,15 @@ private class TranscodeAACApplication : GLib.Application {
         );
 
         if (
-            !fifo) {
+            !fifo
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate FIFO\n"
             );
 
-            return AVERROR (ENOMEM
+            return AVERROR (
+                ENOMEM
             );
 
         }
@@ -625,12 +686,14 @@ private class TranscodeAACApplication : GLib.Application {
     /***********************************************************
     Write the header of the output file container.
     @param output_format_context Format context of the output file
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int write_output_file_header (
         AVFormatContext? output_format_context
     ) {
-        int error = avformat_write_header (output_format_context, null
+        int error = avformat_write_header (
+        output_format_context, null
         );
 
         if (
@@ -638,7 +701,8 @@ private class TranscodeAACApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Could not write output file header (error '%s')\n",
+                "Could not write output file header (
+                    error '%s')\n",
                     av_err2str (
                         error)
             );
@@ -660,7 +724,8 @@ private class TranscodeAACApplication : GLib.Application {
                                     decoded. If this flag is false, there
                                     is more data to be decoded, i.e., this
                                     function has to be called again.
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int decode_audio_frame (
         AVFrame? frame,
@@ -675,7 +740,8 @@ private class TranscodeAACApplication : GLib.Application {
         AVPacket? input_packet;
         int error;
 
-        error = init_packet (&input_packet
+        error = init_packet (
+            &input_packet
         );
 
         if (
@@ -689,7 +755,8 @@ private class TranscodeAACApplication : GLib.Application {
         /***********************************************************
         Read one audio frame from the input file into a temporary packet.
         ***********************************************************/
-        error = av_read_frame (input_format_context, input_packet
+        error = av_read_frame (
+            input_format_context, input_packet
         );
 
         if (
@@ -699,17 +766,22 @@ private class TranscodeAACApplication : GLib.Application {
             If we are at the end of the file, flush the decoder below.
             ***********************************************************/
             if (
-                error == AVERROR_EOF) {
+                error == AVERROR_EOF
+            ) {
                 finished_out = 1;
             } else {
                 fprintf (
                     stderr,
                     "Could not read frame (error '%s')\n",
-                        av_err2str (
-                            error)
+                    av_err2str (
+                        error
+                    )
                 );
 
-                throw new Goto.CLEANUP ("");
+                throw new Goto.CLEANUP (
+                    ""
+                );
+
             }
 
         }
@@ -718,7 +790,8 @@ private class TranscodeAACApplication : GLib.Application {
         Send the audio frame stored in the temporary packet to the decoder.
         The input audio stream decoder is used to do this.
         ***********************************************************/
-        error = avcodec_send_packet (input_codec_context, input_packet
+        error = avcodec_send_packet (
+            input_codec_context, input_packet
         );
 
         if (
@@ -726,18 +799,21 @@ private class TranscodeAACApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Could not send packet for decoding (error '%s')\n",
+                "Could not send packet for decoding (
+                    error '%s')\n",
                     av_err2str (
                         error)
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         }
 
         /***********************************************************
         Receive one frame from the decoder.
         ***********************************************************/
-        error = avcodec_receive_frame (input_codec_context, frame
+        error = avcodec_receive_frame (
+            input_codec_context, frame
         );
 
         /***********************************************************
@@ -745,32 +821,43 @@ private class TranscodeAACApplication : GLib.Application {
         return indicating that no data is present.
         ***********************************************************/
         if (
-            error == AVERROR (EAGAIN)
+            error == AVERROR (
+                EAGAIN)
         ) {
             error = 0;
-            throw new Goto.CLEANUP ("");
-        /***********************************************************
-        If the end of the input file is reached, stop decoding.
-        ***********************************************************/
-        } else if (error == AVERROR_EOF) {
+            throw new Goto.CLEANUP (
+            "");
+        } else if (
+            error == AVERROR_EOF
+        ) {
+            /***********************************************************
+            If the end of the input file is reached, stop decoding.
+            ***********************************************************/
             finished_out = 1;
             error = 0;
-            throw new Goto.CLEANUP ("");
-        } else if (error < 0) {
+            throw new Goto.CLEANUP (
+                "");
+        } else if (
+            error < 0
+        ) {
             fprintf (
                 stderr,
-                "Could not decode frame (error '%s')\n",
-                    av_err2str (
-                        error)
+                "Could not decode frame (
+                    error '%s')\n",
+                av_err2str (
+                    error
+                )
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         /***********************************************************
         Default case: Return decoded data.
         ***********************************************************/
         } else {
             data_present_out = 1;
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+            "");
         }
 
     //  cleanup:
@@ -791,7 +878,8 @@ private class TranscodeAACApplication : GLib.Application {
     @param      output_codec_context    Codec context of the output file
     @param      frame_size              Number of samples to be converted in
                                         each round
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int init_converted_samples (
         out uint8[][] converted_input_samples,
@@ -820,7 +908,8 @@ private class TranscodeAACApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                    "Could not allocate converted input samples (error '%s')\n",
+                    "Could not allocate converted input samples (
+                    error '%s')\n",
                     av_err2str (
                         error)
             );
@@ -841,7 +930,8 @@ private class TranscodeAACApplication : GLib.Application {
                                 (for multi-channel audio), sample.
     @param      frame_size       Number of samples to be converted
     @param      resample_context Resample context for the conversion
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int convert_samples (
         uint8[]? input_data,
@@ -865,7 +955,8 @@ private class TranscodeAACApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Could not convert input samples (error '%s')\n",
+                "Could not convert input samples (
+                    error '%s')\n",
                     av_err2str (
                         error)
             );
@@ -882,7 +973,8 @@ private class TranscodeAACApplication : GLib.Application {
     @param converted_input_samples Samples to be added. The dimensions are channel
                                 (for multi-channel audio), sample.
     @param frame_size              Number of samples to be converted
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int add_samples_to_fifo (
         AVAudioFifo? fifo,
@@ -895,7 +987,9 @@ private class TranscodeAACApplication : GLib.Application {
         Make the FIFO as large as it needs to be to hold both,
         the old and the new samples.
         ***********************************************************/
-        error = av_audio_fifo_realloc (fifo, av_audio_fifo_size (fifo) + frame_size
+        error = av_audio_fifo_realloc (
+            fifo, av_audio_fifo_size (
+                fifo) + frame_size
         );
 
         if (
@@ -914,8 +1008,12 @@ private class TranscodeAACApplication : GLib.Application {
         ***********************************************************/
         if (
             av_audio_fifo_write (
-                fifo, (void **)converted_input_samples,
-                                frame_size) < frame_size) {
+                fifo,
+                (
+                    void **)converted_input_samples,
+                frame_size
+            ) < frame_size
+        ) {
             fprintf (
                 stderr,
                 "Could not write data to FIFO\n"
@@ -941,7 +1039,8 @@ private class TranscodeAACApplication : GLib.Application {
                                     there is more data to be decoded,
                                     i.e., this function has to be called
                                     again.
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int read_decode_convert_and_store (
         AVAudioFifo? fifo,
@@ -969,7 +1068,8 @@ private class TranscodeAACApplication : GLib.Application {
             init_input_frame (
                 &input_frame)
         ) {
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+            "");
         }
 
         /***********************************************************
@@ -981,7 +1081,8 @@ private class TranscodeAACApplication : GLib.Application {
             input_codec_context, &data_present, finished_out
         )
         ) {
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+            "");
         }
 
         /***********************************************************
@@ -990,16 +1091,19 @@ private class TranscodeAACApplication : GLib.Application {
         This must not be treated as an error.
         ***********************************************************/
         if (
-            finished_out) {
+            finished_out
+        ) {
             ret = 0;
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+            "");
         }
 
         /***********************************************************
         If there is decoded data, convert and store it.
         ***********************************************************/
         if (
-            data_present) {
+            data_present
+        ) {
             /***********************************************************
             Initialize the temporary storage for the converted input samples.
             ***********************************************************/
@@ -1009,7 +1113,8 @@ private class TranscodeAACApplication : GLib.Application {
                 input_frame.nb_samples
             )
             ) {
-                throw new Goto.CLEANUP ("");
+                throw new Goto.CLEANUP (
+                "");
             }
 
             /***********************************************************
@@ -1022,7 +1127,8 @@ private class TranscodeAACApplication : GLib.Application {
                 input_frame.nb_samples, resampler_context
             )
             ) {
-                throw new Goto.CLEANUP ("");
+                throw new Goto.CLEANUP (
+                "");
             }
 
             /***********************************************************
@@ -1034,7 +1140,8 @@ private class TranscodeAACApplication : GLib.Application {
                 input_frame.nb_samples
             )
             ) {
-                throw new Goto.CLEANUP ("");
+                throw new Goto.CLEANUP (
+                "");
             }
 
             ret = 0;
@@ -1044,7 +1151,8 @@ private class TranscodeAACApplication : GLib.Application {
 
     //  cleanup:
         if (
-            converted_input_samples) {
+            converted_input_samples
+        ) {
             av_freep (
                 &converted_input_samples[0]
             );
@@ -1068,7 +1176,8 @@ private class TranscodeAACApplication : GLib.Application {
     @param[out] frame_out                Frame to be initialized
     @param      output_codec_context Codec context of the output file
     @param      frame_size           Size of the frame
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int init_output_frame (
         out AVFrame? frame_out,
@@ -1082,7 +1191,8 @@ private class TranscodeAACApplication : GLib.Application {
         ***********************************************************/
         frame_out = av_frame_alloc ();
         if (
-            !frame_out) {
+            !frame_out
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate output frame\n"
@@ -1110,7 +1220,8 @@ private class TranscodeAACApplication : GLib.Application {
         Allocate the samples of the created frame. This call will make
         sure that the audio frame can hold as many samples as specified.
         ***********************************************************/
-        error = av_frame_get_buffer (*frame_out, 0
+        error = av_frame_get_buffer (
+            *frame_out, 0
         );
 
         if (
@@ -1118,7 +1229,8 @@ private class TranscodeAACApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Could not allocate output frame samples (error '%s')\n",
+                "Could not allocate output frame samples (
+                    error '%s')\n",
                     av_err2str (
                         error)
             );
@@ -1145,7 +1257,8 @@ private class TranscodeAACApplication : GLib.Application {
     @param      output_codec_context  Codec context of the output file
     @param[out] data_present_out          Indicates whether data has been
                                     encoded
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int encode_audio_frame (
         AVFrame? frame,
@@ -1159,7 +1272,8 @@ private class TranscodeAACApplication : GLib.Application {
         AVPacket? output_packet;
         int error;
 
-        error = init_packet (&output_packet
+        error = init_packet (
+            &output_packet
         );
 
         if (
@@ -1172,7 +1286,8 @@ private class TranscodeAACApplication : GLib.Application {
         Set a timestamp based on the sample rate for the container.
         ***********************************************************/
         if (
-            frame) {
+            frame
+        ) {
             frame.pts = pts;
             pts += frame.nb_samples;
         }
@@ -1182,7 +1297,8 @@ private class TranscodeAACApplication : GLib.Application {
         Send the audio frame stored in the temporary packet to the encoder.
         The output audio stream encoder is used to do this.
         ***********************************************************/
-        error = avcodec_send_frame (output_codec_context, frame
+        error = avcodec_send_frame (
+            output_codec_context, frame
         );
 
         /***********************************************************
@@ -1195,19 +1311,22 @@ private class TranscodeAACApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Could not send packet for encoding (error '%s')\n",
+                "Could not send packet for encoding (
+                    error '%s')\n",
                 av_err2str (
                     error
                 )
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         }
 
         /***********************************************************
         Receive one encoded frame from the encoder.
         ***********************************************************/
-        error = avcodec_receive_packet (output_codec_context, output_packet
+        error = avcodec_receive_packet (
+            output_codec_context, output_packet
         );
 
         /***********************************************************
@@ -1215,25 +1334,35 @@ private class TranscodeAACApplication : GLib.Application {
         encoded frame, return indicating that no data is present.
         ***********************************************************/
         if (
-            error == AVERROR (EAGAIN)
+            error == AVERROR (
+                EAGAIN)
         ) {
             error = 0;
-            throw new Goto.CLEANUP ("");
-        /***********************************************************
-        If the last frame has been encoded, stop encoding.
-        ***********************************************************/
-        } else if (error == AVERROR_EOF) {
+            throw new Goto.CLEANUP (
+            "");
+        } else if (
+            error == AVERROR_EOF
+        ) {
+            /***********************************************************
+            If the last frame has been encoded, stop encoding.
+            ***********************************************************/
             error = 0;
-            throw new Goto.CLEANUP ("");
-        } else if (error < 0) {
+            throw new Goto.CLEANUP (
+                "");
+        } else if (
+            error < 0
+        ) {
             fprintf (
                 stderr,
-                "Could not encode frame (error '%s')\n",
-                    av_err2str (
-                        error)
+                "Could not encode frame (
+                    error '%s')\n",
+                av_err2str (
+                    error
+                )
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         /***********************************************************
         Default case: Return encoded data.
         ***********************************************************/
@@ -1246,15 +1375,20 @@ private class TranscodeAACApplication : GLib.Application {
         ***********************************************************/
         if (
             data_present_out &&
-            (error = av_write_frame (output_format_context, output_packet)) < 0) {
+            (
+                error = av_write_frame (
+                output_format_context, output_packet)) < 0
+        ) {
             fprintf (
                 stderr,
-                "Could not write frame (error '%s')\n",
+                "Could not write frame (
+                    error '%s')\n",
                     av_err2str (
                         error)
             );
 
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+                "");
         }
 
     //  cleanup:
@@ -1271,7 +1405,8 @@ private class TranscodeAACApplication : GLib.Application {
     @param fifo                  Buffer used for temporary storage
     @param output_format_context Format context of the output file
     @param output_codec_context  Codec context of the output file
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int load_encode_and_write (
         AVAudioFifo? fifo,
@@ -1287,7 +1422,9 @@ private class TranscodeAACApplication : GLib.Application {
         If there is less than the maximum possible frame size in the FIFO
         buffer use this number. Otherwise, use the maximum possible frame size.
         ***********************************************************/
-        int frame_size = FFMIN (av_audio_fifo_size (fifo),
+        int frame_size = FFMIN (
+            av_audio_fifo_size (
+                fifo),
                                     output_codec_context.frame_size
         );
 
@@ -1309,7 +1446,10 @@ private class TranscodeAACApplication : GLib.Application {
         ***********************************************************/
         if (
             av_audio_fifo_read (
-                fifo, (void **)output_frame.data, frame_size) < frame_size) {
+                fifo, (
+                    void **)output_frame.data, frame_size
+            ) < frame_size
+        ) {
             fprintf (
                 stderr,
                 "Could not read data from FIFO\n"
@@ -1347,12 +1487,14 @@ private class TranscodeAACApplication : GLib.Application {
     /***********************************************************
     Write the trailer of the output file container.
     @param output_format_context Format context of the output file
-    @return Error code (0 if successful)
+    @return Error code (
+        0 if successful)
     ***********************************************************/
     private static int write_output_file_trailer (
         AVFormatContext? output_format_context
     ) {
-        int error = av_write_trailer (output_format_context
+        int error = av_write_trailer (
+        output_format_context
         );
 
         if (
@@ -1360,7 +1502,8 @@ private class TranscodeAACApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Could not write output file trailer (error '%s')\n",
+                "Could not write output file trailer (
+                    error '%s')\n",
                     av_err2str (
                         error)
             );
@@ -1384,7 +1527,8 @@ private class TranscodeAACApplication : GLib.Application {
         int ret = AVERROR_EXIT;
 
         if (
-            argc != 3) {
+            argc != 3
+        ) {
             fprintf (
                 stderr,
                 "Usage: %s <input file> <output file>\n",
@@ -1406,7 +1550,8 @@ private class TranscodeAACApplication : GLib.Application {
             &input_codec_context
         )
         ) {
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+            "");
         }
 
         /***********************************************************
@@ -1418,7 +1563,8 @@ private class TranscodeAACApplication : GLib.Application {
                 &output_format_context, &output_codec_context
             )
         ) {
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+            "");
         }
 
         /***********************************************************
@@ -1430,7 +1576,8 @@ private class TranscodeAACApplication : GLib.Application {
             &resample_context
         )
         ) {
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+            "");
         }
 
         /***********************************************************
@@ -1440,7 +1587,8 @@ private class TranscodeAACApplication : GLib.Application {
             init_fifo (
                 &fifo, output_codec_context)
         ) {
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+            "");
         }
 
         /***********************************************************
@@ -1450,7 +1598,8 @@ private class TranscodeAACApplication : GLib.Application {
             write_output_file_header (
                 output_format_context)
         ) {
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+            "");
         }
 
         /***********************************************************
@@ -1458,7 +1607,8 @@ private class TranscodeAACApplication : GLib.Application {
         to write; abort as soon as we have neither.
         ***********************************************************/
         while (
-            true) {
+            true
+        ) {
             /***********************************************************
             Use the encoder's desired frame size for processing.
             ***********************************************************/
@@ -1474,7 +1624,9 @@ private class TranscodeAACApplication : GLib.Application {
             ***********************************************************/
             while (
                 av_audio_fifo_size (
-                    fifo) < output_frame_size) {
+                    fifo
+                ) < output_frame_size
+            ) {
                 /***********************************************************
                 Decode one frame worth of audio samples, convert it to the
                 output sample format and put it into the FIFO buffer.
@@ -1487,7 +1639,8 @@ private class TranscodeAACApplication : GLib.Application {
                     resample_context, &finished
                 )
                 ) {
-                    throw new Goto.CLEANUP ("");
+                    throw new Goto.CLEANUP (
+                    "");
                 }
 
                 /***********************************************************
@@ -1495,7 +1648,8 @@ private class TranscodeAACApplication : GLib.Application {
                 encoding the remaining audio samples to the output file.
                 ***********************************************************/
                 if (
-                    finished) {
+                    finished
+                ) {
                     break;
                 }
 
@@ -1527,7 +1681,8 @@ private class TranscodeAACApplication : GLib.Application {
                     output_codec_context
                 )
                 ) {
-                    throw new Goto.CLEANUP ("");
+                    throw new Goto.CLEANUP (
+                    "");
                 }
 
             }
@@ -1537,7 +1692,8 @@ private class TranscodeAACApplication : GLib.Application {
             all remaining samples, we can exit this loop and finish.
             ***********************************************************/
             if (
-                finished) {
+                finished
+            ) {
                 int data_written;
                 /***********************************************************
                 Flush the encoder as it may have delayed frames.
@@ -1545,14 +1701,18 @@ private class TranscodeAACApplication : GLib.Application {
                 do {
                     if (
                         encode_audio_frame (
-                        null, output_format_context,
-                        output_codec_context, &data_written
-                    )
+                            null, output_format_context,
+                            output_codec_context, &data_written
+                        )
                     ) {
-                        throw new Goto.CLEANUP ("");
+                        throw new Goto.CLEANUP (
+                            ""
+                        );
+
                     }
 
-                } while (data_written
+                } while (
+                    data_written
                 );
 
                 break;
@@ -1567,14 +1727,16 @@ private class TranscodeAACApplication : GLib.Application {
             write_output_file_trailer (
                 output_format_context)
         ) {
-            throw new Goto.CLEANUP ("");
+            throw new Goto.CLEANUP (
+            "");
         }
 
         ret = 0;
 
     //  cleanup:
         if (
-            fifo) {
+            fifo
+        ) {
             av_audio_fifo_free (
                 fifo
             );
@@ -1586,7 +1748,8 @@ private class TranscodeAACApplication : GLib.Application {
         );
 
         if (
-            output_codec_context) {
+            output_codec_context
+        ) {
             avcodec_free_context (
                 &output_codec_context
             );
@@ -1594,7 +1757,8 @@ private class TranscodeAACApplication : GLib.Application {
         }
 
         if (
-            output_format_context) {
+            output_format_context
+        ) {
             avio_closep (
                 &output_format_context.pb
             );
@@ -1606,7 +1770,8 @@ private class TranscodeAACApplication : GLib.Application {
         }
 
         if (
-            input_codec_context) {
+            input_codec_context
+        ) {
             avcodec_free_context (
                 &input_codec_context
             );
@@ -1614,7 +1779,8 @@ private class TranscodeAACApplication : GLib.Application {
         }
 
         if (
-            input_format_context) {
+            input_format_context
+        ) {
             avformat_close_input (
                 &input_format_context
             );

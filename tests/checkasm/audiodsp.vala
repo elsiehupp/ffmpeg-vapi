@@ -16,7 +16,9 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-private const size_t MAX_SIZE = (32 * 128);
+private const size_t MAX_SIZE = (
+    32 * 128
+);
 
 private static void randomize_float (
     void *buf, int len
@@ -27,7 +29,10 @@ private static void randomize_float (
         i < len;
         i++
     ) {
-        float f = (float)rnd () / (UINT_MAX >> 5) - 16.0f;
+        float f = (
+        float)rnd () / (
+            UINT_MAX >> 5
+        ) - 16.0f;
         buf[i] = f;
     }
 
@@ -45,8 +50,20 @@ private static void randomize_float (
 //          i < len;
 //          i++
 //      ) {
-//          uint ## size ## _t r = rnd () & ((1LL << bits) - 1);
-//          AV_WN ## size ## A (buf + i, -(1LL << (bits - 1)) + r);
+//          uint ## size ## _t r = rnd () & (
+//              (
+//                  1LL << bits
+//              ) - 1
+//          );
+
+//          AV_WN ## size ## A (
+//              buf + i, -(
+//                  1LL << (
+//                      bits - 1
+//                  )
+//              ) + r
+//          );
+
 //      }
 
 //  }
@@ -113,10 +130,14 @@ private static void checkasm_check_audiodsp () {
         generate random 5-12bit vector length
         ***********************************************************/
         len_bits_minus4 = rnd () % 8;
-        len = rnd () & ((1 << len_bits_minus4) - 1
+        len = rnd () & (
+            (
+                1 << len_bits_minus4
+            ) - 1
         );
 
-        len = 16 * FFMAX (len, 1
+        len = 16 * FFMAX (
+            len, 1
         );
 
 
@@ -126,7 +147,9 @@ private static void checkasm_check_audiodsp () {
         fits into int32
         ***********************************************************/
         v1_bits = 1 + rnd () % 15;
-        v2_bits = FFMIN (32 - (len_bits_minus4 + 4) - v1_bits - 1, 15
+        v2_bits = FFMIN (
+            32 - (
+                len_bits_minus4 + 4) - v1_bits - 1, 15
         );
 
         randomize_int (
@@ -137,10 +160,12 @@ private static void checkasm_check_audiodsp () {
             v2, MAX_SIZE, 16, v2_bits + 1
         );
 
-        res0 = call_ref (v1, v2, len
+        res0 = call_ref (
+            v1, v2, len
         );
 
-        res1 = call_new (v1, v2, len
+        res1 = call_new (
+            v1, v2, len
         );
 
         if (
@@ -184,22 +209,32 @@ private static void checkasm_check_audiodsp () {
         int32 val1, val2, min, max;
         int len;
 
-        val1 = ((int32)rnd ()
+        val1 = (
+            (int32)rnd ()
         );
 
-        val1 = FFSIGN (val1) * (val1 & ((1 << 24) - 1)
+        val1 = FFSIGN (
+            val1) * (
+                val1 & (
+                    (1 << 24) - 1)
         );
 
-        val2 = ((int32)rnd ()
+        val2 = (
+            (int32)rnd ()
         );
 
-        val2 = FFSIGN (val2) * (val2 & ((1 << 24) - 1)
+        val2 = FFSIGN (
+            val2) * (
+                val2 & (
+                    (1 << 24) - 1)
         );
 
-        min = FFMIN (val1, val2
+        min = FFMIN (
+            val1, val2
         );
 
-        max = FFMAX (val1, val2
+        max = FFMAX (
+            val1, val2
         );
 
         randomize_int (
@@ -207,7 +242,8 @@ private static void checkasm_check_audiodsp () {
         );
 
         len = rnd () % 128;
-        len = 32 * FFMAX (len, 1
+        len = 32 * FFMAX (
+            len, 1
         );
 
         call_ref (
@@ -220,7 +256,8 @@ private static void checkasm_check_audiodsp () {
 
         if (
             memcmp (
-                dst0, dst1, len * sizeof (dst0))
+                dst0, dst1, len * sizeof (
+                    dst0))
         ) {
             fail ();
         }
@@ -260,13 +297,20 @@ private static void checkasm_check_audiodsp () {
         float val1, val2, min, max;
         int i, len;
 
-        val1 = (float)rnd () / (UINT_MAX >> 1) - 1.0f;
-        val2 = (float)rnd () / (UINT_MAX >> 1) - 1.0f;
+        val1 = (float)rnd () / (
+            UINT_MAX >> 1
+        ) - 1.0f;
 
-        min = FFMIN (val1, val2
+        val2 = (float)rnd () / (
+            UINT_MAX >> 1
+        ) - 1.0f;
+
+        min = FFMIN (
+            val1, val2
         );
 
-        max = FFMAX (val1, val2
+        max = FFMAX (
+            val1, val2
         );
 
         randomize_float (
@@ -274,7 +318,8 @@ private static void checkasm_check_audiodsp () {
         );
 
         len = rnd () % 128;
-        len = 16 * FFMAX (len, 1
+        len = 16 * FFMAX (
+            len, 1
         );
 
         call_ref (
@@ -291,7 +336,8 @@ private static void checkasm_check_audiodsp () {
             i++
         ) {
             if (
-                !float_near_ulp_array (dst0, dst1, 3, len)
+                !float_near_ulp_array (
+                    dst0, dst1, 3, len)
             ) {
                 fail ();
             }

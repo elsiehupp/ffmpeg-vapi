@@ -44,29 +44,35 @@ private class ApiH264Test : GLib.TestCase {
         uint result;
         bool end_of_stream = false;
 
-        result = avformat_open_input (out format_context, input_filename, null, null
+        result = avformat_open_input (
+            out format_context, input_filename, null, null
         );
 
         if (
-            result < 0) {
+            result < 0
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't open file\n"
             );
+
             return result;
         }
 
-        result = avformat_find_stream_info (format_context, null
+        result = avformat_find_stream_info (
+            format_context, null
         );
 
         if (
-            result < 0) {
+            result < 0
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't get stream info\n"
             );
+
             return result;
         }
 
@@ -78,99 +84,123 @@ private class ApiH264Test : GLib.TestCase {
             null,
             0
         );
+
         if (
-            video_stream < 0) {
+            video_stream < 0
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't find video stream in input file\n"
             );
+
             return -1;
         }
 
         origin_par = format_context.streams[video_stream].codecpar;
 
-        codec = avcodec_find_decoder (origin_par.codec_id
+        codec = avcodec_find_decoder (
+            origin_par.codec_id
         );
 
         if (
-            codec == null) {
+            codec == null
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't find decoder\n"
             );
+
             return -1;
         }
 
-        codec_context = avcodec_alloc_context3 (codec
+        codec_context = avcodec_alloc_context3 (
+            codec
         );
 
         if (
-            codec_context == null) {
+            codec_context == null
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate decoder context\n"
             );
-            return AVERROR (ENOMEM
+
+            return AVERROR (
+                ENOMEM
             );
 
         }
 
-        result = avcodec_parameters_to_context (codec_context, origin_par
+        result = avcodec_parameters_to_context (
+            codec_context, origin_par
         );
 
         if (
-            result) {
+            result
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't copy decoder context\n"
             );
+
             return result;
         }
 
-        result = avcodec_open2 (codec_context, codec, null
+        result = avcodec_open2 (
+            codec_context, codec, null
         );
 
         if (
-            result < 0) {
+            result < 0
+        ) {
             av_log (
                 codec_context,
                 AV_LOG_ERROR,
                 "Can't open decoder\n"
             );
+
             return result;
         }
 
         frame = av_frame_alloc ();
         if (
-            frame == null) {
+            frame == null
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate frame\n"
             );
-            return AVERROR (ENOMEM
+
+            return AVERROR (
+                ENOMEM
             );
 
         }
 
-        byte_buffer_size = av_image_get_buffer_size (codec_context.pix_fmt, codec_context.width, codec_context.height, 16
+        byte_buffer_size = av_image_get_buffer_size (
+            codec_context.pix_fmt, codec_context.width, codec_context.height, 16
         );
 
-        byte_buffer = av_malloc (byte_buffer_size
+        byte_buffer = av_malloc (
+            byte_buffer_size
         );
 
         if (
-            byte_buffer == null) {
+            byte_buffer == null
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate buffer\n"
             );
-            return AVERROR (ENOMEM
+
+            return AVERROR (
+                ENOMEM
             );
 
         }
@@ -189,17 +219,21 @@ private class ApiH264Test : GLib.TestCase {
 
         do {
             if (
-                !end_of_stream) {
+                !end_of_stream
+            ) {
                 if (
                     av_read_frame (
-                        format_context, out packet) < 0) {
+                        format_context, out packet
+                    ) < 0
+                ) {
                     end_of_stream = true;
                 }
 
             }
 
             if (
-                end_of_stream) {
+                end_of_stream
+            ) {
                 packet.data = null;
                 packet.size = 0;
             }
@@ -210,37 +244,50 @@ private class ApiH264Test : GLib.TestCase {
             ) {
                 got_frame = false;
                 if (
-                    packet.pts == AV_NOPTS_VALUE) {
+                    packet.pts == AV_NOPTS_VALUE
+                ) {
                     packet.pts = packet.dts = i;
                 }
 
-                result = avcodec_decode_video2 (codec_context, frame, out got_frame, out packet
+                result = avcodec_decode_video2 (
+                    codec_context, frame, out got_frame, out packet
                 );
 
                 if (
-                    result < 0) {
+                    result < 0
+                ) {
                     av_log (
                         null,
                         AV_LOG_ERROR,
                         "Error decoding frame\n"
                     );
+
                     return result;
                 }
 
                 if (
-                    got_frame) {
-                    number_of_written_bytes = av_image_copy_to_buffer (byte_buffer, byte_buffer_size,
-                                            (uint8[])frame.data, (uint[]) frame.linesize,
-                                            codec_context.pix_fmt, codec_context.width, codec_context.height, 1
+                    got_frame
+                ) {
+                    number_of_written_bytes = av_image_copy_to_buffer (
+                        byte_buffer,
+                        byte_buffer_size,
+                        (uint8[])frame.data,
+                        (uint[]) frame.linesize,
+                        codec_context.pix_fmt,
+                        codec_context.width,
+                        codec_context.height,
+                        1
                     );
 
                     if (
-                        number_of_written_bytes < 0) {
+                        number_of_written_bytes < 0
+                    ) {
                         av_log (
                             null,
                             AV_LOG_ERROR,
                             "Can't copy image to buffer\n"
                         );
+
                         return number_of_written_bytes;
                     }
 
@@ -310,18 +357,22 @@ private class ApiH264Test : GLib.TestCase {
         string[] argv
     ) {
         if (
-            argc < 2) {
+            argc < 2
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Incorrect input\n"
             );
+
             return 1;
         }
 
         if (
             video_decode_example (
-                argv[1]) != 0) {
+                argv[1]
+            ) != 0
+        ) {
             return 1;
         }
 

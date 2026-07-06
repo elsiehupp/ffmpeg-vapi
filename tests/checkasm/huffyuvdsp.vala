@@ -48,16 +48,24 @@ private static void check_add_int16 (
     int width,
     string name
 ) {
-    uint16[] src0 = av_mallocz (width * sizeof (uint16)
+    uint16[] src0 = av_mallocz (
+        width * sizeof (
+            uint16)
     );
 
-    uint16[] src1 = av_mallocz (width * sizeof (uint16)
+    uint16[] src1 = av_mallocz (
+        width * sizeof (
+            uint16)
     );
 
-    uint16[] dst0 = av_mallocz (width * sizeof (uint16)
+    uint16[] dst0 = av_mallocz (
+        width * sizeof (
+            uint16)
     );
 
-    uint16[] dst1 = av_mallocz (width * sizeof (uint16)
+    uint16[] dst1 = av_mallocz (
+        width * sizeof (
+            uint16)
     );
 
     if (
@@ -74,7 +82,8 @@ private static void check_add_int16 (
     );
 
     memcpy (
-        src1, src0, width * sizeof (uint16)
+        src1, src0, width * sizeof (
+            uint16)
     );
 
     if (
@@ -94,7 +103,8 @@ private static void check_add_int16 (
 
         if (
             memcmp (
-                dst0, dst1, width * sizeof (uint16))
+                dst0, dst1, width * sizeof (
+                    uint16))
         ) {
             fail ();
         }
@@ -125,7 +135,8 @@ private static void check_add_int16 (
 
 private static void checkasm_check_huffyuvdsp () {
     HuffYUVDSPContext huff_yuv_dsp_context;
-    int width = 16 * av_clip (rnd (), 16, 128
+    int width = 16 * av_clip (
+        rnd (), 16, 128
     );
 
     ff_huffyuvdsp_init (
@@ -145,7 +156,8 @@ private static void checkasm_check_huffyuvdsp () {
     );
 
     /***********************************************************
-    ! test always with the same size (for perf test)
+    ! test always with the same size (
+        for perf test)
     ***********************************************************/
     check_add_int16 (
         huff_yuv_dsp_context, 65535, 16*128,

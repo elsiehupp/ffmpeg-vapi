@@ -32,10 +32,14 @@ private static void randomize_buffers (
         y < 4;
         y++
     ) {
-        AV_WN32A ((src) + y * (stride), rnd ()
+        AV_WN32A (
+        (src) + y * (
+            stride), rnd ()
         );
 
-        AV_WN32A ((dst) + y * (stride), rnd ()
+        AV_WN32A (
+            (dst) + y * (
+                stride), rnd ()
         );
 
         for (
@@ -43,7 +47,17 @@ private static void randomize_buffers (
             x < 4;
             x++
         ) {
-            (coef)[y * 4 + x] = (src)[y * (stride) + x] - (dst)[y * (stride) + x];
+            (
+                coef
+            )[y * 4 + x] = (
+                src
+            )[y * (
+                stride
+            ) + x] - (
+                dst
+            )[y * (
+                stride
+            ) + x];
         }
 
     }
@@ -59,14 +73,20 @@ private static void dct4x4 (
         i < 4;
         i++
     ) {
-        int a1 = (coef[i*4 + 0] + coef[i*4 + 3]) * 8;
-        int b1 = (coef[i*4 + 1] + coef[i*4 + 2]) * 8;
-        int c1 = (coef[i*4 + 1] - coef[i*4 + 2]) * 8;
-        int d1 = (coef[i*4 + 0] - coef[i*4 + 3]) * 8;
+        int a1 = (
+        coef[i*4 + 0] + coef[i*4 + 3]) * 8;
+        int b1 = (
+            coef[i*4 + 1] + coef[i*4 + 2]) * 8;
+        int c1 = (
+            coef[i*4 + 1] - coef[i*4 + 2]) * 8;
+        int d1 = (
+            coef[i*4 + 0] - coef[i*4 + 3]) * 8;
         coef[i*4 + 0] =  a1 + b1;
-        coef[i*4 + 1] = (c1 * 2217 + d1 * 5352 + 14500) >> 12;
+        coef[i*4 + 1] = (
+            c1 * 2217 + d1 * 5352 + 14500) >> 12;
         coef[i*4 + 2] =  a1 - b1;
-        coef[i*4 + 3] = (d1 * 2217 - c1 * 5352 +  7500) >> 12;
+        coef[i*4 + 3] = (
+            d1 * 2217 - c1 * 5352 +  7500) >> 12;
     }
 
     for (
@@ -78,10 +98,14 @@ private static void dct4x4 (
         int b1 = coef[i + 1*4] + coef[i + 2*4];
         int c1 = coef[i + 1*4] - coef[i + 2*4];
         int d1 = coef[i + 0*4] - coef[i + 3*4];
-        coef[i + 0*4] =  (a1 + b1 + 7) >> 4;
-        coef[i + 1*4] = ((c1 * 2217 + d1 * 5352 + 12000) >> 16) + !!d1;
-        coef[i + 2*4] =  (a1 - b1 + 7) >> 4;
-        coef[i + 3*4] =  (d1 * 2217 - c1 * 5352 + 51000) >> 16;
+        coef[i + 0*4] =  (
+            a1 + b1 + 7) >> 4;
+        coef[i + 1*4] = (
+            (c1 * 2217 + d1 * 5352 + 12000) >> 16) + !!d1;
+        coef[i + 2*4] =  (
+            a1 - b1 + 7) >> 4;
+        coef[i + 3*4] =  (
+            d1 * 2217 - c1 * 5352 + 51000) >> 16;
     }
 
 }
@@ -102,7 +126,8 @@ private static void wht4x4 (
         int e1;
         a1 += b1;
         d1 -= c1;
-        e1 = (a1 - d1) >> 1;
+        e1 = (
+            a1 - d1) >> 1;
         b1 = e1 - b1;
         c1 = e1 - c1;
         a1 -= c1;
@@ -125,7 +150,8 @@ private static void wht4x4 (
         int e1;
         a1 += b1;
         d1 -= c1;
-        e1 = (a1 - d1) >> 1;
+        e1 = (
+            a1 - d1) >> 1;
         b1 = e1 - b1;
         c1 = e1 - c1;
         a1 -= c1;
@@ -226,13 +252,21 @@ private static void check_idct () {
                 dc
             ) {
                 memset (
-                    subcoef0, 0, 4 * 4 * sizeof (int16)
+                    subcoef0,
+                    0,
+                    4 * 4 * sizeof (
+                        int16
+                    )
                 );
 
                 subcoef0[0] = coef[0];
             } else {
                 memcpy (
-                    subcoef0, coef, 4 * 4 * sizeof (int16)
+                    subcoef0,
+                    coef,
+                    4 * 4 * sizeof (
+                        int16
+                    )
                 );
 
             }
@@ -246,7 +280,8 @@ private static void check_idct () {
             );
 
             memcpy (
-                subcoef1, subcoef0, 4 * 4 * sizeof (int16)
+                subcoef1, subcoef0, 4 * 4 * sizeof (
+                    int16)
             );
 
             /***********************************************************
@@ -265,9 +300,15 @@ private static void check_idct () {
 
             if (
                 memcmp (
-                    dst0, dst1, 4 * 4) ||
+                    dst0, dst1, 4 * 4
+                ) ||
                 memcmp (
-                    subcoef0, subcoef1, 4 * 4 * sizeof (int16))
+                    subcoef0,
+                    subcoef1,
+                    4 * 4 * sizeof (
+                        int16
+                    )
+                )
             ) {
                 fail ();
             }
@@ -360,10 +401,12 @@ private static void check_idct_dc4 () {
                 i < 4;
                 i++
             ) {
-                int blockx = 4 * (i % w
+                int blockx = 4 * (
+                i % w
                 );
 
-                int blocky = 4 * (i / w
+                int blocky = 4 * (
+                    i / w
                 );
 
                 randomize_buffers (
@@ -375,7 +418,11 @@ private static void check_idct_dc4 () {
                 );
 
                 memset (
-                    &coef[i][1], 0, 15 * sizeof (int16)
+                    &coef[i][1],
+                    0,
+                    15 * sizeof (
+                        int16
+                    )
                 );
 
             }
@@ -389,11 +436,13 @@ private static void check_idct_dc4 () {
             );
 
             memcpy (
-                subcoef0, coef, 4 * 4 * 4 * sizeof (int16)
+                subcoef0, coef, 4 * 4 * 4 * sizeof (
+                    int16)
             );
 
             memcpy (
-                subcoef1, coef, 4 * 4 * 4 * sizeof (int16)
+                subcoef1, coef, 4 * 4 * 4 * sizeof (
+                    int16)
             );
 
             call_ref (
@@ -406,9 +455,15 @@ private static void check_idct_dc4 () {
 
             if (
                 memcmp (
-                    dst0, dst1, 4 * 4 * 4) ||
+                    dst0, dst1, 4 * 4 * 4
+                ) ||
                 memcmp (
-                    subcoef0, subcoef1, 4 * 4 * 4 * sizeof (int16))
+                    subcoef0,
+                    subcoef1,
+                    4 * 4 * 4 * sizeof (
+                        int16
+                    )
+                )
             ) {
                 fail ();
             }
@@ -517,27 +572,38 @@ private static void check_luma_dc_wht () {
                 dc_only
             ) {
                 memset (
-                    dc0, 0, 16 * sizeof (int16)
+                    dc0,
+                    0,
+                    16 * sizeof (
+                        int16
+                    )
                 );
 
                 dc0[0] = dc[0];
             } else {
                 memcpy (
-                    dc0, dc, 16 * sizeof (int16)
+                    dc0,
+                    dc,
+                    16 * sizeof (
+                        int16
+                    )
                 );
 
             }
 
             memcpy (
-                dc1, dc0, 16 * sizeof (int16)
+                dc1, dc0, 16 * sizeof (
+                    int16)
             );
 
             memcpy (
-                block0, block, 4 * 4 * 16 * sizeof (int16)
+                block0, block, 4 * 4 * 16 * sizeof (
+                    int16)
             );
 
             memcpy (
-                block1, block, 4 * 4 * 16 * sizeof (int16)
+                block1, block, 4 * 4 * 16 * sizeof (
+                    int16)
             );
 
             call_ref (
@@ -550,9 +616,17 @@ private static void check_luma_dc_wht () {
 
             if (
                 memcmp (
-                    block0, block1, 4 * 4 * 16 * sizeof (int16)) ||
+                    block0, block1,
+                    4 * 4 * 16 * sizeof (
+                        int16
+                    )
+                ) ||
                 memcmp (
-                    dc0, dc1, 16 * sizeof (int16))
+                    dc0, dc1,
+                    16 * sizeof (
+                        int16
+                    )
+                )
             ) {
                 fail ();
             }
@@ -568,14 +642,24 @@ private static void check_luma_dc_wht () {
 }
 
 private const size_t SRC_BUF_STRIDE = 32;
-private const size_t SRC_BUF_SIZE = (((size << (size < 16)) + 5) * SRC_BUF_STRIDE);
+private const size_t SRC_BUF_SIZE = (
+    (
+        (
+            size << (
+                size < 16
+            )
+        ) + 5
+    ) * SRC_BUF_STRIDE
+);
 
 /***********************************************************
 The mc subpixel interpolation filter needs the 2 previous
 pixels in either direction, the +1 is to make sure the
 actual load addresses always are unaligned.
 ***********************************************************/
-private const size_t src = (buf + 2 * SRC_BUF_STRIDE + 2 + 1);
+private const size_t src = (
+    buf + 2 * SRC_BUF_STRIDE + 2 + 1
+);
 
 //  #undef randomize_buffers
 private static void randomize_buffers () {
@@ -639,7 +723,8 @@ private static void check_mc () {
         type < 2;
         type++
     ) {
-        vp8_mc_func (*tab)[3][3] = type ? vp8_dsp_context.put_vp8_bilinear_pixels_tab : vp8_dsp_context.put_vp8_epel_pixels_tab;
+        vp8_mc_func (
+        *tab)[3][3] = type ? vp8_dsp_context.put_vp8_bilinear_pixels_tab : vp8_dsp_context.put_vp8_epel_pixels_tab;
         for (
             k = 1;
             k < 8;
@@ -647,7 +732,9 @@ private static void check_mc () {
         ) {
             int hsize = k / 3;
             int size = 16 >> hsize;
-            int height = (size << 1) >> (k % 3
+            int height = (
+            size << 1) >> (
+                k % 3
             );
 
             for (
@@ -669,18 +756,46 @@ private static void check_mc () {
                             type == 0
                         ) {
                             snprintf (
-                                str, sizeof (str), "epel%d_%s%s", size, dx_names[dx], dy_names[dy]
+                                str,
+                                sizeof (
+                                    str
+                                ),
+                                "epel%d_%s%s",
+                                size,
+                                dx_names[dx],
+                                dy_names[dy]
                             );
 
                         } else {
                             snprintf (
-                                str, sizeof (str), "bilin%d_%s%s", size, dx ? "h" : "", dy ? "v" : ""
-                        );
+                                str,
+                                sizeof (
+                                    str
+                                ),
+                                "bilin%d_%s%s",
+                                size,
+                                (
+                                    dx
+                                    ? "h"
+                                    : ""
+                                ),
+                                (
+                                    dy
+                                    ? "v"
+                                    : ""
+                                )
+                            );
 
                         }
 
                     } else {
-                        snprintf (str, sizeof (str), "pixels%vp8_dsp_context", size
+                        snprintf (
+                            str,
+                            sizeof (
+                                str
+                            ),
+                            "pixels%vp8_dsp_context",
+                            size
                         );
 
                     }
@@ -694,11 +809,63 @@ private static void check_mc () {
                         if (
                             type == 0
                         ) {
-                            mx = dx == 2 ? 2 + 2 * (rnd () % 3) : dx == 1 ? 1 + 2 * (rnd () % 4) : 0;
-                            my = dy == 2 ? 2 + 2 * (rnd () % 3) : dy == 1 ? 1 + 2 * (rnd () % 4) : 0;
+                            mx = (
+                                dx == 2
+                                ? (
+                                    2 + 2 * (
+                                        rnd () % 3
+                                    )
+                                )
+                                : (
+                                    dx == 1
+                                    ? (
+                                        1 + 2 * (
+                                            rnd () % 4
+                                        )
+                                    )
+                                    : 0
+                                )
+                            );
+
+                            my = (
+                                dy == 2
+                                ? (
+                                    2 + 2 * (
+                                        rnd () % 3
+                                    )
+                                )
+                                : (
+                                    dy == 1
+                                    ? (
+                                        1 + 2 * (
+                                            rnd () % 4
+                                        )
+                                    )
+                                    : 0
+                                )
+                            );
+
                         } else {
-                            mx = dx ? 1 + (rnd () % 7) : 0;
-                            my = dy ? 1 + (rnd () % 7) : 0;
+                            mx = (
+                                dx
+                                ? (
+                                    1 + (
+                                        rnd () % 7
+                                    )
+                                )
+                                : 0
+                            );
+
+                            my = (
+                                dy
+                                ? (
+                                    1 + (
+                                        rnd () % 7
+                                    )
+                                )
+                                : 0
+                            );
+
                         }
 
                         randomize_buffers ();
@@ -762,14 +929,19 @@ private static void setpx (
     void *b,
     void *c
 ) {
-    buf[(a) + (b) * jstride] = av_clip_uint8 (c
+    buf[(
+        a
+    ) + (
+        b
+    ) * jstride] = av_clip_uint8 (
+        c
     );
 
 }
 
 /***********************************************************
+Set the pixel to c +/- [0,vp8_dsp_context]
 ***********************************************************/
-// Set the pixel to c +/- [0,vp8_dsp_context]
 private static void setdx (
     void *a,
     void *b,
@@ -777,14 +949,20 @@ private static void setdx (
     void *d
 ) {
     setpx (
-        a, b, c - (d) + (rnd () % ((d) * 2 + 1))
+        a, b, c - (
+            d
+        ) + (
+            rnd () % (
+                (d) * 2 + 1
+            )
+        )
     );
 
 }
 
 /***********************************************************
+Set the pixel to c +/- [d,d+e] (making sure it won't be clipped)
 ***********************************************************/
-// Set the pixel to c +/- [d,d+e] (making sure it won't be clipped)
 private static void setdx2 (
     void *a,
     void *b,
@@ -794,7 +972,15 @@ private static void setdx2 (
     void *e
 ) {
     setpx (
-        a, b, o = c + ((d) + (rnd () % (e))) * (c >= 128 ? -1 : 1)
+        a, b, o = c + (
+            (d) + (
+                rnd () % (
+                    e
+                )
+            )
+        ) * (
+            c >= 128 ? -1 : 1
+        )
     );
 
 }
@@ -1285,7 +1471,8 @@ private static void check_loopfilter_simple () {
         //  void (*func)(uint8[], size_t, int) = dir ? vp8_dsp_context.vp8_v_loop_filter_simple : vp8_dsp_context.vp8_h_loop_filter_simple;
         if (
             check_func (
-                func, "vp8_loop_filter_simple_%s", dir ? "v" : "h")
+                func, "vp8_loop_filter_simple_%s", dir ? "v" : "h"
+            )
         ) {
             fill_loopfilter_buffers (
                 buf0 - midoff, 16, 16, 16

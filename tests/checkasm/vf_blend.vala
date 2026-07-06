@@ -21,10 +21,13 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 private const size_t WIDTH = 256;
 private const size_t HEIGHT = 256;
 private const size_t BUF_UNITS = 3;
-private const size_t SIZE_PER_UNIT = (WIDTH * HEIGHT
+private const size_t SIZE_PER_UNIT = (
+    WIDTH * HEIGHT
 );
 
-private const size_t BUF_SIZE = (BUF_UNITS * SIZE_PER_UNIT);
+private const size_t BUF_SIZE = (
+    BUF_UNITS * SIZE_PER_UNIT
+);
 
 private static void randomize_buffers () {
     int i, j;
@@ -139,7 +142,8 @@ private static void check_blend_func (
         /***********************************************************
         Test various alignments
         ***********************************************************/
-        int src_offset = i * SIZE_PER_UNIT + (BUF_UNITS - 1 - i) * depth;
+        int src_offset = i * SIZE_PER_UNIT + (
+            BUF_UNITS - 1 - i) * depth;
         /***********************************************************
         dst must be aligned
         ***********************************************************/
@@ -194,22 +198,28 @@ private static void check_blend_func (
 }
 
 private static void checkasm_check_blend () {
-    uint8[] top1 = av_malloc (BUF_SIZE
+    uint8[] top1 = av_malloc (
+        BUF_SIZE
     );
 
-    uint8[] top2 = av_malloc (BUF_SIZE
+    uint8[] top2 = av_malloc (
+        BUF_SIZE
     );
 
-    uint8[] bot1 = av_malloc (BUF_SIZE
+    uint8[] bot1 = av_malloc (
+        BUF_SIZE
     );
 
-    uint8[] bot2 = av_malloc (BUF_SIZE
+    uint8[] bot2 = av_malloc (
+        BUF_SIZE
     );
 
-    uint8[] dst1 = av_malloc (BUF_SIZE
+    uint8[] dst1 = av_malloc (
+        BUF_SIZE
     );
 
-    uint8[] dst2 = av_malloc (BUF_SIZE
+    uint8[] dst2 = av_malloc (
+        BUF_SIZE
     );
 
     FilterParams param = new FilterParams () {
@@ -224,54 +234,239 @@ private static void checkasm_check_blend () {
 //      void *depth
 //  ) {
 //      param.mode = val;
-//      ff_blend_init (&param, depth - 1);
+//      ff_blend_init (
+//          &param,
+//          depth - 1
+//      );
+
 //      if (
-//          check_func (param.blend, #name)
+//          check_func (
+//              param.blend,
+//              #name
+//          )
 //      ) {
-//          check_blend_func (depth);
+//          check_blend_func (
+//              depth
+//          );
+
 //      }
 
-//      check_and_report (addition, BLEND_ADDITION, 1);
-//      check_and_report (grainmerge, BLEND_GRAINMERGE, 1);
-//      check_and_report (and, BLEND_AND, 1);
-//      check_and_report (average, BLEND_AVERAGE, 1);
-//      check_and_report (darken, BLEND_DARKEN, 1);
-//      check_and_report (grainextract, BLEND_GRAINEXTRACT, 1);
-//      check_and_report (hardmix, BLEND_HARDMIX, 1);
-//      check_and_report (lighten, BLEND_LIGHTEN, 1);
-//      check_and_report (multiply, BLEND_MULTIPLY, 1);
-//      check_and_report (or, BLEND_OR, 1);
-//      check_and_report (phoenix, BLEND_PHOENIX, 1);
-//      check_and_report (screen, BLEND_SCREEN, 1);
-//      check_and_report (subtract, BLEND_SUBTRACT, 1);
-//      check_and_report (xor, BLEND_XOR, 1);
-//      check_and_report (difference, BLEND_DIFFERENCE, 1);
-//      check_and_report (extremity, BLEND_EXTREMITY, 1);
-//      check_and_report (negation, BLEND_NEGATION, 1);
+//      check_and_report (
+//          addition,
+//          BLEND_ADDITION,
+//          1
+//      );
 
-//      report ("8bit");
+//      check_and_report (
+//          grainmerge,
+//          BLEND_GRAINMERGE,
+//          1
+//      );
 
-//      check_and_report (addition_16, BLEND_ADDITION, 2);
-//      check_and_report (grainmerge_16, BLEND_GRAINMERGE, 2);
-//      check_and_report (and_16, BLEND_AND, 2);
-//      check_and_report (average_16, BLEND_AVERAGE, 2);
-//      check_and_report (darken_16, BLEND_DARKEN, 2);
-//      check_and_report (grainextract_16, BLEND_GRAINEXTRACT, 2);
-//      check_and_report (difference_16, BLEND_DIFFERENCE, 2);
-//      check_and_report (extremity_16, BLEND_EXTREMITY, 2);
-//      check_and_report (negation_16, BLEND_NEGATION, 2);
-//      check_and_report (lighten_16, BLEND_LIGHTEN, 2);
-//      check_and_report (or_16, BLEND_OR, 2);
-//      check_and_report (phoenix_16, BLEND_PHOENIX, 2);
-//      check_and_report (subtract_16, BLEND_SUBTRACT, 2);
-//      check_and_report (xor_16, BLEND_SUBTRACT, 2);
+//      check_and_report (
+//          and,
+//          BLEND_AND,
+//          1
+//      );
 
-//      report ("16bit");
+//      check_and_report (
+//          average,
+//          BLEND_AVERAGE,
+//          1
+//      );
 
-//      av_freep (&top1);
-//      av_freep (&top2);
-//      av_freep (&bot1);
-//      av_freep (&bot2);
-//      av_freep (&dst1);
-//      av_freep (&dst2);
+//      check_and_report (
+//          darken,
+//          BLEND_DARKEN,
+//          1
+//      );
+
+//      check_and_report (
+//          grainextract,
+//          BLEND_GRAINEXTRACT,
+//          1
+//      );
+
+//      check_and_report (
+//          hardmix,
+//          BLEND_HARDMIX,
+//          1
+//      );
+
+//      check_and_report (
+//          lighten,
+//          BLEND_LIGHTEN,
+//          1
+//      );
+
+//      check_and_report (
+//          multiply,
+//          BLEND_MULTIPLY,
+//          1
+//      );
+
+//      check_and_report (
+//          or,
+//          BLEND_OR,
+//          1
+//      );
+
+//      check_and_report (
+//          phoenix,
+//          BLEND_PHOENIX,
+//          1
+//      );
+
+//      check_and_report (
+//          screen,
+//          BLEND_SCREEN,
+//          1
+//      );
+
+//      check_and_report (
+//          subtract,
+//          BLEND_SUBTRACT,
+//          1
+//      );
+
+//      check_and_report (
+//          xor,
+//          BLEND_XOR,
+//          1
+//      );
+
+//      check_and_report (
+//          difference,
+//          BLEND_DIFFERENCE,
+//          1
+//      );
+
+//      check_and_report (
+//          extremity,
+//          BLEND_EXTREMITY,
+//          1
+//      );
+
+//      check_and_report (
+//          negation,
+//          BLEND_NEGATION,
+//          1
+//      );
+
+//      report (
+//          "8bit"
+//      );
+
+//      check_and_report (
+//          addition_16,
+//          BLEND_ADDITION,
+//          2
+//      );
+
+//      check_and_report (
+//          grainmerge_16,
+//          BLEND_GRAINMERGE,
+//          2
+//      );
+
+//      check_and_report (
+//          and_16,
+//          BLEND_AND,
+//          2
+//      );
+
+//      check_and_report (
+//          average_16,
+//          BLEND_AVERAGE,
+//          2
+//      );
+
+//      check_and_report (
+//          darken_16,
+//          BLEND_DARKEN,
+//          2
+//      );
+
+//      check_and_report (
+//          grainextract_16,
+//          BLEND_GRAINEXTRACT,
+//          2
+//      );
+
+//      check_and_report (
+//          difference_16,
+//          BLEND_DIFFERENCE,
+//          2
+//      );
+
+//      check_and_report (
+//          extremity_16,
+//          BLEND_EXTREMITY,
+//          2
+//      );
+
+//      check_and_report (
+//          negation_16,
+//          BLEND_NEGATION,
+//          2
+//      );
+
+//      check_and_report (
+//          lighten_16,
+//          BLEND_LIGHTEN,
+//          2
+//      );
+
+//      check_and_report (
+//          or_16,
+//          BLEND_OR,
+//          2
+//      );
+
+//      check_and_report (
+//          phoenix_16,
+//          BLEND_PHOENIX,
+//          2
+//      );
+
+//      check_and_report (
+//          subtract_16,
+//          BLEND_SUBTRACT,
+//          2
+//      );
+
+//      check_and_report (
+//          xor_16,
+//          BLEND_SUBTRACT,
+//          2
+//      );
+
+//      report (
+//          "16bit"
+//      );
+
+//      av_freep (
+//          &top1
+//      );
+
+//      av_freep (
+//          &top2
+//      );
+
+//      av_freep (
+//          &bot1
+//      );
+
+//      av_freep (
+//          &bot2
+//      );
+
+//      av_freep (
+//          &dst1
+//      );
+
+//      av_freep (
+//          &dst2
+//      );
+
 //  }

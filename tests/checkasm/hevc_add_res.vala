@@ -97,7 +97,8 @@ private static void check_add_res (
     ) {
         int block_size = 1 << i;
         int size = block_size * block_size;
-        size_t stride = block_size << (bit_depth > 8
+        size_t stride = block_size << (
+            bit_depth > 8
         );
 
         randomize_buffers (
@@ -109,11 +110,13 @@ private static void check_add_res (
         );
 
         memcpy (
-            res1, res0, sizeof (res0) * size
+            res1, res0, sizeof (
+                res0) * size
         );
 
         memcpy (
-            dst1, dst0, sizeof (int16) * size
+            dst1, dst0, sizeof (
+                int16) * size
         );
 
         if (

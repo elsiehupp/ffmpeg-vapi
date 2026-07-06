@@ -30,10 +30,13 @@ private const int32 pixel_mask_lf[3] = {
     0x03ff000f
 };
 
-private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8
+private const size_t SIZEOF_PIXEL = (
+        (bit_depth + 7) / 8
 );
 
-private const size_t SIZEOF_COEF = (2 * ((bit_depth + 7) / 8)
+private const size_t SIZEOF_COEF = (
+            2 * (
+                (bit_depth + 7) / 8)
 );
 
 private const size_t PIXEL_STRIDE = 16;
@@ -69,12 +72,22 @@ private static void randomize_buffers () {
             if (
                 bit_depth == 8
             ) {
-                coef[y * sz + x] = src[y * PIXEL_STRIDE + x] -
-                                    dst[y * PIXEL_STRIDE + x];
+                coef[y * sz + x] = (
+                    src[y * PIXEL_STRIDE + x] - dst[y * PIXEL_STRIDE + x]
+                );
+
             } else {
-                ((int32[] )coef)[y * sz + x] =
-                    ((uint16[] )src)[y * (PIXEL_STRIDE/2) + x] -
-                    ((uint16[] )dst)[y * (PIXEL_STRIDE/2) + x];
+                (
+                    (int32[])coef
+                )[y * sz + x] = (
+                    (uint16[])src
+                )[y * (
+                    PIXEL_STRIDE / 2
+                ) + x] - (
+                    (uint16[])dst
+                )[y * (
+                    PIXEL_STRIDE / 2
+                ) + x];
             }
 
         }
@@ -89,46 +102,84 @@ private static void DCT8_1D (
     void *dst,
     void *dststride
 ) {
-    int a0 = (src)[srcstride * 0] + (src)[srcstride * 7];
-    int a1 = (src)[srcstride * 0] - (src)[srcstride * 7];
-    int a2 = (src)[srcstride * 1] + (src)[srcstride * 6];
-    int a3 = (src)[srcstride * 1] - (src)[srcstride * 6];
-    int a4 = (src)[srcstride * 2] + (src)[srcstride * 5];
-    int a5 = (src)[srcstride * 2] - (src)[srcstride * 5];
-    int a6 = (src)[srcstride * 3] + (src)[srcstride * 4];
-    int a7 = (src)[srcstride * 3] - (src)[srcstride * 4];
+    int a0 = (
+        src)[srcstride * 0] + (
+            src)[srcstride * 7];
+    int a1 = (
+        src)[srcstride * 0] - (
+            src)[srcstride * 7];
+    int a2 = (
+        src)[srcstride * 1] + (
+            src)[srcstride * 6];
+    int a3 = (
+        src)[srcstride * 1] - (
+            src)[srcstride * 6];
+    int a4 = (
+        src)[srcstride * 2] + (
+            src)[srcstride * 5];
+    int a5 = (
+        src)[srcstride * 2] - (
+            src)[srcstride * 5];
+    int a6 = (
+        src)[srcstride * 3] + (
+            src)[srcstride * 4];
+    int a7 = (
+        src)[srcstride * 3] - (
+            src)[srcstride * 4];
     int b0 = a0 + a6;
     int b1 = a2 + a4;
     int b2 = a0 - a6;
     int b3 = a2 - a4;
-    int b4 = a3 + a5 + (a1 + (a1 >> 1)
+    int b4 = a3 + a5 + (
+        a1 + (
+            a1 >> 1)
     );
 
-    int b5 = a1 - a7 - (a5 + (a5 >> 1)
+    int b5 = a1 - a7 - (
+        a5 + (
+            a5 >> 1)
     );
 
-    int b6 = a1 + a7 - (a3 + (a3 >> 1)
+    int b6 = a1 + a7 - (
+        a3 + (
+            a3 >> 1)
     );
 
-    int b7 = a3 - a5 + (a7 + (a7 >> 1)
+    int b7 = a3 - a5 + (
+        a7 + (
+            a7 >> 1)
     );
 
-    (dst)[dststride * 0] =  b0 +  b1;
-    (dst)[dststride * 1] =  b4 + (b7 >> 2
+    (
+        dst)[dststride * 0] =  b0 +  b1;
+    (
+        dst)[dststride * 1] =  b4 + (
+        b7 >> 2
     );
 
-    (dst)[dststride * 2] =  b2 + (b3 >> 1
+    (
+        dst)[dststride * 2] =  b2 + (
+        b3 >> 1
     );
 
-    (dst)[dststride * 3] =  b5 + (b6 >> 2
+    (
+        dst)[dststride * 3] =  b5 + (
+        b6 >> 2
     );
 
-    (dst)[dststride * 4] =  b0  - b1;
-    (dst)[dststride * 5] =  b6 - (b5 >> 2
+    (
+        dst)[dststride * 4] =  b0  - b1;
+    (
+        dst)[dststride * 5] =  b6 - (
+        b5 >> 2
     );
 
-    (dst)[dststride * 6] = (b2 >> 1) - b3;
-    (dst)[dststride * 7] = (b4 >> 2) - b7;
+    (
+        dst)[dststride * 6] = (
+        b2 >> 1) - b3;
+    (
+            dst)[dststride * 7] = (
+        b4 >> 2) - b7;
 }
 
 private static void dct4x4_16 (
@@ -177,10 +228,14 @@ private static void dct4x4_16 (
             x++
         ) {
             int scale[] = { 13107 * 10, 8066 * 13, 5243 * 16 };
-            int idx = (y & 1) + (x & 1
+            int idx = (
+            y & 1) + (
+                x & 1
             );
 
-            coef[y*4 + x] = (coef[y*4 + x] * scale[idx] + (1 << 14)) >> 15;
+            coef[y*4 + x] = (
+                coef[y*4 + x] * scale[idx] + (
+                    1 << 14)) >> 15;
         }
 
     }
@@ -233,10 +288,14 @@ private static void dct4x4_32 (
             x++
         ) {
             int scale[] = { 13107 * 10, 8066 * 13, 5243 * 16 };
-            int idx = (y & 1) + (x & 1
+            int idx = (
+            y & 1) + (
+                x & 1
             );
 
-            coef[y*4 + x] = (coef[y*4 + x] * scale[idx] + (1 << 14)) >> 15;
+            coef[y*4 + x] = (
+                coef[y*4 + x] * scale[idx] + (
+                    1 << 14)) >> 15;
         }
 
     }
@@ -291,8 +350,18 @@ private static void dct8x8_16 (
                 4, 5, 2, 5,
                 3, 1, 5, 1,
             };
-            int idx = idxmap[(y & 3) * 4 + (x & 3)];
-            coef[y*8 + x] = ((int64)coef[y*8 + x] * scale[idx] + (1 << 17)) >> 18;
+
+            int idx = idxmap[(
+                y & 3
+            ) * 4 + (
+                x & 3
+            )];
+
+            coef[y*8 + x] = (
+                (int64)coef[y * 8 + x] * scale[idx] + (
+                    1 << 17
+                )
+            ) >> 18;
         }
 
     }
@@ -346,8 +415,18 @@ private static void dct8x8_32 (
                 4, 5, 2, 5,
                 3, 1, 5, 1,
             };
-            int idx = idxmap[(y & 3) * 4 + (x & 3)];
-            coef[y*8 + x] = ((int64)coef[y*8 + x] * scale[idx] + (1 << 17)) >> 18;
+
+            int idx = idxmap[(
+                y & 3
+            ) * 4 + (
+                x & 3
+            )];
+
+            coef[y*8 + x] = (
+                (int64)coef[y * 8 + x] * scale[idx] + (
+                    1 << 17
+                )
+            ) >> 18;
         }
 
     }
@@ -367,7 +446,8 @@ private static void dct4x4 (
         );
 
     } else {
-        dct4x4_32 ((int32[] ) coef
+        dct4x4_32 (
+        (int32[] ) coef
         );
 
     }
@@ -386,7 +466,8 @@ private static void dct8x8 (
         );
 
     } else {
-        dct8x8_32 ((int32[] ) coef
+        dct8x8_32 (
+        (int32[] ) coef
         );
 
     }
@@ -701,9 +782,11 @@ private static void check_idct_multiple () {
                 uint8 dst[8 * 8 * 2];
                 int16 coef[8 * 8 * 2];
                 int index = i / sz;
-                int block_y = (index / 16) * sz;
+                int block_y = (
+                    index / 16) * sz;
                 int block_x = index % 16;
-                int offset = (block_y * 16 + block_x) * SIZEOF_PIXEL;
+                int offset = (
+                    block_y * 16 + block_x) * SIZEOF_PIXEL;
                 int nnz = rnd () % 3;
 
                 randomize_buffers ();
@@ -730,6 +813,7 @@ private static void check_idct_multiple () {
                         &dst_full[offset + y * 16 * SIZEOF_PIXEL],
                         &dst[PIXEL_STRIDE * y], sz * SIZEOF_PIXEL
                     );
+
                 }
 
                 if (
@@ -739,7 +823,9 @@ private static void check_idct_multiple () {
                 }
 
                 memcpy (
-                    &coef_full[i * SIZEOF_COEF/sizeof (coef[0])],
+                    &coef_full[i * SIZEOF_COEF / sizeof (
+                        coef[0]
+                    )],
                     coef, nnz * SIZEOF_COEF
                 );
 
@@ -822,7 +908,12 @@ private static void check_idct_multiple () {
 //              j < 36;
 //              j++
 //          ) {
-//              intptr_t off = 8 * 32 + (j & 15) * 4 * !align;
+//              intptr_t off = (
+//                  8 * 32 + (
+//                      j & 15
+//                  ) * 4 * !align
+//              );
+
 //              for (
 //                  i = 0;
 //                  i < 1024;
@@ -949,15 +1040,21 @@ private static void check_loop_filter () {
             i >= 0;
             i--
         ) {
-            alphas[i] = a << (bit_depth - 8
+            alphas[i] = a << (
+            bit_depth - 8
             );
 
-            betas[i] = (i + 1) / 2 << (bit_depth - 8
+            betas[i] = (
+                i + 1) / 2 << (
+                    bit_depth - 8
             );
 
-            tc0[i][0] = tc0[i][3] = (c + 6) / 10;
-            tc0[i][1] = (c + 7) / 15;
-            tc0[i][2] = (c + 9) / 20;
+            tc0[i][0] = tc0[i][3] = (
+                c + 6) / 10;
+            tc0[i][1] = (
+                c + 7) / 15;
+            tc0[i][2] = (
+                c + 9) / 20;
             a = a*9/10;
             c = c*9/10;
         }
@@ -1029,7 +1126,12 @@ private static void check_loop_filter () {
 //              j < 36;
 //              j++
 //          ) {
-//              intptr_t off = 8 * 32 + (j & 15) * 4 * !align;
+//              intptr_t off = (
+//                  8 * 32 + (
+//                      j & 15
+//                  ) * 4 * !align
+//              );
+
 //              for (
 //                  i = 0;
 //                  i < 1024;
@@ -1146,10 +1248,13 @@ private static void check_loop_filter_intra () {
             i >= 0;
             i--
         ) {
-            alphas[i] = a << (bit_depth - 8
+            alphas[i] = a << (
+            bit_depth - 8
             );
 
-            betas[i] = (i + 1) / 2 << (bit_depth - 8
+            betas[i] = (
+                i + 1) / 2 << (
+                    bit_depth - 8
             );
 
             a = a*9/10;

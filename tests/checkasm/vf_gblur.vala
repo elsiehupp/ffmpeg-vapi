@@ -18,7 +18,8 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 private const size_t WIDTH = 256;
 private const size_t HEIGHT = 256;
-private const size_t PIXELS = (WIDTH * HEIGHT
+private const size_t PIXELS = (
+    WIDTH * HEIGHT
 );
 
 private const size_t BUF_SIZE = (
@@ -30,13 +31,15 @@ private static void randomize_buffers (
     int size
 ) {
     int j;
-    float[] tmp_buf = (float[] )buf;
+    float[] tmp_buf = (
+        float[] )buf;
     for (
         j = 0;
         j < size;
         j++
     ) {
-        tmp_buf[j] = (float)(rnd () & 0xFF
+        tmp_buf[j] = (
+        float)(rnd () & 0xFF
         );
 
     }
@@ -44,10 +47,12 @@ private static void randomize_buffers (
 }
 
 private static void checkasm_check_vf_gblur () {
-    float[] dst_ref = av_malloc (BUF_SIZE
+    float[] dst_ref = av_malloc (
+        BUF_SIZE
     );
 
-    float[] dst_new = av_malloc (BUF_SIZE
+    float[] dst_new = av_malloc (
+        BUF_SIZE
     );
 
     int w = WIDTH;
@@ -94,7 +99,8 @@ private static void checkasm_check_vf_gblur () {
         );
 
         if (
-            !float_near_abs_eps_array (dst_ref, dst_new, 0.01f, PIXELS)
+            !float_near_abs_eps_array (
+                dst_ref, dst_new, 0.01f, PIXELS)
         ) {
             fail ();
         }

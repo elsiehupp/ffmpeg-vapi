@@ -96,7 +96,8 @@ private class AVIOListDirApplication : GLib.Application {
         int cnt, ret;
         char filemode[4], uid_and_gid[20];
 
-        ret = avio_open_dir (&ctx, input_dir, null
+        ret = avio_open_dir (
+            &ctx, input_dir, null
         );
 
         if (
@@ -109,7 +110,8 @@ private class AVIOListDirApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.FAIL ("");
+            throw new Goto.FAIL (
+                "");
         }
 
         cnt = 0;
@@ -117,7 +119,8 @@ private class AVIOListDirApplication : GLib.Application {
             ;
             ;
         ) {
-            ret = avio_read_dir (ctx, &entry
+            ret = avio_read_dir (
+            ctx, &entry
             );
 
             if (
@@ -130,7 +133,8 @@ private class AVIOListDirApplication : GLib.Application {
                         ret)
                 );
 
-                throw new Goto.FAIL ("");
+                throw new Goto.FAIL (
+                    "");
             }
 
             if (
@@ -161,9 +165,17 @@ private class AVIOListDirApplication : GLib.Application {
                 cnt == 0
             ) {
                 av_log (
-                    null, AV_LOG_INFO, "%-9s %12s %30s %10s %s %16s %16s %16s\n",
-                    "TYPE", "SIZE", "NAME", "UID (GID)", "UGO", "MODIFIED",
-                    "ACCESSED", "STATUS_CHANGED"
+                    null,
+                    AV_LOG_INFO,
+                    "%-9s %12s %30s %10s %s %16s %16s %16s\n",
+                    "TYPE",
+                    "SIZE",
+                    "NAME",
+                    "UID (GID)",
+                    "UGO",
+                    "MODIFIED",
+                    "ACCESSED",
+                    "STATUS_CHANGED"
                 );
 
             }
@@ -231,7 +243,8 @@ private class AVIOListDirApplication : GLib.Application {
 
         avformat_network_init ();
 
-        ret = list_op (argv[1]
+        ret = list_op (
+            argv[1]
         );
 
         avformat_network_deinit ();

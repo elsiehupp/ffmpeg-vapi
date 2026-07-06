@@ -59,14 +59,16 @@ private class ResampleAudioApplication : GLib.Application {
 
         for (
             i = 0;
-            i < FF_ARRAY_ELEMS (sample_fmt_entries);
+            i < FF_ARRAY_ELEMS (
+                sample_fmt_entries);
             i++
         ) {
             SampleFormatEntry? entry = &sample_fmt_entries[i];
             if (
                 sample_fmt == entry.sample_fmt
             ) {
-                fmt_out = AV_NE (entry.fmt_be, entry.fmt_le
+                fmt_out = AV_NE (
+                entry.fmt_be, entry.fmt_le
                 );
 
                 return 0;
@@ -81,7 +83,8 @@ private class ResampleAudioApplication : GLib.Application {
                     sample_fmt)
         );
 
-        return AVERROR (EINVAL
+        return AVERROR (
+            EINVAL
         );
 
     }
@@ -170,7 +173,8 @@ private class ResampleAudioApplication : GLib.Application {
 
         dst_filename = argv[1];
 
-        dst_file = fopen (dst_filename, "wb"
+        dst_file = fopen (
+            dst_filename, "wb"
         );
 
         if (
@@ -200,10 +204,12 @@ private class ResampleAudioApplication : GLib.Application {
                 "Could not allocate resampler context\n"
             );
 
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+                ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
@@ -236,7 +242,8 @@ private class ResampleAudioApplication : GLib.Application {
         /***********************************************************
         initialize the resampling context
         ***********************************************************/
-        ret = swr_init (swr_ctx
+        ret = swr_init (
+            swr_ctx
         );
 
         if (
@@ -247,7 +254,8 @@ private class ResampleAudioApplication : GLib.Application {
                 "Failed to initialize the resampling context\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
@@ -255,7 +263,8 @@ private class ResampleAudioApplication : GLib.Application {
         ***********************************************************/
 
         src_nb_channels = src_ch_layout.nb_channels;
-        ret = av_samples_alloc_array_and_samples (&src_data, &src_linesize, src_nb_channels,
+        ret = av_samples_alloc_array_and_samples (
+            &src_data, &src_linesize, src_nb_channels,
                                                 src_nb_samples, src_sample_fmt, 0
         );
 
@@ -267,7 +276,8 @@ private class ResampleAudioApplication : GLib.Application {
                 "Could not allocate source samples\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
@@ -284,7 +294,8 @@ private class ResampleAudioApplication : GLib.Application {
         buffer is going to be directly written to a rawaudio file, no alignment
         ***********************************************************/
         dst_nb_channels = dst_ch_layout.nb_channels;
-        ret = av_samples_alloc_array_and_samples (&dst_data, &dst_linesize, dst_nb_channels,
+        ret = av_samples_alloc_array_and_samples (
+            &dst_data, &dst_linesize, dst_nb_channels,
                                                 dst_nb_samples, dst_sample_fmt, 0
         );
 
@@ -296,7 +307,8 @@ private class ResampleAudioApplication : GLib.Application {
                 "Could not allocate destination samples\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         t = 0;
@@ -304,13 +316,18 @@ private class ResampleAudioApplication : GLib.Application {
             /***********************************************************
             generate synthetic audio
             ***********************************************************/
-            fill_samples ((double[] )src_data[0], src_nb_samples, src_nb_channels, src_rate, &t
+            fill_samples (
+                (double[])src_data[0],
+                src_nb_samples,
+                src_nb_channels, src_rate, &t
             );
 
             /***********************************************************
             compute destination number of samples
             ***********************************************************/
-            dst_nb_samples = av_rescale_rnd (swr_get_delay (swr_ctx, src_rate) +
+            dst_nb_samples = av_rescale_rnd (
+                swr_get_delay (
+                    swr_ctx, src_rate) +
                                             src_nb_samples, dst_rate, src_rate, AV_ROUND_UP
             );
 
@@ -321,7 +338,8 @@ private class ResampleAudioApplication : GLib.Application {
                     &dst_data[0]
                 );
 
-                ret = av_samples_alloc (dst_data, &dst_linesize, dst_nb_channels,
+                ret = av_samples_alloc (
+                    dst_data, &dst_linesize, dst_nb_channels,
                                     dst_nb_samples, dst_sample_fmt, 1
                 );
 
@@ -337,7 +355,9 @@ private class ResampleAudioApplication : GLib.Application {
             /***********************************************************
             convert to destination format
             ***********************************************************/
-            ret = swr_convert (swr_ctx, dst_data, dst_nb_samples, (uint8[][] )src_data, src_nb_samples
+            ret = swr_convert (
+                swr_ctx, dst_data, dst_nb_samples, (
+                    uint8[][] )src_data, src_nb_samples
             );
 
             if (
@@ -348,10 +368,12 @@ private class ResampleAudioApplication : GLib.Application {
                     "Error while converting\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
-            dst_bufsize = av_samples_get_buffer_size (&dst_linesize, dst_nb_channels,
+            dst_bufsize = av_samples_get_buffer_size (
+                &dst_linesize, dst_nb_channels,
                                                     ret, dst_sample_fmt, 1
             );
 
@@ -363,7 +385,8 @@ private class ResampleAudioApplication : GLib.Application {
                     "Could not get sample buffer size\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             printf (
@@ -377,20 +400,24 @@ private class ResampleAudioApplication : GLib.Application {
                 dst_data[0], 1, dst_bufsize, dst_file
             );
 
-        } while (t < 10
+        } while (
+            t < 10
         );
 
-        ret = get_format_from_sample_fmt (&fmt, dst_sample_fmt
+        ret = get_format_from_sample_fmt (
+            &fmt, dst_sample_fmt
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         av_channel_layout_describe (
-            &dst_ch_layout, buf, sizeof (buf)
+            &dst_ch_layout, buf, sizeof (
+                buf)
         );
 
         fprintf (

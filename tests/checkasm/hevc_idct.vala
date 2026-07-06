@@ -76,7 +76,8 @@ private static void check_idct (
         );
 
         memcpy (
-            coeffs1, coeffs0, sizeof (coeffs0) * size
+            coeffs1, coeffs0, sizeof (
+                coeffs0) * size
         );
 
         if (
@@ -93,7 +94,12 @@ private static void check_idct (
 
             if (
                 memcmp (
-                    coeffs0, coeffs1, sizeof (coeffs0) * size)
+                    coeffs0,
+                    coeffs1,
+                    sizeof (
+                        coeffs0
+                    ) * size
+                )
             ) {
                 fail ();
             }
@@ -147,7 +153,8 @@ private static void check_idct_dc (
         );
 
         memcpy (
-            coeffs1, coeffs0, sizeof (coeffs0) * size
+            coeffs1, coeffs0, sizeof (
+                coeffs0) * size
         );
 
         if (
@@ -164,7 +171,12 @@ private static void check_idct_dc (
 
             if (
                 memcmp (
-                    coeffs0, coeffs1, sizeof (coeffs0) * size)
+                    coeffs0,
+                    coeffs1,
+                    sizeof (
+                        coeffs0
+                    ) * size
+                )
             ) {
                 fail ();
             }

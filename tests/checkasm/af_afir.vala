@@ -69,13 +69,17 @@ private static void test_fcmul_add (
     memcpy (
         cdst,
         src0,
-        (LEN * 2 + 8) * sizeof (float)
+        (
+            LEN * 2 + 8) * sizeof (
+            float)
     );
 
     memcpy (
         odst,
         src0,
-        (LEN * 2 + 8) * sizeof (float)
+        (
+            LEN * 2 + 8) * sizeof (
+            float)
     );
 
     call_ref (
@@ -95,7 +99,8 @@ private static void test_fcmul_add (
         i++
     ) {
         if (
-            !float_near_abs_eps (cdst[i], odst[i], 6.2e-05)
+            !float_near_abs_eps (
+                cdst[i], odst[i], 6.2e-05)
         ) {
             fprintf (
                 stderr,
@@ -110,7 +115,9 @@ private static void test_fcmul_add (
     }
 
     memcpy (
-        odst, src0, (LEN * 2 + 8) * sizeof (float)
+        odst, src0, (
+            LEN * 2 + 8) * sizeof (
+                float)
     );
 
     bench_new (

@@ -19,7 +19,9 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 ***********************************************************/
 
 private const size_t BUF_UNITS = 8;
-private const size_t BUF_SIZE = (BUF_UNITS * 128 + 8 * BUF_UNITS);
+private const size_t BUF_SIZE = (
+    BUF_UNITS * 128 + 8 * BUF_UNITS
+);
 
 private static void randomize_buffers () {
     int i;
@@ -89,7 +91,8 @@ private static void check_get_pixels (
         /***********************************************************
         Test various alignments
         ***********************************************************/
-        int src_offset = i * 64 * sizeof (type) + 8 * i;
+        int src_offset = i * 64 * sizeof (
+            type) + 8 * i;
         /***********************************************************
         dst must be aligned
         ***********************************************************/
@@ -106,7 +109,8 @@ private static void check_get_pixels (
 
         if (
             memcmp (
-                src10, src11, BUF_SIZE)|| memcmp (dst0, dst1, BUF_SIZE)
+                src10, src11, BUF_SIZE)|| memcmp (
+                    dst0, dst1, BUF_SIZE)
         ) {
             fail ();
         }
@@ -141,7 +145,8 @@ private static void check_diff_pixels (
         /***********************************************************
         Test various alignments
         ***********************************************************/
-        int src_offset = i * 64 * sizeof (type) + 8 * i;
+        int src_offset = i * 64 * sizeof (
+            type) + 8 * i;
         /***********************************************************
         dst must be aligned
         ***********************************************************/
@@ -215,8 +220,10 @@ private static void checkasm_check_pixblockdsp () {
     //      [BUF_SIZE]
     //  );
 
-    uint16[] dst0 = (uint16[] )dst0_;
-    uint16[] dst1 = (uint16[] )dst1_;
+    uint16[] dst0 = (
+        uint16[] )dst0_;
+    uint16[] dst1 = (
+        uint16[] )dst1_;
     PixblockDSPContext pixblock_dsp_context;
     AVCodecContext avctx = new AVCodecContext () {
         bits_per_raw_sample = 8

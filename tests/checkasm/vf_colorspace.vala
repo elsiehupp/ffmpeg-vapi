@@ -24,7 +24,8 @@ private const size_t H = 64;
 private static void randomize_buffers () {
     uint mask = bpp_mask[idepth];
     int n, m;
-    int bpp = 1 + (!!idepth
+    int bpp = 1 + (
+        !!idepth
     );
 
     int buf_size = W * H * bpp;
@@ -148,8 +149,12 @@ private static void check_yuv2yuv () {
     //      [3 * 3 * 8]
     //  );
 
-    int16 (*offset)[8] = (int16[][8]) offset_buf;
-    int16 (*coeff)[3][8] = (int16[][3][8]) coeff_buf;
+    int16 (
+        *offset)[8] = (
+            int16[][8]) offset_buf;
+    int16 (
+        *coeff)[3][8] = (
+            int16[][3][8]) coeff_buf;
 
     ff_colorspacedsp_init (
         &colorspace_dsp_context
@@ -162,19 +167,26 @@ private static void check_yuv2yuv () {
     ) {
         offset[0][n] = offset[1][n] = 16;
 
-        coeff[0][0][n] = (1 << 14) + (1 << 7) + 1;
-        coeff[0][1][n] = (1 << 7) - 1;
+        coeff[0][0][n] = (
+            1 << 14) + (
+                1 << 7) + 1;
+        coeff[0][1][n] = (
+            1 << 7) - 1;
         coeff[0][2][n] = -(1 << 8
         );
 
         coeff[1][0][n] = coeff[2][0][n] = 0;
-        coeff[1][1][n] = (1 << 14) + (1 << 7
+        coeff[1][1][n] = (
+            1 << 14) + (
+                1 << 7
         );
 
         coeff[1][2][n] = -(1 << 7
         );
 
-        coeff[2][2][n] = (1 << 14) - (1 << 6
+        coeff[2][2][n] = (
+            1 << 14) - (
+                1 << 6
         );
 
         coeff[2][1][n] = 1 << 6;
@@ -363,7 +375,9 @@ private static void check_yuv2rgb () {
     //      [3 * 3 * 8]
     //  );
 
-    int16 (*coeff)[3][8] = (int16[][3][8]) coeff_buf;
+    int16 (
+        *coeff)[3][8] = (
+            int16[][3][8]) coeff_buf;
 
     ff_colorspacedsp_init (
         &colorspace_dsp_context
@@ -376,7 +390,8 @@ private static void check_yuv2rgb () {
     ) {
         offset[n] = 16;
 
-        coeff[0][0][n] = coeff[1][0][n] = coeff[2][0][n] = (1 << 14) | 1;
+        coeff[0][0][n] = coeff[1][0][n] = coeff[2][0][n] = (
+            1 << 14) | 1;
         coeff[0][1][n] = coeff[2][2][n] = 0;
         coeff[0][2][n] = 1 << 13;
         coeff[1][1][n] = -(1 << 12
@@ -412,7 +427,8 @@ private static void check_yuv2rgb () {
                 //      dst0,
                 //      W,
                 //      src,
-                //      (size_t[3]) {
+                //      (
+                    size_t[3]) {
                 //          y_src_stride,
                 //          uv_src_stride,
                 //          uv_src_stride
@@ -427,7 +443,8 @@ private static void check_yuv2rgb () {
                 //      dst1,
                 //      W,
                 //      src,
-                //      (size_t[3]) {
+                //      (
+                    size_t[3]) {
                 //          y_src_stride,
                 //          uv_src_stride,
                 //          uv_src_stride
@@ -440,11 +457,26 @@ private static void check_yuv2rgb () {
 
                 if (
                     memcmp (
-                        dst0[0], dst1[0], W * H * sizeof (int16)) ||
+                        dst0[0],
+                        dst1[0],
+                        W * H * sizeof (
+                            int16
+                        )
+                    ) ||
                     memcmp (
-                        dst0[1], dst1[1], W * H * sizeof (int16)) ||
+                        dst0[1],
+                        dst1[1],
+                        W * H * sizeof (
+                            int16
+                        )
+                    ) ||
                     memcmp (
-                        dst0[2], dst1[2], W * H * sizeof (int16))
+                        dst0[2],
+                        dst1[2],
+                        W * H * sizeof (
+                            int16
+                        )
+                    )
                 ) {
                     fail ();
                 }
@@ -480,7 +512,8 @@ private static void randomize_buffers () {
                 x++
             ) {
                 int r = rnd () & 0x7fff;
-                r -= (32768 - 28672) >> 1;
+                r -= (
+                    32768 - 28672) >> 1;
                 src[p][y * W + x] = r;
             }
 
@@ -578,7 +611,9 @@ private static void check_rgb2yuv () {
     //      [3 * 3 * 8]
     //  );
 
-    int16 (*coeff)[3][8] = (int16[][3][8]) coeff_buf;
+    int16 (
+        *coeff)[3][8] = (
+            int16[][3][8]) coeff_buf;
 
     ff_colorspacedsp_init (
         &colorspace_dsp_context
@@ -594,31 +629,49 @@ private static void check_rgb2yuv () {
         /***********************************************************
         ***********************************************************/
         // these somewhat resemble bt601/smpte170m coefficients
-        coeff[0][0][n] = lrint (0.3 * (1 << 14)
+        coeff[0][0][n] = lrint (
+            0.3 * (
+                1 << 14)
         );
 
-        coeff[0][1][n] = lrint (0.6 * (1 << 14)
+        coeff[0][1][n] = lrint (
+            0.6 * (
+                1 << 14)
         );
 
-        coeff[0][2][n] = lrint (0.1 * (1 << 14)
+        coeff[0][2][n] = lrint (
+            0.1 * (
+                1 << 14)
         );
 
-        coeff[1][0][n] = lrint (-0.15 * (1 << 14)
+        coeff[1][0][n] = lrint (
+            -0.15 * (
+                1 << 14)
         );
 
-        coeff[1][1][n] = lrint (-0.35 * (1 << 14)
+        coeff[1][1][n] = lrint (
+            -0.35 * (
+                1 << 14)
         );
 
-        coeff[1][2][n] = lrint (0.5 * (1 << 14)
+        coeff[1][2][n] = lrint (
+            0.5 * (
+                1 << 14)
         );
 
-        coeff[2][0][n] = lrint (0.5 * (1 << 14)
+        coeff[2][0][n] = lrint (
+            0.5 * (
+                1 << 14)
         );
 
-        coeff[2][1][n] = lrint (-0.42 * (1 << 14)
+        coeff[2][1][n] = lrint (
+            -0.42 * (
+                1 << 14)
         );
 
-        coeff[2][2][n] = lrint (-0.08 * (1 << 14)
+        coeff[2][2][n] = lrint (
+            -0.08 * (
+                1 << 14)
         );
 
     }
@@ -647,7 +700,8 @@ private static void check_rgb2yuv () {
 
                 //  call_ref (
                 //      dst0,
-                //      (size_t[3]) {
+                //      (
+                    size_t[3]) {
                 //          y_dst_stride,
                 //          uv_dst_stride,
                 //          uv_dst_stride
@@ -662,7 +716,8 @@ private static void check_rgb2yuv () {
 
                 //  call_new (
                 //      dst1,
-                //      (size_t[3]) {
+                //      (
+                    size_t[3]) {
                 //          y_dst_stride,
                 //          v_dst_stride,
                 //          uv_dst_stride
@@ -756,7 +811,9 @@ private static void check_multiply3x3 () {
     //      [3 * 3 * 8]
     //  );
 
-    int16 (*coeff)[3][8] = (int16[][3][8]) coeff_buf;
+    int16 (
+        *coeff)[3][8] = (
+            int16[][3][8]) coeff_buf;
     int n;
 
     ff_colorspacedsp_init (
@@ -768,31 +825,49 @@ private static void check_multiply3x3 () {
         n < 8;
         n++
     ) {
-        coeff[0][0][n] = lrint (0.85 * (1 << 14)
+        coeff[0][0][n] = lrint (
+        0.85 * (
+            1 << 14)
         );
 
-        coeff[0][1][n] = lrint (0.10 * (1 << 14)
+        coeff[0][1][n] = lrint (
+            0.10 * (
+                1 << 14)
         );
 
-        coeff[0][2][n] = lrint (0.05 * (1 << 14)
+        coeff[0][2][n] = lrint (
+            0.05 * (
+                1 << 14)
         );
 
-        coeff[1][0][n] = lrint (-0.1 * (1 << 14)
+        coeff[1][0][n] = lrint (
+            -0.1 * (
+                1 << 14)
         );
 
-        coeff[1][1][n] = lrint (0.95 * (1 << 14)
+        coeff[1][1][n] = lrint (
+            0.95 * (
+                1 << 14)
         );
 
-        coeff[1][2][n] = lrint (0.15 * (1 << 14)
+        coeff[1][2][n] = lrint (
+            0.15 * (
+                1 << 14)
         );
 
-        coeff[2][0][n] = lrint (-0.2 * (1 << 14)
+        coeff[2][0][n] = lrint (
+            -0.2 * (
+                1 << 14)
         );
 
-        coeff[2][1][n] = lrint (0.30 * (1 << 14)
+        coeff[2][1][n] = lrint (
+            0.30 * (
+                1 << 14)
         );
 
-        coeff[2][2][n] = lrint (0.90 * (1 << 14)
+        coeff[2][2][n] = lrint (
+            0.90 * (
+                1 << 14)
         );
 
     }
@@ -804,15 +879,18 @@ private static void check_multiply3x3 () {
     ) {
         randomize_buffers ();
         memcpy (
-            dst1_y, dst0_y, W * H * sizeof (dst1_y)
+            dst1_y, dst0_y, W * H * sizeof (
+                dst1_y)
         );
 
         memcpy (
-            dst1_u, dst0_u, W * H * sizeof (dst1_u)
+            dst1_u, dst0_u, W * H * sizeof (
+                dst1_u)
         );
 
         memcpy (
-            dst1_v, dst0_v, W * H * sizeof (dst1_v)
+            dst1_v, dst0_v, W * H * sizeof (
+                dst1_v)
         );
 
         call_ref (
@@ -825,11 +903,14 @@ private static void check_multiply3x3 () {
 
         if (
             memcmp (
-                dst0[0], dst1[0], H * W * sizeof (dst0_y)) ||
+                dst0[0], dst1[0], H * W * sizeof (
+                    dst0_y)) ||
             memcmp (
-                dst0[1], dst1[1], H * W * sizeof (dst0_u)) ||
+                dst0[1], dst1[1], H * W * sizeof (
+                    dst0_u)) ||
             memcmp (
-                dst0[2], dst1[2], H * W * sizeof (dst0_v))
+                dst0[2], dst1[2], H * W * sizeof (
+                    dst0_v))
         ) {
             fail ();
         }

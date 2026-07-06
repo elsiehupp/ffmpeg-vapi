@@ -24,9 +24,13 @@ private const size_t HEIGHT = 120;
 /***********************************************************
 padded to 32
 ***********************************************************/
-private const size_t WIDTH_PADDED = (WIDTH + 16);
+private const size_t WIDTH_PADDED = (
+    WIDTH + 16
+);
 
-private const size_t BUFFER_SIZE = (WIDTH_PADDED * HEIGHT);
+private const size_t BUFFER_SIZE = (
+    WIDTH_PADDED * HEIGHT
+);
 
 
 private static void randomize_plane (
@@ -219,19 +223,22 @@ private static void CHECK_RESTORE (
     cmp_plane (
         src_r0,
         src_r1,
-        sizeof (type)
+        sizeof (
+            type)
     );
 
     cmp_plane (
         src_g0,
         src_g1,
-        sizeof (type)
+        sizeof (
+            type)
     );
 
     cmp_plane (
         src_b0,
         src_b1,
-        sizeof (type)
+        sizeof (
+            type)
     );
 
     bench_new (

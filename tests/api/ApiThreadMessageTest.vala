@@ -36,7 +36,8 @@ private class ApiThreadMessageTest : GLib.TestCase {
         public LibAVUtil.ThreadMessageQueue queue;
         public abstract void *thread ();
 
-        public static void SPAWN_THREADS (LibAVUtil.ThreadMessageQueue queue) throws Goto {
+        public static void SPAWN_THREADS (
+            LibAVUtil.ThreadMessageQueue queue) throws Goto {
             for (
                 int i = 0;
                 i < count;
@@ -61,7 +62,8 @@ private class ApiThreadMessageTest : GLib.TestCase {
                 if (
                     ret
                 ) {
-                    uint err = AVERROR (ret
+                    uint err = AVERROR (
+                    ret
                     );
 
                     av_log (
@@ -73,6 +75,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         av_err2str (
                             err)
                     );
+
                     throw new Goto.END ();
                 }
 
@@ -96,7 +99,8 @@ private class ApiThreadMessageTest : GLib.TestCase {
                 if (
                     ret
                 ) {
-                    uint err = AVERROR (ret
+                    uint err = AVERROR (
+                    ret
                     );
 
                     av_log (
@@ -108,6 +112,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         av_err2str (
                             err)
                     );
+
                     throw new Goto.END ();
                 }
 
@@ -119,9 +124,17 @@ private class ApiThreadMessageTest : GLib.TestCase {
             uint minv,
             uint maxv
         ) {
-            return maxv == minv ? maxv : rand () % (maxv - minv) + minv;
-        }
+            return (
+                maxv == minv
+                ? maxv
+                : (
+                    rand () % (
+                        maxv - minv
+                    ) + minv
+                )
+            );
 
+        }
 
     }
 
@@ -141,6 +154,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                 this.id,
                 this.workload
             );
+
             for (
                 uint i = 0;
                 i < this.workload;
@@ -155,6 +169,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         "sender #%d: flushing the queue\n",
                         this.id
                     );
+
                     av_thread_message_flush (
                         this.queue
                     );
@@ -170,7 +185,8 @@ private class ApiThreadMessageTest : GLib.TestCase {
                     if (
                         msg.frame == null
                     ) {
-                        ret = AVERROR (ENOMEM
+                        ret = AVERROR (
+                            ENOMEM
                         );
 
                         break;
@@ -186,6 +202,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         this.workload,
                         this.id
                     );
+
                     if (
                         val == null
                     ) {
@@ -193,7 +210,8 @@ private class ApiThreadMessageTest : GLib.TestCase {
                             out msg.frame
                         );
 
-                        ret = AVERROR (ENOMEM
+                        ret = AVERROR (
+                            ENOMEM
                         );
 
                         break;
@@ -205,6 +223,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         val,
                         AV_DICT_DONT_STRDUP_VAL
                     );
+
                     if (
                         ret < 0
                     ) {
@@ -228,6 +247,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         msg.frame,
                         32
                     );
+
                     if (
                         ret < 0
                     ) {
@@ -251,11 +271,13 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         this.workload,
                         msg.frame
                     );
+
                     ret = av_thread_message_queue_send (
                         this.queue,
                         out msg,
                         0
                     );
+
                     if (
                         ret < 0
                     ) {
@@ -273,15 +295,18 @@ private class ApiThreadMessageTest : GLib.TestCase {
             av_log (
                 null,
                 AV_LOG_INFO,
-                "sender #%d: my work is done here (%s)\n",
+                "sender #%d: my work is done here (
+                    %s)\n",
                 this.id,
                 av_err2str (
                     ret)
             );
+
             av_thread_message_queue_set_err_recv (
                 this.queue,
                 ret < 0 ? ret : AVERROR_EOF
             );
+
             return null;
         }
 
@@ -314,8 +339,10 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         "receiver #%d: flushing the queue, discarding %d ThreadMessage (s)\n",
                         this.id,
                         av_thread_message_queue_nb_elems (
-                            this.queue)
+                            this.queue
+                        )
                     );
+
                     av_thread_message_flush (
                         this.queue
                     );
@@ -348,6 +375,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         null,
                         0
                     );
+
                     av_log (
                         null,
                         AV_LOG_INFO,
@@ -355,6 +383,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         dictionary_entry.value,
                         msg.frame
                     );
+
                     av_frame_free (
                         out msg.frame
                     );
@@ -366,9 +395,11 @@ private class ApiThreadMessageTest : GLib.TestCase {
             av_log (
                 null,
                 AV_LOG_INFO,
-                "consumed enough (%d), stop\n",
+                "consumed enough (
+                    %d), stop\n",
                 i
             );
+
             av_thread_message_queue_set_err_send (
                 this.queue,
                 ret < 0 ? ret : AVERROR_EOF
@@ -383,7 +414,8 @@ private class ApiThreadMessageTest : GLib.TestCase {
         public LibAVUtil.Frame frame;
 
         /***********************************************************
-        we add some junk in the ThreadMessage to make sure the ThreadMessage size is > sizeof (void*)
+        we add some junk in the ThreadMessage to make sure the ThreadMessage size is > sizeof (
+            void*)
         ***********************************************************/
         public uint magic;
 
@@ -431,6 +463,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                 av_err2str (
                     ret)
             );
+
             return 1;
         }
 
@@ -456,28 +489,36 @@ private class ApiThreadMessageTest : GLib.TestCase {
                 "<ReceiverData.count> <receiver_min_recv> <receiver_max_recv>\n",
                 av[0]
             );
+
             return 1;
         }
 
-        max_queue_size = atoi (av[1]
+        max_queue_size = atoi (
+            av[1]
         );
 
-        SenderData.count = atoi (av[2]
+        SenderData.count = atoi (
+            av[2]
         );
 
-        SenderData.min_load = atoi (av[3]
+        SenderData.min_load = atoi (
+            av[3]
         );
 
-        SenderData.max_load = atoi (av[4]
+        SenderData.max_load = atoi (
+            av[4]
         );
 
-        ReceiverData.count = atoi (av[5]
+        ReceiverData.count = atoi (
+            av[5]
         );
 
-        ReceiverData.min_load = atoi (av[6]
+        ReceiverData.min_load = atoi (
+            av[6]
         );
 
-        ReceiverData.max_load = atoi (av[7]
+        ReceiverData.max_load = atoi (
+            av[7]
         );
 
         if (
@@ -494,6 +535,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
                 AV_LOG_ERROR,
                 "negative values not allowed\n"
             );
+
             return 1;
         }
 
@@ -516,17 +558,20 @@ private class ApiThreadMessageTest : GLib.TestCase {
             sizeof (
                 SenderData.instance_array)
         );
+
         ReceiverData.instance_array = av_mallocz_array (
             ReceiverData.count,
             sizeof (
                 ReceiverData.instance_array
             )
         );
+
         if (
             !SenderData.instance_array ||
             !ReceiverData.instance_array
         ) {
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+            ENOMEM
             );
 
             throw new Goto.END ();

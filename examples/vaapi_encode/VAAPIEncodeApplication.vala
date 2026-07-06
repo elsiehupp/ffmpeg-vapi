@@ -49,11 +49,13 @@ private class VAAPIEncodeApplication : GLib.Application {
         AVHWFramesContext? frames_ctx = null;
         int err = 0;
 
-        hw_frames_ref = av_hwframe_ctx_alloc (hw_device_ctx
+        hw_frames_ref = av_hwframe_ctx_alloc (
+            hw_device_ctx
         );
 
         if (
-            !hw_frames_ref) {
+            !hw_frames_ref
+        ) {
             fprintf (
                 stderr,
                 "Failed to create VAAPI frame context.\n"
@@ -62,7 +64,8 @@ private class VAAPIEncodeApplication : GLib.Application {
             return -1;
         }
 
-        frames_ctx = (AVHWFramesContext? )(hw_frames_ref.data
+        frames_ctx = (
+            AVHWFramesContext? )(hw_frames_ref.data
         );
 
         frames_ctx.format = LibAVUtil.PixelFormat.VAAPI;
@@ -70,15 +73,19 @@ private class VAAPIEncodeApplication : GLib.Application {
         frames_ctx.width = width;
         frames_ctx.height = height;
         frames_ctx.initial_pool_size = 20;
-        err = av_hwframe_ctx_init (hw_frames_ref
+        err = av_hwframe_ctx_init (
+            hw_frames_ref
         );
 
         if (
-            err < 0) {
+            err < 0
+        ) {
             fprintf (
                 stderr,
-                "Failed to initialize VAAPI frame context." +
-                    "Error code: %s\n",av_err2str (err)
+                "Failed to initialize VAAPI frame context. Error code: %s\n",
+                av_err2str (
+                    err
+                )
             );
 
             av_buffer_unref (
@@ -88,12 +95,15 @@ private class VAAPIEncodeApplication : GLib.Application {
             return err;
         }
 
-        ctx.hw_frames_ctx = av_buffer_ref (hw_frames_ref
+        ctx.hw_frames_ctx = av_buffer_ref (
+            hw_frames_ref
         );
 
         if (
-            !ctx.hw_frames_ctx) {
-            err = AVERROR (ENOMEM
+            !ctx.hw_frames_ctx
+        ) {
+            err = AVERROR (
+            ENOMEM
             );
 
         }
@@ -115,13 +125,16 @@ private class VAAPIEncodeApplication : GLib.Application {
 
         enc_pkt = av_packet_alloc ();
         if (
-            !enc_pkt) {
-            return AVERROR (ENOMEM
+            !enc_pkt
+        ) {
+            return AVERROR (
+            ENOMEM
             );
 
         }
 
-        ret = avcodec_send_frame (avctx, frame
+        ret = avcodec_send_frame (
+            avctx, frame
         );
 
         if (
@@ -134,21 +147,26 @@ private class VAAPIEncodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         while (
-            true) {
-            ret = avcodec_receive_packet (avctx, enc_pkt
+            true
+        ) {
+            ret = avcodec_receive_packet (
+                avctx, enc_pkt
             );
 
             if (
-                ret) {
+                ret
+            ) {
                 break;
             }
 
             enc_pkt.stream_index = 0;
-            ret = fwrite (enc_pkt.data, enc_pkt.size, 1, fout
+            ret = fwrite (
+                enc_pkt.data, enc_pkt.size, 1, fout
             );
 
             av_packet_unref (
@@ -156,8 +174,10 @@ private class VAAPIEncodeApplication : GLib.Application {
             );
 
             if (
-                !ret) {
-                ret = AVERROR (errno
+                !ret
+            ) {
+                ret = AVERROR (
+                errno
                 );
 
                 break;
@@ -170,7 +190,9 @@ private class VAAPIEncodeApplication : GLib.Application {
             &enc_pkt
         );
 
-        ret = ((ret == AVERROR (EAGAIN)) ? 0 : -1
+        ret = (
+            (ret == AVERROR (
+                EAGAIN)) ? 0 : -1
         );
 
         return ret;
@@ -190,7 +212,8 @@ private class VAAPIEncodeApplication : GLib.Application {
         string enc_name = "h264_vaapi";
 
         if (
-            argc < 5) {
+            argc < 5
+        ) {
             fprintf (
                 stderr,
                 "Usage: %s <width> <height> <input file> <output file>\n",
@@ -200,19 +223,23 @@ private class VAAPIEncodeApplication : GLib.Application {
             return -1;
         }
 
-        width = atoi (argv[1]
+        width = atoi (
+            argv[1]
         );
 
-        height = atoi (argv[2]
+        height = atoi (
+            argv[2]
         );
 
         size = width * height;
 
-        fin = fopen (argv[3], "r"
+        fin = fopen (
+            argv[3], "r"
         );
 
         if (
-            !fin) {
+            !fin
+        ) {
             fprintf (
                 stderr,
                 "Fail to open input file : %s\n",
@@ -223,11 +250,13 @@ private class VAAPIEncodeApplication : GLib.Application {
             return -1;
         }
 
-        fout = fopen (argv[4], "w+b"
+        fout = fopen (
+            argv[4], "w+b"
         );
 
         if (
-            !fout) {
+            !fout
+        ) {
             fprintf (
                 stderr,
                 "Fail to open output file : %s\n",
@@ -236,15 +265,18 @@ private class VAAPIEncodeApplication : GLib.Application {
             );
 
             err = -1;
-            throw new Goto.CLOSE ("");
+            throw new Goto.CLOSE (
+                "");
         }
 
-        err = av_hwdevice_ctx_create (&hw_device_ctx, AV_HWDEVICE_TYPE_VAAPI,
-                                    null, null, 0
+        err = av_hwdevice_ctx_create (
+            &hw_device_ctx, AV_HWDEVICE_TYPE_VAAPI,
+            null, null, 0
         );
 
         if (
-            err < 0) {
+            err < 0
+        ) {
             fprintf (
                 stderr,
                 "Failed to create a VAAPI device. Error code: %s\n",
@@ -252,32 +284,40 @@ private class VAAPIEncodeApplication : GLib.Application {
                     err)
             );
 
-            throw new Goto.CLOSE ("");
+            throw new Goto.CLOSE (
+                "");
         }
 
-        codec = avcodec_find_encoder_by_name (enc_name
+        codec = avcodec_find_encoder_by_name (
+            enc_name
         );
 
         if (
-            !codec) {
+            !codec
+        ) {
             fprintf (
                 stderr,
                 "Could not find encoder.\n"
             );
 
             err = -1;
-            throw new Goto.CLOSE ("");
+            throw new Goto.CLOSE (
+                "");
         }
 
-        avctx = avcodec_alloc_context3 (codec
+        avctx = avcodec_alloc_context3 (
+            codec
         );
 
         if (
-            !avctx) {
-            err = AVERROR (ENOMEM
+            !avctx
+        ) {
+            err = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.CLOSE ("");
+            throw new Goto.CLOSE (
+                "");
         }
 
         avctx.width = width;
@@ -290,43 +330,54 @@ private class VAAPIEncodeApplication : GLib.Application {
         /***********************************************************
         set hw_frames_ctx for encoder's AVCodecContext
         ***********************************************************/
-        err = set_hwframe_ctx (avctx, hw_device_ctx
+        err = set_hwframe_ctx (
+            avctx, hw_device_ctx
         );
 
         if (
-            err < 0) {
+            err < 0
+        ) {
             fprintf (
                 stderr,
                 "Failed to set hwframe context.\n"
             );
 
-            throw new Goto.CLOSE ("");
+            throw new Goto.CLOSE (
+                "");
         }
 
-        err = avcodec_open2 (avctx, codec, null
+        err = avcodec_open2 (
+            avctx, codec, null
         );
 
         if (
-            err < 0) {
+            err < 0
+        ) {
             fprintf (
                 stderr,
                 "Cannot open video encoder codec. Error code: %s\n",
                 av_err2str (
-                    err)
+                    err
+                )
             );
 
-            throw new Goto.CLOSE ("");
+            throw new Goto.CLOSE (
+                "");
         }
 
         while (
-            true) {
+            true
+        ) {
             sw_frame = av_frame_alloc ();
             if (
-                !sw_frame) {
-                err = AVERROR (ENOMEM
+                !sw_frame
+            ) {
+                err = AVERROR (
+                ENOMEM
                 );
 
-                throw new Goto.CLOSE ("");
+                throw new Goto.CLOSE (
+                    "");
             }
 
             /***********************************************************
@@ -335,44 +386,56 @@ private class VAAPIEncodeApplication : GLib.Application {
             sw_frame.width = width;
             sw_frame.height = height;
             sw_frame.format = LibAVUtil.PixelFormat.NV12;
-            err = av_frame_get_buffer (sw_frame, 0
+            err = av_frame_get_buffer (
+                sw_frame, 0
             );
 
             if (
-                err < 0) {
-                throw new Goto.CLOSE ("");
+                err < 0
+            ) {
+                throw new Goto.CLOSE (
+                "");
             }
 
-            err = fread ((uint8*)(sw_frame.data[0]), size, 1, fin
+            err = fread (
+                (uint8*)(sw_frame.data[0]), size, 1, fin
             );
 
             if (
-                err <= 0) {
+                err <= 0
+            ) {
                 break;
             }
 
-            err = fread ((uint8*)(sw_frame.data[1]), size/2, 1, fin
+            err = fread (
+                (uint8*)(sw_frame.data[1]), size/2, 1, fin
             );
 
             if (
-                err <= 0) {
+                err <= 0
+            ) {
                 break;
             }
 
             hw_frame = av_frame_alloc ();
             if (
-                !hw_frame) {
-                err = AVERROR (ENOMEM
+                !hw_frame
+            ) {
+                err = AVERROR (
+                ENOMEM
                 );
 
-                throw new Goto.CLOSE ("");
+                throw new Goto.CLOSE (
+                    "");
             }
 
-            err = av_hwframe_get_buffer (avctx.hw_frames_ctx, hw_frame, 0
+            err = av_hwframe_get_buffer (
+                avctx.hw_frames_ctx, hw_frame, 0
             );
 
             if (
-                err < 0) {
+                err < 0
+            ) {
                 fprintf (
                     stderr,
                     "Error code: %s.\n",
@@ -380,22 +443,28 @@ private class VAAPIEncodeApplication : GLib.Application {
                         err)
                 );
 
-                throw new Goto.CLOSE ("");
+                throw new Goto.CLOSE (
+                    "");
             }
 
             if (
-                !hw_frame.hw_frames_ctx) {
-                err = AVERROR (ENOMEM
+                !hw_frame.hw_frames_ctx
+            ) {
+                err = AVERROR (
+                ENOMEM
                 );
 
-                throw new Goto.CLOSE ("");
+                throw new Goto.CLOSE (
+                    "");
             }
 
-            err = av_hwframe_transfer_data (hw_frame, sw_frame, 0
+            err = av_hwframe_transfer_data (
+                hw_frame, sw_frame, 0
             );
 
             if (
-                err < 0) {
+                err < 0
+            ) {
                 fprintf (
                     stderr,
                     "Error while transferring frame data to surface. Error code: %s.\n",
@@ -403,20 +472,24 @@ private class VAAPIEncodeApplication : GLib.Application {
                         err)
                 );
 
-                throw new Goto.CLOSE ("");
+                throw new Goto.CLOSE (
+                    "");
             }
 
-            err = encode_write (avctx, hw_frame, fout
+            err = encode_write (
+                avctx, hw_frame, fout
             );
 
             if (
-                err < 0) {
+                err < 0
+            ) {
                 fprintf (
                     stderr,
                     "Failed to encode.\n"
                 );
 
-                throw new Goto.CLOSE ("");
+                throw new Goto.CLOSE (
+                    "");
             }
 
             av_frame_free (
@@ -432,17 +505,20 @@ private class VAAPIEncodeApplication : GLib.Application {
         /***********************************************************
         flush encoder
         ***********************************************************/
-        err = encode_write (avctx, null, fout
+        err = encode_write (
+            avctx, null, fout
         );
 
         if (
-            err == AVERROR_EOF) {
+            err == AVERROR_EOF
+        ) {
             err = 0;
         }
 
     //  close:
         if (
-            fin) {
+            fin
+        ) {
             fclose (
                 fin
             );
@@ -450,7 +526,8 @@ private class VAAPIEncodeApplication : GLib.Application {
         }
 
         if (
-            fout) {
+            fout
+        ) {
             fclose (
                 fout
             );

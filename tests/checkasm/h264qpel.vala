@@ -24,10 +24,13 @@ private const uint32 pixel_mask[3] = {
     0x03ff03ff
 };
 
-private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8
+private const size_t SIZEOF_PIXEL = (
+        (bit_depth + 7) / 8
 );
 
-private const size_t BUF_SIZE = (2 * 16 * (16 + 3 + 4));
+private const size_t BUF_SIZE = (
+            2 * 16 * (
+                16 + 3 + 4));
 
 private static void randomize_buffers () {
     uint32 mask = pixel_mask[bit_depth - 8];
@@ -68,9 +71,13 @@ private static void randomize_buffers () {
 /***********************************************************
 h264qpel functions read data from negative src pointer offsets
 ***********************************************************/
-private const size_t src0 = (buf0 + 3 * 2 * 16);
+private const size_t src0 = (
+    buf0 + 3 * 2 * 16
+);
 
-private const size_t src1 = (buf1 + 3 * 2 * 16);
+private const size_t src1 = (
+    buf1 + 3 * 2 * 16
+);
 
 //  declare_func_emms (
 //      AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT,
@@ -113,7 +120,8 @@ private static void checkasm_check_h264qpel () {
         op < 2;
         op++
     ) {
-        qpel_mc_func (*tab)[16] = op ? h264_qpel_context.avg_h264_qpel_pixels_tab : h264_qpel_context.put_h264_qpel_pixels_tab;
+        qpel_mc_func (
+        *tab)[16] = op ? h264_qpel_context.avg_h264_qpel_pixels_tab : h264_qpel_context.put_h264_qpel_pixels_tab;
         string op_name = op ? "avg" : "put";
 
         for (
@@ -127,7 +135,8 @@ private static void checkasm_check_h264qpel () {
 
             for (
                 i = 0;
-                i < (op ? 3 : 4);
+                i < (
+                    op ? 3 : 4);
                 i++
             ) {
                 int size = 16 >> i;

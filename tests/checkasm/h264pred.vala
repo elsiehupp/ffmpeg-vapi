@@ -147,10 +147,15 @@ private const uint32 pixel_mask[3] = {
     0xffffffff, 0x01ff01ff, 0x03ff03ff
 };
 
-private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8
+private const size_t SIZEOF_PIXEL = (
+    (
+        bit_depth + 7
+    ) / 8
 );
 
-private const size_t BUF_SIZE = (3 * 16 * 17);
+private const size_t BUF_SIZE = (
+    3 * 16 * 17
+);
 
 private static bool check_pred_func (
     void *func,
@@ -161,8 +166,10 @@ private static bool check_pred_func (
         mode_name &&
         (
             codec_ids[codec] == AV_CODEC_ID_H264
-            ? check_func (func, "pred%s_%s_%d", name, mode_name, bit_depth)
-            : check_func (func, "pred%s_%s", name, mode_name)
+            ? check_func (
+            func, "pred%s_%s_%d", name, mode_name, bit_depth)
+            : check_func (
+                func, "pred%s_%s", name, mode_name)
         )
     );
 
@@ -195,9 +202,13 @@ private static void randomize_buffers () {
 /***********************************************************
 Offset to allow room for top and left
 ***********************************************************/
-private const size_t src0 = (buf0 + 4 * 16);
+private const size_t src0 = (
+    buf0 + 4 * 16
+);
 
-private const size_t src1 = (buf1 + 4 * 16);
+private const size_t src1 = (
+    buf1 + 4 * 16
+);
 
 //  declare_func_emms (
 //      AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT,
@@ -283,7 +294,8 @@ private static void check_pred8x8 (
     ) {
         if (
             check_pred_func (
-                h264_pred_context.pred8x8[pred_mode], (chroma_format == 2) ? "8x16" : "8x8",
+                h264_pred_context.pred8x8[pred_mode], (
+                    chroma_format == 2) ? "8x16" : "8x8",
                             pred8x8_modes[codec][pred_mode])
         ) {
             randomize_buffers ();
@@ -459,15 +471,17 @@ private static void check_pred8x8l (
 TODO: Add tests for H.264 lossless H/V prediction
 ***********************************************************/
 
+private delegate void Func (
+    H264PredContext? h264_pred_context,
+    uint8[] data_1,
+    uint8[] data_2,
+    int int_1,
+    int int_2,
+    int int_3
+);
+
 private struct Test {
-    //  void (*func)(
-    //      H264PredContext*,
-    //      uint8[],
-    //      uint8[],
-    //      int,
-    //      int,
-    //      int
-    //  );
+    Func func;
     string name;
 }
 
@@ -497,7 +511,8 @@ private static void checkasm_check_h264pred () {
 
     for (
         test = 0;
-        test < FF_ARRAY_ELEMS (tests);
+        test < FF_ARRAY_ELEMS (
+            tests);
         test++
     ) {
         for (
@@ -508,19 +523,28 @@ private static void checkasm_check_h264pred () {
             int codec_id = codec_ids[codec];
             for (
                 bit_depth = 8;
-                bit_depth <= (codec_id == AV_CODEC_ID_H264 ? 10 : 8);
+                bit_depth <= (
+                    codec_id == AV_CODEC_ID_H264 ? 10 : 8);
                 bit_depth++
             ) {
                 for (
                     chroma_format = 1;
-                    chroma_format <= (codec_id == AV_CODEC_ID_H264 ? 2 : 1);
+                    chroma_format <= (
+                        codec_id == AV_CODEC_ID_H264
+                        ? 2
+                        : 1
+                    );
+
                     chroma_format++
                 ) {
                     ff_h264_pred_init (
                         &h264_pred_context, codec_id, bit_depth, chroma_format
                     );
 
-                    tests[test].func (&h264_pred_context, buf0, buf1, codec, chroma_format, bit_depth
+                    tests[test].func (
+                        &h264_pred_context,
+                        buf0, buf1, codec,
+                        chroma_format, bit_depth
                     );
 
                 }

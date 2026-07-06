@@ -60,7 +60,8 @@ private class DecodeFilterVideoApplication : GLib.Application {
         AVCodec? dec;
         int ret;
 
-        ret = avformat_open_input (&fmt_ctx, filename, null, null
+        ret = avformat_open_input (
+            &fmt_ctx, filename, null, null
         );
 
         if (
@@ -73,7 +74,8 @@ private class DecodeFilterVideoApplication : GLib.Application {
             return ret;
         }
 
-        ret = avformat_find_stream_info (fmt_ctx, null
+        ret = avformat_find_stream_info (
+            fmt_ctx, null
         );
 
         if (
@@ -89,7 +91,8 @@ private class DecodeFilterVideoApplication : GLib.Application {
         /***********************************************************
         select the video stream
         ***********************************************************/
-        ret = av_find_best_stream (fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &dec, 0
+        ret = av_find_best_stream (
+            fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &dec, 0
         );
 
         if (
@@ -107,12 +110,15 @@ private class DecodeFilterVideoApplication : GLib.Application {
         /***********************************************************
         create decoding context
         ***********************************************************/
-        dec_ctx = avcodec_alloc_context3 (dec
+        dec_ctx = avcodec_alloc_context3 (
+            dec
         );
 
         if (
-            !dec_ctx) {
-            return AVERROR (ENOMEM
+            !dec_ctx
+        ) {
+            return AVERROR (
+            ENOMEM
             );
 
         }
@@ -124,7 +130,8 @@ private class DecodeFilterVideoApplication : GLib.Application {
         /***********************************************************
         init the video decoder
         ***********************************************************/
-        ret = avcodec_open2 (dec_ctx, dec, null
+        ret = avcodec_open2 (
+            dec_ctx, dec, null
         );
 
         if (
@@ -145,10 +152,12 @@ private class DecodeFilterVideoApplication : GLib.Application {
     ) {
         char args[512];
         int ret = 0;
-        AVFilter? buffersrc = avfilter_get_by_name ("buffer"
+        AVFilter? buffersrc = avfilter_get_by_name (
+            "buffer"
         );
 
-        AVFilter? buffersink = avfilter_get_by_name ("buffersink"
+        AVFilter? buffersink = avfilter_get_by_name (
+            "buffersink"
         );
 
         AVFilterInOut? outputs = avfilter_inout_alloc ();
@@ -161,24 +170,28 @@ private class DecodeFilterVideoApplication : GLib.Application {
             !inputs ||
             !filter_graph
         ) {
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
         buffer video source: the decoded frames from the decoder will be inserted here.
         ***********************************************************/
         snprintf (
-            args, sizeof (args),
+            args, sizeof (
+                args),
                 "video_size=%dx%d:pix_fmt=%d:time_base=%d/%d:pixel_aspect=%d/%d",
                 dec_ctx.width, dec_ctx.height, dec_ctx.pix_fmt,
                 time_base.num, time_base.den,
                 dec_ctx.sample_aspect_ratio.num, dec_ctx.sample_aspect_ratio.den
         );
 
-        ret = avfilter_graph_create_filter (&buffersrc_ctx, buffersrc, "in",
+        ret = avfilter_graph_create_filter (
+            &buffersrc_ctx, buffersrc, "in",
                                         args, null, filter_graph
         );
 
@@ -189,28 +202,34 @@ private class DecodeFilterVideoApplication : GLib.Application {
                 null, AV_LOG_ERROR, "Cannot create buffer source\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
         buffer video sink: to terminate the filter chain.
         ***********************************************************/
-        buffersink_ctx = avfilter_graph_alloc_filter (filter_graph, buffersink, "out"
+        buffersink_ctx = avfilter_graph_alloc_filter (
+            filter_graph, buffersink, "out"
         );
 
         if (
-            !buffersink_ctx) {
+            !buffersink_ctx
+        ) {
             av_log (
                 null, AV_LOG_ERROR, "Cannot create buffer sink\n"
             );
 
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+                ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = av_opt_set (buffersink_ctx, "pixel_formats", "gray8",
+        ret = av_opt_set (
+            buffersink_ctx, "pixel_formats", "gray8",
                         AV_OPT_SEARCH_CHILDREN
         );
 
@@ -221,10 +240,12 @@ private class DecodeFilterVideoApplication : GLib.Application {
                 null, AV_LOG_ERROR, "Cannot set output pixel format\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = avfilter_init_dict (buffersink_ctx, null
+        ret = avfilter_init_dict (
+            buffersink_ctx, null
         );
 
         if (
@@ -234,7 +255,8 @@ private class DecodeFilterVideoApplication : GLib.Application {
                 null, AV_LOG_ERROR, "Cannot initialize buffer sink\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
@@ -248,7 +270,8 @@ private class DecodeFilterVideoApplication : GLib.Application {
         filter input label is not specified, it is set to "in" by
         default.
         ***********************************************************/
-        outputs.name = av_strdup ("in"
+        outputs.name = av_strdup (
+            "in"
         );
 
         outputs.filter_ctx = buffersrc_ctx;
@@ -261,7 +284,8 @@ private class DecodeFilterVideoApplication : GLib.Application {
         filter output label is not specified, it is set to "out" by
         default.
         ***********************************************************/
-        inputs.name = av_strdup ("out"
+        inputs.name = av_strdup (
+            "out"
         );
 
         inputs.filter_ctx = buffersink_ctx;
@@ -276,16 +300,19 @@ private class DecodeFilterVideoApplication : GLib.Application {
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
-        ret = avfilter_graph_config (filter_graph, null
+        ret = avfilter_graph_config (
+            filter_graph, null
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
     //  end:
@@ -310,9 +337,11 @@ private class DecodeFilterVideoApplication : GLib.Application {
         int64 delay;
 
         if (
-            frame.pts != AV_NOPTS_VALUE) {
+            frame.pts != AV_NOPTS_VALUE
+        ) {
             if (
-                last_pts != AV_NOPTS_VALUE) {
+                last_pts != AV_NOPTS_VALUE
+            ) {
                 /***********************************************************
                 sleep roughly the right amount of time;
                 usleep is in microseconds, just like AV_TIME_BASE.
@@ -362,7 +391,8 @@ private class DecodeFilterVideoApplication : GLib.Application {
 
             }
 
-            putchar ('\n'
+            putchar (
+                '\n'
             );
 
             p0 += frame.linesize[0];
@@ -384,7 +414,8 @@ private class DecodeFilterVideoApplication : GLib.Application {
         AVFrame? filt_frame;
 
         if (
-            argc != 2) {
+            argc != 2
+        ) {
             fprintf (
                 stderr,
                 "Usage: %s file\n",
@@ -416,30 +447,36 @@ private class DecodeFilterVideoApplication : GLib.Application {
 
         }
 
-        ret = open_input_file (argv[1]
+        ret = open_input_file (
+            argv[1]
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
-        ret = init_filters (filter_descr
+        ret = init_filters (
+            filter_descr
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         /***********************************************************
         read all packets
         ***********************************************************/
         while (
-            true) {
-            ret = av_read_frame (fmt_ctx, packet
+            true
+        ) {
+            ret = av_read_frame (
+                fmt_ctx, packet
             );
 
             if (
@@ -449,8 +486,10 @@ private class DecodeFilterVideoApplication : GLib.Application {
             }
 
             if (
-                packet.stream_index == video_stream_index) {
-                ret = avcodec_send_packet (dec_ctx, packet
+                packet.stream_index == video_stream_index
+            ) {
+                ret = avcodec_send_packet (
+                dec_ctx, packet
                 );
 
                 if (
@@ -464,12 +503,16 @@ private class DecodeFilterVideoApplication : GLib.Application {
                 }
 
                 while (
-                    ret >= 0) {
-                    ret = avcodec_receive_frame (dec_ctx, frame
+                    ret >= 0
+                ) {
+                    ret = avcodec_receive_frame (
+                    dec_ctx, frame
                     );
 
                     if (
-                        ret == AVERROR (EAGAIN) ||
+                        ret == AVERROR (
+                            EAGAIN
+                        ) ||
                         ret == AVERROR_EOF
                     ) {
                         break;
@@ -480,7 +523,10 @@ private class DecodeFilterVideoApplication : GLib.Application {
                             null, AV_LOG_ERROR, "Error while receiving a frame from the decoder\n"
                         );
 
-                        throw new Goto.END ("");
+                        throw new Goto.END (
+                            ""
+                        );
+
                     }
 
                     frame.pts = frame.best_effort_timestamp;
@@ -490,7 +536,9 @@ private class DecodeFilterVideoApplication : GLib.Application {
                     ***********************************************************/
                     if (
                         av_buffersrc_add_frame_flags (
-                            buffersrc_ctx, frame, AV_BUFFERSRC_FLAG_KEEP_REF) < 0) {
+                            buffersrc_ctx, frame, AV_BUFFERSRC_FLAG_KEEP_REF
+                        ) < 0
+                    ) {
                         av_log (
                             null, AV_LOG_ERROR, "Error while feeding the filtergraph\n"
                         );
@@ -502,12 +550,16 @@ private class DecodeFilterVideoApplication : GLib.Application {
                     pull filtered frames from the filtergraph
                     ***********************************************************/
                     while (
-                        true) {
-                        ret = av_buffersink_get_frame (buffersink_ctx, filt_frame
+                        true
+                    ) {
+                        ret = av_buffersink_get_frame (
+                            buffersink_ctx, filt_frame
                         );
 
                         if (
-                            ret == AVERROR (EAGAIN) ||
+                            ret == AVERROR (
+                                EAGAIN
+                            ) ||
                             ret == AVERROR_EOF
                         ) {
                             break;
@@ -516,7 +568,10 @@ private class DecodeFilterVideoApplication : GLib.Application {
                         if (
                             ret < 0
                         ) {
-                            throw new Goto.END ("");
+                            throw new Goto.END (
+                                ""
+                            );
+
                         }
 
                         display_frame (
@@ -544,30 +599,38 @@ private class DecodeFilterVideoApplication : GLib.Application {
         }
 
         if (
-            ret == AVERROR_EOF) {
+            ret == AVERROR_EOF
+        ) {
             /***********************************************************
             signal EOF to the filtergraph
             ***********************************************************/
             if (
                 av_buffersrc_add_frame_flags (
-                    buffersrc_ctx, null, 0) < 0) {
+                    buffersrc_ctx, null, 0
+                ) < 0
+            ) {
                 av_log (
                     null, AV_LOG_ERROR, "Error while closing the filtergraph\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             /***********************************************************
             pull remaining frames from the filtergraph
             ***********************************************************/
             while (
-                true) {
-                ret = av_buffersink_get_frame (buffersink_ctx, filt_frame
+                true
+            ) {
+                ret = av_buffersink_get_frame (
+                buffersink_ctx, filt_frame
                 );
 
                 if (
-                    ret == AVERROR (EAGAIN) ||
+                    ret == AVERROR (
+                        EAGAIN
+                    ) ||
                     ret == AVERROR_EOF
                 ) {
                     break;
@@ -576,7 +639,8 @@ private class DecodeFilterVideoApplication : GLib.Application {
                 if (
                     ret < 0
                 ) {
-                    throw new Goto.END ("");
+                    throw new Goto.END (
+                    "");
                 }
 
                 display_frame (

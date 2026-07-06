@@ -28,7 +28,9 @@ private static void randomize_buffer (
         i < size / 4;
         i++
     ) {
-        ((uint32[] )buf)[i] = rnd ();
+        (
+        (
+            uint32[] )buf)[i] = rnd ();
     }
 
 }
@@ -78,18 +80,24 @@ private static void checkasm_check_nlmeans () {
             ii_w + 1, 4
         );
 
-        uint32[] ii_orig_ref = av_mallocz_array (ii_h + 1, ii_lz_32 * sizeof (ii_orig_ref)
+        uint32[] ii_orig_ref = av_mallocz_array (
+            ii_h + 1, ii_lz_32 * sizeof (
+                ii_orig_ref)
         );
 
         uint32[] ii_ref = ii_orig_ref + ii_lz_32 + 1;
-        uint32[] ii_orig_new = av_mallocz_array (ii_h + 1, ii_lz_32 * sizeof (ii_orig_new)
+        uint32[] ii_orig_new = av_mallocz_array (
+            ii_h + 1, ii_lz_32 * sizeof (
+                ii_orig_new)
         );
 
         uint32[] ii_new = ii_orig_new + ii_lz_32 + 1;
-        int src_lz = FFALIGN (w, 16
+        int src_lz = FFALIGN (
+            w, 16
         );
 
-        uint8[] src = av_mallocz_array (h, src_lz
+        uint8[] src = av_mallocz_array (
+            h, src_lz
         );
 
         //  declare_func (
@@ -126,19 +134,25 @@ private static void checkasm_check_nlmeans () {
                     int s1y = e;
                     int s2x = e + offx;
                     int s2y = e + offy;
-                    int startx_safe = FFMAX (s1x, s2x
+                    int startx_safe = FFMAX (
+                        s1x, s2x
                     );
 
-                    int starty_safe = FFMAX (s1y, s2y
+                    int starty_safe = FFMAX (
+                        s1y, s2y
                     );
 
-                    int u_endx_safe = FFMIN (s1x + w, s2x + w
+                    int u_endx_safe = FFMIN (
+                        s1x + w, s2x + w
                     );
 
-                    int endy_safe = FFMIN (s1y + h, s2y + h
+                    int endy_safe = FFMIN (
+                        s1y + h, s2y + h
                     );
 
-                    int safe_pw = (u_endx_safe - startx_safe) & ~0xf;
+                    int safe_pw = (
+                        u_endx_safe - startx_safe
+                    ) & ~0xf;
                     int safe_ph = endy_safe - starty_safe;
 
                     av_assert0 (
@@ -179,43 +193,98 @@ private static void checkasm_check_nlmeans () {
                     );
 
                     memset (
-                        ii_ref, 0, (ii_lz_32 * ii_h - 1) * sizeof (ii_ref)
+                        ii_ref, 0,
+                        (
+                            ii_lz_32 * ii_h - 1
+                        ) * sizeof (
+                            ii_ref
+                        )
                     );
 
                     memset (
-                        ii_new, 0, (ii_lz_32 * ii_h - 1) * sizeof (ii_new)
+                        ii_new, 0,
+                        (
+                            ii_lz_32 * ii_h - 1
+                        ) * sizeof (
+                            ii_new
+                        )
                     );
 
                     call_ref (
                         ii_ref + starty_safe*ii_lz_32 + startx_safe, ii_lz_32,
-                        src + (starty_safe - s1y) * src_lz + (startx_safe - s1x), src_lz,
-                        src + (starty_safe - s2y) * src_lz + (startx_safe - s2x), src_lz,
-                        safe_pw, safe_ph
+                        src + (
+                            starty_safe - s1y
+                        ) * src_lz + (
+                            startx_safe - s1x
+                        ),
+                        src_lz,
+                        src + (
+                            starty_safe - s2y
+                        ) * src_lz + (
+                            startx_safe - s2x
+                        ),
+                        src_lz,
+                        safe_pw,
+                        safe_ph
                     );
 
                     call_new (
                         ii_new + starty_safe*ii_lz_32 + startx_safe, ii_lz_32,
-                        src + (starty_safe - s1y) * src_lz + (startx_safe - s1x), src_lz,
-                        src + (starty_safe - s2y) * src_lz + (startx_safe - s2x), src_lz,
-                        safe_pw, safe_ph
+                        src + (
+                            starty_safe - s1y
+                        ) * src_lz + (
+                            startx_safe - s1x
+                        ), src_lz,
+                        src + (
+                            starty_safe - s2y
+                        ) * src_lz + (
+                            startx_safe - s2x
+                        ),
+                        src_lz,
+                        safe_pw,
+                        safe_ph
                     );
 
                     if (
                         memcmp (
-                            ii_ref, ii_new, (ii_lz_32 * ii_h - 1) * sizeof (ii_ref))
+                            ii_ref, ii_new,
+                            (
+                                ii_lz_32 * ii_h - 1
+                            ) * sizeof (
+                                ii_ref
+                            )
+                        )
                     ) {
                         fail ();
                     }
 
                     memset (
-                        ii_new, 0, (ii_lz_32 * ii_h - 1) * sizeof (ii_new)
+                        ii_new,
+                        0,
+                        (
+                            ii_lz_32 * ii_h - 1
+                        ) * sizeof (
+                            ii_new
+                        )
                     );
 
                     bench_new (
-                        ii_new + starty_safe*ii_lz_32 + startx_safe, ii_lz_32,
-                             src + (starty_safe - s1y) * src_lz + (startx_safe - s1x), src_lz,
-                             src + (starty_safe - s2y) * src_lz + (startx_safe - s2x), src_lz,
-                             safe_pw, safe_ph
+                        ii_new + starty_safe*ii_lz_32 + startx_safe,
+                        ii_lz_32,
+                        src + (
+                            starty_safe - s1y
+                        ) * src_lz + (
+                            startx_safe - s1x
+                        ),
+                        src_lz,
+                        src + (
+                            starty_safe - s2y
+                        ) * src_lz + (
+                            startx_safe - s2x
+                        ),
+                        src_lz,
+                        safe_pw,
+                        safe_ph
                     );
 
                 }

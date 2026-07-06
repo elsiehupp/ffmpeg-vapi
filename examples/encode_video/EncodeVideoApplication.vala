@@ -59,7 +59,8 @@ private class EncodeVideoApplication : GLib.Application {
 
         }
 
-        ret = avcodec_send_frame (enc_ctx, frame
+        ret = avcodec_send_frame (
+            enc_ctx, frame
         );
 
         if (
@@ -79,11 +80,13 @@ private class EncodeVideoApplication : GLib.Application {
         while (
             ret >= 0
         ) {
-            ret = avcodec_receive_packet (enc_ctx, pkt
+            ret = avcodec_receive_packet (
+            enc_ctx, pkt
             );
 
             if (
-                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR (
+                    EAGAIN) ||
                 ret == AVERROR_EOF
             ) {
                 return;
@@ -102,7 +105,8 @@ private class EncodeVideoApplication : GLib.Application {
             }
 
             printf (
-                "Write packet %3PRId64 (size=%5d)\n",
+                "Write packet %3PRId64 (
+                    size=%5d)\n",
                 pkt.pts,
                 pkt.size
             );
@@ -154,7 +158,8 @@ private class EncodeVideoApplication : GLib.Application {
         /***********************************************************
         find the mpeg1video encoder
         ***********************************************************/
-        codec = avcodec_find_encoder_by_name (codec_name
+        codec = avcodec_find_encoder_by_name (
+            codec_name
         );
 
         if (
@@ -172,7 +177,8 @@ private class EncodeVideoApplication : GLib.Application {
 
         }
 
-        codec_context = avcodec_alloc_context3 (codec
+        codec_context = avcodec_alloc_context3 (
+            codec
         );
 
         if (
@@ -237,7 +243,8 @@ private class EncodeVideoApplication : GLib.Application {
         /***********************************************************
         open it
         ***********************************************************/
-        ret = avcodec_open2 (codec_context, codec, null
+        ret = avcodec_open2 (
+            codec_context, codec, null
         );
 
         if (
@@ -256,7 +263,8 @@ private class EncodeVideoApplication : GLib.Application {
 
         }
 
-        file = fopen (filename, "wb"
+        file = fopen (
+            filename, "wb"
         );
 
         if (
@@ -293,7 +301,8 @@ private class EncodeVideoApplication : GLib.Application {
         frame.width = codec_context.width;
         frame.height = codec_context.height;
 
-        ret = av_frame_get_buffer (frame, 0
+        ret = av_frame_get_buffer (
+            frame, 0
         );
 
         if (
@@ -333,7 +342,8 @@ private class EncodeVideoApplication : GLib.Application {
             av_frame_make_writable () checks that and allocates a new buffer
             for the frame only if necessary.
             ***********************************************************/
-            ret = av_frame_make_writable (frame
+            ret = av_frame_make_writable (
+                frame
             );
 
             if (
@@ -418,7 +428,8 @@ private class EncodeVideoApplication : GLib.Application {
             codec.id == AV_CODEC_ID_MPEG2VIDEO
         ) {
             fwrite (
-                endcode, 1, sizeof (endcode), file
+                endcode, 1, sizeof (
+                    endcode), file
             );
 
         }

@@ -36,12 +36,15 @@ private class ApiCodecParameterTest : GLib.TestCase {
             uint skip_frame = codec_context.skip_frame;
 
             if (
-                !avcodec_is_open (codec_context)
+                !avcodec_is_open (
+                    codec_context)
             ) {
-                LibAVCodec.Codec codec = avcodec_find_decoder (codec_context.codec_id
+                LibAVCodec.Codec codec = avcodec_find_decoder (
+                codec_context.codec_id
                 );
 
-                ret = avcodec_open2 (codec_context, codec, null
+                ret = avcodec_open2 (
+                    codec_context, codec, null
                 );
 
                 if (
@@ -52,8 +55,10 @@ private class ApiCodecParameterTest : GLib.TestCase {
                         AV_LOG_ERROR,
                         "Failed to open codec\n"
                     );
-                    throw new Goto.END (""
-                );
+
+                    throw new Goto.END (
+                        ""
+                    );
 
                 }
 
@@ -61,26 +66,31 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
             frame = av_frame_alloc ();
             if (
-                frame == null) {
+                frame == null
+            ) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
                     "Failed to allocate frame\n"
                 );
-                throw new Goto.END (""
+
+                throw new Goto.END (
+                    ""
             );
 
             }
 
             if (
                 !decode &&
-                avpriv_codec_get_cap_skip_frame_fill_param (codec_context.codec)
+                avpriv_codec_get_cap_skip_frame_fill_param (
+                    codec_context.codec)
             ) {
                 codec_context.skip_frame = AVDISCARD_ALL;
             }
 
             do {
-                ret = avcodec_decode_video2 (codec_context, frame, out got_frame, packet
+                ret = avcodec_decode_video2 (
+                codec_context, frame, out got_frame, packet
                 );
 
                 av_assert0 (
@@ -101,14 +111,18 @@ private class ApiCodecParameterTest : GLib.TestCase {
                 packet.size -= ret;
 
                 if (
-                    got_frame) {
+                    got_frame
+                ) {
                     break;
                 }
 
-            } while (packet.size > 0
+            } while (
+                packet.size > 0
             );
 
-        } catch (Goto end) { }
+        } catch (
+            Goto end
+        ) { }
 
         codec_context.skip_frame = skip_frame;
 
@@ -132,11 +146,14 @@ private class ApiCodecParameterTest : GLib.TestCase {
                 out packet
             );
 
-            while (!done) {
+            while (
+                !done
+            ) {
                 LibAVCodec.CodecContext codec_context = null;
                 AVStream st;
 
-                ret = av_read_frame (format_context, out packet
+                ret = av_read_frame (
+                    format_context, out packet
                 );
 
                 if (
@@ -148,8 +165,9 @@ private class ApiCodecParameterTest : GLib.TestCase {
                         "Failed to read frame\n"
                     );
 
-                    throw new Goto.END (""
-                );
+                    throw new Goto.END (
+                        ""
+                    );
 
                 }
 
@@ -165,7 +183,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
                 if (
                     codec_context.codec_type != AVMEDIA_TYPE_VIDEO ||
-                    st.codec_info_nb_frames++ > 0) {
+                    st.codec_info_nb_frames++ > 0
+                ) {
                     av_packet_unref (
                         out packet
                     );
@@ -173,7 +192,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
                     continue;
                 }
 
-                ret = try_decode_video_frame (codec_context, out packet, decode
+                ret = try_decode_video_frame (
+                    codec_context, out packet, decode
                 );
 
                 if (
@@ -184,8 +204,10 @@ private class ApiCodecParameterTest : GLib.TestCase {
                         AV_LOG_ERROR,
                         "Failed to decode video frame\n"
                     );
-                    throw new Goto.END (""
-                );
+
+                    throw new Goto.END (
+                        ""
+                    );
 
                 }
 
@@ -207,7 +229,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
                     codec_context = st.codec;
 
                     if (
-                        codec_context.codec_type != AVMEDIA_TYPE_VIDEO) {
+                        codec_context.codec_type != AVMEDIA_TYPE_VIDEO
+                    ) {
                         continue;
                     }
 
@@ -216,7 +239,9 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
             }
 
-        } catch (Goto end) { }
+        } catch (
+            Goto end
+        ) { }
 
         av_packet_unref (
             out packet
@@ -262,12 +287,14 @@ private class ApiCodecParameterTest : GLib.TestCase {
             );
 
             while (
-                opt = av_opt_next (codec_context, opt)
+                opt = av_opt_next (
+                    codec_context, opt)
             ) {
                 uint8[] str;
 
                 if (
-                    opt.type == AV_OPT_TYPE_CONST) {
+                    opt.type == AV_OPT_TYPE_CONST
+                ) {
                     continue;
                 }
 
@@ -283,7 +310,9 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
                 if (
                     av_opt_get (
-                        codec_context, opt.name, 0, out str) >= 0) {
+                        codec_context, opt.name, 0, out str
+                    ) >= 0
+                ) {
                     GLib.print (
                         "    %s=%s\n",
                         opt.name,
@@ -310,7 +339,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
         try {
             uint ret = 0;
 
-            ret = avformat_open_input (format_context, filename, null, null
+            ret = avformat_open_input (
+            format_context, filename, null, null
             );
 
             if (
@@ -322,26 +352,33 @@ private class ApiCodecParameterTest : GLib.TestCase {
                     "Failed to open input '%s'",
                     filename
                 );
-                throw new Goto.END (""
+
+                throw new Goto.END (
+                    ""
             );
 
             }
 
-            ret = find_video_stream_info (*format_context, decode
+            ret = find_video_stream_info (
+                *format_context, decode
             );
 
             if (
                 ret < 0
             ) {
-                throw new Goto.END (""
+                throw new Goto.END (
+                ""
             );
 
             }
 
-            dump_video_streams (*format_context, decode
+            dump_video_streams (
+                *format_context, decode
             );
 
-        } catch (Goto end) { }
+        } catch (
+            Goto end
+        ) { }
 
         return ret;
     }
@@ -368,18 +405,21 @@ private class ApiCodecParameterTest : GLib.TestCase {
             LibAVCodec.CodecContext codec_ctx2 = st2.codec;
 
             if (
-                codec_ctx1.codec_type != AVMEDIA_TYPE_VIDEO) {
+                codec_ctx1.codec_type != AVMEDIA_TYPE_VIDEO
+            ) {
                 continue;
             }
 
             while (
-                opt = av_opt_next (codec_ctx1, opt)
+                opt = av_opt_next (
+                    codec_ctx1, opt)
             ) {
                 uint8[] str1 = null;
                 uint8[] str2 = null;
 
                 if (
-                    opt.type == AV_OPT_TYPE_CONST) {
+                    opt.type == AV_OPT_TYPE_CONST
+                ) {
                     continue;
                 }
 
@@ -410,10 +450,12 @@ private class ApiCodecParameterTest : GLib.TestCase {
                     av_log (
                         null,
                         AV_LOG_ERROR,
-                        "Field %s differs: %s %s", opt.name, str1, str2
+                        "Field %s differs: %s %s",
+                        opt.name, str1, str2
                     );
 
-                    ret = AVERROR (EINVAL
+                    ret = AVERROR (
+                        EINVAL
                     );
 
                 }
@@ -443,17 +485,20 @@ private class ApiCodecParameterTest : GLib.TestCase {
             AVFormatContext fmt_ctx_no_decode = null;
 
             if (
-                argc < 2) {
+                argc < 2
+            ) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
                     "Usage: %s <input>\n",
                     argv[0]
                 );
+
                 return -1;
             }
 
-            ret = open_and_probe_video_streams (out fmt_ctx_no_decode, argv[1], 0
+            ret = open_and_probe_video_streams (
+                out fmt_ctx_no_decode, argv[1], 0
             );
 
             if (
@@ -465,12 +510,15 @@ private class ApiCodecParameterTest : GLib.TestCase {
                     "Failed to probe '%s' without frame decoding\n",
                     argv[1]
                 );
-                throw new Goto.END (""
+
+                throw new Goto.END (
+                    ""
             );
 
             }
 
-            ret = open_and_probe_video_streams (out format_context, argv[1], 1
+            ret = open_and_probe_video_streams (
+                out format_context, argv[1], 1
             );
 
             if (
@@ -482,15 +530,20 @@ private class ApiCodecParameterTest : GLib.TestCase {
                     "Failed to probe '%s' with frame decoding\n",
                     argv[1]
                 );
-                throw new Goto.END (""
+
+                throw new Goto.END (
+                    ""
             );
 
             }
 
-            ret = check_video_streams (format_context, fmt_ctx_no_decode
+            ret = check_video_streams (
+                format_context, fmt_ctx_no_decode
             );
 
-        } catch (Goto end) { }
+        } catch (
+            Goto end
+        ) { }
 
         avformat_close_input (
             out format_context

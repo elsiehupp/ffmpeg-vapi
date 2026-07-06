@@ -48,7 +48,8 @@ private class DecodeVideoApplication : GLib.Application {
         FILE? file;
         int i;
 
-        file = fopen (filename,"wb"
+        file = fopen (
+        filename,"wb"
         );
 
         fprintf (
@@ -83,7 +84,8 @@ private class DecodeVideoApplication : GLib.Application {
         char buf[1024];
         int ret;
 
-        ret = avcodec_send_packet (dec_ctx, pkt
+        ret = avcodec_send_packet (
+            dec_ctx, pkt
         );
 
         if (
@@ -103,11 +105,13 @@ private class DecodeVideoApplication : GLib.Application {
         while (
             ret >= 0
         ) {
-            ret = avcodec_receive_frame (dec_ctx, frame
+            ret = avcodec_receive_frame (
+            dec_ctx, frame
             );
 
             if (
-                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR (
+                    EAGAIN) ||
                 ret == AVERROR_EOF
             ) {
                 return;
@@ -139,7 +143,8 @@ private class DecodeVideoApplication : GLib.Application {
             free it
             ***********************************************************/
             snprintf (
-                buf, sizeof (buf), "%s-%PRId64", filename, dec_ctx.frame_num
+                buf, sizeof (
+                    buf), "%s-%PRId64", filename, dec_ctx.frame_num
             );
 
             pgm_save (
@@ -199,7 +204,8 @@ private class DecodeVideoApplication : GLib.Application {
         }
 
         /***********************************************************
-        set end of buffer to 0 (this ensures that no overreading happens for damaged MPEG streams)
+        set end of buffer to 0 (
+            this ensures that no overreading happens for damaged MPEG streams)
         ***********************************************************/
         memset (
             inbuf + INBUF_SIZE, 0, AV_INPUT_BUFFER_PADDING_SIZE
@@ -208,7 +214,8 @@ private class DecodeVideoApplication : GLib.Application {
         /***********************************************************
         find the MPEG-1 video decoder
         ***********************************************************/
-        codec = avcodec_find_decoder (AV_CODEC_ID_MPEG1VIDEO
+        codec = avcodec_find_decoder (
+            AV_CODEC_ID_MPEG1VIDEO
         );
 
         if (
@@ -225,7 +232,8 @@ private class DecodeVideoApplication : GLib.Application {
 
         }
 
-        parser = av_parser_init (codec.id
+        parser = av_parser_init (
+            codec.id
         );
 
         if (
@@ -242,7 +250,8 @@ private class DecodeVideoApplication : GLib.Application {
 
         }
 
-        codec_context = avcodec_alloc_context3 (codec
+        codec_context = avcodec_alloc_context3 (
+            codec
         );
 
         if (
@@ -284,7 +293,8 @@ private class DecodeVideoApplication : GLib.Application {
 
         }
 
-        file = fopen (filename, "rb"
+        file = fopen (
+            filename, "rb"
         );
 
         if (
@@ -321,7 +331,8 @@ private class DecodeVideoApplication : GLib.Application {
             /***********************************************************
             read raw data from the input file
             ***********************************************************/
-            data_size = fread (inbuf, 1, INBUF_SIZE, file
+            data_size = fread (
+                inbuf, 1, INBUF_SIZE, file
             );
 
             if (
@@ -341,7 +352,8 @@ private class DecodeVideoApplication : GLib.Application {
                 data_size > 0 ||
                 eof
             ) {
-                ret = av_parser_parse2 (parser, codec_context, &pkt.data, &pkt.size,
+                ret = av_parser_parse2 (
+                parser, codec_context, &pkt.data, &pkt.size,
                                     data, data_size, AV_NOPTS_VALUE, AV_NOPTS_VALUE, 0
                 );
 
@@ -377,7 +389,8 @@ private class DecodeVideoApplication : GLib.Application {
 
             }
 
-        } while (!eof
+        } while (
+            !eof
         );
 
         /***********************************************************

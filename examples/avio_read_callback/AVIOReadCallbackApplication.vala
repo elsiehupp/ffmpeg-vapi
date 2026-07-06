@@ -49,8 +49,10 @@ private class AVIOReadCallbackApplication : GLib.Application {
         uint8[] buf,
         int buf_size
     ) {
-        BufferData? bd = (BufferData? )opaque;
-        buf_size = FFMIN (buf_size, bd.size
+        BufferData? bd = (
+        BufferData? )opaque;
+        buf_size = FFMIN (
+            buf_size, bd.size
         );
 
         if (
@@ -111,13 +113,15 @@ private class AVIOReadCallbackApplication : GLib.Application {
         /***********************************************************
         slurp file content into buffer
         ***********************************************************/
-        ret = av_file_map (input_filename, &buffer, &buffer_size, 0, null
+        ret = av_file_map (
+            input_filename, &buffer, &buffer_size, 0, null
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         /***********************************************************
@@ -130,25 +134,31 @@ private class AVIOReadCallbackApplication : GLib.Application {
         if (
             !fmt_ctx
         ) {
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        avio_ctx_buffer = av_malloc (avio_ctx_buffer_size
+        avio_ctx_buffer = av_malloc (
+            avio_ctx_buffer_size
         );
 
         if (
             !avio_ctx_buffer
         ) {
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        avio_ctx = avio_alloc_context (avio_ctx_buffer, avio_ctx_buffer_size,
+        avio_ctx = avio_alloc_context (
+            avio_ctx_buffer, avio_ctx_buffer_size,
                                     0, &bd, &read_packet, null, null
         );
 
@@ -159,15 +169,18 @@ private class AVIOReadCallbackApplication : GLib.Application {
                 &avio_ctx_buffer
             );
 
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+                ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         fmt_ctx.pb = avio_ctx;
 
-        ret = avformat_open_input (&fmt_ctx, null, null, null
+        ret = avformat_open_input (
+            &fmt_ctx, null, null, null
         );
 
         if (
@@ -178,10 +191,12 @@ private class AVIOReadCallbackApplication : GLib.Application {
                 "Could not open input\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = avformat_find_stream_info (fmt_ctx, null
+        ret = avformat_find_stream_info (
+            fmt_ctx, null
         );
 
         if (
@@ -192,7 +207,8 @@ private class AVIOReadCallbackApplication : GLib.Application {
                 "Could not find stream information\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         av_dump_format (

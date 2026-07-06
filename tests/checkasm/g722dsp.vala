@@ -23,7 +23,8 @@ private static void randomize_buffers () {
         i < PREV_SAMPLES_BUF_SIZE;
         i++
     ) {
-        src0[i] = src1[i] = sign_extend (rnd (), 16
+        src0[i] = src1[i] = sign_extend (
+        rnd (), 16
         );
 
     }
@@ -61,7 +62,8 @@ private static void check_qmf () {
 
         if (
             memcmp (
-                dst0, dst1, sizeof (dst0))
+                dst0, dst1, sizeof (
+                    dst0))
         ) {
             fail ();
         }

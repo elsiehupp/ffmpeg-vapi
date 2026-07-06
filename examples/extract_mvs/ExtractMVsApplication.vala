@@ -47,7 +47,8 @@ private class ExtractMVsApplication : GLib.Application {
     private static int decode_packet (
         AVPacket? pkt
     ) {
-        int ret = avcodec_send_packet (video_dec_ctx, pkt
+        int ret = avcodec_send_packet (
+        video_dec_ctx, pkt
         );
 
         if (
@@ -65,11 +66,13 @@ private class ExtractMVsApplication : GLib.Application {
 
         while (
             ret >= 0)  {
-            ret = avcodec_receive_frame (video_dec_ctx, frame
+            ret = avcodec_receive_frame (
+                video_dec_ctx, frame
             );
 
             if (
-                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR (
+                    EAGAIN) ||
                 ret == AVERROR_EOF
             ) {
                 break;
@@ -93,18 +96,21 @@ private class ExtractMVsApplication : GLib.Application {
                 AVFrameSideData? sd;
 
                 video_frame_count++;
-                sd = av_frame_get_side_data (frame, AV_FRAME_DATA_MOTION_VECTORS
+                sd = av_frame_get_side_data (
+                    frame, AV_FRAME_DATA_MOTION_VECTORS
                 );
 
                 if (
                     sd
                 ) {
-                    AVMotionVector? mvs = (AVMotionVector? )sd.data;
+                    AVMotionVector? mvs = (
+                    AVMotionVector? )sd.data;
                     for (
                         i = 0;
                         i < sd.size / sizeof (
                             mvs
                         );
+
                         i++
                     ) {
                         AVMotionVector? mv = &mvs[i];
@@ -141,7 +147,8 @@ private class ExtractMVsApplication : GLib.Application {
         AVCodec? dec = null;
         AVDictionary? opts = null;
 
-        ret = av_find_best_stream (fmt_ctx, type, -1, -1, &dec, 0
+        ret = av_find_best_stream (
+            fmt_ctx, type, -1, -1, &dec, 0
         );
 
         if (
@@ -159,7 +166,8 @@ private class ExtractMVsApplication : GLib.Application {
             int stream_idx = ret;
             st = fmt_ctx.streams[stream_idx];
 
-            dec_ctx = avcodec_alloc_context3 (dec
+            dec_ctx = avcodec_alloc_context3 (
+                dec
             );
 
             if (
@@ -170,12 +178,14 @@ private class ExtractMVsApplication : GLib.Application {
                     "Failed to allocate codec\n"
                 );
 
-                return AVERROR (EINVAL
+                return AVERROR (
+                    EINVAL
                 );
 
             }
 
-            ret = avcodec_parameters_to_context (dec_ctx, st.codecpar
+            ret = avcodec_parameters_to_context (
+                dec_ctx, st.codecpar
             );
 
             if (
@@ -200,7 +210,8 @@ private class ExtractMVsApplication : GLib.Application {
                 &opts, "flags2", "+export_mvs", 0
             );
 
-            ret = avcodec_open2 (dec_ctx, dec, &opts
+            ret = avcodec_open2 (
+                dec_ctx, dec, &opts
             );
 
             av_dict_free (
@@ -302,7 +313,8 @@ private class ExtractMVsApplication : GLib.Application {
             );
 
             ret = 1;
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         frame = av_frame_alloc ();
@@ -314,10 +326,12 @@ private class ExtractMVsApplication : GLib.Application {
                 "Could not allocate frame\n"
             );
 
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+                ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         pkt = av_packet_alloc ();
@@ -329,10 +343,12 @@ private class ExtractMVsApplication : GLib.Application {
                 "Could not allocate AVPacket\n"
             );
 
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+                ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         printf (

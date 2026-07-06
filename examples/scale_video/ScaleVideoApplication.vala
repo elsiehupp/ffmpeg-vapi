@@ -182,10 +182,12 @@ private class ScaleVideoApplication : GLib.Application {
                         dst_pix_fmt), dst_w, dst_h
             );
 
-            ret = AVERROR (EINVAL
+            ret = AVERROR (
+                EINVAL
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
@@ -204,7 +206,8 @@ private class ScaleVideoApplication : GLib.Application {
                 "Could not allocate source image\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
@@ -223,7 +226,8 @@ private class ScaleVideoApplication : GLib.Application {
                 "Could not allocate destination image\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         dst_bufsize = ret;
@@ -244,7 +248,8 @@ private class ScaleVideoApplication : GLib.Application {
             convert to destination format
             ***********************************************************/
             sws_scale (
-                sws_ctx, (uint8[][])src_data,
+                sws_ctx, (
+                    uint8[][])src_data,
                 src_linesize, 0, src_h, dst_data, dst_linesize
             );
 

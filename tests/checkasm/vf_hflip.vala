@@ -24,7 +24,8 @@ private static void randomize_buffers (
     int size
 ) {
     int j;
-    uint8[] tmp_buf = (uint8[] )buf;
+    uint8[] tmp_buf = (
+        uint8[] )buf;
     for (
         j = 0;
         j < size;
@@ -116,11 +117,13 @@ private static void check_hflip (
             i++
         ) {
             call_ref (
-                src + (w - 1) * step, dst_ref, i
+                src + (
+                    w - 1) * step, dst_ref, i
             );
 
             call_new (
-                src + (w - 1) * step, dst_new, i
+                src + (
+                    w - 1) * step, dst_new, i
             );
 
             if (
@@ -133,7 +136,8 @@ private static void check_hflip (
         }
 
         bench_new (
-            src + (w - 1) * step, dst_new, w
+            src + (
+                w - 1) * step, dst_new, w
         );
 
     }

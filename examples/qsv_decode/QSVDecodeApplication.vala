@@ -76,7 +76,8 @@ private class QSVDecodeApplication : GLib.Application {
     ) {
         int ret = 0;
 
-        ret = avcodec_send_packet (decoder_ctx, pkt
+        ret = avcodec_send_packet (
+        decoder_ctx, pkt
         );
 
         if (
@@ -95,11 +96,13 @@ private class QSVDecodeApplication : GLib.Application {
         ) {
             int i, j;
 
-            ret = avcodec_receive_frame (decoder_ctx, frame
+            ret = avcodec_receive_frame (
+            decoder_ctx, frame
             );
 
             if (
-                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR (
+                    EAGAIN) ||
                 ret == AVERROR_EOF
             ) {
                 break;
@@ -119,7 +122,8 @@ private class QSVDecodeApplication : GLib.Application {
             We just retrieve the raw data and write it to a file, which is rather
             useless but pedagogic.
             ***********************************************************/
-            ret = av_hwframe_transfer_data (sw_frame, frame, 0
+            ret = av_hwframe_transfer_data (
+                sw_frame, frame, 0
             );
 
             if (
@@ -130,13 +134,15 @@ private class QSVDecodeApplication : GLib.Application {
                     "Error transferring the data to system memory\n"
                 );
 
-                throw new Goto.FAIL ("");
+                throw new Goto.FAIL (
+                    "");
             }
 
             for (
                 i = 0;
                 (
-                    i < FF_ARRAY_ELEMS (sw_frame.data) &&
+                    i < FF_ARRAY_ELEMS (
+                    sw_frame.data) &&
                     sw_frame.data[i]
                 );
 
@@ -144,7 +150,12 @@ private class QSVDecodeApplication : GLib.Application {
             ) {
                 for (
                     j = 0;
-                    j < (sw_frame.height >> (i > 0));
+                    j < (
+                        sw_frame.height >> (
+                            i > 0
+                        )
+                    );
+
                     j++
                 ) {
                     avio_write (
@@ -209,7 +220,8 @@ private class QSVDecodeApplication : GLib.Application {
         /***********************************************************
         open the input file
         ***********************************************************/
-        ret = avformat_open_input (&input_ctx, argv[1], null, null
+        ret = avformat_open_input (
+            &input_ctx, argv[1], null, null
         );
 
         if (
@@ -220,7 +232,8 @@ private class QSVDecodeApplication : GLib.Application {
                 "Cannot open input file '%s': ", argv[1]
             );
 
-            throw new Goto.FINISH ("");
+            throw new Goto.FINISH (
+                "");
         }
 
         /***********************************************************
@@ -252,13 +265,15 @@ private class QSVDecodeApplication : GLib.Application {
                 "No H.264 video stream in the input file\n"
             );
 
-            throw new Goto.FINISH ("");
+            throw new Goto.FINISH (
+                "");
         }
 
         /***********************************************************
         open the hardware device
         ***********************************************************/
-        ret = av_hwdevice_ctx_create (&device_ref, AV_HWDEVICE_TYPE_QSV,
+        ret = av_hwdevice_ctx_create (
+            &device_ref, AV_HWDEVICE_TYPE_QSV,
                                     "auto", null, 0
         );
 
@@ -270,13 +285,15 @@ private class QSVDecodeApplication : GLib.Application {
                 "Cannot open the hardware device\n"
             );
 
-            throw new Goto.FINISH ("");
+            throw new Goto.FINISH (
+                "");
         }
 
         /***********************************************************
         initialize the decoder
         ***********************************************************/
-        decoder = avcodec_find_decoder_by_name ("h264_qsv"
+        decoder = avcodec_find_decoder_by_name (
+            "h264_qsv"
         );
 
         if (
@@ -287,19 +304,23 @@ private class QSVDecodeApplication : GLib.Application {
                 "The QSV decoder is not present in libavcodec\n"
             );
 
-            throw new Goto.FINISH ("");
+            throw new Goto.FINISH (
+                "");
         }
 
-        decoder_ctx = avcodec_alloc_context3 (decoder
+        decoder_ctx = avcodec_alloc_context3 (
+            decoder
         );
 
         if (
             !decoder_ctx
         ) {
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.FINISH ("");
+            throw new Goto.FINISH (
+                "");
         }
 
         decoder_ctx.codec_id = AV_CODEC_ID_H264;
@@ -313,10 +334,12 @@ private class QSVDecodeApplication : GLib.Application {
             if (
                 !decoder_ctx.extradata
             ) {
-                ret = AVERROR (ENOMEM
+                ret = AVERROR (
+                ENOMEM
                 );
 
-                throw new Goto.FINISH ("");
+                throw new Goto.FINISH (
+                    "");
             }
 
             memcpy (
@@ -328,12 +351,14 @@ private class QSVDecodeApplication : GLib.Application {
         }
 
 
-        decoder_ctx.hw_device_ctx = av_buffer_ref (device_ref
+        decoder_ctx.hw_device_ctx = av_buffer_ref (
+            device_ref
         );
 
         decoder_ctx.get_format = get_format;
 
-        ret = avcodec_open2 (decoder_ctx, null, null
+        ret = avcodec_open2 (
+            decoder_ctx, null, null
         );
 
         if (
@@ -344,13 +369,15 @@ private class QSVDecodeApplication : GLib.Application {
                 "Error opening the decoder: "
             );
 
-            throw new Goto.FINISH ("");
+            throw new Goto.FINISH (
+                "");
         }
 
         /***********************************************************
         open the output stream
         ***********************************************************/
-        ret = avio_open (&output_ctx, argv[2], AVIO_FLAG_WRITE
+        ret = avio_open (
+            &output_ctx, argv[2], AVIO_FLAG_WRITE
         );
 
         if (
@@ -361,7 +388,8 @@ private class QSVDecodeApplication : GLib.Application {
                 "Error opening the output context: "
             );
 
-            throw new Goto.FINISH ("");
+            throw new Goto.FINISH (
+                "");
         }
 
         frame = av_frame_alloc ();
@@ -372,10 +400,12 @@ private class QSVDecodeApplication : GLib.Application {
             !sw_frame ||
             !pkt
         ) {
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.FINISH ("");
+            throw new Goto.FINISH (
+                "");
         }
 
         /***********************************************************
@@ -384,7 +414,8 @@ private class QSVDecodeApplication : GLib.Application {
         while (
             ret >= 0
         ) {
-            ret = av_read_frame (input_ctx, pkt
+            ret = av_read_frame (
+            input_ctx, pkt
             );
 
             if (
@@ -396,7 +427,8 @@ private class QSVDecodeApplication : GLib.Application {
             if (
                 pkt.stream_index == video_st.index
             ) {
-                ret = decode_packet (decoder_ctx, frame, sw_frame, pkt, output_ctx
+                ret = decode_packet (
+                decoder_ctx, frame, sw_frame, pkt, output_ctx
                 );
 
             }
@@ -410,7 +442,8 @@ private class QSVDecodeApplication : GLib.Application {
         /***********************************************************
         flush the decoder
         ***********************************************************/
-        ret = decode_packet (decoder_ctx, frame, sw_frame, null, output_ctx
+        ret = decode_packet (
+            decoder_ctx, frame, sw_frame, null, output_ctx
     );
 
     //  finish:

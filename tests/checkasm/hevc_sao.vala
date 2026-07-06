@@ -18,20 +18,46 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ***********************************************************/
 
-private const uint32 pixel_mask[3] = { 0xffffffff, 0x03ff03ff, 0x0fff0fff };
-private const uint32 sao_size[5] = {8, 16, 32, 48, 64};
+private const uint32 pixel_mask[3] = {
+    0xffffffff,
+    0x03ff03ff,
+    0x0fff0fff
+};
 
-private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8
+private const uint32 sao_size[5] = {
+    8,
+    16,
+    32,
+    48,
+    64
+};
+
+private const size_t SIZEOF_PIXEL = (
+    (
+        bit_depth + 7
+    ) / 8
 );
 
 /***********************************************************
+same with sao_edge src_stride
 ***********************************************************/
-private const size_t PIXEL_STRIDE = (2*MAX_PB_SIZE + AV_INPUT_BUFFER_PADDING_SIZE); //same with sao_edge src_stride
+private const size_t PIXEL_STRIDE = (
+    2 * MAX_PB_SIZE + AV_INPUT_BUFFER_PADDING_SIZE
+);
 
 /***********************************************************
++2 for top and bottom row, *2 for high bit depth
 ***********************************************************/
-private const size_t BUF_SIZE = (PIXEL_STRIDE * (64+2) * 2); //+2 for top and bottom row, *2 for high bit depth
-private const size_t OFFSET_THRESH = (1 << (bit_depth - 5)
+private const size_t BUF_SIZE = (
+    PIXEL_STRIDE * (
+        64 + 2
+    ) * 2
+);
+
+private const size_t OFFSET_THRESH = (
+    1 << (
+        bit_depth - 5
+    )
 );
 
 private const size_t OFFSET_LENGTH = 5;
@@ -245,7 +271,8 @@ private static void check_sao_edge (
     ) {
         int block_size = sao_size[i];
         size_t stride = PIXEL_STRIDE*SIZEOF_PIXEL;
-        int offset = (AV_INPUT_BUFFER_PADDING_SIZE + PIXEL_STRIDE)*SIZEOF_PIXEL;
+        int offset = (
+            AV_INPUT_BUFFER_PADDING_SIZE + PIXEL_STRIDE)*SIZEOF_PIXEL;
 
         randomize_buffers (
             src0, src1, BUF_SIZE

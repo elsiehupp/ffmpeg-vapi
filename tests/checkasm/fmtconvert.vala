@@ -71,10 +71,14 @@ private static void checkasm_check_fmtconvert () {
 
     for (
         i = 0;
-        i < FF_ARRAY_ELEMS (scale_arr);
+        i < FF_ARRAY_ELEMS (
+            scale_arr);
         i++
     ) {
-        scale_arr[i] = (FF_ARRAY_ELEMS (scale_arr) - FF_ARRAY_ELEMS (scale_arr) / 2) / 13;
+        scale_arr[i] = (
+        FF_ARRAY_ELEMS (
+            scale_arr) - FF_ARRAY_ELEMS (
+                scale_arr) / 2) / 13;
     }
 
     ff_fmt_convert_init (
@@ -82,11 +86,13 @@ private static void checkasm_check_fmtconvert () {
     );
 
     memset (
-        dst0, 0, sizeof (dst0) * BUF_SIZE
+        dst0, 0, sizeof (
+            dst0) * BUF_SIZE
     );
 
     memset (
-        dst1, 0, sizeof (dst1) * BUF_SIZE
+        dst1, 0, sizeof (
+            dst1) * BUF_SIZE
     );
 
     if (
@@ -105,12 +111,14 @@ private static void checkasm_check_fmtconvert () {
 
         for (
             i = 0;
-            i < FF_ARRAY_ELEMS (scale_arr);
+            i < FF_ARRAY_ELEMS (
+                scale_arr);
             i++
         ) {
             for (
                 j = 0;
-                j < FF_ARRAY_ELEMS (length);
+                j < FF_ARRAY_ELEMS (
+                    length);
                 j++
             ) {
 
@@ -127,7 +135,9 @@ private static void checkasm_check_fmtconvert () {
                 );
 
                 if (
-                    !float_near_ulp_array (dst0, dst1, 3, length[j])
+                    !float_near_ulp_array (
+                        dst0, dst1, 3, length[j]
+                    )
                 ) {
                     fail ();
                     break;
@@ -164,7 +174,8 @@ private static void checkasm_check_fmtconvert () {
         ) {
             for (
                 j = 0;
-                j < FF_ARRAY_ELEMS (length);
+                j < FF_ARRAY_ELEMS (
+                    length);
                 j++
             ) {
 
@@ -172,14 +183,18 @@ private static void checkasm_check_fmtconvert () {
                     length[j]
                 );
 
-                call_ref (&format_convert_context, dst0, in, scale_arr, length[j]
+                call_ref (
+                    &format_convert_context, dst0, in, scale_arr, length[j]
                 );
 
-                call_new (&format_convert_context, dst1, in, scale_arr, length[j]
+                call_new (
+                    &format_convert_context, dst1, in, scale_arr, length[j]
                 );
 
                 if (
-                    !float_near_ulp_array (dst0, dst1, 3, length[j])
+                    !float_near_ulp_array (
+                        dst0, dst1, 3, length[j]
+                    )
                 ) {
                     fail ();
                     fprintf (

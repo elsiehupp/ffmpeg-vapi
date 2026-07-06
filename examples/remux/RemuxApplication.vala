@@ -45,11 +45,14 @@ private class RemuxApplication : GLib.Application {
             "%s: pts:%s pts_time:%s dts:%s dts_time:%s duration:%s duration_time:%s stream_index:%d\n",
             tag,
             av_ts2str (
-                pkt.pts), av_ts2timestr (pkt.pts, time_base),
+                pkt.pts), av_ts2timestr (
+                    pkt.pts, time_base),
             av_ts2str (
-                pkt.dts), av_ts2timestr (pkt.dts, time_base),
+                pkt.dts), av_ts2timestr (
+                    pkt.dts, time_base),
             av_ts2str (
-                pkt.duration), av_ts2timestr (pkt.duration, time_base),
+                pkt.duration), av_ts2timestr (
+                    pkt.duration, time_base),
             pkt.stream_index
         );
 
@@ -99,7 +102,8 @@ private class RemuxApplication : GLib.Application {
             return 1;
         }
 
-        ret = avformat_open_input (&ifmt_ctx, in_filename, 0, 0
+        ret = avformat_open_input (
+            &ifmt_ctx, in_filename, 0, 0
         );
 
         if (
@@ -110,10 +114,12 @@ private class RemuxApplication : GLib.Application {
                 "Could not open input file '%s'", in_filename
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = avformat_find_stream_info (ifmt_ctx, 0
+        ret = avformat_find_stream_info (
+            ifmt_ctx, 0
         );
 
         if (
@@ -124,7 +130,8 @@ private class RemuxApplication : GLib.Application {
                 "Failed to retrieve input stream information"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         av_dump_format (
@@ -144,20 +151,25 @@ private class RemuxApplication : GLib.Application {
             );
 
             ret = AVERROR_UNKNOWN;
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         stream_mapping_size = ifmt_ctx.nb_streams;
-        stream_mapping = av_calloc (stream_mapping_size, sizeof (stream_mapping)
+        stream_mapping = av_calloc (
+            stream_mapping_size, sizeof (
+                stream_mapping)
         );
 
         if (
             !stream_mapping
         ) {
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         ofmt = ofmt_ctx.oformat;
@@ -182,7 +194,8 @@ private class RemuxApplication : GLib.Application {
 
             stream_mapping[i] = stream_index++;
 
-            out_stream = avformat_new_stream (ofmt_ctx, null
+            out_stream = avformat_new_stream (
+                ofmt_ctx, null
             );
 
             if (
@@ -194,10 +207,12 @@ private class RemuxApplication : GLib.Application {
                 );
 
                 ret = AVERROR_UNKNOWN;
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
-            ret = avcodec_parameters_copy (out_stream.codecpar, in_codecpar
+            ret = avcodec_parameters_copy (
+                out_stream.codecpar, in_codecpar
             );
 
             if (
@@ -208,7 +223,8 @@ private class RemuxApplication : GLib.Application {
                     "Failed to copy codec parameters\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             out_stream.codecpar.codec_tag = 0;
@@ -221,7 +237,8 @@ private class RemuxApplication : GLib.Application {
         if (
             !(ofmt.flags & AVFMT_NOFILE)
         ) {
-            ret = avio_open (&ofmt_ctx.pb, out_filename, AVIO_FLAG_WRITE
+            ret = avio_open (
+            &ofmt_ctx.pb, out_filename, AVIO_FLAG_WRITE
             );
 
             if (
@@ -232,12 +249,14 @@ private class RemuxApplication : GLib.Application {
                     "Could not open output file '%s'", out_filename
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
         }
 
-        ret = avformat_write_header (ofmt_ctx, null
+        ret = avformat_write_header (
+            ofmt_ctx, null
         );
 
         if (
@@ -248,7 +267,8 @@ private class RemuxApplication : GLib.Application {
                 "Error occurred when opening output file\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         while (
@@ -257,7 +277,8 @@ private class RemuxApplication : GLib.Application {
             AVStream? in_stream;
             AVStream? out_stream;
 
-            ret = av_read_frame (ifmt_ctx, pkt
+            ret = av_read_frame (
+            ifmt_ctx, pkt
             );
 
             if (
@@ -296,11 +317,13 @@ private class RemuxApplication : GLib.Application {
                 ofmt_ctx, pkt, "out"
             );
 
-            ret = av_interleaved_write_frame (ofmt_ctx, pkt
+            ret = av_interleaved_write_frame (
+                ofmt_ctx, pkt
             );
 
             /***********************************************************
-            pkt is now blank (av_interleaved_write_frame () takes ownership of
+            pkt is now blank (
+                av_interleaved_write_frame () takes ownership of
             its contents and resets pkt), so that no unreferencing is necessary.
             This would be different if one used av_write_frame ().
             ***********************************************************/

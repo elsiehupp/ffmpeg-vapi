@@ -58,9 +58,18 @@ private static void randomize_buffers (
 //              "blockdsp." #func
 //          )
 //      ) {
-//          randomize_buffers (size);
-//          call_ref (buf0);
-//          call_new (buf1);
+//          randomize_buffers (
+//              size
+//          );
+
+//          call_ref (
+//              buf0
+//          );
+
+//          call_new (
+//              buf1
+//          );
+
 //          if (
 //              memcmp (
 //                  buf0,

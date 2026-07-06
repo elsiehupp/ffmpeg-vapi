@@ -39,7 +39,8 @@ private static void randomize_buffers_float () {
         i < BUF_SIZE * 3;
         i++
     ) {
-        src[i] = (float)rnd () / (UINT_MAX >> 5
+        src[i] = (float)rnd () / (
+            UINT_MAX >> 5
         );
 
     }
@@ -207,9 +208,12 @@ private static void check_ict_float () {
     );
 
     if (
-        !float_near_abs_eps_array (ref0, new0, 1.0e-5, BUF_SIZE) ||
-        !float_near_abs_eps_array (ref1, new1, 1.0e-5, BUF_SIZE) ||
-        !float_near_abs_eps_array (ref2, new2, 1.0e-5, BUF_SIZE)
+        !float_near_abs_eps_array (
+            ref0, new0, 1.0e-5, BUF_SIZE) ||
+        !float_near_abs_eps_array (
+            ref1, new1, 1.0e-5, BUF_SIZE) ||
+        !float_near_abs_eps_array (
+            ref2, new2, 1.0e-5, BUF_SIZE)
     ) {
         fail ();
     }

@@ -39,6 +39,7 @@ private class ApiH264SliceTest : GLib.TestCase {
             dec_ctx,
             packet
         );
+
         if (
             ret < 0
         ) {
@@ -53,16 +54,19 @@ private class ApiH264SliceTest : GLib.TestCase {
         }
 
         while (
-            ret >= 0) {
+            ret >= 0
+        ) {
             LibAVUtil.PixelFormatDescriptor desc;
             char sum[AV_HASH_MAX_SIZE * 2 + 1];
             LibAVUtil.Crypto.HashContext hash;
 
-            ret = avcodec_receive_frame (dec_ctx, frame
+            ret = avcodec_receive_frame (
+                dec_ctx, frame
             );
 
             if (
-                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR (
+                    EAGAIN) ||
                 ret == AVERROR_EOF
             ) {
                 return 0;
@@ -80,7 +84,8 @@ private class ApiH264SliceTest : GLib.TestCase {
             }
 
             if (
-                !header) {
+                !header
+            ) {
                 GLib.print (
                     "#format: frame checksums\n" +
                     "#version: 2\n" +
@@ -92,10 +97,12 @@ private class ApiH264SliceTest : GLib.TestCase {
                     "#sar 0: 128/117\n" +
                     "#stream#, dts, pts, duration, size, hash\n"
                 );
+
                 header = 1;
             }
 
-            desc = av_pix_fmt_desc_get (dec_ctx.pix_fmt
+            desc = av_pix_fmt_desc_get (
+                dec_ctx.pix_fmt
             );
 
             ret = av_hash_alloc (
@@ -147,13 +154,21 @@ private class ApiH264SliceTest : GLib.TestCase {
             }
 
             av_hash_final_hex (
-                hash, sum, av_hash_get_size (hash) * 2 + 1
+                hash, sum, av_hash_get_size (
+                    hash) * 2 + 1
             );
 
             GLib.print (
                 "0, %10ll, %10ll, 1, %8d, %s\n",
                 frame_cnt, frame_cnt,
-                (frame.width * frame.height + 2 * (frame.height >> desc.log2_chroma_h) * (frame.width >> desc.log2_chroma_w)), sum
+                (
+                    frame.width * frame.height + 2 * (
+                        frame.height >> desc.log2_chroma_h
+                    ) * (
+                        frame.width >> desc.log2_chroma_w
+                    )
+                ),
+                sum
             );
 
             frame_cnt += 1;
@@ -178,44 +193,55 @@ private class ApiH264SliceTest : GLib.TestCase {
     private static char[] p;
 
     private static uint do_main () throws Goto {
-        nal = av_malloc (MAX_SLICES * UINT16_MAX + AV_INPUT_BUFFER_PADDING_SIZE
+        nal = av_malloc (
+            MAX_SLICES * UINT16_MAX + AV_INPUT_BUFFER_PADDING_SIZE
         );
 
         if (
-            nal == null) {
-            throw new Goto.ERROR (""
-        );
+            nal == null
+        ) {
+            throw new Goto.ERROR (
+                ""
+            );
 
         }
 
         p = nal;
 
-        codec = avcodec_find_decoder (LibAVCodec.CodecID.H264
+        codec = avcodec_find_decoder (
+            LibAVCodec.CodecID.H264
         );
 
         if (
-            !codec) {
+            !codec
+        ) {
             fprintf (
                 stderr,
                 "Codec not found\n"
             );
+
             ret = -1;
-            throw new Goto.ERROR (""
+            throw new Goto.ERROR (
+                ""
         );
 
         }
 
-        codec_context = avcodec_alloc_context3 (codec
+        codec_context = avcodec_alloc_context3 (
+            codec
         );
 
         if (
-            !codec_context) {
+            !codec_context
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate video codec context\n"
             );
+
             ret = -1;
-            throw new Goto.ERROR (""
+            throw new Goto.ERROR (
+                ""
         );
 
         }
@@ -227,7 +253,8 @@ private class ApiH264SliceTest : GLib.TestCase {
         codec_context.thread_type = FF_THREAD_SLICE;
         codec_context.thread_count = threads;
 
-        ret = avcodec_open2 (codec_context, codec, null
+        ret = avcodec_open2 (
+            codec_context, codec, null
         );
 
         if (
@@ -238,14 +265,16 @@ private class ApiH264SliceTest : GLib.TestCase {
                 "Could not open codec\n"
             );
 
-            throw new Goto.ERROR (""
+            throw new Goto.ERROR (
+                ""
         );
 
         }
 
     #if HAVE_THREADS
         if (
-            codec_context.active_thread_type != FF_THREAD_SLICE) {
+            codec_context.active_thread_type != FF_THREAD_SLICE
+        ) {
             fprintf (
                 stderr,
                 "Couldn't activate slice threading: %d\n",
@@ -253,7 +282,8 @@ private class ApiH264SliceTest : GLib.TestCase {
             );
 
             ret = -1;
-            throw new Goto.ERROR (""
+            throw new Goto.ERROR (
+                ""
         );
 
         }
@@ -263,17 +293,21 @@ private class ApiH264SliceTest : GLib.TestCase {
             stderr,
             "WARN: not using threads, only checking decoding slice NALUs\n"
         );
+
     #endif
 
         frame = av_frame_alloc ();
         if (
-            !frame) {
+            !frame
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate video frame\n"
             );
+
             ret = -1;
-            throw new Goto.ERROR (""
+            throw new Goto.ERROR (
+                ""
         );
 
         }
@@ -284,54 +318,68 @@ private class ApiH264SliceTest : GLib.TestCase {
         );
 
         if (
-            !file) {
+            !file
+        ) {
             fprintf (
                 stderr,
                 "Couldn't open NALU file: %s\n",
                 argv[2]
             );
+
             ret = -1;
-            throw new Goto.ERROR (""
+            throw new Goto.ERROR (
+                ""
         );
 
         }
 
         while (
-            true) {
+            true
+        ) {
             uint16 size = 0;
-            size_t ret = fread (out size, 1, sizeof (uint16), file
+            size_t ret = fread (
+            out size, 1, sizeof (
+                uint16), file
             );
 
             if (
-                ret != sizeof (uint16)
+                ret != sizeof (
+                    uint16)
             ) {
                 break;
             }
 
-            size = av_be2ne16 (size
+            size = av_be2ne16 (
+                size
             );
 
-            ret = fread (p, 1, size, file
+            ret = fread (
+                p, 1, size, file
             );
 
             if (
-                ret != size) {
+                ret != size
+            ) {
                 perror (
                     "Couldn't read data"
                 );
 
-                throw new Goto.ERROR (""
+                throw new Goto.ERROR (
+                    ""
             );
 
             }
 
             p += ret;
 
-            if (++nals >= threads) {
+            if (
+                ++nals >= threads
+            ) {
                 uint decret = 0;
                 packet.data = nal;
                 packet.size = p - nal;
-                decret = decode (codec_context, frame, packet
+                decret = decode (
+                    codec_context, frame, packet
                 );
 
                 if (
@@ -354,23 +402,27 @@ private class ApiH264SliceTest : GLib.TestCase {
         }
 
         if (
-            nals) {
+            nals
+        ) {
             packet.data = nal;
             packet.size = p - nal;
-            ret = decode (codec_context, frame, packet
+            ret = decode (
+            codec_context, frame, packet
             );
 
             if (
                 ret < 0
             ) {
-                throw new Goto.ERROR (""
+                throw new Goto.ERROR (
+                ""
             );
 
             }
 
         }
 
-        return decode (codec_context, frame, null
+        return decode (
+            codec_context, frame, null
         );
 
     }
@@ -380,7 +432,8 @@ private class ApiH264SliceTest : GLib.TestCase {
         string[] argv
     ) {
         if (
-            argc < 3) {
+            argc < 3
+        ) {
             fprintf (
                 stderr,
                 "Usage: %s <threads> <input file>\n",
@@ -390,13 +443,17 @@ private class ApiH264SliceTest : GLib.TestCase {
             return -1;
         }
 
-        threads = strtoul (argv[1], null, 0
+        threads = strtoul (
+            argv[1], null, 0
         );
 
         if (
-            !threads) {
+            !threads
+        ) {
             threads = 1;
-        } else if (threads > MAX_SLICES) {
+        } else if (
+            threads > MAX_SLICES
+        ) {
             threads = MAX_SLICES;
         }
 
@@ -407,22 +464,27 @@ private class ApiH264SliceTest : GLib.TestCase {
             ),
             O_BINARY
         );
+
     #endif
 
         packet = av_packet_alloc ();
         if (
-            !packet) {
+            !packet
+        ) {
             return -1;
         }
 
         try {
             ret = do_main ();
-        } catch (Goto ret) {
+        } catch (
+            Goto ret
+        ) {
 
         }
 
         if (
-            nal) {
+            nal
+        ) {
             av_free (
                 nal
             );
@@ -430,7 +492,8 @@ private class ApiH264SliceTest : GLib.TestCase {
         }
 
         if (
-            file) {
+            file
+        ) {
             fclose (
                 file
             );

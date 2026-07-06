@@ -77,14 +77,19 @@ private class DemuxDecodeApplication : GLib.Application {
             fprintf (
                 stderr,
                 "Error: Width, height and pixel format have to be " +
-                    "constant in a rawvideo file, but the width, height or " +
-                    "pixel format of the input video changed:\n" +
-                    "old: width = %d, height = %d, format = %s\n" +
-                    "new: width = %d, height = %d, format = %s\n",
-                    width, height, av_get_pix_fmt_name (pix_fmt),
-                    frame.width, frame.height,
-                    av_get_pix_fmt_name (
-                        frame.format)
+                "constant in a rawvideo file, but the width, height or " +
+                "pixel format of the input video changed:\n" +
+                "old: width = %d, height = %d, format = %s\n" +
+                "new: width = %d, height = %d, format = %s\n",
+                width, height,
+                av_get_pix_fmt_name (
+                    pix_fmt
+                ),
+                frame.width,
+                frame.height,
+                av_get_pix_fmt_name (
+                    frame.format
+                )
             );
 
             return -1;
@@ -118,7 +123,8 @@ private class DemuxDecodeApplication : GLib.Application {
     private static int output_audio_frame (
         AVFrame? frame
     ) {
-        size_t unpadded_linesize = frame.nb_samples * av_get_bytes_per_sample (frame.format
+        size_t unpadded_linesize = frame.nb_samples * av_get_bytes_per_sample (
+            frame.format
         );
 
         printf (
@@ -130,9 +136,11 @@ private class DemuxDecodeApplication : GLib.Application {
 
         /***********************************************************
         Write the raw audio data samples of the first plane. This works
-        fine for packed formats (e.g. LibAVUtil.SampleFormat.SIGNED_16_BIT). However,
+        fine for packed formats (
+            e.g. LibAVUtil.SampleFormat.SIGNED_16_BIT). However,
         most audio decoders output planar audio, which uses a separate
-        plane of audio samples for each channel (e.g. LibAVUtil.SampleFormat.SIGNED_16_BIT_PLANAR).
+        plane of audio samples for each channel (
+            e.g. LibAVUtil.SampleFormat.SIGNED_16_BIT_PLANAR).
         In other words, this code will write only the first audio channel
         in these cases.
         You should use libswresample or libavfilter to convert the frame
@@ -155,7 +163,8 @@ private class DemuxDecodeApplication : GLib.Application {
         /***********************************************************
         submit the packet to the decoder
         ***********************************************************/
-        ret = avcodec_send_packet (dec, pkt
+        ret = avcodec_send_packet (
+            dec, pkt
         );
 
         if (
@@ -163,7 +172,8 @@ private class DemuxDecodeApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Error submitting a packet for decoding (%s)\n",
+                "Error submitting a packet for decoding (
+                    %s)\n",
                 av_err2str (
                     ret)
             );
@@ -176,8 +186,10 @@ private class DemuxDecodeApplication : GLib.Application {
         get all the available frames from the decoder
         ***********************************************************/
         while (
-            ret >= 0) {
-            ret = avcodec_receive_frame (dec, frame
+            ret >= 0
+        ) {
+            ret = avcodec_receive_frame (
+            dec, frame
             );
 
             if (
@@ -189,7 +201,9 @@ private class DemuxDecodeApplication : GLib.Application {
                 ***********************************************************/
                 if (
                     ret == AVERROR_EOF ||
-                    ret == AVERROR (EAGAIN)
+                    ret == AVERROR (
+                        EAGAIN
+                    )
                 ) {
                     return 0;
                 }
@@ -209,12 +223,15 @@ private class DemuxDecodeApplication : GLib.Application {
             write the frame data to output file
             ***********************************************************/
             if (
-                dec.codec.type == AVMEDIA_TYPE_VIDEO) {
-                ret = output_video_frame (frame
+                dec.codec.type == AVMEDIA_TYPE_VIDEO
+            ) {
+                ret = output_video_frame (
+                frame
                 );
 
             } else {
-                ret = output_audio_frame (frame
+                ret = output_audio_frame (
+                frame
                 );
 
             }
@@ -238,7 +255,8 @@ private class DemuxDecodeApplication : GLib.Application {
         AVStream? st;
         AVCodec? dec = null;
 
-        ret = av_find_best_stream (fmt_ctx, type, -1, -1, null, 0
+        ret = av_find_best_stream (
+            fmt_ctx, type, -1, -1, null, 0
         );
 
         if (
@@ -259,11 +277,13 @@ private class DemuxDecodeApplication : GLib.Application {
             /***********************************************************
             find decoder for the stream
             ***********************************************************/
-            dec = avcodec_find_decoder (st.codecpar.codec_id
+            dec = avcodec_find_decoder (
+                st.codecpar.codec_id
             );
 
             if (
-                !dec) {
+                !dec
+            ) {
                 fprintf (
                     stderr,
                     "Failed to find %s codec\n",
@@ -271,7 +291,8 @@ private class DemuxDecodeApplication : GLib.Application {
                             type)
                 );
 
-                return AVERROR (EINVAL
+                return AVERROR (
+                    EINVAL
                 );
 
             }
@@ -279,11 +300,13 @@ private class DemuxDecodeApplication : GLib.Application {
             /***********************************************************
             Allocate a codec context for the decoder
             ***********************************************************/
-            dec_ctx_out = avcodec_alloc_context3 (dec
+            dec_ctx_out = avcodec_alloc_context3 (
+                dec
             );
 
             if (
-                !dec_ctx_out) {
+                !dec_ctx_out
+            ) {
                 fprintf (
                     stderr,
                     "Failed to allocate the %s codec context\n",
@@ -291,7 +314,8 @@ private class DemuxDecodeApplication : GLib.Application {
                             type)
                 );
 
-                return AVERROR (ENOMEM
+                return AVERROR (
+                    ENOMEM
                 );
 
             }
@@ -299,7 +323,8 @@ private class DemuxDecodeApplication : GLib.Application {
             /***********************************************************
             Copy codec parameters from input stream to output codec context
             ***********************************************************/
-            ret = avcodec_parameters_to_context (dec_ctx_out, st.codecpar
+            ret = avcodec_parameters_to_context (
+                dec_ctx_out, st.codecpar
             );
 
             if (
@@ -318,7 +343,8 @@ private class DemuxDecodeApplication : GLib.Application {
             /***********************************************************
             Init the decoders
             ***********************************************************/
-            ret = avcodec_open2 (dec_ctx_out, dec, null
+            ret = avcodec_open2 (
+                dec_ctx_out, dec, null
             );
 
             if (
@@ -366,12 +392,15 @@ private class DemuxDecodeApplication : GLib.Application {
             i < FF_ARRAY_ELEMS (
                 sample_fmt_entries
             );
+
             i++
         ) {
             SampleFormatEntry? entry = &sample_fmt_entries[i];
             if (
-                sample_fmt == entry.sample_fmt) {
-                fmt_out = AV_NE (entry.fmt_be, entry.fmt_le
+                sample_fmt == entry.sample_fmt
+            ) {
+                fmt_out = AV_NE (
+                entry.fmt_be, entry.fmt_le
                 );
 
                 return 0;
@@ -396,7 +425,8 @@ private class DemuxDecodeApplication : GLib.Application {
         int ret = 0;
 
         if (
-            argc != 4) {
+            argc != 4
+        ) {
             fprintf (
                 stderr,
                 "usage: %s  input_file video_output_file audio_output_file\n" +
@@ -422,7 +452,9 @@ private class DemuxDecodeApplication : GLib.Application {
         ***********************************************************/
         if (
             avformat_open_input (
-                &fmt_ctx, src_filename, null, null) < 0) {
+                &fmt_ctx, src_filename, null, null
+            ) < 0
+        ) {
             fprintf (
                 stderr,
                 "Could not open source file %s\n",
@@ -440,7 +472,9 @@ private class DemuxDecodeApplication : GLib.Application {
         ***********************************************************/
         if (
             avformat_find_stream_info (
-                fmt_ctx, null) < 0) {
+                fmt_ctx, null
+            ) < 0
+        ) {
             fprintf (
                 stderr,
                 "Could not find stream information\n"
@@ -454,14 +488,18 @@ private class DemuxDecodeApplication : GLib.Application {
 
         if (
             open_codec_context (
-                &video_stream_idx, &video_dec_ctx, fmt_ctx, AVMEDIA_TYPE_VIDEO) >= 0) {
+                &video_stream_idx, &video_dec_ctx, fmt_ctx, AVMEDIA_TYPE_VIDEO
+            ) >= 0
+        ) {
             video_stream = fmt_ctx.streams[video_stream_idx];
 
-            video_dst_file = fopen (video_dst_filename, "wb"
+            video_dst_file = fopen (
+            video_dst_filename, "wb"
             );
 
             if (
-                !video_dst_file) {
+                !video_dst_file
+            ) {
                 fprintf (
                     stderr,
                     "Could not open destination file %s\n",
@@ -469,7 +507,8 @@ private class DemuxDecodeApplication : GLib.Application {
                 );
 
                 ret = 1;
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             /***********************************************************
@@ -478,7 +517,8 @@ private class DemuxDecodeApplication : GLib.Application {
             width = video_dec_ctx.width;
             height = video_dec_ctx.height;
             pix_fmt = video_dec_ctx.pix_fmt;
-            ret = av_image_alloc (video_dst_data, video_dst_linesize,
+            ret = av_image_alloc (
+                video_dst_data, video_dst_linesize,
                                 width, height, pix_fmt, 1
             );
 
@@ -490,7 +530,8 @@ private class DemuxDecodeApplication : GLib.Application {
                     "Could not allocate raw video buffer\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             video_dst_bufsize = ret;
@@ -498,13 +539,17 @@ private class DemuxDecodeApplication : GLib.Application {
 
         if (
             open_codec_context (
-                &audio_stream_idx, &audio_dec_ctx, fmt_ctx, AVMEDIA_TYPE_AUDIO) >= 0) {
+                &audio_stream_idx, &audio_dec_ctx, fmt_ctx, AVMEDIA_TYPE_AUDIO
+            ) >= 0
+        ) {
             audio_stream = fmt_ctx.streams[audio_stream_idx];
-            audio_dst_file = fopen (audio_dst_filename, "wb"
+            audio_dst_file = fopen (
+            audio_dst_filename, "wb"
             );
 
             if (
-                !audio_dst_file) {
+                !audio_dst_file
+            ) {
                 fprintf (
                     stderr,
                     "Could not open destination file %s\n",
@@ -512,7 +557,8 @@ private class DemuxDecodeApplication : GLib.Application {
                 );
 
                 ret = 1;
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
         }
@@ -526,46 +572,55 @@ private class DemuxDecodeApplication : GLib.Application {
 
         if (
             !audio_stream &&
-            !video_stream) {
+            !video_stream
+        ) {
             fprintf (
                 stderr,
                 "Could not find audio or video stream in the input, aborting\n"
             );
 
             ret = 1;
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         frame = av_frame_alloc ();
         if (
-            !frame) {
+            !frame
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate frame\n"
             );
 
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+                ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         pkt = av_packet_alloc ();
         if (
-            !pkt) {
+            !pkt
+        ) {
             fprintf (
                 stderr,
                 "Could not allocate packet\n"
             );
 
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+                ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         if (
-            video_stream) {
+            video_stream
+        ) {
             printf (
                 "Demuxing video from file '%s' into '%s'\n",
                 src_filename, video_dst_filename
@@ -574,7 +629,8 @@ private class DemuxDecodeApplication : GLib.Application {
         }
 
         if (
-            audio_stream) {
+            audio_stream
+        ) {
             printf (
                 "Demuxing audio from file '%s' into '%s'\n",
                 src_filename, audio_dst_filename
@@ -595,12 +651,17 @@ private class DemuxDecodeApplication : GLib.Application {
             otherwise skip it.
             ***********************************************************/
             if (
-                pkt.stream_index == video_stream_idx) {
-                ret = decode_packet (video_dec_ctx, pkt
+                pkt.stream_index == video_stream_idx
+            ) {
+                ret = decode_packet (
+                video_dec_ctx, pkt
                 );
 
-            } else if (pkt.stream_index == audio_stream_idx) {
-                ret = decode_packet (audio_dec_ctx, pkt
+            } else if (
+                pkt.stream_index == audio_stream_idx
+            ) {
+                ret = decode_packet (
+                audio_dec_ctx, pkt
                 );
 
             }
@@ -621,7 +682,8 @@ private class DemuxDecodeApplication : GLib.Application {
         flush the decoders
         ***********************************************************/
         if (
-            video_dec_ctx) {
+            video_dec_ctx
+        ) {
             decode_packet (
                 video_dec_ctx, null
             );
@@ -629,7 +691,8 @@ private class DemuxDecodeApplication : GLib.Application {
         }
 
         if (
-            audio_dec_ctx) {
+            audio_dec_ctx
+        ) {
             decode_packet (
                 audio_dec_ctx, null
             );
@@ -654,7 +717,8 @@ private class DemuxDecodeApplication : GLib.Application {
         }
 
         if (
-            audio_stream) {
+            audio_stream
+        ) {
             LibAVUtil.SampleFormat sfmt = audio_dec_ctx.sample_fmt;
             int n_channels = audio_dec_ctx.ch_layout.nb_channels;
             string fmt;
@@ -663,7 +727,8 @@ private class DemuxDecodeApplication : GLib.Application {
                 av_sample_fmt_is_planar (
                     sfmt)
             ) {
-                string packed = av_get_sample_fmt_name (sfmt
+                string packed = av_get_sample_fmt_name (
+                sfmt
                 );
 
                 printf (
@@ -672,19 +737,22 @@ private class DemuxDecodeApplication : GLib.Application {
                     packed ? packed : "?"
                 );
 
-                sfmt = av_get_packed_sample_fmt (sfmt
+                sfmt = av_get_packed_sample_fmt (
+                    sfmt
                 );
 
                 n_channels = 1;
             }
 
-            ret = get_format_from_sample_fmt (&fmt, sfmt
+            ret = get_format_from_sample_fmt (
+                &fmt, sfmt
             );
 
             if (
                 ret < 0
             ) {
-                throw new Goto.END ("");
+                throw new Goto.END (
+                "");
             }
 
             printf (
@@ -710,7 +778,8 @@ private class DemuxDecodeApplication : GLib.Application {
         );
 
         if (
-            video_dst_file) {
+            video_dst_file
+        ) {
             fclose (
                 video_dst_file
             );
@@ -718,7 +787,8 @@ private class DemuxDecodeApplication : GLib.Application {
         }
 
         if (
-            audio_dst_file) {
+            audio_dst_file
+        ) {
             fclose (
                 audio_dst_file
             );

@@ -33,7 +33,11 @@ private static void randomize_buffers () {
             j < channels;
             j++
         ) {
-            uint32 r = rnd () & (1 << (bits - 2)) - 1;
+            uint32 r = rnd () & (
+                1 << (
+                    bits - 2
+                )
+            ) - 1;
             AV_WN32A (
                 ref_src[j] + i, r
             );
@@ -88,8 +92,11 @@ private static void check_decorrelate (
     //  );
 
     if (
-        memcmp (*ref_dst, *new_dst, bits == 16 ? BUF_SIZE * (channels/2) : BUF_SIZE * channels) ||
-        memcmp (*ref_src, *new_src, BUF_SIZE * channels)
+        memcmp (
+            *ref_dst, *new_dst, bits == 16 ? BUF_SIZE * (
+                channels/2) : BUF_SIZE * channels) ||
+        memcmp (
+            *ref_src, *new_src, BUF_SIZE * channels)
     ) {
         fail ();
     }

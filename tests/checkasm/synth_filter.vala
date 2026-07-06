@@ -27,7 +27,10 @@ private static void randomize_input () {
         i < BUF_SIZE;
         i++
     ) {
-        float f = (float)rnd () / (UINT_MAX >> 5) - 16.0f;
+        float f = (float)rnd () / (
+            UINT_MAX >> 5
+        ) - 16.0f;
+
         in[i] = f;
     }
 
@@ -137,27 +140,33 @@ private static void checkasm_check_synth_filter () {
         //  );
 
         memset (
-            buf2_0, 0, sizeof (buf2_0) * BUF_SIZE
+            buf2_0, 0, sizeof (
+                buf2_0) * BUF_SIZE
         );
 
         memset (
-            buf2_1, 0, sizeof (buf2_1) * BUF_SIZE
+            buf2_1, 0, sizeof (
+                buf2_1) * BUF_SIZE
         );
 
         memset (
-            buf2_b, 0, sizeof (buf2_b) * BUF_SIZE
+            buf2_b, 0, sizeof (
+                buf2_b) * BUF_SIZE
         );
 
         memset (
-            buf0, 0, sizeof (buf2_0) * 512
+            buf0, 0, sizeof (
+                buf2_0) * 512
         );
 
         memset (
-            buf1, 0, sizeof (buf2_1) * 512
+            buf1, 0, sizeof (
+                buf2_1) * 512
         );
 
         memset (
-            buf_b, 0, sizeof (buf2_b) * 512
+            buf_b, 0, sizeof (
+                buf2_b) * 512
         );
 
         /***********************************************************
@@ -169,18 +178,22 @@ private static void checkasm_check_synth_filter () {
             i++
         ) {
             int j;
-            float[] window = (i & 1) ? ff_dca_fir_32bands_perfect : ff_dca_fir_32bands_nonperfect;
+            float[] window = (
+            i & 1) ? ff_dca_fir_32bands_perfect : ff_dca_fir_32bands_nonperfect;
 
             memset (
-                out0, 0, sizeof (out0) * BUF_SIZE
+                out0, 0, sizeof (
+                    out0) * BUF_SIZE
             );
 
             memset (
-                out1, 0, sizeof (out1) * BUF_SIZE
+                out1, 0, sizeof (
+                    out1) * BUF_SIZE
             );
 
             memset (
-                out_b, 0, sizeof (out_b) * BUF_SIZE
+                out_b, 0, sizeof (
+                    out_b) * BUF_SIZE
             );
 
             randomize_input ();
@@ -213,8 +226,18 @@ private static void checkasm_check_synth_filter () {
                 j++
             ) {
                 if (
-                    !float_near_abs_eps_ulp (out0[j], out1[j], 7.0e-7, 16) ||
-                    !float_near_abs_eps_ulp (buf2_0[j], buf2_1[j], 7.0e-7, 16)
+                    !float_near_abs_eps_ulp (
+                        out0[j],
+                        out1[j],
+                        7.0e-7,
+                        16
+                    ) ||
+                    !float_near_abs_eps_ulp (
+                        buf2_0[j],
+                        buf2_1[j],
+                        7.0e-7,
+                        16
+                    )
                 ) {
                     /*union*/ av_intfloat32 o0, o1, b0, b1;
 
@@ -227,14 +250,18 @@ private static void checkasm_check_synth_filter () {
                         stderr,
                         "out:  %11g (0x%08x); %11g (0x%08x); abs diff %11g\n",
                         o0.f, o0.i, o1.f, o1.i,
-                        fabsf (o0.f - o1.f)
+                        fabsf (
+                            o0.f - o1.f
+                        )
                     );
 
                     fprintf (
                         stderr,
                         "buf2: %11g (0x%08x); %11g (0x%08x); abs diff %11g\n",
                         b0.f, b0.i, b1.f, b1.i,
-                        fabsf (b0.f - b1.f)
+                        fabsf (
+                            b0.f - b1.f
+                        )
                     );
 
                     break;

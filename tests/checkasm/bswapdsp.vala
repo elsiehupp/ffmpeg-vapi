@@ -72,18 +72,25 @@ private static void check_bswap (
         w < BUF_SIZE / sizeof (
             type
         );
+
         w++
     ) {
-        int offset = (BUF_SIZE / sizeof (type) - w) & 15;
+        int offset = (
+        BUF_SIZE / sizeof (
+            type) - w) & 15;
         /***********************************************************
         Test various alignments
         ***********************************************************/
         randomize_buffers ();
 
-        call_ref ((type[])dst0 + offset, (type[])src0 + offset, w
+        call_ref (
+            (type[])dst0 + offset, (
+                type[])src0 + offset, w
         );
 
-        call_new ((type[])dst1 + offset, (type[])src1 + offset, w
+        call_new (
+            (type[])dst1 + offset, (
+                type[])src1 + offset, w
         );
 
         if (
@@ -98,7 +105,8 @@ private static void check_bswap (
         }
 
         bench_new (
-            (type[])dst1 + offset, (type[])src1 + offset, w
+            (type[])dst1 + offset, (
+                type[])src1 + offset, w
         );
 
     }

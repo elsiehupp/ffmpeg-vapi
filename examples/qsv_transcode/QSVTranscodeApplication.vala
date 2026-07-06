@@ -70,26 +70,34 @@ private class QSVTranscodeApplication : GLib.Application {
         string value;
         if (
             strlen (
-                optstr) == 0) {
+                optstr
+            ) == 0
+        ) {
             return 0;
         }
 
-        key = strtok (optstr, " "
+        key = strtok (
+            optstr, " "
         );
 
         if (
-            key == null) {
-            return AVERROR (EINVAL
+            key == null
+        ) {
+            return AVERROR (
+            EINVAL
             );
 
         }
 
-        value = strtok (null, " "
+        value = strtok (
+            null, " "
         );
 
         if (
-            value == null) {
-            return AVERROR (EINVAL
+            value == null
+        ) {
+            return AVERROR (
+            EINVAL
             );
 
         }
@@ -99,20 +107,25 @@ private class QSVTranscodeApplication : GLib.Application {
         );
 
         do {
-            key = strtok (null, " "
+            key = strtok (
+            null, " "
             );
 
             if (
-                key == null) {
+                key == null
+            ) {
                 return 0;
             }
 
-            value = strtok (null, " "
+            value = strtok (
+                null, " "
             );
 
             if (
-                value == null) {
-                return AVERROR (EINVAL
+                value == null
+            ) {
+                return AVERROR (
+                EINVAL
                 );
 
             }
@@ -121,7 +134,8 @@ private class QSVTranscodeApplication : GLib.Application {
                 opt, key, value, 0
             );
 
-        } while (1
+        } while (
+            1
         );
 
     }
@@ -136,9 +150,11 @@ private class QSVTranscodeApplication : GLib.Application {
         frame_number++;
         if (
             current_setting_number < setting_number &&
-            frame_number == dynamic_setting[current_setting_number].frame_number) {
+            frame_number == dynamic_setting[current_setting_number].frame_number
+        ) {
             AVDictionaryEntry? dictionary_entry = null;
-            ret = str_to_dict (dynamic_setting[current_setting_number++].optstr, &opts
+            ret = str_to_dict (
+            dynamic_setting[current_setting_number++].optstr, &opts
             );
 
             if (
@@ -149,7 +165,8 @@ private class QSVTranscodeApplication : GLib.Application {
                     "The dynamic parameter is wrong\n"
                 );
 
-                throw new Goto.FAIL ("");
+                throw new Goto.FAIL (
+                    "");
             }
 
             /***********************************************************
@@ -157,25 +174,29 @@ private class QSVTranscodeApplication : GLib.Application {
             by a new one containing all options not found in common option list.
             Then this new dictionary is used to set private option.
             ***********************************************************/
-            ret = av_opt_set_dict (avctx, &opts
+            ret = av_opt_set_dict (
+                avctx, &opts
             );
 
             if (
                 ret < 0
             ) {
-                throw new Goto.FAIL ("");
+                throw new Goto.FAIL (
+                "");
             }
 
             /***********************************************************
             Set codec specific option
             ***********************************************************/
-            ret = av_opt_set_dict (avctx.priv_data, &opts
+            ret = av_opt_set_dict (
+                avctx.priv_data, &opts
             );
 
             if (
                 ret < 0
             ) {
-                throw new Goto.FAIL ("");
+                throw new Goto.FAIL (
+                "");
             }
 
             /***********************************************************
@@ -183,15 +204,20 @@ private class QSVTranscodeApplication : GLib.Application {
             framerate, which is compatible with ffmpeg commandline. The video is
             assumed to be average frame rate, so set time_base to 1/framerate.
             ***********************************************************/
-            dictionary_entry = av_dict_get (opts, "r", null, 0
+            dictionary_entry = av_dict_get (
+                opts, "r", null, 0
             );
 
             if (
-                dictionary_entry) {
-                avctx.framerate = av_d2q (atof (dictionary_entry.value), INT_MAX
+                dictionary_entry
+            ) {
+                avctx.framerate = av_d2q (
+                atof (
+                    dictionary_entry.value), INT_MAX
                 );
 
-                encoder_ctx.time_base = av_inv_q (encoder_ctx.framerate
+                encoder_ctx.time_base = av_inv_q (
+                    encoder_ctx.framerate
                 );
 
             }
@@ -210,8 +236,12 @@ private class QSVTranscodeApplication : GLib.Application {
         AVCodecContext? avctx,
         AVPixelFormat[] pix_fmts
     ) {
-        while (*pix_fmts != LibAVUtil.PixelFormat.NONE) {
-            if (*pix_fmts == LibAVUtil.PixelFormat.QSV) {
+        while (
+            *pix_fmts != LibAVUtil.PixelFormat.NONE
+        ) {
+            if (
+                *pix_fmts == LibAVUtil.PixelFormat.QSV
+            ) {
                 return LibAVUtil.PixelFormat.QSV;
             }
 
@@ -233,7 +263,8 @@ private class QSVTranscodeApplication : GLib.Application {
         AVCodec? decoder = null;
         AVStream? video = null;
 
-        ret = avformat_open_input (&ifmt_ctx, filename, null, null
+        ret = avformat_open_input (
+            &ifmt_ctx, filename, null, null
         );
 
         if (
@@ -242,13 +273,17 @@ private class QSVTranscodeApplication : GLib.Application {
             fprintf (
                 stderr,
                 "Cannot open input file '%s', Error code: %s\n",
-                    filename, av_err2str (ret)
+                filename,
+                av_err2str (
+                    ret
+                )
             );
 
             return ret;
         }
 
-        ret = avformat_find_stream_info (ifmt_ctx, null
+        ret = avformat_find_stream_info (
+            ifmt_ctx, null
         );
 
         if (
@@ -264,7 +299,8 @@ private class QSVTranscodeApplication : GLib.Application {
             return ret;
         }
 
-        ret = av_find_best_stream (ifmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, null, 0
+        ret = av_find_best_stream (
+            ifmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, null, 0
         );
 
         if (
@@ -284,64 +320,93 @@ private class QSVTranscodeApplication : GLib.Application {
         video = ifmt_ctx.streams[video_stream];
 
         switch (
-            video.codecpar.codec_id) {
-        case AV_CODEC_ID_H264:
-            decoder = avcodec_find_decoder_by_name ("h264_qsv"
-            );
+            video.codecpar.codec_id
+        ) {
+            case AV_CODEC_ID_H264: {
+                decoder = avcodec_find_decoder_by_name (
+                    "h264_qsv"
+                );
 
-            break;
-        case AV_CODEC_ID_HEVC:
-            decoder = avcodec_find_decoder_by_name ("hevc_qsv"
-            );
+                break;
+            }
 
-            break;
-        case AV_CODEC_ID_VP9:
-            decoder = avcodec_find_decoder_by_name ("vp9_qsv"
-            );
+            case AV_CODEC_ID_HEVC: {
+                decoder = avcodec_find_decoder_by_name (
+                    "hevc_qsv"
+                );
 
-            break;
-        case AV_CODEC_ID_VP8:
-            decoder = avcodec_find_decoder_by_name ("vp8_qsv"
-            );
+                break;
+            }
 
-            break;
-        case AV_CODEC_ID_AV1:
-            decoder = avcodec_find_decoder_by_name ("av1_qsv"
-            );
+            case AV_CODEC_ID_VP9: {
+                decoder = avcodec_find_decoder_by_name (
+                    "vp9_qsv"
+                );
 
-            break;
-        case AV_CODEC_ID_MPEG2VIDEO:
-            decoder = avcodec_find_decoder_by_name ("mpeg2_qsv"
-            );
+                break;
+            }
 
-            break;
-        case AV_CODEC_ID_MJPEG:
-            decoder = avcodec_find_decoder_by_name ("mjpeg_qsv"
-            );
+            case AV_CODEC_ID_VP8: {
+                decoder = avcodec_find_decoder_by_name (
+                    "vp8_qsv"
+                );
 
-            break;
-        default:
-            fprintf (
-                stderr,
-                "Codec is not supported by qsv\n"
-            );
+                break;
+            }
 
-            return AVERROR (EINVAL
-            );
+            case AV_CODEC_ID_AV1: {
+                decoder = avcodec_find_decoder_by_name (
+                    "av1_qsv"
+                );
+
+                break;
+            }
+
+            case AV_CODEC_ID_MPEG2VIDEO: {
+                decoder = avcodec_find_decoder_by_name (
+                    "mpeg2_qsv"
+                );
+
+                break;
+            }
+
+            case AV_CODEC_ID_MJPEG: {
+                decoder = avcodec_find_decoder_by_name (
+                    "mjpeg_qsv"
+                );
+
+                break;
+            }
+
+            default: {
+                fprintf (
+                    stderr,
+                    "Codec is not supported by qsv\n"
+                );
+
+                return AVERROR (
+                    EINVAL
+                );
+
+            }
 
         }
 
-        decoder_ctx = avcodec_alloc_context3 (decoder
+        decoder_ctx = avcodec_alloc_context3 (
+            decoder
         );
 
         if (
-            !decoder_ctx) {
-            return AVERROR (ENOMEM
+            !decoder_ctx
+        ) {
+            return AVERROR (
+            ENOMEM
             );
 
         }
 
-        ret = avcodec_parameters_to_context (decoder_ctx, video.codecpar
+        ret = avcodec_parameters_to_context (
+            decoder_ctx, video.codecpar
         );
 
         if (
@@ -357,27 +422,32 @@ private class QSVTranscodeApplication : GLib.Application {
             return ret;
         }
 
-        decoder_ctx.framerate = av_guess_frame_rate (ifmt_ctx, video, null
+        decoder_ctx.framerate = av_guess_frame_rate (
+            ifmt_ctx, video, null
         );
 
-        decoder_ctx.hw_device_ctx = av_buffer_ref (hw_device_ctx
+        decoder_ctx.hw_device_ctx = av_buffer_ref (
+            hw_device_ctx
         );
 
         if (
-            !decoder_ctx.hw_device_ctx) {
+            !decoder_ctx.hw_device_ctx
+        ) {
             fprintf (
                 stderr,
                 "A hardware device reference create failed.\n"
             );
 
-            return AVERROR (ENOMEM
+            return AVERROR (
+                ENOMEM
             );
 
         }
 
         decoder_ctx.get_format = get_format;
         decoder_ctx.pkt_timebase = video.time_base;
-        ret = avcodec_open2 (decoder_ctx, decoder, null
+        ret = avcodec_open2 (
+            decoder_ctx, decoder, null
         );
 
         if (
@@ -404,7 +474,8 @@ private class QSVTranscodeApplication : GLib.Application {
             enc_pkt
         );
 
-        ret = dynamic_set_parameter (encoder_ctx
+        ret = dynamic_set_parameter (
+            encoder_ctx
         );
 
         if (
@@ -417,10 +488,12 @@ private class QSVTranscodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = avcodec_send_frame (encoder_ctx, frame
+        ret = avcodec_send_frame (
+            encoder_ctx, frame
         );
 
         if (
@@ -433,16 +506,20 @@ private class QSVTranscodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         while (
-            true) {
-            ret = avcodec_receive_packet (encoder_ctx, enc_pkt
+            true
+        ) {
+            ret = avcodec_receive_packet (
+            encoder_ctx, enc_pkt
             );
 
             if (
-                ret != 0) {
+                ret != 0
+            ) {
                 break;
             }
 
@@ -452,7 +529,8 @@ private class QSVTranscodeApplication : GLib.Application {
                 ofmt_ctx.streams[0].time_base
             );
 
-            ret = av_interleaved_write_frame (ofmt_ctx, enc_pkt
+            ret = av_interleaved_write_frame (
+                ofmt_ctx, enc_pkt
             );
 
             if (
@@ -472,11 +550,16 @@ private class QSVTranscodeApplication : GLib.Application {
 
     //  end:
         if (
-            ret == AVERROR_EOF) {
+            ret == AVERROR_EOF
+        ) {
             return 0;
         }
 
-        ret = ((ret == AVERROR (EAGAIN)) ? 0:-1
+        ret = (
+            ret == AVERROR (
+                EAGAIN)
+            ? 0
+            : -1
         );
 
         return ret;
@@ -490,7 +573,8 @@ private class QSVTranscodeApplication : GLib.Application {
         AVFrame? frame;
         int ret = 0;
 
-        ret = avcodec_send_packet (decoder_ctx, pkt
+        ret = avcodec_send_packet (
+            decoder_ctx, pkt
         );
 
         if (
@@ -507,20 +591,25 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         while (
-            ret >= 0) {
+            ret >= 0
+        ) {
             frame = av_frame_alloc ();
             if (
-                !frame) {
-                return AVERROR (ENOMEM
+                !frame
+            ) {
+                return AVERROR (
+                ENOMEM
                 );
 
             }
 
-            ret = avcodec_receive_frame (decoder_ctx, frame
+            ret = avcodec_receive_frame (
+                decoder_ctx, frame
             );
 
             if (
-                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR (
+                    EAGAIN) ||
                 ret == AVERROR_EOF
             ) {
                 av_frame_free (
@@ -538,11 +627,13 @@ private class QSVTranscodeApplication : GLib.Application {
                         ret)
                 );
 
-                throw new Goto.FAIL ("");
+                throw new Goto.FAIL (
+                    "");
             }
 
             if (
-                !encoder_ctx.hw_frames_ctx) {
+                !encoder_ctx.hw_frames_ctx
+            ) {
                 AVDictionaryEntry? dictionary_entry = null;
                 AVDictionary? opts = null;
                 AVStream? ost;
@@ -550,15 +641,21 @@ private class QSVTranscodeApplication : GLib.Application {
                 we need to ref hw_frames_ctx of decoder to initialize encoder's codec.
                 Only after we get a decoded frame, can we obtain its hw_frames_ctx
                 ***********************************************************/
-                encoder_ctx.hw_frames_ctx = av_buffer_ref (decoder_ctx.hw_frames_ctx
+                encoder_ctx.hw_frames_ctx = av_buffer_ref (
+                    decoder_ctx.hw_frames_ctx
                 );
 
                 if (
-                    !encoder_ctx.hw_frames_ctx) {
-                    ret = AVERROR (ENOMEM
+                    !encoder_ctx.hw_frames_ctx
+                ) {
+                    ret = AVERROR (
+                        ENOMEM
                     );
 
-                    throw new Goto.FAIL ("");
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
                 /***********************************************************
@@ -566,13 +663,15 @@ private class QSVTranscodeApplication : GLib.Application {
                 the same as decoder.
 
                 ***********************************************************/
-                encoder_ctx.time_base = av_inv_q (decoder_ctx.framerate
+                encoder_ctx.time_base = av_inv_q (
+                    decoder_ctx.framerate
                 );
 
                 encoder_ctx.pix_fmt = LibAVUtil.PixelFormat.QSV;
                 encoder_ctx.width = decoder_ctx.width;
                 encoder_ctx.height = decoder_ctx.height;
-                ret = str_to_dict (optstr, &opts
+                ret = str_to_dict (
+                    optstr, &opts
                 );
 
                 if (
@@ -582,7 +681,11 @@ private class QSVTranscodeApplication : GLib.Application {
                         stderr,
                         "Failed to set encoding parameter.\n"
                     );
-                    throw new Goto.FAIL ("");
+
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
                 /***********************************************************
@@ -591,20 +694,28 @@ private class QSVTranscodeApplication : GLib.Application {
                 video is assumed to be average frame rate, so set time_base to
                 1/framerate.
                 ***********************************************************/
-                dictionary_entry = av_dict_get (opts, "r", null, 0
+                dictionary_entry = av_dict_get (
+                    opts, "r", null, 0
                 );
 
                 if (
-                    dictionary_entry) {
-                    encoder_ctx.framerate = av_d2q (atof (dictionary_entry.value), INT_MAX
+                    dictionary_entry
+                ) {
+                    encoder_ctx.framerate = av_d2q (
+                        atof (
+                            dictionary_entry.value
+                        ),
+                        INT_MAX
                     );
 
-                    encoder_ctx.time_base = av_inv_q (encoder_ctx.framerate
+                    encoder_ctx.time_base = av_inv_q (
+                        encoder_ctx.framerate
                     );
 
                 }
 
-                ret = avcodec_open2 (encoder_ctx, enc_codec, &opts
+                ret = avcodec_open2 (
+                    encoder_ctx, enc_codec, &opts
                 );
 
                 if (
@@ -621,31 +732,41 @@ private class QSVTranscodeApplication : GLib.Application {
                         &opts
                     );
 
-                    throw new Goto.FAIL ("");
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
                 av_dict_free (
                     &opts
                 );
 
-                ost = avformat_new_stream (ofmt_ctx, enc_codec
+                ost = avformat_new_stream (
+                    ofmt_ctx, enc_codec
                 );
 
                 if (
-                    !ost) {
+                    !ost
+                ) {
                     fprintf (
                         stderr,
                         "Failed to allocate stream for output format.\n"
                     );
 
-                    ret = AVERROR (ENOMEM
+                    ret = AVERROR (
+                        ENOMEM
                     );
 
-                    throw new Goto.FAIL ("");
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
                 ost.time_base = encoder_ctx.time_base;
-                ret = avcodec_parameters_from_context (ost.codecpar, encoder_ctx
+                ret = avcodec_parameters_from_context (
+                    ost.codecpar, encoder_ctx
                 );
 
                 if (
@@ -656,16 +777,21 @@ private class QSVTranscodeApplication : GLib.Application {
                         "Failed to copy the stream parameters. " +
                         "Error code: %s\n",
                         av_err2str (
-                            ret)
+                            ret
+                        )
                     );
 
-                    throw new Goto.FAIL ("");
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
                 /***********************************************************
                 write the stream header
                 ***********************************************************/
-                ret = avformat_write_header (ofmt_ctx, null
+                ret = avformat_write_header (
+                    ofmt_ctx, null
                 );
 
                 if (
@@ -676,10 +802,14 @@ private class QSVTranscodeApplication : GLib.Application {
                         "Error while writing stream header. " +
                         "Error code: %s\n",
                         av_err2str (
-                            ret)
+                            ret
+                        )
                     );
 
-                    throw new Goto.FAIL ("");
+                    throw new Goto.FAIL (
+                        ""
+                    );
+
                 }
 
             }
@@ -689,7 +819,8 @@ private class QSVTranscodeApplication : GLib.Application {
                 encoder_ctx.time_base
             );
 
-            ret = encode_write (pkt, frame
+            ret = encode_write (
+                pkt, frame
             );
 
             if (
@@ -722,7 +853,8 @@ private class QSVTranscodeApplication : GLib.Application {
 
         if (
             argc < 5 ||
-            (argc - 5) % 2
+            (
+                argc - 5) % 2
         ) {
             av_log (
                 null, AV_LOG_ERROR, "Usage: %s <input file> <encoder> <output file>" +
@@ -733,16 +865,22 @@ private class QSVTranscodeApplication : GLib.Application {
             return 1;
         }
 
-        setting_number = (argc - 5) / 2;
-        dynamic_setting = av_malloc (setting_number * sizeof (dynamic_setting)
+        setting_number = (
+            argc - 5) / 2;
+        dynamic_setting = av_malloc (
+            setting_number * sizeof (
+                dynamic_setting)
         );
 
         if (
-            !dynamic_setting) {
-            ret = AVERROR (ENOMEM
+            !dynamic_setting
+        ) {
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         current_setting_number = 0;
@@ -758,7 +896,8 @@ private class QSVTranscodeApplication : GLib.Application {
             dynamic_setting[i].optstr = argv[i*2 + 6];
         }
 
-        ret = av_hwdevice_ctx_create (&hw_device_ctx, AV_HWDEVICE_TYPE_QSV, null, null, 0
+        ret = av_hwdevice_ctx_create (
+            &hw_device_ctx, AV_HWDEVICE_TYPE_QSV, null, null, 0
         );
 
         if (
@@ -771,34 +910,41 @@ private class QSVTranscodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         dec_pkt = av_packet_alloc ();
         if (
-            !dec_pkt) {
+            !dec_pkt
+        ) {
             fprintf (
                 stderr,
                 "Failed to allocate decode packet\n"
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = open_input_file (argv[1]
+        ret = open_input_file (
+            argv[1]
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
-        enc_codec = avcodec_find_encoder_by_name (argv[2]
+        enc_codec = avcodec_find_encoder_by_name (
+            argv[2]
         );
 
         if (
-            !enc_codec) {
+            !enc_codec
+        ) {
             fprintf (
                 stderr,
                 "Could not find encoder '%s'\n",
@@ -806,10 +952,12 @@ private class QSVTranscodeApplication : GLib.Application {
             );
 
             ret = -1;
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = avformat_alloc_output_context2 (&ofmt_ctx, null, null, argv[3]
+        ret = avformat_alloc_output_context2 (
+            &ofmt_ctx, null, null, argv[3]
         );
 
         if (
@@ -822,21 +970,27 @@ private class QSVTranscodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        encoder_ctx = avcodec_alloc_context3 (enc_codec
+        encoder_ctx = avcodec_alloc_context3 (
+            enc_codec
         );
 
         if (
-            !encoder_ctx) {
-            ret = AVERROR (ENOMEM
+            !encoder_ctx
+        ) {
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
-        ret = avio_open (&ofmt_ctx.pb, argv[3], AVIO_FLAG_WRITE
+        ret = avio_open (
+            &ofmt_ctx.pb, argv[3], AVIO_FLAG_WRITE
         );
 
         if (
@@ -849,15 +1003,18 @@ private class QSVTranscodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
         read all packets and only transcoding video
         ***********************************************************/
         while (
-            ret >= 0) {
-            ret = av_read_frame (ifmt_ctx, dec_pkt
+            ret >= 0
+        ) {
+            ret = av_read_frame (
+            ifmt_ctx, dec_pkt
             );
 
             if (
@@ -867,8 +1024,10 @@ private class QSVTranscodeApplication : GLib.Application {
             }
 
             if (
-                video_stream == dec_pkt.stream_index) {
-                ret = dec_enc (dec_pkt, enc_codec, argv[4]
+                video_stream == dec_pkt.stream_index
+            ) {
+                ret = dec_enc (
+                dec_pkt, enc_codec, argv[4]
                 );
 
             }
@@ -886,7 +1045,8 @@ private class QSVTranscodeApplication : GLib.Application {
             dec_pkt
         );
 
-        ret = dec_enc (dec_pkt, enc_codec, argv[4]
+        ret = dec_enc (
+            dec_pkt, enc_codec, argv[4]
         );
 
         if (
@@ -899,13 +1059,15 @@ private class QSVTranscodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
         flush encoder
         ***********************************************************/
-        ret = encode_write (dec_pkt, null
+        ret = encode_write (
+            dec_pkt, null
         );
 
         if (
@@ -918,13 +1080,15 @@ private class QSVTranscodeApplication : GLib.Application {
                     ret)
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         /***********************************************************
         write the trailer for output stream
         ***********************************************************/
-        ret = av_write_trailer (ofmt_ctx
+        ret = av_write_trailer (
+            ofmt_ctx
         );
 
         if (

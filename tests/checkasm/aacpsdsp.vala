@@ -32,7 +32,8 @@ private static void randomize (
         i < len;
         i++
     ) {
-        INTFLOAT f = (INTFLOAT)rnd () / UINT_MAX;
+        INTFLOAT f = (
+        INTFLOAT)rnd () / UINT_MAX;
         (void *buf)[i] = f;
     }
 
@@ -68,15 +69,19 @@ private static void test_add_squares () {
     //  );
 
     randomize (
-        (INTFLOAT *)src, BUF_SIZE * 2
+        (INTFLOAT *)src,
+        BUF_SIZE * 2
     );
 
     randomize (
-        dst0, BUF_SIZE
+        dst0,
+        BUF_SIZE
     );
 
     memcpy (
-        dst1, dst0, BUF_SIZE * sizeof (INTFLOAT)
+        dst1, dst0, BUF_SIZE * sizeof (
+            INTFLOAT
+        )
     );
 
     call_ref (
@@ -88,7 +93,8 @@ private static void test_add_squares () {
     );
 
     if (
-        !float_near_abs_eps_array (dst0, dst1, EPS, BUF_SIZE)
+        !float_near_abs_eps_array (
+            dst0, dst1, EPS, BUF_SIZE)
     ) {
         fail ();
     }
@@ -153,7 +159,9 @@ private static void test_mul_pair_single () {
     );
 
     if (
-        !float_near_abs_eps_array ((float[] )dst0, (float[] )dst1, EPS, BUF_SIZE * 2)
+        !float_near_abs_eps_array (
+            (float[] )dst0, (
+                float[] )dst1, EPS, BUF_SIZE * 2)
     ) {
         fail ();
     }
@@ -217,7 +225,8 @@ private static void test_hybrid_analysis () {
     );
 
     memcpy (
-        dst1, dst0, BUF_SIZE * 2 * sizeof (INTFLOAT)
+        dst1, dst0, BUF_SIZE * 2 * sizeof (
+            INTFLOAT)
     );
 
     call_ref (
@@ -229,7 +238,9 @@ private static void test_hybrid_analysis () {
     );
 
     if (
-        !float_near_abs_eps_array ((float[] )dst0, (float[] )dst1, EPS, BUF_SIZE * 2)
+        !float_near_abs_eps_array (
+            (float[] )dst0, (
+                float[] )dst1, EPS, BUF_SIZE * 2)
     ) {
         fail ();
     }
@@ -283,7 +294,9 @@ private static void test_hybrid_analysis_ileave () {
     memcpy (
         out1,
         out0,
-        91 * 32 * 2 * sizeof (INTFLOAT)
+        91 * 32 * 2 * sizeof (
+            INTFLOAT
+        )
     );
 
     /***********************************************************
@@ -309,7 +322,8 @@ private static void test_hybrid_analysis_ileave () {
     ***********************************************************/
     if (
         memcmp (
-            out0, out1, 91 * 32 * 2 * sizeof (INTFLOAT))
+            out0, out1, 91 * 32 * 2 * sizeof (
+                INTFLOAT))
     ) {
         fail ();
     }
@@ -324,12 +338,14 @@ private static void test_hybrid_analysis_ileave () {
 
     if (
         memcmp (
-            out0, out1, 91 * 32 * 2 * sizeof (INTFLOAT))
+            out0, out1, 91 * 32 * 2 * sizeof (
+                INTFLOAT))
     ) {
         fail ();
     }
 
-    bench_new (out1, in, 3, 32
+    bench_new (
+        out1, in, 3, 32
     );
 
 }
@@ -405,7 +421,8 @@ private static void test_hybrid_synthesis_deint () {
     ***********************************************************/
     if (
         memcmp (
-            out0, out1, 2 * 38 * 64 * sizeof (INTFLOAT))
+            out0, out1, 2 * 38 * 64 * sizeof (
+                INTFLOAT))
     ) {
         fail ();
     }
@@ -420,7 +437,8 @@ private static void test_hybrid_synthesis_deint () {
 
     if (
         memcmp (
-            out0, out1, 2 * 38 * 64 * sizeof (INTFLOAT))
+            out0, out1, 2 * 38 * 64 * sizeof (
+                INTFLOAT))
     ) {
         fail ();
     }
@@ -521,25 +539,31 @@ private static void test_stereo_interpolate (
             )
         ) {
             memcpy (
-                l0, l, BUF_SIZE * 2 * sizeof (INTFLOAT)
+                l0, l, BUF_SIZE * 2 * sizeof (
+                    INTFLOAT)
             );
 
             memcpy (
-                l1, l, BUF_SIZE * 2 * sizeof (INTFLOAT)
+                l1, l, BUF_SIZE * 2 * sizeof (
+                    INTFLOAT)
             );
 
             memcpy (
-                r0, r, BUF_SIZE * 2 * sizeof (INTFLOAT)
+                r0, r, BUF_SIZE * 2 * sizeof (
+                    INTFLOAT)
             );
 
             memcpy (
-                r1, r, BUF_SIZE * 2 * sizeof (INTFLOAT)
+                r1, r, BUF_SIZE * 2 * sizeof (
+                    INTFLOAT)
             );
 
-            randomize ((INTFLOAT *)h, 2 * 4
+            randomize (
+                (INTFLOAT *)h, 2 * 4
             );
 
-            randomize ((INTFLOAT *)h_step, 2 * 4
+            randomize (
+                (INTFLOAT *)h_step, 2 * 4
             );
 
             call_ref (
@@ -551,18 +575,29 @@ private static void test_stereo_interpolate (
             );
 
             if (
-                !float_near_abs_eps_array ((float[] )l0, (float[] )l1, EPS, BUF_SIZE * 2) ||
-                !float_near_abs_eps_array ((float[] )r0, (float[] )r1, EPS, BUF_SIZE * 2)
+                !float_near_abs_eps_array (
+                    (float[])l0,
+                    (float[])l1,
+                    EPS,
+                    BUF_SIZE * 2
+                ) ||
+                !float_near_abs_eps_array (
+                    (float[])r0,
+                    (float[])r1,
+                    EPS, BUF_SIZE * 2
+                )
             ) {
                 fail ();
             }
 
             memcpy (
-                l1, l, BUF_SIZE * 2 * sizeof (INTFLOAT)
+                l1, l, BUF_SIZE * 2 * sizeof (
+                    INTFLOAT)
             );
 
             memcpy (
-                r1, r, BUF_SIZE * 2 * sizeof (INTFLOAT)
+                r1, r, BUF_SIZE * 2 * sizeof (
+                    INTFLOAT)
             );
 
             bench_new (

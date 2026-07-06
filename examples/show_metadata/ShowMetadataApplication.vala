@@ -55,7 +55,8 @@ private class ShowMetadataApplication : GLib.Application {
             return 1;
         }
 
-        ret = avformat_open_input (&fmt_ctx, argv[1], null, null
+        ret = avformat_open_input (
+            &fmt_ctx, argv[1], null, null
         );
 
         if (
@@ -64,7 +65,8 @@ private class ShowMetadataApplication : GLib.Application {
             return ret;
         }
 
-        ret = avformat_find_stream_info (fmt_ctx, null
+        ret = avformat_find_stream_info (
+            fmt_ctx, null
         );
 
         if (
@@ -79,7 +81,8 @@ private class ShowMetadataApplication : GLib.Application {
         }
 
         while (
-            (tag = av_dict_iterate (fmt_ctx.metadata, tag))
+            (tag = av_dict_iterate (
+                fmt_ctx.metadata, tag))
         ) {
             printf (
                 "%s=%s\n",

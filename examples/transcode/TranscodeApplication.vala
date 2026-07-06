@@ -70,7 +70,8 @@ private class TranscodeApplication : GLib.Application {
         uint i;
 
         ifmt_ctx = null;
-        ret = avformat_open_input (&ifmt_ctx, filename, null, null
+        ret = avformat_open_input (
+            &ifmt_ctx, filename, null, null
         );
 
         if (
@@ -83,7 +84,8 @@ private class TranscodeApplication : GLib.Application {
             return ret;
         }
 
-        ret = avformat_find_stream_info (ifmt_ctx, null
+        ret = avformat_find_stream_info (
+            ifmt_ctx, null
         );
 
         if (
@@ -96,12 +98,16 @@ private class TranscodeApplication : GLib.Application {
             return ret;
         }
 
-        stream_ctx = av_calloc (ifmt_ctx.nb_streams, sizeof (stream_ctx)
+        stream_ctx = av_calloc (
+            ifmt_ctx.nb_streams, sizeof (
+                stream_ctx)
         );
 
         if (
-            !stream_ctx) {
-            return AVERROR (ENOMEM
+            !stream_ctx
+        ) {
+            return AVERROR (
+            ENOMEM
             );
 
         }
@@ -112,12 +118,14 @@ private class TranscodeApplication : GLib.Application {
             i++
         ) {
             AVStream? stream = ifmt_ctx.streams[i];
-            AVCodec? dec = avcodec_find_decoder (stream.codecpar.codec_id
+            AVCodec? dec = avcodec_find_decoder (
+            stream.codecpar.codec_id
             );
 
             AVCodecContext? codec_ctx;
             if (
-                !dec) {
+                !dec
+            ) {
                 av_log (
                     null, AV_LOG_ERROR,
                     "Failed to find decoder for stream #%u\n",
@@ -127,23 +135,27 @@ private class TranscodeApplication : GLib.Application {
                 return AVERROR_DECODER_NOT_FOUND;
             }
 
-            codec_ctx = avcodec_alloc_context3 (dec
+            codec_ctx = avcodec_alloc_context3 (
+                dec
             );
 
             if (
-                !codec_ctx) {
+                !codec_ctx
+            ) {
                 av_log (
                     null, AV_LOG_ERROR,
                     "Failed to allocate the decoder context for stream #%u\n",
                     i
                 );
 
-                return AVERROR (ENOMEM
+                return AVERROR (
+                    ENOMEM
                 );
 
             }
 
-            ret = avcodec_parameters_to_context (codec_ctx, stream.codecpar
+            ret = avcodec_parameters_to_context (
+                codec_ctx, stream.codecpar
             );
 
             if (
@@ -172,8 +184,10 @@ private class TranscodeApplication : GLib.Application {
                 codec_ctx.codec_type == AVMEDIA_TYPE_AUDIO
             ) {
                 if (
-                    codec_ctx.codec_type == AVMEDIA_TYPE_VIDEO) {
-                    codec_ctx.framerate = av_guess_frame_rate (ifmt_ctx, stream, null
+                    codec_ctx.codec_type == AVMEDIA_TYPE_VIDEO
+                ) {
+                    codec_ctx.framerate = av_guess_frame_rate (
+                    ifmt_ctx, stream, null
                     );
 
                 }
@@ -181,7 +195,8 @@ private class TranscodeApplication : GLib.Application {
                 /***********************************************************
                 Open decoder
                 ***********************************************************/
-                ret = avcodec_open2 (codec_ctx, dec, null
+                ret = avcodec_open2 (
+                    codec_ctx, dec, null
                 );
 
                 if (
@@ -202,8 +217,10 @@ private class TranscodeApplication : GLib.Application {
 
             stream_ctx[i].dec_frame = av_frame_alloc ();
             if (
-                !stream_ctx[i].dec_frame) {
-                return AVERROR (ENOMEM
+                !stream_ctx[i].dec_frame
+            ) {
+                return AVERROR (
+                ENOMEM
                 );
 
             }
@@ -234,7 +251,8 @@ private class TranscodeApplication : GLib.Application {
         );
 
         if (
-            !ofmt_ctx) {
+            !ofmt_ctx
+        ) {
             av_log (
                 null, AV_LOG_ERROR, "Could not create output context\n"
             );
@@ -248,11 +266,13 @@ private class TranscodeApplication : GLib.Application {
             i < ifmt_ctx.nb_streams;
             i++
         ) {
-            out_stream = avformat_new_stream (ofmt_ctx, null
+            out_stream = avformat_new_stream (
+            ofmt_ctx, null
             );
 
             if (
-                !out_stream) {
+                !out_stream
+            ) {
                 av_log (
                     null, AV_LOG_ERROR, "Failed allocating output stream\n"
                 );
@@ -270,11 +290,13 @@ private class TranscodeApplication : GLib.Application {
                 /***********************************************************
                 in this example, we choose transcoding to same codec
                 ***********************************************************/
-                encoder = avcodec_find_encoder (dec_ctx.codec_id
+                encoder = avcodec_find_encoder (
+                    dec_ctx.codec_id
                 );
 
                 if (
-                    !encoder) {
+                    !encoder
+                ) {
                     av_log (
                         null, AV_LOG_FATAL, "Necessary encoder not found\n"
                     );
@@ -282,27 +304,32 @@ private class TranscodeApplication : GLib.Application {
                     return AVERROR_INVALIDDATA;
                 }
 
-                enc_ctx = avcodec_alloc_context3 (encoder
+                enc_ctx = avcodec_alloc_context3 (
+                    encoder
                 );
 
                 if (
-                    !enc_ctx) {
+                    !enc_ctx
+                ) {
                     av_log (
                         null, AV_LOG_FATAL, "Failed to allocate the encoder context\n"
                     );
 
-                    return AVERROR (ENOMEM
+                    return AVERROR (
+                        ENOMEM
                     );
 
                 }
 
                 /***********************************************************
-                In this example, we transcode to same properties (picture size,
+                In this example, we transcode to same properties (
+                    picture size,
                 sample rate etc.). These properties can be changed for output
                 streams easily using filters
                 ***********************************************************/
                 if (
-                    dec_ctx.codec_type == AVMEDIA_TYPE_VIDEO) {
+                    dec_ctx.codec_type == AVMEDIA_TYPE_VIDEO
+                ) {
                     AVPixelFormat[] pix_fmts = null;
 
                     enc_ctx.height = dec_ctx.height;
@@ -330,14 +357,16 @@ private class TranscodeApplication : GLib.Application {
                     /***********************************************************
                     video time_base can be set to whatever is handy and supported by encoder
                     ***********************************************************/
-                    enc_ctx.time_base = av_inv_q (dec_ctx.framerate
+                    enc_ctx.time_base = av_inv_q (
+                        dec_ctx.framerate
                     );
 
                 } else {
                     LibAVUtil.SampleFormat[] sample_fmts = null;
 
                     enc_ctx.sample_rate = dec_ctx.sample_rate;
-                    ret = av_channel_layout_copy (&enc_ctx.ch_layout, &dec_ctx.ch_layout
+                    ret = av_channel_layout_copy (
+                        &enc_ctx.ch_layout, &dec_ctx.ch_layout
                     );
 
                     if (
@@ -372,14 +401,16 @@ private class TranscodeApplication : GLib.Application {
                 }
 
                 if (
-                    ofmt_ctx.oformat.flags & AVFMT_GLOBALHEADER) {
+                    ofmt_ctx.oformat.flags & AVFMT_GLOBALHEADER
+                ) {
                     enc_ctx.flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
                 }
 
                 /***********************************************************
                 Third parameter can be used to pass settings to encoder
                 ***********************************************************/
-                ret = avcodec_open2 (enc_ctx, encoder, null
+                ret = avcodec_open2 (
+                    enc_ctx, encoder, null
                 );
 
                 if (
@@ -394,7 +425,8 @@ private class TranscodeApplication : GLib.Application {
                     return ret;
                 }
 
-                ret = avcodec_parameters_from_context (out_stream.codecpar, enc_ctx
+                ret = avcodec_parameters_from_context (
+                    out_stream.codecpar, enc_ctx
                 );
 
                 if (
@@ -411,7 +443,9 @@ private class TranscodeApplication : GLib.Application {
 
                 out_stream.time_base = enc_ctx.time_base;
                 stream_ctx[i].enc_ctx = enc_ctx;
-            } else if (dec_ctx.codec_type == AVMEDIA_TYPE_UNKNOWN) {
+            } else if (
+                dec_ctx.codec_type == AVMEDIA_TYPE_UNKNOWN
+            ) {
                 av_log (
                     null, AV_LOG_FATAL,
                     "Elementary stream #%d is of unknown type, cannot proceed\n",
@@ -423,7 +457,8 @@ private class TranscodeApplication : GLib.Application {
                 /***********************************************************
                 if this stream must be remuxed
                 ***********************************************************/
-                ret = avcodec_parameters_copy (out_stream.codecpar, in_stream.codecpar
+                ret = avcodec_parameters_copy (
+                    out_stream.codecpar, in_stream.codecpar
                 );
 
                 if (
@@ -450,7 +485,8 @@ private class TranscodeApplication : GLib.Application {
         if (
             !(ofmt_ctx.oformat.flags & AVFMT_NOFILE)
         ) {
-            ret = avio_open (&ofmt_ctx.pb, filename, AVIO_FLAG_WRITE
+            ret = avio_open (
+            &ofmt_ctx.pb, filename, AVIO_FLAG_WRITE
             );
 
             if (
@@ -468,7 +504,8 @@ private class TranscodeApplication : GLib.Application {
         /***********************************************************
         init muxer, write output file header
         ***********************************************************/
-        ret = avformat_write_header (ofmt_ctx, null
+        ret = avformat_write_header (
+            ofmt_ctx, null
         );
 
         if (
@@ -505,18 +542,23 @@ private class TranscodeApplication : GLib.Application {
             !inputs ||
             !filter_graph
         ) {
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         if (
-            dec_ctx.codec_type == AVMEDIA_TYPE_VIDEO) {
-            buffersrc = avfilter_get_by_name ("buffer"
+            dec_ctx.codec_type == AVMEDIA_TYPE_VIDEO
+        ) {
+            buffersrc = avfilter_get_by_name (
+            "buffer"
             );
 
-            buffersink = avfilter_get_by_name ("buffersink"
+            buffersink = avfilter_get_by_name (
+                "buffersink"
             );
 
             if (
@@ -528,11 +570,13 @@ private class TranscodeApplication : GLib.Application {
                 );
 
                 ret = AVERROR_UNKNOWN;
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             snprintf (
-                args, sizeof (args),
+                args, sizeof (
+                    args),
                     "video_size=%dx%d:pix_fmt=%d:time_base=%d/%d:pixel_aspect=%d/%d",
                     dec_ctx.width, dec_ctx.height, dec_ctx.pix_fmt,
                     dec_ctx.pkt_timebase.num, dec_ctx.pkt_timebase.den,
@@ -540,7 +584,8 @@ private class TranscodeApplication : GLib.Application {
                     dec_ctx.sample_aspect_ratio.den
             );
 
-            ret = avfilter_graph_create_filter (&buffersrc_ctx, buffersrc, "in",
+            ret = avfilter_graph_create_filter (
+                &buffersrc_ctx, buffersrc, "in",
                     args, null, filter_graph
             );
 
@@ -551,27 +596,37 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Cannot create buffer source\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
-            buffersink_ctx = avfilter_graph_alloc_filter (filter_graph, buffersink, "out"
+            buffersink_ctx = avfilter_graph_alloc_filter (
+                filter_graph, buffersink, "out"
             );
 
             if (
-                !buffersink_ctx) {
+                !buffersink_ctx
+            ) {
                 av_log (
                     null, AV_LOG_ERROR, "Cannot create buffer sink\n"
                 );
 
-                ret = AVERROR (ENOMEM
+                ret = AVERROR (
+                    ENOMEM
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
-            ret = av_opt_set_bin (buffersink_ctx, "pix_fmts",
-                    (uint8*)&enc_ctx.pix_fmt, sizeof (enc_ctx.pix_fmt),
-                    AV_OPT_SEARCH_CHILDREN
+            ret = av_opt_set_bin (
+                buffersink_ctx,
+                "pix_fmts",
+                (uint8[])&enc_ctx.pix_fmt,
+                sizeof (
+                    enc_ctx.pix_fmt
+                ),
+                AV_OPT_SEARCH_CHILDREN
             );
 
             if (
@@ -581,10 +636,12 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Cannot set output pixel format\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
-            ret = avfilter_init_dict (buffersink_ctx, null
+            ret = avfilter_init_dict (
+                buffersink_ctx, null
             );
 
             if (
@@ -594,15 +651,20 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Cannot initialize buffer sink\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
-        } else if (dec_ctx.codec_type == AVMEDIA_TYPE_AUDIO) {
+        } else if (
+            dec_ctx.codec_type == AVMEDIA_TYPE_AUDIO
+        ) {
             char buf[64];
-            buffersrc = avfilter_get_by_name ("abuffer"
+            buffersrc = avfilter_get_by_name (
+                "abuffer"
             );
 
-            buffersink = avfilter_get_by_name ("abuffersink"
+            buffersink = avfilter_get_by_name (
+                "abuffersink"
             );
 
             if (
@@ -614,11 +676,13 @@ private class TranscodeApplication : GLib.Application {
                 );
 
                 ret = AVERROR_UNKNOWN;
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             if (
-                dec_ctx.ch_layout.order == AV_CHANNEL_ORDER_UNSPEC) {
+                dec_ctx.ch_layout.order == AV_CHANNEL_ORDER_UNSPEC
+            ) {
                 av_channel_layout_default (
                     &dec_ctx.ch_layout, dec_ctx.ch_layout.nb_channels
                 );
@@ -626,11 +690,13 @@ private class TranscodeApplication : GLib.Application {
             }
 
             av_channel_layout_describe (
-                &dec_ctx.ch_layout, buf, sizeof (buf)
+                &dec_ctx.ch_layout, buf, sizeof (
+                    buf)
             );
 
             snprintf (
-                args, sizeof (args),
+                args, sizeof (
+                    args),
                     "time_base=%d/%d:sample_rate=%d:sample_fmt=%s:channel_layout=%s",
                     dec_ctx.pkt_timebase.num, dec_ctx.pkt_timebase.den, dec_ctx.sample_rate,
                     av_get_sample_fmt_name (
@@ -638,7 +704,8 @@ private class TranscodeApplication : GLib.Application {
                     buf
             );
 
-            ret = avfilter_graph_create_filter (&buffersrc_ctx, buffersrc, "in",
+            ret = avfilter_graph_create_filter (
+                &buffersrc_ctx, buffersrc, "in",
                     args, null, filter_graph
             );
 
@@ -649,27 +716,37 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Cannot create audio buffer source\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
-            buffersink_ctx = avfilter_graph_alloc_filter (filter_graph, buffersink, "out"
+            buffersink_ctx = avfilter_graph_alloc_filter (
+                filter_graph, buffersink, "out"
             );
 
             if (
-                !buffersink_ctx) {
+                !buffersink_ctx
+            ) {
                 av_log (
                     null, AV_LOG_ERROR, "Cannot create audio buffer sink\n"
                 );
 
-                ret = AVERROR (ENOMEM
+                ret = AVERROR (
+                    ENOMEM
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
-            ret = av_opt_set_bin (buffersink_ctx, "sample_fmts",
-                    (uint8*)&enc_ctx.sample_fmt, sizeof (enc_ctx.sample_fmt),
-                    AV_OPT_SEARCH_CHILDREN
+            ret = av_opt_set_bin (
+                buffersink_ctx,
+                "sample_fmts",
+                (uint8[])&enc_ctx.sample_fmt,
+                sizeof (
+                    enc_ctx.sample_fmt
+                ),
+                AV_OPT_SEARCH_CHILDREN
             );
 
             if (
@@ -679,14 +756,17 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Cannot set output sample format\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             av_channel_layout_describe (
-                &enc_ctx.ch_layout, buf, sizeof (buf)
+                &enc_ctx.ch_layout, buf, sizeof (
+                    buf)
             );
 
-            ret = av_opt_set (buffersink_ctx, "ch_layouts",
+            ret = av_opt_set (
+                buffersink_ctx, "ch_layouts",
                             buf, AV_OPT_SEARCH_CHILDREN
             );
 
@@ -697,12 +777,18 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Cannot set output channel layout\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
-            ret = av_opt_set_bin (buffersink_ctx, "sample_rates",
-                    (uint8*)&enc_ctx.sample_rate, sizeof (enc_ctx.sample_rate),
-                    AV_OPT_SEARCH_CHILDREN
+            ret = av_opt_set_bin (
+                buffersink_ctx,
+                "sample_rates",
+                (uint8[])&enc_ctx.sample_rate,
+                sizeof (
+                    enc_ctx.sample_rate
+                ),
+                AV_OPT_SEARCH_CHILDREN
             );
 
             if (
@@ -712,18 +798,21 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Cannot set output sample rate\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             if (
-                enc_ctx.frame_size > 0) {
+                enc_ctx.frame_size > 0
+            ) {
                 av_buffersink_set_frame_size (
                     buffersink_ctx, enc_ctx.frame_size
                 );
 
             }
 
-            ret = avfilter_init_dict (buffersink_ctx, null
+            ret = avfilter_init_dict (
+                buffersink_ctx, null
             );
 
             if (
@@ -733,25 +822,29 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Cannot initialize audio buffer sink\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
         } else {
             ret = AVERROR_UNKNOWN;
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         /***********************************************************
         Endpoints for the filter graph.
         ***********************************************************/
-        outputs.name = av_strdup ("in"
+        outputs.name = av_strdup (
+            "in"
         );
 
         outputs.filter_ctx = buffersrc_ctx;
         outputs.pad_idx = 0;
         outputs.next = null;
 
-        inputs.name = av_strdup ("out"
+        inputs.name = av_strdup (
+            "out"
         );
 
         inputs.filter_ctx = buffersink_ctx;
@@ -762,10 +855,12 @@ private class TranscodeApplication : GLib.Application {
             !outputs.name ||
             !inputs.name
         ) {
-            ret = AVERROR (ENOMEM
+            ret = AVERROR (
+            ENOMEM
             );
 
-            throw new Goto.END ("");
+            throw new Goto.END (
+                "");
         }
 
         ret = avfilter_graph_parse_ptr (
@@ -776,16 +871,19 @@ private class TranscodeApplication : GLib.Application {
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
-        ret = avfilter_graph_config (filter_graph, null
+        ret = avfilter_graph_config (
+            filter_graph, null
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         /***********************************************************
@@ -811,12 +909,16 @@ private class TranscodeApplication : GLib.Application {
         string filter_spec;
         uint i;
         int ret;
-        filter_ctx = av_malloc_array (ifmt_ctx.nb_streams, sizeof (filter_ctx)
+        filter_ctx = av_malloc_array (
+            ifmt_ctx.nb_streams, sizeof (
+                filter_ctx)
         );
 
         if (
-            !filter_ctx) {
-            return AVERROR (ENOMEM
+            !filter_ctx
+        ) {
+            return AVERROR (
+            ENOMEM
             );
 
         }
@@ -838,7 +940,8 @@ private class TranscodeApplication : GLib.Application {
 
 
             if (
-                ifmt_ctx.streams[i].codecpar.codec_type == AVMEDIA_TYPE_VIDEO) {
+                ifmt_ctx.streams[i].codecpar.codec_type == AVMEDIA_TYPE_VIDEO
+            ) {
                 /***********************************************************
                 passthrough (
                     dummy) filter for video
@@ -858,22 +961,27 @@ private class TranscodeApplication : GLib.Application {
             );
 
             if (
-                ret) {
+                ret
+            ) {
                 return ret;
             }
 
             filter_ctx[i].enc_pkt = av_packet_alloc ();
             if (
-                !filter_ctx[i].enc_pkt) {
-                return AVERROR (ENOMEM
+                !filter_ctx[i].enc_pkt
+            ) {
+                return AVERROR (
+                ENOMEM
                 );
 
             }
 
             filter_ctx[i].filtered_frame = av_frame_alloc ();
             if (
-                !filter_ctx[i].filtered_frame) {
-                return AVERROR (ENOMEM
+                !filter_ctx[i].filtered_frame
+            ) {
+                return AVERROR (
+                ENOMEM
                 );
 
             }
@@ -915,7 +1023,8 @@ private class TranscodeApplication : GLib.Application {
 
         }
 
-        ret = avcodec_send_frame (stream.enc_ctx, filt_frame
+        ret = avcodec_send_frame (
+            stream.enc_ctx, filt_frame
         );
 
         if (
@@ -925,12 +1034,15 @@ private class TranscodeApplication : GLib.Application {
         }
 
         while (
-            ret >= 0) {
-            ret = avcodec_receive_packet (stream.enc_ctx, enc_pkt
+            ret >= 0
+        ) {
+            ret = avcodec_receive_packet (
+            stream.enc_ctx, enc_pkt
             );
 
             if (
-                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR (
+                    EAGAIN) ||
                 ret == AVERROR_EOF
             ) {
                 return 0;
@@ -953,7 +1065,8 @@ private class TranscodeApplication : GLib.Application {
             /***********************************************************
             mux encoded frame
             ***********************************************************/
-            ret = av_interleaved_write_frame (ofmt_ctx, enc_pkt
+            ret = av_interleaved_write_frame (
+                ofmt_ctx, enc_pkt
             );
 
         }
@@ -975,7 +1088,8 @@ private class TranscodeApplication : GLib.Application {
         /***********************************************************
         push the decoded frame into the filtergraph
         ***********************************************************/
-        ret = av_buffersrc_add_frame_flags (filter.buffersrc_ctx,
+        ret = av_buffersrc_add_frame_flags (
+            filter.buffersrc_ctx,
                 frame, 0
         );
 
@@ -993,7 +1107,8 @@ private class TranscodeApplication : GLib.Application {
         pull filtered frames from the filtergraph
         ***********************************************************/
         while (
-            true) {
+            true
+        ) {
             av_log (
                 null, AV_LOG_INFO, "Pulling filtered frame from filters\n"
             );
@@ -1010,10 +1125,11 @@ private class TranscodeApplication : GLib.Application {
                 if no more frames for output - returns AVERROR (EAGAIN)
                 if flushed and no more frames for output - returns AVERROR_EOF
                 rewrite retcode to 0 to show it as normal procedure completion
-
                 ***********************************************************/
                 if (
-                    ret == AVERROR (EAGAIN) ||
+                    ret == AVERROR (
+                        EAGAIN
+                    ) ||
                     ret == AVERROR_EOF
                 ) {
                     ret = 0;
@@ -1063,7 +1179,8 @@ private class TranscodeApplication : GLib.Application {
             stream_index
         );
 
-        return encode_write_frame (stream_index, 1
+        return encode_write_frame (
+            stream_index, 1
         );
 
     }
@@ -1078,7 +1195,8 @@ private class TranscodeApplication : GLib.Application {
         uint i;
 
         if (
-            argc != 3) {
+            argc != 3
+        ) {
             av_log (
                 null, AV_LOG_ERROR,
                 "Usage: %s <input file> <output file>\n",
@@ -1088,43 +1206,52 @@ private class TranscodeApplication : GLib.Application {
             return 1;
         }
 
-        ret = open_input_file (argv[1]
+        ret = open_input_file (
+            argv[1]
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
-        ret = open_output_file (argv[2]
+        ret = open_output_file (
+            argv[2]
         );
 
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         ret = init_filters ();
         if (
             ret < 0
         ) {
-            throw new Goto.END ("");
+            throw new Goto.END (
+            "");
         }
 
         packet = av_packet_alloc ();
         if (
-            !packet) {
-            throw new Goto.END ("");
+            !packet
+        ) {
+            throw new Goto.END (
+            "");
         }
 
         /***********************************************************
         read all packets
         ***********************************************************/
         while (
-            true) {
-            ret = av_read_frame (ifmt_ctx, packet
+            true
+        ) {
+            ret = av_read_frame (
+            ifmt_ctx, packet
             );
 
             if (
@@ -1136,18 +1263,20 @@ private class TranscodeApplication : GLib.Application {
             stream_index = packet.stream_index;
             av_log (
                 null, AV_LOG_DEBUG, "Demuxer gave frame of stream_index %u\n",
-                    stream_index
+                stream_index
             );
 
             if (
-                filter_ctx[stream_index].filter_graph) {
+                filter_ctx[stream_index].filter_graph
+            ) {
                 StreamContext? stream = &stream_ctx[stream_index];
 
                 av_log (
                     null, AV_LOG_DEBUG, "Going to reencode&filter the frame\n"
                 );
 
-                ret = avcodec_send_packet (stream.dec_ctx, packet
+                ret = avcodec_send_packet (
+                    stream.dec_ctx, packet
                 );
 
                 if (
@@ -1161,29 +1290,40 @@ private class TranscodeApplication : GLib.Application {
                 }
 
                 while (
-                    ret >= 0) {
-                    ret = avcodec_receive_frame (stream.dec_ctx, stream.dec_frame
+                    ret >= 0
+                ) {
+                    ret = avcodec_receive_frame (
+                    stream.dec_ctx, stream.dec_frame
                     );
 
                     if (
                         ret == AVERROR_EOF ||
-                        ret == AVERROR (EAGAIN)
+                        ret == AVERROR (
+                            EAGAIN
+                        )
                     ) {
                         break;
                     } else if (
                         ret < 0
                     ) {
-                        throw new Goto.END ("");
+                        throw new Goto.END (
+                            ""
+                        );
+
                     }
 
                     stream.dec_frame.pts = stream.dec_frame.best_effort_timestamp;
-                    ret = filter_encode_write_frame (stream.dec_frame, stream_index
+                    ret = filter_encode_write_frame (
+                        stream.dec_frame, stream_index
                     );
 
                     if (
                         ret < 0
                     ) {
-                        throw new Goto.END ("");
+                        throw new Goto.END (
+                            ""
+                        );
+
                     }
 
                 }
@@ -1198,13 +1338,15 @@ private class TranscodeApplication : GLib.Application {
                                     ofmt_ctx.streams[stream_index].time_base
                 );
 
-                ret = av_interleaved_write_frame (ofmt_ctx, packet
+                ret = av_interleaved_write_frame (
+                    ofmt_ctx, packet
                 );
 
                 if (
                     ret < 0
                 ) {
-                    throw new Goto.END ("");
+                    throw new Goto.END (
+                    "");
                 }
 
             }
@@ -1226,7 +1368,8 @@ private class TranscodeApplication : GLib.Application {
             StreamContext? stream;
 
             if (
-                !filter_ctx[i].filter_graph) {
+                !filter_ctx[i].filter_graph
+            ) {
                 continue;
             }
 
@@ -1241,7 +1384,8 @@ private class TranscodeApplication : GLib.Application {
             /***********************************************************
             flush decoder
             ***********************************************************/
-            ret = avcodec_send_packet (stream.dec_ctx, null
+            ret = avcodec_send_packet (
+                stream.dec_ctx, null
             );
 
             if (
@@ -1251,31 +1395,38 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Flushing decoding failed\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             while (
-                ret >= 0) {
-                ret = avcodec_receive_frame (stream.dec_ctx, stream.dec_frame
+                ret >= 0
+            ) {
+                ret = avcodec_receive_frame (
+                stream.dec_ctx, stream.dec_frame
                 );
 
                 if (
-                    ret == AVERROR_EOF) {
+                    ret == AVERROR_EOF
+                ) {
                     break;
                 } else if (
                     ret < 0
                 ) {
-                    throw new Goto.END ("");
+                    throw new Goto.END (
+                    "");
                 }
 
                 stream.dec_frame.pts = stream.dec_frame.best_effort_timestamp;
-                ret = filter_encode_write_frame (stream.dec_frame, i
+                ret = filter_encode_write_frame (
+                    stream.dec_frame, i
                 );
 
                 if (
                     ret < 0
                 ) {
-                    throw new Goto.END ("");
+                    throw new Goto.END (
+                    "");
                 }
 
             }
@@ -1283,7 +1434,8 @@ private class TranscodeApplication : GLib.Application {
             /***********************************************************
             flush filter
             ***********************************************************/
-            ret = filter_encode_write_frame (null, i
+            ret = filter_encode_write_frame (
+                null, i
             );
 
             if (
@@ -1293,13 +1445,15 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Flushing filter failed\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
             /***********************************************************
             flush encoder
             ***********************************************************/
-            ret = flush_encoder (i
+            ret = flush_encoder (
+                i
             );
 
             if (
@@ -1309,7 +1463,8 @@ private class TranscodeApplication : GLib.Application {
                     null, AV_LOG_ERROR, "Flushing encoder failed\n"
                 );
 
-                throw new Goto.END ("");
+                throw new Goto.END (
+                    "");
             }
 
         }

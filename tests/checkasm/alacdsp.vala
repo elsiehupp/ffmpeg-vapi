@@ -28,7 +28,8 @@ private static void randomize_buffers () {
         i < BUF_SIZE * MAX_CHANNELS;
         i++
     ) {
-        int32 r = sign_extend (rnd (), 24
+        int32 r = sign_extend (
+        rnd (), 24
         );
 
         ref_buf[i] = r;
@@ -63,7 +64,8 @@ private static void check_decorrelate_stereo () {
             alac_dsp_context.decorrelate_stereo, "alac_decorrelate_stereo"
         )
     ) {
-        int len = (rnd () & 0xFF) + 1;
+        int len = (
+        rnd () & 0xFF) + 1;
         int shift =  rnd () & 0x1F;
         int weight =  rnd () & 0xFF;
         //  declare_func (
@@ -137,7 +139,8 @@ private static void randomize_buffers () {
             j < ch;
             j++
         ) {
-            int32 r = sign_extend (rnd (), 24
+            int32 r = sign_extend (
+            rnd (), 24
             );
 
             //  ref[j][i] = r;
@@ -188,7 +191,8 @@ private static void check_append_extra_bits () {
                 channels[ch-1]
             )
         ) {
-            int len = (rnd () & 0xFF) + 1;
+            int len = (
+            rnd () & 0xFF) + 1;
 
             //  declare_func (
             //      void,

@@ -23,7 +23,8 @@ private static void randomize_buffers (
     int size
 ) {
     int j;
-    uint8[] tmp_buf = (uint8[] )buf;
+    uint8[] tmp_buf = (
+        uint8[] )buf;
     for (
         j = 0;
         j < size;
@@ -48,11 +49,13 @@ private static void init_buffer (
     }
 
     randomize_buffers (
-        a0, width * sizeof (type)
+        a0, width * sizeof (
+            type)
     );
 
     memcpy (
-        a1, a0, width*sizeof (type)
+        a1, a0, width*sizeof (
+            type)
     );
 
 }
@@ -68,16 +71,22 @@ private static void init_buffer (
 private static void check_add_bytes (
     LLVidDSPContext llvid_dsp_context, int width
 ) {
-    uint8[] dst0 = av_mallocz (width
+    uint8[] dst0 = av_mallocz (
+        width
     );
 
-    uint8[] dst1 = av_mallocz (width
+    uint8[] dst1 = av_mallocz (
+        width
     );
 
-    uint8[] src0 = av_mallocz_array (width, sizeof (uint8)
+    uint8[] src0 = av_mallocz_array (
+        width, sizeof (
+            uint8)
     );
 
-    uint8[] src1 = av_mallocz_array (width, sizeof (uint8)
+    uint8[] src1 = av_mallocz_array (
+        width, sizeof (
+            uint8)
     );
 
     init_buffer (
@@ -151,22 +160,32 @@ private static void check_add_median_pred (
     LLVidDSPContext llvid_dsp_context, int width
 ) {
     int A0, A1, B0, B1;
-    uint8[] dst0 = av_mallocz (width
+    uint8[] dst0 = av_mallocz (
+        width
     );
 
-    uint8[] dst1 = av_mallocz (width
+    uint8[] dst1 = av_mallocz (
+        width
     );
 
-    uint8[] src0 = av_mallocz_array (width, sizeof (uint8)
+    uint8[] src0 = av_mallocz_array (
+        width, sizeof (
+            uint8)
     );
 
-    uint8[] src1 = av_mallocz_array (width, sizeof (uint8)
+    uint8[] src1 = av_mallocz_array (
+        width, sizeof (
+            uint8)
     );
 
-    uint8[] diff0 = av_mallocz_array (width, sizeof (uint8)
+    uint8[] diff0 = av_mallocz_array (
+        width, sizeof (
+            uint8)
     );
 
-    uint8[] diff1 = av_mallocz_array (width, sizeof (uint8)
+    uint8[] diff1 = av_mallocz_array (
+        width, sizeof (
+            uint8)
     );
 
     init_buffer (
@@ -254,16 +273,22 @@ private static void check_add_left_pred (
     string report
 ) {
     int res0, res1;
-    uint8[] dst0 = av_mallocz (width
+    uint8[] dst0 = av_mallocz (
+        width
     );
 
-    uint8[] dst1 = av_mallocz (width
+    uint8[] dst1 = av_mallocz (
+        width
     );
 
-    uint8[] src0 = av_mallocz_array (width, sizeof (uint8)
+    uint8[] src0 = av_mallocz_array (
+        width, sizeof (
+            uint8)
     );
 
-    uint8[] src1 = av_mallocz_array (width, sizeof (uint8)
+    uint8[] src1 = av_mallocz_array (
+        width, sizeof (
+            uint8)
     );
 
     init_buffer (
@@ -281,14 +306,17 @@ private static void check_add_left_pred (
         check_func (
             llvid_dsp_context.add_left_pred, "%s", report)
     ) {
-        res0 = call_ref (dst0, src0, width, acc
+        res0 = call_ref (
+        dst0, src0, width, acc
         );
 
-        res1 = call_new (dst1, src1, width, acc
+        res1 = call_new (
+            dst1, src1, width, acc
         );
 
         if (
-            (res0 & 0xFF) != (res1 & 0xFF)||
+            (res0 & 0xFF) != (
+                res1 & 0xFF)||
             memcmp (
                 dst0, dst1, width)
         ) {
@@ -337,16 +365,24 @@ private static void check_add_left_pred_16 (
     string report
 ) {
     int res0, res1;
-    uint16[] dst0 = av_mallocz_array (width, sizeof (uint16)
+    uint16[] dst0 = av_mallocz_array (
+        width, sizeof (
+            uint16)
     );
 
-    uint16[] dst1 = av_mallocz_array (width, sizeof (uint16)
+    uint16[] dst1 = av_mallocz_array (
+        width, sizeof (
+            uint16)
     );
 
-    uint16[] src0 = av_mallocz_array (width, sizeof (uint16)
+    uint16[] src0 = av_mallocz_array (
+        width, sizeof (
+            uint16)
     );
 
-    uint16[] src1 = av_mallocz_array (width, sizeof (uint16)
+    uint16[] src1 = av_mallocz_array (
+        width, sizeof (
+            uint16)
     );
 
     init_buffer (
@@ -364,14 +400,17 @@ private static void check_add_left_pred_16 (
         check_func (
             llvid_dsp_context.add_left_pred_int16, "%s", report)
     ) {
-        res0 = call_ref (dst0, src0, mask, width, acc
+        res0 = call_ref (
+        dst0, src0, mask, width, acc
         );
 
-        res1 = call_new (dst1, src1, mask, width, acc
+        res1 = call_new (
+            dst1, src1, mask, width, acc
         );
 
         if (
-            (res0 & 0xFFFF) != (res1 & 0xFFFF) ||
+            (res0 & 0xFFFF) != (
+                res1 & 0xFFFF) ||
             memcmp (
                 dst0, dst1, width)
         ) {
@@ -422,11 +461,14 @@ private static void check_add_gradient_pred (
     /***********************************************************
     dsp need previous line, and ignore the start of the line
     ***********************************************************/
-    src_size = (stride + 32) * 2;
-    src0 = av_mallocz (src_size
+    src_size = (
+        stride + 32) * 2;
+    src0 = av_mallocz (
+        src_size
     );
 
-    src1 = av_mallocz (src_size
+    src1 = av_mallocz (
+        src_size
     );
 
     init_buffer (
@@ -476,7 +518,8 @@ private static void check_add_gradient_pred (
 
 private static void checkasm_check_llviddsp () {
     LLVidDSPContext llvid_dsp_context;
-    int width = 16 * av_clip (rnd (), 16, 128
+    int width = 16 * av_clip (
+        rnd (), 16, 128
     );
 
     int accRnd = rnd () & 0xFF;

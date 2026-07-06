@@ -24,14 +24,16 @@ private const uint64 pixel_mask[3] = {
     0x0fff0fff
 };
 
-private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8);
+private const size_t SIZEOF_PIXEL = (
+        (bit_depth + 7) / 8);
 
 private static void randomize_buffers () {
     uint32 mask = pixel_mask[(bit_depth - 8) >> 1];
     int k;
     for (
         k = -4;
-        k < SIZEOF_PIXEL * FFMAX (8, size);
+        k < SIZEOF_PIXEL * FFMAX (
+            8, size);
         k += 4
     ) {
         uint32 r = rnd () & mask;
@@ -212,8 +214,11 @@ private static void randomize_buffers () {
             ) {
                 coef[y * sz + x] = src[y * sz + x] - dst[y * sz + x];
             } else {
-                ((int32[] ) coef)[y * sz + x] =
-                    ((uint16[] ) src)[y * sz + x] -
+                (
+                (
+                    int32[] ) coef)[y * sz + x] =
+                    (
+                    (uint16[] ) src)[y * sz + x] -
                     ((uint16[] ) dst)[y * sz + x];
             }
 
@@ -229,7 +234,8 @@ public static void fwht_1d (
 ) {
     double t0 = double_array_in[0] + double_array_in[1];
     double t3 = double_array_in[3] - double_array_in[2];
-    double t4 = trunc ((t0 - t3) * 0.5
+    double t4 = trunc (
+        (t0 - t3) * 0.5
     );
 
     double t1 = t4 - double_array_in[1];
@@ -260,7 +266,10 @@ public static void fdct_1d (
             n < sz;
             n++
         ) {
-            double_array_out[k] += double_array_in[n] * cos (M_PI * (2 * n + 1) * k / (sz * 2.0)
+            double_array_out[k] += double_array_in[n] * cos (
+            M_PI * (
+                2 * n + 1) * k / (
+                    sz * 2.0)
             );
 
         }
@@ -291,7 +300,14 @@ private static void fadst4_1d (
             n < sz;
             n++
         ) {
-            double_array_out[k] += double_array_in[n] * sin (M_PI * (n + 1) * (2 * k + 1) / (sz * 2.0 + 1.0)
+            double_array_out[k] += double_array_in[n] * sin (
+                M_PI * (
+                    n + 1
+                ) * (
+                    2 * k + 1
+                ) / (
+                    sz * 2.0 + 1.0
+                )
             );
 
         }
@@ -321,7 +337,14 @@ public static void fadst_1d (
             n < sz;
             n++
         ) {
-            double_array_out[k] += double_array_in[n] * sin (M_PI * (2 * n + 1) * (2 * k + 1) / (sz * 4.0)
+            double_array_out[k] += double_array_in[n] * sin (
+                M_PI * (
+                    2 * n + 1
+                ) * (
+                    2 * k + 1
+                ) / (
+                    sz * 4.0
+                )
             );
 
         }
@@ -435,7 +458,8 @@ private static void ftx (
         ) {
             ind[n] = buf[n];
         } else {
-            ind[n] = ((int32[] ) buf)[n];
+            ind[n] = (
+            (int32[] ) buf)[n];
         }
 
     }
@@ -452,11 +476,15 @@ private static void ftx (
         if (
             bit_depth == 8
         ) {
-            buf[n] = lrint (outd[n]
+            buf[n] = lrint (
+            outd[n]
             );
 
         } else {
-            ((int32[] ) buf)[n] = lrint (outd[n]
+            (
+            (
+                int32[] ) buf)[n] = lrint (
+                outd[n]
             );
 
         }
@@ -548,7 +576,8 @@ private static bool iszero (
 
     for (
         n = 0;
-        n < sz / sizeof (int16);
+        n < sz / sizeof (
+            int16);
         n += 2
     ) {
         if (
@@ -563,7 +592,9 @@ private static bool iszero (
     return true;
 }
 
-private const size_t SIZEOF_COEF = (2 * ((bit_depth + 7) / 8));
+private const size_t SIZEOF_COEF = (
+        2 * (
+            (bit_depth + 7) / 8));
 
 //  declare_func_emms (
 //      AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT,
@@ -641,7 +672,8 @@ private static void check_itxfm () {
             tx <= N_TXFM_SIZES /* 4 = lossless */;
             tx++
         ) {
-            int sz = 4 << (tx & 3
+            int sz = 4 << (
+            tx & 3
             );
 
             int n_txtps = tx < TX_32X32 ? N_TXFM_TYPES : 1;
@@ -727,9 +759,14 @@ private static void check_itxfm () {
 
                         if (
                             memcmp (
-                                dst0, dst1, sz * sz * SIZEOF_PIXEL) ||
-                            !iszero (subcoef0, sz * sz * SIZEOF_COEF) ||
-                            !iszero (subcoef1, sz * sz * SIZEOF_COEF)
+                                dst0, dst1, sz * sz * SIZEOF_PIXEL
+                            ) ||
+                            !iszero (
+                                subcoef0, sz * sz * SIZEOF_COEF
+                            ) ||
+                            !iszero (
+                                subcoef1, sz * sz * SIZEOF_COEF
+                            )
                         ) {
                             fail ();
                         }
@@ -764,11 +801,19 @@ private static void setpx (
     if (
         SIZEOF_PIXEL == 1
     ) {
-        buf0[(a) + (b) * jstride] = av_clip_uint8 (c
+        buf0[(
+            a
+        ) + (
+            b
+        ) * jstride] = av_clip_uint8 (
+            c
         );
 
     } else {
-        ((uint16[] )buf0)[(a) + (b) * jstride] = av_clip_uintp2 (c, bit_depth
+        (
+            (uint16[])buf0
+        )[(a) + (b) * jstride] = av_clip_uintp2 (
+            c, bit_depth
         );
 
     }
@@ -803,7 +848,12 @@ private static void setsx (
     void *d
 ) {
     setdx (
-        a,b,c,(d) << (bit_depth - 8)
+        a,
+        b,
+        c,
+        (d) << (
+            bit_depth - 8
+        )
     );
 
 }
@@ -821,7 +871,8 @@ private static void randomize_loopfilter_buffers (
     uint8[] buf0,
     uint8[] buf1
 ) {
-    uint32 mask = (1 << bit_depth) - 1;
+    uint32 mask = (
+        1 << bit_depth) - 1;
     int off = dir ? lineoff : lineoff * 16;
     int istride = dir ? 1 : 16;
     int jstride = dir ? str : 1;
@@ -998,7 +1049,11 @@ private static void randomize_buffers (
 private static uint M (
     out uint a
 ) {
-    return (((a)[1] << 8) | (a)[0]
+    return (
+        (
+            (a)[1] << 8
+        ) |
+        (a)[0]
     );
 
 }
@@ -1049,8 +1104,10 @@ private static void check_loopfilter () {
             dir < 2;
             dir++
         ) {
-            int midoff = (dir ? 8 * 8 : 8) * SIZEOF_PIXEL;
-            int midoff_aligned = (dir ? 8 * 8 : 16) * SIZEOF_PIXEL;
+            int midoff = (
+            dir ? 8 * 8 : 8) * SIZEOF_PIXEL;
+            int midoff_aligned = (
+                dir ? 8 * 8 : 16) * SIZEOF_PIXEL;
             uint8[] buf0 = base0 + midoff_aligned;
             uint8[] buf1 = base1 + midoff_aligned;
 
@@ -1101,8 +1158,10 @@ private static void check_loopfilter () {
 
             }
 
-            midoff = (dir ? 16 * 8 : 8) * SIZEOF_PIXEL;
-            midoff_aligned = (dir ? 16 * 8 : 16) * SIZEOF_PIXEL;
+            midoff = (
+                dir ? 16 * 8 : 8) * SIZEOF_PIXEL;
+            midoff_aligned = (
+                dir ? 16 * 8 : 16) * SIZEOF_PIXEL;
 
             buf0 = base0 + midoff_aligned;
             buf1 = base1 + midoff_aligned;
@@ -1180,22 +1239,55 @@ private static void check_loopfilter () {
                         );
 
                         call_ref (
-                            buf0, 16 * SIZEOF_PIXEL, M (E), M (I), M (H)
+                            buf0,
+                            16 * SIZEOF_PIXEL,
+                            M (
+                                E
+                            ),
+                            M (
+                                I
+                            ),
+                            M (
+                                H
+                            )
                         );
 
                         call_new (
-                            buf1, 16 * SIZEOF_PIXEL, M (E), M (I), M (H)
+                            buf1,
+                            16 * SIZEOF_PIXEL,
+                            M (
+                                E
+                            ),
+                            M (
+                                I
+                            ),
+                            M (
+                                H
+                            )
                         );
 
                         if (
                             memcmp (
-                                buf0 - midoff, buf1 - midoff, 16 * 16 * SIZEOF_PIXEL)
+                                buf0 - midoff,
+                                buf1 - midoff,
+                                16 * 16 * SIZEOF_PIXEL
+                            )
                         ) {
                             fail ();
                         }
 
                         bench_new (
-                            buf1, 16 * SIZEOF_PIXEL, M (E), M (I), M (H)
+                            buf1,
+                            16 * SIZEOF_PIXEL,
+                            M (
+                                E
+                            ),
+                            M (
+                                I
+                            ),
+                            M (
+                                H
+                            )
                         );
 
                     }
@@ -1219,17 +1311,28 @@ private static void check_loopfilter () {
 //  #undef setdx
 //  #undef randomize_buffers
 
-private const size_t DST_BUF_SIZE = (size * size * SIZEOF_PIXEL
+private const size_t DST_BUF_SIZE = (
+    size * size * SIZEOF_PIXEL
 );
 
 private const size_t SRC_BUF_STRIDE = 72;
-private const size_t SRC_BUF_SIZE = ((size + 7) * SRC_BUF_STRIDE * SIZEOF_PIXEL
+private const size_t SRC_BUF_SIZE = (
+    (
+        size + 7
+    ) * SRC_BUF_STRIDE * SIZEOF_PIXEL
 );
 
-private const size_t src = (buf + 3 * SIZEOF_PIXEL * (SRC_BUF_STRIDE + 1));
+private const size_t src = (
+    buf + 3 * SIZEOF_PIXEL * (
+        SRC_BUF_STRIDE + 1
+    )
+);
 
 private static void randomize_buffers () {
-    uint32 mask = pixel_mask[(bit_depth - 8) >> 1];
+    uint32 mask = pixel_mask[(
+        bit_depth - 8
+    ) >> 1];
+
     int k;
     for (
         k = 0;
@@ -1355,7 +1458,10 @@ private static void check_mc () {
                                 dy
                             ) {
                                 snprintf (
-                                    str, sizeof (str),
+                                    str,
+                                    sizeof (
+                                        str
+                                    ),
                                     "%s_%s_%d%s", op_names[op],
                                     filter_names[filter], size,
                                     subpel_names[dy][dx]
@@ -1363,23 +1469,51 @@ private static void check_mc () {
 
                             } else {
                                 snprintf (
-                                    str, sizeof (str),
+                                    str,
+                                    sizeof (
+                                        str
+                                    ),
                                     "%s%d", op_names[op], size
                                 );
 
                             }
 
                             if (
-                                check_func (vp9_dsp_context.mc[hsize][filter][op][dx][dy],
-                                           "vp9_%s_%dbpp", str, bit_depth)
+                                check_func (
+                                    vp9_dsp_context.mc[hsize][filter][op][dx][dy],
+                                    "vp9_%s_%dbpp",
+                                    str,
+                                    bit_depth
+                                )
                             ) {
-                                int mx = dx ? 1 + (rnd () % 14) : 0;
-                                int my = dy ? 1 + (rnd () % 14) : 0;
+                                int mx = (
+                                    dx
+                                    ? (
+                                        1 + (
+                                            rnd () % 14
+                                        )
+                                    )
+                                    : 0
+                                );
+
+                                int my = (
+                                    dy
+                                    ? (
+                                        1 + (
+                                            rnd () % 14
+                                        )
+                                    )
+                                    : 0
+                                );
+
                                 randomize_buffers ();
                                 call_ref (
-                                    dst0, size * SIZEOF_PIXEL,
-                                    src, SRC_BUF_STRIDE * SIZEOF_PIXEL,
-                                    size, mx, my
+                                    dst0,
+                                    size * SIZEOF_PIXEL,
+                                    src,
+                                    SRC_BUF_STRIDE * SIZEOF_PIXEL,
+                                    size,
+                                    mx, my
                                 );
 
                                 call_new (
@@ -1389,7 +1523,9 @@ private static void check_mc () {
                                 );
 
                                 if (
-                                    memcmp (dst0, dst1, DST_BUF_SIZE)
+                                    memcmp (
+                                        dst0, dst1, DST_BUF_SIZE
+                                    )
                                 ) {
                                     fail ();
                                 }
@@ -1416,9 +1552,10 @@ private static void check_mc () {
                                     continue;
                                 }
 
-                                bench_new (dst1, size * SIZEOF_PIXEL,
-                                          src, SRC_BUF_STRIDE * SIZEOF_PIXEL,
-                                          size, mx, my
+                                bench_new (
+                                    dst1, size * SIZEOF_PIXEL,
+                                    src, SRC_BUF_STRIDE * SIZEOF_PIXEL,
+                                    size, mx, my
                                 );
 
                             }

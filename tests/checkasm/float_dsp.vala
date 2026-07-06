@@ -79,7 +79,8 @@ private static void test_vector_fmul (
         i++
     ) {
         if (
-            !float_near_abs_eps (cdst[i], odst[i], FLT_EPSILON)
+            !float_near_abs_eps (
+                cdst[i], odst[i], FLT_EPSILON)
         ) {
             fprintf (
                 stderr,
@@ -138,7 +139,8 @@ private static void test_vector_dmul (
         i++
     ) {
         if (
-            !double_near_abs_eps (cdst[i], odst[i], DBL_EPSILON)
+            !double_near_abs_eps (
+                cdst[i], odst[i], DBL_EPSILON)
         ) {
             fprintf (
                 stderr,
@@ -199,7 +201,8 @@ private static void test_vector_fmul_add (
         i++
     ) {
         if (
-            !float_near_abs_eps (cdst[i], odst[i], ARBITRARY_FMUL_ADD_CONST)
+            !float_near_abs_eps (
+                cdst[i], odst[i], ARBITRARY_FMUL_ADD_CONST)
         ) {
             fprintf (
                 stderr,
@@ -258,7 +261,8 @@ private static void test_vector_fmul_scalar (
             i++
         ) {
             if (
-                !float_near_abs_eps (cdst[i], odst[i], FLT_EPSILON)
+                !float_near_abs_eps (
+                    cdst[i], odst[i], FLT_EPSILON)
             ) {
                 fprintf (
                     stderr,
@@ -320,7 +324,8 @@ private static void test_vector_fmul_window (
         i++
     ) {
         if (
-            !float_near_abs_eps (cdst[i], odst[i], ARBITRARY_FMUL_WINDOW_CONST)
+            !float_near_abs_eps (
+                cdst[i], odst[i], ARBITRARY_FMUL_WINDOW_CONST)
         ) {
             fprintf (
                 stderr,
@@ -368,11 +373,13 @@ private static void test_vector_fmac_scalar (
     //  );
 
     memcpy (
-        cdst, src2, LEN * sizeof (src2)
+        cdst, src2, LEN * sizeof (
+            src2)
     );
 
     memcpy (
-        odst, src2, LEN * sizeof (src2)
+        odst, src2, LEN * sizeof (
+            src2)
     );
 
     call_ref (
@@ -389,7 +396,8 @@ private static void test_vector_fmac_scalar (
         i++
     ) {
         if (
-            !float_near_abs_eps (cdst[i], odst[i], ARBITRARY_FMAC_SCALAR_CONST)
+            !float_near_abs_eps (
+                cdst[i], odst[i], ARBITRARY_FMAC_SCALAR_CONST)
         ) {
             fprintf (
                 stderr,
@@ -404,7 +412,8 @@ private static void test_vector_fmac_scalar (
     }
 
     memcpy (
-        odst, src2, LEN * sizeof (src2)
+        odst, src2, LEN * sizeof (
+            src2)
     );
 
     bench_new (
@@ -451,9 +460,13 @@ private static void test_vector_dmul_scalar (
         i < LEN;
         i++
     ) {
-        double t = fabs (src1[0]) + fabs (src0[i]) + fabs (src1[0] * src0[i]) + 1.0;
+        double t = fabs (
+        src1[0]) + fabs (
+            src0[i]) + fabs (
+                src1[0] * src0[i]) + 1.0;
         if (
-            !double_near_abs_eps (cdst[i], odst[i], t * 2 * DBL_EPSILON)
+            !double_near_abs_eps (
+                cdst[i], odst[i], t * 2 * DBL_EPSILON)
         ) {
             fprintf (
                 stderr,
@@ -501,11 +514,13 @@ private static void test_vector_dmac_scalar (
     //  );
 
     memcpy (
-        cdst, src2, LEN * sizeof (src2)
+        cdst, src2, LEN * sizeof (
+            src2)
     );
 
     memcpy (
-        odst, src2, LEN * sizeof (src2)
+        odst, src2, LEN * sizeof (
+            src2)
     );
 
     call_ref (
@@ -522,7 +537,8 @@ private static void test_vector_dmac_scalar (
         i++
     ) {
         if (
-            !double_near_abs_eps (cdst[i], odst[i], ARBITRARY_DMAC_SCALAR_CONST)
+            !double_near_abs_eps (
+                cdst[i], odst[i], ARBITRARY_DMAC_SCALAR_CONST)
         ) {
             fprintf (
                 stderr,
@@ -537,7 +553,8 @@ private static void test_vector_dmac_scalar (
     }
 
     memcpy (
-        odst, src2, LEN * sizeof (src2)
+        odst, src2, LEN * sizeof (
+            src2)
     );
 
     bench_new (
@@ -583,19 +600,23 @@ private static void test_butterflies_float (
     //  );
 
     memcpy (
-        cdst, src0, LEN * sizeof (src0)
+        cdst, src0, LEN * sizeof (
+            src0)
     );
 
     memcpy (
-        cdst1, src1, LEN * sizeof (src1)
+        cdst1, src1, LEN * sizeof (
+            src1)
     );
 
     memcpy (
-        odst, src0, LEN * sizeof (src0)
+        odst, src0, LEN * sizeof (
+            src0)
     );
 
     memcpy (
-        odst1, src1, LEN * sizeof (src1)
+        odst1, src1, LEN * sizeof (
+            src1)
     );
 
     call_ref (
@@ -612,8 +633,10 @@ private static void test_butterflies_float (
         i++
     ) {
         if (
-            !float_near_abs_eps (cdst[i], odst[i], FLT_EPSILON) ||
-            !float_near_abs_eps (cdst1[i], odst1[i], FLT_EPSILON)
+            !float_near_abs_eps (
+                cdst[i], odst[i], FLT_EPSILON) ||
+            !float_near_abs_eps (
+                cdst1[i], odst1[i], FLT_EPSILON)
         ) {
             fprintf (
                 stderr,
@@ -634,11 +657,13 @@ private static void test_butterflies_float (
     }
 
     memcpy (
-        odst, src0, LEN * sizeof (src0)
+        odst, src0, LEN * sizeof (
+            src0)
     );
 
     memcpy (
-        odst1, src1, LEN * sizeof (src1)
+        odst1, src1, LEN * sizeof (
+            src1)
     );
 
     bench_new (
@@ -671,7 +696,8 @@ private static void test_scalarproduct_float (
     );
 
     if (
-        !float_near_abs_eps (cprod, oprod, ARBITRARY_SCALARPRODUCT_CONST)
+        !float_near_abs_eps (
+            cprod, oprod, ARBITRARY_SCALARPRODUCT_CONST)
     ) {
         fprintf (
             stderr,
@@ -743,7 +769,8 @@ private static void checkasm_check_float_dsp () {
     //      [LEN]
     //  );
 
-    AVFloatDSPContext? fdsp = avpriv_float_dsp_alloc (1
+    AVFloatDSPContext? fdsp = avpriv_float_dsp_alloc (
+        1
     );
 
     if (

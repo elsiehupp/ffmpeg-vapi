@@ -27,13 +27,16 @@ private static void randomize_buffers () {
         i < BUF_SIZE;
         i++
     ) {
-        src0[i] = sign_extend (rnd (), 24
+        src0[i] = sign_extend (
+        rnd (), 24
         );
 
-        src1[i] = sign_extend (rnd (), 24
+        src1[i] = sign_extend (
+            rnd (), 24
         );
 
-        src2[i] = sign_extend (rnd (), 24
+        src2[i] = sign_extend (
+            rnd (), 24
         );
 
     }
@@ -323,19 +326,23 @@ private static void check_butterflies (
     //  );
 
     memcpy (
-        ref0, src0, BUF_SIZE * sizeof (src0)
+        ref0, src0, BUF_SIZE * sizeof (
+            src0)
     );
 
     memcpy (
-        ref1, src1, BUF_SIZE * sizeof (src1)
+        ref1, src1, BUF_SIZE * sizeof (
+            src1)
     );
 
     memcpy (
-        new0, src0, BUF_SIZE * sizeof (src0)
+        new0, src0, BUF_SIZE * sizeof (
+            src0)
     );
 
     memcpy (
-        new1, src1, BUF_SIZE * sizeof (src1)
+        new1, src1, BUF_SIZE * sizeof (
+            src1)
     );
 
     call_ref (
@@ -348,19 +355,23 @@ private static void check_butterflies (
 
     if (
         memcmp (
-            ref0, new0, BUF_SIZE * sizeof (ref0)) ||
+            ref0, new0, BUF_SIZE * sizeof (
+                ref0)) ||
         memcmp (
-            ref1, new1, BUF_SIZE * sizeof (ref1))
+            ref1, new1, BUF_SIZE * sizeof (
+                ref1))
     ) {
         fail ();
     }
 
     memcpy (
-        new0, src0, BUF_SIZE * sizeof (src0)
+        new0, src0, BUF_SIZE * sizeof (
+            src0)
     );
 
     memcpy (
-        new1, src1, BUF_SIZE * sizeof (src1)
+        new1, src1, BUF_SIZE * sizeof (
+            src1)
     );
 
     bench_new (
@@ -426,7 +437,8 @@ private static void checkasm_check_fixed_dsp () {
     //      [BUF_SIZE]
     //  );
 
-    AVFixedDSPContext? fdsp = avpriv_alloc_fixed_dsp (1
+    AVFixedDSPContext? fdsp = avpriv_alloc_fixed_dsp (
+        1
     );
 
     randomize_buffers ();
@@ -480,7 +492,8 @@ private static void checkasm_check_fixed_dsp () {
             fdsp.vector_fmul_window_scaled, "vector_fmul_window_scaled_fixed"
         )
     ) {
-        check_vector_fmul_window_scaled (src0, src1, src2
+        check_vector_fmul_window_scaled (
+        src0, src1, src2
         );
 
     }
