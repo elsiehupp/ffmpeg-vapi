@@ -74,7 +74,8 @@ private class DecodeAudioApplication : GLib.Application {
                 sample_fmt == entry.sample_fmt
             ) {
                 fmt_out = AV_NE (
-                    entry.fmt_be, entry.fmt_le
+                    entry.fmt_be,
+                    entry.fmt_le
                 );
 
                 return 0;
@@ -98,14 +99,18 @@ private class DecodeAudioApplication : GLib.Application {
         AVFrame? frame,
         FILE? outfile
     ) {
-        int i, ch;
-        int ret, data_size;
+        int i;
+        int ch;
+
+        int ret;
+        int data_size;
 
         /***********************************************************
         send the packet with the compressed data to the decoder
         ***********************************************************/
         ret = avcodec_send_packet (
-            dec_ctx, pkt
+            dec_ctx,
+            pkt
         );
 
         if (
@@ -130,7 +135,8 @@ private class DecodeAudioApplication : GLib.Application {
             ret >= 0
         ) {
             ret = avcodec_receive_frame (
-                dec_ctx, frame
+                dec_ctx,
+                frame
             );
 
             if (
@@ -316,7 +322,9 @@ private class DecodeAudioApplication : GLib.Application {
         ***********************************************************/
         if (
             avcodec_open2 (
-                codec_context, codec, null
+                codec_context,
+                codec,
+                null
             ) < 0
         ) {
             fprintf (
@@ -331,7 +339,8 @@ private class DecodeAudioApplication : GLib.Application {
         }
 
         file = fopen (
-            filename, "rb"
+            filename,
+            "rb"
         );
 
         if (
@@ -350,7 +359,8 @@ private class DecodeAudioApplication : GLib.Application {
         }
 
         outfile = fopen (
-            outfilename, "wb"
+            outfilename,
+            "wb"
         );
 
         if (
@@ -373,7 +383,10 @@ private class DecodeAudioApplication : GLib.Application {
         ***********************************************************/
         data = inbuf;
         data_size = fread (
-            inbuf, 1, AUDIO_INBUF_SIZE, file
+            inbuf,
+            1,
+            AUDIO_INBUF_SIZE,
+            file
         );
 
         while (
@@ -400,9 +413,14 @@ private class DecodeAudioApplication : GLib.Application {
             }
 
             ret = av_parser_parse2 (
-                parser, codec_context, &pkt.data, &pkt.size,
-                                data, data_size,
-                                AV_NOPTS_VALUE, AV_NOPTS_VALUE, 0
+                parser,
+                codec_context,
+                &pkt.data,
+                &pkt.size,
+                                data,
+                            data_size,
+                                AV_NOPTS_VALUE,
+                            AV_NOPTS_VALUE, 0
             );
 
             if (
@@ -426,7 +444,10 @@ private class DecodeAudioApplication : GLib.Application {
                 pkt.size
             ) {
                 decode (
-                    codec_context, pkt, decoded_frame, outfile
+                    codec_context,
+                    pkt,
+                    decoded_frame,
+                    outfile
                 );
 
             }
@@ -435,7 +456,9 @@ private class DecodeAudioApplication : GLib.Application {
                 data_size < AUDIO_REFILL_THRESH
             ) {
                 memmove (
-                    inbuf, data, data_size
+                    inbuf,
+                    data,
+                    data_size
                 );
 
                 data = inbuf;
@@ -460,7 +483,10 @@ private class DecodeAudioApplication : GLib.Application {
         pkt.data = null;
         pkt.size = 0;
         decode (
-            codec_context, pkt, decoded_frame, outfile
+            codec_context,
+            pkt,
+            decoded_frame,
+            outfile
         );
 
         /***********************************************************
@@ -490,7 +516,8 @@ private class DecodeAudioApplication : GLib.Application {
 
         n_channels = codec_context.ch_layout.nb_channels;
         ret = get_format_from_sample_fmt (
-            &fmt, sfmt
+            &fmt,
+            sfmt
         );
 
         if (
@@ -503,7 +530,9 @@ private class DecodeAudioApplication : GLib.Application {
         printf (
             "Play the output audio file with the command:\n" +
             "ffplay -f %s -ac %d -ar %d %s\n",
-            fmt, n_channels, codec_context.sample_rate,
+            fmt,
+            n_channels,
+            codec_context.sample_rate,
             outfilename
     );
 

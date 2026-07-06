@@ -77,7 +77,8 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         key = strtok (
-            optstr, " "
+            optstr,
+            " "
         );
 
         if (
@@ -90,7 +91,8 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         value = strtok (
-            null, " "
+            null,
+            " "
         );
 
         if (
@@ -103,12 +105,16 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         av_dict_set (
-            opt, key, value, 0
+            opt,
+            key,
+            value,
+            0
         );
 
         do {
             key = strtok (
-            null, " "
+            null,
+            " "
             );
 
             if (
@@ -118,7 +124,8 @@ private class QSVTranscodeApplication : GLib.Application {
             }
 
             value = strtok (
-                null, " "
+                null,
+                " "
             );
 
             if (
@@ -131,7 +138,10 @@ private class QSVTranscodeApplication : GLib.Application {
             }
 
             av_dict_set (
-                opt, key, value, 0
+                opt,
+                key,
+                value,
+                0
             );
 
         } while (
@@ -154,7 +164,8 @@ private class QSVTranscodeApplication : GLib.Application {
         ) {
             AVDictionaryEntry? dictionary_entry = null;
             ret = str_to_dict (
-            dynamic_setting[current_setting_number++].optstr, &opts
+            dynamic_setting[current_setting_number++].optstr,
+            &opts
             );
 
             if (
@@ -175,7 +186,8 @@ private class QSVTranscodeApplication : GLib.Application {
             Then this new dictionary is used to set private option.
             ***********************************************************/
             ret = av_opt_set_dict (
-                avctx, &opts
+                avctx,
+                &opts
             );
 
             if (
@@ -189,7 +201,8 @@ private class QSVTranscodeApplication : GLib.Application {
             Set codec specific option
             ***********************************************************/
             ret = av_opt_set_dict (
-                avctx.priv_data, &opts
+                avctx.priv_data,
+                &opts
             );
 
             if (
@@ -201,11 +214,15 @@ private class QSVTranscodeApplication : GLib.Application {
 
             /***********************************************************
             There is no "framerate" option in common option list. Use "-r" to set
-            framerate, which is compatible with ffmpeg commandline. The video is
+            framerate,
+            which is compatible with ffmpeg commandline. The video is
             assumed to be average frame rate, so set time_base to 1/framerate.
             ***********************************************************/
             dictionary_entry = av_dict_get (
-                opts, "r", null, 0
+                opts,
+                "r",
+                null,
+                0
             );
 
             if (
@@ -213,7 +230,8 @@ private class QSVTranscodeApplication : GLib.Application {
             ) {
                 avctx.framerate = av_d2q (
                 atof (
-                    dictionary_entry.value), INT_MAX
+                    dictionary_entry.value),
+                    INT_MAX
                 );
 
                 encoder_ctx.time_base = av_inv_q (
@@ -264,7 +282,10 @@ private class QSVTranscodeApplication : GLib.Application {
         AVStream? video = null;
 
         ret = avformat_open_input (
-            &ifmt_ctx, filename, null, null
+            &ifmt_ctx,
+            filename,
+            null,
+            null
         );
 
         if (
@@ -283,7 +304,8 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         ret = avformat_find_stream_info (
-            ifmt_ctx, null
+            ifmt_ctx,
+            null
         );
 
         if (
@@ -300,7 +322,12 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         ret = av_find_best_stream (
-            ifmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, null, 0
+            ifmt_ctx,
+            AVMEDIA_TYPE_VIDEO,
+            -1,
+            -1,
+            null,
+            0
         );
 
         if (
@@ -406,7 +433,8 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         ret = avcodec_parameters_to_context (
-            decoder_ctx, video.codecpar
+            decoder_ctx,
+            video.codecpar
         );
 
         if (
@@ -423,7 +451,9 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         decoder_ctx.framerate = av_guess_frame_rate (
-            ifmt_ctx, video, null
+            ifmt_ctx,
+            video,
+            null
         );
 
         decoder_ctx.hw_device_ctx = av_buffer_ref (
@@ -447,14 +477,17 @@ private class QSVTranscodeApplication : GLib.Application {
         decoder_ctx.get_format = get_format;
         decoder_ctx.pkt_timebase = video.time_base;
         ret = avcodec_open2 (
-            decoder_ctx, decoder, null
+            decoder_ctx,
+            decoder,
+            null
         );
 
         if (
             ret < 0
         ) {
             fprintf (
-                stderr, "Failed to open codec for decoding. Error code: %s\n",
+                stderr,
+                "Failed to open codec for decoding. Error code: %s\n",
                 av_err2str (
                     ret)
             );
@@ -493,7 +526,8 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         ret = avcodec_send_frame (
-            encoder_ctx, frame
+            encoder_ctx,
+            frame
         );
 
         if (
@@ -514,7 +548,8 @@ private class QSVTranscodeApplication : GLib.Application {
             true
         ) {
             ret = avcodec_receive_packet (
-            encoder_ctx, enc_pkt
+            encoder_ctx,
+            enc_pkt
             );
 
             if (
@@ -525,12 +560,14 @@ private class QSVTranscodeApplication : GLib.Application {
 
             enc_pkt.stream_index = 0;
             av_packet_rescale_ts (
-                enc_pkt, encoder_ctx.time_base,
+                enc_pkt,
+                encoder_ctx.time_base,
                 ofmt_ctx.streams[0].time_base
             );
 
             ret = av_interleaved_write_frame (
-                ofmt_ctx, enc_pkt
+                ofmt_ctx,
+                enc_pkt
             );
 
             if (
@@ -574,7 +611,8 @@ private class QSVTranscodeApplication : GLib.Application {
         int ret = 0;
 
         ret = avcodec_send_packet (
-            decoder_ctx, pkt
+            decoder_ctx,
+            pkt
         );
 
         if (
@@ -604,7 +642,8 @@ private class QSVTranscodeApplication : GLib.Application {
             }
 
             ret = avcodec_receive_frame (
-                decoder_ctx, frame
+                decoder_ctx,
+                frame
             );
 
             if (
@@ -671,7 +710,8 @@ private class QSVTranscodeApplication : GLib.Application {
                 encoder_ctx.width = decoder_ctx.width;
                 encoder_ctx.height = decoder_ctx.height;
                 ret = str_to_dict (
-                    optstr, &opts
+                    optstr,
+                    &opts
                 );
 
                 if (
@@ -695,7 +735,10 @@ private class QSVTranscodeApplication : GLib.Application {
                 1/framerate.
                 ***********************************************************/
                 dictionary_entry = av_dict_get (
-                    opts, "r", null, 0
+                    opts,
+                    "r",
+                    null,
+                    0
                 );
 
                 if (
@@ -715,7 +758,9 @@ private class QSVTranscodeApplication : GLib.Application {
                 }
 
                 ret = avcodec_open2 (
-                    encoder_ctx, enc_codec, &opts
+                    encoder_ctx,
+                    enc_codec,
+                    &opts
                 );
 
                 if (
@@ -743,7 +788,8 @@ private class QSVTranscodeApplication : GLib.Application {
                 );
 
                 ost = avformat_new_stream (
-                    ofmt_ctx, enc_codec
+                    ofmt_ctx,
+                    enc_codec
                 );
 
                 if (
@@ -766,7 +812,8 @@ private class QSVTranscodeApplication : GLib.Application {
 
                 ost.time_base = encoder_ctx.time_base;
                 ret = avcodec_parameters_from_context (
-                    ost.codecpar, encoder_ctx
+                    ost.codecpar,
+                    encoder_ctx
                 );
 
                 if (
@@ -791,7 +838,8 @@ private class QSVTranscodeApplication : GLib.Application {
                 write the stream header
                 ***********************************************************/
                 ret = avformat_write_header (
-                    ofmt_ctx, null
+                    ofmt_ctx,
+                    null
                 );
 
                 if (
@@ -815,12 +863,14 @@ private class QSVTranscodeApplication : GLib.Application {
             }
 
             frame.pts = av_rescale_q (
-                frame.pts, decoder_ctx.pkt_timebase,
+                frame.pts,
+                decoder_ctx.pkt_timebase,
                 encoder_ctx.time_base
             );
 
             ret = encode_write (
-                pkt, frame
+                pkt,
+                frame
             );
 
             if (
@@ -857,7 +907,9 @@ private class QSVTranscodeApplication : GLib.Application {
                 argc - 5) % 2
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Usage: %s <input file> <encoder> <output file>" +
+                null,
+                AV_LOG_ERROR,
+                "Usage: %s <input file> <encoder> <output file>" +
                 " <\"encoding option set 0\"> [<frame_number> <\"encoding options set 1\">]...\n",
                 argv[0]
             );
@@ -897,7 +949,11 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         ret = av_hwdevice_ctx_create (
-            &hw_device_ctx, AV_HWDEVICE_TYPE_QSV, null, null, 0
+            &hw_device_ctx,
+            AV_HWDEVICE_TYPE_QSV,
+            null,
+            null,
+            0
         );
 
         if (
@@ -957,7 +1013,10 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         ret = avformat_alloc_output_context2 (
-            &ofmt_ctx, null, null, argv[3]
+            &ofmt_ctx,
+            null,
+            null,
+            argv[3]
         );
 
         if (
@@ -990,7 +1049,9 @@ private class QSVTranscodeApplication : GLib.Application {
         }
 
         ret = avio_open (
-            &ofmt_ctx.pb, argv[3], AVIO_FLAG_WRITE
+            &ofmt_ctx.pb,
+            argv[3],
+            AVIO_FLAG_WRITE
         );
 
         if (
@@ -1014,7 +1075,8 @@ private class QSVTranscodeApplication : GLib.Application {
             ret >= 0
         ) {
             ret = av_read_frame (
-            ifmt_ctx, dec_pkt
+            ifmt_ctx,
+            dec_pkt
             );
 
             if (
@@ -1027,7 +1089,9 @@ private class QSVTranscodeApplication : GLib.Application {
                 video_stream == dec_pkt.stream_index
             ) {
                 ret = dec_enc (
-                dec_pkt, enc_codec, argv[4]
+                dec_pkt,
+                enc_codec,
+                argv[4]
                 );
 
             }
@@ -1046,7 +1110,9 @@ private class QSVTranscodeApplication : GLib.Application {
         );
 
         ret = dec_enc (
-            dec_pkt, enc_codec, argv[4]
+            dec_pkt,
+            enc_codec,
+            argv[4]
         );
 
         if (
@@ -1067,7 +1133,8 @@ private class QSVTranscodeApplication : GLib.Application {
         flush encoder
         ***********************************************************/
         ret = encode_write (
-            dec_pkt, null
+            dec_pkt,
+            null
         );
 
         if (

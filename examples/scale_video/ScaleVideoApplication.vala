@@ -40,7 +40,8 @@ private class ScaleVideoApplication : GLib.Application {
         int height,
         int frame_index
     ) {
-        int x, y;
+        int x;
+        int y;
 
         /***********************************************************
         Y
@@ -125,7 +126,9 @@ private class ScaleVideoApplication : GLib.Application {
 
         if (
             av_parse_video_size (
-                &dst_w, &dst_h, dst_size
+                &dst_w,
+                &dst_h,
+                dst_size
             ) < 0
         ) {
             fprintf (
@@ -164,9 +167,16 @@ private class ScaleVideoApplication : GLib.Application {
         create scaling context
         ***********************************************************/
         sws_ctx = sws_getContext (
-            src_w, src_h, src_pix_fmt,
-            dst_w, dst_h, dst_pix_fmt,
-            LibSoftwareScale.SoftwareScaleFlags.BILINEAR, null, null, null
+            src_w,
+            src_h,
+            src_pix_fmt,
+            dst_w,
+            dst_h,
+            dst_pix_fmt,
+            LibSoftwareScale.SoftwareScaleFlags.BILINEAR,
+            null,
+            null,
+            null
         );
 
         if (
@@ -177,9 +187,13 @@ private class ScaleVideoApplication : GLib.Application {
                     "Impossible to create scale context for the conversion " +
                     "fmt:%s s:%dx%d . fmt:%s s:%dx%d\n",
                     av_get_pix_fmt_name (
-                        src_pix_fmt), src_w, src_h,
+                        src_pix_fmt),
+                        src_w,
+                        src_h,
                     av_get_pix_fmt_name (
-                        dst_pix_fmt), dst_w, dst_h
+                        dst_pix_fmt),
+                        dst_w,
+                        dst_h
             );
 
             ret = AVERROR (
@@ -194,8 +208,12 @@ private class ScaleVideoApplication : GLib.Application {
         allocate source and destination image buffers
         ***********************************************************/
         ret = av_image_alloc (
-            src_data, src_linesize,
-            src_w, src_h, src_pix_fmt, 16
+            src_data,
+            src_linesize,
+            src_w,
+            src_h,
+            src_pix_fmt,
+            16
         );
 
         if (
@@ -214,8 +232,12 @@ private class ScaleVideoApplication : GLib.Application {
         buffer is going to be written to rawvideo file, no alignment
         ***********************************************************/
         ret = av_image_alloc (
-            dst_data, dst_linesize,
-            dst_w, dst_h, dst_pix_fmt, 1
+            dst_data,
+            dst_linesize,
+            dst_w,
+            dst_h,
+            dst_pix_fmt,
+            1
         );
 
         if (
@@ -241,23 +263,35 @@ private class ScaleVideoApplication : GLib.Application {
             generate synthetic video
             ***********************************************************/
             fill_yuv_image (
-                src_data, src_linesize, src_w, src_h, i
+                src_data,
+                src_linesize,
+                src_w,
+                src_h,
+                i
             );
 
             /***********************************************************
             convert to destination format
             ***********************************************************/
             sws_scale (
-                sws_ctx, (
+                sws_ctx,
+                (
                     uint8[][])src_data,
-                src_linesize, 0, src_h, dst_data, dst_linesize
+                src_linesize,
+                0,
+                src_h,
+                dst_data,
+                dst_linesize
             );
 
             /***********************************************************
             write scaled image to file
             ***********************************************************/
             fwrite (
-                dst_data[0], 1, dst_bufsize, dst_file
+                dst_data[0],
+                1,
+                dst_bufsize,
+                dst_file
             );
 
         }
@@ -267,7 +301,10 @@ private class ScaleVideoApplication : GLib.Application {
             "Scaling succeeded. Play the output file with the command:\n" +
             "ffplay -f rawvideo -pix_fmt %s -video_size %dx%d %s\n",
             av_get_pix_fmt_name (
-                dst_pix_fmt), dst_w, dst_h, dst_filename
+                dst_pix_fmt),
+                dst_w,
+                dst_h,
+                dst_filename
     );
 
     //  end:

@@ -113,7 +113,10 @@ private static void checkasm_check_h264qpel () {
     //  );
 
     H264QpelContext h264_qpel_context;
-    int op, bit_depth, i, j;
+    int op;
+    int bit_depth;
+    int i;
+    int j;
 
     for (
         op = 0;
@@ -130,7 +133,8 @@ private static void checkasm_check_h264qpel () {
             bit_depth++
         ) {
             ff_h264qpel_init (
-                &h264_qpel_context, bit_depth
+                &h264_qpel_context,
+                bit_depth
             );
 
             for (
@@ -149,31 +153,45 @@ private static void checkasm_check_h264qpel () {
                         check_func (
                             tab[i][j],
                             "%s_h264_qpel_%d_mc%d%d_%d",
-                            op_name, size, j & 3, j >> 2, bit_depth
+                            op_name,
+                            size,
+                            j & 3,
+                            j >> 2,
+                            bit_depth
                         )
                     ) {
                         randomize_buffers ();
                         call_ref (
-                            dst0, src0, size * SIZEOF_PIXEL
+                            dst0,
+                            src0,
+                            size * SIZEOF_PIXEL
                         );
 
                         call_new (
-                            dst1, src1, size * SIZEOF_PIXEL
+                            dst1,
+                            src1,
+                            size * SIZEOF_PIXEL
                         );
 
                         if (
                             memcmp (
-                                buf0, buf1, BUF_SIZE
+                                buf0,
+                            buf1,
+                            BUF_SIZE
                             ) ||
                             memcmp (
-                                dst0, dst1, BUF_SIZE
+                                dst0,
+                                dst1,
+                                BUF_SIZE
                             )
                         ) {
                             fail ();
                         }
 
                         bench_new (
-                            dst1, src1, size * SIZEOF_PIXEL
+                            dst1,
+                            src1,
+                            size * SIZEOF_PIXEL
                         );
 
                     }
@@ -185,7 +203,8 @@ private static void checkasm_check_h264qpel () {
         }
 
         report (
-            "%s", op_name
+            "%s",
+            op_name
         );
 
     }

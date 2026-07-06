@@ -55,7 +55,9 @@ private class DecodeVideoApplication : GLib.Application {
         fprintf (
             file,
             "P5\n%d %d\n%d\n",
-            xsize, ysize, 255
+            xsize,
+            ysize,
+            255
         );
 
         for (
@@ -85,7 +87,8 @@ private class DecodeVideoApplication : GLib.Application {
         int ret;
 
         ret = avcodec_send_packet (
-            dec_ctx, pkt
+            dec_ctx,
+            pkt
         );
 
         if (
@@ -106,7 +109,8 @@ private class DecodeVideoApplication : GLib.Application {
             ret >= 0
         ) {
             ret = avcodec_receive_frame (
-            dec_ctx, frame
+            dec_ctx,
+            frame
             );
 
             if (
@@ -143,13 +147,20 @@ private class DecodeVideoApplication : GLib.Application {
             free it
             ***********************************************************/
             snprintf (
-                buf, sizeof (
-                    buf), "%s-%PRId64", filename, dec_ctx.frame_num
+                buf,
+                sizeof (
+                    buf),
+                    "%s-%PRId64",
+                    filename,
+                    dec_ctx.frame_num
             );
 
             pgm_save (
-                frame.data[0], frame.linesize[0],
-                    frame.width, frame.height, buf
+                frame.data[0],
+                frame.linesize[0],
+                    frame.width,
+                    frame.height,
+                    buf
             );
 
         }
@@ -279,7 +290,9 @@ private class DecodeVideoApplication : GLib.Application {
         ***********************************************************/
         if (
             avcodec_open2 (
-                codec_context, codec, null
+                codec_context,
+                codec,
+                null
             ) < 0
         ) {
             fprintf (
@@ -294,7 +307,8 @@ private class DecodeVideoApplication : GLib.Application {
         }
 
         file = fopen (
-            filename, "rb"
+            filename,
+            "rb"
         );
 
         if (
@@ -332,7 +346,10 @@ private class DecodeVideoApplication : GLib.Application {
             read raw data from the input file
             ***********************************************************/
             data_size = fread (
-                inbuf, 1, INBUF_SIZE, file
+                inbuf,
+                1,
+                INBUF_SIZE,
+                file
             );
 
             if (
@@ -353,8 +370,14 @@ private class DecodeVideoApplication : GLib.Application {
                 eof
             ) {
                 ret = av_parser_parse2 (
-                parser, codec_context, &pkt.data, &pkt.size,
-                                    data, data_size, AV_NOPTS_VALUE, AV_NOPTS_VALUE, 0
+                parser,
+                codec_context,
+                &pkt.data,
+                &pkt.size,
+                                    data,
+                                    data_size,
+                                    AV_NOPTS_VALUE,
+                                    AV_NOPTS_VALUE, 0
                 );
 
                 if (
@@ -378,7 +401,10 @@ private class DecodeVideoApplication : GLib.Application {
                     pkt.size
                 ) {
                     decode (
-                        codec_context, frame, pkt, outfilename
+                        codec_context,
+                        frame,
+                        pkt,
+                        outfilename
                     );
 
                 } else if (
@@ -397,7 +423,10 @@ private class DecodeVideoApplication : GLib.Application {
         flush the decoder
         ***********************************************************/
         decode (
-            codec_context, frame, null, outfilename
+            codec_context,
+            frame,
+            null,
+            outfilename
         );
 
         fclose (

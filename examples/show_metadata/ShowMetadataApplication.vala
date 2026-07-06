@@ -56,7 +56,10 @@ private class ShowMetadataApplication : GLib.Application {
         }
 
         ret = avformat_open_input (
-            &fmt_ctx, argv[1], null, null
+            &fmt_ctx,
+            argv[1],
+            null,
+            null
         );
 
         if (
@@ -66,14 +69,16 @@ private class ShowMetadataApplication : GLib.Application {
         }
 
         ret = avformat_find_stream_info (
-            fmt_ctx, null
+            fmt_ctx,
+            null
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR,
+                null,
+                AV_LOG_ERROR,
                 "Cannot find stream information\n"
             );
 
@@ -82,7 +87,8 @@ private class ShowMetadataApplication : GLib.Application {
 
         while (
             (tag = av_dict_iterate (
-                fmt_ctx.metadata, tag))
+                fmt_ctx.metadata,
+                tag))
         ) {
             printf (
                 "%s=%s\n",

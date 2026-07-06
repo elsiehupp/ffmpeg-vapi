@@ -226,7 +226,12 @@ private static void pgmyuv_save (
     cr_tab = new uchar[width * height / 4];
 
     rgb24_to_yuv420p (
-        lum_tab, cb_tab, cr_tab, rgb_tab, width, height
+        lum_tab,
+        cb_tab,
+        cr_tab,
+        rgb_tab,
+        width,
+        height
     );
 
     if (
@@ -240,7 +245,9 @@ private static void pgmyuv_save (
         fprintf (
             file,
             "P5\n%d %d\n%d\n",
-            width, height * 3 / 2, 255
+            width,
+            height * 3 / 2,
+            255
         );
 
     } else {
@@ -249,7 +256,11 @@ private static void pgmyuv_save (
 
     err_if (
         fwrite (
-            lum_tab, 1, width * height, file) != width * height
+            lum_tab,
+            1,
+            width * height,
+            file
+        ) != width * height
     );
 
     h2 = height / 2;
@@ -267,12 +278,18 @@ private static void pgmyuv_save (
         ) {
             err_if (
                 fwrite (
-                    cb, 1, w2, file) != w2
+                    cb,
+                    1,
+                    w2,
+                    file) != w2
             );
 
             err_if (
                 fwrite (
-                    cr, 1, w2, file) != w2
+                    cr,
+                    1,
+                    w2,
+                    file) != w2
             );
 
             cb += w2;
@@ -291,7 +308,10 @@ private static void pgmyuv_save (
         ) {
             err_if (
                 fwrite (
-                    cb, 1, w2, file) != w2
+                    cb,
+                    1,
+                    w2,
+                    file) != w2
             );
 
             cb += w2;
@@ -304,7 +324,10 @@ private static void pgmyuv_save (
         ) {
             err_if (
                 fwrite (
-                    cr, 1, w2, file) != w2
+                    cr,
+                    1,
+                    w2,
+                    file) != w2
             );
 
             cr += w2;

@@ -41,7 +41,10 @@ private static void checkasm_check_synth_filter () {
     SynthFilterContext synth;
 
     ff_mdct_init (
-        &imdct, 6, 1, 1.0
+        &imdct,
+        6,
+        1,
+        1.0
     );
 
     ff_synth_filter_init (
@@ -125,7 +128,10 @@ private static void checkasm_check_synth_filter () {
         //  );
 
         float scale = 1.0f;
-        int i, offset0 = 0, offset1 = 0, offset_b = 0;
+        int i;
+        int offset0 = 0;
+        int offset1 = 0;
+        int offset_b = 0;
 
         //  declare_func (
         //      void,
@@ -140,32 +146,44 @@ private static void checkasm_check_synth_filter () {
         //  );
 
         memset (
-            buf2_0, 0, sizeof (
+            buf2_0,
+            0,
+            sizeof (
                 buf2_0) * BUF_SIZE
         );
 
         memset (
-            buf2_1, 0, sizeof (
+            buf2_1,
+            0,
+            sizeof (
                 buf2_1) * BUF_SIZE
         );
 
         memset (
-            buf2_b, 0, sizeof (
+            buf2_b,
+            0,
+            sizeof (
                 buf2_b) * BUF_SIZE
         );
 
         memset (
-            buf0, 0, sizeof (
+            buf0,
+            0,
+            sizeof (
                 buf2_0) * 512
         );
 
         memset (
-            buf1, 0, sizeof (
+            buf1,
+            0,
+            sizeof (
                 buf2_1) * 512
         );
 
         memset (
-            buf_b, 0, sizeof (
+            buf_b,
+            0,
+            sizeof (
                 buf2_b) * 512
         );
 
@@ -182,30 +200,48 @@ private static void checkasm_check_synth_filter () {
             i & 1) ? ff_dca_fir_32bands_perfect : ff_dca_fir_32bands_nonperfect;
 
             memset (
-                out0, 0, sizeof (
+                out0,
+                0,
+                sizeof (
                     out0) * BUF_SIZE
             );
 
             memset (
-                out1, 0, sizeof (
+                out1,
+                0,
+                sizeof (
                     out1) * BUF_SIZE
             );
 
             memset (
-                out_b, 0, sizeof (
+                out_b,
+                0,
+                sizeof (
                     out_b) * BUF_SIZE
             );
 
             randomize_input ();
 
             call_ref (
-                &imdct, buf0, &offset0, buf2_0, window,
-                out0, in, scale
+                &imdct,
+                buf0,
+                &offset0,
+                buf2_0,
+                window,
+                out0,
+                in,
+                scale
             );
 
             call_new (
-                &imdct, buf1, &offset1, buf2_1, window,
-                out1, in, scale
+                &imdct,
+                buf1,
+                &offset1,
+                buf2_1,
+                window,
+                out1,
+                in,
+                scale
             );
 
             if (
@@ -249,7 +285,10 @@ private static void checkasm_check_synth_filter () {
                     fprintf (
                         stderr,
                         "out:  %11g (0x%08x); %11g (0x%08x); abs diff %11g\n",
-                        o0.f, o0.i, o1.f, o1.i,
+                        o0.f,
+                        o0.i,
+                        o1.f,
+                        o1.i,
                         fabsf (
                             o0.f - o1.f
                         )
@@ -258,7 +297,10 @@ private static void checkasm_check_synth_filter () {
                     fprintf (
                         stderr,
                         "buf2: %11g (0x%08x); %11g (0x%08x); abs diff %11g\n",
-                        b0.f, b0.i, b1.f, b1.i,
+                        b0.f,
+                        b0.i,
+                        b1.f,
+                        b1.i,
                         fabsf (
                             b0.f - b1.f
                         )
@@ -270,7 +312,11 @@ private static void checkasm_check_synth_filter () {
             }
 
             bench_new (
-                &imdct, buf_b, &offset_b, buf2_b, window,
+                &imdct,
+                buf_b,
+                &offset_b,
+                buf2_b,
+                window,
                       out_b, in, scale
             );
 

@@ -79,28 +79,39 @@ private static void test_add_squares () {
     );
 
     memcpy (
-        dst1, dst0, BUF_SIZE * sizeof (
+        dst1,
+        dst0,
+        BUF_SIZE * sizeof (
             INTFLOAT
         )
     );
 
     call_ref (
-        dst0, src, BUF_SIZE
+        dst0,
+        src,
+        BUF_SIZE
     );
 
     call_new (
-        dst1, src, BUF_SIZE
+        dst1,
+        src,
+        BUF_SIZE
     );
 
     if (
         !float_near_abs_eps_array (
-            dst0, dst1, EPS, BUF_SIZE)
+            dst0,
+            dst1,
+            EPS,
+            BUF_SIZE)
     ) {
         fail ();
     }
 
     bench_new (
-        dst1, src, BUF_SIZE
+        dst1,
+        src,
+        BUF_SIZE
     );
 
 }
@@ -147,15 +158,20 @@ private static void test_mul_pair_single () {
     );
 
     randomize (
-        src1, BUF_SIZE
+        src1,
+        BUF_SIZE
     );
 
     call_ref (
-        dst0, src0, src1, BUF_SIZE
+        dst0,
+        src0,
+        src1, BUF_SIZE
     );
 
     call_new (
-        dst1, src0, src1, BUF_SIZE
+        dst1,
+        src0,
+        src1, BUF_SIZE
     );
 
     if (
@@ -167,7 +183,9 @@ private static void test_mul_pair_single () {
     }
 
     bench_new (
-        dst1, src0, src1, BUF_SIZE
+        dst1,
+        src0,
+        src1, BUF_SIZE
     );
 
 }
@@ -225,16 +243,24 @@ private static void test_hybrid_analysis () {
     );
 
     memcpy (
-        dst1, dst0, BUF_SIZE * 2 * sizeof (
+        dst1,
+        dst0,
+        BUF_SIZE * 2 * sizeof (
             INTFLOAT)
     );
 
     call_ref (
-        dst0, in, filter, STRIDE, N
+        dst0,
+        in,
+        filter,
+        STRIDE, N
     );
 
     call_new (
-        dst1, in, filter, STRIDE, N
+        dst1,
+        in,
+        filter,
+        STRIDE, N
     );
 
     if (
@@ -246,7 +272,10 @@ private static void test_hybrid_analysis () {
     }
 
     bench_new (
-        dst1, in, filter, STRIDE, N
+        dst1,
+        in,
+        filter,
+        STRIDE, N
     );
 
 }
@@ -310,11 +339,15 @@ private static void test_hybrid_analysis_ileave () {
     other value.
     ***********************************************************/
     call_ref (
-        out0, in, 3, 32
+        out0,
+        in,
+        3, 32
     );
 
     call_new (
-        out1, in, 3, 32
+        out1,
+        in,
+        3, 32
     );
 
     /***********************************************************
@@ -322,30 +355,40 @@ private static void test_hybrid_analysis_ileave () {
     ***********************************************************/
     if (
         memcmp (
-            out0, out1, 91 * 32 * 2 * sizeof (
+            out0,
+            out1,
+            91 * 32 * 2 * sizeof (
                 INTFLOAT))
     ) {
         fail ();
     }
 
     call_ref (
-        out0, in, 5, 32
+        out0,
+        in,
+        5, 32
     );
 
     call_new (
-        out1, in, 5, 32
+        out1,
+        in,
+        5, 32
     );
 
     if (
         memcmp (
-            out0, out1, 91 * 32 * 2 * sizeof (
+            out0,
+            out1,
+            91 * 32 * 2 * sizeof (
                 INTFLOAT))
     ) {
         fail ();
     }
 
     bench_new (
-        out1, in, 3, 32
+        out1,
+        in,
+        3, 32
     );
 
 }
@@ -409,11 +452,15 @@ private static void test_hybrid_synthesis_deint () {
     other value.
     ***********************************************************/
     call_ref (
-        out0, in, 3, 32
+        out0,
+        in,
+        3, 32
     );
 
     call_new (
-        out1, in, 3, 32
+        out1,
+        in,
+        3, 32
     );
 
     /***********************************************************
@@ -421,30 +468,40 @@ private static void test_hybrid_synthesis_deint () {
     ***********************************************************/
     if (
         memcmp (
-            out0, out1, 2 * 38 * 64 * sizeof (
+            out0,
+            out1,
+            2 * 38 * 64 * sizeof (
                 INTFLOAT))
     ) {
         fail ();
     }
 
     call_ref (
-        out0, in, 5, 32
+        out0,
+        in,
+        5, 32
     );
 
     call_new (
-        out1, in, 5, 32
+        out1,
+        in,
+        5, 32
     );
 
     if (
         memcmp (
-            out0, out1, 2 * 38 * 64 * sizeof (
+            out0,
+            out1,
+            2 * 38 * 64 * sizeof (
                 INTFLOAT))
     ) {
         fail ();
     }
 
     bench_new (
-        out1, in, 3, 32
+        out1,
+        in,
+        3, 32
     );
 
 }
@@ -535,26 +592,35 @@ private static void test_stereo_interpolate (
         if (
             check_func (
                 psdsp.stereo_interpolate[i],
-                "ps_stereo_interpolate%s", i ? "_ipdopd" : ""
+                "ps_stereo_interpolate%s",
+                i ? "_ipdopd" : ""
             )
         ) {
             memcpy (
-                l0, l, BUF_SIZE * 2 * sizeof (
+                l0,
+                l,
+                BUF_SIZE * 2 * sizeof (
                     INTFLOAT)
             );
 
             memcpy (
-                l1, l, BUF_SIZE * 2 * sizeof (
+                l1,
+                l,
+                BUF_SIZE * 2 * sizeof (
                     INTFLOAT)
             );
 
             memcpy (
-                r0, r, BUF_SIZE * 2 * sizeof (
+                r0,
+                r,
+                BUF_SIZE * 2 * sizeof (
                     INTFLOAT)
             );
 
             memcpy (
-                r1, r, BUF_SIZE * 2 * sizeof (
+                r1,
+                r,
+                BUF_SIZE * 2 * sizeof (
                     INTFLOAT)
             );
 
@@ -567,11 +633,19 @@ private static void test_stereo_interpolate (
             );
 
             call_ref (
-                l0, r0, h, h_step, BUF_SIZE
+                l0,
+                r0,
+                h,
+                h_step,
+                BUF_SIZE
             );
 
             call_new (
-                l1, r1, h, h_step, BUF_SIZE
+                l1,
+                r1,
+                h,
+                h_step,
+                BUF_SIZE
             );
 
             if (
@@ -584,24 +658,33 @@ private static void test_stereo_interpolate (
                 !float_near_abs_eps_array (
                     (float[])r0,
                     (float[])r1,
-                    EPS, BUF_SIZE * 2
+                    EPS,
+                    BUF_SIZE * 2
                 )
             ) {
                 fail ();
             }
 
             memcpy (
-                l1, l, BUF_SIZE * 2 * sizeof (
+                l1,
+                l,
+                BUF_SIZE * 2 * sizeof (
                     INTFLOAT)
             );
 
             memcpy (
-                r1, r, BUF_SIZE * 2 * sizeof (
+                r1,
+                r,
+                BUF_SIZE * 2 * sizeof (
                     INTFLOAT)
             );
 
             bench_new (
-                l1, r1, h, h_step, BUF_SIZE
+                l1,
+                r1,
+                h,
+                h_step,
+                BUF_SIZE
             );
 
         }
@@ -619,7 +702,8 @@ private static void checkasm_check_aacpsdsp () {
 
     if (
         check_func (
-            psdsp.add_squares, "ps_add_squares"
+            psdsp.add_squares,
+            "ps_add_squares"
         )
     ) {
         test_add_squares ();
@@ -631,7 +715,8 @@ private static void checkasm_check_aacpsdsp () {
 
     if (
         check_func (
-            psdsp.mul_pair_single, "ps_mul_pair_single"
+            psdsp.mul_pair_single,
+            "ps_mul_pair_single"
         )
     ) {
         test_mul_pair_single ();
@@ -643,7 +728,8 @@ private static void checkasm_check_aacpsdsp () {
 
     if (
         check_func (
-            psdsp.hybrid_analysis, "ps_hybrid_analysis"
+            psdsp.hybrid_analysis,
+            "ps_hybrid_analysis"
         )
     ) {
         test_hybrid_analysis ();
@@ -655,7 +741,8 @@ private static void checkasm_check_aacpsdsp () {
 
     if (
         check_func (
-            psdsp.hybrid_analysis_ileave, "ps_hybrid_analysis_ileave"
+            psdsp.hybrid_analysis_ileave,
+            "ps_hybrid_analysis_ileave"
         )
     ) {
         test_hybrid_analysis_ileave ();
@@ -667,7 +754,8 @@ private static void checkasm_check_aacpsdsp () {
 
     if (
         check_func (
-            psdsp.hybrid_synthesis_deint, "ps_hybrid_synthesis_deint"
+            psdsp.hybrid_synthesis_deint,
+            "ps_hybrid_synthesis_deint"
         )
     ) {
         test_hybrid_synthesis_deint ();

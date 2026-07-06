@@ -73,11 +73,14 @@ private static void checkasm_check_vf_gblur () {
     //  );
 
     randomize_buffers (
-        dst_ref, PIXELS
+        dst_ref,
+        PIXELS
     );
 
     memcpy (
-        dst_new, dst_ref, BUF_SIZE
+        dst_new,
+        dst_ref,
+        BUF_SIZE
     );
 
     ff_gblur_init (
@@ -91,22 +94,40 @@ private static void checkasm_check_vf_gblur () {
         )
     ) {
         call_ref (
-            dst_ref, w, h, steps, nu, bscale
+            dst_ref,
+            w,
+            h,
+            steps,
+            nu,
+            bscale
         );
 
         call_new (
-            dst_new, w, h, steps, nu, bscale
+            dst_new,
+            w,
+            h,
+            steps,
+            nu,
+            bscale
         );
 
         if (
             !float_near_abs_eps_array (
-                dst_ref, dst_new, 0.01f, PIXELS)
+                dst_ref,
+                dst_new,
+                0.01f,
+                PIXELS)
         ) {
             fail ();
         }
 
         bench_new (
-            dst_new, w, h, 1, nu, bscale
+            dst_new,
+            w,
+            h,
+            1,
+            nu,
+            bscale
         );
 
     }

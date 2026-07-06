@@ -71,19 +71,26 @@ private static void check_hflip (
     //  );
 
     memset (
-        src, 0, WIDTH_PADDED
+        src,
+        0,
+        WIDTH_PADDED
     );
 
     memset (
-        dst_ref, 0, WIDTH_PADDED
+        dst_ref,
+        0,
+        WIDTH_PADDED
     );
 
     memset (
-        dst_new, 0, WIDTH_PADDED
+        dst_new,
+        0,
+        WIDTH_PADDED
     );
 
     randomize_buffers (
-        src, WIDTH_PADDED
+        src,
+        WIDTH_PADDED
     );
 
     if (
@@ -101,7 +108,9 @@ private static void check_hflip (
     }
 
     ff_hflip_init (
-        &flip_context, step_array, 4
+        &flip_context,
+        step_array,
+        4
     );
 
     if (
@@ -128,7 +137,9 @@ private static void check_hflip (
 
             if (
                 memcmp (
-                    dst_ref, dst_new, i * step)
+                    dst_ref,
+                    dst_new,
+                    i * step)
             ) {
                 fail ();
             }

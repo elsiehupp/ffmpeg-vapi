@@ -82,7 +82,10 @@ private class ApiFLACTest : GLib.TestCase {
         char name_buff[NAME_BUFF_SIZE];
 
         av_get_channel_layout_string (
-            name_buff, NAME_BUFF_SIZE, 0, ch_layout
+            name_buff,
+            NAME_BUFF_SIZE,
+            0,
+            ch_layout
         );
 
         av_log (
@@ -117,7 +120,9 @@ private class ApiFLACTest : GLib.TestCase {
         codec_context.channel_layout = ch_layout;
 
         result = avcodec_open2 (
-            codec_context, enc, null
+            codec_context,
+            enc,
+            null
         );
 
         if (
@@ -172,7 +177,9 @@ private class ApiFLACTest : GLib.TestCase {
         codec_context.channel_layout = ch_layout;
 
         result = avcodec_open2 (
-            codec_context, dec, null
+            codec_context,
+            dec,
+            null
         );
 
         if (
@@ -229,7 +236,8 @@ private class ApiFLACTest : GLib.TestCase {
         in_frame.channel_layout = enc_ctx.channel_layout;
         if (
             av_frame_get_buffer (
-                in_frame, 32
+                in_frame,
+                32
             ) != 0
         ) {
             av_log (
@@ -311,8 +319,11 @@ private class ApiFLACTest : GLib.TestCase {
             enc_pkt.size = 0;
 
             generate_raw_frame (
-                (uint16[])(in_frame.data[0]), i, enc_ctx.sample_rate,
-                            enc_ctx.channels, enc_ctx.frame_size
+                (uint16[])(in_frame.data[0]),
+                i,
+                enc_ctx.sample_rate,
+                            enc_ctx.channels,
+                            enc_ctx.frame_size
             );
 
             in_frame_bytes = in_frame.nb_samples * in_frame.channels * sizeof (
@@ -336,7 +347,8 @@ private class ApiFLACTest : GLib.TestCase {
 
             in_offset += in_frame_bytes;
             result = avcodec_encode_audio2 (
-                enc_ctx, out enc_pkt, in_frame, out got_output
+                enc_ctx,
+                out enc_pkt, in_frame, out got_output
             );
 
             if (
@@ -359,7 +371,9 @@ private class ApiFLACTest : GLib.TestCase {
                 got_output
             ) {
                 result = avcodec_decode_audio4 (
-                dec_ctx, out_frame, out got_output, out enc_pkt
+                dec_ctx,
+                out_frame,
+                out got_output, out enc_pkt
                 );
 
                 if (
@@ -457,7 +471,9 @@ private class ApiFLACTest : GLib.TestCase {
 
         if (
             memcmp (
-                raw_in, raw_out, out_frame_bytes * NUMBER_OF_AUDIO_FRAMES
+                raw_in,
+                raw_out,
+                out_frame_bytes * NUMBER_OF_AUDIO_FRAMES
             ) != 0
         ) {
             av_log (
@@ -590,7 +606,8 @@ private class ApiFLACTest : GLib.TestCase {
             ) {
                 if (
                     init_encoder (
-                        enc, out enc_ctx, channel_layouts[cl], sample_rates[sr]
+                        enc,
+                        out enc_ctx, channel_layouts[cl], sample_rates[sr]
                     ) != 0
                 ) {
                     return 1;
@@ -598,7 +615,8 @@ private class ApiFLACTest : GLib.TestCase {
 
                 if (
                     init_decoder (
-                        dec, out dec_ctx, channel_layouts[cl]
+                        dec,
+                        out dec_ctx, channel_layouts[cl]
                     ) != 0
                 ) {
                     return 1;
@@ -606,7 +624,10 @@ private class ApiFLACTest : GLib.TestCase {
 
                 if (
                     run_test (
-                        enc, dec, enc_ctx, dec_ctx
+                        enc,
+                        dec,
+                        enc_ctx,
+                        dec_ctx
                     ) != 0
                 ) {
                     return 1;

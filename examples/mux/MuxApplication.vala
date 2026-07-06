@@ -95,14 +95,20 @@ private class MuxApplication : GLib.Application {
         printf (
             "pts:%s pts_time:%s dts:%s dts_time:%s duration:%s duration_time:%s stream_index:%d\n",
             av_ts2str (
-                pkt.pts), av_ts2timestr (
-                    pkt.pts, time_base),
+                pkt.pts),
+                av_ts2timestr (
+                    pkt.pts,
+                    time_base),
             av_ts2str (
-                pkt.dts), av_ts2timestr (
-                    pkt.dts, time_base),
+                pkt.dts),
+                av_ts2timestr (
+                    pkt.dts,
+                    time_base),
             av_ts2str (
-                pkt.duration), av_ts2timestr (
-                    pkt.duration, time_base),
+                pkt.duration),
+                av_ts2timestr (
+                    pkt.duration,
+                    time_base),
             pkt.stream_index
         );
 
@@ -122,7 +128,8 @@ private class MuxApplication : GLib.Application {
         send the frame to the encoder
         ***********************************************************/
         ret = avcodec_send_frame (
-            codec_context, frame
+            codec_context,
+            frame
         );
 
         if (
@@ -145,7 +152,8 @@ private class MuxApplication : GLib.Application {
             ret >= 0
         ) {
             ret = avcodec_receive_packet (
-            codec_context, pkt
+            codec_context,
+            pkt
             );
 
             if (
@@ -174,7 +182,9 @@ private class MuxApplication : GLib.Application {
             rescale output packet timestamp values from codec to stream timebase
             ***********************************************************/
             av_packet_rescale_ts (
-                pkt, codec_context.time_base, st.time_base
+                pkt,
+                codec_context.time_base,
+                st.time_base
             );
 
             pkt.stream_index = st.index;
@@ -183,11 +193,13 @@ private class MuxApplication : GLib.Application {
             Write the compressed frame to the media file.
             ***********************************************************/
             log_packet (
-                fmt_ctx, pkt
+                fmt_ctx,
+                pkt
             );
 
             ret = av_interleaved_write_frame (
-                fmt_ctx, pkt
+                fmt_ctx,
+                pkt
             );
 
             /***********************************************************
@@ -269,7 +281,8 @@ private class MuxApplication : GLib.Application {
         }
 
         ost.st = avformat_new_stream (
-            oc, null
+            oc,
+            null
         );
 
         if (
@@ -446,7 +459,8 @@ private class MuxApplication : GLib.Application {
 
         frame.format = sample_fmt;
         av_channel_layout_copy (
-            &frame.ch_layout, channel_layout
+            &frame.ch_layout,
+            channel_layout
         );
 
         frame.sample_rate = sample_rate;
@@ -457,7 +471,8 @@ private class MuxApplication : GLib.Application {
         ) {
             if (
                 av_frame_get_buffer (
-                    frame, 0
+                    frame,
+                    0
                 ) < 0
             ) {
                 fprintf (
@@ -493,11 +508,15 @@ private class MuxApplication : GLib.Application {
         open it
         ***********************************************************/
         av_dict_copy (
-            &opt, opt_arg, 0
+            &opt,
+            opt_arg,
+            0
         );
 
         ret = avcodec_open2 (
-            codec_context, codec, &opt
+            codec_context,
+            codec,
+            &opt
         );
 
         av_dict_free (
@@ -539,20 +558,25 @@ private class MuxApplication : GLib.Application {
         }
 
         ost.frame = alloc_audio_frame (
-            codec_context.sample_fmt, &codec_context.ch_layout,
-            codec_context.sample_rate, nb_samples
+            codec_context.sample_fmt,
+            &codec_context.ch_layout,
+            codec_context.sample_rate,
+            nb_samples
         );
 
         ost.tmp_frame = alloc_audio_frame (
-            LibAVUtil.SampleFormat.SIGNED_16_BIT, &codec_context.ch_layout,
-            codec_context.sample_rate, nb_samples
+            LibAVUtil.SampleFormat.SIGNED_16_BIT,
+            &codec_context.ch_layout,
+            codec_context.sample_rate,
+            nb_samples
         );
 
         /***********************************************************
         copy the stream parameters to the muxer
         ***********************************************************/
         ret = avcodec_parameters_from_context (
-            ost.st.codecpar, codec_context
+            ost.st.codecpar,
+            codec_context
         );
 
         if (
@@ -591,27 +615,45 @@ private class MuxApplication : GLib.Application {
         set options
         ***********************************************************/
         av_opt_set_chlayout (
-            ost.swr_ctx, "in_chlayout", &codec_context.ch_layout, 0
+            ost.swr_ctx,
+            "in_chlayout",
+            &codec_context.ch_layout,
+            0
         );
 
         av_opt_set_int (
-            ost.swr_ctx, "in_sample_rate", codec_context.sample_rate, 0
+            ost.swr_ctx,
+            "in_sample_rate",
+            codec_context.sample_rate,
+            0
         );
 
         av_opt_set_sample_fmt (
-            ost.swr_ctx, "in_sample_fmt", LibAVUtil.SampleFormat.SIGNED_16_BIT, 0
+            ost.swr_ctx,
+            "in_sample_fmt",
+            LibAVUtil.SampleFormat.SIGNED_16_BIT,
+            0
         );
 
         av_opt_set_chlayout (
-            ost.swr_ctx, "out_chlayout", &codec_context.ch_layout, 0
+            ost.swr_ctx,
+            "out_chlayout",
+            &codec_context.ch_layout,
+            0
         );
 
         av_opt_set_int (
-            ost.swr_ctx, "out_sample_rate", codec_context.sample_rate, 0
+            ost.swr_ctx,
+            "out_sample_rate",
+            codec_context.sample_rate,
+            0
         );
 
         av_opt_set_sample_fmt (
-            ost.swr_ctx, "out_sample_fmt", codec_context.sample_fmt, 0
+            ost.swr_ctx,
+            "out_sample_fmt",
+            codec_context.sample_fmt,
+            0
         );
 
         /***********************************************************
@@ -654,7 +696,8 @@ private class MuxApplication : GLib.Application {
         ***********************************************************/
         if (
             av_compare_ts (
-                ost.next_pts, ost.enc.time_base,
+                ost.next_pts,
+                ost.enc.time_base,
                 STREAM_DURATION,
                 new LibAVUtil.Rational () {
                     numerator = 1,
@@ -724,7 +767,8 @@ private class MuxApplication : GLib.Application {
             compute destination number of samples
             ***********************************************************/
             dst_nb_samples = swr_get_delay (
-                ost.swr_ctx, codec_context.sample_rate) + frame.nb_samples;
+                ost.swr_ctx,
+                codec_context.sample_rate) + frame.nb_samples;
             av_assert0 (
                 dst_nb_samples == frame.nb_samples
             );
@@ -752,7 +796,8 @@ private class MuxApplication : GLib.Application {
             ***********************************************************/
             ret = swr_convert (
                 ost.swr_ctx,
-                ost.frame.data, dst_nb_samples,
+                ost.frame.data,
+                dst_nb_samples,
                 (
                     uint8[][] )frame.data, frame.nb_samples
             );
@@ -774,14 +819,19 @@ private class MuxApplication : GLib.Application {
             frame = ost.frame;
 
             frame.pts = av_rescale_q (
-                ost.samples_count, new LibAVUtil.Rational () {numerator = 1, denominator = codec_context.sample_rate}, codec_context.time_base
+                ost.samples_count,
+                new LibAVUtil.Rational () {numerator = 1, denominator = codec_context.sample_rate}, codec_context.time_base
             );
 
             ost.samples_count += dst_nb_samples;
         }
 
         return write_frame (
-            oc, codec_context, ost.st, frame, ost.tmp_pkt
+            oc,
+            codec_context,
+            ost.st,
+            frame,
+            ost.tmp_pkt
         );
 
     }
@@ -814,7 +864,8 @@ private class MuxApplication : GLib.Application {
         allocate the buffers for the frame data
         ***********************************************************/
         ret = av_frame_get_buffer (
-            frame, 0
+            frame,
+            0
         );
 
         if (
@@ -845,14 +896,18 @@ private class MuxApplication : GLib.Application {
         AVDictionary? opt = null;
 
         av_dict_copy (
-            &opt, opt_arg, 0
+            &opt,
+            opt_arg,
+            0
         );
 
         /***********************************************************
         open the codec
         ***********************************************************/
         ret = avcodec_open2 (
-            codec_context, codec, &opt
+            codec_context,
+            codec,
+            &opt
         );
 
         av_dict_free (
@@ -879,7 +934,9 @@ private class MuxApplication : GLib.Application {
         allocate and init a reusable frame
         ***********************************************************/
         ost.frame = alloc_frame (
-            codec_context.pix_fmt, codec_context.width, codec_context.height
+            codec_context.pix_fmt,
+            codec_context.width,
+            codec_context.height
         );
 
         if (
@@ -906,7 +963,9 @@ private class MuxApplication : GLib.Application {
             codec_context.pix_fmt != LibAVUtil.PixelFormat.YUV420P
         ) {
             ost.tmp_frame = alloc_frame (
-            LibAVUtil.PixelFormat.YUV420P, codec_context.width, codec_context.height
+            LibAVUtil.PixelFormat.YUV420P,
+            codec_context.width,
+            codec_context.height
             );
 
             if (
@@ -929,7 +988,8 @@ private class MuxApplication : GLib.Application {
         copy the stream parameters to the muxer
         ***********************************************************/
         ret = avcodec_parameters_from_context (
-            ost.st.codecpar, codec_context
+            ost.st.codecpar,
+            codec_context
         );
 
         if (
@@ -1010,8 +1070,10 @@ private class MuxApplication : GLib.Application {
         ***********************************************************/
         if (
             av_compare_ts (
-                ost.next_pts, codec_context.time_base,
-                STREAM_DURATION, new LibAVUtil.Rational () {numerator = 1, denominator = 1 }
+                ost.next_pts,
+                codec_context.time_base,
+                STREAM_DURATION,
+                new LibAVUtil.Rational () {numerator = 1, denominator = 1 }
 
             ) > 0
         ) {
@@ -1044,11 +1106,16 @@ private class MuxApplication : GLib.Application {
                 !ost.sws_ctx
             ) {
                 ost.sws_ctx = sws_getContext (
-                    codec_context.width, codec_context.height,
+                    codec_context.width,
+                    codec_context.height,
                     LibAVUtil.PixelFormat.YUV420P,
-                    codec_context.width, codec_context.height,
+                    codec_context.width,
+                    codec_context.height,
                     codec_context.pix_fmt,
-                    SCALE_FLAGS, null, null, null
+                    SCALE_FLAGS,
+                    null,
+                    null,
+                    null
                 );
 
                 if (
@@ -1068,19 +1135,29 @@ private class MuxApplication : GLib.Application {
             }
 
             fill_yuv_image (
-                ost.tmp_frame, ost.next_pts, codec_context.width, codec_context.height
+                ost.tmp_frame,
+                ost.next_pts,
+                codec_context.width,
+                codec_context.height
             );
 
             sws_scale (
-                ost.sws_ctx, (
+                ost.sws_ctx,
+                (
                     uint8[][]) ost.tmp_frame.data,
-                    ost.tmp_frame.linesize, 0, codec_context.height, ost.frame.data,
+                    ost.tmp_frame.linesize,
+                    0,
+                    codec_context.height,
+                    ost.frame.data,
                     ost.frame.linesize
             );
 
         } else {
             fill_yuv_image (
-                ost.frame, ost.next_pts, codec_context.width, codec_context.height
+                ost.frame,
+                ost.next_pts,
+                codec_context.width,
+                codec_context.height
             );
 
         }
@@ -1099,8 +1176,12 @@ private class MuxApplication : GLib.Application {
         OutputStream? ost
     ) {
         return write_frame (
-        oc, ost.enc, ost.st, get_video_frame (
-            ost), ost.tmp_pkt
+        oc,
+        ost.enc,
+        ost.st,
+        get_video_frame (
+            ost),
+            ost.tmp_pkt
         );
 
     }
@@ -1181,14 +1262,19 @@ private class MuxApplication : GLib.Application {
         ) {
             if (
                 !strcmp (
-                    argv[i], "-flags"
+                    argv[i],
+                    "-flags"
                 ) ||
                 !strcmp (
-                    argv[i], "-fflags"
+                    argv[i],
+                    "-fflags"
                 )
             ) {
                 av_dict_set (
-                    &opt, argv[i]+1, argv[i+1], 0
+                    &opt,
+                    argv[i]+1,
+                    argv[i+1],
+                    0
                 );
 
             }
@@ -1199,7 +1285,10 @@ private class MuxApplication : GLib.Application {
         allocate the output media context
         ***********************************************************/
         avformat_alloc_output_context2 (
-            &oc, null, null, filename
+            &oc,
+            null,
+            null,
+            filename
         );
 
         if (
@@ -1210,7 +1299,10 @@ private class MuxApplication : GLib.Application {
             );
 
             avformat_alloc_output_context2 (
-                &oc, null, "mpeg", filename
+                &oc,
+                null,
+                "mpeg",
+                filename
             );
 
         }
@@ -1231,7 +1323,10 @@ private class MuxApplication : GLib.Application {
             fmt.video_codec != AV_CODEC_ID_NONE
         ) {
             add_stream (
-                &video_st, oc, &video_codec, fmt.video_codec
+                &video_st,
+                oc,
+                &video_codec,
+                fmt.video_codec
             );
 
             have_video = 1;
@@ -1242,7 +1337,10 @@ private class MuxApplication : GLib.Application {
             fmt.audio_codec != AV_CODEC_ID_NONE
         ) {
             add_stream (
-                &audio_st, oc, &audio_codec, fmt.audio_codec
+                &audio_st,
+                oc,
+                &audio_codec,
+                fmt.audio_codec
             );
 
             have_audio = 1;
@@ -1257,7 +1355,10 @@ private class MuxApplication : GLib.Application {
             have_video
         ) {
             open_video (
-                oc, video_codec, &video_st, opt
+                oc,
+                video_codec,
+                &video_st,
+                opt
             );
 
         }
@@ -1266,13 +1367,19 @@ private class MuxApplication : GLib.Application {
             have_audio
         ) {
             open_audio (
-                oc, audio_codec, &audio_st, opt
+                oc,
+                audio_codec,
+                &audio_st,
+                opt
             );
 
         }
 
         av_dump_format (
-            oc, 0, filename, 1
+            oc,
+            0,
+            filename,
+            1
         );
 
         /***********************************************************
@@ -1282,7 +1389,9 @@ private class MuxApplication : GLib.Application {
             !(fmt.flags & AVFMT_NOFILE)
         ) {
             ret = avio_open (
-            &oc.pb, filename, AVIO_FLAG_WRITE
+            &oc.pb,
+            filename,
+            AVIO_FLAG_WRITE
             );
 
             if (
@@ -1305,7 +1414,8 @@ private class MuxApplication : GLib.Application {
         Write the stream header, if any.
         ***********************************************************/
         ret = avformat_write_header (
-            oc, &opt
+            oc,
+            &opt
         );
 
         if (
@@ -1333,18 +1443,22 @@ private class MuxApplication : GLib.Application {
                 (
                     !encode_audio ||
                     av_compare_ts (
-                        video_st.next_pts, video_st.enc.time_base,
-                        audio_st.next_pts, audio_st.enc.time_base
+                        video_st.next_pts,
+                        video_st.enc.time_base,
+                        audio_st.next_pts,
+                        audio_st.enc.time_base
                     ) <= 0
                 )
             ) {
                 encode_video = !write_video_frame (
-                oc, &video_st
+                oc,
+                &video_st
                 );
 
             } else {
                 encode_audio = !write_audio_frame (
-                oc, &audio_st
+                oc,
+                &audio_st
                 );
 
             }
@@ -1362,7 +1476,8 @@ private class MuxApplication : GLib.Application {
             have_video
         ) {
             close_stream (
-                oc, &video_st
+                oc,
+                &video_st
             );
 
         }
@@ -1371,7 +1486,8 @@ private class MuxApplication : GLib.Application {
             have_audio
         ) {
             close_stream (
-                oc, &audio_st
+                oc,
+                &audio_st
             );
 
         }

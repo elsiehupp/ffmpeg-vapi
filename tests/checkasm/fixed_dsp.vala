@@ -28,15 +28,18 @@ private static void randomize_buffers () {
         i++
     ) {
         src0[i] = sign_extend (
-        rnd (), 24
+            rnd (),
+            24
         );
 
         src1[i] = sign_extend (
-            rnd (), 24
+            rnd (),
+            24
         );
 
         src2[i] = sign_extend (
-            rnd (), 24
+            rnd (),
+            24
         );
 
     }
@@ -44,7 +47,8 @@ private static void randomize_buffers () {
 }
 
 private static void check_vector_fmul (
-    int[] src0, int[] src1
+    int[] src0,
+    int[] src1
 ) {
     //  LOCAL_ALIGNED_32 (
     //      int,
@@ -102,7 +106,9 @@ private static void check_vector_fmul (
 }
 
 private static void check_vector_fmul_add (
-    int[] src0, int[] src1, int[] src2
+    int[] src0,
+    int[] src1,
+    int[] src2
 ) {
     //  LOCAL_ALIGNED_32 (
     //      int,
@@ -164,7 +170,9 @@ private static void check_vector_fmul_add (
 }
 
 private static void check_vector_fmul_window (
-    int32[] src0, int32[] src1, int32[] win
+    int32[] src0,
+    int32[] src1,
+    int32[] win
 ) {
     //  LOCAL_ALIGNED_32 (
     //      int32,
@@ -226,7 +234,9 @@ private static void check_vector_fmul_window (
 }
 
 private static void check_vector_fmul_window_scaled (
-    int32[] src0, int32[] src1, int32[] win
+    int32[] src0,
+    int32[] src1,
+    int32[] win
 ) {
     //  LOCAL_ALIGNED_16 (
     //      int16,
@@ -292,7 +302,8 @@ private static void check_vector_fmul_window_scaled (
 }
 
 private static void check_butterflies (
-    int[] src0, int[] src1
+    int[] src0,
+    int[] src1
 ) {
     //  LOCAL_ALIGNED_16 (
     //      int,
@@ -326,56 +337,78 @@ private static void check_butterflies (
     //  );
 
     memcpy (
-        ref0, src0, BUF_SIZE * sizeof (
+        ref0,
+        src0,
+        BUF_SIZE * sizeof (
             src0)
     );
 
     memcpy (
-        ref1, src1, BUF_SIZE * sizeof (
+        ref1,
+        src1,
+        BUF_SIZE * sizeof (
             src1)
     );
 
     memcpy (
-        new0, src0, BUF_SIZE * sizeof (
+        new0,
+        src0,
+        BUF_SIZE * sizeof (
             src0)
     );
 
     memcpy (
-        new1, src1, BUF_SIZE * sizeof (
+        new1,
+        src1,
+        BUF_SIZE * sizeof (
             src1)
     );
 
     call_ref (
-        ref0, ref1, BUF_SIZE
+        ref0,
+        ref1,
+        BUF_SIZE
     );
 
     call_new (
-        new0, new1, BUF_SIZE
+        new0,
+        new1,
+        BUF_SIZE
     );
 
     if (
         memcmp (
-            ref0, new0, BUF_SIZE * sizeof (
+            ref0,
+            new0,
+            BUF_SIZE * sizeof (
                 ref0)) ||
         memcmp (
-            ref1, new1, BUF_SIZE * sizeof (
+            ref1,
+            new1,
+            BUF_SIZE * sizeof (
                 ref1))
     ) {
         fail ();
     }
 
     memcpy (
-        new0, src0, BUF_SIZE * sizeof (
+        new0,
+        src0,
+        BUF_SIZE * sizeof (
             src0)
     );
 
     memcpy (
-        new1, src1, BUF_SIZE * sizeof (
+        new1,
+        src1,
+        BUF_SIZE * sizeof (
             src1)
     );
 
     bench_new (
-        new0, new1, BUF_SIZE
+        new0,
+        new1,
+        BUF_SIZE
     );
 
 }
@@ -413,7 +446,9 @@ private static void check_scalarproduct_fixed (
     //  }
 
     bench_new (
-        src0, src1, BUF_SIZE
+        src0,
+        src1,
+        BUF_SIZE
     );
 
 }
@@ -445,55 +480,68 @@ private static void checkasm_check_fixed_dsp () {
 
     if (
         check_func (
-            fdsp.vector_fmul, "vector_fmul_fixed"
+            fdsp.vector_fmul,
+            "vector_fmul_fixed"
         )
     ) {
         check_vector_fmul (
-            src0, src1
+            src0,
+            src1
         );
 
     }
 
     if (
         check_func (
-            fdsp.vector_fmul_add, "vector_fmul_add_fixed"
+            fdsp.vector_fmul_add,
+            "vector_fmul_add_fixed"
         )
     ) {
         check_vector_fmul_add (
-            src0, src1, src2
+            src0,
+            src1,
+            src2
         );
 
     }
 
     if (
         check_func (
-            fdsp.vector_fmul_reverse, "vector_fmul_reverse_fixed"
+            fdsp.vector_fmul_reverse,
+            "vector_fmul_reverse_fixed"
         )
     ) {
         check_vector_fmul (
-            src0, src1
+            src0,
+            src1
         );
 
     }
 
     if (
         check_func (
-            fdsp.vector_fmul_window, "vector_fmul_window_fixed"
+            fdsp.vector_fmul_window,
+            "vector_fmul_window_fixed"
         )
     ) {
         check_vector_fmul_window (
-            src0, src1, src2
+            src0,
+            src1,
+            src2
         );
 
     }
 
     if (
         check_func (
-            fdsp.vector_fmul_window_scaled, "vector_fmul_window_scaled_fixed"
+            fdsp.vector_fmul_window_scaled,
+            "vector_fmul_window_scaled_fixed"
         )
     ) {
         check_vector_fmul_window_scaled (
-        src0, src1, src2
+        src0,
+        src1,
+        src2
         );
 
     }
@@ -504,11 +552,13 @@ private static void checkasm_check_fixed_dsp () {
 
     if (
         check_func (
-            fdsp.butterflies_fixed, "butterflies_fixed"
+            fdsp.butterflies_fixed,
+            "butterflies_fixed"
         )
     ) {
         check_butterflies (
-            src0, src1
+            src0,
+            src1
         );
 
     }
@@ -519,11 +569,13 @@ private static void checkasm_check_fixed_dsp () {
 
     if (
         check_func (
-            fdsp.scalarproduct_fixed, "scalarproduct_fixed"
+            fdsp.scalarproduct_fixed,
+            "scalarproduct_fixed"
         )
     ) {
         check_scalarproduct_fixed (
-            src0, src1
+            src0,
+            src1
         );
 
     }

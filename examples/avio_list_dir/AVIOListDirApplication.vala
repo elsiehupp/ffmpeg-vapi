@@ -97,14 +97,17 @@ private class AVIOListDirApplication : GLib.Application {
         char filemode[4], uid_and_gid[20];
 
         ret = avio_open_dir (
-            &ctx, input_dir, null
+            &ctx,
+            input_dir,
+            null
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR,
+                null,
+                AV_LOG_ERROR,
                 "Cannot open directory: %s.\n",
                 av_err2str (
                     ret)
@@ -120,14 +123,16 @@ private class AVIOListDirApplication : GLib.Application {
             ;
         ) {
             ret = avio_read_dir (
-            ctx, &entry
+            ctx,
+            &entry
             );
 
             if (
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR,
+                    null,
+                    AV_LOG_ERROR,
                     "Cannot list directory: %s.\n",
                     av_err2str (
                         ret)
@@ -147,18 +152,26 @@ private class AVIOListDirApplication : GLib.Application {
                 entry.filemode == -1
             ) {
                 snprintf (
-                    filemode, 4, "???"
+                    filemode,
+                    4,
+                    "???"
             );
 
             } else {
                 snprintf (
-                    filemode, 4, "%3PRIo64", entry.filemode
+                    filemode,
+                    4,
+                    "%3PRIo64",
+                    entry.filemode
                 );
 
             }
 
             snprintf (
-                uid_and_gid, 20, "%PRId64(%PRId64)", entry.user_id, entry.group_id
+                uid_and_gid,
+                20,
+                "%PRId64(%PRId64)",
+                entry.user_id, entry.group_id
             );
 
             if (
@@ -181,7 +194,9 @@ private class AVIOListDirApplication : GLib.Application {
             }
 
             av_log (
-                null, AV_LOG_INFO, "%-9s %12PRId64 %30s %10s %s %16PRId64 %16PRId64 %16PRId64\n",
+                null,
+                AV_LOG_INFO,
+                "%-9s %12PRId64 %30s %10s %s %16PRId64 %16PRId64 %16PRId64\n",
                 type_string (
                     entry.type),
                 entry.size,

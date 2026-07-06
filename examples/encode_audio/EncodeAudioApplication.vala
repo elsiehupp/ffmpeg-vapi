@@ -115,7 +115,8 @@ private class EncodeAudioApplication : GLib.Application {
             !codec.ch_layouts
         ) {
             return av_channel_layout_copy (
-                dst, &(AVChannelLayout)AV_CHANNEL_LAYOUT_STEREO
+                dst,
+                &(AVChannelLayout)AV_CHANNEL_LAYOUT_STEREO
             );
 
         }
@@ -137,7 +138,8 @@ private class EncodeAudioApplication : GLib.Application {
         }
 
         return av_channel_layout_copy (
-            dst, best_ch_layout
+            dst,
+            best_ch_layout
         );
 
     }
@@ -154,7 +156,8 @@ private class EncodeAudioApplication : GLib.Application {
         send the frame for encoding
         ***********************************************************/
         ret = avcodec_send_frame (
-            ctx, frame
+            ctx,
+            frame
         );
 
         if (
@@ -180,7 +183,8 @@ private class EncodeAudioApplication : GLib.Application {
             ret >= 0
         ) {
             ret = avcodec_receive_packet (
-            ctx, pkt
+            ctx,
+            pkt
             );
 
             if (
@@ -204,7 +208,10 @@ private class EncodeAudioApplication : GLib.Application {
             }
 
             fwrite (
-                pkt.data, 1, pkt.size, output
+                pkt.data,
+                1,
+                pkt.size,
+                output
             );
 
             av_packet_unref (
@@ -293,7 +300,8 @@ private class EncodeAudioApplication : GLib.Application {
         codec_context.sample_fmt = LibAVUtil.SampleFormat.SIGNED_16_BIT;
         if (
             !check_sample_fmt (
-                codec, codec_context.sample_fmt)
+                codec,
+                codec_context.sample_fmt)
         ) {
             fprintf (
                 stderr,
@@ -316,7 +324,8 @@ private class EncodeAudioApplication : GLib.Application {
         );
 
         ret = select_channel_layout (
-            codec, &codec_context.ch_layout
+            codec,
+            &codec_context.ch_layout
         );
 
         if (
@@ -333,7 +342,9 @@ private class EncodeAudioApplication : GLib.Application {
         ***********************************************************/
         if (
             avcodec_open2 (
-                codec_context, codec, null
+                codec_context,
+                codec,
+                null
             ) < 0
         ) {
             fprintf (
@@ -406,7 +417,8 @@ private class EncodeAudioApplication : GLib.Application {
         frame.nb_samples = codec_context.frame_size;
         frame.format = codec_context.sample_fmt;
         ret = av_channel_layout_copy (
-            &frame.ch_layout, &codec_context.ch_layout
+            &frame.ch_layout,
+            &codec_context.ch_layout
         );
 
         if (
@@ -422,7 +434,8 @@ private class EncodeAudioApplication : GLib.Application {
         allocate the data buffers
         ***********************************************************/
         ret = av_frame_get_buffer (
-            frame, 0
+            frame,
+            0
         );
 
         if (
@@ -492,7 +505,10 @@ private class EncodeAudioApplication : GLib.Application {
             }
 
             encode (
-                codec_context, frame, pkt, file
+                codec_context,
+                frame,
+                pkt,
+                file
             );
 
         }
@@ -501,7 +517,10 @@ private class EncodeAudioApplication : GLib.Application {
         flush the encoder
         ***********************************************************/
         encode (
-            codec_context, null, pkt, file
+            codec_context,
+            null,
+            pkt,
+            file
         );
 
         fclose (

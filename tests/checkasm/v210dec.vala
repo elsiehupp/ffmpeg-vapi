@@ -88,36 +88,58 @@ private static void checkasm_check_v210dec () {
         int pixels = NUM_SAMPLES / 2 / 6 * 6;
 
         randomize_buffers (
-            src0, src1, NUM_SAMPLES/3
+            src0,
+            src1,
+            NUM_SAMPLES/3
         );
 
         call_ref (
-            src0, y0, u0, v0, pixels
+            src0,
+            y0,
+            u0,
+            v0,
+            pixels
         );
 
         call_new (
-            src1, y1, u1, v1, pixels
+            src1,
+            y1,
+            u1,
+            v1,
+            pixels
         );
 
         if (
             memcmp (
-                src0, src1, NUM_SAMPLES/3 * sizeof (
+                src0,
+                src1,
+                NUM_SAMPLES/3 * sizeof (
                     src0[0])) ||
             memcmp (
-                y0, y1, pixels * sizeof (
+                y0,
+                y1,
+                pixels * sizeof (
                     y0[0])) ||
             memcmp (
-                u0, u1, pixels/2 * sizeof (
+                u0,
+                u1,
+                pixels/2 * sizeof (
                     u0[0])) ||
             memcmp (
-                v0, v1, pixels/2 * sizeof (
+                v0,
+                v1,
+                pixels/2 * sizeof (
                     v0[0]))
         ) {
             fail ();
         }
 
         bench_new (
-            src1, y1, u1, v1, pixels
+            src1,
+            y1,
+            u1,
+            v1,
+            pixels
         );
 
     }

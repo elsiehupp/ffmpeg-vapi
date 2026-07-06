@@ -24,7 +24,8 @@ private static void randomize_buffers () {
         i++
     ) {
         src0[i] = src1[i] = sign_extend (
-        rnd (), 16
+            rnd (),
+            16
         );
 
     }
@@ -36,7 +37,8 @@ private static void check_qmf () {
     int16 src1[PREV_SAMPLES_BUF_SIZE];
     int16[] tmp0 = src0;
     int16[] tmp1 = src1;
-    int dst0[2], dst1[2];
+    int dst0[2];
+    int dst1[2];
     int i;
 
     //  declare_func (
@@ -53,16 +55,20 @@ private static void check_qmf () {
         i++
     ) {
         call_ref (
-            tmp0++, dst0
+            tmp0++,
+            dst0
         );
 
         call_new (
-            tmp1++, dst1
+            tmp1++,
+            dst1
         );
 
         if (
             memcmp (
-                dst0, dst1, sizeof (
+                dst0,
+                dst1,
+                sizeof (
                     dst0))
         ) {
             fail ();
@@ -71,7 +77,8 @@ private static void check_qmf () {
     }
 
     bench_new (
-        src1, dst1
+        src1,
+        dst1
     );
 
 }

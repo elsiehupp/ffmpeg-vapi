@@ -71,35 +71,44 @@ private class TranscodeApplication : GLib.Application {
 
         ifmt_ctx = null;
         ret = avformat_open_input (
-            &ifmt_ctx, filename, null, null
+            &ifmt_ctx,
+            filename,
+            null,
+            null
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot open input file\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot open input file\n"
             );
 
             return ret;
         }
 
         ret = avformat_find_stream_info (
-            ifmt_ctx, null
+            ifmt_ctx,
+            null
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot find stream information\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot find stream information\n"
             );
 
             return ret;
         }
 
         stream_ctx = av_calloc (
-            ifmt_ctx.nb_streams, sizeof (
+            ifmt_ctx.nb_streams,
+            sizeof (
                 stream_ctx)
         );
 
@@ -127,7 +136,8 @@ private class TranscodeApplication : GLib.Application {
                 !dec
             ) {
                 av_log (
-                    null, AV_LOG_ERROR,
+                    null,
+                    AV_LOG_ERROR,
                     "Failed to find decoder for stream #%u\n",
                     i
                 );
@@ -143,7 +153,8 @@ private class TranscodeApplication : GLib.Application {
                 !codec_ctx
             ) {
                 av_log (
-                    null, AV_LOG_ERROR,
+                    null,
+                    AV_LOG_ERROR,
                     "Failed to allocate the decoder context for stream #%u\n",
                     i
                 );
@@ -155,14 +166,17 @@ private class TranscodeApplication : GLib.Application {
             }
 
             ret = avcodec_parameters_to_context (
-                codec_ctx, stream.codecpar
+                codec_ctx,
+                stream.codecpar
             );
 
             if (
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Failed to copy decoder parameters to input decoder context " +
+                    null,
+                    AV_LOG_ERROR,
+                    "Failed to copy decoder parameters to input decoder context " +
                     "for stream #%u\n",
                     i
                 );
@@ -187,7 +201,9 @@ private class TranscodeApplication : GLib.Application {
                     codec_ctx.codec_type == AVMEDIA_TYPE_VIDEO
                 ) {
                     codec_ctx.framerate = av_guess_frame_rate (
-                    ifmt_ctx, stream, null
+                    ifmt_ctx,
+                    stream,
+                    null
                     );
 
                 }
@@ -196,14 +212,17 @@ private class TranscodeApplication : GLib.Application {
                 Open decoder
                 ***********************************************************/
                 ret = avcodec_open2 (
-                    codec_ctx, dec, null
+                    codec_ctx,
+                    dec,
+                    null
                 );
 
                 if (
                     ret < 0
                 ) {
                     av_log (
-                        null, AV_LOG_ERROR,
+                        null,
+                        AV_LOG_ERROR,
                         "Failed to open decoder for stream #%u\n",
                         i
                     );
@@ -228,7 +247,10 @@ private class TranscodeApplication : GLib.Application {
         }
 
         av_dump_format (
-            ifmt_ctx, 0, filename, 0
+            ifmt_ctx,
+            0,
+            filename,
+            0
         );
 
         return 0;
@@ -247,14 +269,19 @@ private class TranscodeApplication : GLib.Application {
 
         ofmt_ctx = null;
         avformat_alloc_output_context2 (
-            &ofmt_ctx, null, null, filename
+            &ofmt_ctx,
+            null,
+            null,
+            filename
         );
 
         if (
             !ofmt_ctx
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Could not create output context\n"
+                null,
+                AV_LOG_ERROR,
+                "Could not create output context\n"
             );
 
             return AVERROR_UNKNOWN;
@@ -267,14 +294,17 @@ private class TranscodeApplication : GLib.Application {
             i++
         ) {
             out_stream = avformat_new_stream (
-            ofmt_ctx, null
+            ofmt_ctx,
+            null
             );
 
             if (
                 !out_stream
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Failed allocating output stream\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Failed allocating output stream\n"
                 );
 
                 return AVERROR_UNKNOWN;
@@ -298,7 +328,9 @@ private class TranscodeApplication : GLib.Application {
                     !encoder
                 ) {
                     av_log (
-                        null, AV_LOG_FATAL, "Necessary encoder not found\n"
+                        null,
+                        AV_LOG_FATAL,
+                        "Necessary encoder not found\n"
                     );
 
                     return AVERROR_INVALIDDATA;
@@ -312,7 +344,9 @@ private class TranscodeApplication : GLib.Application {
                     !enc_ctx
                 ) {
                     av_log (
-                        null, AV_LOG_FATAL, "Failed to allocate the encoder context\n"
+                        null,
+                        AV_LOG_FATAL,
+                        "Failed to allocate the encoder context\n"
                     );
 
                     return AVERROR (
@@ -337,9 +371,12 @@ private class TranscodeApplication : GLib.Application {
                     enc_ctx.sample_aspect_ratio = dec_ctx.sample_aspect_ratio;
 
                     ret = avcodec_get_supported_config (
-                        dec_ctx, null,
-                        AV_CODEC_CONFIG_PIX_FORMAT, 0,
-                        (void**)&pix_fmts, null
+                        dec_ctx,
+                        null,
+                        AV_CODEC_CONFIG_PIX_FORMAT,
+                        0,
+                        (void**)&pix_fmts,
+                        null
                     );
 
                     /***********************************************************
@@ -366,7 +403,8 @@ private class TranscodeApplication : GLib.Application {
 
                     enc_ctx.sample_rate = dec_ctx.sample_rate;
                     ret = av_channel_layout_copy (
-                        &enc_ctx.ch_layout, &dec_ctx.ch_layout
+                        &enc_ctx.ch_layout,
+                        &dec_ctx.ch_layout
                     );
 
                     if (
@@ -376,9 +414,12 @@ private class TranscodeApplication : GLib.Application {
                     }
 
                     ret = avcodec_get_supported_config (
-                        dec_ctx, null,
-                        AV_CODEC_CONFIG_SAMPLE_FORMAT, 0,
-                        (void**)&sample_fmts, null
+                        dec_ctx,
+                        null,
+                        AV_CODEC_CONFIG_SAMPLE_FORMAT,
+                        0,
+                        (void**)&sample_fmts,
+                        null
                     );
 
                     /***********************************************************
@@ -410,30 +451,36 @@ private class TranscodeApplication : GLib.Application {
                 Third parameter can be used to pass settings to encoder
                 ***********************************************************/
                 ret = avcodec_open2 (
-                    enc_ctx, encoder, null
+                    enc_ctx,
+                    encoder,
+                    null
                 );
 
                 if (
                     ret < 0
                 ) {
                     av_log (
-                        null, AV_LOG_ERROR,
+                        null,
+                        AV_LOG_ERROR,
                         "Cannot open %s encoder for stream #%u\n",
-                        encoder.name, i
+                        encoder.name,
+                        i
                     );
 
                     return ret;
                 }
 
                 ret = avcodec_parameters_from_context (
-                    out_stream.codecpar, enc_ctx
+                    out_stream.codecpar,
+                    enc_ctx
                 );
 
                 if (
                     ret < 0
                 ) {
                     av_log (
-                        null, AV_LOG_ERROR,
+                        null,
+                        AV_LOG_ERROR,
                         "Failed to copy encoder parameters to output stream #%u\n",
                         i
                     );
@@ -447,7 +494,8 @@ private class TranscodeApplication : GLib.Application {
                 dec_ctx.codec_type == AVMEDIA_TYPE_UNKNOWN
             ) {
                 av_log (
-                    null, AV_LOG_FATAL,
+                    null,
+                    AV_LOG_FATAL,
                     "Elementary stream #%d is of unknown type, cannot proceed\n",
                     i
                 );
@@ -458,14 +506,16 @@ private class TranscodeApplication : GLib.Application {
                 if this stream must be remuxed
                 ***********************************************************/
                 ret = avcodec_parameters_copy (
-                    out_stream.codecpar, in_stream.codecpar
+                    out_stream.codecpar,
+                    in_stream.codecpar
                 );
 
                 if (
                     ret < 0
                 ) {
                     av_log (
-                        null, AV_LOG_ERROR,
+                        null,
+                        AV_LOG_ERROR,
                         "Copying parameters for stream #%u failed\n",
                         i
                     );
@@ -479,21 +529,28 @@ private class TranscodeApplication : GLib.Application {
         }
 
         av_dump_format (
-            ofmt_ctx, 0, filename, 1
+            ofmt_ctx,
+            0,
+            filename,
+            1
         );
 
         if (
             !(ofmt_ctx.oformat.flags & AVFMT_NOFILE)
         ) {
             ret = avio_open (
-            &ofmt_ctx.pb, filename, AVIO_FLAG_WRITE
+            &ofmt_ctx.pb,
+            filename,
+            AVIO_FLAG_WRITE
             );
 
             if (
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Could not open output file '%s'", filename
+                    null,
+                    AV_LOG_ERROR,
+                    "Could not open output file '%s'", filename
                 );
 
                 return ret;
@@ -505,14 +562,17 @@ private class TranscodeApplication : GLib.Application {
         init muxer, write output file header
         ***********************************************************/
         ret = avformat_write_header (
-            ofmt_ctx, null
+            ofmt_ctx,
+            null
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Error occurred when opening output file\n"
+                null,
+                AV_LOG_ERROR,
+                "Error occurred when opening output file\n"
             );
 
             return ret;
@@ -566,7 +626,9 @@ private class TranscodeApplication : GLib.Application {
                 !buffersink
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "filtering source or sink element not found\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "filtering source or sink element not found\n"
                 );
 
                 ret = AVERROR_UNKNOWN;
@@ -575,25 +637,35 @@ private class TranscodeApplication : GLib.Application {
             }
 
             snprintf (
-                args, sizeof (
+                args,
+                sizeof (
                     args),
                     "video_size=%dx%d:pix_fmt=%d:time_base=%d/%d:pixel_aspect=%d/%d",
-                    dec_ctx.width, dec_ctx.height, dec_ctx.pix_fmt,
-                    dec_ctx.pkt_timebase.num, dec_ctx.pkt_timebase.den,
+                    dec_ctx.width,
+                    dec_ctx.height,
+                    dec_ctx.pix_fmt,
+                    dec_ctx.pkt_timebase.num,
+                    dec_ctx.pkt_timebase.den,
                     dec_ctx.sample_aspect_ratio.num,
                     dec_ctx.sample_aspect_ratio.den
             );
 
             ret = avfilter_graph_create_filter (
-                &buffersrc_ctx, buffersrc, "in",
-                    args, null, filter_graph
+                &buffersrc_ctx,
+                buffersrc,
+                "in",
+                    args,
+                    null,
+                    filter_graph
             );
 
             if (
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Cannot create buffer source\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Cannot create buffer source\n"
                 );
 
                 throw new Goto.END (
@@ -601,14 +673,18 @@ private class TranscodeApplication : GLib.Application {
             }
 
             buffersink_ctx = avfilter_graph_alloc_filter (
-                filter_graph, buffersink, "out"
+                filter_graph,
+                buffersink,
+                "out"
             );
 
             if (
                 !buffersink_ctx
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Cannot create buffer sink\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Cannot create buffer sink\n"
                 );
 
                 ret = AVERROR (
@@ -633,7 +709,9 @@ private class TranscodeApplication : GLib.Application {
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Cannot set output pixel format\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Cannot set output pixel format\n"
                 );
 
                 throw new Goto.END (
@@ -641,14 +719,17 @@ private class TranscodeApplication : GLib.Application {
             }
 
             ret = avfilter_init_dict (
-                buffersink_ctx, null
+                buffersink_ctx,
+                null
             );
 
             if (
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Cannot initialize buffer sink\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Cannot initialize buffer sink\n"
                 );
 
                 throw new Goto.END (
@@ -672,7 +753,9 @@ private class TranscodeApplication : GLib.Application {
                 !buffersink
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "filtering source or sink element not found\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "filtering source or sink element not found\n"
                 );
 
                 ret = AVERROR_UNKNOWN;
@@ -684,36 +767,48 @@ private class TranscodeApplication : GLib.Application {
                 dec_ctx.ch_layout.order == AV_CHANNEL_ORDER_UNSPEC
             ) {
                 av_channel_layout_default (
-                    &dec_ctx.ch_layout, dec_ctx.ch_layout.nb_channels
+                    &dec_ctx.ch_layout,
+                    dec_ctx.ch_layout.nb_channels
                 );
 
             }
 
             av_channel_layout_describe (
-                &dec_ctx.ch_layout, buf, sizeof (
+                &dec_ctx.ch_layout,
+                buf,
+                sizeof (
                     buf)
             );
 
             snprintf (
-                args, sizeof (
+                args,
+                sizeof (
                     args),
                     "time_base=%d/%d:sample_rate=%d:sample_fmt=%s:channel_layout=%s",
-                    dec_ctx.pkt_timebase.num, dec_ctx.pkt_timebase.den, dec_ctx.sample_rate,
+                    dec_ctx.pkt_timebase.num,
+                    dec_ctx.pkt_timebase.den,
+                    dec_ctx.sample_rate,
                     av_get_sample_fmt_name (
                         dec_ctx.sample_fmt),
                     buf
             );
 
             ret = avfilter_graph_create_filter (
-                &buffersrc_ctx, buffersrc, "in",
-                    args, null, filter_graph
+                &buffersrc_ctx,
+                buffersrc,
+                "in",
+                    args,
+                    null,
+                    filter_graph
             );
 
             if (
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Cannot create audio buffer source\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Cannot create audio buffer source\n"
                 );
 
                 throw new Goto.END (
@@ -721,14 +816,18 @@ private class TranscodeApplication : GLib.Application {
             }
 
             buffersink_ctx = avfilter_graph_alloc_filter (
-                filter_graph, buffersink, "out"
+                filter_graph,
+                buffersink,
+                "out"
             );
 
             if (
                 !buffersink_ctx
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Cannot create audio buffer sink\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Cannot create audio buffer sink\n"
                 );
 
                 ret = AVERROR (
@@ -753,7 +852,9 @@ private class TranscodeApplication : GLib.Application {
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Cannot set output sample format\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Cannot set output sample format\n"
                 );
 
                 throw new Goto.END (
@@ -761,20 +862,26 @@ private class TranscodeApplication : GLib.Application {
             }
 
             av_channel_layout_describe (
-                &enc_ctx.ch_layout, buf, sizeof (
+                &enc_ctx.ch_layout,
+                buf,
+                sizeof (
                     buf)
             );
 
             ret = av_opt_set (
-                buffersink_ctx, "ch_layouts",
-                            buf, AV_OPT_SEARCH_CHILDREN
+                buffersink_ctx,
+                "ch_layouts",
+                            buf,
+                            AV_OPT_SEARCH_CHILDREN
             );
 
             if (
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Cannot set output channel layout\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Cannot set output channel layout\n"
                 );
 
                 throw new Goto.END (
@@ -795,7 +902,9 @@ private class TranscodeApplication : GLib.Application {
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Cannot set output sample rate\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Cannot set output sample rate\n"
                 );
 
                 throw new Goto.END (
@@ -806,20 +915,24 @@ private class TranscodeApplication : GLib.Application {
                 enc_ctx.frame_size > 0
             ) {
                 av_buffersink_set_frame_size (
-                    buffersink_ctx, enc_ctx.frame_size
+                    buffersink_ctx,
+                    enc_ctx.frame_size
                 );
 
             }
 
             ret = avfilter_init_dict (
-                buffersink_ctx, null
+                buffersink_ctx,
+                null
             );
 
             if (
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Cannot initialize audio buffer sink\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Cannot initialize audio buffer sink\n"
                 );
 
                 throw new Goto.END (
@@ -864,8 +977,11 @@ private class TranscodeApplication : GLib.Application {
         }
 
         ret = avfilter_graph_parse_ptr (
-            filter_graph, filter_spec,
-            &inputs, &outputs, null
+            filter_graph,
+            filter_spec,
+            &inputs,
+            &outputs,
+            null
         );
 
         if (
@@ -876,7 +992,8 @@ private class TranscodeApplication : GLib.Application {
         }
 
         ret = avfilter_graph_config (
-            filter_graph, null
+            filter_graph,
+            null
         );
 
         if (
@@ -910,7 +1027,8 @@ private class TranscodeApplication : GLib.Application {
         uint i;
         int ret;
         filter_ctx = av_malloc_array (
-            ifmt_ctx.nb_streams, sizeof (
+            ifmt_ctx.nb_streams,
+            sizeof (
                 filter_ctx)
         );
 
@@ -956,8 +1074,10 @@ private class TranscodeApplication : GLib.Application {
             }
 
             ret = init_filter (
-                &filter_ctx[i], stream_ctx[i].dec_ctx,
-                stream_ctx[i].enc_ctx, filter_spec
+                &filter_ctx[i],
+                stream_ctx[i].dec_ctx,
+                stream_ctx[i].enc_ctx,
+                filter_spec
             );
 
             if (
@@ -1002,7 +1122,9 @@ private class TranscodeApplication : GLib.Application {
         int ret;
 
         av_log (
-            null, AV_LOG_INFO, "Encoding frame\n"
+            null,
+            AV_LOG_INFO,
+            "Encoding frame\n"
         );
 
         /***********************************************************
@@ -1017,14 +1139,16 @@ private class TranscodeApplication : GLib.Application {
             filt_frame.pts != AV_NOPTS_VALUE
         ) {
             filt_frame.pts = av_rescale_q (
-                filt_frame.pts, filt_frame.time_base,
+                filt_frame.pts,
+                filt_frame.time_base,
                 stream.enc_ctx.time_base
             );
 
         }
 
         ret = avcodec_send_frame (
-            stream.enc_ctx, filt_frame
+            stream.enc_ctx,
+            filt_frame
         );
 
         if (
@@ -1037,7 +1161,8 @@ private class TranscodeApplication : GLib.Application {
             ret >= 0
         ) {
             ret = avcodec_receive_packet (
-            stream.enc_ctx, enc_pkt
+            stream.enc_ctx,
+            enc_pkt
             );
 
             if (
@@ -1059,14 +1184,17 @@ private class TranscodeApplication : GLib.Application {
             );
 
             av_log (
-                null, AV_LOG_DEBUG, "Muxing frame\n"
+                null,
+                AV_LOG_DEBUG,
+                "Muxing frame\n"
             );
 
             /***********************************************************
             mux encoded frame
             ***********************************************************/
             ret = av_interleaved_write_frame (
-                ofmt_ctx, enc_pkt
+                ofmt_ctx,
+                enc_pkt
             );
 
         }
@@ -1082,7 +1210,9 @@ private class TranscodeApplication : GLib.Application {
         int ret;
 
         av_log (
-            null, AV_LOG_INFO, "Pushing decoded frame to filters\n"
+            null,
+            AV_LOG_INFO,
+            "Pushing decoded frame to filters\n"
         );
 
         /***********************************************************
@@ -1090,14 +1220,17 @@ private class TranscodeApplication : GLib.Application {
         ***********************************************************/
         ret = av_buffersrc_add_frame_flags (
             filter.buffersrc_ctx,
-                frame, 0
+                frame,
+                0
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Error while feeding the filtergraph\n"
+                null,
+                AV_LOG_ERROR,
+                "Error while feeding the filtergraph\n"
             );
 
             return ret;
@@ -1110,7 +1243,9 @@ private class TranscodeApplication : GLib.Application {
             true
         ) {
             av_log (
-                null, AV_LOG_INFO, "Pulling filtered frame from filters\n"
+                null,
+                AV_LOG_INFO,
+                "Pulling filtered frame from filters\n"
             );
 
             ret = av_buffersink_get_frame (
@@ -1144,7 +1279,8 @@ private class TranscodeApplication : GLib.Application {
 
             filter.filtered_frame.pict_type = AV_PICTURE_TYPE_NONE;
             ret = encode_write_frame (
-                stream_index, 0
+                stream_index,
+                0
             );
 
             av_frame_unref (
@@ -1174,13 +1310,15 @@ private class TranscodeApplication : GLib.Application {
         }
 
         av_log (
-            null, AV_LOG_INFO,
+            null,
+            AV_LOG_INFO,
             "Flushing stream #%u encoder\n",
             stream_index
         );
 
         return encode_write_frame (
-            stream_index, 1
+            stream_index,
+            1
         );
 
     }
@@ -1198,7 +1336,8 @@ private class TranscodeApplication : GLib.Application {
             argc != 3
         ) {
             av_log (
-                null, AV_LOG_ERROR,
+                null,
+                AV_LOG_ERROR,
                 "Usage: %s <input file> <output file>\n",
                 argv[0]
             );
@@ -1251,7 +1390,8 @@ private class TranscodeApplication : GLib.Application {
             true
         ) {
             ret = av_read_frame (
-            ifmt_ctx, packet
+            ifmt_ctx,
+            packet
             );
 
             if (
@@ -1262,7 +1402,9 @@ private class TranscodeApplication : GLib.Application {
 
             stream_index = packet.stream_index;
             av_log (
-                null, AV_LOG_DEBUG, "Demuxer gave frame of stream_index %u\n",
+                null,
+                AV_LOG_DEBUG,
+                "Demuxer gave frame of stream_index %u\n",
                 stream_index
             );
 
@@ -1272,18 +1414,23 @@ private class TranscodeApplication : GLib.Application {
                 StreamContext? stream = &stream_ctx[stream_index];
 
                 av_log (
-                    null, AV_LOG_DEBUG, "Going to reencode&filter the frame\n"
+                    null,
+                    AV_LOG_DEBUG,
+                    "Going to reencode&filter the frame\n"
                 );
 
                 ret = avcodec_send_packet (
-                    stream.dec_ctx, packet
+                    stream.dec_ctx,
+                    packet
                 );
 
                 if (
                     ret < 0
                 ) {
                     av_log (
-                        null, AV_LOG_ERROR, "Decoding failed\n"
+                        null,
+                        AV_LOG_ERROR,
+                        "Decoding failed\n"
                     );
 
                     break;
@@ -1293,7 +1440,8 @@ private class TranscodeApplication : GLib.Application {
                     ret >= 0
                 ) {
                     ret = avcodec_receive_frame (
-                    stream.dec_ctx, stream.dec_frame
+                    stream.dec_ctx,
+                    stream.dec_frame
                     );
 
                     if (
@@ -1314,7 +1462,8 @@ private class TranscodeApplication : GLib.Application {
 
                     stream.dec_frame.pts = stream.dec_frame.best_effort_timestamp;
                     ret = filter_encode_write_frame (
-                        stream.dec_frame, stream_index
+                        stream.dec_frame,
+                        stream_index
                     );
 
                     if (
@@ -1339,7 +1488,8 @@ private class TranscodeApplication : GLib.Application {
                 );
 
                 ret = av_interleaved_write_frame (
-                    ofmt_ctx, packet
+                    ofmt_ctx,
+                    packet
                 );
 
                 if (
@@ -1376,7 +1526,8 @@ private class TranscodeApplication : GLib.Application {
             stream = &stream_ctx[i];
 
             av_log (
-                null, AV_LOG_INFO,
+                null,
+                AV_LOG_INFO,
                 "Flushing stream %u decoder\n",
                 i
             );
@@ -1385,14 +1536,17 @@ private class TranscodeApplication : GLib.Application {
             flush decoder
             ***********************************************************/
             ret = avcodec_send_packet (
-                stream.dec_ctx, null
+                stream.dec_ctx,
+                null
             );
 
             if (
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Flushing decoding failed\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Flushing decoding failed\n"
                 );
 
                 throw new Goto.END (
@@ -1403,7 +1557,8 @@ private class TranscodeApplication : GLib.Application {
                 ret >= 0
             ) {
                 ret = avcodec_receive_frame (
-                stream.dec_ctx, stream.dec_frame
+                stream.dec_ctx,
+                stream.dec_frame
                 );
 
                 if (
@@ -1419,7 +1574,8 @@ private class TranscodeApplication : GLib.Application {
 
                 stream.dec_frame.pts = stream.dec_frame.best_effort_timestamp;
                 ret = filter_encode_write_frame (
-                    stream.dec_frame, i
+                    stream.dec_frame,
+                    i
                 );
 
                 if (
@@ -1435,14 +1591,17 @@ private class TranscodeApplication : GLib.Application {
             flush filter
             ***********************************************************/
             ret = filter_encode_write_frame (
-                null, i
+                null,
+                i
             );
 
             if (
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Flushing filter failed\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Flushing filter failed\n"
                 );
 
                 throw new Goto.END (
@@ -1460,7 +1619,9 @@ private class TranscodeApplication : GLib.Application {
                 ret < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Flushing encoder failed\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Flushing encoder failed\n"
                 );
 
                 throw new Goto.END (
@@ -1553,7 +1714,8 @@ private class TranscodeApplication : GLib.Application {
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR,
+                null,
+                AV_LOG_ERROR,
                 "Error occurred: %s\n",
                 av_err2str (
                     ret)

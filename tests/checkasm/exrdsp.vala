@@ -108,7 +108,9 @@ private static void check_reorder_pixels () {
     }
 
     bench_new (
-        dst_new, src, BUF_SIZE
+        dst_new,
+        src,
+        BUF_SIZE
     );
 
 }
@@ -139,36 +141,47 @@ private static void check_predictor () {
     //  );
 
     memset (
-        src, 0, PADDED_BUF_SIZE
+        src,
+        0,
+        PADDED_BUF_SIZE
     );
 
     randomize_buffers ();
 
     memcpy (
-        dst_ref, src, PADDED_BUF_SIZE
+        dst_ref,
+        src,
+        PADDED_BUF_SIZE
     );
 
     memcpy (
-        dst_new, src, PADDED_BUF_SIZE
+        dst_new,
+        src,
+        PADDED_BUF_SIZE
     );
 
     call_ref (
-        dst_ref, BUF_SIZE
+        dst_ref,
+        BUF_SIZE
     );
 
     call_new (
-        dst_new, BUF_SIZE
+        dst_new,
+        BUF_SIZE
     );
 
     if (
         memcmp (
-            dst_ref, dst_new, BUF_SIZE)
+            dst_ref,
+            dst_new,
+            BUF_SIZE)
     ) {
         fail ();
     }
 
     bench_new (
-        dst_new, BUF_SIZE
+        dst_new,
+        BUF_SIZE
     );
 
 }
@@ -182,7 +195,8 @@ private static void checkasm_check_exrdsp () {
 
     if (
         check_func (
-            exr_dsp_context.reorder_pixels, "reorder_pixels"
+            exr_dsp_context.reorder_pixels,
+            "reorder_pixels"
         )
     ) {
         check_reorder_pixels ();
@@ -194,7 +208,8 @@ private static void checkasm_check_exrdsp () {
 
     if (
         check_func (
-            exr_dsp_context.predictor, "predictor"
+            exr_dsp_context.predictor,
+            "predictor"
         )
     ) {
         check_predictor ();

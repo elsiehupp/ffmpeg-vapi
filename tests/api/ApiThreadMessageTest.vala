@@ -396,7 +396,8 @@ private class ApiThreadMessageTest : GLib.TestCase {
                 null,
                 AV_LOG_INFO,
                 "consumed enough (
-                    %d), stop\n",
+                    %d),
+                    stop\n",
                 i
             );
 

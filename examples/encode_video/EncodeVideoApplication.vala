@@ -60,7 +60,8 @@ private class EncodeVideoApplication : GLib.Application {
         }
 
         ret = avcodec_send_frame (
-            enc_ctx, frame
+            enc_ctx,
+            frame
         );
 
         if (
@@ -81,7 +82,8 @@ private class EncodeVideoApplication : GLib.Application {
             ret >= 0
         ) {
             ret = avcodec_receive_packet (
-            enc_ctx, pkt
+            enc_ctx,
+            pkt
             );
 
             if (
@@ -112,7 +114,10 @@ private class EncodeVideoApplication : GLib.Application {
             );
 
             fwrite (
-                pkt.data, 1, pkt.size, outfile
+                pkt.data,
+                1,
+                pkt.size,
+                outfile
             );
 
             av_packet_unref (
@@ -235,7 +240,10 @@ private class EncodeVideoApplication : GLib.Application {
             codec.id == AV_CODEC_ID_H264
         ) {
             av_opt_set (
-                codec_context.priv_data, "preset", "slow", 0
+                codec_context.priv_data,
+                "preset",
+                "slow",
+                0
             );
 
         }
@@ -244,7 +252,9 @@ private class EncodeVideoApplication : GLib.Application {
         open it
         ***********************************************************/
         ret = avcodec_open2 (
-            codec_context, codec, null
+            codec_context,
+            codec,
+            null
         );
 
         if (
@@ -264,7 +274,8 @@ private class EncodeVideoApplication : GLib.Application {
         }
 
         file = fopen (
-            filename, "wb"
+            filename,
+            "wb"
         );
 
         if (
@@ -302,7 +313,8 @@ private class EncodeVideoApplication : GLib.Application {
         frame.height = codec_context.height;
 
         ret = av_frame_get_buffer (
-            frame, 0
+            frame,
+            0
         );
 
         if (
@@ -404,7 +416,10 @@ private class EncodeVideoApplication : GLib.Application {
             encode the image
             ***********************************************************/
             encode (
-                codec_context, frame, pkt, file
+                codec_context,
+                frame,
+                pkt,
+                file
             );
 
         }
@@ -413,7 +428,10 @@ private class EncodeVideoApplication : GLib.Application {
         flush the encoder
         ***********************************************************/
         encode (
-            codec_context, null, pkt, file
+            codec_context,
+            null,
+            pkt,
+            file
         );
 
         /***********************************************************
@@ -428,8 +446,11 @@ private class EncodeVideoApplication : GLib.Application {
             codec.id == AV_CODEC_ID_MPEG2VIDEO
         ) {
             fwrite (
-                endcode, 1, sizeof (
-                    endcode), file
+                endcode,
+                1,
+                sizeof (
+                    endcode),
+                    file
             );
 
         }

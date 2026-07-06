@@ -22,7 +22,9 @@ private static void randomize_buffer (
     void *buf
 ) {
     int i;
-    double bmg[2], stddev = 10.0, mean = 0.0;
+    double bmg[2];
+    double stddev = 10.0;
+    double mean = 0.0;
 
     for (
         i = 0;
@@ -30,7 +32,8 @@ private static void randomize_buffer (
         i += 2
     ) {
         av_bmg_get (
-            &checkasm_lfg, bmg
+            &checkasm_lfg,
+            bmg
         );
 
         buf[i] = bmg[0] * stddev + mean;
@@ -66,11 +69,15 @@ private static void test_vector_fmul (
     //  );
 
     call_ref (
-        cdst, src0, src1, LEN
+        cdst,
+        src0,
+        src1, LEN
     );
 
     call_new (
-        odst, src0, src1, LEN
+        odst,
+        src0,
+        src1, LEN
     );
 
     for (
@@ -80,12 +87,17 @@ private static void test_vector_fmul (
     ) {
         if (
             !float_near_abs_eps (
-                cdst[i], odst[i], FLT_EPSILON)
+                cdst[i],
+                odst[i],
+                FLT_EPSILON)
         ) {
             fprintf (
                 stderr,
                 "%d: %- .12f - %- .12f = % .12g\n",
-                    i, cdst[i], odst[i], cdst[i] - odst[i]
+                    i,
+                    cdst[i],
+                    odst[i],
+                    cdst[i] - odst[i]
             );
 
             fail ();
@@ -95,13 +107,16 @@ private static void test_vector_fmul (
     }
 
     bench_new (
-        odst, src0, src1, LEN
+        odst,
+        src0,
+        src1, LEN
     );
 
 }
 
 private static void test_vector_dmul (
-    double[] src0, double[] src1
+    double[] src0,
+    double[] src1
 ) {
     //  LOCAL_ALIGNED_32 (
     //      double,
@@ -126,11 +141,15 @@ private static void test_vector_dmul (
     //  );
 
     call_ref (
-        cdst, src0, src1, LEN
+        cdst,
+        src0,
+        src1, LEN
     );
 
     call_new (
-        odst, src0, src1, LEN
+        odst,
+        src0,
+        src1, LEN
     );
 
     for (
@@ -140,12 +159,17 @@ private static void test_vector_dmul (
     ) {
         if (
             !double_near_abs_eps (
-                cdst[i], odst[i], DBL_EPSILON)
+                cdst[i],
+                odst[i],
+                DBL_EPSILON)
         ) {
             fprintf (
                 stderr,
                 "%d: %- .12f - %- .12f = % .12g\n",
-                    i, cdst[i], odst[i], cdst[i] - odst[i]
+                    i,
+                    cdst[i],
+                    odst[i],
+                    cdst[i] - odst[i]
             );
 
             fail ();
@@ -155,14 +179,18 @@ private static void test_vector_dmul (
     }
 
     bench_new (
-        odst, src0, src1, LEN
+        odst,
+        src0,
+        src1, LEN
     );
 
 }
 
 private const float ARBITRARY_FMUL_ADD_CONST = 0.005f;
 private static void test_vector_fmul_add (
-    float[] src0, float[] src1, float[] src2
+    float[] src0,
+    float[] src1,
+    float[] src2
 ) {
     //  LOCAL_ALIGNED_32 (
     //      float,
@@ -188,11 +216,15 @@ private static void test_vector_fmul_add (
     //  );
 
     call_ref (
-        cdst, src0, src1, src2, LEN
+        cdst,
+        src0,
+        src1, src2, LEN
     );
 
     call_new (
-        odst, src0, src1, src2, LEN
+        odst,
+        src0,
+        src1, src2, LEN
     );
 
     for (
@@ -202,12 +234,17 @@ private static void test_vector_fmul_add (
     ) {
         if (
             !float_near_abs_eps (
-                cdst[i], odst[i], ARBITRARY_FMUL_ADD_CONST)
+                cdst[i],
+                odst[i],
+                ARBITRARY_FMUL_ADD_CONST)
         ) {
             fprintf (
                 stderr,
                 "%d: %- .12f - %- .12f = % .12g\n",
-                    i, cdst[i], odst[i], cdst[i] - odst[i]
+                    i,
+                    cdst[i],
+                    odst[i],
+                    cdst[i] - odst[i]
             );
 
             fail ();
@@ -217,13 +254,16 @@ private static void test_vector_fmul_add (
     }
 
     bench_new (
-        odst, src0, src1, src2, LEN
+        odst,
+        src0,
+        src1, src2, LEN
     );
 
 }
 
 private static void test_vector_fmul_scalar (
-    float[] src0, float[] src1
+    float[] src0,
+    float[] src1
 ) {
     //  LOCAL_ALIGNED_16 (
     //      float,
@@ -248,11 +288,17 @@ private static void test_vector_fmul_scalar (
     //  );
 
     call_ref (
-        cdst, src0, src1[0], LEN
+        cdst,
+        src0,
+        src1[0],
+        LEN
     );
 
     call_new (
-        odst, src0, src1[0], LEN
+        odst,
+        src0,
+        src1[0],
+        LEN
         );
 
         for (
@@ -262,12 +308,17 @@ private static void test_vector_fmul_scalar (
         ) {
             if (
                 !float_near_abs_eps (
-                    cdst[i], odst[i], FLT_EPSILON)
+                    cdst[i],
+                    odst[i],
+                    FLT_EPSILON)
             ) {
                 fprintf (
                     stderr,
                     "%d: %- .12f - %- .12f = % .12g\n",
-                        i, cdst[i], odst[i], cdst[i] - odst[i]
+                        i,
+                        cdst[i],
+                        odst[i],
+                        cdst[i] - odst[i]
                 );
 
                 fail ();
@@ -277,7 +328,10 @@ private static void test_vector_fmul_scalar (
         }
 
     bench_new (
-        odst, src0, src1[0], LEN
+        odst,
+        src0,
+        src1[0],
+        LEN
     );
 
 }
@@ -285,7 +339,9 @@ private static void test_vector_fmul_scalar (
 private const float ARBITRARY_FMUL_WINDOW_CONST = 0.008f;
 
 private static void test_vector_fmul_window (
-    float[] src0, float[] src1, float[] win
+    float[] src0,
+    float[] src1,
+    float[] win
 ) {
     //  LOCAL_ALIGNED_16 (
     //      float,
@@ -311,11 +367,15 @@ private static void test_vector_fmul_window (
     //  );
 
     call_ref (
-        cdst, src0, src1, win, LEN / 2
+        cdst,
+        src0,
+        src1, win, LEN / 2
     );
 
     call_new (
-        odst, src0, src1, win, LEN / 2
+        odst,
+        src0,
+        src1, win, LEN / 2
     );
 
     for (
@@ -325,12 +385,17 @@ private static void test_vector_fmul_window (
     ) {
         if (
             !float_near_abs_eps (
-                cdst[i], odst[i], ARBITRARY_FMUL_WINDOW_CONST)
+                cdst[i],
+                odst[i],
+                ARBITRARY_FMUL_WINDOW_CONST)
         ) {
             fprintf (
                 stderr,
                 "%d: %- .12f - %- .12f = % .12g\n",
-                    i, cdst[i], odst[i], cdst[i] - odst[i]
+                    i,
+                    cdst[i],
+                    odst[i],
+                    cdst[i] - odst[i]
             );
 
             fail ();
@@ -340,7 +405,9 @@ private static void test_vector_fmul_window (
     }
 
     bench_new (
-        odst, src0, src1, win, LEN / 2
+        odst,
+        src0,
+        src1, win, LEN / 2
     );
 
 }
@@ -348,7 +415,9 @@ private static void test_vector_fmul_window (
 private const float ARBITRARY_FMAC_SCALAR_CONST = 0.005f;
 
 private static void test_vector_fmac_scalar (
-    float[] src0, float[] src1, float[] src2
+    float[] src0,
+    float[] src1,
+    float[] src2
 ) {
     //  LOCAL_ALIGNED_32 (
     //      float,
@@ -373,21 +442,31 @@ private static void test_vector_fmac_scalar (
     //  );
 
     memcpy (
-        cdst, src2, LEN * sizeof (
+        cdst,
+        src2,
+        LEN * sizeof (
             src2)
     );
 
     memcpy (
-        odst, src2, LEN * sizeof (
+        odst,
+        src2,
+        LEN * sizeof (
             src2)
     );
 
     call_ref (
-        cdst, src0, src1[0], LEN
+        cdst,
+        src0,
+        src1[0],
+        LEN
     );
 
     call_new (
-        odst, src0, src1[0], LEN
+        odst,
+        src0,
+        src1[0],
+        LEN
     );
 
     for (
@@ -397,12 +476,17 @@ private static void test_vector_fmac_scalar (
     ) {
         if (
             !float_near_abs_eps (
-                cdst[i], odst[i], ARBITRARY_FMAC_SCALAR_CONST)
+                cdst[i],
+                odst[i],
+                ARBITRARY_FMAC_SCALAR_CONST)
         ) {
             fprintf (
                 stderr,
                 "%d: %- .12f - %- .12f = % .12g\n",
-                    i, cdst[i], odst[i], cdst[i] - odst[i]
+                    i,
+                    cdst[i],
+                    odst[i],
+                    cdst[i] - odst[i]
             );
 
             fail ();
@@ -412,18 +496,24 @@ private static void test_vector_fmac_scalar (
     }
 
     memcpy (
-        odst, src2, LEN * sizeof (
+        odst,
+        src2,
+        LEN * sizeof (
             src2)
     );
 
     bench_new (
-        odst, src0, src1[0], LEN
+        odst,
+        src0,
+        src1[0],
+        LEN
     );
 
 }
 
 private static void test_vector_dmul_scalar (
-    double[] src0, double[] src1
+    double[] src0,
+    double[] src1
 ) {
     //  LOCAL_ALIGNED_32 (
     //      double,
@@ -448,11 +538,17 @@ private static void test_vector_dmul_scalar (
     //  );
 
     call_ref (
-        cdst, src0, src1[0], LEN
+        cdst,
+        src0,
+        src1[0],
+        LEN
     );
 
     call_new (
-        odst, src0, src1[0], LEN
+        odst,
+        src0,
+        src1[0],
+        LEN
     );
 
     for (
@@ -466,13 +562,17 @@ private static void test_vector_dmul_scalar (
                 src1[0] * src0[i]) + 1.0;
         if (
             !double_near_abs_eps (
-                cdst[i], odst[i], t * 2 * DBL_EPSILON)
+                cdst[i],
+                odst[i],
+                t * 2 * DBL_EPSILON)
         ) {
             fprintf (
                 stderr,
                 "%d: %- .12f - %- .12f = % .12g\n",
                 i,
-                cdst[i], odst[i], cdst[i] - odst[i]
+                cdst[i],
+                odst[i],
+                cdst[i] - odst[i]
             );
 
             fail ();
@@ -482,7 +582,10 @@ private static void test_vector_dmul_scalar (
     }
 
     bench_new (
-        odst, src0, src1[0], LEN
+        odst,
+        src0,
+        src1[0],
+        LEN
     );
 
 }
@@ -490,7 +593,9 @@ private static void test_vector_dmul_scalar (
 private const float ARBITRARY_DMAC_SCALAR_CONST = 0.005f;
 
 private static void test_vector_dmac_scalar (
-    double[] src0, double[] src1, double[] src2
+    double[] src0,
+    double[] src1,
+    double[] src2
 ) {
     //  LOCAL_ALIGNED_32 (
     //      double,
@@ -510,25 +615,36 @@ private static void test_vector_dmac_scalar (
     //      void,
     //      double[] dst,
     //      double[] src,
-    //      double mul, int len
+    //      double mul,
+    //      int len
     //  );
 
     memcpy (
-        cdst, src2, LEN * sizeof (
+        cdst,
+        src2,
+        LEN * sizeof (
             src2)
     );
 
     memcpy (
-        odst, src2, LEN * sizeof (
+        odst,
+        src2,
+        LEN * sizeof (
             src2)
     );
 
     call_ref (
-        cdst, src0, src1[0], LEN
+        cdst,
+        src0,
+        src1[0],
+        LEN
     );
 
     call_new (
-        odst, src0, src1[0], LEN
+        odst,
+        src0,
+        src1[0],
+        LEN
     );
 
     for (
@@ -538,12 +654,17 @@ private static void test_vector_dmac_scalar (
     ) {
         if (
             !double_near_abs_eps (
-                cdst[i], odst[i], ARBITRARY_DMAC_SCALAR_CONST)
+                cdst[i],
+                odst[i],
+                ARBITRARY_DMAC_SCALAR_CONST)
         ) {
             fprintf (
                 stderr,
                 "%d: %- .12f - %- .12f = % .12g\n",
-                    i, cdst[i], odst[i], cdst[i] - odst[i]
+                    i,
+                    cdst[i],
+                    odst[i],
+                    cdst[i] - odst[i]
             );
 
             fail ();
@@ -553,18 +674,24 @@ private static void test_vector_dmac_scalar (
     }
 
     memcpy (
-        odst, src2, LEN * sizeof (
+        odst,
+        src2,
+        LEN * sizeof (
             src2)
     );
 
     bench_new (
-        odst, src0, src1[0], LEN
+        odst,
+        src0,
+        src1[0],
+        LEN
     );
 
 }
 
 private static void test_butterflies_float (
-    float[] src0, float[] src1
+    float[] src0,
+    float[] src1
 ) {
     //  LOCAL_ALIGNED_16 (
     //      float,
@@ -600,31 +727,43 @@ private static void test_butterflies_float (
     //  );
 
     memcpy (
-        cdst, src0, LEN * sizeof (
+        cdst,
+        src0,
+        LEN * sizeof (
             src0)
     );
 
     memcpy (
-        cdst1, src1, LEN * sizeof (
+        cdst1,
+        src1,
+        LEN * sizeof (
             src1)
     );
 
     memcpy (
-        odst, src0, LEN * sizeof (
+        odst,
+        src0,
+        LEN * sizeof (
             src0)
     );
 
     memcpy (
-        odst1, src1, LEN * sizeof (
+        odst1,
+        src1,
+        LEN * sizeof (
             src1)
     );
 
     call_ref (
-        cdst, cdst1, LEN
+        cdst,
+        cdst1,
+        LEN
     );
 
     call_new (
-        odst, odst1, LEN
+        odst,
+        odst1,
+        LEN
     );
 
     for (
@@ -634,20 +773,30 @@ private static void test_butterflies_float (
     ) {
         if (
             !float_near_abs_eps (
-                cdst[i], odst[i], FLT_EPSILON) ||
+                cdst[i],
+                odst[i],
+                FLT_EPSILON) ||
             !float_near_abs_eps (
-                cdst1[i], odst1[i], FLT_EPSILON)
+                cdst1[i],
+                odst1[i],
+                FLT_EPSILON)
         ) {
             fprintf (
                 stderr,
                 "%d: %- .12f - %- .12f = % .12g\n",
-                    i, cdst[i], odst[i], cdst[i] - odst[i]
+                    i,
+                    cdst[i],
+                    odst[i],
+                    cdst[i] - odst[i]
             );
 
             fprintf (
                 stderr,
                 "%d: %- .12f - %- .12f = % .12g\n",
-                    i, cdst1[i], odst1[i], cdst1[i] - odst1[i]
+                    i,
+                    cdst1[i],
+                    odst1[i],
+                    cdst1[i] - odst1[i]
             );
 
             fail ();
@@ -657,17 +806,23 @@ private static void test_butterflies_float (
     }
 
     memcpy (
-        odst, src0, LEN * sizeof (
+        odst,
+        src0,
+        LEN * sizeof (
             src0)
     );
 
     memcpy (
-        odst1, src1, LEN * sizeof (
+        odst1,
+        src1,
+        LEN * sizeof (
             src1)
     );
 
     bench_new (
-        odst, odst1, LEN
+        odst,
+        odst1,
+        LEN
     );
 
 }
@@ -678,7 +833,8 @@ private static void test_scalarproduct_float (
     float[] src0,
     float[] src1
 ) {
-    float cprod, oprod;
+    float cprod;
+    float oprod;
 
     //  declare_func_float (
     //      float,
@@ -688,28 +844,38 @@ private static void test_scalarproduct_float (
     //  );
 
     cprod = call_ref (
-        src0, src1, LEN
+        src0,
+        src1,
+        LEN
     );
 
     oprod = call_new (
-        src0, src1, LEN
+        src0,
+        src1,
+        LEN
     );
 
     if (
         !float_near_abs_eps (
-            cprod, oprod, ARBITRARY_SCALARPRODUCT_CONST)
+            cprod,
+            oprod,
+            ARBITRARY_SCALARPRODUCT_CONST)
     ) {
         fprintf (
             stderr,
             "%- .12f - %- .12f = % .12g\n",
-                cprod, oprod, cprod - oprod
+                cprod,
+                oprod,
+                cprod - oprod
         );
 
         fail ();
     }
 
     bench_new (
-        src0, src1, LEN
+        src0,
+        src1,
+        LEN
     );
 
 }
@@ -822,55 +988,67 @@ private static void checkasm_check_float_dsp () {
 
     if (
         check_func (
-            fdsp.vector_fmul, "vector_fmul"
+            fdsp.vector_fmul,
+            "vector_fmul"
         )
     ) {
         test_vector_fmul (
-            src0, src1
+            src0,
+            src1
         );
 
     }
 
     if (
         check_func (
-            fdsp.vector_fmul_add, "vector_fmul_add"
+            fdsp.vector_fmul_add,
+            "vector_fmul_add"
         )
     ) {
         test_vector_fmul_add (
-            src0, src1, src2
+            src0,
+            src1,
+            src2
         );
 
     }
 
     if (
         check_func (
-            fdsp.vector_fmul_scalar, "vector_fmul_scalar"
+            fdsp.vector_fmul_scalar,
+            "vector_fmul_scalar"
         )
     ) {
         test_vector_fmul_scalar (
-            src3, src4
+            src3,
+            src4
         );
 
     }
 
     if (
         check_func (
-            fdsp.vector_fmul_reverse, "vector_fmul_reverse"
+            fdsp.vector_fmul_reverse,
+            "vector_fmul_reverse"
         )
     ) {
         test_vector_fmul (
-            src0, src1
+            src0,
+            src1
         );
 
     }
 
     if (
         check_func (
-            fdsp.vector_fmul_window, "vector_fmul_window"
+            fdsp.vector_fmul_window,
+            "vector_fmul_window"
         )
     ) {
         test_vector_fmul_window (
-            src3, src4, src5
+            src3,
+            src4,
+            src5
         );
 
     }
@@ -881,11 +1059,14 @@ private static void checkasm_check_float_dsp () {
 
     if (
         check_func (
-            fdsp.vector_fmac_scalar, "vector_fmac_scalar"
+            fdsp.vector_fmac_scalar,
+            "vector_fmac_scalar"
         )
     ) {
         test_vector_fmac_scalar (
-            src0, src1, src2
+            src0,
+            src1,
+            src2
         );
 
     }
@@ -896,22 +1077,26 @@ private static void checkasm_check_float_dsp () {
 
     if (
         check_func (
-            fdsp.vector_dmul, "vector_dmul"
+            fdsp.vector_dmul,
+            "vector_dmul"
         )
     ) {
         test_vector_dmul (
-            dbl_src0, dbl_src1
+            dbl_src0,
+            dbl_src1
         );
 
     }
 
     if (
         check_func (
-            fdsp.vector_dmul_scalar, "vector_dmul_scalar"
+            fdsp.vector_dmul_scalar,
+            "vector_dmul_scalar"
         )
     ) {
         test_vector_dmul_scalar (
-            dbl_src0, dbl_src1
+            dbl_src0,
+            dbl_src1
         );
 
     }
@@ -922,11 +1107,14 @@ private static void checkasm_check_float_dsp () {
 
     if (
         check_func (
-            fdsp.vector_dmac_scalar, "vector_dmac_scalar"
+            fdsp.vector_dmac_scalar,
+            "vector_dmac_scalar"
         )
     ) {
         test_vector_dmac_scalar (
-            dbl_src0, dbl_src1, dbl_src2
+            dbl_src0,
+            dbl_src1,
+            dbl_src2
         );
 
     }
@@ -937,11 +1125,13 @@ private static void checkasm_check_float_dsp () {
 
     if (
         check_func (
-            fdsp.butterflies_float, "butterflies_float"
+            fdsp.butterflies_float,
+            "butterflies_float"
         )
     ) {
         test_butterflies_float (
-            src3, src4
+            src3,
+            src4
         );
 
     }
@@ -952,11 +1142,13 @@ private static void checkasm_check_float_dsp () {
 
     if (
         check_func (
-            fdsp.scalarproduct_float, "scalarproduct_float"
+            fdsp.scalarproduct_float,
+            "scalarproduct_float"
         )
     ) {
         test_scalarproduct_float (
-            src3, src4
+            src3,
+            src4
         );
 
     }

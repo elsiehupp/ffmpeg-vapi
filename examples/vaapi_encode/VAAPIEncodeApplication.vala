@@ -134,7 +134,8 @@ private class VAAPIEncodeApplication : GLib.Application {
         }
 
         ret = avcodec_send_frame (
-            avctx, frame
+            avctx,
+            frame
         );
 
         if (
@@ -155,7 +156,8 @@ private class VAAPIEncodeApplication : GLib.Application {
             true
         ) {
             ret = avcodec_receive_packet (
-                avctx, enc_pkt
+                avctx,
+                enc_pkt
             );
 
             if (
@@ -166,7 +168,10 @@ private class VAAPIEncodeApplication : GLib.Application {
 
             enc_pkt.stream_index = 0;
             ret = fwrite (
-                enc_pkt.data, enc_pkt.size, 1, fout
+                enc_pkt.data,
+                enc_pkt.size,
+                1,
+                fout
             );
 
             av_packet_unref (
@@ -234,7 +239,8 @@ private class VAAPIEncodeApplication : GLib.Application {
         size = width * height;
 
         fin = fopen (
-            argv[3], "r"
+            argv[3],
+            "r"
         );
 
         if (
@@ -251,7 +257,8 @@ private class VAAPIEncodeApplication : GLib.Application {
         }
 
         fout = fopen (
-            argv[4], "w+b"
+            argv[4],
+            "w+b"
         );
 
         if (
@@ -270,8 +277,11 @@ private class VAAPIEncodeApplication : GLib.Application {
         }
 
         err = av_hwdevice_ctx_create (
-            &hw_device_ctx, AV_HWDEVICE_TYPE_VAAPI,
-            null, null, 0
+            &hw_device_ctx,
+            AV_HWDEVICE_TYPE_VAAPI,
+            null,
+            null,
+            0
         );
 
         if (
@@ -331,7 +341,8 @@ private class VAAPIEncodeApplication : GLib.Application {
         set hw_frames_ctx for encoder's AVCodecContext
         ***********************************************************/
         err = set_hwframe_ctx (
-            avctx, hw_device_ctx
+            avctx,
+            hw_device_ctx
         );
 
         if (
@@ -347,7 +358,9 @@ private class VAAPIEncodeApplication : GLib.Application {
         }
 
         err = avcodec_open2 (
-            avctx, codec, null
+            avctx,
+            codec,
+            null
         );
 
         if (
@@ -387,7 +400,8 @@ private class VAAPIEncodeApplication : GLib.Application {
             sw_frame.height = height;
             sw_frame.format = LibAVUtil.PixelFormat.NV12;
             err = av_frame_get_buffer (
-                sw_frame, 0
+                sw_frame,
+                0
             );
 
             if (
@@ -398,7 +412,10 @@ private class VAAPIEncodeApplication : GLib.Application {
             }
 
             err = fread (
-                (uint8*)(sw_frame.data[0]), size, 1, fin
+                (uint8*)(sw_frame.data[0]),
+                size,
+                1,
+                fin
             );
 
             if (
@@ -408,7 +425,10 @@ private class VAAPIEncodeApplication : GLib.Application {
             }
 
             err = fread (
-                (uint8*)(sw_frame.data[1]), size/2, 1, fin
+                (uint8*)(sw_frame.data[1]),
+                size/2,
+                1,
+                fin
             );
 
             if (
@@ -430,7 +450,9 @@ private class VAAPIEncodeApplication : GLib.Application {
             }
 
             err = av_hwframe_get_buffer (
-                avctx.hw_frames_ctx, hw_frame, 0
+                avctx.hw_frames_ctx,
+                hw_frame,
+                0
             );
 
             if (
@@ -459,7 +481,9 @@ private class VAAPIEncodeApplication : GLib.Application {
             }
 
             err = av_hwframe_transfer_data (
-                hw_frame, sw_frame, 0
+                hw_frame,
+                sw_frame,
+                0
             );
 
             if (
@@ -477,7 +501,9 @@ private class VAAPIEncodeApplication : GLib.Application {
             }
 
             err = encode_write (
-                avctx, hw_frame, fout
+                avctx,
+                hw_frame,
+                fout
             );
 
             if (
@@ -506,7 +532,9 @@ private class VAAPIEncodeApplication : GLib.Application {
         flush encoder
         ***********************************************************/
         err = encode_write (
-            avctx, null, fout
+            avctx,
+            null,
+            fout
         );
 
         if (

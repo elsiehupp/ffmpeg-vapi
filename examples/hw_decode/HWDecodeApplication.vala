@@ -53,8 +53,11 @@ private class HWDecodeApplication : GLib.Application {
         AVHWDeviceType type
     ) {
         int err = av_hwdevice_ctx_create (
-            &hw_device_ctx, type,
-            null, null, 0
+            &hw_device_ctx,
+            type,
+            null,
+            null,
+            0
         );
 
         if (
@@ -114,7 +117,8 @@ private class HWDecodeApplication : GLib.Application {
         int ret = 0;
 
         ret = avcodec_send_packet (
-            avctx, packet
+            avctx,
+            packet
         );
 
         if (
@@ -151,7 +155,8 @@ private class HWDecodeApplication : GLib.Application {
             }
 
             ret = avcodec_receive_frame (
-                avctx, frame
+                avctx,
+                frame
             );
 
             if (
@@ -187,7 +192,9 @@ private class HWDecodeApplication : GLib.Application {
                 retrieve data from GPU to CPU
                 ***********************************************************/
                 ret = av_hwframe_transfer_data (
-                    sw_frame, frame, 0
+                    sw_frame,
+                    frame,
+                    0
                 );
 
                 if (
@@ -209,7 +216,8 @@ private class HWDecodeApplication : GLib.Application {
                 tmp_frame = frame;
 
             size = av_image_get_buffer_size (
-                tmp_frame.format, tmp_frame.width,
+                tmp_frame.format,
+                tmp_frame.width,
                                             tmp_frame.height, 1
             );
 
@@ -234,12 +242,15 @@ private class HWDecodeApplication : GLib.Application {
             }
 
             ret = av_image_copy_to_buffer (
-                buffer, size,
+                buffer,
+                size,
                 (
                     uint8[][])tmp_frame.data,
                 (
                     int[] )tmp_frame.linesize, tmp_frame.format,
-                tmp_frame.width, tmp_frame.height, 1
+                tmp_frame.width,
+                tmp_frame.height,
+                1
             );
 
             if (
@@ -255,7 +266,10 @@ private class HWDecodeApplication : GLib.Application {
             }
 
             ret = fwrite (
-                buffer, 1, size, output_file
+                buffer,
+                1,
+                size,
+                output_file
             );
 
             if (
@@ -378,7 +392,10 @@ private class HWDecodeApplication : GLib.Application {
         ***********************************************************/
         if (
             avformat_open_input (
-                &input_ctx, argv[2], null, null
+                &input_ctx,
+                argv[2],
+                null,
+                null
             ) != 0
         ) {
             fprintf (
@@ -392,7 +409,8 @@ private class HWDecodeApplication : GLib.Application {
 
         if (
             avformat_find_stream_info (
-                input_ctx, null
+                input_ctx,
+                null
             ) < 0
         ) {
             fprintf (
@@ -407,7 +425,12 @@ private class HWDecodeApplication : GLib.Application {
         find the video stream information
         ***********************************************************/
         ret = av_find_best_stream (
-            input_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &decoder, 0
+            input_ctx,
+            AVMEDIA_TYPE_VIDEO,
+            -1,
+            -1,
+            &decoder,
+            0
         );
 
         if (
@@ -429,7 +452,8 @@ private class HWDecodeApplication : GLib.Application {
             i++
         ) {
             AVCodecHWConfig? config = avcodec_get_hw_config (
-            decoder, i
+            decoder,
+            i
             );
 
             if (
@@ -473,7 +497,8 @@ private class HWDecodeApplication : GLib.Application {
         video = input_ctx.streams[video_stream];
         if (
             avcodec_parameters_to_context (
-                decoder_ctx, video.codecpar
+                decoder_ctx,
+                video.codecpar
             ) < 0
         ) {
             avcodec_free_context (
@@ -487,14 +512,17 @@ private class HWDecodeApplication : GLib.Application {
 
         if (
             hw_decoder_init (
-                decoder_ctx, type
+                decoder_ctx,
+                type
             ) < 0
         ) {
             return -1;
         }
 
         ret = avcodec_open2 (
-            decoder_ctx, decoder, null
+            decoder_ctx,
+            decoder,
+            null
         );
 
         if (
@@ -524,7 +552,8 @@ private class HWDecodeApplication : GLib.Application {
             ret >= 0
         ) {
             ret = av_read_frame (
-            input_ctx, packet
+            input_ctx,
+            packet
             );
 
             if (
@@ -537,7 +566,8 @@ private class HWDecodeApplication : GLib.Application {
                 video_stream == packet.stream_index
             ) {
                 ret = decode_write (
-                decoder_ctx, packet
+                decoder_ctx,
+                packet
                 );
 
             }
@@ -552,7 +582,8 @@ private class HWDecodeApplication : GLib.Application {
         flush the decoder
         ***********************************************************/
         ret = decode_write (
-            decoder_ctx, null
+            decoder_ctx,
+            null
         );
 
         if (

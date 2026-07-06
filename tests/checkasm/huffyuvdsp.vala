@@ -78,11 +78,14 @@ private static void check_add_int16 (
     }
 
     randomize_buffers (
-        src0, width
+        src0,
+        width
     );
 
     memcpy (
-        src1, src0, width * sizeof (
+        src1,
+        src0,
+        width * sizeof (
             uint16)
     );
 
@@ -94,23 +97,34 @@ private static void check_add_int16 (
         )
     ) {
         call_ref (
-            dst0, src0, mask, width
+            dst0,
+            src0,
+            mask,
+            width
         );
 
         call_new (
-            dst1, src1, mask, width
+            dst1,
+            src1,
+            mask,
+            width
         );
 
         if (
             memcmp (
-                dst0, dst1, width * sizeof (
+                dst0,
+                dst1,
+                width * sizeof (
                     uint16))
         ) {
             fail ();
         }
 
         bench_new (
-            dst1, src1, mask, width
+            dst1,
+            src1,
+            mask,
+            width
         );
 
     }
@@ -136,18 +150,23 @@ private static void check_add_int16 (
 private static void checkasm_check_huffyuvdsp () {
     HuffYUVDSPContext huff_yuv_dsp_context;
     int width = 16 * av_clip (
-        rnd (), 16, 128
+        rnd (),
+        16,
+        128
     );
 
     ff_huffyuvdsp_init (
-        &huff_yuv_dsp_context, LibAVUtil.PixelFormat.YUV422P
+        &huff_yuv_dsp_context,
+        LibAVUtil.PixelFormat.YUV422P
     );
 
     /***********************************************************
     ! test width not multiple of mmsize
     ***********************************************************/
     check_add_int16 (
-        huff_yuv_dsp_context, 65535, width,
+        huff_yuv_dsp_context,
+        65535,
+        width,
         "add_int16_rnd_width"
     );
 
@@ -160,7 +179,9 @@ private static void checkasm_check_huffyuvdsp () {
         for perf test)
     ***********************************************************/
     check_add_int16 (
-        huff_yuv_dsp_context, 65535, 16*128,
+        huff_yuv_dsp_context,
+        65535,
+        16*128,
         "add_int16_128"
     );
 

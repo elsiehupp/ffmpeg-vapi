@@ -48,7 +48,8 @@ private class ExtractMVsApplication : GLib.Application {
         AVPacket? pkt
     ) {
         int ret = avcodec_send_packet (
-        video_dec_ctx, pkt
+        video_dec_ctx,
+        pkt
         );
 
         if (
@@ -67,7 +68,8 @@ private class ExtractMVsApplication : GLib.Application {
         while (
             ret >= 0)  {
             ret = avcodec_receive_frame (
-                video_dec_ctx, frame
+                video_dec_ctx,
+                frame
             );
 
             if (
@@ -97,7 +99,8 @@ private class ExtractMVsApplication : GLib.Application {
 
                 video_frame_count++;
                 sd = av_frame_get_side_data (
-                    frame, AV_FRAME_DATA_MOTION_VECTORS
+                    frame,
+                    AV_FRAME_DATA_MOTION_VECTORS
                 );
 
                 if (
@@ -116,10 +119,18 @@ private class ExtractMVsApplication : GLib.Application {
                         AVMotionVector? mv = &mvs[i];
                         printf (
                             "%d,%2d,%2d,%2d,%4d,%4d,%4d,%4d,0x%PRIx64,%4d,%4d,%4d\n",
-                            video_frame_count, mv.source,
-                            mv.w, mv.h, mv.src_x, mv.src_y,
-                            mv.dst_x, mv.dst_y, mv.flags,
-                            mv.motion_x, mv.motion_y, mv.motion_scale
+                            video_frame_count,
+                            mv.source,
+                            mv.w,
+                            mv.h,
+                            mv.src_x,
+                            mv.src_y,
+                            mv.dst_x,
+                            mv.dst_y,
+                            mv.flags,
+                            mv.motion_x,
+                            mv.motion_y,
+                            mv.motion_scale
                         );
 
                     }
@@ -148,7 +159,12 @@ private class ExtractMVsApplication : GLib.Application {
         AVDictionary? opts = null;
 
         ret = av_find_best_stream (
-            fmt_ctx, type, -1, -1, &dec, 0
+            fmt_ctx,
+            type,
+            -1,
+            -1,
+            &dec,
+            0
         );
 
         if (
@@ -158,7 +174,8 @@ private class ExtractMVsApplication : GLib.Application {
                 stderr,
                 "Could not find %s stream in input file '%s'\n",
                     av_get_media_type_string (
-                        type), src_filename
+                        type),
+                        src_filename
             );
 
             return ret;
@@ -185,7 +202,8 @@ private class ExtractMVsApplication : GLib.Application {
             }
 
             ret = avcodec_parameters_to_context (
-                dec_ctx, st.codecpar
+                dec_ctx,
+                st.codecpar
             );
 
             if (
@@ -207,11 +225,16 @@ private class ExtractMVsApplication : GLib.Application {
             Init the video decoder
             ***********************************************************/
             av_dict_set (
-                &opts, "flags2", "+export_mvs", 0
+                &opts,
+                "flags2",
+                "+export_mvs",
+                0
             );
 
             ret = avcodec_open2 (
-                dec_ctx, dec, &opts
+                dec_ctx,
+                dec,
+                &opts
             );
 
             av_dict_free (
@@ -265,7 +288,10 @@ private class ExtractMVsApplication : GLib.Application {
 
         if (
             avformat_open_input (
-                &fmt_ctx, src_filename, null, null
+                &fmt_ctx,
+                src_filename,
+                null,
+                null
             ) < 0
         ) {
             fprintf (
@@ -282,7 +308,8 @@ private class ExtractMVsApplication : GLib.Application {
 
         if (
             avformat_find_stream_info (
-                fmt_ctx, null
+                fmt_ctx,
+                null
             ) < 0
         ) {
             fprintf (
@@ -297,11 +324,15 @@ private class ExtractMVsApplication : GLib.Application {
         }
 
         open_codec_context (
-            fmt_ctx, AVMEDIA_TYPE_VIDEO
+            fmt_ctx,
+            AVMEDIA_TYPE_VIDEO
         );
 
         av_dump_format (
-            fmt_ctx, 0, src_filename, 0
+            fmt_ctx,
+            0,
+            src_filename,
+            0
         );
 
         if (
@@ -360,7 +391,8 @@ private class ExtractMVsApplication : GLib.Application {
         ***********************************************************/
         while (
             av_read_frame (
-                fmt_ctx, pkt
+                fmt_ctx,
+                pkt
             ) >= 0
         ) {
             if (

@@ -57,28 +57,36 @@ private class DecodeFilterAudioApplication : GLib.Application {
         int ret;
 
         ret = avformat_open_input (
-            &fmt_ctx, filename, null, null
+            &fmt_ctx,
+            filename,
+            null,
+            null
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot open input file\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot open input file\n"
             );
 
             return ret;
         }
 
         ret = avformat_find_stream_info (
-            fmt_ctx, null
+            fmt_ctx,
+            null
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot find stream information\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot find stream information\n"
             );
 
             return ret;
@@ -88,14 +96,21 @@ private class DecodeFilterAudioApplication : GLib.Application {
         select the audio stream
         ***********************************************************/
         ret = av_find_best_stream (
-            fmt_ctx, AVMEDIA_TYPE_AUDIO, -1, -1, &dec, 0
+            fmt_ctx,
+            AVMEDIA_TYPE_AUDIO,
+            -1,
+            -1,
+            &dec,
+            0
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot find an audio stream in the input file\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot find an audio stream in the input file\n"
             );
 
             return ret;
@@ -120,21 +135,26 @@ private class DecodeFilterAudioApplication : GLib.Application {
         }
 
         avcodec_parameters_to_context (
-            dec_ctx, fmt_ctx.streams[audio_stream_index].codecpar
+            dec_ctx,
+            fmt_ctx.streams[audio_stream_index].codecpar
         );
 
         /***********************************************************
         init the audio decoder
         ***********************************************************/
         ret = avcodec_open2 (
-            dec_ctx, dec, null
+            dec_ctx,
+            dec,
+            null
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot open audio decoder\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot open audio decoder\n"
             );
 
             return ret;
@@ -184,35 +204,46 @@ private class DecodeFilterAudioApplication : GLib.Application {
             dec_ctx.ch_layout.order == AV_CHANNEL_ORDER_UNSPEC
         ) {
             av_channel_layout_default (
-                &dec_ctx.ch_layout, dec_ctx.ch_layout.nb_channels
+                &dec_ctx.ch_layout,
+                dec_ctx.ch_layout.nb_channels
             );
 
         }
 
         ret = snprintf (
-            args, sizeof (
+            args,
+            sizeof (
                 args),
             "time_base=%d/%d:sample_rate=%d:sample_fmt=%s:channel_layout=",
-            time_base.num, time_base.den, dec_ctx.sample_rate,
+            time_base.num,
+            time_base.den,
+            dec_ctx.sample_rate,
             av_get_sample_fmt_name (
                 dec_ctx.sample_fmt)
         );
 
         av_channel_layout_describe (
-            &dec_ctx.ch_layout, args + ret, sizeof (
+            &dec_ctx.ch_layout,
+            args + ret, sizeof (
                 args) - ret
         );
 
         ret = avfilter_graph_create_filter (
-            &buffersrc_ctx, abuffersrc, "in",
-            args, null, filter_graph
+            &buffersrc_ctx,
+            abuffersrc,
+            "in",
+            args,
+            null,
+            filter_graph
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot create audio buffer source\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot create audio buffer source\n"
             );
 
             throw new Goto.END (
@@ -223,14 +254,18 @@ private class DecodeFilterAudioApplication : GLib.Application {
         buffer audio sink: to terminate the filter chain.
         ***********************************************************/
         buffersink_ctx = avfilter_graph_alloc_filter (
-            filter_graph, abuffersink, "out"
+            filter_graph,
+            abuffersink,
+            "out"
         );
 
         if (
             !buffersink_ctx
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot create audio buffer sink\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot create audio buffer sink\n"
             );
 
             ret = AVERROR (
@@ -242,7 +277,9 @@ private class DecodeFilterAudioApplication : GLib.Application {
         }
 
         ret = av_opt_set (
-            buffersink_ctx, "sample_formats", "s16",
+            buffersink_ctx,
+            "sample_formats",
+            "s16",
                         AV_OPT_SEARCH_CHILDREN
         );
 
@@ -250,7 +287,9 @@ private class DecodeFilterAudioApplication : GLib.Application {
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot set output sample format\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot set output sample format\n"
             );
 
             throw new Goto.END (
@@ -258,7 +297,9 @@ private class DecodeFilterAudioApplication : GLib.Application {
         }
 
         ret = av_opt_set (
-            buffersink_ctx, "channel_layouts", "mono",
+            buffersink_ctx,
+            "channel_layouts",
+            "mono",
                         AV_OPT_SEARCH_CHILDREN
         );
 
@@ -266,7 +307,9 @@ private class DecodeFilterAudioApplication : GLib.Application {
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot set output channel layout\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot set output channel layout\n"
             );
 
             throw new Goto.END (
@@ -274,15 +317,22 @@ private class DecodeFilterAudioApplication : GLib.Application {
         }
 
         ret = av_opt_set_array (
-            buffersink_ctx, "samplerates", AV_OPT_SEARCH_CHILDREN,
-                            0, 1, AV_OPT_TYPE_INT, &out_sample_rate
+            buffersink_ctx,
+            "samplerates",
+            AV_OPT_SEARCH_CHILDREN,
+                            0,
+                            1,
+                            AV_OPT_TYPE_INT,
+                            &out_sample_rate
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot set output sample rate\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot set output sample rate\n"
             );
 
             throw new Goto.END (
@@ -290,14 +340,17 @@ private class DecodeFilterAudioApplication : GLib.Application {
         }
 
         ret = avfilter_init_dict (
-            buffersink_ctx, null
+            buffersink_ctx,
+            null
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Cannot initialize audio buffer sink\n"
+                null,
+                AV_LOG_ERROR,
+                "Cannot initialize audio buffer sink\n"
             );
 
             throw new Goto.END (
@@ -338,8 +391,11 @@ private class DecodeFilterAudioApplication : GLib.Application {
         inputs.next = null;
 
         ret = avfilter_graph_parse_ptr (
-            filter_graph, filters_descr,
-            &inputs, &outputs, null
+            filter_graph,
+            filters_descr,
+            &inputs,
+            &outputs,
+            null
         );
 
         if (
@@ -350,7 +406,8 @@ private class DecodeFilterAudioApplication : GLib.Application {
         }
 
         ret = avfilter_graph_config (
-            filter_graph, null
+            filter_graph,
+            null
         );
 
         if (
@@ -366,18 +423,23 @@ private class DecodeFilterAudioApplication : GLib.Application {
         ***********************************************************/
         outlink = buffersink_ctx.inputs[0];
         av_channel_layout_describe (
-            &outlink.ch_layout, args, sizeof (
+            &outlink.ch_layout,
+            args,
+            sizeof (
                 args)
         );
 
         av_log (
-            null, AV_LOG_INFO, "Output: srate:%dHz fmt:%s chlayout:%s\n",
+            null,
+            AV_LOG_INFO,
+            "Output: srate:%dHz fmt:%s chlayout:%s\n",
             (
                 int)outlink.sample_rate,
             (
                 string )av_x_if_null (
                 av_get_sample_fmt_name (
-                    outlink.format), "?"),
+                    outlink.format),
+                    "?"),
             args
     );
 
@@ -491,7 +553,8 @@ private class DecodeFilterAudioApplication : GLib.Application {
             true
         ) {
             ret = av_read_frame (
-            fmt_ctx, packet
+            fmt_ctx,
+            packet
             );
 
             if (
@@ -504,14 +567,17 @@ private class DecodeFilterAudioApplication : GLib.Application {
                 packet.stream_index == audio_stream_index
             ) {
                 ret = avcodec_send_packet (
-                dec_ctx, packet
+                dec_ctx,
+                packet
                 );
 
                 if (
                     ret < 0
                 ) {
                     av_log (
-                        null, AV_LOG_ERROR, "Error while sending a packet to the decoder\n"
+                        null,
+                        AV_LOG_ERROR,
+                        "Error while sending a packet to the decoder\n"
                     );
 
                     break;
@@ -521,7 +587,8 @@ private class DecodeFilterAudioApplication : GLib.Application {
                     ret >= 0
                 ) {
                     ret = avcodec_receive_frame (
-                    dec_ctx, frame
+                    dec_ctx,
+                    frame
                     );
 
                     if (
@@ -535,7 +602,9 @@ private class DecodeFilterAudioApplication : GLib.Application {
                         ret < 0
                     ) {
                         av_log (
-                            null, AV_LOG_ERROR, "Error while receiving a frame from the decoder\n"
+                            null,
+                            AV_LOG_ERROR,
+                            "Error while receiving a frame from the decoder\n"
                         );
 
                         throw new Goto.END (
@@ -551,11 +620,13 @@ private class DecodeFilterAudioApplication : GLib.Application {
                         ***********************************************************/
                         if (
                             av_buffersrc_add_frame_flags (
-                                buffersrc_ctx, frame, AV_BUFFERSRC_FLAG_KEEP_REF
+                                buffersrc_ctx,
+                            frame, AV_BUFFERSRC_FLAG_KEEP_REF
                             ) < 0
                         ) {
                             av_log (
-                                null, AV_LOG_ERROR, "Error while feeding the audio filtergraph\n"
+                                null,
+                            AV_LOG_ERROR, "Error while feeding the audio filtergraph\n"
                             );
 
                             break;
@@ -568,7 +639,8 @@ private class DecodeFilterAudioApplication : GLib.Application {
                             true
                         ) {
                             ret = av_buffersink_get_frame (
-                                buffersink_ctx, filt_frame
+                                buffersink_ctx,
+                            filt_frame
                             );
 
                             if (
@@ -623,11 +695,15 @@ private class DecodeFilterAudioApplication : GLib.Application {
             ***********************************************************/
             if (
                 av_buffersrc_add_frame_flags (
-                    buffersrc_ctx, null, 0
+                    buffersrc_ctx,
+                    null,
+                    0
                 ) < 0
             ) {
                 av_log (
-                    null, AV_LOG_ERROR, "Error while closing the filtergraph\n"
+                    null,
+                    AV_LOG_ERROR,
+                    "Error while closing the filtergraph\n"
                 );
 
                 throw new Goto.END (
@@ -641,7 +717,8 @@ private class DecodeFilterAudioApplication : GLib.Application {
                 true
             ) {
                 ret = av_buffersink_get_frame (
-                buffersink_ctx, filt_frame
+                buffersink_ctx,
+                filt_frame
                 );
 
                 if (

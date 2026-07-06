@@ -33,7 +33,8 @@ private static void randomize_buffers () {
     for (
         k = -4;
         k < SIZEOF_PIXEL * FFMAX (
-            8, size);
+            8,
+            size);
         k += 4
     ) {
         uint32 r = rnd () & mask;
@@ -116,7 +117,9 @@ private static void check_ipred () {
     //  );
 
     VP9DSPContext vp9_dsp_context;
-    int tx, mode, bit_depth;
+    int tx;
+    int mode;
+    int bit_depth;
 
     for (
         bit_depth = 8;
@@ -124,7 +127,9 @@ private static void check_ipred () {
         bit_depth += 2
     ) {
         ff_vp9dsp_init (
-            &vp9_dsp_context, bit_depth, 0
+            &vp9_dsp_context,
+            bit_depth,
+            0
         );
 
         for (
@@ -147,22 +152,27 @@ private static void check_ipred () {
                     randomize_buffers ();
 
                     call_ref (
-                        dst0, size * SIZEOF_PIXEL, l, a
+                        dst0,
+                        size * SIZEOF_PIXEL, l, a
                     );
 
                     call_new (
-                        dst1, size * SIZEOF_PIXEL, l, a
+                        dst1,
+                        size * SIZEOF_PIXEL, l, a
                     );
 
                     if (
                         memcmp (
-                            dst0, dst1, size * size * SIZEOF_PIXEL)
+                            dst0,
+                            dst1,
+                            size * size * SIZEOF_PIXEL)
                     ) {
                         fail ();
                     }
 
                     bench_new (
-                        dst1, size * SIZEOF_PIXEL,l, a
+                        dst1,
+                        size * SIZEOF_PIXEL,l, a
                     );
 
                 }
@@ -253,7 +263,8 @@ public static void fdct_1d (
     double[] double_array_in,
     int sz
 ) {
-    int k, n;
+    int k;
+    int n;
 
     for (
         k = 0;
@@ -287,7 +298,8 @@ private static void fadst4_1d (
     double[] double_array_in,
     int sz
 ) {
-    int k, n;
+    int k;
+    int n;
 
     for (
         k = 0;
@@ -324,7 +336,8 @@ public static void fadst_1d (
     double[] double_array_in,
     int sz
 ) {
-    int k, n;
+    int k;
+    int n;
 
     for (
         k = 0;
@@ -400,7 +413,8 @@ private static void ftx_2d (
 ) {
     double temp[1024];
     double scaling_factor = scaling_factors[tx][txtp];
-    int i, j;
+    int i;
+    int j;
 
     // cols
     for (
@@ -444,7 +458,8 @@ private static void ftx (
     int sz,
     int bit_depth
 ) {
-    double ind[1024], outd[1024];
+    double ind[1024];
+    double outd[1024];
     int n;
 
     emms_c ();
@@ -465,7 +480,9 @@ private static void ftx (
     }
 
     ftx_2d (
-        outd, ind, tx, txtp, sz
+        outd,
+        ind,
+        tx, txtp, sz
     );
 
     for (
@@ -656,7 +673,12 @@ private static void check_itxfm () {
     //  );
 
     VP9DSPContext vp9_dsp_context;
-    int y, x, tx, txtp, bit_depth, sub;
+    int y;
+    int x;
+    int tx;
+    int txtp;
+    int bit_depth;
+    int sub;
 
     for (
         bit_depth = 8;
@@ -664,7 +686,9 @@ private static void check_itxfm () {
         bit_depth += 2
     ) {
         ff_vp9dsp_init (
-            &vp9_dsp_context, bit_depth, 0
+            &vp9_dsp_context,
+            bit_depth,
+            0
         );
 
         for (
@@ -718,61 +742,80 @@ private static void check_itxfm () {
 
                         randomize_buffers ();
                         ftx (
-                            coef, tx, txtp, sz, bit_depth
+                            coef,
+                            tx,
+                            txtp,
+                            sz,
+                            bit_depth
                         );
 
                         if (
                             sub < sz
                         ) {
                             eob = copy_subcoefs (
-                                subcoef0, coef, tx, txtp,
-                                sz, sub, bit_depth
+                                subcoef0,
+                            coef, tx, txtp,
+                                sz,
+                            sub, bit_depth
                             );
 
                         } else {
                             eob = sz * sz;
                             memcpy (
-                                subcoef0, coef, sz * sz * SIZEOF_COEF
+                                subcoef0,
+                            coef, sz * sz * SIZEOF_COEF
                             );
 
                         }
 
                         memcpy (
-                            dst0, dst, sz * sz * SIZEOF_PIXEL
+                            dst0,
+                            dst,
+                            sz * sz * SIZEOF_PIXEL
                         );
 
                         memcpy (
-                            dst1, dst, sz * sz * SIZEOF_PIXEL
+                            dst1,
+                            dst,
+                            sz * sz * SIZEOF_PIXEL
                         );
 
                         memcpy (
-                            subcoef1, subcoef0, sz * sz * SIZEOF_COEF
+                            subcoef1,
+                            subcoef0,
+                            sz * sz * SIZEOF_COEF
                         );
 
                         call_ref (
-                            dst0, sz * SIZEOF_PIXEL, subcoef0, eob
+                            dst0,
+                            sz * SIZEOF_PIXEL, subcoef0, eob
                         );
 
                         call_new (
-                            dst1, sz * SIZEOF_PIXEL, subcoef1, eob
+                            dst1,
+                            sz * SIZEOF_PIXEL, subcoef1, eob
                         );
 
                         if (
                             memcmp (
-                                dst0, dst1, sz * sz * SIZEOF_PIXEL
+                                dst0,
+                            dst1, sz * sz * SIZEOF_PIXEL
                             ) ||
                             !iszero (
-                                subcoef0, sz * sz * SIZEOF_COEF
+                                subcoef0,
+                            sz * sz * SIZEOF_COEF
                             ) ||
                             !iszero (
-                                subcoef1, sz * sz * SIZEOF_COEF
+                                subcoef1,
+                            sz * sz * SIZEOF_COEF
                             )
                         ) {
                             fail ();
                         }
 
                         bench_new (
-                            dst, sz * SIZEOF_PIXEL, coef, eob
+                            dst,
+                            sz * SIZEOF_PIXEL, coef, eob
                         );
 
                     }
@@ -813,7 +856,8 @@ private static void setpx (
         (
             (uint16[])buf0
         )[(a) + (b) * jstride] = av_clip_uintp2 (
-            c, bit_depth
+            c,
+            bit_depth
         );
 
     }
@@ -872,11 +916,15 @@ private static void randomize_loopfilter_buffers (
     uint8[] buf1
 ) {
     uint32 mask = (
-        1 << bit_depth) - 1;
+        1 << bit_depth
+    ) - 1;
+
     int off = dir ? lineoff : lineoff * 16;
     int istride = dir ? 1 : 16;
     int jstride = dir ? str : 1;
-    int i, j;
+    int i;
+    int j;
+
     for (
         i = 0;
         i < 2;
@@ -884,11 +932,15 @@ private static void randomize_loopfilter_buffers (
     ) {
         int idx = off + i * istride, p0, q0;
         setpx (
-            idx, 0, q0 = rnd () & mask
+            idx,
+            0,
+            q0 = rnd () & mask
         );
 
         setsx (
-            idx, -1, p0 = q0, E[bidx] >> 2
+            idx,
+            -1,
+            p0 = q0, E[bidx] >> 2
         );
 
         for (
@@ -897,11 +949,15 @@ private static void randomize_loopfilter_buffers (
             j++
         ) {
             setsx (
-                idx, -1 - j, p0, F[bidx]
+                idx,
+                -1 - j, p0, F[bidx]
             );
 
             setsx (
-                idx, j, q0, F[bidx]
+                idx,
+                j,
+                q0,
+                F[bidx]
             );
 
         }
@@ -915,11 +971,15 @@ private static void randomize_loopfilter_buffers (
     ) {
         int idx = off + i * istride, p0, q0;
         setpx (
-            idx, 0, q0 = rnd () & mask
+            idx,
+            0,
+            q0 = rnd () & mask
         );
 
         setsx (
-            idx, -1, p0 = q0, E[bidx] >> 2
+            idx,
+            -1,
+            p0 = q0, E[bidx] >> 2
         );
 
         for (
@@ -928,11 +988,15 @@ private static void randomize_loopfilter_buffers (
             j++
         ) {
             setsx (
-                idx, -1 - j, p0, F[bidx]
+                idx,
+                -1 - j, p0, F[bidx]
             );
 
             setsx (
-                idx, j, q0, F[bidx]
+                idx,
+                j,
+                q0,
+                F[bidx]
             );
 
         }
@@ -943,11 +1007,14 @@ private static void randomize_loopfilter_buffers (
             j++
         ) {
             setpx (
-                idx, -1 - j, rnd () & mask
+                idx,
+                -1 - j, rnd () & mask
             );
 
             setpx (
-                idx, j, rnd () & mask
+                idx,
+                j,
+                rnd () & mask
             );
 
         }
@@ -961,35 +1028,53 @@ private static void randomize_loopfilter_buffers (
     ) {
         int idx = off + i * istride, p2, p1, p0, q0, q1, q2;
         setpx (
-            idx, 0, q0 = rnd () & mask
+            idx,
+            0,
+            q0 = rnd () & mask
         );
 
         setsx (
-            idx, 1, q1 = q0, I[bidx]
+            idx,
+            1,
+            q1 = q0, I[bidx]
         );
 
         setsx (
-            idx, 2, q2 = q1, I[bidx]
+            idx,
+            2,
+            q2 = q1, I[bidx]
         );
 
         setsx (
-            idx, 3, q2, I[bidx]
+            idx,
+            3,
+            q2,
+            I[bidx]
         );
 
         setsx (
-            idx, -1, p0 = q0, E[bidx] >> 2
+            idx,
+            -1,
+            p0 = q0, E[bidx] >> 2
         );
 
         setsx (
-            idx, -2, p1 = p0, I[bidx]
+            idx,
+            -2,
+            p1 = p0, I[bidx]
         );
 
         setsx (
-            idx, -3, p2 = p1, I[bidx]
+            idx,
+            -3,
+            p2 = p1, I[bidx]
         );
 
         setsx (
-            idx, -4, p2, I[bidx]
+            idx,
+            -4,
+            p2,
+            I[bidx]
         );
 
         for (
@@ -998,11 +1083,14 @@ private static void randomize_loopfilter_buffers (
             j++
         ) {
             setpx (
-                idx, -1 - j, rnd () & mask
+                idx,
+                -1 - j, rnd () & mask
             );
 
             setpx (
-                idx, j, rnd () & mask
+                idx,
+                j,
+                rnd () & mask
             );
 
         }
@@ -1021,11 +1109,14 @@ private static void randomize_loopfilter_buffers (
             j++
         ) {
             setpx (
-                idx, -1 - j, rnd () & mask
+                idx,
+                -1 - j, rnd () & mask
             );
 
             setpx (
-                idx, j, rnd () & mask
+                idx,
+                j,
+                rnd () & mask
             );
 
         }
@@ -1040,7 +1131,11 @@ private static void randomize_buffers (
     void *str
 ) {
     randomize_loopfilter_buffers (
-        bidx, lineoff, str, bit_depth, dir,
+        bidx,
+        lineoff,
+        str,
+        bit_depth,
+        dir,
         E, F, H, I, buf0, buf1
     );
 
@@ -1088,7 +1183,10 @@ private static void check_loopfilter () {
     //  );
 
     VP9DSPContext vp9_dsp_context;
-    int dir, wd, wd2, bit_depth;
+    int dir;
+    int wd;
+    int wd2;
+    int bit_depth;
 
     for (
         bit_depth = 8;
@@ -1096,7 +1194,9 @@ private static void check_loopfilter () {
         bit_depth += 2
     ) {
         ff_vp9dsp_init (
-            &vp9_dsp_context, bit_depth, 0
+            &vp9_dsp_context,
+            bit_depth,
+            0
         );
 
         for (
@@ -1123,11 +1223,14 @@ private static void check_loopfilter () {
                     check_func (
                         vp9_dsp_context.loop_filter_8[wd][dir],
                         "vp9_loop_filter_%s_%d_8_%dbpp",
-                        dir_name[dir], 4 << wd, bit_depth
+                        dir_name[dir],
+                        4 << wd, bit_depth
                     )
                 ) {
                     randomize_buffers (
-                        0, 0, 8
+                        0,
+                        0,
+                        8
                     );
 
                     memcpy (
@@ -1136,11 +1239,13 @@ private static void check_loopfilter () {
                     );
 
                     call_ref (
-                        buf0, 16 * SIZEOF_PIXEL >> dir, E[0], I[0], H[0]
+                        buf0,
+                        16 * SIZEOF_PIXEL >> dir, E[0], I[0], H[0]
                     );
 
                     call_new (
-                        buf1, 16 * SIZEOF_PIXEL >> dir, E[0], I[0], H[0]
+                        buf1,
+                        16 * SIZEOF_PIXEL >> dir, E[0], I[0], H[0]
                     );
 
                     if (
@@ -1151,7 +1256,8 @@ private static void check_loopfilter () {
                     }
 
                     bench_new (
-                        buf1, 16 * SIZEOF_PIXEL >> dir, E[0], I[0], H[0]
+                        buf1,
+                        16 * SIZEOF_PIXEL >> dir, E[0], I[0], H[0]
                     );
 
                 }
@@ -1174,11 +1280,15 @@ private static void check_loopfilter () {
                            dir_name[dir], bit_depth)
             ) {
                 randomize_buffers (
-                    0, 0, 16
+                    0,
+                    0,
+                    16
                 );
 
                 randomize_buffers (
-                    0, 8, 16
+                    0,
+                    8,
+                    16
                 );
 
                 memcpy (
@@ -1186,22 +1296,37 @@ private static void check_loopfilter () {
                 );
 
                 call_ref (
-                    buf0, 16 * SIZEOF_PIXEL, E[0], I[0], H[0]
+                    buf0,
+                    16 * SIZEOF_PIXEL,
+                    E[0],
+                    I[0],
+                    H[0]
                 );
 
                 call_new (
-                    buf1, 16 * SIZEOF_PIXEL, E[0], I[0], H[0]
+                    buf1,
+                    16 * SIZEOF_PIXEL,
+                    E[0],
+                    I[0],
+                    H[0]
                 );
 
                 if (
                     memcmp (
-                        buf0 - midoff, buf1 - midoff, 16 * 16 * SIZEOF_PIXEL)
+                        buf0 - midoff,
+                        buf1 - midoff,
+                        16 * 16 * SIZEOF_PIXEL
+                    )
                 ) {
                     fail ();
                 }
 
                 bench_new (
-                    buf1, 16 * SIZEOF_PIXEL, E[0], I[0], H[0]
+                    buf1,
+                    16 * SIZEOF_PIXEL,
+                    E[0],
+                    I[0],
+                    H[0]
                 );
 
             }
@@ -1223,15 +1348,22 @@ private static void check_loopfilter () {
                         check_func (
                             vp9_dsp_context.loop_filter_mix2[wd][wd2][dir],
                             "vp9_loop_filter_mix2_%s_%d%d_16_%dbpp",
-                            dir_name[dir], 4 << wd, 4 << wd2, bit_depth
+                            dir_name[dir],
+                            4 << wd,
+                            4 << wd2,
+                            bit_depth
                         )
                     ) {
                         randomize_buffers (
-                            0, 0, 16
+                            0,
+                            0,
+                            16
                         );
 
                         randomize_buffers (
-                            1, 8, 16
+                            1,
+                            8,
+                            16
                         );
 
                         memcpy (
@@ -1358,11 +1490,13 @@ private static void randomize_buffers () {
         ) {
             uint32 r = rnd () & mask;
             AV_WN32A (
-                dst0 + k, r
+                dst0 + k,
+                r
             );
 
             AV_WN32A (
-                dst1 + k, r
+                dst1 + k,
+                r
             );
 
         }
@@ -1413,7 +1547,12 @@ private static void check_mc () {
     //  );
 
     VP9DSPContext vp9_dsp_context;
-    int op, hsize, bit_depth, filter, dx, dy;
+    int op;
+    int hsize;
+    int bit_depth;
+    int filter;
+    int dx;
+    int dy;
 
     char str[256];
 
@@ -1428,7 +1567,9 @@ private static void check_mc () {
             bit_depth += 2
         ) {
             ff_vp9dsp_init (
-                &vp9_dsp_context, bit_depth, 0
+                &vp9_dsp_context,
+                bit_depth,
+                0
             );
 
             for (
@@ -1462,8 +1603,10 @@ private static void check_mc () {
                                     sizeof (
                                         str
                                     ),
-                                    "%s_%s_%d%s", op_names[op],
-                                    filter_names[filter], size,
+                                    "%s_%s_%d%s",
+                                    op_names[op],
+                                    filter_names[filter],
+                                    size,
                                     subpel_names[dy][dx]
                                 );
 
@@ -1473,7 +1616,9 @@ private static void check_mc () {
                                     sizeof (
                                         str
                                     ),
-                                    "%s%d", op_names[op], size
+                                    "%s%d",
+                                    op_names[op],
+                                    size
                                 );
 
                             }
@@ -1513,18 +1658,25 @@ private static void check_mc () {
                                     src,
                                     SRC_BUF_STRIDE * SIZEOF_PIXEL,
                                     size,
-                                    mx, my
+                                    mx,
+                                    my
                                 );
 
                                 call_new (
-                                    dst1, size * SIZEOF_PIXEL,
-                                    src, SRC_BUF_STRIDE * SIZEOF_PIXEL,
-                                    size, mx, my
+                                    dst1,
+                                    size * SIZEOF_PIXEL,
+                                    src,
+                                    SRC_BUF_STRIDE * SIZEOF_PIXEL,
+                                    size,
+                                    mx,
+                                    my
                                 );
 
                                 if (
                                     memcmp (
-                                        dst0, dst1, DST_BUF_SIZE
+                                        dst0,
+                                        dst1,
+                                        DST_BUF_SIZE
                                     )
                                 ) {
                                     fail ();
@@ -1553,9 +1705,13 @@ private static void check_mc () {
                                 }
 
                                 bench_new (
-                                    dst1, size * SIZEOF_PIXEL,
-                                    src, SRC_BUF_STRIDE * SIZEOF_PIXEL,
-                                    size, mx, my
+                                    dst1,
+                                    size * SIZEOF_PIXEL,
+                                    src,
+                                    SRC_BUF_STRIDE * SIZEOF_PIXEL,
+                                    size,
+                                    mx,
+                                    my
                                 );
 
                             }

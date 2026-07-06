@@ -81,7 +81,10 @@ private class VAAPITranscodeApplication : GLib.Application {
         AVStream? video = null;
 
         ret = avformat_open_input (
-            &ifmt_ctx, filename, null, null
+            &ifmt_ctx,
+            filename,
+            null,
+            null
         );
 
         if (
@@ -100,7 +103,8 @@ private class VAAPITranscodeApplication : GLib.Application {
         }
 
         ret = avformat_find_stream_info (
-            ifmt_ctx, null
+            ifmt_ctx,
+            null
         );
 
         if (
@@ -117,7 +121,12 @@ private class VAAPITranscodeApplication : GLib.Application {
         }
 
         ret = av_find_best_stream (
-            ifmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &decoder, 0
+            ifmt_ctx,
+            AVMEDIA_TYPE_VIDEO,
+            -1,
+            -1,
+            &decoder,
+            0
         );
 
         if (
@@ -150,7 +159,8 @@ private class VAAPITranscodeApplication : GLib.Application {
 
         video = ifmt_ctx.streams[video_stream];
         ret = avcodec_parameters_to_context (
-            decoder_ctx, video.codecpar
+            decoder_ctx,
+            video.codecpar
         );
 
         if (
@@ -187,7 +197,9 @@ private class VAAPITranscodeApplication : GLib.Application {
         decoder_ctx.get_format = get_vaapi_format;
 
         ret = avcodec_open2 (
-            decoder_ctx, decoder, null
+            decoder_ctx,
+            decoder,
+            null
         );
 
         if (
@@ -216,7 +228,8 @@ private class VAAPITranscodeApplication : GLib.Application {
         );
 
         ret = avcodec_send_frame (
-            encoder_ctx, frame
+            encoder_ctx,
+            frame
         );
 
         if (
@@ -237,7 +250,8 @@ private class VAAPITranscodeApplication : GLib.Application {
             true
         ) {
             ret = avcodec_receive_packet (
-            encoder_ctx, enc_pkt
+            encoder_ctx,
+            enc_pkt
             );
 
             if (
@@ -248,12 +262,14 @@ private class VAAPITranscodeApplication : GLib.Application {
 
             enc_pkt.stream_index = 0;
             av_packet_rescale_ts (
-                enc_pkt, ifmt_ctx.streams[video_stream].time_base,
+                enc_pkt,
+                ifmt_ctx.streams[video_stream].time_base,
                 ofmt_ctx.streams[0].time_base
             );
 
             ret = av_interleaved_write_frame (
-                ofmt_ctx, enc_pkt
+                ofmt_ctx,
+                enc_pkt
             );
 
             if (
@@ -296,7 +312,8 @@ private class VAAPITranscodeApplication : GLib.Application {
         int ret = 0;
 
         ret = avcodec_send_packet (
-            decoder_ctx, pkt
+            decoder_ctx,
+            pkt
         );
 
         if (
@@ -326,7 +343,8 @@ private class VAAPITranscodeApplication : GLib.Application {
             }
 
             ret = avcodec_receive_frame (
-                decoder_ctx, frame
+                decoder_ctx,
+                frame
             );
 
             if (
@@ -391,7 +409,9 @@ private class VAAPITranscodeApplication : GLib.Application {
                 encoder_ctx.height = decoder_ctx.height;
 
                 ret = avcodec_open2 (
-                    encoder_ctx, enc_codec, null
+                    encoder_ctx,
+                    enc_codec,
+                    null
                 );
 
                 if (
@@ -412,7 +432,8 @@ private class VAAPITranscodeApplication : GLib.Application {
                 }
 
                 ost = avformat_new_stream (
-                    ofmt_ctx, enc_codec
+                    ofmt_ctx,
+                    enc_codec
                 );
 
                 if (
@@ -435,7 +456,8 @@ private class VAAPITranscodeApplication : GLib.Application {
 
                 ost.time_base = encoder_ctx.time_base;
                 ret = avcodec_parameters_from_context (
-                    ost.codecpar, encoder_ctx
+                    ost.codecpar,
+                    encoder_ctx
                 );
 
                 if (
@@ -459,7 +481,8 @@ private class VAAPITranscodeApplication : GLib.Application {
                 write the stream header
                 ***********************************************************/
                 ret = avformat_write_header (
-                    ofmt_ctx, null
+                    ofmt_ctx,
+                    null
                 );
 
                 if (
@@ -483,7 +506,8 @@ private class VAAPITranscodeApplication : GLib.Application {
             }
 
             ret = encode_write (
-                pkt, frame
+                pkt,
+                frame
             );
 
             if (
@@ -529,7 +553,11 @@ private class VAAPITranscodeApplication : GLib.Application {
         }
 
         ret = av_hwdevice_ctx_create (
-            &hw_device_ctx, AV_HWDEVICE_TYPE_VAAPI, null, null, 0
+            &hw_device_ctx,
+            AV_HWDEVICE_TYPE_VAAPI,
+            null,
+            null,
+            0
         );
 
         if (
@@ -589,7 +617,10 @@ private class VAAPITranscodeApplication : GLib.Application {
 
         ret = (
             avformat_alloc_output_context2 (
-                &ofmt_ctx, null, null, argv[3])
+                &ofmt_ctx,
+                null,
+                null,
+                argv[3])
         );
 
         if (
@@ -622,7 +653,9 @@ private class VAAPITranscodeApplication : GLib.Application {
         }
 
         ret = avio_open (
-            &ofmt_ctx.pb, argv[3], AVIO_FLAG_WRITE
+            &ofmt_ctx.pb,
+            argv[3],
+            AVIO_FLAG_WRITE
         );
 
         if (
@@ -646,7 +679,8 @@ private class VAAPITranscodeApplication : GLib.Application {
             ret >= 0
         ) {
             ret = av_read_frame (
-            ifmt_ctx, dec_pkt
+            ifmt_ctx,
+            dec_pkt
             );
 
             if (
@@ -659,7 +693,8 @@ private class VAAPITranscodeApplication : GLib.Application {
                 video_stream == dec_pkt.stream_index
             ) {
                 ret = dec_enc (
-                dec_pkt, enc_codec
+                dec_pkt,
+                enc_codec
                 );
 
             }
@@ -678,14 +713,16 @@ private class VAAPITranscodeApplication : GLib.Application {
         );
 
         ret = dec_enc (
-            dec_pkt, enc_codec
+            dec_pkt,
+            enc_codec
         );
 
         /***********************************************************
         flush encoder
         ***********************************************************/
         ret = encode_write (
-            dec_pkt, null
+            dec_pkt,
+            null
         );
 
         /***********************************************************

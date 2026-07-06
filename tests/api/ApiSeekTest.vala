@@ -49,12 +49,16 @@ private class ApiSeekTest : GLib.TestCase {
 
             size_of_array *= 2;
             crc_array = av_realloc_f (
-                crc_array, size_of_array, sizeof (
+                crc_array,
+                size_of_array,
+                sizeof (
                     uint32)
             );
 
             pts_array = av_realloc_f (
-                pts_array, size_of_array, sizeof (
+                pts_array,
+                size_of_array,
+                sizeof (
                     int64)
             );
 
@@ -99,7 +103,9 @@ private class ApiSeekTest : GLib.TestCase {
                 ) {
                     GLib.print (
                         "Comparing 0x%08l %ll %d is OK\n",
-                        crc, pts, i
+                        crc,
+                        pts,
+                        i
                     );
 
                     return 0;
@@ -147,7 +153,10 @@ private class ApiSeekTest : GLib.TestCase {
         LibAVCodec.Packet packet;
 
         byte_buffer_size = av_image_get_buffer_size (
-            codec_context.pix_fmt, codec_context.width, codec_context.height, 16
+            codec_context.pix_fmt,
+            codec_context.width,
+            codec_context.height,
+            16
         );
 
         byte_buffer = av_malloc (
@@ -213,7 +222,8 @@ private class ApiSeekTest : GLib.TestCase {
             ) {
                 if (
                     av_read_frame (
-                        format_context, out packet
+                        format_context,
+                        out packet
                     ) < 0
                 ) {
                     end_of_stream = 1;
@@ -247,7 +257,9 @@ private class ApiSeekTest : GLib.TestCase {
                 }
 
                 result = avcodec_decode_video2 (
-                    codec_context, frame, out got_frame, out packet
+                    codec_context,
+                    frame,
+                    out got_frame, out packet
                 );
 
                 if (
@@ -266,7 +278,8 @@ private class ApiSeekTest : GLib.TestCase {
                     got_frame
                 ) {
                     number_of_written_bytes = av_image_copy_to_buffer (
-                        byte_buffer, byte_buffer_size,
+                        byte_buffer,
+                        byte_buffer_size,
                         (uint8[])frame.data,
                         (uint[])frame.linesize,
                         codec_context.pix_fmt,
@@ -301,7 +314,8 @@ private class ApiSeekTest : GLib.TestCase {
                     );
 
                     GLib.print (
-                        "%10ll, 0x%08l\n",
+                        "%10ll,
+                        0x%08l\n",
                         frame.pts,
                         crc
                     );
@@ -311,7 +325,8 @@ private class ApiSeekTest : GLib.TestCase {
                     ) {
                         if (
                             add_crc_to_array (
-                                crc, frame.pts
+                                crc,
+                            frame.pts
                             ) < 0
                         ) {
                             return -1;
@@ -322,7 +337,8 @@ private class ApiSeekTest : GLib.TestCase {
                     else {
                         if (
                             compare_crc_in_array (
-                                crc, frame.pts
+                                crc,
+                            frame.pts
                             ) < 0
                         ) {
                             return -1;
@@ -372,7 +388,8 @@ private class ApiSeekTest : GLib.TestCase {
         ulong number;
         char[] end_of_string = null;
         number = strtol (
-            string_with_number, out end_of_string, 10
+            string_with_number,
+            out end_of_string, 10
         );
 
         if (
@@ -448,7 +465,8 @@ private class ApiSeekTest : GLib.TestCase {
             }
 
             result = avformat_find_stream_info (
-                format_context, null
+                format_context,
+                null
             );
 
             if (
@@ -557,7 +575,8 @@ private class ApiSeekTest : GLib.TestCase {
             }
 
             result = avcodec_parameters_to_context (
-                codec_context, origin_par
+                codec_context,
+                origin_par
             );
 
             if (
@@ -576,7 +595,9 @@ private class ApiSeekTest : GLib.TestCase {
             }
 
             result = avcodec_open2 (
-                codec_context, codec, null
+                codec_context,
+                codec,
+                null
             );
 
             if (
@@ -615,7 +636,13 @@ private class ApiSeekTest : GLib.TestCase {
             }
 
             result = compute_crc_of_packets (
-                format_context, video_stream, codec_context, frame, 0, 0, 1
+                format_context,
+                video_stream,
+                codec_context,
+                frame,
+                0,
+                0,
+                1
             );
 
             if (
@@ -638,7 +665,13 @@ private class ApiSeekTest : GLib.TestCase {
                     j += 100
                 ) {
                     result = compute_crc_of_packets (
-                        format_context, video_stream, codec_context, frame, i, j, 0
+                        format_context,
+                        video_stream,
+                        codec_context,
+                        frame,
+                        i,
+                        j,
+                        0
                     );
 
                     if (
@@ -700,7 +733,9 @@ private class ApiSeekTest : GLib.TestCase {
 
         if (
             seek_test (
-                argv[1], argv[2], argv[3]
+                argv[1],
+                argv[2],
+                argv[3]
             ) != 0
         ) {
             return 1;

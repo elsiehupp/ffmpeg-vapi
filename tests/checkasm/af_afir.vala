@@ -22,7 +22,9 @@ private static void randomize_buffer (
     void *buf
 ) {
     int i;
-    double bmg[2], stddev = 10.0, mean = 0.0;
+    double bmg[2];
+    double stddev = 10.0;
+    double mean = 0.0;
 
     for (
         i = 0;
@@ -30,7 +32,8 @@ private static void randomize_buffer (
         i += 2
     ) {
         av_bmg_get (
-            &checkasm_lfg, bmg
+            &checkasm_lfg,
+            bmg
         );
 
         buf[i] = bmg[0] * stddev + mean;
@@ -90,7 +93,10 @@ private static void test_fcmul_add (
     );
 
     call_new (
-        odst, src1, src2, LEN
+        odst,
+        src1,
+        src2,
+        LEN
     );
 
     for (
@@ -100,12 +106,17 @@ private static void test_fcmul_add (
     ) {
         if (
             !float_near_abs_eps (
-                cdst[i], odst[i], 6.2e-05)
+                cdst[i],
+                odst[i],
+                6.2e-05)
         ) {
             fprintf (
                 stderr,
                 "%d: %- .12f - %- .12f = % .12g\n",
-                    i, cdst[i], odst[i], cdst[i] - odst[i]
+                    i,
+                    cdst[i],
+                    odst[i],
+                    cdst[i] - odst[i]
             );
 
             fail ();
@@ -115,13 +126,18 @@ private static void test_fcmul_add (
     }
 
     memcpy (
-        odst, src0, (
+        odst,
+        src0,
+        (
             LEN * 2 + 8) * sizeof (
                 float)
     );
 
     bench_new (
-        odst, src1, src2, LEN
+        odst,
+        src1,
+        src2,
+        LEN
     );
 
 }
@@ -170,7 +186,9 @@ private static void checkasm_check_afir () {
         )
     ) {
         test_fcmul_add (
-            src0, src1, src2
+            src0,
+            src1,
+            src2
         );
 
     }

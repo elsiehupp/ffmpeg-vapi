@@ -68,7 +68,8 @@ private class ResampleAudioApplication : GLib.Application {
                 sample_fmt == entry.sample_fmt
             ) {
                 fmt_out = AV_NE (
-                entry.fmt_be, entry.fmt_le
+                entry.fmt_be,
+                entry.fmt_le
                 );
 
                 return 0;
@@ -101,7 +102,9 @@ private class ResampleAudioApplication : GLib.Application {
         int sample_rate,
         double[] t
     ) {
-        int i, j;
+        int i;
+        int j;
+
         double tincr = 1.0 / sample_rate;
         double[] dstp = dst;
 
@@ -174,7 +177,8 @@ private class ResampleAudioApplication : GLib.Application {
         dst_filename = argv[1];
 
         dst_file = fopen (
-            dst_filename, "wb"
+            dst_filename,
+            "wb"
         );
 
         if (
@@ -216,27 +220,45 @@ private class ResampleAudioApplication : GLib.Application {
         set options
         ***********************************************************/
         av_opt_set_chlayout (
-            swr_ctx, "in_chlayout", &src_ch_layout, 0
+            swr_ctx,
+            "in_chlayout",
+            &src_ch_layout,
+            0
         );
 
         av_opt_set_int (
-            swr_ctx, "in_sample_rate", src_rate, 0
+            swr_ctx,
+            "in_sample_rate",
+            src_rate,
+            0
         );
 
         av_opt_set_sample_fmt (
-            swr_ctx, "in_sample_fmt", src_sample_fmt, 0
+            swr_ctx,
+            "in_sample_fmt",
+            src_sample_fmt,
+            0
         );
 
         av_opt_set_chlayout (
-            swr_ctx, "out_chlayout", &dst_ch_layout, 0
+            swr_ctx,
+            "out_chlayout",
+            &dst_ch_layout,
+            0
         );
 
         av_opt_set_int (
-            swr_ctx, "out_sample_rate", dst_rate, 0
+            swr_ctx,
+            "out_sample_rate",
+            dst_rate,
+            0
         );
 
         av_opt_set_sample_fmt (
-            swr_ctx, "out_sample_fmt", dst_sample_fmt, 0
+            swr_ctx,
+            "out_sample_fmt",
+            dst_sample_fmt,
+            0
         );
 
         /***********************************************************
@@ -264,7 +286,9 @@ private class ResampleAudioApplication : GLib.Application {
 
         src_nb_channels = src_ch_layout.nb_channels;
         ret = av_samples_alloc_array_and_samples (
-            &src_data, &src_linesize, src_nb_channels,
+            &src_data,
+            &src_linesize,
+            src_nb_channels,
                                                 src_nb_samples, src_sample_fmt, 0
         );
 
@@ -287,7 +311,10 @@ private class ResampleAudioApplication : GLib.Application {
         ***********************************************************/
         max_dst_nb_samples = dst_nb_samples =
             av_rescale_rnd (
-                src_nb_samples, dst_rate, src_rate, AV_ROUND_UP
+                src_nb_samples,
+                dst_rate,
+                src_rate,
+                AV_ROUND_UP
         );
 
         /***********************************************************
@@ -295,7 +322,9 @@ private class ResampleAudioApplication : GLib.Application {
         ***********************************************************/
         dst_nb_channels = dst_ch_layout.nb_channels;
         ret = av_samples_alloc_array_and_samples (
-            &dst_data, &dst_linesize, dst_nb_channels,
+            &dst_data,
+            &dst_linesize,
+            dst_nb_channels,
                                                 dst_nb_samples, dst_sample_fmt, 0
         );
 
@@ -319,7 +348,9 @@ private class ResampleAudioApplication : GLib.Application {
             fill_samples (
                 (double[])src_data[0],
                 src_nb_samples,
-                src_nb_channels, src_rate, &t
+                src_nb_channels,
+                src_rate,
+                &t
             );
 
             /***********************************************************
@@ -327,7 +358,8 @@ private class ResampleAudioApplication : GLib.Application {
             ***********************************************************/
             dst_nb_samples = av_rescale_rnd (
                 swr_get_delay (
-                    swr_ctx, src_rate) +
+                    swr_ctx,
+                    src_rate) +
                                             src_nb_samples, dst_rate, src_rate, AV_ROUND_UP
             );
 
@@ -339,8 +371,11 @@ private class ResampleAudioApplication : GLib.Application {
                 );
 
                 ret = av_samples_alloc (
-                    dst_data, &dst_linesize, dst_nb_channels,
-                                    dst_nb_samples, dst_sample_fmt, 1
+                    dst_data,
+                    &dst_linesize,
+                    dst_nb_channels,
+                                    dst_nb_samples,
+                                    dst_sample_fmt, 1
                 );
 
                 if (
@@ -356,7 +391,10 @@ private class ResampleAudioApplication : GLib.Application {
             convert to destination format
             ***********************************************************/
             ret = swr_convert (
-                swr_ctx, dst_data, dst_nb_samples, (
+                swr_ctx,
+                dst_data,
+                dst_nb_samples,
+                (
                     uint8[][] )src_data, src_nb_samples
             );
 
@@ -373,7 +411,8 @@ private class ResampleAudioApplication : GLib.Application {
             }
 
             dst_bufsize = av_samples_get_buffer_size (
-                &dst_linesize, dst_nb_channels,
+                &dst_linesize,
+                dst_nb_channels,
                                                     ret, dst_sample_fmt, 1
             );
 
@@ -397,7 +436,10 @@ private class ResampleAudioApplication : GLib.Application {
             );
 
             fwrite (
-                dst_data[0], 1, dst_bufsize, dst_file
+                dst_data[0],
+                1,
+                dst_bufsize,
+                dst_file
             );
 
         } while (
@@ -405,7 +447,8 @@ private class ResampleAudioApplication : GLib.Application {
         );
 
         ret = get_format_from_sample_fmt (
-            &fmt, dst_sample_fmt
+            &fmt,
+            dst_sample_fmt
         );
 
         if (
@@ -416,7 +459,9 @@ private class ResampleAudioApplication : GLib.Application {
         }
 
         av_channel_layout_describe (
-            &dst_ch_layout, buf, sizeof (
+            &dst_ch_layout,
+            buf,
+            sizeof (
                 buf)
         );
 
@@ -424,7 +469,11 @@ private class ResampleAudioApplication : GLib.Application {
             stderr,
             "Resampling succeeded. Play the output file with the command:\n" +
                 "ffplay -f %s -channel_layout %s -channels %d -ar %d %s\n",
-                fmt, buf, dst_nb_channels, dst_rate, dst_filename
+                fmt,
+                buf,
+                dst_nb_channels,
+                dst_rate,
+                dst_filename
     );
 
     //  end:

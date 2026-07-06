@@ -30,7 +30,9 @@ private const size_t BUF_SIZE = (
 );
 
 private static void randomize_buffers () {
-    int i, j;
+    int i;
+    int j;
+
     for (
         i = 0;
         i < HEIGHT;
@@ -116,7 +118,8 @@ private static void randomize_buffers () {
 private static void check_blend_func (
     void *depth
 ) {
-    int i, w;
+    int i;
+    int w;
 
     //  declare_func (
     //      void,
@@ -153,8 +156,10 @@ private static void check_blend_func (
         call_ref (
             top1 + src_offset,
             w,
-            bot1 + src_offset, w,
-            dst1 + dst_offset, w,
+            bot1 + src_offset,
+            w,
+            dst1 + dst_offset,
+            w,
             w,
             HEIGHT,
             &param,
@@ -176,13 +181,19 @@ private static void check_blend_func (
 
         if (
             memcmp (
-                top1, top2, BUF_SIZE
+                top1,
+                top2,
+                BUF_SIZE
             ) ||
             memcmp (
-                bot1, bot2, BUF_SIZE
+                bot1,
+                bot2,
+                BUF_SIZE
             ) ||
             memcmp (
-                dst1, dst2, BUF_SIZE
+                dst1,
+                dst2,
+                BUF_SIZE
             )
         ) {
             fail ();
@@ -191,8 +202,16 @@ private static void check_blend_func (
     }
 
     bench_new (
-        top2, w / 4, bot2, w / 4, dst2, w / 4,
-                w / 4, HEIGHT / 4, &param, null
+        top2,
+        w / 4,
+        bot2,
+        w / 4,
+        dst2,
+        w / 4,
+        w / 4,
+        HEIGHT / 4,
+        &param,
+        null
     );
 
 }

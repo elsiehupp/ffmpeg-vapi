@@ -30,7 +30,8 @@ private static void randomize_buffers (
     ) {
         int16 r = rnd ();
         AV_WN16A (
-            buf + j, r >> 3
+            buf + j,
+            r >> 3
         );
 
     }
@@ -48,7 +49,8 @@ private static void randomize_buffers2 (
         j++
     ) {
         AV_WN16A (
-            buf + j * 2, rnd () & 0x3FF
+            buf + j * 2,
+            rnd () & 0x3FF
         );
 
     }
@@ -70,17 +72,20 @@ private static void check_add_res (
     int i;
 
     //  LOCAL_ALIGNED_32 (
-    //      int16, res0,
+    //      int16,
+    //      res0,
     //      [32 * 32]
     //  );
 
     //  LOCAL_ALIGNED_32 (
-    //      int16, res1,
+    //      int16,
+    //      res1,
     //      [32 * 32]
     //  );
 
     //  LOCAL_ALIGNED_32 (
-    //      uint8, dst0,
+    //      uint8,
+    //      dst0,
     //      [32 * 32 * 2]
     //  );
 
@@ -102,20 +107,26 @@ private static void check_add_res (
         );
 
         randomize_buffers (
-            res0, size
+            res0,
+            size
         );
 
         randomize_buffers2 (
-            dst0, size
+            dst0,
+            size
         );
 
         memcpy (
-            res1, res0, sizeof (
+            res1,
+            res0,
+            sizeof (
                 res0) * size
         );
 
         memcpy (
-            dst1, dst0, sizeof (
+            dst1,
+            dst0,
+            sizeof (
                 int16) * size
         );
 
@@ -123,26 +134,36 @@ private static void check_add_res (
             check_func (
                 hevc_dsp_context.add_residual[i - 2],
                 "hevc_add_res_%dx%d_%d",
-                block_size, block_size, bit_depth
+                block_size,
+                block_size,
+                bit_depth
             )
         ) {
             call_ref (
-                dst0, res0, stride
+                dst0,
+                res0,
+                stride
             );
 
             call_new (
-                dst1, res1, stride
+                dst1,
+                res1,
+                stride
             );
 
             if (
                 memcmp (
-                    dst0, dst1, size)
+                    dst0,
+                    dst1,
+                    size)
             ) {
                 fail ();
             }
 
             bench_new (
-                dst1, res1, stride
+                dst1,
+                res1,
+                stride
             );
 
         }
@@ -162,11 +183,13 @@ private static void checkasm_check_hevc_add_res () {
         HEVCDSPContext hevc_dsp_context;
 
         ff_hevc_dsp_init (
-            &hevc_dsp_context, bit_depth
+            &hevc_dsp_context,
+            bit_depth
         );
 
         check_add_res (
-            hevc_dsp_context, bit_depth
+            hevc_dsp_context,
+            bit_depth
         );
 
     }

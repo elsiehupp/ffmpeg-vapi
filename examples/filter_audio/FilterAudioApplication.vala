@@ -119,7 +119,9 @@ private class FilterAudioApplication : GLib.Application {
         }
 
         abuffer_ctx = avfilter_graph_alloc_filter (
-            filter_graph, abuffer, "src"
+            filter_graph,
+            abuffer,
+            "src"
         );
 
         if (
@@ -140,25 +142,38 @@ private class FilterAudioApplication : GLib.Application {
         Set the filter options through the AVOptions API.
         ***********************************************************/
         av_channel_layout_describe (
-            &INPUT_CHANNEL_LAYOUT, ch_layout, sizeof (
+            &INPUT_CHANNEL_LAYOUT,
+            ch_layout,
+            sizeof (
                 ch_layout)
         );
 
         av_opt_set    (
-            abuffer_ctx, "channel_layout", ch_layout, AV_OPT_SEARCH_CHILDREN
+            abuffer_ctx,
+            "channel_layout",
+            ch_layout,
+            AV_OPT_SEARCH_CHILDREN
         );
 
         av_opt_set    (
-            abuffer_ctx, "sample_fmt", av_get_sample_fmt_name (
-                INPUT_FORMAT), AV_OPT_SEARCH_CHILDREN
+            abuffer_ctx,
+            "sample_fmt",
+            av_get_sample_fmt_name (
+                INPUT_FORMAT),
+                AV_OPT_SEARCH_CHILDREN
         );
 
         av_opt_set_q  (
-            abuffer_ctx, "time_base", new LibAVUtil.Rational () { numerator = 1, denominator = INPUT_SAMPLERATE }, AV_OPT_SEARCH_CHILDREN
+            abuffer_ctx,
+            "time_base",
+            new LibAVUtil.Rational () { numerator = 1, denominator = INPUT_SAMPLERATE }, AV_OPT_SEARCH_CHILDREN
         );
 
         av_opt_set_int (
-            abuffer_ctx, "sample_rate", INPUT_SAMPLERATE, AV_OPT_SEARCH_CHILDREN
+            abuffer_ctx,
+            "sample_rate",
+            INPUT_SAMPLERATE,
+            AV_OPT_SEARCH_CHILDREN
         );
 
         /***********************************************************
@@ -166,7 +181,8 @@ private class FilterAudioApplication : GLib.Application {
         set all the options above.
         ***********************************************************/
         err = avfilter_init_str (
-            abuffer_ctx, null
+            abuffer_ctx,
+            null
         );
 
         if (
@@ -199,7 +215,9 @@ private class FilterAudioApplication : GLib.Application {
         }
 
         volume_ctx = avfilter_graph_alloc_filter (
-            filter_graph, volume, "volume"
+            filter_graph,
+            volume,
+            "volume"
         );
 
         if (
@@ -221,12 +239,16 @@ private class FilterAudioApplication : GLib.Application {
         dictionary.
         ***********************************************************/
         av_dict_set (
-            &options_dict, "volume", AV_STRINGIFY (
-                VOLUME_VAL), 0
+            &options_dict,
+            "volume",
+            AV_STRINGIFY (
+                VOLUME_VAL),
+                0
         );
 
         err = avfilter_init_dict (
-            volume_ctx, &options_dict
+            volume_ctx,
+            &options_dict
         );
 
         av_dict_free (
@@ -264,7 +286,9 @@ private class FilterAudioApplication : GLib.Application {
         }
 
         aformat_ctx = avfilter_graph_alloc_filter (
-            filter_graph, aformat, "aformat"
+            filter_graph,
+            aformat,
+            "aformat"
         );
 
         if (
@@ -286,22 +310,27 @@ private class FilterAudioApplication : GLib.Application {
         key1=value1:key2=value2....
         ***********************************************************/
         snprintf (
-            options_str, sizeof (
+            options_str,
+            sizeof (
                 options_str),
                 "sample_fmts=%s:sample_rates=%d:channel_layouts=stereo",
                 av_get_sample_fmt_name (
-                    LibAVUtil.SampleFormat.SIGNED_16_BIT), 44100
+                    LibAVUtil.SampleFormat.SIGNED_16_BIT),
+                    44100
         );
 
         err = avfilter_init_str (
-            aformat_ctx, options_str
+            aformat_ctx,
+            options_str
         );
 
         if (
             err < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Could not initialize the aformat filter.\n"
+                null,
+                AV_LOG_ERROR,
+                "Could not initialize the aformat filter.\n"
             );
 
             return err;
@@ -327,7 +356,9 @@ private class FilterAudioApplication : GLib.Application {
         }
 
         abuffersink_ctx = avfilter_graph_alloc_filter (
-            filter_graph, abuffersink, "sink"
+            filter_graph,
+            abuffersink,
+            "sink"
         );
 
         if (
@@ -348,7 +379,8 @@ private class FilterAudioApplication : GLib.Application {
         This filter takes no options.
         ***********************************************************/
         err = avfilter_init_str (
-            abuffersink_ctx, null
+            abuffersink_ctx,
+            null
         );
 
         if (
@@ -367,14 +399,20 @@ private class FilterAudioApplication : GLib.Application {
         in this simple case the filters just form a linear chain.
         ***********************************************************/
         err = avfilter_link (
-            abuffer_ctx, 0, volume_ctx, 0
+            abuffer_ctx,
+            0,
+            volume_ctx,
+            0
         );
 
         if (
             err >= 0
         ) {
             err = avfilter_link (
-            volume_ctx, 0, aformat_ctx, 0
+            volume_ctx,
+            0,
+            aformat_ctx,
+            0
             );
 
         }
@@ -383,7 +421,10 @@ private class FilterAudioApplication : GLib.Application {
             err >= 0
         ) {
             err = avfilter_link (
-            aformat_ctx, 0, abuffersink_ctx, 0
+            aformat_ctx,
+            0,
+            abuffersink_ctx,
+            0
             );
 
         }
@@ -403,14 +444,17 @@ private class FilterAudioApplication : GLib.Application {
         Configure the graph.
         ***********************************************************/
         err = avfilter_graph_config (
-            filter_graph, null
+            filter_graph,
+            null
         );
 
         if (
             err < 0
         ) {
             av_log (
-                null, AV_LOG_ERROR, "Error configuring the filter graph\n"
+                null,
+                AV_LOG_ERROR,
+                "Error configuring the filter graph\n"
             );
 
             return err;
@@ -459,11 +503,14 @@ private class FilterAudioApplication : GLib.Application {
             );
 
             av_md5_sum (
-                checksum, frame.extended_data[i], plane_size
+                checksum,
+                frame.extended_data[i],
+                plane_size
             );
 
             fprintf (
-                stdout, "plane %d: 0x", i
+                stdout,
+                "plane %d: 0x", i
             );
 
             for (
@@ -475,19 +522,23 @@ private class FilterAudioApplication : GLib.Application {
                 j++
             ) {
                 fprintf (
-                    stdout, "%02X", checksum[j]
+                    stdout,
+                    "%02X",
+                    checksum[j]
                 );
 
             }
 
             fprintf (
-                stdout, "\n"
+                stdout,
+                "\n"
         );
 
         }
 
         fprintf (
-            stdout, "\n"
+            stdout,
+            "\n"
         );
 
         return 0;
@@ -511,14 +562,16 @@ private class FilterAudioApplication : GLib.Application {
         frame.sample_rate = INPUT_SAMPLERATE;
         frame.format = INPUT_FORMAT;
         av_channel_layout_copy (
-            &frame.ch_layout, &INPUT_CHANNEL_LAYOUT
+            &frame.ch_layout,
+            &INPUT_CHANNEL_LAYOUT
         );
 
         frame.nb_samples = FRAME_SIZE;
         frame.pts = frame_num * FRAME_SIZE;
 
         err = av_frame_get_buffer (
-            frame, 0
+            frame,
+            0
         );
 
         if (
@@ -634,7 +687,9 @@ private class FilterAudioApplication : GLib.Application {
         Set up the filtergraph.
         ***********************************************************/
         err = init_filter_graph (
-            &graph, &src, &sink
+            &graph,
+            &src,
+            &sink
         );
 
         if (
@@ -668,7 +723,8 @@ private class FilterAudioApplication : GLib.Application {
             get an input frame to be filtered
             ***********************************************************/
             err = get_input (
-                frame, i
+                frame,
+                i
             );
 
             if (
@@ -687,7 +743,8 @@ private class FilterAudioApplication : GLib.Application {
             Send the frame to the input of the filtergraph.
             ***********************************************************/
             err = av_buffersrc_add_frame (
-                src, frame
+                src,
+                frame
             );
 
             if (
@@ -711,13 +768,15 @@ private class FilterAudioApplication : GLib.Application {
             ***********************************************************/
             while (
                 (err = av_buffersink_get_frame (
-                    sink, frame)) >= 0
+                    sink,
+                    frame)) >= 0
             ) {
                 /***********************************************************
                 now do something with our filtered frame
                 ***********************************************************/
                 err = process_output (
-                    md5, frame
+                    md5,
+                    frame
                 );
 
                 if (

@@ -61,7 +61,8 @@ private class ApiH264Test : GLib.TestCase {
         }
 
         result = avformat_find_stream_info (
-            format_context, null
+            format_context,
+            null
         );
 
         if (
@@ -135,7 +136,8 @@ private class ApiH264Test : GLib.TestCase {
         }
 
         result = avcodec_parameters_to_context (
-            codec_context, origin_par
+            codec_context,
+            origin_par
         );
 
         if (
@@ -151,7 +153,9 @@ private class ApiH264Test : GLib.TestCase {
         }
 
         result = avcodec_open2 (
-            codec_context, codec, null
+            codec_context,
+            codec,
+            null
         );
 
         if (
@@ -183,7 +187,10 @@ private class ApiH264Test : GLib.TestCase {
         }
 
         byte_buffer_size = av_image_get_buffer_size (
-            codec_context.pix_fmt, codec_context.width, codec_context.height, 16
+            codec_context.pix_fmt,
+            codec_context.width,
+            codec_context.height,
+            16
         );
 
         byte_buffer = av_malloc (
@@ -223,7 +230,8 @@ private class ApiH264Test : GLib.TestCase {
             ) {
                 if (
                     av_read_frame (
-                        format_context, out packet
+                        format_context,
+                        out packet
                     ) < 0
                 ) {
                     end_of_stream = true;
@@ -250,7 +258,9 @@ private class ApiH264Test : GLib.TestCase {
                 }
 
                 result = avcodec_decode_video2 (
-                    codec_context, frame, out got_frame, out packet
+                    codec_context,
+                    frame,
+                    out got_frame, out packet
                 );
 
                 if (
@@ -292,7 +302,12 @@ private class ApiH264Test : GLib.TestCase {
                     }
 
                     GLib.print (
-                        "%d, %s, %s, %8ll, %8d, 0x%08lx\n",
+                        "%d,
+                        %s,
+                        %s,
+                        %8ll,
+                        %8d,
+                        0x%08lx\n",
                         video_stream,
                         av_ts2str (
                             frame.pts),

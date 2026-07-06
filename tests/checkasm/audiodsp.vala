@@ -21,7 +21,8 @@ private const size_t MAX_SIZE = (
 );
 
 private static void randomize_float (
-    void *buf, int len
+    void *buf,
+    int len
 ) {
     int i;
     for (
@@ -57,7 +58,8 @@ private static void randomize_float (
 //          );
 
 //          AV_WN ## size ## A (
-//              buf + i, -(
+//              buf + i,
+//              -(
 //                  1LL << (
 //                      bits - 1
 //                  )
@@ -105,7 +107,8 @@ private static void checkasm_check_audiodsp () {
 
     if (
         check_func (
-            adsp.scalarproduct_int16, "audiodsp.scalarproduct_int16"
+            adsp.scalarproduct_int16,
+            "audiodsp.scalarproduct_int16"
         )
     ) {
         //  LOCAL_ALIGNED (
@@ -122,9 +125,13 @@ private static void checkasm_check_audiodsp () {
         //      [MAX_SIZE]
         //  );
 
-        uint len_bits_minus4, v1_bits, v2_bits, len;
-        int32 res0, res1;
+        uint len_bits_minus4;
+        uint v1_bits;
+        uint v2_bits;
+        uint len;
 
+        int32 res0;
+        int32 res1;
 
         /***********************************************************
         generate random 5-12bit vector length
@@ -137,7 +144,8 @@ private static void checkasm_check_audiodsp () {
         );
 
         len = 16 * FFMAX (
-            len, 1
+            len,
+            1
         );
 
 
@@ -149,23 +157,35 @@ private static void checkasm_check_audiodsp () {
         v1_bits = 1 + rnd () % 15;
         v2_bits = FFMIN (
             32 - (
-                len_bits_minus4 + 4) - v1_bits - 1, 15
+                len_bits_minus4 + 4
+            ) - v1_bits - 1,
+            15
         );
 
         randomize_int (
-            v1, MAX_SIZE, 16, v1_bits + 1
+            v1,
+            MAX_SIZE,
+            16,
+            v1_bits + 1
         );
 
         randomize_int (
-            v2, MAX_SIZE, 16, v2_bits + 1
+            v2,
+            MAX_SIZE,
+            16,
+            v2_bits + 1
         );
 
         res0 = call_ref (
-            v1, v2, len
+            v1,
+            v2,
+            len
         );
 
         res1 = call_new (
-            v1, v2, len
+            v1,
+            v2,
+            len
         );
 
         if (
@@ -175,14 +195,17 @@ private static void checkasm_check_audiodsp () {
         }
 
         bench_new (
-            v1, v2, MAX_SIZE
+            v1,
+            v2,
+            MAX_SIZE
         );
 
     }
 
     if (
         check_func (
-            adsp.vector_clip_int32, "audiodsp.vector_clip_int32"
+            adsp.vector_clip_int32,
+            "audiodsp.vector_clip_int32"
         )
     ) {
         //  LOCAL_ALIGNED (
@@ -206,7 +229,11 @@ private static void checkasm_check_audiodsp () {
         //      [MAX_SIZE]
         //  );
 
-        int32 val1, val2, min, max;
+        int32 val1;
+        int32 val2;
+        int32 min;
+        int32 max;
+
         int len;
 
         val1 = (
@@ -230,47 +257,68 @@ private static void checkasm_check_audiodsp () {
         );
 
         min = FFMIN (
-            val1, val2
+            val1,
+            val2
         );
 
         max = FFMAX (
-            val1, val2
+            val1,
+            val2
         );
 
         randomize_int (
-            src, MAX_SIZE, 32, 32
+            src,
+            MAX_SIZE,
+            32,
+            32
         );
 
         len = rnd () % 128;
         len = 32 * FFMAX (
-            len, 1
+            len,
+            1
         );
 
         call_ref (
-            dst0, src, min, max, len
+            dst0,
+            src,
+            min,
+            max,
+            len
         );
 
         call_new (
-            dst1, src, min, max, len
+            dst1,
+            src,
+            min,
+            max,
+            len
         );
 
         if (
             memcmp (
-                dst0, dst1, len * sizeof (
+                dst0,
+                dst1,
+                len * sizeof (
                     dst0))
         ) {
             fail ();
         }
 
         bench_new (
-            dst1, src, min, max, MAX_SIZE
+            dst1,
+            src,
+            min,
+            max,
+            MAX_SIZE
         );
 
     }
 
     if (
         check_func (
-            adsp.vector_clipf, "audiodsp.vector_clipf"
+            adsp.vector_clipf,
+            "audiodsp.vector_clipf"
         )
     ) {
         //  LOCAL_ALIGNED (
@@ -294,8 +342,13 @@ private static void checkasm_check_audiodsp () {
         //      [MAX_SIZE]
         //  );
 
-        float val1, val2, min, max;
-        int i, len;
+        float val1;
+        float val2;
+        float min;
+        float max;
+
+        int i;
+        int len;
 
         val1 = (float)rnd () / (
             UINT_MAX >> 1
@@ -306,28 +359,40 @@ private static void checkasm_check_audiodsp () {
         ) - 1.0f;
 
         min = FFMIN (
-            val1, val2
+            val1,
+            val2
         );
 
         max = FFMAX (
-            val1, val2
+            val1,
+            val2
         );
 
         randomize_float (
-            src, MAX_SIZE
+            src,
+            MAX_SIZE
         );
 
         len = rnd () % 128;
         len = 16 * FFMAX (
-            len, 1
+            len,
+            1
         );
 
         call_ref (
-            dst0, src, len, min, max
+            dst0,
+            src,
+            len,
+            min,
+            max
         );
 
         call_new (
-            dst1, src, len, min, max
+            dst1,
+            src,
+            len,
+            min,
+            max
         );
 
         for (
@@ -337,7 +402,10 @@ private static void checkasm_check_audiodsp () {
         ) {
             if (
                 !float_near_ulp_array (
-                    dst0, dst1, 3, len)
+                    dst0,
+                    dst1,
+                    3,
+                    len)
             ) {
                 fail ();
             }
@@ -345,7 +413,11 @@ private static void checkasm_check_audiodsp () {
         }
 
         bench_new (
-            dst1, src, MAX_SIZE, min, max
+            dst1,
+            src,
+            MAX_SIZE,
+            min,
+            max
         );
 
     }

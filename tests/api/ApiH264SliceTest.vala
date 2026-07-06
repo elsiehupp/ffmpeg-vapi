@@ -61,7 +61,8 @@ private class ApiH264SliceTest : GLib.TestCase {
             LibAVUtil.Crypto.HashContext hash;
 
             ret = avcodec_receive_frame (
-                dec_ctx, frame
+                dec_ctx,
+                frame
             );
 
             if (
@@ -95,7 +96,12 @@ private class ApiH264SliceTest : GLib.TestCase {
                     "#codec_id 0: rawvideo\n" +
                     "#dimensions 0: 352x288\n" +
                     "#sar 0: 128/117\n" +
-                    "#stream#, dts, pts, duration, size, hash\n"
+                    "#stream#,
+                    dts,
+                    pts,
+                    duration,
+                    size,
+                    hash\n"
                 );
 
                 header = 1;
@@ -126,7 +132,8 @@ private class ApiH264SliceTest : GLib.TestCase {
                 i++
             ) {
                 av_hash_update (
-                    hash, out frame.data[0][i * frame.linesize[0]], frame.width
+                    hash,
+                    out frame.data[0][i * frame.linesize[0]], frame.width
                 );
 
             }
@@ -137,7 +144,8 @@ private class ApiH264SliceTest : GLib.TestCase {
                 i++
             ) {
                 av_hash_update (
-                    hash, out frame.data[1][i * frame.linesize[1]], frame.width >> desc.log2_chroma_w
+                    hash,
+                    out frame.data[1][i * frame.linesize[1]], frame.width >> desc.log2_chroma_w
                 );
 
             }
@@ -148,19 +156,28 @@ private class ApiH264SliceTest : GLib.TestCase {
                 i++
             ) {
                 av_hash_update (
-                    hash, out frame.data[2][i * frame.linesize[2]], frame.width >> desc.log2_chroma_w
+                    hash,
+                    out frame.data[2][i * frame.linesize[2]], frame.width >> desc.log2_chroma_w
                 );
 
             }
 
             av_hash_final_hex (
-                hash, sum, av_hash_get_size (
+                hash,
+                sum,
+                av_hash_get_size (
                     hash) * 2 + 1
             );
 
             GLib.print (
-                "0, %10ll, %10ll, 1, %8d, %s\n",
-                frame_cnt, frame_cnt,
+                "0,
+                %10ll,
+                %10ll,
+                1,
+                %8d,
+                %s\n",
+                frame_cnt,
+                frame_cnt,
                 (
                     frame.width * frame.height + 2 * (
                         frame.height >> desc.log2_chroma_h
@@ -254,7 +271,9 @@ private class ApiH264SliceTest : GLib.TestCase {
         codec_context.thread_count = threads;
 
         ret = avcodec_open2 (
-            codec_context, codec, null
+            codec_context,
+            codec,
+            null
         );
 
         if (
@@ -339,7 +358,8 @@ private class ApiH264SliceTest : GLib.TestCase {
             uint16 size = 0;
             size_t ret = fread (
             out size, 1, sizeof (
-                uint16), file
+                uint16),
+                file
             );
 
             if (
@@ -354,7 +374,10 @@ private class ApiH264SliceTest : GLib.TestCase {
             );
 
             ret = fread (
-                p, 1, size, file
+                p,
+                1,
+                size,
+                file
             );
 
             if (
@@ -379,7 +402,9 @@ private class ApiH264SliceTest : GLib.TestCase {
                 packet.data = nal;
                 packet.size = p - nal;
                 decret = decode (
-                    codec_context, frame, packet
+                    codec_context,
+                    frame,
+                    packet
                 );
 
                 if (
@@ -392,7 +417,9 @@ private class ApiH264SliceTest : GLib.TestCase {
                 }
 
                 memset (
-                    nal, 0, MAX_SLICES * UINT16_MAX + AV_INPUT_BUFFER_PADDING_SIZE
+                    nal,
+                    0,
+                    MAX_SLICES * UINT16_MAX + AV_INPUT_BUFFER_PADDING_SIZE
                 );
 
                 nals = 0;
@@ -407,7 +434,9 @@ private class ApiH264SliceTest : GLib.TestCase {
             packet.data = nal;
             packet.size = p - nal;
             ret = decode (
-            codec_context, frame, packet
+            codec_context,
+            frame,
+            packet
             );
 
             if (
@@ -422,7 +451,9 @@ private class ApiH264SliceTest : GLib.TestCase {
         }
 
         return decode (
-            codec_context, frame, null
+            codec_context,
+            frame,
+            null
         );
 
     }
@@ -444,7 +475,9 @@ private class ApiH264SliceTest : GLib.TestCase {
         }
 
         threads = strtoul (
-            argv[1], null, 0
+            argv[1],
+            null,
+            0
         );
 
         if (

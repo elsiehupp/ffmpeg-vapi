@@ -138,7 +138,8 @@ private class ApiBandTest : GLib.TestCase {
         }
 
         result = avformat_find_stream_info (
-            format_context, null
+            format_context,
+            null
         );
 
         if (
@@ -212,7 +213,8 @@ private class ApiBandTest : GLib.TestCase {
         }
 
         result = avcodec_parameters_to_context (
-            codec_context, origin_par
+            codec_context,
+            origin_par
         );
 
         if (
@@ -231,7 +233,9 @@ private class ApiBandTest : GLib.TestCase {
         codec_context.thread_count = 1;
 
         result = avcodec_open2 (
-            codec_context, codec, null
+            codec_context,
+            codec,
+            null
         );
 
         if (
@@ -277,7 +281,10 @@ private class ApiBandTest : GLib.TestCase {
         }
 
         byte_buffer_size = av_image_get_buffer_size (
-            codec_context.pix_fmt, codec_context.width, codec_context.height, 32
+            codec_context.pix_fmt,
+            codec_context.width,
+            codec_context.height,
+            32
         );
 
         byte_buffer = av_malloc (
@@ -319,7 +326,9 @@ private class ApiBandTest : GLib.TestCase {
         }
 
         memset (
-            slice_byte_buffer, 0, byte_buffer_size
+            slice_byte_buffer,
+            0,
+            byte_buffer_size
         );
 
         slice_byte_buffer_size = byte_buffer_size;
@@ -334,7 +343,8 @@ private class ApiBandTest : GLib.TestCase {
             ) {
                 if (
                     av_read_frame (
-                        format_context, out packet
+                        format_context,
+                        out packet
                     ) < 0
                 ) {
                     end_of_stream = true;
@@ -355,7 +365,9 @@ private class ApiBandTest : GLib.TestCase {
             ) {
                 got_frame = false;
                 result = avcodec_decode_video2 (
-                    codec_context, frame, out got_frame, out packet
+                    codec_context,
+                    frame,
+                    out got_frame, out packet
                 );
 
                 if (
@@ -374,7 +386,8 @@ private class ApiBandTest : GLib.TestCase {
                     got_frame
                 ) {
                     number_of_written_bytes = av_image_copy_to_buffer (
-                        byte_buffer, byte_buffer_size,
+                        byte_buffer,
+                        byte_buffer_size,
                         (uint8[])frame.data,
                         (uint[])frame.linesize,
                         codec_context.pix_fmt,

@@ -26,7 +26,9 @@ private static void randomize_buffers (
     void *stride,
     void *coef
 ) {
-    int x, y;
+    int x;
+    int y;
+
     for (
         y = 0;
         y < 4;
@@ -34,12 +36,14 @@ private static void randomize_buffers (
     ) {
         AV_WN32A (
         (src) + y * (
-            stride), rnd ()
+            stride),
+            rnd ()
         );
 
         AV_WN32A (
             (dst) + y * (
-                stride), rnd ()
+                stride),
+                rnd ()
         );
 
         for (
@@ -229,7 +233,9 @@ private static void check_idct () {
     );
 
     randomize_buffers (
-        src, dst, 4, coef
+        src,
+        dst,
+        4, coef
     );
 
     dct4x4 (
@@ -246,7 +252,9 @@ private static void check_idct () {
 
         if (
             check_func (
-                idct, "vp8_idct_%sadd", dc ? "dc_" : "")
+                idct,
+                "vp8_idct_%sadd",
+                dc ? "dc_" : "")
         ) {
             if (
                 dc
@@ -272,35 +280,48 @@ private static void check_idct () {
             }
 
             memcpy (
-                dst0, dst, 4 * 4
+                dst0,
+                dst,
+                4 * 4
             );
 
             memcpy (
-                dst1, dst, 4 * 4
+                dst1,
+                dst,
+                4 * 4
             );
 
             memcpy (
-                subcoef1, subcoef0, 4 * 4 * sizeof (
+                subcoef1,
+                subcoef0,
+                4 * 4 * sizeof (
                     int16)
             );
 
             /***********************************************************
-            Note, this uses a pixel stride of 4, even though the real
+            Note,
+            this uses a pixel stride of 4, even though the real
             decoder uses a stride as a multiple of 16. If optimizations
             want to take advantage of that, this test needs to be
             updated to make it more like the h264dsp tests.
             ***********************************************************/
             call_ref (
-                dst0, subcoef0, 4
+                dst0,
+                subcoef0,
+                4
             );
 
             call_new (
-                dst1, subcoef1, 4
+                dst1,
+                subcoef1,
+                4
             );
 
             if (
                 memcmp (
-                    dst0, dst1, 4 * 4
+                    dst0,
+                    dst1,
+                    4 * 4
                 ) ||
                 memcmp (
                     subcoef0,
@@ -314,7 +335,9 @@ private static void check_idct () {
             }
 
             bench_new (
-                dst1, subcoef1, 4
+                dst1,
+                subcoef1,
+                4
             );
 
         }
@@ -378,7 +401,8 @@ private static void check_idct_dc4 () {
     //  );
 
     VP8DSPContext vp8_dsp_context;
-    int i, chroma;
+    int i;
+    int chroma;
 
     ff_vp8dsp_init (
         &vp8_dsp_context
@@ -392,7 +416,9 @@ private static void check_idct_dc4 () {
         //  void (*idct4dc)(uint8[], int16[4][16], size_t) = chroma ? vp8_dsp_context.vp8_idct_dc_add4uv : vp8_dsp_context.vp8_idct_dc_add4y;
         if (
             check_func (
-                idct4dc, "vp8_idct_dc_add4%s", chroma ? "uv" : "y")
+                idct4dc,
+                "vp8_idct_dc_add4%s",
+                chroma ? "uv" : "y")
         ) {
             size_t stride = chroma ? 8 : 16;
             int w = chroma ? 2 : 4;
@@ -428,34 +454,48 @@ private static void check_idct_dc4 () {
             }
 
             memcpy (
-                dst0, dst, 4 * 4 * 4
+                dst0,
+                dst,
+                4 * 4 * 4
             );
 
             memcpy (
-                dst1, dst, 4 * 4 * 4
+                dst1,
+                dst,
+                4 * 4 * 4
             );
 
             memcpy (
-                subcoef0, coef, 4 * 4 * 4 * sizeof (
+                subcoef0,
+                coef,
+                4 * 4 * 4 * sizeof (
                     int16)
             );
 
             memcpy (
-                subcoef1, coef, 4 * 4 * 4 * sizeof (
+                subcoef1,
+                coef,
+                4 * 4 * 4 * sizeof (
                     int16)
             );
 
             call_ref (
-                dst0, subcoef0, stride
+                dst0,
+                subcoef0,
+                stride
             );
 
             call_new (
-                dst1, subcoef1, stride
+                dst1,
+                subcoef1,
+                stride
             );
 
             if (
                 memcmp (
-                    dst0, dst1, 4 * 4 * 4
+                    dst0,
+                    dst1,
+                    4 * 4 * 4
                 ) ||
                 memcmp (
                     subcoef0,
@@ -469,7 +509,9 @@ private static void check_idct_dc4 () {
             }
 
             bench_new (
-                dst1, subcoef1, stride
+                dst1,
+                subcoef1,
+                stride
             );
 
         }
@@ -522,7 +564,8 @@ private static void check_luma_dc_wht () {
 
     VP8DSPContext vp8_dsp_context;
     int dc_only;
-    int blockx, blocky;
+    int blockx;
+    int blocky;
 
     ff_vp8dsp_init (
         &vp8_dsp_context
@@ -540,7 +583,10 @@ private static void check_luma_dc_wht () {
         ) {
             uint8 src[16], dst[16];
             randomize_buffers (
-                src, dst, 4, block[blocky][blockx]
+                src,
+                dst,
+                4,
+                block[blocky][blockx]
             );
 
             dct4x4 (
@@ -566,7 +612,9 @@ private static void check_luma_dc_wht () {
 
         if (
             check_func (
-                idct, "vp8_luma_dc_wht%s", dc_only ? "_dc" : "")
+                idct,
+                "vp8_luma_dc_wht%s",
+                dc_only ? "_dc" : "")
         ) {
             if (
                 dc_only
@@ -592,37 +640,47 @@ private static void check_luma_dc_wht () {
             }
 
             memcpy (
-                dc1, dc0, 16 * sizeof (
+                dc1,
+                dc0,
+                16 * sizeof (
                     int16)
             );
 
             memcpy (
-                block0, block, 4 * 4 * 16 * sizeof (
+                block0,
+                block,
+                4 * 4 * 16 * sizeof (
                     int16)
             );
 
             memcpy (
-                block1, block, 4 * 4 * 16 * sizeof (
+                block1,
+                block,
+                4 * 4 * 16 * sizeof (
                     int16)
             );
 
             call_ref (
-                block0, dc0
+                block0,
+                dc0
             );
 
             call_new (
-                block1, dc1
+                block1,
+                dc1
             );
 
             if (
                 memcmp (
-                    block0, block1,
+                    block0,
+                    block1,
                     4 * 4 * 16 * sizeof (
                         int16
                     )
                 ) ||
                 memcmp (
-                    dc0, dc1,
+                    dc0,
+                    dc1,
                     16 * sizeof (
                         int16
                     )
@@ -632,7 +690,8 @@ private static void check_luma_dc_wht () {
             }
 
             bench_new (
-                block1, dc1
+                block1,
+                dc1
             );
 
         }
@@ -712,7 +771,10 @@ private static void check_mc () {
     //  );
 
     VP8DSPContext vp8_dsp_context;
-    int type, k, dx, dy;
+    int type;
+    int k;
+    int dx;
+    int dy;
 
     ff_vp78dsp_init (
         &vp8_dsp_context
@@ -802,7 +864,8 @@ private static void check_mc () {
 
                     if (
                         check_func (
-                            tab[hsize][dy][dx], "vp8_put_%s", str)
+                            tab[hsize][dy][dx],
+                            "vp8_put_%s", str)
                     ) {
                         int mx, my;
                         int i;
@@ -892,22 +955,29 @@ private static void check_mc () {
                         }
 
                         call_ref (
-                            dst0, size, src, SRC_BUF_STRIDE, height, mx, my
+                            dst0,
+                            size,
+                            src, SRC_BUF_STRIDE, height, mx, my
                         );
 
                         call_new (
-                            dst1, size, src, SRC_BUF_STRIDE, height, mx, my
+                            dst1,
+                            size,
+                            src, SRC_BUF_STRIDE, height, mx, my
                         );
 
                         if (
                             memcmp (
-                                dst0, dst1, size * height)
+                                dst0,
+                            dst1, size * height)
                         ) {
                             fail ();
                         }
 
                         bench_new (
-                            dst1, size, src, SRC_BUF_STRIDE, height, mx, my
+                            dst1,
+                            size,
+                            src, SRC_BUF_STRIDE, height, mx, my
                         );
 
                     }
@@ -949,7 +1019,9 @@ private static void setdx (
     void *d
 ) {
     setpx (
-        a, b, c - (
+        a,
+        b,
+        c - (
             d
         ) + (
             rnd () % (
@@ -972,7 +1044,9 @@ private static void setdx2 (
     void *e
 ) {
     setpx (
-        a, b, o = c + (
+        a,
+        b,
+        o = c + (
             (d) + (
                 rnd () % (
                     e
@@ -1013,7 +1087,9 @@ private static void randomize_loopfilter_buffers (
         // makes none of them trigger it.
         int idx = off + i * istride, p2, p1, p0, q0, q1, q2;
         setpx (
-            idx, 0, q0 = rnd () & mask
+            idx,
+            0,
+            q0 = rnd () & mask
         );
 
         if (
@@ -1022,26 +1098,39 @@ private static void randomize_loopfilter_buffers (
             force_hev > 0
         ) {
             setdx2 (
-                idx, 1, q1, q0, hev_thresh + 1, flim_I - hev_thresh - 1
+                idx,
+                1,
+                q1,
+                q0,
+                hev_thresh + 1, flim_I - hev_thresh - 1
             );
 
         } else {
             setdx (
-                idx, 1, q1 = q0, hev_thresh
+                idx,
+                1,
+                q1 = q0, hev_thresh
             );
 
         }
 
         setdx (
-            idx, 2, q2 = q1, flim_I
+            idx,
+            2,
+            q2 = q1, flim_I
         );
 
         setdx (
-            idx, 3, q2, flim_I
+            idx,
+            3,
+            q2,
+            flim_I
         );
 
         setdx (
-            idx, -1, p0 = q0, flim_E >> 2
+            idx,
+            -1,
+            p0 = q0, flim_E >> 2
         );
 
         if (
@@ -1050,22 +1139,33 @@ private static void randomize_loopfilter_buffers (
             force_hev > 0
         ) {
             setdx2 (
-                idx, -2, p1, p0, hev_thresh + 1, flim_I - hev_thresh - 1
+                idx,
+                -2,
+                p1,
+                p0,
+                hev_thresh + 1, flim_I - hev_thresh - 1
             );
 
         } else {
             setdx (
-                idx, -2, p1 = p0, hev_thresh
+                idx,
+                -2,
+                p1 = p0, hev_thresh
             );
 
         }
 
         setdx (
-            idx, -3, p2 = p1, flim_I
+            idx,
+            -3,
+            p2 = p1, flim_I
         );
 
         setdx (
-            idx, -4, p2, flim_I
+            idx,
+            -4,
+            p2,
+            flim_I
         );
 
     }
@@ -1081,7 +1181,9 @@ private static void fill_loopfilter_buffers (
     int w,
     int h
 ) {
-    int x, y;
+    int x;
+    int y;
+
     for (
         y = 0;
         y < h;
@@ -1106,7 +1208,9 @@ private static void randomize_buffers (
     void *force_hev
 ) {
     randomize_loopfilter_buffers (
-        lineoff, str, dir, flim_E, flim_I, hev_thresh, buf, force_hev
+        lineoff,
+        str,
+        dir, flim_E, flim_I, hev_thresh, buf, force_hev
     );
 
 }
@@ -1135,8 +1239,13 @@ private static void check_loopfilter_16y () {
     //  );
 
     VP8DSPContext vp8_dsp_context;
-    int dir, edge, force_hev;
-    int flim_E = 20, flim_I = 10, hev_thresh = 7;
+    int dir;
+    int edge;
+    int force_hev;
+
+    int flim_E = 20;
+    int flim_I = 10;
+    int hev_thresh = 7;
 
     ff_vp8dsp_init (
         &vp8_dsp_context
@@ -1192,7 +1301,9 @@ private static void check_loopfilter_16y () {
 
             if (
                 check_func (
-                    func, "vp8_loop_filter16y%s_%s", edge ? "_inner" : "", dir ? "v" : "h")
+                    func,
+                    "vp8_loop_filter16y%s_%s",
+                    edge ? "_inner" : "", dir ? "v" : "h")
             ) {
                 for (
                     force_hev = -1;
@@ -1204,11 +1315,17 @@ private static void check_loopfilter_16y () {
                     );
 
                     randomize_buffers (
-                        buf0, 0, 16, force_hev
+                        buf0,
+                        0,
+                        16,
+                        force_hev
                     );
 
                     randomize_buffers (
-                        buf0, 8, 16, force_hev
+                        buf0,
+                        8,
+                        16,
+                        force_hev
                     );
 
                     memcpy (
@@ -1216,11 +1333,19 @@ private static void check_loopfilter_16y () {
                     );
 
                     call_ref (
-                        buf0, 16, flim_E, flim_I, hev_thresh
+                        buf0,
+                        16,
+                        flim_E,
+                        flim_I,
+                        hev_thresh
                     );
 
                     call_new (
-                        buf1, 16, flim_E, flim_I, hev_thresh
+                        buf1,
+                        16,
+                        flim_E,
+                        flim_I,
+                        hev_thresh
                     );
 
                     if (
@@ -1237,15 +1362,25 @@ private static void check_loopfilter_16y () {
                 );
 
                 randomize_buffers (
-                    buf0, 0, 16, 0
+                    buf0,
+                    0,
+                    16,
+                    0
                 );
 
                 randomize_buffers (
-                    buf0, 8, 16, 0
+                    buf0,
+                    8,
+                    16,
+                    0
                 );
 
                 bench_new (
-                    buf0, 16, flim_E, flim_I, hev_thresh
+                    buf0,
+                    16,
+                    flim_E,
+                    flim_I,
+                    hev_thresh
                 );
 
             }
@@ -1293,8 +1428,13 @@ private static void check_loopfilter_8uv () {
     //  );
 
     VP8DSPContext vp8_dsp_context;
-    int dir, edge, force_hev;
-    int flim_E = 20, flim_I = 10, hev_thresh = 7;
+    int dir;
+    int edge;
+    int force_hev;
+
+    int flim_E = 20;
+    int flim_I = 10;
+    int hev_thresh = 7;
 
     ff_vp8dsp_init (
         &vp8_dsp_context
@@ -1352,7 +1492,9 @@ private static void check_loopfilter_8uv () {
 
             if (
                 check_func (
-                    func, "vp8_loop_filter8uv%s_%s", edge ? "_inner" : "", dir ? "v" : "h")
+                    func,
+                    "vp8_loop_filter8uv%s_%s",
+                    edge ? "_inner" : "", dir ? "v" : "h")
             ) {
                 for (
                     force_hev = -1;
@@ -1368,11 +1510,17 @@ private static void check_loopfilter_8uv () {
                     );
 
                     randomize_buffers (
-                        buf0u, 0, 16, force_hev
+                        buf0u,
+                        0,
+                        16,
+                        force_hev
                     );
 
                     randomize_buffers (
-                        buf0v, 0, 16, force_hev
+                        buf0v,
+                        0,
+                        16,
+                        force_hev
                     );
 
                     memcpy (
@@ -1384,11 +1532,21 @@ private static void check_loopfilter_8uv () {
                     );
 
                     call_ref (
-                        buf0u, buf0v, 16, flim_E, flim_I, hev_thresh
+                        buf0u,
+                        buf0v,
+                        16,
+                        flim_E,
+                        flim_I,
+                        hev_thresh
                     );
 
                     call_new (
-                        buf1u, buf1v, 16, flim_E, flim_I, hev_thresh
+                        buf1u,
+                        buf1v,
+                        16,
+                        flim_E,
+                        flim_I,
+                        hev_thresh
                     );
 
                     if (
@@ -1411,15 +1569,26 @@ private static void check_loopfilter_8uv () {
                 );
 
                 randomize_buffers (
-                    buf0u, 0, 16, 0
+                    buf0u,
+                    0,
+                    16,
+                    0
                 );
 
                 randomize_buffers (
-                    buf0v, 0, 16, 0
+                    buf0v,
+                    0,
+                    16,
+                    0
                 );
 
                 bench_new (
-                    buf0u, buf0v, 16, flim_E, flim_I, hev_thresh
+                    buf0u,
+                    buf0v,
+                    16,
+                    flim_E,
+                    flim_I,
+                    hev_thresh
                 );
 
             }
@@ -1453,7 +1622,9 @@ private static void check_loopfilter_simple () {
 
     VP8DSPContext vp8_dsp_context;
     int dir;
-    int flim_E = 20, flim_I = 30, hev_thresh = 0;
+    int flim_E = 20;
+    int flim_I = 30;
+    int hev_thresh = 0;
 
     ff_vp8dsp_init (
         &vp8_dsp_context
@@ -1471,7 +1642,9 @@ private static void check_loopfilter_simple () {
         //  void (*func)(uint8[], size_t, int) = dir ? vp8_dsp_context.vp8_v_loop_filter_simple : vp8_dsp_context.vp8_h_loop_filter_simple;
         if (
             check_func (
-                func, "vp8_loop_filter_simple_%s", dir ? "v" : "h"
+                func,
+                "vp8_loop_filter_simple_%s",
+                dir ? "v" : "h"
             )
         ) {
             fill_loopfilter_buffers (
@@ -1479,11 +1652,17 @@ private static void check_loopfilter_simple () {
             );
 
             randomize_buffers (
-                buf0, 0, 16, -1
+                buf0,
+                0,
+                16,
+                -1
             );
 
             randomize_buffers (
-                buf0, 8, 16, -1
+                buf0,
+                8,
+                16,
+                -1
             );
 
             memcpy (
@@ -1491,11 +1670,15 @@ private static void check_loopfilter_simple () {
             );
 
             call_ref (
-                buf0, 16, flim_E
+                buf0,
+                16,
+                flim_E
             );
 
             call_new (
-                buf1, 16, flim_E
+                buf1,
+                16,
+                flim_E
             );
 
             if (
@@ -1506,7 +1689,9 @@ private static void check_loopfilter_simple () {
             }
 
             bench_new (
-                buf0, 16, flim_E
+                buf0,
+                16,
+                flim_E
             );
 
         }

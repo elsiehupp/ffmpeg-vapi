@@ -44,7 +44,9 @@ private class ApiCodecParameterTest : GLib.TestCase {
                 );
 
                 ret = avcodec_open2 (
-                    codec_context, codec, null
+                    codec_context,
+                    codec,
+                    null
                 );
 
                 if (
@@ -90,7 +92,9 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
             do {
                 ret = avcodec_decode_video2 (
-                codec_context, frame, out got_frame, packet
+                codec_context,
+                frame,
+                out got_frame, packet
                 );
 
                 av_assert0 (
@@ -153,7 +157,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
                 AVStream st;
 
                 ret = av_read_frame (
-                    format_context, out packet
+                    format_context,
+                    out packet
                 );
 
                 if (
@@ -193,7 +198,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
                 }
 
                 ret = try_decode_video_frame (
-                    codec_context, out packet, decode
+                    codec_context,
+                    out packet, decode
                 );
 
                 if (
@@ -281,14 +287,16 @@ private class ApiCodecParameterTest : GLib.TestCase {
             LibAVCodec.CodecContext codec_context = st.codec;
 
             GLib.print (
-                "stream=%d, decode=%d\n",
+                "stream=%d,
+                decode=%d\n",
                 i,
                 decode
             );
 
             while (
                 opt = av_opt_next (
-                    codec_context, opt)
+                    codec_context,
+                    opt)
             ) {
                 uint8[] str;
 
@@ -310,7 +318,10 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
                 if (
                     av_opt_get (
-                        codec_context, opt.name, 0, out str
+                        codec_context,
+                        opt.name,
+                        0,
+                        out str
                     ) >= 0
                 ) {
                     GLib.print (
@@ -340,7 +351,10 @@ private class ApiCodecParameterTest : GLib.TestCase {
             uint ret = 0;
 
             ret = avformat_open_input (
-            format_context, filename, null, null
+            format_context,
+            filename,
+            null,
+            null
             );
 
             if (
@@ -360,7 +374,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
             }
 
             ret = find_video_stream_info (
-                *format_context, decode
+                *format_context,
+                decode
             );
 
             if (
@@ -373,7 +388,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
             }
 
             dump_video_streams (
-                *format_context, decode
+                *format_context,
+                decode
             );
 
         } catch (
@@ -412,7 +428,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
             while (
                 opt = av_opt_next (
-                    codec_ctx1, opt)
+                    codec_ctx1,
+                    opt)
             ) {
                 uint8[] str1 = null;
                 uint8[] str2 = null;
@@ -435,23 +452,32 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
                 av_assert0 (
                     av_opt_get (
-                        codec_ctx1, opt.name, 0, out str1) >= 0
+                        codec_ctx1,
+                        opt.name,
+                        0,
+                        out str1) >= 0
                 );
 
                 av_assert0 (
                     av_opt_get (
-                        codec_ctx2, opt.name, 0, out str2) >= 0
+                        codec_ctx2,
+                        opt.name,
+                        0,
+                        out str2) >= 0
                 );
 
                 if (
                     strcmp (
-                        str1, str2)
+                        str1,
+                        str2)
                 ) {
                     av_log (
                         null,
                         AV_LOG_ERROR,
                         "Field %s differs: %s %s",
-                        opt.name, str1, str2
+                        opt.name,
+                        str1,
+                        str2
                     );
 
                     ret = AVERROR (
@@ -538,7 +564,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
             }
 
             ret = check_video_streams (
-                format_context, fmt_ctx_no_decode
+                format_context,
+                fmt_ctx_no_decode
             );
 
         } catch (

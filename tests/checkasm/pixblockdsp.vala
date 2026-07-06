@@ -109,8 +109,12 @@ private static void check_get_pixels (
 
         if (
             memcmp (
-                src10, src11, BUF_SIZE)|| memcmp (
-                    dst0, dst1, BUF_SIZE)
+                src10,
+                src11,
+                BUF_SIZE)|| memcmp (
+                    dst0,
+                    dst1,
+                    BUF_SIZE)
         ) {
             fail ();
         }
@@ -163,13 +167,19 @@ private static void check_diff_pixels (
 
         if (
             memcmp (
-                src10, src11, BUF_SIZE
+                src10,
+                src11,
+                BUF_SIZE
             ) ||
             memcmp (
-                src20, src21, BUF_SIZE
+                src20,
+                src21,
+                BUF_SIZE
             ) ||
             memcmp (
-                dst0, dst1, BUF_SIZE
+                dst0,
+                dst1,
+                BUF_SIZE
             )
         ) {
             fail ();
@@ -230,12 +240,14 @@ private static void checkasm_check_pixblockdsp () {
     };
 
     ff_pixblockdsp_init (
-        &pixblock_dsp_context, &avctx
+        &pixblock_dsp_context,
+        &avctx
     );
 
     if (
         check_func (
-            pixblock_dsp_context.get_pixels, "get_pixels"
+            pixblock_dsp_context.get_pixels,
+            "get_pixels"
         )
     ) {
         check_get_pixels (
@@ -250,7 +262,8 @@ private static void checkasm_check_pixblockdsp () {
 
     if (
         check_func (
-            pixblock_dsp_context.diff_pixels, "diff_pixels"
+            pixblock_dsp_context.diff_pixels,
+            "diff_pixels"
         )
     ) {
         check_diff_pixels (

@@ -101,43 +101,59 @@ private static void check_threshold (
     );
 
     memset (
-        input, 0, WIDTH_PADDED
+        input,
+        0,
+        WIDTH_PADDED
     );
 
     memset (
-        threshold, 0, WIDTH_PADDED
+        threshold,
+        0,
+        WIDTH_PADDED
     );
 
     memset (
-        min, 0, WIDTH_PADDED
+        min,
+        0,
+        WIDTH_PADDED
     );
 
     memset (
-        max, 0, WIDTH_PADDED
+        max,
+        0,
+        WIDTH_PADDED
     );
 
     memset (
-        out_ref, 0, WIDTH_PADDED
+        out_ref,
+        0,
+        WIDTH_PADDED
     );
 
     memset (
-        out_new, 0, WIDTH_PADDED
+        out_new,
+        0,
+        WIDTH_PADDED
     );
 
     randomize_buffers (
-        input, WIDTH
+        input,
+        WIDTH
     );
 
     randomize_buffers (
-        threshold, WIDTH
+        threshold,
+        WIDTH
     );
 
     randomize_buffers (
-        min, WIDTH
+        min,
+        WIDTH
     );
 
     randomize_buffers (
-        max, WIDTH
+        max,
+        WIDTH
     );
 
     if (
@@ -149,26 +165,62 @@ private static void check_threshold (
     if (
         check_func (
             threshold_context.threshold,
-            "threshold%d", depth
+            "threshold%d",
+            depth
         )
     ) {
         call_ref (
-            input, threshold, min, max, out_ref, line_size, line_size, line_size, line_size, line_size, w, 1
+            input,
+            threshold,
+            min,
+            max,
+            out_ref,
+            line_size,
+            line_size,
+            line_size,
+            line_size,
+            line_size,
+            w,
+            1
         );
 
         call_new (
-            input, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1
+            input,
+            threshold,
+            min,
+            max,
+            out_new,
+            line_size,
+            line_size,
+            line_size,
+            line_size,
+            line_size,
+            w,
+            1
         );
 
         if (
             memcmp (
-                out_ref, out_new, WIDTH)
+                out_ref,
+                out_new,
+                WIDTH)
         ) {
             fail ();
         }
 
         bench_new (
-            input, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1
+            input,
+            threshold,
+            min,
+            max,
+            out_new,
+            line_size,
+            line_size,
+            line_size,
+            line_size,
+            line_size,
+            w,
+            1
         );
 
     }

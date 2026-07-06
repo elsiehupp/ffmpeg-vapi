@@ -45,14 +45,20 @@ private class RemuxApplication : GLib.Application {
             "%s: pts:%s pts_time:%s dts:%s dts_time:%s duration:%s duration_time:%s stream_index:%d\n",
             tag,
             av_ts2str (
-                pkt.pts), av_ts2timestr (
-                    pkt.pts, time_base),
+                pkt.pts),
+                av_ts2timestr (
+                    pkt.pts,
+                    time_base),
             av_ts2str (
-                pkt.dts), av_ts2timestr (
-                    pkt.dts, time_base),
+                pkt.dts),
+                av_ts2timestr (
+                    pkt.dts,
+                    time_base),
             av_ts2str (
-                pkt.duration), av_ts2timestr (
-                    pkt.duration, time_base),
+                pkt.duration),
+                av_ts2timestr (
+                    pkt.duration,
+                    time_base),
             pkt.stream_index
         );
 
@@ -103,7 +109,10 @@ private class RemuxApplication : GLib.Application {
         }
 
         ret = avformat_open_input (
-            &ifmt_ctx, in_filename, 0, 0
+            &ifmt_ctx,
+            in_filename,
+            0,
+            0
         );
 
         if (
@@ -119,7 +128,8 @@ private class RemuxApplication : GLib.Application {
         }
 
         ret = avformat_find_stream_info (
-            ifmt_ctx, 0
+            ifmt_ctx,
+            0
         );
 
         if (
@@ -135,11 +145,17 @@ private class RemuxApplication : GLib.Application {
         }
 
         av_dump_format (
-            ifmt_ctx, 0, in_filename, 0
+            ifmt_ctx,
+            0,
+            in_filename,
+            0
         );
 
         avformat_alloc_output_context2 (
-            &ofmt_ctx, null, null, out_filename
+            &ofmt_ctx,
+            null,
+            null,
+            out_filename
         );
 
         if (
@@ -157,7 +173,8 @@ private class RemuxApplication : GLib.Application {
 
         stream_mapping_size = ifmt_ctx.nb_streams;
         stream_mapping = av_calloc (
-            stream_mapping_size, sizeof (
+            stream_mapping_size,
+            sizeof (
                 stream_mapping)
         );
 
@@ -195,7 +212,8 @@ private class RemuxApplication : GLib.Application {
             stream_mapping[i] = stream_index++;
 
             out_stream = avformat_new_stream (
-                ofmt_ctx, null
+                ofmt_ctx,
+                null
             );
 
             if (
@@ -212,7 +230,8 @@ private class RemuxApplication : GLib.Application {
             }
 
             ret = avcodec_parameters_copy (
-                out_stream.codecpar, in_codecpar
+                out_stream.codecpar,
+                in_codecpar
             );
 
             if (
@@ -231,14 +250,19 @@ private class RemuxApplication : GLib.Application {
         }
 
         av_dump_format (
-            ofmt_ctx, 0, out_filename, 1
+            ofmt_ctx,
+            0,
+            out_filename,
+            1
         );
 
         if (
             !(ofmt.flags & AVFMT_NOFILE)
         ) {
             ret = avio_open (
-            &ofmt_ctx.pb, out_filename, AVIO_FLAG_WRITE
+            &ofmt_ctx.pb,
+            out_filename,
+            AVIO_FLAG_WRITE
             );
 
             if (
@@ -256,7 +280,8 @@ private class RemuxApplication : GLib.Application {
         }
 
         ret = avformat_write_header (
-            ofmt_ctx, null
+            ofmt_ctx,
+            null
         );
 
         if (
@@ -278,7 +303,8 @@ private class RemuxApplication : GLib.Application {
             AVStream? out_stream;
 
             ret = av_read_frame (
-            ifmt_ctx, pkt
+            ifmt_ctx,
+            pkt
             );
 
             if (
@@ -302,23 +328,30 @@ private class RemuxApplication : GLib.Application {
             pkt.stream_index = stream_mapping[pkt.stream_index];
             out_stream = ofmt_ctx.streams[pkt.stream_index];
             log_packet (
-                ifmt_ctx, pkt, "in"
+                ifmt_ctx,
+                pkt,
+                "in"
             );
 
             /***********************************************************
             copy packet
             ***********************************************************/
             av_packet_rescale_ts (
-                pkt, in_stream.time_base, out_stream.time_base
+                pkt,
+                in_stream.time_base,
+                out_stream.time_base
             );
 
             pkt.pos = -1;
             log_packet (
-                ofmt_ctx, pkt, "out"
+                ofmt_ctx,
+                pkt,
+                "out"
             );
 
             ret = av_interleaved_write_frame (
-                ofmt_ctx, pkt
+                ofmt_ctx,
+                pkt
             );
 
             /***********************************************************

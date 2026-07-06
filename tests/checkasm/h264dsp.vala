@@ -31,18 +31,25 @@ private const int32 pixel_mask_lf[3] = {
 };
 
 private const size_t SIZEOF_PIXEL = (
-        (bit_depth + 7) / 8
+    (
+        bit_depth + 7
+    ) / 8
 );
 
 private const size_t SIZEOF_COEF = (
-            2 * (
-                (bit_depth + 7) / 8)
+    2 * (
+        (
+            bit_depth + 7
+        ) / 8
+    )
 );
 
 private const size_t PIXEL_STRIDE = 16;
 
 private static void randomize_buffers () {
-    int x, y;
+    int x;
+    int y;
+
     uint32 mask = pixel_mask[bit_depth - 8];
     for (
         y = 0;
@@ -185,7 +192,10 @@ private static void DCT8_1D (
 private static void dct4x4_16 (
     int16[] coef
 ) {
-    int i, y, x;
+    int i;
+    int y;
+    int x;
+
     int16 tmp[16];
     for (
         i = 0;
@@ -245,7 +255,10 @@ private static void dct4x4_16 (
 private static void dct4x4_32 (
     int32[] coef
 ) {
-    int i, y, x;
+    int i;
+    int y;
+    int x;
+
     int32 tmp[16];
     for (
         i = 0;
@@ -306,7 +319,10 @@ private static void dct4x4_32 (
 private static void dct8x8_16 (
     int16[] coef
 ) {
-    int i, x, y;
+    int i;
+    int x;
+    int y;
+
     int16 tmp[64];
     for (
         i = 0;
@@ -345,10 +361,22 @@ private static void dct8x8_16 (
                 12222 * 19, 16777 * 25, 15481 * 24,
             };
             int idxmap[] = {
-                0, 3, 4, 3,
-                3, 1, 5, 1,
-                4, 5, 2, 5,
-                3, 1, 5, 1,
+                0,
+                3,
+                4,
+                3,
+                3,
+                1,
+                5,
+                1,
+                4,
+                5,
+                2,
+                5,
+                3,
+                1,
+                5,
+                1,
             };
 
             int idx = idxmap[(
@@ -371,7 +399,10 @@ private static void dct8x8_16 (
 private static void dct8x8_32 (
     int32[] coef
 ) {
-    int i, x, y;
+    int i;
+    int x;
+    int y;
+
     int32 tmp[64];
     for (
         i = 0;
@@ -410,10 +441,22 @@ private static void dct8x8_32 (
                 12222 * 19, 16777 * 25, 15481 * 24,
             };
             int idxmap[] = {
-                0, 3, 4, 3,
-                3, 1, 5, 1,
-                4, 5, 2, 5,
-                3, 1, 5, 1,
+                0,
+                3,
+                4,
+                3,
+                3,
+                1,
+                5,
+                1,
+                4,
+                5,
+                2,
+                5,
+                3,
+                1,
+                5,
+                1,
             };
 
             int idx = idxmap[(
@@ -526,7 +569,10 @@ private static void check_idct () {
     //  );
 
     H264DSPContext h264_dsp_context;
-    int bit_depth, sz, align, dc;
+    int bit_depth;
+    int sz;
+    int align;
+    int dc;
 
     for (
         bit_depth = 8;
@@ -534,7 +580,9 @@ private static void check_idct () {
         bit_depth++
     ) {
         ff_h264dsp_init (
-            &h264_dsp_context, bit_depth, 1
+            &h264_dsp_context,
+            bit_depth,
+            1
         );
 
         for (
@@ -548,12 +596,14 @@ private static void check_idct () {
                 sz == 4
             ) {
                 dct4x4 (
-                    coef, bit_depth
+                    coef,
+                    bit_depth
                 );
 
             } else {
                 dct8x8 (
-                    coef, bit_depth
+                    coef,
+                    bit_depth
                 );
 
             }
@@ -600,7 +650,9 @@ private static void check_idct () {
                 if (
                     check_func (
                         idct,
-                        "h264_idct%d_add%s_%dbpp", sz, dc ? "_dc" : "", bit_depth
+                        "h264_idct%d_add%s_%dbpp",
+                        sz,
+                        dc ? "_dc" : "", bit_depth
                     )
                 ) {
                     for (
@@ -613,51 +665,68 @@ private static void check_idct () {
                             dc
                         ) {
                             memset (
-                                subcoef0, 0, sz * sz * SIZEOF_COEF
+                                subcoef0,
+                            0, sz * sz * SIZEOF_COEF
                             );
 
                             memcpy (
-                                subcoef0, coef, SIZEOF_COEF
+                                subcoef0,
+                            coef, SIZEOF_COEF
                             );
 
                         } else {
                             memcpy (
-                                subcoef0, coef, sz * sz * SIZEOF_COEF
+                                subcoef0,
+                            coef, sz * sz * SIZEOF_COEF
                             );
 
                         }
 
                         memcpy (
-                            dst0, dst, sz * PIXEL_STRIDE
+                            dst0,
+                            dst,
+                            sz * PIXEL_STRIDE
                         );
 
                         memcpy (
-                            dst1, dst, sz * PIXEL_STRIDE
+                            dst1,
+                            dst,
+                            sz * PIXEL_STRIDE
                         );
 
                         memcpy (
-                            subcoef1, subcoef0, sz * sz * SIZEOF_COEF
+                            subcoef1,
+                            subcoef0,
+                            sz * sz * SIZEOF_COEF
                         );
 
                         call_ref (
-                            dst0, subcoef0, PIXEL_STRIDE
+                            dst0,
+                            subcoef0,
+                            PIXEL_STRIDE
                         );
 
                         call_new (
-                            dst1, subcoef1, PIXEL_STRIDE
+                            dst1,
+                            subcoef1,
+                            PIXEL_STRIDE
                         );
 
                         if (
                             memcmp (
-                                dst0, dst1, sz * PIXEL_STRIDE) ||
+                                dst0,
+                            dst1, sz * PIXEL_STRIDE) ||
                             memcmp (
-                                subcoef0, subcoef1, sz * sz * SIZEOF_COEF)
+                                subcoef0,
+                            subcoef1, sz * sz * SIZEOF_COEF)
                         ) {
                             fail ();
                         }
 
                         bench_new (
-                            dst1, subcoef1, sz * SIZEOF_PIXEL
+                            dst1,
+                            subcoef1,
+                            sz * SIZEOF_PIXEL
                         );
 
                     }
@@ -726,7 +795,10 @@ private static void check_idct_multiple () {
     //  );
 
     H264DSPContext h264_dsp_context;
-    int bit_depth, i, y, func;
+    int bit_depth;
+    int i;
+    int y;
+    int func;
 
     for (
         bit_depth = 8;
@@ -734,7 +806,9 @@ private static void check_idct_multiple () {
         bit_depth++
     ) {
         ff_h264dsp_init (
-            &h264_dsp_context, bit_depth, 1
+            &h264_dsp_context,
+            bit_depth,
+            1
         );
 
         for (
@@ -766,11 +840,15 @@ private static void check_idct_multiple () {
             }
 
             memset (
-                nnzc, 0, 15 * 8
+                nnzc,
+                0,
+                15 * 8
             );
 
             memset (
-                coef_full, 0, 16 * 16 * SIZEOF_COEF
+                coef_full,
+                0,
+                16 * 16 * SIZEOF_COEF
             );
 
             for (
@@ -794,12 +872,14 @@ private static void check_idct_multiple () {
                     sz == 4
                 ) {
                     dct4x4 (
-                        coef, bit_depth
+                        coef,
+                        bit_depth
                     );
 
                 } else {
                     dct8x8 (
-                        coef, bit_depth
+                        coef,
+                        bit_depth
                     );
 
                 }
@@ -826,7 +906,8 @@ private static void check_idct_multiple () {
                     &coef_full[i * SIZEOF_COEF / sizeof (
                         coef[0]
                     )],
-                    coef, nnz * SIZEOF_COEF
+                    coef,
+                    nnz * SIZEOF_COEF
                 );
 
                 if (
@@ -843,44 +924,67 @@ private static void check_idct_multiple () {
             if (
                 check_func (
                     idct,
-                    "%s_%dbpp", name, bit_depth
+                    "%s_%dbpp",
+                    name,
+                    bit_depth
                 )
             ) {
                 memcpy (
-                    coef0, coef_full, 16 * 16 * SIZEOF_COEF
+                    coef0,
+                    coef_full,
+                    16 * 16 * SIZEOF_COEF
                 );
 
                 memcpy (
-                    coef1, coef_full, 16 * 16 * SIZEOF_COEF
+                    coef1,
+                    coef_full,
+                    16 * 16 * SIZEOF_COEF
                 );
 
                 memcpy (
-                    dst0, dst_full, 16 * 16 * SIZEOF_PIXEL
+                    dst0,
+                    dst_full,
+                    16 * 16 * SIZEOF_PIXEL
                 );
 
                 memcpy (
-                    dst1, dst_full, 16 * 16 * SIZEOF_PIXEL
+                    dst1,
+                    dst_full,
+                    16 * 16 * SIZEOF_PIXEL
                 );
 
                 call_ref (
-                    dst0, block_offset, coef0, 16 * SIZEOF_PIXEL, nnzc
+                    dst0,
+                    block_offset,
+                    coef0,
+                    16 * SIZEOF_PIXEL, nnzc
                 );
 
                 call_new (
-                    dst1, block_offset, coef1, 16 * SIZEOF_PIXEL, nnzc
+                    dst1,
+                    block_offset,
+                    coef1,
+                    16 * SIZEOF_PIXEL, nnzc
                 );
 
                 if (
                     memcmp (
-                        dst0, dst1, 16 * 16 * SIZEOF_PIXEL) ||
+                        dst0,
+                        dst1,
+                        16 * 16 * SIZEOF_PIXEL) ||
                     memcmp (
-                        coef0, coef1, 16 * 16 * SIZEOF_COEF)
+                        coef0,
+                        coef1,
+                        16 * 16 * SIZEOF_COEF)
                 ) {
                     fail ();
                 }
 
                 bench_new (
-                    dst1, block_offset, coef1, 16 * SIZEOF_PIXEL, nnzc
+                    dst1,
+                    block_offset,
+                    coef1,
+                    16 * SIZEOF_PIXEL, nnzc
                 );
 
             }
@@ -1021,7 +1125,8 @@ private static void check_loop_filter () {
 
     H264DSPContext h264_dsp_context;
     int bit_depth;
-    int alphas[36], betas[36];
+    int alphas[36];
+    int betas[36];
     //  int8 tc0[36][4];
 
     for (
@@ -1032,7 +1137,9 @@ private static void check_loop_filter () {
         int i, j, a, c;
         uint32 mask = pixel_mask_lf[bit_depth - 8];
         ff_h264dsp_init (
-            &h264_dsp_context, bit_depth, 1
+            &h264_dsp_context,
+            bit_depth,
+            1
         );
 
         for (
@@ -1090,7 +1197,9 @@ private static void check_loop_filter () {
         //  );
 
         ff_h264dsp_init (
-            &h264_dsp_context, bit_depth, 2
+            &h264_dsp_context,
+            bit_depth,
+            2
         );
 
         CHECK_LOOP_FILTER_1 (
@@ -1230,7 +1339,8 @@ private static void check_loop_filter_intra () {
 
     H264DSPContext h264_dsp_context;
     int bit_depth;
-    int alphas[36], betas[36];
+    int alphas[36];
+    int betas[36];
 
     for (
         bit_depth = 8;
@@ -1240,7 +1350,9 @@ private static void check_loop_filter_intra () {
         int i, j, a;
         uint32 mask = pixel_mask_lf[bit_depth - 8];
         ff_h264dsp_init (
-            &h264_dsp_context, bit_depth, 1
+            &h264_dsp_context,
+            bit_depth,
+            1
         );
 
         for (

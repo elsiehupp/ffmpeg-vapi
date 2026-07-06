@@ -22,7 +22,9 @@ private const size_t BUF_SIZE = 256;
 private const size_t MAX_CHANNELS = 8;
 
 private static void randomize_buffers () {
-    int i, j;
+    int i;
+    int j;
+
     for (
         i = 0;
         i < BUF_SIZE;
@@ -93,10 +95,14 @@ private static void check_decorrelate (
 
     if (
         memcmp (
-            *ref_dst, *new_dst, bits == 16 ? BUF_SIZE * (
+            *ref_dst,
+            *new_dst,
+            bits == 16 ? BUF_SIZE * (
                 channels/2) : BUF_SIZE * channels) ||
         memcmp (
-            *ref_src, *new_src, BUF_SIZE * channels)
+            *ref_src,
+            *new_src,
+            BUF_SIZE * channels)
     ) {
         fail ();
     }
@@ -149,12 +155,19 @@ private static void checkasm_check_flacdsp () {
     //      [BUF_SIZE * MAX_CHANNELS]
     //  );
 
-    uint8[] ref_src[] = { &ref_buf[BUF_SIZE * 0], &ref_buf[BUF_SIZE * 1], &ref_buf[BUF_SIZE * 2], &ref_buf[BUF_SIZE * 3],
-                           &ref_buf[BUF_SIZE * 4], &ref_buf[BUF_SIZE * 5], &ref_buf[BUF_SIZE * 6], &ref_buf[BUF_SIZE * 7] };
-    uint8[] new_src[] = { &new_buf[BUF_SIZE * 0], &new_buf[BUF_SIZE * 1], &new_buf[BUF_SIZE * 2], &new_buf[BUF_SIZE * 3],
-                           &new_buf[BUF_SIZE * 4], &new_buf[BUF_SIZE * 5], &new_buf[BUF_SIZE * 6], &new_buf[BUF_SIZE * 7] };
+    uint8[] ref_src[] = {
+        &ref_buf[BUF_SIZE * 0], &ref_buf[BUF_SIZE * 1], &ref_buf[BUF_SIZE * 2], &ref_buf[BUF_SIZE * 3],
+        &ref_buf[BUF_SIZE * 4], &ref_buf[BUF_SIZE * 5], &ref_buf[BUF_SIZE * 6], &ref_buf[BUF_SIZE * 7]
+    };
+
+    uint8[] new_src[] = {
+        &new_buf[BUF_SIZE * 0], &new_buf[BUF_SIZE * 1], &new_buf[BUF_SIZE * 2], &new_buf[BUF_SIZE * 3],
+        &new_buf[BUF_SIZE * 4], &new_buf[BUF_SIZE * 5], &new_buf[BUF_SIZE * 6], &new_buf[BUF_SIZE * 7]
+    };
+
     FLACDSPContext flac_dsp_context;
-    int i, j;
+    int i;
+    int j;
 
     for (
         i = 0;
@@ -162,7 +175,10 @@ private static void checkasm_check_flacdsp () {
         i++
     ) {
         ff_flacdsp_init (
-            &flac_dsp_context, fmts[i].fmt, 2, 0
+            &flac_dsp_context,
+            fmts[i].fmt,
+            2,
+            0
         );
 
         for (
@@ -172,10 +188,16 @@ private static void checkasm_check_flacdsp () {
         ) {
             if (
                 check_func (
-                    flac_dsp_context.decorrelate[j], "flac_decorrelate_%s_%d", names[j], fmts[i].bits)
+                    flac_dsp_context.decorrelate[j],
+                    "flac_decorrelate_%s_%d", names[j], fmts[i].bits)
             ) {
                 check_decorrelate (
-                    &ref_dst, ref_src, &new_dst, new_src, 2, fmts[i].bits
+                    &ref_dst,
+                    ref_src,
+                    &new_dst,
+                    new_src,
+                    2,
+                    fmts[i].bits
                 );
 
             }
@@ -188,15 +210,24 @@ private static void checkasm_check_flacdsp () {
             j += 2
         ) {
             ff_flacdsp_init (
-                &flac_dsp_context, fmts[i].fmt, j, 0
+                &flac_dsp_context,
+                fmts[i].fmt,
+                j,
+                0
             );
 
             if (
                 check_func (
-                    flac_dsp_context.decorrelate[0], "flac_decorrelate_indep%d_%d", j, fmts[i].bits)
+                    flac_dsp_context.decorrelate[0],
+                    "flac_decorrelate_indep%d_%d", j, fmts[i].bits)
             ) {
                 check_decorrelate (
-                    &ref_dst, ref_src, &new_dst, new_src, j, fmts[i].bits
+                    &ref_dst,
+                    ref_src,
+                    &new_dst,
+                    new_src,
+                    j,
+                    fmts[i].bits
                 );
 
             }

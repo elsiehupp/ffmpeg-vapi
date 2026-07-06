@@ -52,7 +52,8 @@ private class AVIOReadCallbackApplication : GLib.Application {
         BufferData? bd = (
         BufferData? )opaque;
         buf_size = FFMIN (
-            buf_size, bd.size
+            buf_size,
+            bd.size
         );
 
         if (
@@ -71,7 +72,9 @@ private class AVIOReadCallbackApplication : GLib.Application {
         copy internal buffer data to buf
         ***********************************************************/
         memcpy (
-            buf, bd.ptr, buf_size
+            buf,
+            bd.ptr,
+            buf_size
         );
 
         bd.ptr  += buf_size;
@@ -114,7 +117,11 @@ private class AVIOReadCallbackApplication : GLib.Application {
         slurp file content into buffer
         ***********************************************************/
         ret = av_file_map (
-            input_filename, &buffer, &buffer_size, 0, null
+            input_filename,
+            &buffer,
+            &buffer_size,
+            0,
+            null
         );
 
         if (
@@ -158,8 +165,13 @@ private class AVIOReadCallbackApplication : GLib.Application {
         }
 
         avio_ctx = avio_alloc_context (
-            avio_ctx_buffer, avio_ctx_buffer_size,
-                                    0, &bd, &read_packet, null, null
+            avio_ctx_buffer,
+            avio_ctx_buffer_size,
+            0,
+            &bd,
+            &read_packet,
+            null,
+            null
         );
 
         if (
@@ -180,7 +192,10 @@ private class AVIOReadCallbackApplication : GLib.Application {
         fmt_ctx.pb = avio_ctx;
 
         ret = avformat_open_input (
-            &fmt_ctx, null, null, null
+            &fmt_ctx,
+            null,
+            null,
+            null
         );
 
         if (
@@ -196,7 +211,8 @@ private class AVIOReadCallbackApplication : GLib.Application {
         }
 
         ret = avformat_find_stream_info (
-            fmt_ctx, null
+            fmt_ctx,
+            null
         );
 
         if (
@@ -212,7 +228,10 @@ private class AVIOReadCallbackApplication : GLib.Application {
         }
 
         av_dump_format (
-            fmt_ctx, 0, input_filename, 0
+            fmt_ctx,
+            0,
+            input_filename,
+            0
     );
 
     //  end:
@@ -237,7 +256,8 @@ private class AVIOReadCallbackApplication : GLib.Application {
         );
 
         av_file_unmap (
-            buffer, buffer_size
+            buffer,
+            buffer_size
         );
 
         if (

@@ -77,7 +77,8 @@ private class QSVDecodeApplication : GLib.Application {
         int ret = 0;
 
         ret = avcodec_send_packet (
-        decoder_ctx, pkt
+        decoder_ctx,
+        pkt
         );
 
         if (
@@ -97,7 +98,8 @@ private class QSVDecodeApplication : GLib.Application {
             int i, j;
 
             ret = avcodec_receive_frame (
-            decoder_ctx, frame
+            decoder_ctx,
+            frame
             );
 
             if (
@@ -123,7 +125,9 @@ private class QSVDecodeApplication : GLib.Application {
             useless but pedagogic.
             ***********************************************************/
             ret = av_hwframe_transfer_data (
-                sw_frame, frame, 0
+                sw_frame,
+                frame,
+                0
             );
 
             if (
@@ -159,7 +163,8 @@ private class QSVDecodeApplication : GLib.Application {
                     j++
                 ) {
                     avio_write (
-                        output_ctx, sw_frame.data[i] + j * sw_frame.linesize[i], sw_frame.width
+                        output_ctx,
+                        sw_frame.data[i] + j * sw_frame.linesize[i], sw_frame.width
                     );
 
                 }
@@ -221,7 +226,10 @@ private class QSVDecodeApplication : GLib.Application {
         open the input file
         ***********************************************************/
         ret = avformat_open_input (
-            &input_ctx, argv[1], null, null
+            &input_ctx,
+            argv[1],
+            null,
+            null
         );
 
         if (
@@ -273,8 +281,10 @@ private class QSVDecodeApplication : GLib.Application {
         open the hardware device
         ***********************************************************/
         ret = av_hwdevice_ctx_create (
-            &device_ref, AV_HWDEVICE_TYPE_QSV,
-                                    "auto", null, 0
+            &device_ref,
+            AV_HWDEVICE_TYPE_QSV,
+                                    "auto",
+                                    null, 0
         );
 
         if (
@@ -343,7 +353,8 @@ private class QSVDecodeApplication : GLib.Application {
             }
 
             memcpy (
-                decoder_ctx.extradata, video_st.codecpar.extradata,
+                decoder_ctx.extradata,
+                video_st.codecpar.extradata,
                 video_st.codecpar.extradata_size
             );
 
@@ -358,7 +369,9 @@ private class QSVDecodeApplication : GLib.Application {
         decoder_ctx.get_format = get_format;
 
         ret = avcodec_open2 (
-            decoder_ctx, null, null
+            decoder_ctx,
+            null,
+            null
         );
 
         if (
@@ -377,7 +390,9 @@ private class QSVDecodeApplication : GLib.Application {
         open the output stream
         ***********************************************************/
         ret = avio_open (
-            &output_ctx, argv[2], AVIO_FLAG_WRITE
+            &output_ctx,
+            argv[2],
+            AVIO_FLAG_WRITE
         );
 
         if (
@@ -415,7 +430,8 @@ private class QSVDecodeApplication : GLib.Application {
             ret >= 0
         ) {
             ret = av_read_frame (
-            input_ctx, pkt
+            input_ctx,
+            pkt
             );
 
             if (
@@ -428,7 +444,11 @@ private class QSVDecodeApplication : GLib.Application {
                 pkt.stream_index == video_st.index
             ) {
                 ret = decode_packet (
-                decoder_ctx, frame, sw_frame, pkt, output_ctx
+                decoder_ctx,
+                frame,
+                sw_frame,
+                pkt,
+                output_ctx
                 );
 
             }
@@ -443,7 +463,11 @@ private class QSVDecodeApplication : GLib.Application {
         flush the decoder
         ***********************************************************/
         ret = decode_packet (
-            decoder_ctx, frame, sw_frame, null, output_ctx
+            decoder_ctx,
+            frame,
+            sw_frame,
+            null,
+            output_ctx
     );
 
     //  finish:

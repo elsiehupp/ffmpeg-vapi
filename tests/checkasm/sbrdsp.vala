@@ -58,7 +58,9 @@ private static void test_sum64x5 () {
     );
 
     memcpy (
-        dst1, dst0, (
+        dst1,
+        dst0,
+        (
             64 + 256) * sizeof (
                 INTFLOAT)
     );
@@ -73,7 +75,10 @@ private static void test_sum64x5 () {
 
     if (
         !float_near_abs_eps_array (
-            dst0, dst1, EPS, 64 + 256)
+            dst0,
+            dst1,
+            EPS,
+            64 + 256)
     ) {
         fail ();
     }
@@ -106,22 +111,27 @@ private static void test_sum_square () {
     );
 
     res0 = call_ref (
-        src, 256
+        src,
+        256
     );
 
     res1 = call_new (
-        src, 256
+        src,
+        256
     );
 
     if (
         !float_near_abs_eps (
-            res0, res1, EPS)
+            res0,
+            res1,
+            EPS)
     ) {
         fail ();
     }
 
     bench_new (
-        src, 256
+        src,
+        256
     );
 
 }
@@ -149,7 +159,9 @@ private static void test_neg_odd_64 () {
     );
 
     memcpy (
-        dst1, dst0, (
+        dst1,
+        dst0,
+        (
             64) * sizeof (
                 INTFLOAT)
     );
@@ -164,7 +176,10 @@ private static void test_neg_odd_64 () {
 
     if (
         !float_near_abs_eps_array (
-            dst0, dst1, EPS, 64)
+            dst0,
+            dst1,
+            EPS,
+            64)
     ) {
         fail ();
     }
@@ -198,7 +213,9 @@ private static void test_qmf_pre_shuffle () {
     );
 
     memcpy (
-        dst1, dst0, (
+        dst1,
+        dst0,
+        (
             128) * sizeof (
                 INTFLOAT)
     );
@@ -213,7 +230,10 @@ private static void test_qmf_pre_shuffle () {
 
     if (
         !float_near_abs_eps_array (
-            dst0, dst1, EPS, 128)
+            dst0,
+            dst1,
+            EPS,
+            128)
     ) {
         fail ();
     }
@@ -256,11 +276,13 @@ private static void test_qmf_post_shuffle () {
     );
 
     call_ref (
-        dst0, src
+        dst0,
+        src
     );
 
     call_new (
-        dst1, src
+        dst1,
+        src
     );
 
     if (
@@ -272,7 +294,8 @@ private static void test_qmf_post_shuffle () {
     }
 
     bench_new (
-        dst1, src
+        dst1,
+        src
     );
 
 }
@@ -307,22 +330,28 @@ private static void test_qmf_deint_neg () {
     );
 
     call_ref (
-        dst0, src
+        dst0,
+        src
     );
 
     call_new (
-        dst1, src
+        dst1,
+        src
     );
 
     if (
         !float_near_abs_eps_array (
-            dst0, dst1, EPS, 64)
+            dst0,
+            dst1,
+            EPS,
+            64)
     ) {
         fail ();
     }
 
     bench_new (
-        dst1, src
+        dst1,
+        src
     );
 
 }
@@ -360,12 +389,14 @@ private static void test_qmf_deint_bfly () {
     //  );
 
     memset (
-        dst0, 0, 128 * sizeof (
+        dst0,
+        0, 128 * sizeof (
             INTFLOAT)
     );
 
     memset (
-        dst1, 0, 128 * sizeof (
+        dst1,
+        0, 128 * sizeof (
             INTFLOAT)
     );
 
@@ -378,22 +409,31 @@ private static void test_qmf_deint_bfly () {
     );
 
     call_ref (
-        dst0, src0, src1
+        dst0,
+        src0,
+        src1
     );
 
     call_new (
-        dst1, src0, src1
+        dst1,
+        src0,
+        src1
     );
 
     if (
         !float_near_abs_eps_array (
-            dst0, dst1, EPS, 128)
+            dst0,
+            dst1,
+            EPS,
+            128)
     ) {
         fail ();
     }
 
     bench_new (
-        dst1, src0, src1
+        dst1,
+        src0,
+        src1
     );
 
 }
@@ -427,12 +467,14 @@ private static void test_autocorrelate () {
     //  );
 
     memset (
-        dst0, 0, 3 * 2 * 2 * sizeof (
+        dst0,
+        0, 3 * 2 * 2 * sizeof (
             INTFLOAT)
     );
 
     memset (
-        dst1, 0, 3 * 2 * 2 * sizeof (
+        dst1,
+        0, 3 * 2 * 2 * sizeof (
             INTFLOAT)
     );
 
@@ -441,11 +483,13 @@ private static void test_autocorrelate () {
     );
 
     call_ref (
-        src, dst0
+        src,
+        dst0
     );
 
     call_new (
-        src, dst1
+        src,
+        dst1
     );
 
     if (
@@ -457,7 +501,8 @@ private static void test_autocorrelate () {
     }
 
     bench_new (
-        src, dst1
+        src,
+        dst1
     );
 
 }
@@ -529,21 +574,37 @@ private static void test_hf_gen () {
         i += 2
     ) {
         memset (
-            dst0, 0, 128 * 2 * sizeof (
+            dst0,
+            0,
+            128 * 2 * sizeof (
                 INTFLOAT)
         );
 
         memset (
-            dst1, 0, 128 * 2 * sizeof (
+            dst1,
+            0,
+            128 * 2 * sizeof (
                 INTFLOAT)
         );
 
         call_ref (
-            dst0, low, alpha0, alpha1, 0.0, i, 128
+            dst0,
+            low,
+            alpha0,
+            alpha1,
+            0.0,
+            i,
+            128
         );
 
         call_new (
-            dst1, low, alpha0, alpha1, 0.0, i, 128
+            dst1,
+            low,
+            alpha0,
+            alpha1,
+            0.0,
+            i,
+            128
         );
 
         if (
@@ -555,7 +616,13 @@ private static void test_hf_gen () {
         }
 
         bench_new (
-            dst1, low, alpha0, alpha1, bw, i, 128
+            dst1,
+            low,
+            alpha0,
+            alpha1,
+            bw,
+            i,
+            128
         );
 
     }
@@ -608,11 +675,17 @@ private static void test_hf_g_filt () {
     );
 
     call_ref (
-        dst0, high, g_filt, 128, 20
+        dst0,
+        high,
+        g_filt,
+        128, 20
     );
 
     call_new (
-        dst1, high, g_filt, 128, 20
+        dst1,
+        high,
+        g_filt,
+        128, 20
     );
 
     if (
@@ -624,7 +697,10 @@ private static void test_hf_g_filt () {
     }
 
     bench_new (
-        dst1, high, g_filt, 128, 20
+        dst1,
+        high,
+        g_filt,
+        128, 20
     );
 
 }
@@ -666,7 +742,8 @@ private static void test_hf_apply_noise (
     //  );
 
     int noise = 0x2a;
-    int i, j;
+    int i;
+    int j;
 
     //  declare_func (
     //      void,
@@ -725,11 +802,21 @@ private static void test_hf_apply_noise (
                 //  );
 
                 call_ref (
-                    dst0, s_m, q_filt, noise, j, 128
+                    dst0,
+                    s_m,
+                    q_filt,
+                    noise,
+                    j,
+                    128
                 );
 
                 call_new (
-                    dst1, s_m, q_filt, noise, j, 128
+                    dst1,
+                    s_m,
+                    q_filt,
+                    noise,
+                    j,
+                    128
                 );
 
                 if (
@@ -744,7 +831,12 @@ private static void test_hf_apply_noise (
                 }
 
                 bench_new (
-                    dst1, s_m, q_filt, noise, j, 128
+                    dst1,
+                    s_m,
+                    q_filt,
+                    noise,
+                    j,
+                    128
                 );
 
             }
@@ -764,7 +856,8 @@ private static void checkasm_check_sbrdsp () {
 
     if (
         check_func (
-            sbrdsp.sum64x5, "sum64x5"
+            sbrdsp.sum64x5,
+            "sum64x5"
         )
     ) {
         test_sum64x5 ();
@@ -776,7 +869,8 @@ private static void checkasm_check_sbrdsp () {
 
     if (
         check_func (
-            sbrdsp.sum_square, "sum_square"
+            sbrdsp.sum_square,
+            "sum_square"
         )
     ) {
         test_sum_square ();
@@ -788,7 +882,8 @@ private static void checkasm_check_sbrdsp () {
 
     if (
         check_func (
-            sbrdsp.neg_odd_64, "neg_odd_64"
+            sbrdsp.neg_odd_64,
+            "neg_odd_64"
         )
     ) {
         test_neg_odd_64 ();
@@ -800,7 +895,8 @@ private static void checkasm_check_sbrdsp () {
 
     if (
         check_func (
-            sbrdsp.qmf_pre_shuffle, "qmf_pre_shuffle"
+            sbrdsp.qmf_pre_shuffle,
+            "qmf_pre_shuffle"
         )
     ) {
         test_qmf_pre_shuffle ();
@@ -812,7 +908,8 @@ private static void checkasm_check_sbrdsp () {
 
     if (
         check_func (
-            sbrdsp.qmf_post_shuffle, "qmf_post_shuffle"
+            sbrdsp.qmf_post_shuffle,
+            "qmf_post_shuffle"
         )
     ) {
         test_qmf_post_shuffle ();
@@ -824,7 +921,8 @@ private static void checkasm_check_sbrdsp () {
 
     if (
         check_func (
-            sbrdsp.qmf_deint_neg, "qmf_deint_neg"
+            sbrdsp.qmf_deint_neg,
+            "qmf_deint_neg"
         )
     ) {
         test_qmf_deint_neg ();
@@ -836,7 +934,8 @@ private static void checkasm_check_sbrdsp () {
 
     if (
         check_func (
-            sbrdsp.qmf_deint_bfly, "qmf_deint_bfly"
+            sbrdsp.qmf_deint_bfly,
+            "qmf_deint_bfly"
         )
     ) {
         test_qmf_deint_bfly ();
@@ -848,7 +947,8 @@ private static void checkasm_check_sbrdsp () {
 
     if (
         check_func (
-            sbrdsp.autocorrelate, "autocorrelate"
+            sbrdsp.autocorrelate,
+            "autocorrelate"
         )
     ) {
         test_autocorrelate ();
@@ -860,7 +960,8 @@ private static void checkasm_check_sbrdsp () {
 
     if (
         check_func (
-            sbrdsp.hf_gen, "hf_gen"
+            sbrdsp.hf_gen,
+            "hf_gen"
         )
     ) {
         test_hf_gen ();
@@ -872,7 +973,8 @@ private static void checkasm_check_sbrdsp () {
 
     if (
         check_func (
-            sbrdsp.hf_g_filt, "hf_g_filt"
+            sbrdsp.hf_g_filt,
+            "hf_g_filt"
         )
     ) {
         test_hf_g_filt ();

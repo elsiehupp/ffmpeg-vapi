@@ -104,7 +104,8 @@ private static void check_pack_line (
     void *mask
 ) {
     //  LOCAL_ALIGNED_16 (
-    //      type, y0,
+    //      type,
+    //      y0,
     //      [BUF_SIZE]
     //  );
 
@@ -176,32 +177,52 @@ private static void check_pack_line (
         );
 
         call_ref (
-            y0 + y_offset, u0 + uv_offset, v0 + uv_offset, dst0, width
+            y0 + y_offset,
+            u0 + uv_offset,
+            v0 + uv_offset,
+            dst0,
+            width
         );
 
         call_new (
-            y1 + y_offset, u1 + uv_offset, v1 + uv_offset, dst1, width
+            y1 + y_offset,
+            u1 + uv_offset,
+            v1 + uv_offset,
+            dst1,
+            width
         );
 
         if (
             memcmp (
-                y0, y1, BUF_SIZE
+                y0,
+                y1,
+                BUF_SIZE
             ) ||
             memcmp (
-                u0, u1, BUF_SIZE / 2
+                u0,
+                u1,
+                BUF_SIZE / 2
             ) ||
             memcmp (
-                v0, v1, BUF_SIZE / 2
+                v0,
+                v1,
+                BUF_SIZE / 2
             ) ||
             memcmp (
-                dst0, dst1, width * 8 / 3
+                dst0,
+                dst1,
+                width * 8 / 3
             )
         ) {
             fail ();
         }
 
         bench_new (
-            y1 + y_offset, u1 + uv_offset, v1 + uv_offset, dst1, width
+            y1 + y_offset,
+            u1 + uv_offset,
+            v1 + uv_offset,
+            dst1,
+            width
         );
 
     }
@@ -217,22 +238,26 @@ private static void checkasm_check_v210enc () {
 
     if (
         check_func (
-            v210_enc_context.pack_line_8, "v210_planar_pack_8"
+            v210_enc_context.pack_line_8,
+            "v210_planar_pack_8"
         )
     ) {
         check_pack_line (
-            uint8, 0xffffffff
+            uint8,
+            0xffffffff
         );
 
     }
 
     if (
         check_func (
-            v210_enc_context.pack_line_10, "v210_planar_pack_10"
+            v210_enc_context.pack_line_10,
+            "v210_planar_pack_10"
         )
     ) {
         check_pack_line (
-            uint16, 0x03ff03ff
+            uint16,
+            0x03ff03ff
         );
 
     }

@@ -29,7 +29,8 @@ private static void randomize_buffers (
         j+=4
     ) {
         AV_WN32 (
-            buf + j, rnd ()
+            buf + j,
+            rnd ()
         );
 
     }
@@ -139,7 +140,8 @@ private static void check_diff_bytes (
 
     if (
         check_func (
-            llvid_enc_dsp_context.diff_bytes, "diff_bytes"
+            llvid_enc_dsp_context.diff_bytes,
+            "diff_bytes"
         )
     ) {
         for (
@@ -148,16 +150,24 @@ private static void check_diff_bytes (
             i++
         ) {
             call_ref (
-                dst0, src0, src2, planes[i].w
+                dst0,
+                src0,
+                src2,
+                planes[i].w
             );
 
             call_new (
-                dst1, src1, src3, planes[i].w
+                dst1,
+                src1,
+                src3,
+                planes[i].w
             );
 
             if (
                 memcmp (
-                    dst0, dst1, planes[i].w)
+                    dst0,
+                    dst1,
+                    planes[i].w)
             ) {
                 fail ();
             }
@@ -165,7 +175,10 @@ private static void check_diff_bytes (
         }
 
         bench_new (
-            dst1, src0, src2, planes[4].w
+            dst1,
+            src0,
+            src2,
+            planes[4].w
         );
 
     }
@@ -212,24 +225,32 @@ private static void check_sub_left_pred (
     //  );
 
     memset (
-        dst0, 0, MAX_STRIDE * MAX_HEIGHT
+        dst0,
+        0,
+        MAX_STRIDE * MAX_HEIGHT
     );
 
     memset (
-        dst1, 0, MAX_STRIDE * MAX_HEIGHT
+        dst1,
+        0,
+        MAX_STRIDE * MAX_HEIGHT
     );
 
     randomize_buffers (
-        src0, MAX_STRIDE * MAX_HEIGHT
+        src0,
+        MAX_STRIDE * MAX_HEIGHT
     );
 
     memcpy (
-        src1, src0, MAX_STRIDE * MAX_HEIGHT
+        src1,
+        src0,
+        MAX_STRIDE * MAX_HEIGHT
     );
 
     if (
         check_func (
-            llvid_enc_dsp_context.sub_left_predict, "sub_left_predict"
+            llvid_enc_dsp_context.sub_left_predict,
+            "sub_left_predict"
         )
     ) {
         for (
@@ -238,16 +259,26 @@ private static void check_sub_left_pred (
             i++
         ) {
             call_ref (
-                dst0, src0, planes[i].s, planes[i].w, planes[i].h
+                dst0,
+                src0,
+                planes[i].s,
+                planes[i].w,
+                planes[i].h
             );
 
             call_new (
-                dst1, src1, planes[i].s, planes[i].w, planes[i].h
+                dst1,
+                src1,
+                planes[i].s,
+                planes[i].w,
+                planes[i].h
             );
 
             if (
                 memcmp (
-                    dst0, dst1, planes[i].w * planes[i].h)
+                    dst0,
+                    dst1,
+                    planes[i].w * planes[i].h)
             ) {
                 fail ();
             }
@@ -256,7 +287,11 @@ private static void check_sub_left_pred (
         }
 
         bench_new (
-            dst1, src0, planes[4].s, planes[4].w, planes[4].h
+            dst1,
+            src0,
+            planes[4].s,
+            planes[4].w,
+            planes[4].h
         );
 
     }

@@ -66,8 +66,22 @@ private static void checkasm_check_fmtconvert () {
     //  );
 
     float scale_arr[128];
-    int length[] = {8, 16, 24, 56, 72, 128, 512, 520, 656, 768, 992};
-    int i, j;
+    int length[] = {
+        8,
+        16,
+        24,
+        56,
+        72,
+        128,
+        512,
+        520,
+        656,
+        768,
+        992
+    };
+
+    int i;
+    int j;
 
     for (
         i = 0;
@@ -82,17 +96,24 @@ private static void checkasm_check_fmtconvert () {
     }
 
     ff_fmt_convert_init (
-        &format_convert_context, null
+        &format_convert_context,
+        null
     );
 
     memset (
-        dst0, 0, sizeof (
-            dst0) * BUF_SIZE
+        dst0,
+        0,
+        sizeof (
+            dst0
+        ) * BUF_SIZE
     );
 
     memset (
-        dst1, 0, sizeof (
-            dst1) * BUF_SIZE
+        dst1,
+        0,
+        sizeof (
+            dst1
+        ) * BUF_SIZE
     );
 
     if (
@@ -127,16 +148,25 @@ private static void checkasm_check_fmtconvert () {
                 );
 
                 call_ref (
-                    dst0, in, scale_arr[i], length[j]
+                    dst0,
+                    in,
+                    scale_arr[i],
+                    length[j]
                 );
 
                 call_new (
-                    dst1, in, scale_arr[i], length[j]
+                    dst1,
+                    in,
+                    scale_arr[i],
+                    length[j]
                 );
 
                 if (
                     !float_near_ulp_array (
-                        dst0, dst1, 3, length[j]
+                        dst0,
+                        dst1,
+                        3,
+                        length[j]
                     )
                 ) {
                     fail ();
@@ -144,7 +174,10 @@ private static void checkasm_check_fmtconvert () {
                 }
 
                 bench_new (
-                    dst1, in, scale_arr[i], length[j]
+                    dst1,
+                    in,
+                    scale_arr[i],
+                    length[j]
                 );
 
             }
@@ -155,7 +188,8 @@ private static void checkasm_check_fmtconvert () {
 
     if (
         check_func (
-            format_convert_context.int32_to_float_fmul_array8, "int32_to_float_fmul_array8"
+            format_convert_context.int32_to_float_fmul_array8,
+            "int32_to_float_fmul_array8"
         )
     ) {
         //  declare_func (
@@ -184,16 +218,27 @@ private static void checkasm_check_fmtconvert () {
                 );
 
                 call_ref (
-                    &format_convert_context, dst0, in, scale_arr, length[j]
+                    &format_convert_context,
+                    dst0,
+                    in,
+                    scale_arr,
+                    length[j]
                 );
 
                 call_new (
-                    &format_convert_context, dst1, in, scale_arr, length[j]
+                    &format_convert_context,
+                    dst1,
+                    in,
+                    scale_arr,
+                    length[j]
                 );
 
                 if (
                     !float_near_ulp_array (
-                        dst0, dst1, 3, length[j]
+                        dst0,
+                        dst1,
+                        3,
+                        length[j]
                     )
                 ) {
                     fail ();
@@ -207,7 +252,11 @@ private static void checkasm_check_fmtconvert () {
                 }
 
                 bench_new (
-                    &format_convert_context, dst1, in, scale_arr, length[j]
+                    &format_convert_context,
+                    dst1,
+                    in,
+                    scale_arr,
+                    length[j]
                 );
 
             }

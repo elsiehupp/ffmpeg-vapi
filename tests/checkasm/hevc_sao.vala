@@ -176,42 +176,71 @@ private static void check_sao_band (
         size_t stride = PIXEL_STRIDE*SIZEOF_PIXEL;
 
         randomize_buffers (
-            src0, src1, BUF_SIZE
+            src0,
+            src1,
+            BUF_SIZE
         );
 
         randomize_buffers2 (
-            offset_val, OFFSET_LENGTH
+            offset_val,
+            OFFSET_LENGTH
         );
 
         memset (
-            dst0, 0, BUF_SIZE
+            dst0,
+            0,
+            BUF_SIZE
         );
 
         memset (
-            dst1, 0, BUF_SIZE
+            dst1,
+            0,
+            BUF_SIZE
         );
 
         if (
             check_func (
-                hevc_dsp_context.sao_band_filter[i], "hevc_sao_band_%dx%d_%d", block_size, block_size, bit_depth)
+                hevc_dsp_context.sao_band_filter[i],
+                "hevc_sao_band_%dx%d_%d",
+                block_size, block_size, bit_depth)
         ) {
             call_ref (
-                dst0, src0, stride, stride, offset_val, left_class, block_size, block_size
+                dst0,
+                src0,
+                stride,
+                stride,
+                offset_val,
+                left_class,
+                block_size, block_size
             );
 
             call_new (
-                dst1, src1, stride, stride, offset_val, left_class, block_size, block_size
+                dst1,
+                src1,
+                stride,
+                stride,
+                offset_val,
+                left_class,
+                block_size, block_size
             );
 
             if (
                 memcmp (
-                    dst0, dst1, BUF_SIZE)
+                    dst0,
+                    dst1,
+                    BUF_SIZE)
             ) {
                 fail ();
             }
 
             bench_new (
-                dst1, src1, stride, stride, offset_val, left_class, block_size, block_size
+                dst1,
+                src1,
+                stride,
+                stride,
+                offset_val,
+                left_class,
+                block_size, block_size
             );
 
         }
@@ -275,42 +304,56 @@ private static void check_sao_edge (
             AV_INPUT_BUFFER_PADDING_SIZE + PIXEL_STRIDE)*SIZEOF_PIXEL;
 
         randomize_buffers (
-            src0, src1, BUF_SIZE
+            src0,
+            src1,
+            BUF_SIZE
         );
 
         randomize_buffers2 (
-            offset_val, OFFSET_LENGTH
+            offset_val,
+            OFFSET_LENGTH
         );
 
         memset (
-            dst0, 0, BUF_SIZE
+            dst0,
+            0,
+            BUF_SIZE
         );
 
         memset (
-            dst1, 0, BUF_SIZE
+            dst1,
+            0,
+            BUF_SIZE
         );
 
         if (
             check_func (
-                hevc_dsp_context.sao_edge_filter[i], "hevc_sao_edge_%dx%d_%d", block_size, block_size, bit_depth)
+                hevc_dsp_context.sao_edge_filter[i],
+                "hevc_sao_edge_%dx%d_%d",
+                block_size, block_size, bit_depth)
         ) {
             call_ref (
-                dst0, src0 + offset, stride, offset_val, eo, block_size, block_size
+                dst0,
+                src0 + offset, stride, offset_val, eo, block_size, block_size
             );
 
             call_new (
-                dst1, src1 + offset, stride, offset_val, eo, block_size, block_size
+                dst1,
+                src1 + offset, stride, offset_val, eo, block_size, block_size
             );
 
             if (
                 memcmp (
-                    dst0, dst1, BUF_SIZE)
+                    dst0,
+                    dst1,
+                    BUF_SIZE)
             ) {
                 fail ();
             }
 
             bench_new (
-                dst1, src1 + offset, stride, offset_val, eo, block_size, block_size
+                dst1,
+                src1 + offset, stride, offset_val, eo, block_size, block_size
             );
 
         }
@@ -330,11 +373,13 @@ private static void checkasm_check_hevc_sao () {
         HEVCDSPContext hevc_dsp_context;
 
         ff_hevc_dsp_init (
-            &hevc_dsp_context, bit_depth
+            &hevc_dsp_context,
+            bit_depth
         );
 
         check_sao_band (
-            hevc_dsp_context, bit_depth
+            hevc_dsp_context,
+            bit_depth
         );
 
     }
@@ -351,11 +396,13 @@ private static void checkasm_check_hevc_sao () {
         HEVCDSPContext hevc_dsp_context;
 
         ff_hevc_dsp_init (
-            &hevc_dsp_context, bit_depth
+            &hevc_dsp_context,
+            bit_depth
         );
 
         check_sao_edge (
-            hevc_dsp_context, bit_depth
+            hevc_dsp_context,
+            bit_depth
         );
 
     }

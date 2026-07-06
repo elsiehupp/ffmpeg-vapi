@@ -47,7 +47,10 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
                 client)) > 0
         ) {
             av_opt_get (
-                client, "resource", AV_OPT_SEARCH_CHILDREN, &resource
+                client,
+                "resource",
+                AV_OPT_SEARCH_CHILDREN,
+                &resource
             );
 
 
@@ -79,7 +82,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
         }
 
         av_log (
-            client, AV_LOG_TRACE,
+            client,
+            AV_LOG_TRACE,
             "resource=%p\n",
             resource
         );
@@ -97,14 +101,18 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
         }
 
         ret = av_opt_set_int (
-            client, "reply_code", reply_code, AV_OPT_SEARCH_CHILDREN
+            client,
+            "reply_code",
+            reply_code,
+            AV_OPT_SEARCH_CHILDREN
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                client, AV_LOG_ERROR,
+                client,
+                AV_LOG_ERROR,
                 "Failed to set reply_code: %s.\n",
                 av_err2str (
                     ret)
@@ -115,7 +123,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
         }
 
         av_log (
-            client, AV_LOG_TRACE,
+            client,
+            AV_LOG_TRACE,
             "Set reply code to %d\n",
             reply_code
         );
@@ -150,14 +159,19 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
         );
 
         ret = avio_open2 (
-            &input, in_uri, AVIO_FLAG_READ, null, null
+            &input,
+            in_uri,
+            AVIO_FLAG_READ,
+            null,
+            null
         );
 
         if (
             ret < 0
         ) {
             av_log (
-                input, AV_LOG_ERROR,
+                input,
+                AV_LOG_ERROR,
                 "Failed to open input: %s: %s.\n",
                 in_uri,
                 av_err2str (
@@ -173,7 +187,9 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
             ;
         ) {
             n = avio_read (
-            input, buf, sizeof (
+            input,
+            buf,
+            sizeof (
                 buf)
             );
 
@@ -187,7 +203,9 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
                 }
 
                 av_log (
-                    input, AV_LOG_ERROR, "Error reading from input: %s.\n",
+                    input,
+                    AV_LOG_ERROR,
+                    "Error reading from input: %s.\n",
                     av_err2str (
                         n)
                 );
@@ -196,7 +214,9 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
             }
 
             avio_write (
-                client, buf, n
+                client,
+                buf,
+                n
             );
 
             avio_flush (
@@ -272,7 +292,10 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
         avformat_network_init ();
 
         ret = av_dict_set (
-            &options, "listen", "2", 0
+            &options,
+            "listen",
+            "2",
+            0
         );
 
         if (
@@ -289,7 +312,11 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
         }
 
         ret = avio_open2 (
-            &server, out_uri, AVIO_FLAG_WRITE, null, &options
+            &server,
+            out_uri,
+            AVIO_FLAG_WRITE,
+            null,
+            &options
         );
 
         if (
@@ -315,7 +342,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
             ;
         ) {
             ret = avio_accept (
-            server, &client
+            server,
+            &client
             );
 
             if (
@@ -360,7 +388,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
                 );
 
                 process_client (
-                    client, in_uri
+                    client,
+                    in_uri
                 );
 
                 avio_close (

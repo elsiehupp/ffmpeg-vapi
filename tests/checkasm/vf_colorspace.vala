@@ -23,7 +23,9 @@ private const size_t H = 64;
 
 private static void randomize_buffers () {
     uint mask = bpp_mask[idepth];
-    int n, m;
+    int n;
+    int m;
+
     int bpp = 1 + (
         !!idepth
     );
@@ -43,7 +45,8 @@ private static void randomize_buffers () {
         ) {
             uint r = rnd () & mask;
             AV_WN32A (
-                &src[m][n], r
+                &src[m][n],
+                r
             );
 
         }
@@ -53,7 +56,9 @@ private static void randomize_buffers () {
 }
 
 private const string format_string[] = {
-    "444", "422", "420"
+    "444",
+    "422",
+    "420"
 };
 
 private const int64 bpp_mask[] = {
@@ -76,7 +81,10 @@ private static void check_yuv2yuv () {
     //  );
 
     ColorSpaceDSPContext colorspace_dsp_context;
-    int idepth, odepth, fmt, n;
+    int idepth;
+    int odepth;
+    int fmt;
+    int n;
 
     //  LOCAL_ALIGNED_32 (
     //      uint8,
@@ -261,13 +269,19 @@ private static void check_yuv2yuv () {
 
                     if (
                         memcmp (
-                            dst0[0], dst1[0], y_dst_stride * H
+                            dst0[0],
+                            dst1[0],
+                            y_dst_stride * H
                         ) ||
                         memcmp (
-                            dst0[1], dst1[1], uv_dst_stride * H >> ss_h
+                            dst0[1],
+                            dst1[1],
+                            uv_dst_stride * H >> ss_h
                         ) ||
                         memcmp (
-                            dst0[2], dst1[2], uv_dst_stride * H >> ss_h
+                            dst0[2],
+                            dst1[2],
+                            uv_dst_stride * H >> ss_h
                         )
                     ) {
                         fail ();
@@ -301,7 +315,9 @@ private static void check_yuv2rgb () {
     //  );
 
     ColorSpaceDSPContext colorspace_dsp_context;
-    int idepth, fmt, n;
+    int idepth;
+    int fmt;
+    int n;
 
     //  LOCAL_ALIGNED_32 (
     //      uint8,
@@ -427,8 +443,7 @@ private static void check_yuv2rgb () {
                 //      dst0,
                 //      W,
                 //      src,
-                //      (
-                    size_t[3]) {
+                //      (size_t[3]) {
                 //          y_src_stride,
                 //          uv_src_stride,
                 //          uv_src_stride
@@ -443,8 +458,7 @@ private static void check_yuv2rgb () {
                 //      dst1,
                 //      W,
                 //      src,
-                //      (
-                    size_t[3]) {
+                //      (size_t[3]) {
                 //          y_src_stride,
                 //          uv_src_stride,
                 //          uv_src_stride
@@ -495,7 +509,10 @@ private static void check_yuv2rgb () {
 
 //  #undef randomize_buffers
 private static void randomize_buffers () {
-    int y, x, p;
+    int y;
+    int x;
+    int p;
+
     for (
         p = 0;
         p < 3;
@@ -537,7 +554,9 @@ private static void check_rgb2yuv () {
     //  );
 
     ColorSpaceDSPContext colorspace_dsp_context;
-    int odepth, fmt, n;
+    int odepth;
+    int fmt;
+    int n;
 
     //  LOCAL_ALIGNED_32 (
     //      int16,
@@ -700,8 +719,7 @@ private static void check_rgb2yuv () {
 
                 //  call_ref (
                 //      dst0,
-                //      (
-                    size_t[3]) {
+                //      (size_t[3]) {
                 //          y_dst_stride,
                 //          uv_dst_stride,
                 //          uv_dst_stride
@@ -716,8 +734,7 @@ private static void check_rgb2yuv () {
 
                 //  call_new (
                 //      dst1,
-                //      (
-                    size_t[3]) {
+                //      (size_t[3]) {
                 //          y_dst_stride,
                 //          v_dst_stride,
                 //          uv_dst_stride
@@ -732,11 +749,17 @@ private static void check_rgb2yuv () {
 
                 if (
                     memcmp (
-                        dst0[0], dst1[0], H * y_dst_stride) ||
+                        dst0[0],
+                        dst1[0],
+                        H * y_dst_stride) ||
                     memcmp (
-                        dst0[1], dst1[1], H * uv_dst_stride >> ss_h) ||
+                        dst0[1],
+                        dst1[1],
+                        H * uv_dst_stride >> ss_h) ||
                     memcmp (
-                        dst0[2], dst1[2], H * uv_dst_stride >> ss_h)
+                        dst0[2],
+                        dst1[2],
+                        H * uv_dst_stride >> ss_h)
                 ) {
                     fail ();
                 }
@@ -874,42 +897,63 @@ private static void check_multiply3x3 () {
 
     if (
         check_func (
-            colorspace_dsp_context.multiply3x3, "ff_colorspacedsp_multiply3x3"
+            colorspace_dsp_context.multiply3x3,
+            "ff_colorspacedsp_multiply3x3"
         )
     ) {
         randomize_buffers ();
         memcpy (
-            dst1_y, dst0_y, W * H * sizeof (
+            dst1_y,
+            dst0_y,
+            W * H * sizeof (
                 dst1_y)
         );
 
         memcpy (
-            dst1_u, dst0_u, W * H * sizeof (
+            dst1_u,
+            dst0_u,
+            W * H * sizeof (
                 dst1_u)
         );
 
         memcpy (
-            dst1_v, dst0_v, W * H * sizeof (
+            dst1_v,
+            dst0_v,
+            W * H * sizeof (
                 dst1_v)
         );
 
         call_ref (
-            dst0, W, W, H, coeff
+            dst0,
+            W,
+            W,
+            H,
+            coeff
         );
 
         call_new (
-            dst1, W, W, H, coeff
+            dst1,
+            W,
+            W,
+            H,
+            coeff
         );
 
         if (
             memcmp (
-                dst0[0], dst1[0], H * W * sizeof (
+                dst0[0],
+                dst1[0],
+                H * W * sizeof (
                     dst0_y)) ||
             memcmp (
-                dst0[1], dst1[1], H * W * sizeof (
+                dst0[1],
+                dst1[1],
+                H * W * sizeof (
                     dst0_u)) ||
             memcmp (
-                dst0[2], dst1[2], H * W * sizeof (
+                dst0[2],
+                dst1[2],
+                H * W * sizeof (
                     dst0_v))
         ) {
             fail ();

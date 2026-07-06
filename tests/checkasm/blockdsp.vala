@@ -107,15 +107,18 @@ private static void checkasm_check_blockdsp () {
     BlockDSPContext block_dsp_context;
 
     ff_blockdsp_init (
-        &block_dsp_context, &avctx
+        &block_dsp_context,
+        &avctx
     );
 
     check_clear (
-        clear_block, 8 * 8
+        clear_block,
+        8 * 8
     );
 
     check_clear (
-        clear_blocks, 8 * 8 * 6
+        clear_blocks,
+        8 * 8 * 6
     );
 
     report (

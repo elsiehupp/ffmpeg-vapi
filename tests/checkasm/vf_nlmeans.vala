@@ -72,32 +72,40 @@ private static void checkasm_check_nlmeans () {
             "ssd_integral_image"
         )
     ) {
-        int offx, offy;
+        int offx;
+        int offy;
         int e = p + r;
-        int ii_w = w + e*2;
-        int ii_h = h + e*2;
+        int ii_w = w + e * 2;
+        int ii_h = h + e * 2;
         int ii_lz_32 = FFALIGN (
-            ii_w + 1, 4
+            ii_w + 1,
+            4
         );
 
         uint32[] ii_orig_ref = av_mallocz_array (
-            ii_h + 1, ii_lz_32 * sizeof (
-                ii_orig_ref)
+            ii_h + 1,
+            ii_lz_32 * sizeof (
+                ii_orig_ref
+            )
         );
 
         uint32[] ii_ref = ii_orig_ref + ii_lz_32 + 1;
         uint32[] ii_orig_new = av_mallocz_array (
-            ii_h + 1, ii_lz_32 * sizeof (
-                ii_orig_new)
+            ii_h + 1,
+            ii_lz_32 * sizeof (
+                ii_orig_new
+            )
         );
 
         uint32[] ii_new = ii_orig_new + ii_lz_32 + 1;
         int src_lz = FFALIGN (
-            w, 16
+            w,
+            16
         );
 
         uint8[] src = av_mallocz_array (
-            h, src_lz
+            h,
+            src_lz
         );
 
         //  declare_func (
@@ -113,7 +121,8 @@ private static void checkasm_check_nlmeans () {
         //  );
 
         randomize_buffer (
-            src, h * src_lz
+            src,
+            h * src_lz
         );
 
         for (
@@ -135,19 +144,23 @@ private static void checkasm_check_nlmeans () {
                     int s2x = e + offx;
                     int s2y = e + offy;
                     int startx_safe = FFMAX (
-                        s1x, s2x
+                        s1x,
+                        s2x
                     );
 
                     int starty_safe = FFMAX (
-                        s1y, s2y
+                        s1y,
+                        s2y
                     );
 
                     int u_endx_safe = FFMIN (
-                        s1x + w, s2x + w
+                        s1x + w,
+                        s2x + w
                     );
 
                     int endy_safe = FFMIN (
-                        s1y + h, s2y + h
+                        s1y + h,
+                        s2y + h
                     );
 
                     int safe_pw = (
@@ -193,7 +206,8 @@ private static void checkasm_check_nlmeans () {
                     );
 
                     memset (
-                        ii_ref, 0,
+                        ii_ref,
+                        0,
                         (
                             ii_lz_32 * ii_h - 1
                         ) * sizeof (
@@ -202,7 +216,8 @@ private static void checkasm_check_nlmeans () {
                     );
 
                     memset (
-                        ii_new, 0,
+                        ii_new,
+                        0,
                         (
                             ii_lz_32 * ii_h - 1
                         ) * sizeof (
@@ -211,7 +226,8 @@ private static void checkasm_check_nlmeans () {
                     );
 
                     call_ref (
-                        ii_ref + starty_safe*ii_lz_32 + startx_safe, ii_lz_32,
+                        ii_ref + starty_safe * ii_lz_32 + startx_safe,
+                        ii_lz_32,
                         src + (
                             starty_safe - s1y
                         ) * src_lz + (
@@ -229,12 +245,14 @@ private static void checkasm_check_nlmeans () {
                     );
 
                     call_new (
-                        ii_new + starty_safe*ii_lz_32 + startx_safe, ii_lz_32,
+                        ii_new + starty_safe * ii_lz_32 + startx_safe,
+                        ii_lz_32,
                         src + (
                             starty_safe - s1y
                         ) * src_lz + (
                             startx_safe - s1x
-                        ), src_lz,
+                        ),
+                        src_lz,
                         src + (
                             starty_safe - s2y
                         ) * src_lz + (
@@ -247,7 +265,8 @@ private static void checkasm_check_nlmeans () {
 
                     if (
                         memcmp (
-                            ii_ref, ii_new,
+                            ii_ref,
+                            ii_new,
                             (
                                 ii_lz_32 * ii_h - 1
                             ) * sizeof (

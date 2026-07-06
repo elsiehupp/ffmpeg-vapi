@@ -73,17 +73,26 @@ private static void iter_1d (
         );
 
         call_new (
-            (type[])dst1, (
+            (type[])dst1,
+            (
                 type[])(src1 + y * pw + x),
             bw * sizeof (
-                type), pw * sizeof (
+                type),
+                pw * sizeof (
                     type),
-            bw, bh, x, y, pw, ph
+            bw,
+            bh,
+            x,
+            y,
+            pw,
+            ph
         );
 
         if (
             memcmp (
-                dst0, dst1, bw * bh * sizeof (
+                dst0,
+                dst1,
+                bw * bh * sizeof (
                     type))
         ) {
             fail ();
@@ -131,16 +140,22 @@ private static void check_emu_edge_size (
     //      [src_w * src_h]
     //  );
 
-    int bw = dst_w, bh = dst_h;
-    int pw = src_w, ph = src_h;
-    int y, x;
+    int bw = dst_w;
+    int bh = dst_h;
+    int pw = src_w;
+    int ph = src_h;
+    int y;
+    int x;
 
     randomize_buffers (
-        src_w, src_h
+        src_w,
+        src_h
     );
 
     memcpy (
-        src1, src0, pw * ph * sizeof (
+        src1,
+        src0,
+        pw * ph * sizeof (
             type)
     );
 
@@ -226,7 +241,8 @@ private static void checkasm_check_videodsp () {
     VideoDSPContext vdsp;
 
     ff_videodsp_init (
-        &vdsp, 8
+        &vdsp,
+        8
     );
 
     if (

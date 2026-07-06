@@ -46,13 +46,15 @@ private static void check_idct (
 
     //  LOCAL_ALIGNED (
     //      32,
-    //      int16, coeffs0,
+    //      int16,
+    //      coeffs0,
     //      [32 * 32]
     //  );
 
     //  LOCAL_ALIGNED (
     //      32,
-    //      int16, coeffs1,
+    //      int16,
+    //      coeffs1,
     //      [32 * 32]
     //  );
 
@@ -72,24 +74,34 @@ private static void check_idct (
         //  );
 
         randomize_buffers (
-            coeffs0, size
+            coeffs0,
+            size
         );
 
         memcpy (
-            coeffs1, coeffs0, sizeof (
+            coeffs1,
+            coeffs0,
+            sizeof (
                 coeffs0) * size
         );
 
         if (
             check_func (
-                hevc_dsp_context.idct[i - 2], "hevc_idct_%dx%d_%d", block_size, block_size, bit_depth)
+                hevc_dsp_context.idct[i - 2],
+                "hevc_idct_%dx%d_%d",
+                block_size,
+                block_size,
+                bit_depth
+            )
         ) {
             call_ref (
-                coeffs0, col_limit
+                coeffs0,
+                col_limit
             );
 
             call_new (
-                coeffs1, col_limit
+                coeffs1,
+                col_limit
             );
 
             if (
@@ -105,7 +117,8 @@ private static void check_idct (
             }
 
             bench_new (
-                coeffs1, col_limit
+                coeffs1,
+                col_limit
             );
 
         }
@@ -149,17 +162,25 @@ private static void check_idct_dc (
         int size = block_size * block_size;
 
         randomize_buffers (
-            coeffs0, size
+            coeffs0,
+            size
         );
 
         memcpy (
-            coeffs1, coeffs0, sizeof (
+            coeffs1,
+            coeffs0,
+            sizeof (
                 coeffs0) * size
         );
 
         if (
             check_func (
-                hevc_dsp_context.idct_dc[i - 2], "hevc_idct_%dx%d_dc_%d", block_size, block_size, bit_depth)
+                hevc_dsp_context.idct_dc[i - 2],
+                "hevc_idct_%dx%d_dc_%d",
+                block_size,
+                block_size,
+                bit_depth
+            )
         ) {
             call_ref (
                 coeffs0
@@ -202,11 +223,13 @@ private static void checkasm_check_hevc_idct () {
         HEVCDSPContext hevc_dsp_context;
 
         ff_hevc_dsp_init (
-            &hevc_dsp_context, bit_depth
+            &hevc_dsp_context,
+            bit_depth
         );
 
         check_idct_dc (
-            hevc_dsp_context, bit_depth
+            hevc_dsp_context,
+            bit_depth
         );
 
     }
@@ -223,11 +246,13 @@ private static void checkasm_check_hevc_idct () {
         HEVCDSPContext hevc_dsp_context;
 
         ff_hevc_dsp_init (
-            &hevc_dsp_context, bit_depth
+            &hevc_dsp_context,
+            bit_depth
         );
 
         check_idct (
-            hevc_dsp_context, bit_depth
+            hevc_dsp_context,
+            bit_depth
         );
 
     }

@@ -19,7 +19,10 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 ***********************************************************/
 
 private const int codec_ids[4] = {
-    AV_CODEC_ID_H264, AV_CODEC_ID_VP8, AV_CODEC_ID_RV40, AV_CODEC_ID_SVQ3
+    AV_CODEC_ID_H264,
+    AV_CODEC_ID_VP8,
+    AV_CODEC_ID_RV40,
+    AV_CODEC_ID_SVQ3
 };
 
 //  private const string pred4x4_modes[4][15] = {
@@ -144,7 +147,9 @@ private const int codec_ids[4] = {
 //  };
 
 private const uint32 pixel_mask[3] = {
-    0xffffffff, 0x01ff01ff, 0x03ff03ff
+    0xffffffff,
+    0x01ff01ff,
+    0x03ff03ff
 };
 
 private const size_t SIZEOF_PIXEL = (
@@ -167,9 +172,16 @@ private static bool check_pred_func (
         (
             codec_ids[codec] == AV_CODEC_ID_H264
             ? check_func (
-            func, "pred%s_%s_%d", name, mode_name, bit_depth)
+            func,
+            "pred%s_%s_%d",
+            name,
+            mode_name,
+            bit_depth)
             : check_func (
-                func, "pred%s_%s", name, mode_name)
+                func,
+                "pred%s_%s",
+                name,
+                mode_name)
         )
     );
 
@@ -239,27 +251,38 @@ private static void check_pred4x4 (
         ) {
             if (
                 check_pred_func (
-                    h264_pred_context.pred4x4[pred_mode], "4x4", pred4x4_modes[codec][pred_mode])
+                    h264_pred_context.pred4x4[pred_mode],
+                    "4x4",
+                    pred4x4_modes[codec][pred_mode]
+                )
             ) {
                 randomize_buffers ();
 
                 call_ref (
-                    src0, topright, 12*SIZEOF_PIXEL
+                    src0,
+                    topright,
+                    12*SIZEOF_PIXEL
                 );
 
                 call_new (
-                    src1, topright, 12*SIZEOF_PIXEL
+                    src1,
+                    topright,
+                    12*SIZEOF_PIXEL
                 );
 
                 if (
                     memcmp (
-                        buf0, buf1, BUF_SIZE)
+                        buf0,
+                        buf1,
+                        BUF_SIZE)
                 ) {
                     fail ();
                 }
 
                 bench_new (
-                    src1, topright, 12*SIZEOF_PIXEL
+                    src1,
+                    topright,
+                    12*SIZEOF_PIXEL
                 );
 
             }
@@ -294,28 +317,34 @@ private static void check_pred8x8 (
     ) {
         if (
             check_pred_func (
-                h264_pred_context.pred8x8[pred_mode], (
+                h264_pred_context.pred8x8[pred_mode],
+                (
                     chroma_format == 2) ? "8x16" : "8x8",
                             pred8x8_modes[codec][pred_mode])
         ) {
             randomize_buffers ();
             call_ref (
-                src0, 24*SIZEOF_PIXEL
+                src0,
+                24*SIZEOF_PIXEL
             );
 
             call_new (
-                src1, 24*SIZEOF_PIXEL
+                src1,
+                24*SIZEOF_PIXEL
             );
 
             if (
                 memcmp (
-                    buf0, buf1, BUF_SIZE)
+                    buf0,
+                    buf1,
+                    BUF_SIZE)
             ) {
                 fail ();
             }
 
             bench_new (
-                src1, 24*SIZEOF_PIXEL
+                src1,
+                24*SIZEOF_PIXEL
             );
 
         }
@@ -351,27 +380,35 @@ private static void check_pred16x16 (
         ) {
             if (
                 check_pred_func (
-                    h264_pred_context.pred16x16[pred_mode], "16x16", pred16x16_modes[codec][pred_mode])
+                    h264_pred_context.pred16x16[pred_mode],
+                    "16x16",
+                    pred16x16_modes[codec][pred_mode]
+                )
             ) {
                 randomize_buffers ();
 
                 call_ref (
-                    src0, 48
+                    src0,
+                    48
                 );
 
                 call_new (
-                    src1, 48
+                    src1,
+                    48
                 );
 
                 if (
                     memcmp (
-                        buf0, buf1, BUF_SIZE)
+                        buf0,
+                        buf1,
+                        BUF_SIZE)
                 ) {
                     fail ();
                 }
 
                 bench_new (
-                    src1, 48
+                    src1,
+                    48
                 );
 
             }
@@ -412,7 +449,10 @@ private static void check_pred8x8l (
         ) {
             if (
                 check_pred_func (
-                    h264_pred_context.pred8x8l[pred_mode], "8x8l", pred4x4_modes[codec][pred_mode])
+                    h264_pred_context.pred8x8l[pred_mode],
+                    "8x8l",
+                    pred4x4_modes[codec][pred_mode]
+                )
             ) {
                 int neighbors;
                 for (
@@ -439,22 +479,33 @@ private static void check_pred8x8l (
                     randomize_buffers ();
 
                     call_ref (
-                        src0, has_topleft, has_topright, 24*SIZEOF_PIXEL
+                        src0,
+                        has_topleft,
+                        has_topright,
+                        24*SIZEOF_PIXEL
                     );
 
                     call_new (
-                        src1, has_topleft, has_topright, 24*SIZEOF_PIXEL
+                        src1,
+                        has_topleft,
+                        has_topright,
+                        24*SIZEOF_PIXEL
                     );
 
                     if (
                         memcmp (
-                            buf0, buf1, BUF_SIZE)
+                            buf0,
+                            buf1,
+                            BUF_SIZE)
                     ) {
                         fail ();
                     }
 
                     bench_new (
-                        src1, has_topleft, has_topright, 24*SIZEOF_PIXEL
+                        src1,
+                        has_topleft,
+                        has_topright,
+                        24*SIZEOF_PIXEL
                     );
 
                 }
@@ -486,10 +537,22 @@ private struct Test {
 }
 
 private const Test tests[] = {
-    { check_pred4x4, "pred4x4"   },
-    { check_pred8x8, "pred8x8"   },
-    { check_pred16x16, "pred16x16" },
-    { check_pred8x8l, "pred8x8l"  },
+    {
+        check_pred4x4,
+        "pred4x4"
+    },
+    {
+        check_pred8x8,
+        "pred8x8"
+    },
+    {
+        check_pred16x16,
+        "pred16x16"
+    },
+    {
+        check_pred8x8l,
+        "pred8x8l"
+    }
 };
 
 private static void checkasm_check_h264pred () {
@@ -507,12 +570,17 @@ private static void checkasm_check_h264pred () {
     //  );
 
     H264PredContext h264_pred_context;
-    int test, codec, chroma_format, bit_depth;
+    int test;
+    int codec;
+    int chroma_format;
+    int bit_depth;
 
     for (
         test = 0;
         test < FF_ARRAY_ELEMS (
-            tests);
+            tests
+        );
+
         test++
     ) {
         for (
@@ -538,13 +606,19 @@ private static void checkasm_check_h264pred () {
                     chroma_format++
                 ) {
                     ff_h264_pred_init (
-                        &h264_pred_context, codec_id, bit_depth, chroma_format
+                        &h264_pred_context,
+                        codec_id,
+                        bit_depth,
+                        chroma_format
                     );
 
                     tests[test].func (
                         &h264_pred_context,
-                        buf0, buf1, codec,
-                        chroma_format, bit_depth
+                        buf0,
+                        buf1,
+                        codec,
+                        chroma_format,
+                        bit_depth
                     );
 
                 }
@@ -554,7 +628,8 @@ private static void checkasm_check_h264pred () {
         }
 
         report (
-            "%s", tests[test].name
+            "%s",
+            tests[test].name
         );
 
     }

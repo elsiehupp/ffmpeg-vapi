@@ -84,29 +84,36 @@ private static void check_bswap (
         randomize_buffers ();
 
         call_ref (
-            (type[])dst0 + offset, (
-                type[])src0 + offset, w
+            (type[])dst0 + offset,
+            (type[])src0 + offset,
+            w
         );
 
         call_new (
-            (type[])dst1 + offset, (
-                type[])src1 + offset, w
+            (type[])dst1 + offset,
+            (type[])src1 + offset,
+            w
         );
 
         if (
             memcmp (
-                src0, src1, BUF_SIZE
+                src0,
+                src1,
+                BUF_SIZE
             ) ||
             memcmp (
-                dst0, dst1, BUF_SIZE
+                dst0,
+                dst1,
+                BUF_SIZE
             )
         ) {
             fail ();
         }
 
         bench_new (
-            (type[])dst1 + offset, (
-                type[])src1 + offset, w
+            (type[])dst1 + offset,
+            (type[])src1 + offset,
+            w
         );
 
     }
@@ -146,7 +153,8 @@ private static void checkasm_check_bswapdsp () {
 
     if (
         check_func (
-            bswap_dsp_context.bswap_buf, "bswap_buf"
+            bswap_dsp_context.bswap_buf,
+            "bswap_buf"
         )
     ) {
         check_bswap (
@@ -157,7 +165,8 @@ private static void checkasm_check_bswapdsp () {
 
     if (
         check_func (
-            bswap_dsp_context.bswap16_buf, "bswap16_buf"
+            bswap_dsp_context.bswap16_buf,
+            "bswap16_buf"
         )
     ) {
         check_bswap (

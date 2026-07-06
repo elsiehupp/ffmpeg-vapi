@@ -29,7 +29,8 @@ private static void randomize_buffers () {
         i++
     ) {
         int32 r = sign_extend (
-        rnd (), 24
+            rnd (),
+            24
         );
 
         ref_buf[i] = r;
@@ -51,8 +52,16 @@ private static void check_decorrelate_stereo () {
     //      [BUF_SIZE * MAX_CHANNELS]
     //  );
 
-    int32[] ref[2] = { &ref_buf[BUF_SIZE * 0], &ref_buf[BUF_SIZE * 1] };
-    int32[] new[2] = { &new_buf[BUF_SIZE * 0], &new_buf[BUF_SIZE * 1] };
+    int32[] ref[2] = {
+        &ref_buf[BUF_SIZE * 0],
+        &ref_buf[BUF_SIZE * 1]
+    };
+
+    int32[] new[2] = {
+        &new_buf[BUF_SIZE * 0],
+        &new_buf[BUF_SIZE * 1]
+    };
+
     ALACDSPContext alac_dsp_context;
 
     ff_alacdsp_init (
@@ -61,7 +70,8 @@ private static void check_decorrelate_stereo () {
 
     if (
         check_func (
-            alac_dsp_context.decorrelate_stereo, "alac_decorrelate_stereo"
+            alac_dsp_context.decorrelate_stereo,
+            "alac_decorrelate_stereo"
         )
     ) {
         int len = (
@@ -128,7 +138,9 @@ private static void check_decorrelate_stereo () {
 
 //  #undef randomize_buffers
 private static void randomize_buffers () {
-    int i, j;
+    int i;
+    int j;
+
     for (
         i = 0;
         i < BUF_SIZE;
@@ -140,7 +152,8 @@ private static void randomize_buffers () {
             j++
         ) {
             int32 r = sign_extend (
-            rnd (), 24
+                rnd (),
+                24
             );
 
             //  ref[j][i] = r;
@@ -167,12 +180,32 @@ private static void check_append_extra_bits () {
     //      [BUF_SIZE * MAX_CHANNELS*2]
     //  );
 
-    int32[] ref[2] = { &ref_buf[BUF_SIZE * 0], &ref_buf[BUF_SIZE * 1] };
-    int32[] new[2] = { &new_buf[BUF_SIZE * 0], &new_buf[BUF_SIZE * 1] };
-    int32[] ref_ebb[2] = { &ref_buf[BUF_SIZE * 2], &ref_buf[BUF_SIZE * 3] };
-    int32[] new_ebb[2] = { &new_buf[BUF_SIZE * 2], &new_buf[BUF_SIZE * 3] };
+    int32[] ref[2] = {
+        &ref_buf[BUF_SIZE * 0],
+        &ref_buf[BUF_SIZE * 1]
+    };
+
+    int32[] new[2] = {
+        &new_buf[BUF_SIZE * 0],
+        &new_buf[BUF_SIZE * 1]
+    };
+
+    int32[] ref_ebb[2] = {
+        &ref_buf[BUF_SIZE * 2],
+        &ref_buf[BUF_SIZE * 3]
+    };
+
+    int32[] new_ebb[2] = {
+        &new_buf[BUF_SIZE * 2],
+        &new_buf[BUF_SIZE * 3]
+    };
+
     ALACDSPContext alac_dsp_context;
-    string channels[2] = { "mono", "stereo" };
+    string channels[2] = {
+        "mono",
+        "stereo"
+    };
+
     int ch;
 
     ff_alacdsp_init (
