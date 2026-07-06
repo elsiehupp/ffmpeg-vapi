@@ -25,65 +25,65 @@ namespace LibAVFormat {
 
 #if !EPROTONOSUPPORT
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public const int EPROTONOSUPPORT, // WSAEPROTONOSUPPORT
 #endif
 
 #if !ETIMEDOUT
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public const int ETIMEDOUT, // WSAETIMEDOUT
 #endif
 
 #if !ECONNREFUSED
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public const int ECONNREFUSED, // WSAECONNREFUSED
 #endif
 
 #if !EINPROGRESS
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public const int EINPROGRESS, // WSAEINPROGRESS
 #endif
 
 #if !ENOTCONN
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public const int ENOTCONN, // WSAENOTCONN
 #endif
 
 //  #define getsockopt (a, b, c, d, e) getsockopt (a, b, c, (char*) d, e)
 //  #define setsockopt (a, b, c, d, e) setsockopt (a, b, c, (char*) d, e)
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_neterrno ();
 
 #else
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public LibAVUtil.ErrorCode ff_neterrno (), // LibAVUtil.ErrorCode (errno)
 #endif // HAVE_WINSOCK2_H
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_socket_nonblock (
     int socket,
     int enable
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_network_init ();
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public void ff_network_close ();
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_tls_init ();
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public void ff_tls_deinit ();
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_network_wait_fd (
     int fd,
     int write
@@ -99,12 +99,12 @@ Uses ff_network_wait_fd in a loop
 @param int_cb Interrupt callback, is checked before each ff_network_wait_fd call
 @return 0 if data can be read/written, LibAVUtil.ErrorCode (ETIMEDOUT) if timeout expired, or negative error code
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_network_wait_fd_timeout (
     int fd,
     int write,
     int64 timeout,
-    AVIOInterruptCB int_cb
+    LibAVFormat.IOInterruptCallback int_cb
 );
 
 /***********************************************************
@@ -114,15 +114,15 @@ triggered, return before that.
 @param int_cb Interrupt callback, is checked regularly.
 @return LibAVUtil.ErrorCode (ETIMEDOUT) if timeout expirted, LibAVUtil.ErrorCode.EXIT if interrupted by int_cb
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_network_sleep_interruptible (
     int64 timeout,
-    AVIOInterruptCB int_cb
+    LibAVFormat.IOInterruptCallback int_cb
 );
 
 #if !HAVE_STRUCT_SOCKADDR_STORAGE
 
-[CCode (cname="struct sockaddr_storage",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="struct sockaddr_storage",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 [Compact]
 public class sockaddr_storage {
 #if HAVE_STRUCT_SOCKADDR_SA_LEN
@@ -146,7 +146,7 @@ public class sockaddr_storage {
 }
 #endif // !HAVE_STRUCT_SOCKADDR_STORAGE
 
-[CCode (cname="struct sockaddr_union",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="struct sockaddr_union",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 [Compact]
 public class sockaddr_union {
     [CCode (cname="")]
@@ -163,13 +163,13 @@ public class sockaddr_union {
 
 #if !MSG_NOSIGNAL
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public const int MSG_NOSIGNAL, // 0
 #endif
 
 #if !HAVE_STRUCT_ADDRINFO
 
-[CCode (cname="struct addrinfo",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="struct addrinfo",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 [Compact]
 public class addrinfo {
     [CCode (cname="")]
@@ -199,7 +199,7 @@ public class addrinfo {
 #endif // !HAVE_STRUCT_ADDRINFO
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public enum AddrInfoError {
     /***********************************************************
     @brief ff_getaddrinfo constants
@@ -295,7 +295,7 @@ public enum AddrInfoFlags {
 
 #if !HAVE_GETADDRINFO
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_getaddrinfo (
     string node,
     string service,
@@ -303,12 +303,12 @@ public int ff_getaddrinfo (
     out addrinfo res
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public void ff_freeaddrinfo (
     addrinfo res
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_getnameinfo (
     Posix.SockAddr sa,
     int salen,
@@ -321,42 +321,42 @@ public int ff_getnameinfo (
 #endif // !HAVE_GETADDRINFO
 
 #if !HAVE_GETADDRINFO || HAVE_WINSOCK2_H
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public string ff_gai_strerror (
     int ecode
 );
 #endif // !HAVE_GETADDRINFO || HAVE_WINSOCK2_H
 
 #if !INADDR_LOOPBACK
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public const uint INADDR_LOOPBACK;
 #endif
 
 #if !INET_ADDRSTRLEN
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public const size_t INET_ADDRSTRLEN;
 #endif
 
 #if !INET6_ADDRSTRLEN
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public const size_t INET6_ADDRSTRLEN; // INET_ADDRSTRLEN
 #endif
 
 #if !IN_MULTICAST
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public uint32 IN_MULTICAST (
     uint32 a
 ); // ((((uint32)(a)) & 0xf0000000) == 0xe0000000)
 #endif
 
 #if !IN6_IS_ADDR_MULTICAST
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public bool IN6_IS_ADDR_MULTICAST (
     uint8[] a
 ); // (((uint8[] ) (a))[0] == 0xff)
 #endif
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_is_multicast_address (
     Posix.SockAddr addr
 );
@@ -364,7 +364,7 @@ public int ff_is_multicast_address (
 /***********************************************************
 @brief Time in milliseconds between interrupt check
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public const int POLLING_TIME;
 
 /***********************************************************
@@ -379,7 +379,7 @@ Bind to a file descriptor and poll for a connection.
 @return A non-blocking file descriptor on success
                or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_listen_bind (
     int fd,
     Posix.SockAddr addr,
@@ -395,7 +395,7 @@ Bind to a file descriptor to an address without accepting connections.
 @param addrlen Third argument of bind ().
 @return 0 on success or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_listen (
     int fd,
     Posix.SockAddr addr,
@@ -411,7 +411,7 @@ public int ff_listen (
 @return A non-blocking file descriptor on success
                or an LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_accept (
     int fd,
     int timeout,
@@ -433,7 +433,7 @@ public int ff_accept (
                 logged errors.
 @return 0 on success, LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_listen_connect (
     int fd,
     Posix.SockAddr addr,
@@ -443,20 +443,20 @@ public int ff_listen_connect (
     int will_try_next
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_http_match_no_proxy (
     string no_proxy,
     string hostname
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_socket (
     int domain,
     int type,
     int protocol
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public void ff_log_net_error (
     void *opaque_context,
     int level,
@@ -487,7 +487,7 @@ running in parallel.
 @param customize_ctx Context parameter passed to customize_fd.
 @return 0 on success, LibAVUtil.ErrorCode on failure.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/network.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/network.h")]
 public int ff_connect_parallel (
     addrinfo[] addrs,
     int timeout_ms_per_address,

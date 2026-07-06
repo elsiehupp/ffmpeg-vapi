@@ -22,10 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenccenc.h")]
 public const size_t CENC_KID_SIZE;
 
-[CCode (cname="struct MOVMuxCencContext",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+[CCode (cname="struct MOVMuxCencContext",cheader_filename="subprojects/ffmpeg/libavformat/movenccenc.h")]
 [Compact]
 public class MOVMuxCencContext {
     [CCode (cname="")]
@@ -67,7 +67,7 @@ public class MOVMuxCencContext {
 @param key encryption key, must have a length of AES_CTR_KEY_SIZE
 @param use_subsamples when enabled parts of a packet can be encrypted, otherwise the whole packet is encrypted
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenccenc.h")]
 public int ff_mov_cenc_init (
     MOVMuxCencContext cenc_context,
     uint8[] encryption_key,
@@ -78,7 +78,7 @@ public int ff_mov_cenc_init (
 /***********************************************************
 @brief Free a CENC context
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenccenc.h")]
 public void ff_mov_cenc_free (
     MOVMuxCencContext cenc_context
 );
@@ -86,10 +86,10 @@ public void ff_mov_cenc_free (
 /***********************************************************
 @brief Write a fully encrypted packet
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenccenc.h")]
 public int ff_mov_cenc_write_packet (
     MOVMuxCencContext cenc_context,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     uint8[] buf_in,
     int size
 );
@@ -97,10 +97,10 @@ public int ff_mov_cenc_write_packet (
 /***********************************************************
 @brief Parse AVC NAL units from annex B format, the nal size and type are written in the clear while the body is encrypted
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenccenc.h")]
 public int ff_mov_cenc_avc_parse_nal_units (
     MOVMuxCencContext cenc_context,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     uint8[] buf_in,
     int size
 );
@@ -108,12 +108,12 @@ public int ff_mov_cenc_avc_parse_nal_units (
 /***********************************************************
 @brief Write AVC NAL units that are in MP4 format, the nal size and type are written in the clear while the body is encrypted
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenccenc.h")]
 public int ff_mov_cenc_avc_write_nal_units (
     LibAVFormat.FormatContext format_context,
     MOVMuxCencContext cenc_context,
     int nal_length_size,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     uint8[] buf_in,
     int size
 );
@@ -121,19 +121,19 @@ public int ff_mov_cenc_avc_write_nal_units (
 /***********************************************************
 @brief Write the cenc atoms that should reside inside stbl
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenccenc.h")]
 public void ff_mov_cenc_write_stbl_atoms (
     MOVMuxCencContext cenc_context,
-    AVIOContext pb
+    LibAVFormat.IOContext pb
 );
 
 /***********************************************************
 @brief Write the sinf atom, contained inside stsd
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenccenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenccenc.h")]
 public int ff_mov_cenc_write_sinf_tag (
     MOVTrack track,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     uint8[] kid
 );
 

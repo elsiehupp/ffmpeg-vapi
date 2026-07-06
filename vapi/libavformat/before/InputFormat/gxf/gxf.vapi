@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="enum GXFPktType",cheader_filename="subprojects/ffmpeg/libformat/gfx.h")]
+[CCode (cname="enum GXFPktType",cheader_filename="subprojects/ffmpeg/libavformat/gfx.h")]
 public enum GXFPktType {
     [CCode (cname="PKT_MAP")]
     MAP,
@@ -40,7 +40,7 @@ public enum GXFPktType {
     UMF;
 }
 
-[CCode (cname="enum GXFMatTag",cprefix="MAT_",cheader_filename="subprojects/ffmpeg/libformat/gfx.h")]
+[CCode (cname="enum GXFMatTag",cprefix="MAT_",cheader_filename="subprojects/ffmpeg/libavformat/gfx.h")]
 public enum GXFMatTag {
     NAME,
     FIRST_FIELD,
@@ -50,7 +50,7 @@ public enum GXFMatTag {
     SIZE;
 }
 
-[CCode (cname="enum GXFTrackTag",cprefix="TRACK_",cheader_filename="subprojects/ffmpeg/libformat/gfx.h")]
+[CCode (cname="enum GXFTrackTag",cprefix="TRACK_",cheader_filename="subprojects/ffmpeg/libavformat/gfx.h")]
 public enum GXFTrackTag {
     NAME,
     AUX,

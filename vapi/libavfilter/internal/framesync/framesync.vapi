@@ -104,13 +104,13 @@ public class FFFrameSyncIn {
     Current frame, may be NULL before the first one or after EOF
     ***********************************************************/
     [CCode (cname="")]
-    public AVFrame? frame;
+    public LibAVFormat.Frame? frame;
 
     /***********************************************************
     Next frame, for internal use
     ***********************************************************/
     [CCode (cname="")]
-    public AVFrame? frame_next;
+    public LibAVFormat.Frame? frame_next;
 
     /***********************************************************
     PTS of the current frame
@@ -311,7 +311,7 @@ Get the current frame in an input.
 public int ff_framesync_get_frame (
     FFFrameSync? fs,
     uint in,
-    out AVFrame[] rframe,
+    out LibAVFormat.Frame[] rframe,
     uint get
 );
 
@@ -354,8 +354,8 @@ by the framesync structure.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public int ff_framesync_dualinput_get (
     FFFrameSync? fs,
-    out AVFrame[] f0,
-    out AVFrame[] f1
+    out LibAVFormat.Frame[] f0,
+    out LibAVFormat.Frame[] f1
 );
 
 /***********************************************************
@@ -364,8 +364,8 @@ Same as ff_framesync_dualinput_get (), but make sure that f0 is writable.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]
 public int ff_framesync_dualinput_get_writable (
     FFFrameSync? fs,
-    out AVFrame[] f0,
-    out AVFrame[] f1
+    out LibAVFormat.Frame[] f0,
+    out LibAVFormat.Frame[] f1
 );
 
 //  [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framesync.h")]

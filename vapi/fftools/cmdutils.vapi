@@ -1,6 +1,6 @@
 /***********************************************************
 Various utilities for command line tools
-copyright (c) 2003 Fabrice Bellard
+Copyright (c) 2003 Fabrice Bellard
 
 This file is part of FFmpeg.
 
@@ -902,7 +902,7 @@ opts which apply to the codec with ID codec_id.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/cmdutils.h")]
 public LibAVUtil.Dictionary? filter_codec_opts (
     LibAVUtil.Dictionary? opts,
-    AVCodecID codec_id,
+    LibAVCodec.CodecID codec_id,
     LibAVFormat.FormatContext? av_format_context,
     LibAVFormat.Stream? st,
     AVCodec? codec

@@ -80,31 +80,31 @@ public string ff_rtp_enc_name (
 @return In case of unknown encoding name, LibAVCodec.CodecID.NONE is returned;
 otherwise, the codec id is returned
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtp.h")]
 public LibAVCodec.CodecID ff_rtp_codec_id (
     string buffer,
     LibAVUtil.MediaType codec_type
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtp.h")]
 public const int RTP_PT_PRIVATE; // 96
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtp.h")]
 public const int RTP_VERSION; // 2
 
 /***********************************************************
 maximum text length for SDES
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtp.h")]
 public const size_t RTP_MAX_SDES; // 256
 
 /***********************************************************
 @brief RTCP packets use 0.5% of the bandwidth
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtp.h")]
 public const int RTCP_TX_RATIO_NUM; // 5
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtp.h")]
 public const int RTCP_TX_RATIO_DEN; // 1000
 
 /***********************************************************
@@ -112,13 +112,13 @@ public const int RTCP_TX_RATIO_DEN; // 1000
 that the configuration has changed within a stream (by changing the
 ident value sent).
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtp.h")]
 public const uint32 RTP_XIPH_IDENT; // 0xfecdba
 
 /***********************************************************
 @brief RTCP packet types
 ***********************************************************/
-[CCode (cname="enum RTCPType",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+[CCode (cname="enum RTCPType",cheader_filename="subprojects/ffmpeg/libavformat/rtp.h")]
 public enum RTCPType {
     [CCode (cname="RTCP_FIR")]
     FIR, // 192
@@ -165,7 +165,7 @@ public enum RTCPType {
     [CCode (cname="RTCP_TOKEN")]
     TOKEN; // 210
 
-    [CCode (cname="RTP_PT_IS_RTCP",cheader_filename="subprojects/ffmpeg/libformat/rtp.h")]
+    [CCode (cname="RTP_PT_IS_RTCP",cheader_filename="subprojects/ffmpeg/libavformat/rtp.h")]
     public static bool is_rtcp (
         RTCPType x
     );

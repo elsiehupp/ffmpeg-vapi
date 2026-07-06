@@ -572,7 +572,7 @@ private class ApiThreadMessageTest : GLib.TestCase {
             !ReceiverData.instance_array
         ) {
             ret = AVERROR (
-            ENOMEM
+                ENOMEM
             );
 
             throw new Goto.END ();

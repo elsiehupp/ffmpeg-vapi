@@ -26,7 +26,7 @@ namespace LibAVFormat {
 //                                              PayloadContext? data)
 //  {
 //      LibAVFormat.Stream? stream = s->streams[st_index];
-//      AVCodecParameters? par = stream->codecpar;
+//      LibAVCodec.CodecParameters? par = stream->codecpar;
 //  \
 //      par->bits_per_coded_sample = bitrate/8;
 //      par->bit_rate = par->bits_per_coded_sample * par->sample_rate;

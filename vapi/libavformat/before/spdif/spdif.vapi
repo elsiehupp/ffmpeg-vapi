@@ -22,16 +22,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/spdif.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/spdif.h")]
 public const int SYNCWORD1;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/spdif.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/spdif.h")]
 public const int SYNCWORD2;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/spdif.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/spdif.h")]
 public const size_t BURST_HEADER_SIZE;
 
-[CCode (cname="enum IEC61937DataType",cheader_filename="subprojects/ffmpeg/libformat/spdif.h")]
+[CCode (cname="enum IEC61937DataType",cheader_filename="subprojects/ffmpeg/libavformat/spdif.h")]
 public enum IEC61937DataType {
     /***********************************************************
     @brief AC-3 data
@@ -154,7 +154,7 @@ public enum IEC61937DataType {
     TRUE_HD;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/spdif.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/spdif.h")]
 public const uint16 spdif_mpeg_pkt_offset[2][3] = {
     // LAYER1 LAYER2 LAYER3
     {
@@ -169,20 +169,20 @@ public const uint16 spdif_mpeg_pkt_offset[2][3] = {
     }, // MPEG-1
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/spdif.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/spdif.h")]
 public void ff_spdif_bswap_buf16 (
     out uint16 dst,
     out uint16 src,
     int w
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/spdif.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/spdif.h")]
 public int ff_spdif_read_packet (
     LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/spdif.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/spdif.h")]
 public int ff_spdif_probe (
     uint8[] probe_buf,
     int buf_size,

@@ -26,10 +26,10 @@ namespace LibAVFormat {
 @file SMJPEG common code
 ***********************************************************/
 
-[CCode (cname="SMJPEG_MAGIC",cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
+[CCode (cname="SMJPEG_MAGIC",cheader_filename="subprojects/ffmpeg/libavformat/smjpeg.h")]
 public const string SMJPEG_MAGIC;
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/smjpeg.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/smjpeg.h")]
 public enum SMJPEGTag {
     [CCode (cname="SMJPEG_DONE")]
     DONE, // (uint32)MKTAG ('D', 'O', 'N', 'E')
@@ -53,7 +53,7 @@ public enum SMJPEGTag {
     VIDD; // (uint32)MKTAG ('v', 'i', 'd', 'D')
 }
 
-//  extern const AVCodecTag ff_codec_smjpeg_video_tags[];
-//  extern const AVCodecTag ff_codec_smjpeg_audio_tags[];
+//  extern const LibAVFormat.CodecTag ff_codec_smjpeg_video_tags[];
+//  extern const LibAVFormat.CodecTag ff_codec_smjpeg_audio_tags[];
 
 } // namespace LibAVFormat

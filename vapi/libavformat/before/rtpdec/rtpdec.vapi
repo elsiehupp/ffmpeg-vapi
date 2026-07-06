@@ -23,16 +23,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public const size_t RTP_MIN_PACKET_LENGTH;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public const size_t RTP_MAX_PACKET_LENGTH;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public const size_t RTP_REORDER_QUEUE_DEFAULT_SIZE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public const uint32 RTP_NOTS_VALUE;
 
 /***********************************************************
@@ -46,7 +46,7 @@ isn't a standardized procedure, but it works in many cases in practice.
 The same routine is used with RDT too, even if RDT doesn't use normal
 RTP packets otherwise.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public void ff_rtp_send_punch_packets (
     URLContext* rtp_handle
 );
@@ -81,7 +81,7 @@ public delegate int DynamicPayloadPacketHandlerProc (
 /***********************************************************
 @brief From rtsp.c, but used by rtp dynamic protocol handlers.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public int ff_rtsp_next_attr_and_value (
     string[] p,
     string attr,
@@ -99,7 +99,7 @@ public delegate int ParseFMTPDelegate (
     string value
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public int ff_parse_fmtp (
     LibAVFormat.FormatContext format_context,
     LibAVFormat.Stream stream,
@@ -111,10 +111,10 @@ public int ff_parse_fmtp (
 /***********************************************************
 @brief Close the dynamic buffer and make a packet from it.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public int ff_rtp_finalize_packet (
     LibAVCodec.Packet packet,
-    out AVIOContext dyn_buf,
+    out LibAVFormat.IOContext dyn_buf,
     int stream_idx
 );
 

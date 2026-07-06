@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/avi.h")]
 public enum AVIFlags {
     /***********************************************************
     Index at end of file?
@@ -49,10 +49,10 @@ public enum AVIFlags {
     COPYRIGHTED;
 }
 
-[CCode (cname="AVI_MAX_RIFF_SIZE",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
+[CCode (cname="AVI_MAX_RIFF_SIZE",cheader_filename="subprojects/ffmpeg/libavformat/avi.h")]
 public const uint64 AVI_MAX_RIFF_SIZE;
 
-[CCode (cname="AVI_MAX_STREAM_COUNT",cheader_filename="subprojects/ffmpeg/libformat/avi.h")]
+[CCode (cname="AVI_MAX_STREAM_COUNT",cheader_filename="subprojects/ffmpeg/libavformat/avi.h")]
 public const int AVI_MAX_STREAM_COUNT;
 
 /***********************************************************

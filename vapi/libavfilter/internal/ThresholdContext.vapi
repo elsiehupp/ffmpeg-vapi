@@ -63,7 +63,7 @@ public class ThresholdContext {
     public ThresholdDelegate threshold;
 
     [CCode (cname="")]
-    public AVFrame frames[4];
+    public LibAVFormat.Frame frames[4];
 
     [CCode (cname="")]
     public FFFrameSync fs;

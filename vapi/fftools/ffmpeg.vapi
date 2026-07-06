@@ -737,10 +737,10 @@ public classInputStream {
     public AVCodec? dec;
 
     [CCode (cname="")]
-    public AVFrame decoded_frame;
+    public LibAVFormat.Frame decoded_frame;
 
     [CCode (cname="")]
-    public AVFrame filter_frame;
+    public LibAVFormat.Frame filter_frame;
 
     /***********************************************************
     time when read started
@@ -865,7 +865,7 @@ public classInputStream {
         public AVFifoBuffer? sub_queue;
 
         [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
-        public AVFrame frame;
+        public LibAVFormat.Frame frame;
 
         [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
         public int w;
@@ -923,7 +923,7 @@ public classInputStream {
 
     public delegate int HwAccelGetBufferDelegate (
         AVCodecContext? av_codec_context,
-        AVFrame? frame,
+        LibAVFormat.Frame? frame,
         int flags
     );
 
@@ -932,7 +932,7 @@ public classInputStream {
 
     public delegate int HwAccelRetrieveDataDelegate (
         AVCodecContext? av_codec_context,
-        AVFrame? frame
+        LibAVFormat.Frame? frame
     );
 
     [CCode (cname="hwaccel_retrieve_data")]
@@ -1221,7 +1221,7 @@ public class OutputStream {
     associated input codec parameters with encoders options applied
     ***********************************************************/
     [CCode (cname="")]
-    public AVCodecParameters? ref_par;
+    public LibAVCodec.CodecParameters? ref_par;
 
     [CCode (cname="")]
     public AVCodec? enc;
@@ -1230,10 +1230,10 @@ public class OutputStream {
     public int64 max_frames;
 
     [CCode (cname="")]
-    public AVFrame? filtered_frame;
+    public LibAVFormat.Frame? filtered_frame;
 
     [CCode (cname="")]
-    public AVFrame? last_frame;
+    public LibAVFormat.Frame? last_frame;
 
     [CCode (cname="")]
     public int last_dropped;
@@ -1519,7 +1519,7 @@ public class OutputFile {
 //  extern int qp_hist;
 //  extern int stdin_interaction;
 //  extern int frame_bits_per_raw_sample;
-//  extern AVIOContext? progress_avio;
+//  extern LibAVFormat.IOContext? progress_avio;
 //  extern float max_error_rate;
 //  extern string videotoolbox_pixfmt;
 
@@ -1527,7 +1527,7 @@ public class OutputFile {
 //  extern int filter_complex_nbthreads;
 //  extern int vstats_version;
 
-//  extern const AVIOInterruptCB int_cb;
+//  extern const LibAVFormat.IOInterruptCallback int_cb;
 
 //  extern const OptionDef options[];
 //  extern const HWAccel hwaccels[];
@@ -1635,7 +1635,7 @@ public void sub2video_update (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]
 public int ifilter_parameters_from_frame (
     InputFilter? ifilter,
-    AVFrame? frame
+    LibAVFormat.Frame? frame
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/fftools/ffmpeg.h")]

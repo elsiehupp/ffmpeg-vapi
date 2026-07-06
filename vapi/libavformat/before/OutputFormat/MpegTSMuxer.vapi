@@ -500,9 +500,9 @@ public class MpegTSMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mpegtsenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.NO_DIMENSIONS;
+            return LibAVFormat.FormatFlags1.ALLOWS_FLUSH | LibAVFormat.FormatFlags1.ALLOWS_VARIABLE_FPS | LibAVFormat.FormatFlags1.NO_DIMENSIONS;
 
         }
 

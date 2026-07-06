@@ -215,16 +215,16 @@ public class NUTMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/nutenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_VARIABLE_FPS;
+            return LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER | LibAVFormat.FormatFlags1.ALLOWS_VARIABLE_FPS;
 
         }
 
     }
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return ff_nut_codec_tags;
         }

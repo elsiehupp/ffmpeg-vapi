@@ -22,7 +22,7 @@ namespace LibAVFormat {
 @file unbuffered private I/O API
 ***********************************************************/
 
-[CCode (cname="struct URLContext",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+[CCode (cname="struct URLContext",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
 [Compact]
 public class URLContext {
     /***********************************************************
@@ -62,7 +62,7 @@ public class URLContext {
     public int is_connected;
 
     [CCode (cname="")]
-    public AVIOInterruptCB interrupt_callback;
+    public LibAVFormat.IOInterruptCallback interrupt_callback;
 
     /***********************************************************
     @brief Maximum time to wait for (network) read/write operation completion, in mcs
@@ -95,12 +95,12 @@ public class URLContext {
     @return >= 0 in case of success, a negative value corresponding to an
     LibAVUtil.ErrorCode code in case of failure
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_alloc (
         out URLContext puc,
         string filename,
         int flags,
-        AVIOInterruptCB int_cb
+        LibAVFormat.IOInterruptCallback int_cb
     );
 
     /***********************************************************
@@ -111,7 +111,7 @@ public class URLContext {
     This parameter will be destroyed and replaced with a dict containing options
     that were not found. May be NULL.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_connect (
         URLContext uc,
         out LibAVUtil.Dictionary options
@@ -135,24 +135,24 @@ public class URLContext {
     @return >= 0 in case of success, a negative value corresponding to an
     LibAVUtil.ErrorCode code in case of failure
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_open_whitelist (
         out URLContext puc,
         string filename,
         int flags,
-        AVIOInterruptCB int_cb,
+        LibAVFormat.IOInterruptCallback int_cb,
         out LibAVUtil.Dictionary options,
         string whitelist,
         char* blacklist,
         URLContext parent
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_open (
         out URLContext puc,
         string filename,
         int flags,
-        AVIOInterruptCB int_cb,
+        LibAVFormat.IOInterruptCallback int_cb,
         out LibAVUtil.Dictionary options
     );
 
@@ -163,7 +163,7 @@ public class URLContext {
     @param client_url_context client context, must be unallocated.
     @return >= 0 on success, ff_neterrno () on failure.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_accept (
         URLContext server_url_context,
         out URLContext client_url_context
@@ -181,7 +181,7 @@ public class URLContext {
     @return >= 0 on success or a negative value corresponding
             to an LibAVUtil.ErrorCode code on failure
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_handshake (
         URLContext client_url_context
     );
@@ -195,7 +195,7 @@ public class URLContext {
     indicates that it is not possible to read more from the accessed
     resource (except if the value of the size argument is also zero).
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_read (
         URLContext url_context,
         uchar[] buffer,
@@ -209,7 +209,7 @@ public class URLContext {
     unnecessary, if the return value is < size then it is
     certain there was either an error or the end of file was reached.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_read_complete (
         URLContext url_context,
         uchar[] buffer,
@@ -222,7 +222,7 @@ public class URLContext {
     @return the number of bytes actually written, or a negative value
     corresponding to an LibAVUtil.ErrorCode code in case of failure
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_write (
         URLContext url_context,
         uchar[] buffer,
@@ -243,7 +243,7 @@ public class URLContext {
     the beginning of the file. You can use this feature together with
     SEEK_CUR to read the current file position.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int64 ffurl_seek (
         URLContext url_context,
         int64 pos,
@@ -257,12 +257,12 @@ public class URLContext {
     @return a negative value if an error condition occurred, 0
     otherwise
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_closep (
         out URLContext url_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_close (
         URLContext url_context
     );
@@ -272,7 +272,7 @@ public class URLContext {
     if the operation is not supported by h, or another negative value
     corresponding to an LibAVUtil.ErrorCode error code in case of failure.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int64 ffurl_size (
         URLContext url_context
     );
@@ -283,7 +283,7 @@ public class URLContext {
 
     @return the file descriptor associated with this URL, or <0 on error.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_get_file_handle (
         URLContext url_context
     );
@@ -293,7 +293,7 @@ public class URLContext {
 
     @return 0 on success or <0 on error.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_get_multi_file_handle (
         URLContext url_context,
         out int[] handles,
@@ -305,7 +305,7 @@ public class URLContext {
 
     @return threshold (>0) on success or <=0 on error.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_get_short_seek (
         URLContext url_context
     );
@@ -320,7 +320,7 @@ public class URLContext {
     @return a negative value if an error condition occurred, 0
     otherwise
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ffurl_shutdown (
         URLContext url_context,
         int flags
@@ -330,21 +330,21 @@ public class URLContext {
     @brief Check if the user has requested to interrupt a blocking function
     associated with cb.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ff_check_interrupt (
-        AVIOInterruptCB cb
+        LibAVFormat.IOInterruptCallback cb
     );
 
     /***********************************************************
     @brief Udp.c
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ff_udp_set_remote_url (
         URLContext url_context,
         string uri
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
     public int ff_udp_get_local_port (
         URLContext url_context
     );

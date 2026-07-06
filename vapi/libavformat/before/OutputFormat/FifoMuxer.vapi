@@ -247,9 +247,9 @@ public class FifoMuxer : LibAVFormat.OutputFormat {
     //  .priv_class = fifo_muxer_class,
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/fifo.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_FILE | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_FILE | LibAVFormat.FormatFlags1.ALLOWS_FLUSH | LibAVFormat.FormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
 
         }
 

@@ -114,7 +114,7 @@ private class ApiBandTest : GLib.TestCase {
         uint8[] byte_buffer = null;
         LibAVUtil.Frame frame = null;
         LibAVCodec.Packet packet;
-        AVFormatContext format_context = null;
+        LibAVFormat.FormatContext format_context = null;
         uint number_of_written_bytes;
         uint video_stream;
         bool got_frame = false;

@@ -1275,14 +1275,14 @@ Return a value representing the fourCC code associated to the
 pixel format pix_fmt, or 0 if no associated fourCC code can be
 found.
 ***********************************************************/
-unsigned int avcodec_pix_fmt_to_codec_tag(enum AVPixelFormat pix_fmt);
+uint avcodec_pix_fmt_to_codec_tag (enum AVPixelFormat pix_fmt);
 
 /***********************************************************
 Find the best pixel format to convert to given a certain source pixel
 format.  When converting from one pixel format to another, information loss
 may occur.  For example, when converting from RGB24 to GRAY, the color
 information will be lost. Similarly, other losses occur when converting from
-some formats to other formats. avcodec_find_best_pix_fmt_of_2() searches which of
+some formats to other formats. avcodec_find_best_pix_fmt_of_2 () searches which of
 the given pixel formats should be used to suffer the least amount of loss.
 The pixel formats from which it chooses one, are determined by the
 pix_fmt_list parameter.
@@ -1294,11 +1294,11 @@ pix_fmt_list parameter.
 @param[out] loss_ptr Combination of flags informing you what kind of losses will occur.
 @return The best pixel format to convert to or -1 if none was found.
 ***********************************************************/
-enum AVPixelFormat avcodec_find_best_pix_fmt_of_list(const enum AVPixelFormat *pix_fmt_list,
+enum AVPixelFormat avcodec_find_best_pix_fmt_of_list (const enum AVPixelFormat *pix_fmt_list,
                                             enum AVPixelFormat src_pix_fmt,
                                             int has_alpha, int *loss_ptr);
 
-enum AVPixelFormat avcodec_default_get_format(AVCodecContext *s, const enum AVPixelFormat * fmt);
+enum AVPixelFormat avcodec_default_get_format (AVCodecContext *s, const enum AVPixelFormat * fmt);
 
 /***********************************************************
 @}

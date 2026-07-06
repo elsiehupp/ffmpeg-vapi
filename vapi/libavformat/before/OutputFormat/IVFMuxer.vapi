@@ -25,8 +25,8 @@ namespace LibAVFormat {
 [Compact]
 public class IVFMuxerPrivateData { }
 
-static const AVCodecTag codec_ivf_tags[] = {
-    new AVCodecTag () {
+static const LibAVFormat.CodecTag codec_ivf_tags[] = {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.VP8,
         tag = MKTAG (
             'V',
@@ -35,7 +35,7 @@ static const AVCodecTag codec_ivf_tags[] = {
             '0'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.VP9,
         tag = MKTAG (
             'V',
@@ -44,7 +44,7 @@ static const AVCodecTag codec_ivf_tags[] = {
             '0'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.AV1,
         tag = MKTAG (
             'A',
@@ -53,7 +53,7 @@ static const AVCodecTag codec_ivf_tags[] = {
             '1'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.NONE,
         tag = 0
     }
@@ -139,7 +139,7 @@ public class IVFMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 codec_ivf_tags,

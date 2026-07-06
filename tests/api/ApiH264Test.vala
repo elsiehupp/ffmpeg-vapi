@@ -36,7 +36,7 @@ private class ApiH264Test : GLib.TestCase {
         LibAVUtil.Frame frame = null;
         uint8[] byte_buffer = null;
         LibAVCodec.Packet packet;
-        AVFormatContext format_context = null;
+        LibAVFormat.FormatContext format_context = null;
         uint number_of_written_bytes;
         uint video_stream;
         bool got_frame = false;

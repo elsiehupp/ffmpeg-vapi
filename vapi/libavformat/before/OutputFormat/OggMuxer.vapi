@@ -224,9 +224,9 @@ public class OggMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
+            return LibAVFormat.FormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | LibAVFormat.FormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | LibAVFormat.FormatFlags1.ALLOWS_FLUSH;
 
         }
 
@@ -321,9 +321,9 @@ public class OggAudioMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
+            return LibAVFormat.FormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | LibAVFormat.FormatFlags1.ALLOWS_FLUSH;
 
         }
 
@@ -427,9 +427,9 @@ public class OggVideoMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
+            return LibAVFormat.FormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | LibAVFormat.FormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | LibAVFormat.FormatFlags1.ALLOWS_FLUSH;
 
         }
 
@@ -524,9 +524,9 @@ public class OggSpeexMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
+            return LibAVFormat.FormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | LibAVFormat.FormatFlags1.ALLOWS_FLUSH;
 
         }
 
@@ -621,9 +621,9 @@ public class OggOpusMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggeng.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
+            return LibAVFormat.FormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS | LibAVFormat.FormatFlags1.ALLOWS_FLUSH;
 
         }
 

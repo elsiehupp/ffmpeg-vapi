@@ -1,0 +1,5 @@
+[wrap-file]
+directory = decode_audio
+
+[provide]
+program_names = decode_audio

@@ -37,7 +37,7 @@ Graph-based frame editing library.
 /***********************************************************
 A linked-list of the inputs/outputs of the filter chain.
 
-This is mainly useful for avfilter_graph_parse() / avfilter_graph_parse2(),
+This is mainly useful for avfilter_graph_parse () / avfilter_graph_parse2 (),
 where it is used to communicate open (unlinked) inputs and outputs from and
 to the caller.
 This struct specifies, per each not connected pad contained in the graph, the
@@ -72,7 +72,7 @@ public class LibAVFilter.FilterInOut {
 
     /***********************************************************
     @brief Allocate a single LibAVFilter.FilterInOut entry.
-    Must be freed with avfilter_inout_free().
+    Must be freed with avfilter_inout_free ().
     @return allocated LibAVFilter.FilterInOut on success, NULL on failure.
     ***********************************************************/
     [CCode (cname="avfilter_inout_alloc")]

@@ -26,7 +26,7 @@ namespace LibAVFormat {
 @file internal header for VPx codec configuration utilities.
 ***********************************************************/
 
-[CCode (cname="struct VPCC",cheader_filename="subprojects/ffmpeg/libformat/vpcc.h")]
+[CCode (cname="struct VPCC",cheader_filename="subprojects/ffmpeg/libavformat/vpcc.h")]
 [Compact]
 public class VPCC {
     [CCode (cname="profile")]
@@ -46,22 +46,22 @@ public class VPCC {
 }
 
 /***********************************************************
-@brief Writes VP codec configuration to the provided AVIOContext.
+@brief Writes VP codec configuration to the provided LibAVFormat.IOContext.
 
 @param format_context address of the LibAVFormat.FormatContext for the logging context.
-@param pb address of the AVIOContext where the vpcC shall be written.
+@param pb address of the LibAVFormat.IOContext where the vpcC shall be written.
 @param par address of the LibAVCodec.CodecParameters which contains codec information.
 @return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
         code in case of failure
 ***********************************************************/
-[CCode (cname="ff_isom_write_vpcc",cheader_filename="subprojects/ffmpeg/libformat/vpcc.h")]
+[CCode (cname="ff_isom_write_vpcc",cheader_filename="subprojects/ffmpeg/libavformat/vpcc.h")]
 public int ff_isom_write_vpcc (
     LibAVFormat.FormatContext format_context,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     LibAVCodec.CodecParameters par
 );
 
-[CCode (cname="ff_isom_get_vpcc_features",cheader_filename="subprojects/ffmpeg/libformat/vpcc.h")]
+[CCode (cname="ff_isom_get_vpcc_features",cheader_filename="subprojects/ffmpeg/libavformat/vpcc.h")]
 public int ff_isom_get_vpcc_features (
     LibAVFormat.FormatContext format_context,
     LibAVCodec.CodecParameters par,

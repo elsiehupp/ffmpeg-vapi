@@ -179,9 +179,9 @@ public class GIFMuxer : LibAVFormat.OutputFormat {
     //  .priv_class = gif_muxer_class,
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/gif.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.ALLOWS_VARIABLE_FPS;
+            return LibAVFormat.FormatFlags1.ALLOWS_VARIABLE_FPS;
 
         }
 

@@ -71,9 +71,9 @@ public class AC3Demuxer : LibAVFormat.InputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.USE_GENERIC_INDEX;
+            return LibAVFormat.FormatFlags1.USE_GENERIC_INDEX;
 
         }
 
@@ -158,9 +158,9 @@ public class EAC3Demuxer : LibAVFormat.InputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/ac3dec.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.USE_GENERIC_INDEX;
+            return LibAVFormat.FormatFlags1.USE_GENERIC_INDEX;
 
         }
 

@@ -228,7 +228,7 @@ public class FLVMuxer : LibAVFormat.OutputFormat {
     );
 
 
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 flv_video_codec_ids,
@@ -241,9 +241,9 @@ public class FLVMuxer : LibAVFormat.OutputFormat {
     }
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/flvenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER | LibAVFormat.FormatFlags1.ALLOWS_VARIABLE_FPS | LibAVFormat.FormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

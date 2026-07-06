@@ -42,42 +42,49 @@ allocating core structures, etc.
     Independent Segment Decoding
 ********************************************************/
 [Flags]
-[CCode (cprefix="AV_CODEC_FLAG2_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public enum CodecFlags2 {
+[CCode (cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+public enum LibAVCodec.CodecFlags2 {
     /***********************************************************
     @brief Allow non spec compliant speedup tricks.
     ***********************************************************/
+    [CCode (cname="AV_CODEC_FLAG2_FAST")]
     FAST,
 
     /***********************************************************
     @brief Skip bitstream encoding.
     ***********************************************************/
+    [CCode (cname="AV_CODEC_FLAG2_NO_OUTPUT")]
     NO_OUTPUT,
 
     /***********************************************************
     @brief Place global headers at every keyframe instead of in extradata.
     ***********************************************************/
+    [CCode (cname="AV_CODEC_FLAG2_LOCAL_HEADER")]
     LOCAL_HEADER,
 
     /***********************************************************
     @brief Timecode is in drop frame format. DEPRECATED!!!!
     ***********************************************************/
-    //  AV_CODEC_FLAG2_DROP_FRAME_TIMECODE,
+    //  [CCode (cname="AV_CODEC_FLAG2_DROP_FRAME_TIMECODE")]
+    //  DROP_FRAME_TIMECODE,
 
     /***********************************************************
     @brief Input bitstream might be truncated at a packet boundaries
     instead of only at frame boundaries.
     ***********************************************************/
+    [CCode (cname="AV_CODEC_FLAG2_CHUNKS")]
     CHUNKS,
 
     /***********************************************************
     @brief Discard cropping information from SPS.
     ***********************************************************/
+    [CCode (cname="AV_CODEC_FLAG2_IGNORE_CROP")]
     IGNORE_CROP,
 
     /***********************************************************
     @brief Show all frames before the first keyframe
     ***********************************************************/
+    [CCode (cname="AV_CODEC_FLAG2_SHOW_ALL")]
     SHOW_ALL,
 
     /***********************************************************
@@ -89,6 +96,7 @@ public enum CodecFlags2 {
     /***********************************************************
     @brief Do not skip samples and export skip information as frame side data
     ***********************************************************/
+    [CCode (cname="AV_CODEC_FLAG2_SKIP_MANUAL")]
     SKIP_MANUAL,
 
     /***********************************************************
@@ -102,63 +110,8 @@ public enum CodecFlags2 {
     file. No effect on codecs which cannot contain embedded ICC profiles, or
     when compiled without support for lcms2.
     ***********************************************************/
+    [CCode (cname="AV_CODEC_FLAG2_ICC_PROFILES")]
     ICC_PROFILES;
 }
 
 } // namespace LibAVCodec
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/***********************************************************
-@defgroup lavc_core Core functions/structures.
-@ingroup libavc
-
-Basic definitions, functions for querying libavcodec capabilities,
-allocating core structures, etc.
-@{
-***********************************************************/
-
-/***********************************************************
-Exported side data.
-   These flags can be passed in AVCodecContext.export_side_data before initialization.
-*/
-
-[Flags]
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public enum CodecExportDataFlags {}
-/***********************************************************
-Export motion vectors through frame side data
-***********************************************************/
-#define AV_CODEC_EXPORT_DATA_MVS         (1 << 0)
-/***********************************************************
-Export encoder Producer Reference Time through packet side data
-***********************************************************/
-#define AV_CODEC_EXPORT_DATA_PRFT        (1 << 1)
-/***********************************************************
-Decoding only.
-Export the AVVideoEncParams structure through frame side data.
-***********************************************************/
-#define AV_CODEC_EXPORT_DATA_VIDEO_ENC_PARAMS (1 << 2)
-/***********************************************************
-Decoding only.
-Do not apply film grain, export it instead.
-***********************************************************/
-#define AV_CODEC_EXPORT_DATA_FILM_GRAIN (1 << 3)
-
-/***********************************************************
-Decoding only.
-Do not apply picture enhancement layers, export them instead.
-***********************************************************/
-#define AV_CODEC_EXPORT_DATA_ENHANCEMENTS (1 << 4)

@@ -79,7 +79,7 @@ public class LibAVFilter.FilterPad {
     [CCode (cname="")]
     public LibAVUtil.MediaType type;
 
-    public delegate AVFrame GetVideoBufferDelegate (
+    public delegate LibAVFormat.Frame GetVideoBufferDelegate (
         LibAVFilter.FilterLink? link,
         int w,
         int h
@@ -94,7 +94,7 @@ public class LibAVFilter.FilterPad {
     [CCode (cname="get_video_buffer")]
     public GetVideoBufferDelegate get_video_buffer;
 
-    public delegate AVFrame GetAudioBufferDelegate (
+    public delegate LibAVFormat.Frame GetAudioBufferDelegate (
         LibAVFilter.FilterLink? link,
         int nb_samples
     );
@@ -110,7 +110,7 @@ public class LibAVFilter.FilterPad {
 
     public delegate int FilterFrameDelegate (
         LibAVFilter.FilterLink? link,
-        AVFrame? frame
+        LibAVFormat.Frame? frame
     );
 
     /***********************************************************
@@ -377,7 +377,7 @@ public string ff_get_ref_perms_string (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public void ff_tlog_ref (
     void *ctx,
-    AVFrame? ref,
+    LibAVFormat.Frame? ref,
     int end
 );
 
@@ -551,7 +551,7 @@ is responsible for unreferencing frame in case of error.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/internal.h")]
 public int ff_filter_frame (
     LibAVFilter.FilterLink? link,
-    AVFrame? frame
+    LibAVFormat.Frame? frame
 );
 
 /***********************************************************

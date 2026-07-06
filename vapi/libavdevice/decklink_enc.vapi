@@ -28,7 +28,7 @@ public int ff_decklink_write_header (
 [CCode (cname="ff_decklink_write_packet",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_enc.h")]
 public int ff_decklink_write_packet (
     LibAVFormat.FormatContext? avctx,
-    AVPacket? pkt
+    LibAVCodec.Packet? pkt
 );
 
 [CCode (cname="ff_decklink_write_trailer",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_enc.h")]

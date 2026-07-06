@@ -49,9 +49,9 @@ public class H263RFC2190DynamicHandler : RTPDynamicProtocolHandler {
     }
 
     [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263_rfc2190.c")]
-    public override AVStreamParseType need_parsing {
+    public override LibAVFormat.StreamParseType need_parsing {
         public get {
-            return AVStreamParseType.FULL;
+            return LibAVFormat.StreamParseType.FULL;
 
         }
 

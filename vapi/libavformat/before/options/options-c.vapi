@@ -61,7 +61,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "direct",
                     short_help_text = "reduce buffering",
                     offset = 0,
-                    default_value = AVIOOpenFlags.DIRECT,
+                    default_value = LibAVFormat.IOOpenFlags.DIRECT,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = (
@@ -118,7 +118,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                         LibAVFormat.FormatContext,
                         flags
                     ),
-                    default_value = AVFormatFlags.AUTO_BSF,
+                    default_value = LibAVFormat.FormatFlags.AUTO_BSF,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = (
@@ -131,7 +131,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "flush_packets",
                     short_help_text = "reduce the latency by flushing out packets immediately",
                     offset = 0,
-                    default_value = AVFormatFlags.FLUSH_PACKETS,
+                    default_value = LibAVFormat.FormatFlags.FLUSH_PACKETS,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = (
@@ -144,7 +144,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "ignidx",
                     short_help_text = "ignore index",
                     offset = 0,
-                    default_value = AVFormatFlags.IGNORE_INDEX,
+                    default_value = LibAVFormat.FormatFlags.IGNORE_INDEX,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = LibAVUtil.OptionFlags.DECODING_PARAM,
@@ -154,7 +154,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "genpts",
                     short_help_text = "generate pts",
                     offset = 0,
-                    default_value = AVFormatFlags.GENERATE_MISSING_PTS,
+                    default_value = LibAVFormat.FormatFlags.GENERATE_MISSING_PTS,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = LibAVUtil.OptionFlags.DECODING_PARAM,
@@ -164,7 +164,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "nofillin",
                     short_help_text = "do not fill in missing values that can be exactly calculated",
                     offset = 0,
-                    default_value = AVFormatFlags.DO_NOT_INFER,
+                    default_value = LibAVFormat.FormatFlags.DO_NOT_INFER,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = LibAVUtil.OptionFlags.DECODING_PARAM,
@@ -174,7 +174,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "noparse",
                     short_help_text = "disable AVParsers, this needs nofillin too",
                     offset = 0,
-                    default_value = AVFormatFlags.DO_NOT_PARSE,
+                    default_value = LibAVFormat.FormatFlags.DO_NOT_PARSE,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = LibAVUtil.OptionFlags.DECODING_PARAM,
@@ -184,7 +184,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "igndts",
                     short_help_text = "ignore dts",
                     offset = 0,
-                    default_value = AVFormatFlags.IGNORE_DTS,
+                    default_value = LibAVFormat.FormatFlags.IGNORE_DTS,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = LibAVUtil.OptionFlags.DECODING_PARAM,
@@ -194,7 +194,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "discardcorrupt",
                     short_help_text = "discard corrupted frames",
                     offset = 0,
-                    default_value = AVFormatFlags.DISCARD_CORRUPT,
+                    default_value = LibAVFormat.FormatFlags.DISCARD_CORRUPT,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = LibAVUtil.OptionFlags.DECODING_PARAM,
@@ -204,54 +204,27 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "sortdts",
                     short_help_text = "try to interleave outputted packets by dts",
                     offset = 0,
-                    default_value = AVFormatFlags.SORT_DTS,
+                    default_value = LibAVFormat.FormatFlags.SORT_DTS,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = LibAVUtil.OptionFlags.DECODING_PARAM,
                     unit = "fflags"
                 },
-            #if FF_API_LAVF_KEEPSIDE_FLAG
-                new LibAVUtil.ConstOption () {
-                    name = "keepside",
-                    short_help_text = "deprecated, does nothing",
-                    offset = 0,
-                    default_value = AVFormatFlags.KEEP_SIDE_DATA,
-                    minimum_value = int.MIN,
-                    maximum_value = int.MAX,
-                    option_flags = LibAVUtil.OptionFlags.DECODING_PARAM,
-                    unit = "fflags"
-                },
-            #endif
                 new LibAVUtil.ConstOption () {
                     name = "fastseek",
                     short_help_text = "fast but inaccurate seeks",
                     offset = 0,
-                    default_value = AVFormatFlags.FAST_SEEK,
+                    default_value = LibAVFormat.FormatFlags.FAST_SEEK,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = LibAVUtil.OptionFlags.DECODING_PARAM,
                     unit = "fflags"
                 },
-            #if FF_API_LAVF_MP4A_LATM
-                new LibAVUtil.ConstOption () {
-                    name = "latm",
-                    short_help_text = "deprecated, does nothing",
-                    offset = 0,
-                    default_value = AVFormatFlags.MP4A_LATM,
-                    minimum_value = int.MIN,
-                    maximum_value = int.MAX,
-                    option_flags = (
-                        LibAVUtil.OptionFlags.DECODING_PARAM |
-                        LibAVUtil.OptionFlags.ENCODING_PARAM
-                    ),
-                    unit = "fflags"
-                },
-            #endif
                 new LibAVUtil.ConstOption () {
                     name = "nobuffer",
                     short_help_text = "reduce the latency introduced by optional buffering",
                     offset = 0,
-                    default_value = AVFormatFlags.DO_NOT_BUFFER,
+                    default_value = LibAVFormat.FormatFlags.DO_NOT_BUFFER,
                     minimum_value = 0,
                     maximum_value = int.MAX,
                     option_flags = LibAVUtil.OptionFlags.DECODING_PARAM,
@@ -261,7 +234,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "bitexact",
                     short_help_text = "do not write random/volatile data",
                     offset = 0,
-                    default_value = AVFormatFlags.BIT_EXACT,
+                    default_value = LibAVFormat.FormatFlags.BIT_EXACT,
                     minimum_value = 0,
                     maximum_value = 0,
                     option_flags = (
@@ -274,7 +247,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "shortest",
                     short_help_text = "stop muxing with the shortest stream",
                     offset = 0,
-                    default_value = AVFormatFlags.SHORTEST,
+                    default_value = LibAVFormat.FormatFlags.SHORTEST,
                     minimum_value = 0,
                     maximum_value = 0,
                     option_flags = (
@@ -287,7 +260,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "autobsf",
                     short_help_text = "add needed bsfs automatically",
                     offset = 0,
-                    default_value = AVFormatFlags.AUTO_BSF,
+                    default_value = LibAVFormat.FormatFlags.AUTO_BSF,
                     minimum_value = 0,
                     maximum_value = 0,
                     option_flags = (
@@ -378,7 +351,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "ts",
                     short_help_text = "",
                     offset = 0,
-                    default_value = AVFormatDebugFlags.TS,
+                    default_value = LibAVFormat.FormatDebugFlags.TS,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = (
@@ -819,7 +792,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "auto",
                     short_help_text = "enabled when required by target format",
                     offset = 0,
-                    default_value = AVFormatAvoidNegativeTimestampFlags.AUTO,
+                    default_value = LibAVFormat.FormatAvoidNegativeTimestampFlags.AUTO,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = (
@@ -845,7 +818,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "make_non_negative",
                     short_help_text = "shift timestamps so they are non negative",
                     offset = 0,
-                    default_value = AVFormatAvoidNegativeTimestampFlags.MAKE_NON_NEGATIVE,
+                    default_value = LibAVFormat.FormatAvoidNegativeTimestampFlags.MAKE_NON_NEGATIVE,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = (
@@ -858,7 +831,7 @@ public class AVFormatContextClass : LibAVUtil.Log.Class {
                     name = "make_zero",
                     short_help_text = "shift timestamps so they start at 0",
                     offset = 0,
-                    default_value = AVFormatAvoidNegativeTimestampFlags.MAKE_ZERO,
+                    default_value = LibAVFormat.FormatAvoidNegativeTimestampFlags.MAKE_ZERO,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = (

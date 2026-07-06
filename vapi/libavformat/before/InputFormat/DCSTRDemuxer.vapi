@@ -68,9 +68,9 @@ public class DCSTRDemuxer : LibAVFormat.InputFormat {
     }
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/dcstr.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.USE_GENERIC_INDEX | AVFormatFlags1.NO_BYTE_SEEK | AVFormatFlags1.NO_BINARY_SEARCH;
+            return LibAVFormat.FormatFlags1.USE_GENERIC_INDEX | LibAVFormat.FormatFlags1.NO_BYTE_SEEK | LibAVFormat.FormatFlags1.NO_BINARY_SEARCH;
 
         }
 

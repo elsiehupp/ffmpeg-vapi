@@ -126,20 +126,20 @@ public class YADIFContext {
     public int frame_pending;
 
     [CCode (cname="")]
-    public AVFrame cur;
+    public LibAVFormat.Frame cur;
 
     [CCode (cname="")]
-    public AVFrame next;
+    public LibAVFormat.Frame next;
 
     [CCode (cname="")]
-    public AVFrame prev;
+    public LibAVFormat.Frame prev;
 
     [CCode (cname="")]
-    public AVFrame out;
+    public LibAVFormat.Frame out;
 
     public delegate void FilterDelegate (
         LibAVFilter.FilterContext? av_filter_context,
-        AVFrame? dstpic,
+        LibAVFormat.Frame? dstpic,
         int parity,
         int tff
     );
@@ -214,7 +214,7 @@ public void ff_yadif_init_x86 (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]
 public int ff_yadif_filter_frame (
     LibAVFilter.FilterLink? link,
-    AVFrame? frame
+    LibAVFormat.Frame? frame
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/yadif.h")]

@@ -28,22 +28,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct DVDemuxContext",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
+[CCode (cname="struct DVDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/dv.h")]
 [Compact]
 public class DVDemuxContext {
 
-    [CCode (cname="avpriv_dv_init_demux",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
+    [CCode (cname="avpriv_dv_init_demux",cheader_filename="subprojects/ffmpeg/libavformat/dv.h")]
     public DVDemuxContext avpriv_dv_init_demux (
         LibAVFormat.FormatContext format_context
     );
 
-    [CCode (cname="avpriv_dv_get_packet",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
+    [CCode (cname="avpriv_dv_get_packet",cheader_filename="subprojects/ffmpeg/libavformat/dv.h")]
     public int avpriv_dv_get_packet (
         DVDemuxContext demux_context,
         LibAVCodec.Packet packet
     );
 
-    [CCode (cname="avpriv_dv_produce_packet",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
+    [CCode (cname="avpriv_dv_produce_packet",cheader_filename="subprojects/ffmpeg/libavformat/dv.h")]
     public int avpriv_dv_produce_packet (
         DVDemuxContext demux_context,
         LibAVCodec.Packet packet,
@@ -52,7 +52,7 @@ public class DVDemuxContext {
         int64 arg_
     );
 
-    [CCode (cname="ff_dv_offset_reset",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
+    [CCode (cname="ff_dv_offset_reset",cheader_filename="subprojects/ffmpeg/libavformat/dv.h")]
     public void ff_dv_offset_reset (
         DVDemuxContext demux_context,
         int64 frame_offset
@@ -60,7 +60,7 @@ public class DVDemuxContext {
 
 }
 
-[CCode (cname="struct DVMuxContext",cheader_filename="subprojects/ffmpeg/libformat/dv.h")]
+[CCode (cname="struct DVMuxContext",cheader_filename="subprojects/ffmpeg/libavformat/dv.h")]
 [Compact]
 public class DVMuxContext { }
 

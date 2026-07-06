@@ -30,7 +30,7 @@ Special devices muxing/demuxing library.
 Libavdevice is a complementary library to @ref libavf "libavformat". It
 provides various "special" platform-specific muxers and demuxers, e.g. for
 grabbing devices, audio capture and playback etc. As a consequence, the
-(de)muxers in libavdevice are of the AVFormatFlags1.NO_FILE type (they use their own
+(de)muxers in libavdevice are of the LibAVFormat.FormatFlags1.NO_FILE type (they use their own
 I/O functions). The filename passed to avformat_open_input () often does not
 refer to an actually existing file, but has some special device-specific
 meaning - e.g. for xcbgrab it is the display name.
@@ -539,7 +539,7 @@ parameters that fit to the device.
 List of capabilities that can be queried:
  - Capabilities valid for both audio and video devices:
    - codec:          supported audio/video codecs.
-                     type: LibAVUtil.OptionType.INT (AVCodecID value)
+                     type: LibAVUtil.OptionType.INT (LibAVCodec.CodecID value)
  - Capabilities valid for audio devices:
    - sample_format:  supported sample formats.
                      type: LibAVUtil.OptionType.INT (LibAVUtil.SampleFormat value)
@@ -615,7 +615,7 @@ public class LibAVDevice.DeviceCapabilitiesQuery {
     public LibAVFormat.FormatContext? device_context;
 
     [CCode (cname="")]
-    public AVCodecID codec;
+    public LibAVCodec.CodecID codec;
 
     [CCode (cname="")]
     public LibAVUtil.SampleFormat sample_format;

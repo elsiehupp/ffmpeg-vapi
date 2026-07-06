@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct FFRawVideoDemuxerContext",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+[CCode (cname="struct FFRawVideoDemuxerContext",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.h")]
 [Compact]
 public class FFRawVideoDemuxerContext {
     /***********************************************************
@@ -53,7 +53,7 @@ public class FFRawVideoDemuxerContext {
     public LibAVUtil.Rational framerate;
 }
 
-[CCode (cname="struct FFRawDemuxerContext",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+[CCode (cname="struct FFRawDemuxerContext",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.h")]
 [Compact]
 public class FFRawDemuxerContext {
     /***********************************************************
@@ -66,28 +66,28 @@ public class FFRawDemuxerContext {
     public int raw_packet_size;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.h")]
 public int ff_raw_read_partial_packet (
     LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.h")]
 public int ff_raw_audio_read_header (
     LibAVFormat.FormatContext format_context
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.h")]
 public int ff_raw_video_read_header (
     LibAVFormat.FormatContext format_context
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.h")]
 public int ff_raw_subtitle_read_header (
     LibAVFormat.FormatContext format_context
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rawdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rawdec.h")]
 public int ff_raw_data_read_header (
     LibAVFormat.FormatContext format_context
 );
@@ -171,7 +171,7 @@ LibAVFormat.InputFormat ff_ ## shortname ## _demuxer = {
 }
 
 #define FF_DEF_RAWVIDEO_DEMUXER (shortname, longname, probe, ext, id)\
-FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, AVFormatFlags1.USE_GENERIC_INDEX)
+FF_DEF_RAWVIDEO_DEMUXER2 (shortname, longname, probe, ext, id, LibAVFormat.FormatFlags1.USE_GENERIC_INDEX)
 
 #define FF_RAWSUB_DEMUXER_CLASS (name)\
 public const LibAVUtil.Log.Class name ## _demuxer_class : RawOptionsClass {

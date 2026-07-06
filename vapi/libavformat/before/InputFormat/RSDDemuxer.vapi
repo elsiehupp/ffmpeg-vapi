@@ -68,7 +68,7 @@ public class RSDDemuxer : LibAVFormat.InputFormat {
     }
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 rsd_tags,
@@ -80,9 +80,9 @@ public class RSDDemuxer : LibAVFormat.InputFormat {
     }
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rsd.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.USE_GENERIC_INDEX;
+            return LibAVFormat.FormatFlags1.USE_GENERIC_INDEX;
 
         }
 

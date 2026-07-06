@@ -25,14 +25,14 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Maximum possible number of different RTMP channels
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public const size_t RTMP_CHANNELS;
 
 /***********************************************************
 @brief Channels used to for RTMP packets with different purposes (i.e. data, network
 control, remote procedure calls, etc.)
 ***********************************************************/
-[CCode (cname="enum RTMPChannel",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="enum RTMPChannel",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public enum RTMPChannel {
     /***********************************************************
     @brief Channel for network-related messages (bandwidth report, ping, etc)
@@ -68,7 +68,7 @@ public enum RTMPChannel {
 /***********************************************************
 @brief Known RTMP packet types
 ***********************************************************/
-[CCode (cname="enum RTMPPacketType",cprefix="RTMP_PT_",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="enum RTMPPacketType",cprefix="RTMP_PT_",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public enum RTMPPacketType {
     /***********************************************************
     @brief Chunk size change
@@ -146,7 +146,7 @@ public enum RTMPPacketType {
 /***********************************************************
 @brief Possible RTMP packet header sizes
 ***********************************************************/
-[CCode (cname="enum RTMPPacketSize",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="enum RTMPPacketSize",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public enum RTMPPacketSize {
     /***********************************************************
     @brief Packet has 12-byte header
@@ -176,7 +176,7 @@ public enum RTMPPacketSize {
 /***********************************************************
 @brief Structure for holding RTMP packets
 ***********************************************************/
-[CCode (cname="struct RTMPPacket",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="struct RTMPPacket",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 [Compact]
 public class RTMPPacket {
     /***********************************************************
@@ -246,7 +246,7 @@ public class RTMPPacket {
 @param size packet size
 @return zero on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_rtmp_packet_create (
     RTMPPacket packet,
     int channel_id,
@@ -260,7 +260,7 @@ public int ff_rtmp_packet_create (
 
 @param packet packet
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public void ff_rtmp_packet_destroy (
     RTMPPacket packet
 );
@@ -276,7 +276,7 @@ public void ff_rtmp_packet_destroy (
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_rtmp_packet_read (
     URLContext url_context,
     RTMPPacket packet,
@@ -297,7 +297,7 @@ public int ff_rtmp_packet_read (
 @param c the first byte already read
 @return number of bytes read on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_rtmp_packet_read_internal (
     URLContext url_context,
     RTMPPacket packet,
@@ -318,7 +318,7 @@ public int ff_rtmp_packet_read_internal (
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @return number of bytes written on success, negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_rtmp_packet_write (
     URLContext url_context,
     RTMPPacket packet,
@@ -333,7 +333,7 @@ public int ff_rtmp_packet_write (
 @param opaque_context output context
 @param packet packet to dump
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public void ff_rtmp_packet_dump (
     void *opaque_context,
     RTMPPacket packet
@@ -346,7 +346,7 @@ public void ff_rtmp_packet_dump (
 @param nb_prev_pkt number of allocated elements in prev_pkt
 @param channel the channel number that needs to be allocated
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_rtmp_check_alloc_array (
     out RTMPPacket prev_pkt,
     out int nb_prev_pkt,
@@ -366,7 +366,7 @@ public int ff_rtmp_check_alloc_array (
 @param data_end input buffer end
 @return number of bytes used by first AMF entry
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_amf_tag_size (
     uint8[] data,
     uint8[] data_end
@@ -382,7 +382,7 @@ public int ff_amf_tag_size (
 @param dst_size output buffer size
 @return 0 if search and retrieval succeeded, negative value otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_amf_get_field_value (
     uint8[] data,
     uint8[] data_end,
@@ -397,7 +397,7 @@ public int ff_amf_get_field_value (
 @param dst pointer to the input buffer (will be modified)
 @param val value to write
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public void ff_amf_write_bool (
     out uint8[] dst,
     int val
@@ -409,7 +409,7 @@ public void ff_amf_write_bool (
 @param dst pointer to the input buffer (will be modified)
 @param num value to write
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public void ff_amf_write_number (
     out uint8[] dst,
     double num
@@ -421,7 +421,7 @@ public void ff_amf_write_number (
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public void ff_amf_write_string (
     out uint8[] dst,
     string str
@@ -434,7 +434,7 @@ public void ff_amf_write_string (
 @param str1 first string to write, may be null
 @param str2 second string to write, may be null
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public void ff_amf_write_string2 (
     out uint8[] dst,
     string str1,
@@ -446,7 +446,7 @@ public void ff_amf_write_string2 (
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public void ff_amf_write_null (
     out uint8[] dst
 );
@@ -456,7 +456,7 @@ public void ff_amf_write_null (
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public void ff_amf_write_object_start (
     out uint8[] dst
 );
@@ -467,7 +467,7 @@ public void ff_amf_write_object_start (
 @param dst pointer to the input buffer (will be modified)
 @param str string to write
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public void ff_amf_write_field_name (
     out uint8[] dst,
     string str
@@ -478,7 +478,7 @@ public void ff_amf_write_field_name (
 
 @param dst pointer to the input buffer (will be modified)
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public void ff_amf_write_object_end (
     out uint8[] dst
 );
@@ -490,7 +490,7 @@ public void ff_amf_write_object_end (
 @param[out]    val 0 or 1
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_amf_read_bool (
     GetByteContext gbc,
     out int val
@@ -503,7 +503,7 @@ public int ff_amf_read_bool (
 @param[out]    val read value
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_amf_read_number (
     GetByteContext gbc,
     out double val
@@ -523,7 +523,7 @@ ease later parsing.
 @param[out]    length read string length
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_amf_get_string (
     GetByteContext bc,
     uint8[] str,
@@ -543,7 +543,7 @@ ease later parsing.
 @param[out]    length read string length
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_amf_read_string (
     GetByteContext gbc,
     uint8[] str,
@@ -557,7 +557,7 @@ public int ff_amf_read_string (
 @param[in,out] gbc GetByteContext initialized with AMF-formatted data
 @return 0 on success or an LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_amf_read_null (
     GetByteContext gbc
 );
@@ -567,7 +567,7 @@ public int ff_amf_read_null (
 
 @return 0 if the strings do not match.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtmppkt.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtmppkt.h")]
 public int ff_amf_match_string (
     uint8[] data,
     int size,

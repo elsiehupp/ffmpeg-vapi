@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="enum ASFDataType",cprefix="ASF_",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
+[CCode (cname="enum ASFDataType",cprefix="ASF_",cheader_filename="subprojects/ffmpeg/libavformat/asf.h")]
 public enum ASFDataType {
     UNICODE,
     BYTE_ARRAY,
@@ -32,7 +32,7 @@ public enum ASFDataType {
     GUID;
 }
 
-[CCode (cname="struct ASFMainHeader",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
+[CCode (cname="struct ASFMainHeader",cheader_filename="subprojects/ffmpeg/libavformat/asf.h")]
 [Compact]
 public class ASFMainHeader {
     /***********************************************************
@@ -120,7 +120,7 @@ public class ASFMainHeader {
 }
 
 
-[CCode (cname="struct ASFIndex",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
+[CCode (cname="struct ASFIndex",cheader_filename="subprojects/ffmpeg/libavformat/asf.h")]
 [Compact]
 public class ASFIndex {
     [CCode (cname="")]
@@ -173,7 +173,7 @@ public class ASFIndex {
 //  extern const AVMetadataConv ff_asf_metadata_conv[];
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/asf.h")]
 public enum ASFPacketFlags {
     [CCode (cname="ASF_PACKET_FLAG_ERROR_CORRECTION_PRESENT")]
     ERROR_CORRECTION_PRESENT; // 1000 0000
@@ -199,7 +199,7 @@ public enum ASFPacketFlags {
 /***********************************************************
 @brief PPI_FLAG - Payload parsing information flags
 ***********************************************************/
-[CCode (cprefix="ASF_PPI_FLAG_",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
+[CCode (cprefix="ASF_PPI_FLAG_",cheader_filename="subprojects/ffmpeg/libavformat/asf.h")]
 public enum ASFPayloadParsingFlags {
     MULTIPLE_PAYLOADS_PRESENT,
 
@@ -228,7 +228,7 @@ public enum ASFPayloadParsingFlags {
 /***********************************************************
 @brief Payload flags
 ***********************************************************/
-[CCode (cprefix="ASF_PL_FLAG_",cheader_filename="subprojects/ffmpeg/libformat/asf.h")]
+[CCode (cprefix="ASF_PL_FLAG_",cheader_filename="subprojects/ffmpeg/libavformat/asf.h")]
 public enum ASFPayloadFlags {
     REPLICATED_DATA_LENGTH_FIELD_IS_BYTE, // 0000 0001
     REPLICATED_DATA_LENGTH_FIELD_IS_WORD, // 0000 0010

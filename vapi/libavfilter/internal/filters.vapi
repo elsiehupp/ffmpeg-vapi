@@ -63,7 +63,7 @@ Commands will trigger the process_command () callback.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_process_commands (
     LibAVFilter.FilterLink? link,
-    AVFrame? frame
+    LibAVFormat.Frame? frame
 );
 
 /***********************************************************
@@ -75,7 +75,7 @@ of the frame.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_evaluate_timeline_at_frame (
     LibAVFilter.FilterLink? link,
-    AVFrame? frame
+    LibAVFormat.Frame? frame
 );
 
 /***********************************************************
@@ -133,7 +133,7 @@ ff_inlink_consume_frame (). Negative error codes must still be checked.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_consume_frame (
     LibAVFilter.FilterLink? link,
-    out AVFrame[] rframe
+    out LibAVFormat.Frame[] rframe
 );
 
 /***********************************************************
@@ -153,7 +153,7 @@ public int ff_inlink_consume_samples (
     LibAVFilter.FilterLink? link,
     uint min,
     uint max,
-    AVFrame? rframe
+    LibAVFormat.Frame? rframe
 );
 
 /***********************************************************
@@ -162,7 +162,7 @@ The first frame is numbered 0; the designated frame must exist.
 @return the frame at idx position in the link fifo.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
-public AVFrame? ff_inlink_peek_frame (
+public LibAVFormat.Frame? ff_inlink_peek_frame (
     LibAVFilter.FilterLink? link,
     size_t idx
 );
@@ -175,7 +175,7 @@ buffer allocation callback, and therefore allows direct rendering.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/filters.h")]
 public int ff_inlink_make_frame_writable (
     LibAVFilter.FilterLink? link,
-    out AVFrame[] rframe
+    out LibAVFormat.Frame[] rframe
 );
 
 /***********************************************************

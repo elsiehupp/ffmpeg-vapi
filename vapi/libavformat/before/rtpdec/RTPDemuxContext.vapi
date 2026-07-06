@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct RTPDemuxContext",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="struct RTPDemuxContext",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 [Compact]
 public class RTPDemuxContext {
     [CCode (cname="")]
@@ -144,7 +144,7 @@ public class RTPDemuxContext {
     [CCode (cname="")]
     public PayloadContext dynamic_protocol_context;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public RTPDemuxContext ff_rtp_parse_open (
         LibAVFormat.FormatContext s1,
         LibAVFormat.Stream st,
@@ -152,21 +152,21 @@ public class RTPDemuxContext {
         int queue_size
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public void ff_rtp_parse_set_dynamic_protocol (
         RTPDemuxContext rtp_demux_context,
         PayloadContext payload_context,
         RTPDynamicProtocolHandler handler
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public void ff_rtp_parse_set_crypto (
         RTPDemuxContext rtp_demux_context,
         string suite,
         string params
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public int ff_rtp_parse_packet (
         RTPDemuxContext rtp_demux_context,
         LibAVCodec.Packet packet,
@@ -174,39 +174,39 @@ public class RTPDemuxContext {
         int len
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public void ff_rtp_parse_close (
         RTPDemuxContext rtp_demux_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public int64 ff_rtp_queued_packet_time (
         RTPDemuxContext rtp_demux_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public void ff_rtp_reset_packet_queue (
         RTPDemuxContext rtp_demux_context
     );
 
     /***********************************************************
     @brief Some rtp servers assume client is dead if they don't hear from them...
-    so we send a Receiver Report to the provided URLContext or AVIOContext
+    so we send a Receiver Report to the provided URLContext or LibAVFormat.IOContext
     (we don't have access to the rtcp handle from here)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public int ff_rtp_check_and_send_back_rr (
         RTPDemuxContext rtp_demux_context,
         URLContext fd,
-        AVIOContext avio,
+        LibAVFormat.IOContext avio,
         int count
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public int ff_rtp_send_rtcp_feedback (
         RTPDemuxContext rtp_demux_context,
         URLContext fd,
-        AVIOContext avio
+        LibAVFormat.IOContext avio
     );
 
 }

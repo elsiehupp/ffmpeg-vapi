@@ -27,7 +27,7 @@ namespace LibAVFormat {
 /***********************************************************
 @brief RTSP handling
 ***********************************************************/
-[CCode (cname="enum RTSPStatusCode",cprefix="RTSP_STATUS_",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
+[CCode (cname="enum RTSPStatusCode",cprefix="RTSP_STATUS_",cheader_filename="subprojects/ffmpeg/libavformat/rtspcodes.h")]
 public enum RTSPStatusCode {
     /***********************************************************
     @brief Continue
@@ -267,12 +267,12 @@ public enum RTSPStatusCode {
     ***********************************************************/
     UNSUPPORTED_OPTION;
 
-    [CCode (cname="RTSP_STATUS_CODE2STRING",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
+    [CCode (cname="RTSP_STATUS_CODE2STRING",cheader_filename="subprojects/ffmpeg/libavformat/rtspcodes.h")]
     public static string to_string (
         RTSPStatusCode rtsp_status_code
     );
 
-    [CCode (cname="ff_rtsp_averror",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
+    [CCode (cname="ff_rtsp_averror",cheader_filename="subprojects/ffmpeg/libavformat/rtspcodes.h")]
     public static int to_averror (
         RTSPStatusCode status_code,
         int default_averror
@@ -280,7 +280,7 @@ public enum RTSPStatusCode {
 
 }
 
-[CCode (cname="enum RTSPMethod",cheader_filename="subprojects/ffmpeg/libformat/rtspcodes.h")]
+[CCode (cname="enum RTSPMethod",cheader_filename="subprojects/ffmpeg/libavformat/rtspcodes.h")]
 public enum RTSPMethod {
     DESCRIBE,
     ANNOUNCE,

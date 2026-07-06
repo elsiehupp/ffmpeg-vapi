@@ -22,8 +22,8 @@ namespace LibAVFilter {
 /***********************************************************
 @brief Parameters describing a filter to be created in a filtergraph.
 
-Created as a child of LibAVFilter.FilterGraphSegment by avfilter_graph_segment_parse().
-Freed in avfilter_graph_segment_free().
+Created as a child of LibAVFilter.FilterGraphSegment by avfilter_graph_segment_parse ().
+Freed in avfilter_graph_segment_free ().
 ***********************************************************/
 [CCode (cname="struct AVFilterParams",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
@@ -31,12 +31,12 @@ public class LibAVFilter.FilterParams {
     /***********************************************************
     @brief The filter context.
 
-    Created by avfilter_graph_segment_create_filters() based on
+    Created by avfilter_graph_segment_create_filters () based on
     LibAVFilter.FilterParams.filter_name and instance_name.
 
     Callers may also create the filter context manually, then they should
-    av_free() filter_name and set it to NULL. Such LibAVFilter.FilterParams instances
-    are then skipped by avfilter_graph_segment_create_filters().
+    av_free () filter_name and set it to NULL. Such LibAVFilter.FilterParams instances
+    are then skipped by avfilter_graph_segment_create_filters ().
     ***********************************************************/
     [CCode (cname="filter")]
     public LibAVFilter.FilterContext? filter;
@@ -44,11 +44,11 @@ public class LibAVFilter.FilterParams {
     /***********************************************************
     @brief Name of the LibAVFilter.Filter to be used.
 
-    An av_malloc()'ed string, set by avfilter_graph_segment_parse(). Will be
-    passed to avfilter_get_by_name() by
-    avfilter_graph_segment_create_filters().
+    An av_malloc ()'ed string, set by avfilter_graph_segment_parse (). Will be
+    passed to avfilter_get_by_name () by
+    avfilter_graph_segment_create_filters ().
 
-    Callers may av_free() this string and replace it with another one or
+    Callers may av_free () this string and replace it with another one or
     NULL. If the caller creates the filter instance manually, this string
     MUST be set to NULL.
 
@@ -62,12 +62,12 @@ public class LibAVFilter.FilterParams {
     /***********************************************************
     @brief Name to be used for this filter instance.
 
-    An av_malloc()'ed string, may be set by avfilter_graph_segment_parse() or
-    left NULL. The caller may av_free() this string and replace with another
+    An av_malloc ()'ed string, may be set by avfilter_graph_segment_parse () or
+    left NULL. The caller may av_free () this string and replace with another
     one or NULL.
 
-    Will be used by avfilter_graph_segment_create_filters() - passed as the
-    third argument to avfilter_graph_alloc_filter(), then freed and set to
+    Will be used by avfilter_graph_segment_create_filters () - passed as the
+    third argument to avfilter_graph_alloc_filter (), then freed and set to
     NULL.
     ***********************************************************/
     [CCode (cname="instance_name")]
@@ -76,11 +76,11 @@ public class LibAVFilter.FilterParams {
     /***********************************************************
     @brief Options to be applied to the filter.
 
-    Filled by avfilter_graph_segment_parse(). Afterwards may be freely
+    Filled by avfilter_graph_segment_parse (). Afterwards may be freely
     modified by the caller.
 
-    Will be applied to the filter by avfilter_graph_segment_apply_opts()
-    with an equivalent of av_opt_set_dict2(filter, &opts, AV_OPT_SEARCH_CHILDREN),
+    Will be applied to the filter by avfilter_graph_segment_apply_opts ()
+    with an equivalent of av_opt_set_dict2 (filter, &opts, AV_OPT_SEARCH_CHILDREN),
     i.e. any unapplied options will be left in this dictionary.
     ***********************************************************/
     [CCode (cname="opts")]

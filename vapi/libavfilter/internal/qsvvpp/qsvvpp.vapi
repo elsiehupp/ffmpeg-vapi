@@ -108,7 +108,7 @@ public class QSVVPPCrop {
 public class QSVVPPParam {
     public delegate int FilterFrameDelegate (
         LibAVFilter.FilterLink? outlink,
-        AVFrame? frame
+        LibAVFormat.Frame? frame
     );
 
     /***********************************************************
@@ -161,7 +161,7 @@ vpp filter frame and call the cb if needed
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/qsvvpp.h")]
 public int ff_qsvvpp_filter_frame (
-    QSVVPPContext? vpp, LibAVFilter.FilterLink? inlink, AVFrame? frame
+    QSVVPPContext? vpp, LibAVFilter.FilterLink? inlink, LibAVFormat.Frame? frame
 );
 
 } // namespace LibAVFilter

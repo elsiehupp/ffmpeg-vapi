@@ -45,7 +45,7 @@ ensure ff_network_init has been called.
            host/port, may be null
 @return the number of characters written to the destination buffer
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
 public int ff_url_join (
     string str,
     int size,
@@ -65,7 +65,7 @@ public int ff_url_join (
 @param base the base url, may be equal to buffer.
 @param rel the new url, which is interpreted relative to base
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
 public void ff_make_absolute_url (
     string buffer,
     int size,
@@ -78,10 +78,10 @@ public void ff_make_absolute_url (
 
 @return entry or NULL on error
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
-public AVIODirEntry ff_alloc_dir_entry ();
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
+public LibAVFormat.IODirEntry ff_alloc_dir_entry ();
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
 public LibAVUtil.Log.Class ff_urlcontext_child_class_next (
     LibAVUtil.Log.Class prev
 );
@@ -99,7 +99,7 @@ public LibAVUtil.Log.Class ff_urlcontext_child_class_next (
 @return a NULL-terminated array of matching protocols. The array must be
 freed by the caller.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
 public URLProtocol[] ffurl_get_protocols (
     string whitelist,
     string blacklist

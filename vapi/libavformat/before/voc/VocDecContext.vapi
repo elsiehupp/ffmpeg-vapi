@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct voc_dec_context",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
+[CCode (cname="struct voc_dec_context",cheader_filename="subprojects/ffmpeg/libavformat/voc.h")]
 [Compact]
 public class VocDecContext {
     [CCode (cname="remaining_size")]
@@ -32,7 +32,7 @@ public class VocDecContext {
     public int64 pts;
 }
 
-[CCode (cname="enum voc_type",cprefix="VOC_TYPE_",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
+[CCode (cname="enum voc_type",cprefix="VOC_TYPE_",cheader_filename="subprojects/ffmpeg/libavformat/voc.h")]
 public enum VocType {
     [CCode (cname="VOC_TYPE_EOF")]
     END_OF_FILE,
@@ -50,9 +50,9 @@ public enum VocType {
 }
 
 //  extern const uchar ff_voc_magic[21];
-//  extern const AVCodecTag ff_voc_codec_tags[];
+//  extern const LibAVFormat.CodecTag ff_voc_codec_tags[];
 
-[CCode (cname="ff_voc_get_packet",cheader_filename="subprojects/ffmpeg/libformat/voc.h")]
+[CCode (cname="ff_voc_get_packet",cheader_filename="subprojects/ffmpeg/libavformat/voc.h")]
 public int ff_voc_get_packet (
     LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet,

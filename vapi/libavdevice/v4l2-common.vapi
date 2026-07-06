@@ -24,7 +24,7 @@ public class fmt_map {
     public LibAVUtil.PixelFormat ff_fmt;
 
     [CCode (cname="codec_id")]
-    public AVCodecID codec_id;
+    public LibAVCodec.CodecID codec_id;
 
     [CCode (cname="v4l2_fmt")]
     public uint32 v4l2_fmt;
@@ -35,16 +35,16 @@ public class fmt_map {
 [CCode (cname="ff_fmt_ff2v4l",cheader_filename="subprojects/ffmpeg/libavdevice/v4l2_common.h")]
 public uint32 ff_fmt_ff2v4l (
     LibAVUtil.PixelFormat pix_fmt,
-    AVCodecID codec_id
+    LibAVCodec.CodecID codec_id
 );
 
 [CCode (cname="ff_fmt_v4l2ff",cheader_filename="subprojects/ffmpeg/libavdevice/v4l2_common.h")]
 public LibAVUtil.PixelFormat ff_fmt_v4l2ff (
-    uint32 v4l2_fmt, AVCodecID codec_id
+    uint32 v4l2_fmt, LibAVCodec.CodecID codec_id
 );
 
 [CCode (cname="ff_fmt_v4l2codec",cheader_filename="subprojects/ffmpeg/libavdevice/v4l2_common.h")]
-public AVCodecID ff_fmt_v4l2codec (
+public LibAVCodec.CodecID ff_fmt_v4l2codec (
     uint32 v4l2_fmt
 );
 

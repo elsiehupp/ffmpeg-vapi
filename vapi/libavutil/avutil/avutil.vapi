@@ -325,7 +325,7 @@ public string av_fourcc_make_string (
 
 
 /***********************************************************
-copyright (c) 2006 Michael Niedermayer <michaelni@gmx.at>
+Copyright (c) 2006 Michael Niedermayer <michaelni@gmx.at>
 
 This file is part of FFmpeg.
 

@@ -68,9 +68,9 @@ public class JacoSubMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/jacosubenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

@@ -77,10 +77,10 @@ public class ShowCQTContext {
     public LibAVFilter.FilterContext? ctx;
 
     [CCode (cname="")]
-    public AVFrame? axis_frame;
+    public LibAVFormat.Frame? axis_frame;
 
     [CCode (cname="")]
-    public AVFrame? sono_frame;
+    public LibAVFormat.Frame? sono_frame;
 
     [CCode (cname="")]
     public LibAVUtil.PixelFormat format;
@@ -186,7 +186,7 @@ public class ShowCQTContext {
     public PermuteCoeffsDelegate permute_coeffs;
 
     public delegate void DrawBarDelegate (
-        AVFrame? out,
+        LibAVFormat.Frame? out,
         float[] h,
         float[] rcp_h,
         ColorFloat? color_float,
@@ -198,8 +198,8 @@ public class ShowCQTContext {
     public DrawBarDelegate draw_bar;
 
     public delegate void DrawAxisDelegate (
-        AVFrame? out,
-        AVFrame? axis,
+        LibAVFormat.Frame? out,
+        LibAVFormat.Frame? axis,
         ColorFloat? color_float,
         int off
     );
@@ -208,8 +208,8 @@ public class ShowCQTContext {
     public DrawAxisDelegate draw_axis;
 
     public delegate void DrawSonoDelegate (
-        AVFrame? out,
-        AVFrame? sono,
+        LibAVFormat.Frame? out,
+        LibAVFormat.Frame? sono,
         int off,
         int idx
     );
@@ -218,7 +218,7 @@ public class ShowCQTContext {
     public DrawSonoDelegate draw_sono;
 
     public delegate void UpdateSonoDelegate (
-        AVFrame? sono,
+        LibAVFormat.Frame? sono,
         ColorFloat? color_float,
         int idx
     );

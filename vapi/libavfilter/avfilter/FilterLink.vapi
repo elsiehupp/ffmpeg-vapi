@@ -302,7 +302,7 @@ public class LibAVFilter.FilterLink {
     Buffer partially filled with samples to achieve a fixed/minimum size.
     ***********************************************************/
     [CCode (cname="partial_buf")]
-    internal AVFrame partial_buf;
+    internal LibAVFormat.Frame partial_buf;
 
     /***********************************************************
     Size of the partial buffer to allocate.
@@ -430,11 +430,11 @@ public class LibAVFilter.FilterLink {
 
     @return a ref-counted copy of the link's hw_frames_ctx field if there is
             a hardware frames context associated with the link or NULL otherwise.
-            The returned LibAVUtil.BufferRef needs to be released with av_buffer_unref()
+            The returned LibAVUtil.BufferRef needs to be released with av_buffer_unref ()
             when it is no longer used.
     ***********************************************************/
     [CCode (cname="avfilter_link_get_hw_frames_ctx",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-    public LibAVUtil.BufferRef? avfilter_link_get_hw_frames_ctx(
+    public LibAVUtil.BufferRef? avfilter_link_get_hw_frames_ctx (
         LibAVFilter.FilterLink? link
     );
 

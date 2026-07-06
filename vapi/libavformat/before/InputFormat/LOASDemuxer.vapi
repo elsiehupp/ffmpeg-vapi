@@ -60,9 +60,9 @@ public class LOASDemuxer : LibAVFormat.InputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/loasdec.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.USE_GENERIC_INDEX;
+            return LibAVFormat.FormatFlags1.USE_GENERIC_INDEX;
 
         }
 

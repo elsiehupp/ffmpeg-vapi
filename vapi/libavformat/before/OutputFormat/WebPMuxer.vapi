@@ -147,9 +147,9 @@ public class WebPMuxer : LibAVFormat.OutputFormat {
     //  .priv_class = webp_muxer_class,
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/webpenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.ALLOWS_VARIABLE_FPS;
+            return LibAVFormat.FormatFlags1.ALLOWS_VARIABLE_FPS;
 
         }
 

@@ -269,7 +269,7 @@ private class ApiH264SliceTest : GLib.TestCase {
         codec_context.width = 352;
         codec_context.height = 288;
 
-        codec_context.flags2 |= AV_CODEC_FLAG2_CHUNKS;
+        codec_context.flags2 |= LibAVCodec.CodecFlags2.CHUNKS;
         codec_context.thread_type = FF_THREAD_SLICE;
         codec_context.thread_count = threads;
 

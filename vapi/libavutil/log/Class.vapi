@@ -85,14 +85,14 @@ public abstract class LibAVUtil.Log.Class {
            this must be initialized to 0 before the first use. The same state
            must not be accessed by 2 Threads simultaneously.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
+    [CCode (cname="av_log_once",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
     public void av_log_once (
         void *avcl,
         int initial_level,
         int subsequent_level,
         ref int state,
         string fmt, ...
-    ) av_printf_format (5, 6);
+    ); // av_printf_format (5, 6);
 
 
     /***********************************************************
@@ -297,7 +297,7 @@ public LibAVUtil.Log.Class av_opt_child_class_next (
 } // namespace LibAVUtil
 
 /***********************************************************
-copyright (c) 2006 Michael Niedermayer <michaelni@gmx.at>
+Copyright (c) 2006 Michael Niedermayer <michaelni@gmx.at>
 
 This file is part of FFmpeg.
 
@@ -320,7 +320,7 @@ namespace LibAVUtil {
 /***********************************************************
 Describe the class of an LibAVUtil.Log.Class context structure. That is an
 arbitrary struct of which the first field is a pointer to an
-LibAVUtil.Log.Class struct (e.g. AVCodecContext, AVFormatContext etc.).
+LibAVUtil.Log.Class struct (e.g. AVCodecContext, LibAVFormat.FormatContext etc.).
 ***********************************************************/
 [CCode (cname="struct AVClass",cheader_filename="subprojects/ffmpeg/libavutil/log.h")]
 public class LibAVUtil.Log.Class {
@@ -341,7 +341,7 @@ public class LibAVUtil.Log.Class {
     When non-NULL, the array must be terminated by an option with a NULL
     name.
 
-    @see av_set_default_options()
+    @see av_set_default_options ()
     ***********************************************************/
     public AVOption? option;
 
@@ -364,7 +364,7 @@ public class LibAVUtil.Log.Class {
     /***********************************************************
     Offset in the structure where a pointer to the parent context for
     logging is stored. For example a decoder could pass its AVCodecContext
-    to eval as such a parent context, which an ::av_log() implementation
+    to eval as such a parent context, which an ::av_log () implementation
     could then leverage to display the parent context.
 
     When the pointer is NULL, or this offset is zero, the object is assumed
@@ -375,8 +375,8 @@ public class LibAVUtil.Log.Class {
     /***********************************************************
     Category used for visualization (like color).
 
-    Only used when ::get_category() is NULL. Use this field when all
-    instances of this class have the same category, use ::get_category()
+    Only used when ::get_category () is NULL. Use this field when all
+    instances of this class have the same category, use ::get_category ()
     otherwise.
     ***********************************************************/
     public AVClassCategory category;
@@ -407,16 +407,16 @@ public class LibAVUtil.Log.Class {
     @return LibAVUtil.Log.Class for the next AVOptions-enabled child or NULL if there are
             no more such children.
 
-    @note The difference between ::child_next() and ::child_class_iterate()
-          is that ::child_next() iterates over _actual_ children of an
-          _existing_ object instance, while ::child_class_iterate() iterates
+    @note The difference between ::child_next () and ::child_class_iterate ()
+          is that ::child_next () iterates over _actual_ children of an
+          _existing_ object instance, while ::child_class_iterate () iterates
           over the classes of all _potential_ children of any possible
           instance of this class.
     ***********************************************************/
     //  public LibAVUtil.Log.Class* (*child_class_iterate)(void **iter);
 
     /***********************************************************
-    When non-zero, offset in the object to an unsigned int holding object
+    When non-zero, offset in the object to an uint holding object
     state flags, a combination of LibAVUtil.Log.ClassStateFlags values. The flags are
     updated by the object to signal its state to the generic code.
 

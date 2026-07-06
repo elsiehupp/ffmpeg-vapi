@@ -22,14 +22,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct MMSStream",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
+[CCode (cname="struct MMSStream",cheader_filename="subprojects/ffmpeg/libavformat/mms.h")]
 [Compact]
 public class MMSStream {
     [CCode (cname="")]
     public int id;
 }
 
-[CCode (cname="struct MMSContext",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
+[CCode (cname="struct MMSContext",cheader_filename="subprojects/ffmpeg/libavformat/mms.h")]
 [Compact]
 public class MMSContext {
     /***********************************************************
@@ -126,19 +126,19 @@ public class MMSContext {
     public uint nb_streams_allocated;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mms.h")]
 public int ff_mms_asf_header_parser (
     MMSContext mms
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mms.h")]
 public int ff_mms_read_data (
     MMSContext mms,
     uint8[] buffer,
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mms.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mms.h")]
 public int ff_mms_read_header (
     MMSContext mms,
     uint8[] buffer,

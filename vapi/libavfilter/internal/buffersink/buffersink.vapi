@@ -42,7 +42,7 @@ Get a frame with filtered data from sink and put it in frame.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_frame_flags (
     LibAVFilter.FilterContext? av_filter_context,
-    AVFrame? frame,
+    LibAVFormat.Frame? frame,
     AVBufferSinkFlags flags
 );
 
@@ -231,7 +231,7 @@ Get a frame with filtered data from sink and put it in frame.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_frame (
     LibAVFilter.FilterContext? av_filter_context,
-    AVFrame? frame
+    LibAVFormat.Frame? frame
 );
 
 /***********************************************************
@@ -254,7 +254,7 @@ the other with a single sink, not both.
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/buffersink.h")]
 public int av_buffersink_get_samples (
     LibAVFilter.FilterContext? av_filter_context,
-    AVFrame? frame,
+    LibAVFormat.Frame? frame,
     int nb_samples
 );
 

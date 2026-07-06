@@ -1,0 +1,5 @@
+[wrap-file]
+directory = decode_video
+
+[provide]
+program_names = decode_video

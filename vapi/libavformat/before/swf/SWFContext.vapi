@@ -26,16 +26,16 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Should have a generic way to indicate probable size
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/swf.h")]
 public const size_t DUMMY_FILE_SIZE;
 
 /***********************************************************
 @brief In seconds
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/swf.h")]
 public int DUMMY_DURATION;
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/swf.h")]
 public enum SWFTag {
     [CCode (cname="TAG_END")]
     END,
@@ -233,14 +233,14 @@ public enum SWFTag {
     DEFINE_FONT_4;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/swf.h")]
 public const int TAG_LONG;
 
 /***********************************************************
 @brief Flags for shape definition
 ***********************************************************/
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/swf.h")]
 public enum ShapeDefinitionFlags {
     [CCode (cname="FLAG_MOVETO")]
     MOVE_TO,
@@ -252,22 +252,22 @@ public enum ShapeDefinitionFlags {
     SET_FILL_1;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/swf.h")]
 public const size_t AUDIO_FIFO_SIZE;
 
 /***********************************************************
 @brief Character id used
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/swf.h")]
 public const int BITMAP_ID;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/swf.h")]
 public const int VIDEO_ID;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/swf.h")]
 public const int SHAPE_ID;
 
-[CCode (cname="struct SWFContext",cheader_filename="subprojects/ffmpeg/libformat/swf.h")]
+[CCode (cname="struct SWFContext",cheader_filename="subprojects/ffmpeg/libavformat/swf.h")]
 [Compact]
 public class SWFContext {
     [CCode (cname="")]
@@ -314,7 +314,7 @@ public class SWFContext {
     public const size_t ZBUF_SIZE;
 
     [CCode (cname="")]
-    public AVIOContext zpb;
+    public LibAVFormat.IOContext zpb;
 
     [CCode (cname="")]
     public uint8[] zbuf_in;
@@ -327,6 +327,6 @@ public class SWFContext {
 #endif
 }
 
-//  extern const AVCodecTag ff_swf_codec_tags[];
+//  extern const LibAVFormat.CodecTag ff_swf_codec_tags[];
 
 } // namespace LibAVFormat

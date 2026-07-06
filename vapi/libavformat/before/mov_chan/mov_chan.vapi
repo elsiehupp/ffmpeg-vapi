@@ -33,7 +33,7 @@ namespace LibAVFormat {
 @param[out] bitmap channel bitmap (only used if needed)
 @return channel layout
 ***********************************************************/
-[CCode (cname="ff_mov_get_channel_layout",cheader_filename="subprojects/ffmpeg/libformat/mov_chan.h")]
+[CCode (cname="ff_mov_get_channel_layout",cheader_filename="subprojects/ffmpeg/libavformat/mov_chan.h")]
 public uint64 ff_mov_get_channel_layout (
     uint32 tag,
     uint32 bitmap
@@ -48,7 +48,7 @@ If the layout tag was not found, use a channel bitmap if possible.
 @param[out] bitmap channel bitmap
 @return channel layout tag
 ***********************************************************/
-[CCode (cname="ff_mov_get_channel_layout_tag",cheader_filename="subprojects/ffmpeg/libformat/mov_chan.h")]
+[CCode (cname="ff_mov_get_channel_layout_tag",cheader_filename="subprojects/ffmpeg/libavformat/mov_chan.h")]
 public uint32 ff_mov_get_channel_layout_tag (
     LibAVCodec.CodecID codec_id,
     uint64 channel_layout,
@@ -59,15 +59,15 @@ public uint32 ff_mov_get_channel_layout_tag (
 @brief Read 'chan' tag from the input stream.
 
 @param format_context LibAVFormat.FormatContext
-@param pb AVIOContext
+@param pb LibAVFormat.IOContext
 @param st The stream to set codec values for
 @param size Remaining size in the 'chan' tag
 @return 0 if ok, or negative LibAVUtil.ErrorCode code on failure
 ***********************************************************/
-[CCode (cname="ff_mov_read_chan",cheader_filename="subprojects/ffmpeg/libformat/mov_chan.h")]
+[CCode (cname="ff_mov_read_chan",cheader_filename="subprojects/ffmpeg/libavformat/mov_chan.h")]
 public int ff_mov_read_chan (
     LibAVFormat.FormatContext format_context,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     LibAVFormat.Stream st,
     int64 size
 );

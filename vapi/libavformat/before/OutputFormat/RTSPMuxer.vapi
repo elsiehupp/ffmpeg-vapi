@@ -128,9 +128,9 @@ public class RTSPMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rtspenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_FILE | AVFormatFlags1.WANTS_GLOBAL_HEADER;
+            return LibAVFormat.FormatFlags1.NO_FILE | LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER;
 
         }
 

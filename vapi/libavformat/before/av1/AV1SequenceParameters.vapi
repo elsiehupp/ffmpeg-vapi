@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct AV1SequenceParameters",cheader_filename="subprojects/ffmpeg/libformat/av1.h")]
+[CCode (cname="struct AV1SequenceParameters",cheader_filename="subprojects/ffmpeg/libavformat/av1.h")]
 [Compact]
 public class AV1SequenceParameters {
     [CCode (cname="")]
@@ -66,9 +66,9 @@ public class AV1SequenceParameters {
 
 /***********************************************************
 @brief Filter out AV1 OBUs not meant to be present in ISOBMFF sample data and write
-the resulting bitstream to the provided AVIOContext.
+the resulting bitstream to the provided LibAVFormat.IOContext.
 
-@param pb pointer to the AVIOContext where the filtered bitstream shall be
+@param pb pointer to the LibAVFormat.IOContext where the filtered bitstream shall be
       written
 @param buffer input data buffer
 @param size size of the input data buffer
@@ -76,9 +76,9 @@ the resulting bitstream to the provided AVIOContext.
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure
 ***********************************************************/
-[CCode (cname="ff_av1_filter_obus",cheader_filename="subprojects/ffmpeg/libformat/av1.h")]
+[CCode (cname="ff_av1_filter_obus",cheader_filename="subprojects/ffmpeg/libavformat/av1.h")]
 public int ff_av1_filter_obus (
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     uint8[] buffer,
     int size
 );
@@ -87,7 +87,7 @@ public int ff_av1_filter_obus (
 @brief Filter out AV1 OBUs not meant to be present in ISOBMFF sample data and write
 the resulting bitstream to a newly allocated data buffer.
 
-@param pb pointer to the AVIOContext where the filtered bitstream shall be
+@param pb pointer to the LibAVFormat.IOContext where the filtered bitstream shall be
       written
 @param input_buffer input data buffer
 @param output_buffer pointer to pointer that will hold the allocated data buffer
@@ -97,7 +97,7 @@ the resulting bitstream to a newly allocated data buffer.
 @return the amount of bytes written in case of success, a negative LibAVUtil.ErrorCode
     code in case of failure. On failure, out and size are unchanged
 ***********************************************************/
-[CCode (cname="ff_av1_filter_obus_buf",cheader_filename="subprojects/ffmpeg/libformat/av1.h")]
+[CCode (cname="ff_av1_filter_obus_buf",cheader_filename="subprojects/ffmpeg/libavformat/av1.h")]
 public int ff_av1_filter_obus_buf (
     uint8[] input_buffer,
     out uint8[] output_buffer,
@@ -114,7 +114,7 @@ public int ff_av1_filter_obus_buf (
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="ff_av1_parse_seq_header",cheader_filename="subprojects/ffmpeg/libformat/av1.h")]
+[CCode (cname="ff_av1_parse_seq_header",cheader_filename="subprojects/ffmpeg/libavformat/av1.h")]
 public int ff_av1_parse_seq_header (
     AV1SequenceParameters seq,
     uint8[] buffer,
@@ -123,17 +123,17 @@ public int ff_av1_parse_seq_header (
 
 /***********************************************************
 @brief Writes AV1 extradata (Sequence Header and Metadata OBUs) to the provided
-AVIOContext.
+LibAVFormat.IOContext.
 
-@param pb pointer to the AVIOContext where the hvcC shall be written
+@param pb pointer to the LibAVFormat.IOContext where the hvcC shall be written
 @param buffer input data buffer
 @param size size in bytes of the input data buffer
 
 @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="ff_isom_write_av1c",cheader_filename="subprojects/ffmpeg/libformat/av1.h")]
+[CCode (cname="ff_isom_write_av1c",cheader_filename="subprojects/ffmpeg/libavformat/av1.h")]
 public int ff_isom_write_av1c (
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     uint8[] buffer,
     int size
 );

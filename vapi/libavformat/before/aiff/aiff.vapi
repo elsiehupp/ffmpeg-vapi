@@ -25,9 +25,9 @@ namespace LibAVFormat {
 @file common header for AIFF muxer and demuxer
 ***********************************************************/
 
-[CCode (cname="ff_codec_aiff_tags",cheader_filename="subprojects/ffmpeg/libformat/aiff.h")]
-public const AVCodecTag[] ff_codec_aiff_tags = {
-    new AVCodecTag () {
+[CCode (cname="ff_codec_aiff_tags",cheader_filename="subprojects/ffmpeg/libavformat/aiff.h")]
+public const LibAVFormat.CodecTag[] ff_codec_aiff_tags = {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S16BE,
         tag = MKTAG (
             'N',
@@ -36,7 +36,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             'E'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S8,
         tag = MKTAG (
             'N',
@@ -45,7 +45,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             'E'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_U8,
         tag = MKTAG (
             'r',
@@ -54,7 +54,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             ' '
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S24BE,
         tag = MKTAG (
             'N',
@@ -63,7 +63,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             'E'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S32BE,
         tag = MKTAG (
             'N',
@@ -72,7 +72,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             'E'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_F32BE,
         tag = MKTAG (
             'f',
@@ -81,7 +81,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '2'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_F64BE,
         tag = MKTAG (
             'f',
@@ -90,7 +90,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '4'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_ALAW,
         tag = MKTAG (
             'a',
@@ -99,7 +99,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             'w'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_MULAW,
         tag = MKTAG (
             'u',
@@ -108,7 +108,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             'w'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S24BE,
         tag = MKTAG (
             'i',
@@ -117,7 +117,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '4'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S32BE,
         tag = MKTAG (
             'i',
@@ -126,7 +126,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '2'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.MACE3,
         tag = MKTAG (
             'M',
@@ -135,7 +135,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '3'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.MACE6,
         tag = MKTAG (
             'M',
@@ -144,7 +144,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '6'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.GSM,
         tag = MKTAG (
             'G',
@@ -153,7 +153,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             ' '
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.ADPCM_G722,
         tag = MKTAG (
             'G',
@@ -162,7 +162,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '2'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.ADPCM_G726LE,
         tag = MKTAG (
             'G',
@@ -171,7 +171,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '6'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S16BE,
         tag = MKTAG (
             't',
@@ -180,7 +180,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             's'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S16LE,
         tag = MKTAG (
             's',
@@ -189,7 +189,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             't'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.ADPCM_IMA_QT,
         tag = MKTAG (
             'i',
@@ -198,7 +198,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '4'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.QDMC,
         tag = MKTAG (
             'Q',
@@ -207,7 +207,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             'C'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.QDM2,
         tag = MKTAG (
             'Q',
@@ -216,7 +216,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '2'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.QCELP,
         tag = MKTAG (
             'Q',
@@ -225,7 +225,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             'p'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.SDX2_DPCM,
         tag = MKTAG (
             'S',
@@ -234,7 +234,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '2'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.ADPCM_IMA_WS,
         tag = MKTAG (
             'A',
@@ -243,7 +243,7 @@ public const AVCodecTag[] ff_codec_aiff_tags = {
             '4'
         )
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.NONE,
         tag = 0
     }

@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_qt_default_palette_2",cheader_filename="subprojects/ffmpeg/libformat/qtpalette.h")]
+[CCode (cname="ff_qt_default_palette_2",cheader_filename="subprojects/ffmpeg/libavformat/qtpalette.h")]
 public const uint8 ff_qt_default_palette_2[2 * 3];
 //  {
 //      0xFF, 0xFF, 0xFF,
@@ -33,7 +33,7 @@ public const uint8 ff_qt_default_palette_2[2 * 3];
 /***********************************************************
 @brief From a screenshot of the "Monitors & Sound" control panel in Mac OS 7.5.5
 ***********************************************************/
-[CCode (cname="ff_qt_default_palette_4",cheader_filename="subprojects/ffmpeg/libformat/qtpalette.h")]
+[CCode (cname="ff_qt_default_palette_4",cheader_filename="subprojects/ffmpeg/libavformat/qtpalette.h")]
 public const uint8 ff_qt_default_palette_4[4 * 3];
 //  {
 //      0xFF, 0xFF, 0xFF,
@@ -45,7 +45,7 @@ public const uint8 ff_qt_default_palette_4[4 * 3];
 /***********************************************************
 @brief From a screenshot of the "Monitors & Sound" control panel in Mac OS 7.5.5
 ***********************************************************/
-[CCode (cname="ff_qt_default_palette_16",cheader_filename="subprojects/ffmpeg/libformat/qtpalette.h")]
+[CCode (cname="ff_qt_default_palette_16",cheader_filename="subprojects/ffmpeg/libavformat/qtpalette.h")]
 public const uint8 ff_qt_default_palette_16[16 * 3];
 //  {
 //      0xFF, 0xFF, 0xFF,
@@ -66,7 +66,7 @@ public const uint8 ff_qt_default_palette_16[16 * 3];
 //      0x00, 0x00, 0x00
 //  }
 
-[CCode (cname="ff_qt_default_palette_256",cheader_filename="subprojects/ffmpeg/libformat/qtpalette.h")]
+[CCode (cname="ff_qt_default_palette_256",cheader_filename="subprojects/ffmpeg/libavformat/qtpalette.h")]
 public const uint8 ff_qt_default_palette_256[256 * 3];
 //  {
 //      /***********************************************************
@@ -588,14 +588,14 @@ public const uint8 ff_qt_default_palette_256[256 * 3];
 from the video sample description, or from the default Macintosh
 palette.
 
-The file offset of the AVIOContext pointed to by the 'pb' variable
+The file offset of the LibAVFormat.IOContext pointed to by the 'pb' variable
 should be the start of the video sample description (the sample
 description size and the data format).
 ***********************************************************/
-[CCode (cname="ff_get_qtpalette",cheader_filename="subprojects/ffmpeg/libformat/qtpalette.h")]
+[CCode (cname="ff_get_qtpalette",cheader_filename="subprojects/ffmpeg/libavformat/qtpalette.h")]
 public int ff_get_qtpalette (
     int codec_id,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     out uint32 palette
 );
 

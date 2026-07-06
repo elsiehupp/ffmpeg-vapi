@@ -25,7 +25,7 @@ DEALINGS IN THE SOFTWARE.
 namespace LibAVFormat {
 
 
-[CCode (cname="struct ogg_codec",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+[CCode (cname="struct ogg_codec",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.h")]
 public abstract class OggCodec {
     [CCode (cname="")]
     public abstract uint8[] magic { public get; }
@@ -93,7 +93,7 @@ public abstract class OggCodec {
 
 }
 
-[CCode (cname="struct ogg_stream",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+[CCode (cname="struct ogg_stream",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.h")]
 [Compact]
 public class OggStream {
     [CCode (cname="")]
@@ -208,7 +208,7 @@ public class OggStream {
     public void *private;
 }
 
-[CCode (cname="struct ogg_state",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+[CCode (cname="struct ogg_state",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.h")]
 [Compact]
 public class OggState {
     [CCode (cname="")]
@@ -227,7 +227,7 @@ public class OggState {
     public OggStream streams[1];
 }
 
-[CCode (cname="struct ogg",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+[CCode (cname="struct ogg",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.h")]
 [Compact]
 public class Ogg {
     [CCode (cname="")]
@@ -253,7 +253,7 @@ public class Ogg {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/oggdec.h")]
 public enum OggFlags {
     [CCode (cname="OGG_FLAG_CONT")]
     CONT,
@@ -265,7 +265,7 @@ public enum OggFlags {
     EOS;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.h")]
 public const uint64 OGG_NOGRANULE_VALUE;
 
 //  extern public static OggCodec ff_celt_codec;
@@ -285,7 +285,7 @@ public const uint64 OGG_NOGRANULE_VALUE;
 //  extern public static OggCodec ff_vorbis_codec;
 //  extern public static OggCodec ff_vp8_codec;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.h")]
 public int ff_vorbis_comment (
     LibAVFormat.FormatContext ms,
     out LibAVUtil.Dictionary m,
@@ -294,7 +294,7 @@ public int ff_vorbis_comment (
     int parse_picture
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.h")]
 public int ff_vorbis_stream_comment (
     LibAVFormat.FormatContext as,
     LibAVFormat.Stream st,
@@ -302,13 +302,13 @@ public int ff_vorbis_stream_comment (
     int size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.h")]
 public static int ogg_find_stream (
     Ogg ogg,
     int serial
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/oggdec.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.h")]
 public static uint64 ogg_gptopts (
     LibAVFormat.FormatContext format_context,
     int i,

@@ -30,7 +30,7 @@ public class SndioData {
     public sio_hdl? hdl;
 
     [CCode (cname="")]
-    public AVCodecID codec_id;
+    public LibAVCodec.CodecID codec_id;
 
     [CCode (cname="")]
     public int64 hwpos;

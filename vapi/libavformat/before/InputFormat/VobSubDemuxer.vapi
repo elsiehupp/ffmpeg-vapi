@@ -80,9 +80,9 @@ public class MPEGPSDemuxer : LibAVFormat.InputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.SHOW_IDS | AVFormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES;
+            return LibAVFormat.FormatFlags1.SHOW_IDS | LibAVFormat.FormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES;
 
         }
 
@@ -208,9 +208,9 @@ public class VobSubDemuxer : LibAVFormat.InputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.SHOW_IDS;
+            return LibAVFormat.FormatFlags1.SHOW_IDS;
 
         }
 

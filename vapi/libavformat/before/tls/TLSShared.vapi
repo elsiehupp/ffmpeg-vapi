@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct TLSShared",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+[CCode (cname="struct TLSShared",cheader_filename="subprojects/ffmpeg/libavformat/tls.h")]
 [Compact]
 public class TLSShared {
     [CCode (cname="")]
@@ -137,7 +137,7 @@ public define TLS_COMMON_OPTIONS (
 
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/tls.h")]
 public int ff_tls_open_underlying (
     TLSShared? tls_shared,
     URLContext parent,
@@ -145,16 +145,16 @@ public int ff_tls_open_underlying (
     out LibAVUtil.Dictionary options
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/tls.h")]
 public void ff_gnutls_init ();
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/tls.h")]
 public void ff_gnutls_deinit ();
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/tls.h")]
 public int ff_openssl_init ();
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/tls.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/tls.h")]
 public void ff_openssl_deinit ();
 
 } // namespace LibAVFormat

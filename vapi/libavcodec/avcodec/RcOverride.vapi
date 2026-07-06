@@ -49,14 +49,3 @@ public class RcOverride {
 }
 
 } // namespace LibAVCodec
-
-/***********************************************************
-@ingroup lavc_encoding
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public struct RcOverride{
-    int start_frame;
-    int end_frame;
-    int qscale; // If this is 0 then quality_factor will be used instead.
-    float quality_factor;
-} RcOverride;

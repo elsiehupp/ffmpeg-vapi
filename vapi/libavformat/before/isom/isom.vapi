@@ -27,19 +27,19 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Isom.c
 ***********************************************************/
-//  extern const AVCodecTag ff_mp4_obj_type[];
-//  extern const AVCodecTag ff_codec_movvideo_tags[];
-//  extern const AVCodecTag ff_codec_movaudio_tags[];
-//  extern const AVCodecTag ff_codec_movsubtitle_tags[];
-//  extern const AVCodecTag ff_codec_movdata_tags[];
+//  extern const LibAVFormat.CodecTag ff_mp4_obj_type[];
+//  extern const LibAVFormat.CodecTag ff_codec_movvideo_tags[];
+//  extern const LibAVFormat.CodecTag ff_codec_movaudio_tags[];
+//  extern const LibAVFormat.CodecTag ff_codec_movsubtitle_tags[];
+//  extern const LibAVFormat.CodecTag ff_codec_movdata_tags[];
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public int ff_mov_iso639_to_lang (
     char lang[4],
     int mp4
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public int ff_mov_lang_to_iso639 (
     uint code,
     char to[4]
@@ -51,7 +51,7 @@ it has lots of index tables, each indexing something in another one...
 Here we just use what is needed to read the chunks
 ***********************************************************/
 
-[CCode (cname="struct MOVStts",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVStts",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVStts {
     [CCode (cname="")]
@@ -61,7 +61,7 @@ public class MOVStts {
     public int duration;
 }
 
-[CCode (cname="struct MOVStsc",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVStsc",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVStsc {
     [CCode (cname="")]
@@ -74,7 +74,7 @@ public class MOVStsc {
     public int id;
 }
 
-[CCode (cname="struct MOVElst",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVElst",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVElst {
     [CCode (cname="")]
@@ -87,7 +87,7 @@ public class MOVElst {
     public float rate;
 }
 
-[CCode (cname="struct MOVDref",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVDref",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVDref {
     [CCode (cname="")]
@@ -112,7 +112,7 @@ public class MOVDref {
     public int16 nlvl_from;
 }
 
-[CCode (cname="struct MOVAtom",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVAtom",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVAtom {
     [CCode (cname="")]
@@ -125,11 +125,11 @@ public class MOVAtom {
     public int64 size;
 }
 
-[CCode (cname="struct MOVParseTableEntry",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVParseTableEntry",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVParseTableEntry { }
 
-[CCode (cname="struct MOVFragment",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVFragment",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVFragment {
     [CCode (cname="")]
@@ -160,7 +160,7 @@ public class MOVFragment {
     public uint flags;
 }
 
-[CCode (cname="struct MOVTrackExt",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVTrackExt",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVTrackExt {
     [CCode (cname="")]
@@ -179,7 +179,7 @@ public class MOVTrackExt {
     public uint flags;
 }
 
-[CCode (cname="struct MOVSbgp",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVSbgp",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVSbgp {
     [CCode (cname="")]
@@ -189,7 +189,7 @@ public class MOVSbgp {
     public uint index;
 }
 
-[CCode (cname="struct MOVEncryptionIndex",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVEncryptionIndex",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVEncryptionIndex {
     /***********************************************************
@@ -221,7 +221,7 @@ public class MOVEncryptionIndex {
     public size_t auxiliary_offsets_count;
 }
 
-[CCode (cname="struct MOVFragmentStreamInfo",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVFragmentStreamInfo",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVFragmentStreamInfo {
     [CCode (cname="")]
@@ -243,7 +243,7 @@ public class MOVFragmentStreamInfo {
     public MOVEncryptionIndex encryption_index;
 }
 
-[CCode (cname="struct MOVFragmentIndexItem",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVFragmentIndexItem",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVFragmentIndexItem {
     [CCode (cname="")]
@@ -262,7 +262,7 @@ public class MOVFragmentIndexItem {
     public MOVFragmentStreamInfo stream_info;
 }
 
-[CCode (cname="struct MOVFragmentIndex",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVFragmentIndex",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVFragmentIndex {
     [CCode (cname="")]
@@ -281,7 +281,7 @@ public class MOVFragmentIndex {
     public MOVFragmentIndexItem item;
 }
 
-[CCode (cname="struct MOVIndexRange",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVIndexRange",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVIndexRange {
     [CCode (cname="")]
@@ -291,11 +291,11 @@ public class MOVIndexRange {
     public int64 end;
 }
 
-[CCode (cname="struct MOVStreamContext",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVStreamContext",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVStreamContext {
     [CCode (cname="")]
-    public AVIOContext pb;
+    public LibAVFormat.IOContext pb;
 
     [CCode (cname="")]
     public int pb_is_copied;
@@ -559,7 +559,7 @@ public class MOVStreamContext {
     public CEnc cenc;
 }
 
-[CCode (cname="struct CEnc",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct CEnc",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class CEnc {
     [CCode (cname="")]
@@ -578,7 +578,7 @@ public class CEnc {
     public MOVEncryptionIndex encryption_index;
 }
 
-[CCode (cname="struct MOVContext",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="struct MOVContext",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 [Compact]
 public class MOVContext {
     /***********************************************************
@@ -762,33 +762,33 @@ public class MOVContext {
     public int32 movie_display_matrix[3 * 3];
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public int ff_mp4_read_descr_len (
-    AVIOContext pb
+    LibAVFormat.IOContext pb
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public int ff_mp4_read_descr (
     LibAVFormat.FormatContext fc,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     out int tag
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public int ff_mp4_read_dec_config_descr (
     LibAVFormat.FormatContext fc,
     LibAVFormat.Stream st,
-    AVIOContext pb
+    LibAVFormat.IOContext pb
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public void ff_mp4_parse_es_descr (
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     out int es_id
 );
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public enum MP4TagFlags {
     [CCode (cname="MP4ODescrTag")]
     O_DESCR,
@@ -810,7 +810,7 @@ public enum MP4TagFlags {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public enum MOVTFHDFlags {
     [CCode (cname="MOV_TFHD_BASE_DATA_OFFSET")]
     BASE_DATA_OFFSET,
@@ -835,7 +835,7 @@ public enum MOVTFHDFlags {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public enum MOVTruncationFlags {
     [CCode (cname="MOV_TRUN_DATA_OFFSET")]
     DATA_OFFSET,
@@ -857,7 +857,7 @@ public enum MOVTruncationFlags {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public enum MOVFragmentSampleFlags {
     [CCode (cname="MOV_FRAG_SAMPLE_FLAG_DEGRADATION_PRIORITY_MASK")]
     DEGRADATION_PRIORITY_MASK,
@@ -885,7 +885,7 @@ public enum MOVFragmentSampleFlags {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public enum MOVTKHDFlags {
     [CCode (cname="MOV_TKHD_FLAG_ENABLED")]
     ENABLED,
@@ -901,7 +901,7 @@ public enum MOVTKHDFlags {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public enum MOVSampleDependencyFlags {
     [CCode (cname="MOV_SAMPLE_DEPENDENCY_UNKNOWN")]
     UNKNOWN,
@@ -914,7 +914,7 @@ public enum MOVSampleDependencyFlags {
 }
 
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public static bool TAG_IS_AVCI (
     uint32 tag
 );
@@ -934,26 +934,26 @@ public static bool TAG_IS_AVCI (
     //   (tag) == MKTAG ('A', 'V', 'i', 'n'))
 
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public int ff_mov_read_esds (
     LibAVFormat.FormatContext fc,
-    AVIOContext pb
+    LibAVFormat.IOContext pb
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public int ff_mov_read_stsd_entries (
     MOVContext mov_context,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     int entries
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public void ff_mov_write_chan (
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     int64 channel_layout
 );
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public enum FFMOVFlagMfra {
     [CCode (cname="FF_MOV_FLAG_MFRA_AUTO")]
     AUTO,
@@ -969,7 +969,7 @@ public enum FFMOVFlagMfra {
 @brief Compute codec id for 'lpcm' tag.
 See CoreAudioTypes and AudioStreamBasicDescription at Apple.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/isom.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/isom.h")]
 public static LibAVCodec.CodecID ff_mov_get_lpcm_codec_id (
     int bps,
     int flags

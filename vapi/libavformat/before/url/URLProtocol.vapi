@@ -22,7 +22,7 @@ namespace LibAVFormat {
 @file unbuffered private I/O API
 ***********************************************************/
 
-[CCode (cname="struct URLProtocol",cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+[CCode (cname="struct URLProtocol",cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
 public abstract class URLProtocol {
     [CCode (cname="")]
     public abstract string name { public get; }
@@ -156,7 +156,7 @@ public abstract class URLProtocol {
     [CCode (cname="")]
     public abstract int url_read_dir (
         URLContext url_context,
-        out AVIODirEntry next
+        out LibAVFormat.IODirEntry next
     );
 
     [CCode (cname="")]

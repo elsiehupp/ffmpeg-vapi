@@ -1,0 +1,5 @@
+[wrap-file]
+directory = demux_decode
+
+[provide]
+program_names = demux_decode

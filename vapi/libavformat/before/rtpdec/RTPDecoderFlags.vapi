@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public enum RTPDecoderFlags {
     /***********************************************************
     @brief RTP packet contains a keyframe

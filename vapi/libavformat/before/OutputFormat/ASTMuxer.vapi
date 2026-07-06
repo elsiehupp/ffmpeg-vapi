@@ -168,7 +168,7 @@ public class ASTMuxer : LibAVFormat.OutputFormat {
     //  .priv_class = ast_muxer_class,
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 ff_codec_ast_tags,

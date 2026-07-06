@@ -160,9 +160,9 @@ public class WebMChunkMuxer : LibAVFormat.OutputFormat {
     }
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/webm_chunk.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_FILE | AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.NEED_NUMBER | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_FILE | LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER | LibAVFormat.FormatFlags1.NEED_NUMBER | LibAVFormat.FormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

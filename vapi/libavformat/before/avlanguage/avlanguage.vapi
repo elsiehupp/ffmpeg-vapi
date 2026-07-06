@@ -24,31 +24,31 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Known language codespaces
 ***********************************************************/
-[CCode (cname="enum AVLangCodespace",cheader_filename="subprojects/ffmpeg/libformat/avlanguage.h")]
+[CCode (cname="enum AVLangCodespace",cheader_filename="subprojects/ffmpeg/libavformat/avlanguage.h")]
 public enum AVLangCodespace {
     /***********************************************************
     3-char bibliographic language codes as per ISO-IEC 639-2
     ***********************************************************/
-    [CCode (cname="AV_LANG_ISO639_2_BIBL",cheader_filename="subprojects/ffmpeg/libformat/avlanguage.h")]
+    [CCode (cname="AV_LANG_ISO639_2_BIBL",cheader_filename="subprojects/ffmpeg/libavformat/avlanguage.h")]
     ISO639_2_BIBLIOGRAPHIC,
 
     /***********************************************************
     3-char terminological language codes as per ISO-IEC 639-2
     ***********************************************************/
-    [CCode (cname="AV_LANG_ISO639_2_TERM",cheader_filename="subprojects/ffmpeg/libformat/avlanguage.h")]
+    [CCode (cname="AV_LANG_ISO639_2_TERM",cheader_filename="subprojects/ffmpeg/libavformat/avlanguage.h")]
     ISO639_2_TERMINOLOGICAL,
 
     /***********************************************************
     2-char code of language as per ISO/IEC 639-1
     ***********************************************************/
-    [CCode (cname="AV_LANG_ISO639_1",cheader_filename="subprojects/ffmpeg/libformat/avlanguage.h")]
+    [CCode (cname="AV_LANG_ISO639_1",cheader_filename="subprojects/ffmpeg/libavformat/avlanguage.h")]
     ISO639_1;
 
     /***********************************************************
     @brief Convert a language code to a target codespace. The source codespace is guessed.
     @return NULL if the provided lang is null or invalid.
     ***********************************************************/
-    [CCode (cname="ff_convert_lang_to",cheader_filename="subprojects/ffmpeg/libformat/avlanguage.h")]
+    [CCode (cname="ff_convert_lang_to",cheader_filename="subprojects/ffmpeg/libavformat/avlanguage.h")]
     public string convert_lang_to (
         string lang,
         AVLangCodespace target_codespace

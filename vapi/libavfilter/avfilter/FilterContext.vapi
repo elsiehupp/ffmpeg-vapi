@@ -260,7 +260,7 @@ public class LibAVFilter.FilterContext {
     [CCode (cname="avfilter_init_dict",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
     public int avfilter_init_dict (
         LibAVFilter.FilterContext? av_filter_context,
-        LibAVUtil.Dictionary **options
+        ref LibAVUtil.Dictionary? options
     );
 
     /***********************************************************

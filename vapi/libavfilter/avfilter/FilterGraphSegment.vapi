@@ -39,22 +39,22 @@ Graph-based frame editing library.
 A filtergraph segment is conceptually a list of filterchains, with some
 supplementary information (e.g. format conversion flags).
 
-Created by avfilter_graph_segment_parse(). Must be freed with
-avfilter_graph_segment_free().
+Created by avfilter_graph_segment_parse (). Must be freed with
+avfilter_graph_segment_free ().
 ***********************************************************/
 [CCode (cname="struct AVFilterGraphSegment",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]
 public class LibAVFilter.FilterGraphSegment {
     /***********************************************************
     @brief The filtergraph this segment is associated with.
-    Set by avfilter_graph_segment_parse().
+    Set by avfilter_graph_segment_parse ().
     ***********************************************************/
     [CCode (cname="graph")]
     public LibAVFilter.FilterGraph? graph;
 
     /***********************************************************
     @brief A list of filter chain contained in this segment.
-    Set in avfilter_graph_segment_parse().
+    Set in avfilter_graph_segment_parse ().
     ***********************************************************/
     [CCode (cname="chains")]
     public LibAVFilter.FilterChain[] chains;
@@ -66,9 +66,9 @@ public class LibAVFilter.FilterGraphSegment {
     @brief A string containing a colon-separated list of key=value options applied
     to all scale filters in this segment.
 
-    May be set by avfilter_graph_segment_parse().
-    The caller may free this string with av_free() and replace it with a
-    different av_malloc()'ed string.
+    May be set by avfilter_graph_segment_parse ().
+    The caller may free this string with av_free () and replace it with a
+    different av_malloc ()'ed string.
     ***********************************************************/
     [CCode (cname="scale_sws_opts")]
     public string scale_sws_opts;
@@ -110,8 +110,8 @@ public class LibAVFilter.FilterGraphSegment {
 
     Walk through all filter instances in the graph segment that have option
     dictionaries associated with them and apply those options with
-    av_opt_set_dict2(..., AV_OPT_SEARCH_CHILDREN). LibAVFilter.FilterParams.opts is
-    replaced by the dictionary output by av_opt_set_dict2(), which should be
+    av_opt_set_dict2 (..., AV_OPT_SEARCH_CHILDREN). LibAVFilter.FilterParams.opts is
+    replaced by the dictionary output by av_opt_set_dict2 (), which should be
     empty (NULL) if all options were successfully applied.
 
     If any options could not be found, this function will continue processing all
@@ -119,7 +119,7 @@ public class LibAVFilter.FilterGraphSegment {
     error happens). The calling program may then deal with unapplied options as
     it wishes.
 
-    Any creation-pending filters (see avfilter_graph_segment_create_filters())
+    Any creation-pending filters (see avfilter_graph_segment_create_filters ())
     present in the segment will cause this function to fail. LibAVFilter.FilterParams with
     no associated filter context are simply skipped.
 
@@ -142,9 +142,9 @@ public class LibAVFilter.FilterGraphSegment {
     @brief Initialize all filter instances in a graph segment.
 
     Walk through all filter instances in the graph segment and call
-    avfilter_init_dict(..., NULL) on those that have not been initialized yet.
+    avfilter_init_dict (..., NULL) on those that have not been initialized yet.
 
-    Any creation-pending filters (see avfilter_graph_segment_create_filters())
+    Any creation-pending filters (see avfilter_graph_segment_create_filters ())
     present in the segment will cause this function to fail. LibAVFilter.FilterParams with
     no associated filter context or whose filter context is already initialized,
     are simply skipped.
@@ -169,7 +169,7 @@ public class LibAVFilter.FilterGraphSegment {
 
     Walk through all filter instances in the graph segment and try to link all
     unlinked input and output pads. Any creation-pending filters (see
-    avfilter_graph_segment_create_filters()) present in the segment will cause
+    avfilter_graph_segment_create_filters ()) present in the segment will cause
     this function to fail. Disabled filters and already linked pads are skipped.
 
     Every filter output pad that has a corresponding LibAVFilter.FilterPadParams with a
@@ -187,10 +187,10 @@ public class LibAVFilter.FilterGraphSegment {
     @param flags reserved for future use, caller must set to 0 for now
     @param[out] inputs  a linked list of all free (unlinked) inputs of the
                         filters in this graph segment will be returned here. It
-                        is to be freed by the caller using avfilter_inout_free().
+                        is to be freed by the caller using avfilter_inout_free ().
     @param[out] outputs a linked list of all free (unlinked) outputs of the
                         filters in this graph segment will be returned here. It
-                        is to be freed by the caller using avfilter_inout_free().
+                        is to be freed by the caller using avfilter_inout_free ().
 
     @retval "non-negative number" success
     @retval "negative error code" failure
@@ -209,10 +209,10 @@ public class LibAVFilter.FilterGraphSegment {
     @brief Apply all filter/link descriptions from a graph segment to the associated filtergraph.
 
     This functions is currently equivalent to calling the following in sequence:
-    - avfilter_graph_segment_create_filters();
-    - avfilter_graph_segment_apply_opts();
-    - avfilter_graph_segment_init();
-    - avfilter_graph_segment_link();
+    - avfilter_graph_segment_create_filters ();
+    - avfilter_graph_segment_apply_opts ();
+    - avfilter_graph_segment_init ();
+    - avfilter_graph_segment_link ();
     failing if any of them fails. This list may be extended in the future.
 
     Since the above functions are idempotent, the caller may call some of them
@@ -221,8 +221,8 @@ public class LibAVFilter.FilterGraphSegment {
 
     @param seg the filtergraph segment to process
     @param flags reserved for future use, caller must set to 0 for now
-    @param[out] inputs passed to avfilter_graph_segment_link()
-    @param[out] outputs passed to avfilter_graph_segment_link()
+    @param[out] inputs passed to avfilter_graph_segment_link ()
+    @param[out] outputs passed to avfilter_graph_segment_link ()
 
     @retval "non-negative number" success
     @retval "negative error code" failure

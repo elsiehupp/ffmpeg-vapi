@@ -180,7 +180,7 @@ BufferSourceFlags.KEEP_REFERENCE flag.
 //  av_warn_unused_result
 public int av_buffersrc_write_frame (
     LibAVFilter.FilterContext? av_filter_context,
-    AVFrame? frame
+    LibAVFormat.Frame? frame
 );
 
 /***********************************************************
@@ -205,7 +205,7 @@ BufferSourceFlags.KEEP_REFERENCE flag.
 //  av_warn_unused_result
 public int av_buffersrc_add_frame (
     LibAVFilter.FilterContext? av_filter_context,
-    AVFrame? frame
+    LibAVFormat.Frame? frame
 );
 
 /***********************************************************
@@ -227,7 +227,7 @@ If this function returns an error, the input frame is not touched.
 //  av_warn_unused_result
 public int av_buffersrc_add_frame_flags (
     LibAVFilter.FilterContext? buffer_src,
-    AVFrame frame,
+    LibAVFormat.Frame frame,
     BufferSourceFlags flags
 );
 

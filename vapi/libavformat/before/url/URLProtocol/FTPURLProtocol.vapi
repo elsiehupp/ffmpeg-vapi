@@ -98,7 +98,7 @@ public class FTPURLProtocol : URLProtocol {
     [CCode (cname="ftp_read_dir",cheader_filename="subprojects/ffmpeg/libavformat/ftp.c")]
     public override int url_read_dir (
         URLContext url_context,
-        out AVIODirEntry next
+        out LibAVFormat.IODirEntry next
     );
 
     [CCode (cname="ftp_close_dir",cheader_filename="subprojects/ffmpeg/libavformat/ftp.c")]

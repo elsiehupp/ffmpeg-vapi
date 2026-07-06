@@ -22,40 +22,40 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const uint PACK_START_CODE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const uint SYSTEM_HEADER_START_CODE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const uint SEQUENCE_END_CODE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const uint PACKET_START_CODE_MASK;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const uint PACKET_START_CODE_PREFIX;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const uint ISO_11172_END_CODE;
 
 /***********************************************************
 @brief Mpeg2
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const uint PROGRAM_STREAM_MAP;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const uint PRIVATE_STREAM_1;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const uint PADDING_STREAM;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const uint PRIVATE_STREAM_2;
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public enum MpegID {
     [CCode (cname="AUDIO_ID")]
     AUDIO,
@@ -79,7 +79,7 @@ public enum MpegID {
     SUB;
 }
 
-[CCode (cname="enum StreamType",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="enum StreamType",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public enum MpegStreamType {
     [CCode (cname="STREAM_TYPE_VIDEO_MPEG1")]
     VIDEO_MPEG1,
@@ -118,13 +118,13 @@ public enum MpegStreamType {
     AUDIO_AC3;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public const int lpcm_freq_tab[4]; // = { 48000, 96000, 44100, 32000 }
 
 /***********************************************************
 @brief Parse MPEG-PES five-byte timestamp
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpeg.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpeg.h")]
 public static int64 ff_parse_pes_pts (
     uint8[] buffer
 );

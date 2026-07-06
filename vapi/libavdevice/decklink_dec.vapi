@@ -28,7 +28,7 @@ public int ff_decklink_read_header (
 [CCode (cname="ff_decklink_read_packet",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_dec.h")]
 public int ff_decklink_read_packet (
     LibAVFormat.FormatContext? avctx,
-    AVPacket? pkt
+    LibAVCodec.Packet? pkt
 );
 
 [CCode (cname="ff_decklink_read_close",cheader_filename="subprojects/ffmpeg/libavdevice/decklink_dec.h")]

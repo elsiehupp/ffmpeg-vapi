@@ -26,7 +26,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 /***********************************************************
-@brief Writes Annex B formatted HEVC NAL units to the provided AVIOContext.
+@brief Writes Annex B formatted HEVC NAL units to the provided LibAVFormat.IOContext.
 
 The NAL units are converted to an MP4-compatible format (start code prefixes
 are replaced by 4-byte size fields, as per ISO/IEC 14496-15).
@@ -34,7 +34,7 @@ are replaced by 4-byte size fields, as per ISO/IEC 14496-15).
 If filter_ps is non-zero, any HEVC parameter sets found in the input will be
 discarded, and? ps_count will be set to the number of discarded PS NAL units.
 
-@param pb address of the AVIOContext where the data shall be written
+@param pb address of the LibAVFormat.IOContext where the data shall be written
 @param buf_in address of the buffer holding the input data
 @param size size (in bytes) of the input buffer
 @param filter_ps whether to write parameter set NAL units to the output (0)
@@ -44,9 +44,9 @@ discarded, and? ps_count will be set to the number of discarded PS NAL units.
 @return the amount (in bytes) of data written in case of success, a negative
     value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="ff_hevc_annexb2mp4",cheader_filename="subprojects/ffmpeg/libformat/hevc.h")]
+[CCode (cname="ff_hevc_annexb2mp4",cheader_filename="subprojects/ffmpeg/libavformat/hevc.h")]
 public int ff_hevc_annexb2mp4 (
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     uint8[] buf_in,
     int size,
     int filter_ps,
@@ -76,7 +76,7 @@ On output,? size holds the size (in bytes) of the output data buffer.
 @return the amount (in bytes) of data written in case of success, a negative
      value corresponding to an LibAVUtil.ErrorCode code in case of failure
 ***********************************************************/
-[CCode (cname="ff_hevc_annexb2mp4_buf",cheader_filename="subprojects/ffmpeg/libformat/hevc.h")]
+[CCode (cname="ff_hevc_annexb2mp4_buf",cheader_filename="subprojects/ffmpeg/libavformat/hevc.h")]
 public int ff_hevc_annexb2mp4_buf (
     uint8[] buf_in,
     out uint8[] buf_out,
@@ -87,12 +87,12 @@ public int ff_hevc_annexb2mp4_buf (
 
 /***********************************************************
 @brief Writes HEVC extradata (parameter sets, declarative SEI NAL units) to the
-provided AVIOContext.
+provided LibAVFormat.IOContext.
 
 If the extradata is Annex B format, it gets converted to hvcC format before
 writing.
 
-@param pb address of the AVIOContext where the hvcC shall be written
+@param pb address of the LibAVFormat.IOContext where the hvcC shall be written
 @param data address of the buffer holding the data needed to write the hvcC
 @param size size (in bytes) of the data buffer
 @param ps_array_completeness whether all parameter sets are in the hvcC (1)
@@ -100,9 +100,9 @@ writing.
 @return >=0 in case of success, a negative value corresponding to an LibAVUtil.ErrorCode
      code in case of failure
 ***********************************************************/
-[CCode (cname="ff_isom_write_hvcc",cheader_filename="subprojects/ffmpeg/libformat/hevc.h")]
+[CCode (cname="ff_isom_write_hvcc",cheader_filename="subprojects/ffmpeg/libavformat/hevc.h")]
 public int ff_isom_write_hvcc (
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     uint8[] data,
     int size,
     int ps_array_completeness

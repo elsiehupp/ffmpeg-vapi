@@ -140,9 +140,9 @@ public class AADemuxer : LibAVFormat.InputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/aadec.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_BYTE_SEEK | AVFormatFlags1.NO_GENERIC_SEARCH;
+            return LibAVFormat.FormatFlags1.NO_BYTE_SEEK | LibAVFormat.FormatFlags1.NO_GENERIC_SEARCH;
 
         }
 

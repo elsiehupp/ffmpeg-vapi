@@ -94,9 +94,9 @@ public class AC3Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -171,9 +171,9 @@ public class ADXMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -243,9 +243,9 @@ public class APTXMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -315,9 +315,9 @@ public class APTXHDMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -387,9 +387,9 @@ public class AVS2Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -459,9 +459,9 @@ public class CAVSVideoMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -522,9 +522,9 @@ public class Codec2RawMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -568,9 +568,9 @@ public class DataMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -640,9 +640,9 @@ public class DiracMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -712,9 +712,9 @@ public class DNxHDMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -793,9 +793,9 @@ public class DTSMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -874,9 +874,9 @@ public class EAC3Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -955,9 +955,9 @@ public class G722Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1036,9 +1036,9 @@ public class G7231Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1099,9 +1099,9 @@ public class G726Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1162,9 +1162,9 @@ public class G726LEMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1243,9 +1243,9 @@ public class GSMMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1324,9 +1324,9 @@ public class H261Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1405,9 +1405,9 @@ public class H263Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1483,9 +1483,9 @@ public class H264Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1494,7 +1494,7 @@ public class H264Muxer : LibAVFormat.OutputFormat {
 #endif
 
 #if CONFIG_HEVC_MUXER
-static int hevc_check_bitstream (LibAVFormat.FormatContext? s, AVPacket? pkt)
+static int hevc_check_bitstream (LibAVFormat.FormatContext? s, LibAVCodec.Packet? pkt)
 {
     LibAVFormat.Stream? st = s->streams[0];
     if (pkt->size >= 5 && AV_RB32 (pkt->data) != 0x0000001 &&
@@ -1569,9 +1569,9 @@ public class HEVCMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1641,9 +1641,9 @@ public class M4VMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1722,9 +1722,9 @@ public class MJEPGMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1789,9 +1789,9 @@ public class SingleJPEGMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1867,9 +1867,9 @@ public class MLPMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -1943,9 +1943,9 @@ public class MP2Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -2024,9 +2024,9 @@ public class Mpeg1VideoMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -2096,9 +2096,9 @@ public class Mpeg2VideoMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -2163,9 +2163,9 @@ public class RawVideoMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -2235,9 +2235,9 @@ public class SBCMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -2307,9 +2307,9 @@ public class TrueHDMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -2377,9 +2377,9 @@ public class VC1Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/rawenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 

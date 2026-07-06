@@ -34,7 +34,7 @@ in ISO/IEC 14496-12.
 public class ProducerReferenceTime {
     /***********************************************************
     A UTC timestamp, in microseconds, since Unix epoch (e.g,
-    av_gettime()).
+    av_gettime ()).
     ***********************************************************/
     [CCode (cname="")]
     public int64 wallclock;

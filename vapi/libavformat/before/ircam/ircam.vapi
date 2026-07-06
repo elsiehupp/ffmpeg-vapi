@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-//  extern const AVCodecTag ff_codec_ircam_be_tags[];
-//  extern const AVCodecTag ff_codec_ircam_le_tags[];
+//  extern const LibAVFormat.CodecTag ff_codec_ircam_be_tags[];
+//  extern const LibAVFormat.CodecTag ff_codec_ircam_le_tags[];
 
 } // namespace LibAVFormat

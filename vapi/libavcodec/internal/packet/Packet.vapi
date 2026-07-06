@@ -56,7 +56,7 @@ av_packet_ref () and freed by av_packet_unref ().
 ***********************************************************/
 [CCode (cname="struct AVPacket",cheader_filename="subprojects/ffmpeg/libavcodec/packet.h")]
 [Compact]
-internal class Packet {
+internal class LibAVCodec.Packet {
     /***********************************************************
     @brief A reference to the reference-counted buffer where the packet data is
         stored.

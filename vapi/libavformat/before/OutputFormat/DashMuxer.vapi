@@ -83,21 +83,6 @@ public class DashMuxerClass : LibAVUtil.Log.Class {
                     maximum_value = int.MAX,
                     option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
                 },
-            #if FF_API_DASH_MIN_SEG_DURATION
-                new LibAVUtil.IntOption () {
-                    name = "min_seg_duration",
-                    short_help_text = "minimum segment duration (in microseconds) (will be deprecated)",
-                    offset = offsetof (
-                        DASHContext,
-                        min_seg_duration
-                    ),
-                    default_value = 5000000,
-                    minimum_value = 0,
-                    maximum_value = int.MAX,
-                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-                },
-            #endif
-
                 new LibAVUtil.DurationOption () {
                     name = "seg_duration",
                     short_help_text = "segment duration (in seconds, fractional value can be set)",
@@ -477,9 +462,9 @@ public class DashMuxer : LibAVFormat.OutputFormat {
     }
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/dashenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.NO_FILE | AVFormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER | LibAVFormat.FormatFlags1.NO_FILE | LibAVFormat.FormatFlags1.ALLOW_NEGATIVE_TIMESTAMPS;
 
         }
 

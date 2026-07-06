@@ -112,7 +112,7 @@ public int ff_vmafmotion_init (
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vmaf_motion.h")]
 public double ff_vmafmotion_process (
     VMAFMotionData? data,
-    AVFrame? frame
+    LibAVFormat.Frame? frame
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vmaf_motion.h")]

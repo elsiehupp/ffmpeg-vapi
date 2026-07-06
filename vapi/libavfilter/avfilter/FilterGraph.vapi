@@ -77,8 +77,8 @@ public class LibAVFilter.FilterGraph {
     /***********************************************************
     Opaque object for libavfilter internal use.
     ***********************************************************/
-    [CCode (cname="internal")]
-    public AVFilterGraphInternal? internal;
+    //  [CCode (cname="internal")]
+    //  public AVFilterGraphInternal? internal;
 
     /***********************************************************
     Opaque user data. May be set by the caller to an arbitrary value, e.g. to
@@ -154,7 +154,7 @@ public class LibAVFilter.FilterGraph {
     Sets the maximum number of buffered frames in the filtergraph combined.
 
     Zero means no limit. This field must be set before calling
-    avfilter_graph_config().
+    avfilter_graph_config ().
     ***********************************************************/
     [CCode (cname="max_buffered_frames")]
     public uint max_buffered_frames;
@@ -367,7 +367,7 @@ public class LibAVFilter.FilterGraph {
     described in the documentation of LibAVFilter.FilterGraphSegment and its children, and
     then applied to the graph either manually or with other
     avfilter_graph_segment_*() functions. See the documentation for
-    avfilter_graph_segment_apply() for the canonical way to apply
+    avfilter_graph_segment_apply () for the canonical way to apply
     LibAVFilter.FilterGraphSegment.
 
     @param graph Filter graph the parsed segment is associated with. Will only be
@@ -378,7 +378,7 @@ public class LibAVFilter.FilterGraph {
     @param flags reserved for future use, caller must set to 0 for now
     @param seg A pointer to the newly-created LibAVFilter.FilterGraphSegment is written
                here on success. The graph segment is owned by the caller and must
-               be freed with avfilter_graph_segment_free() before graph itself is
+               be freed with avfilter_graph_segment_free () before graph itself is
                freed.
 
     @retval "non-negative number" success

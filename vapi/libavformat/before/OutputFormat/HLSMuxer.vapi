@@ -129,20 +129,6 @@ public class HLSMuxerClass : LibAVUtil.Log.Class {
                     maximum_value = 0,
                     option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
                 },
-            #if FF_API_HLS_WRAP
-                new LibAVUtil.IntOption () {
-                    name = "hls_wrap",
-                    short_help_text = "set number after which the index wraps (will be deprecated)",
-                    offset = offsetof (
-                        HLSContext,
-                        wrap
-                    ),
-                    default_value = 0,
-                    minimum_value = 0,
-                    maximum_value = int.MAX,
-                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-                },
-            #endif
                 new LibAVUtil.IntOption () {
                     name = "hls_allow_cache",
                     short_help_text = "explicitly set whether the client MAY (1) or MUST NOT (0) cache media segments",
@@ -465,20 +451,6 @@ public class HLSMuxerClass : LibAVUtil.Log.Class {
                     option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM,
                     unit = "flags"
                 },
-            #if FF_API_HLS_USE_LOCALTIME
-                new LibAVUtil.BoolOption () {
-                    name = "use_localtime",
-                    short_help_text = "set filename expansion with strftime at segment creation (will be deprecated )",
-                    offset = offsetof (
-                        HLSContext,
-                        use_localtime
-                    ),
-                    default_value = 0,
-                    minimum_value = 0,
-                    maximum_value = 1,
-                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-                },
-            #endif
                 new LibAVUtil.BoolOption () {
                     name = "strftime",
                     short_help_text = "set filename expansion with strftime at segment creation",
@@ -491,20 +463,6 @@ public class HLSMuxerClass : LibAVUtil.Log.Class {
                     maximum_value = 1,
                     option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
                 },
-            #if FF_API_HLS_USE_LOCALTIME
-                new LibAVUtil.BoolOption () {
-                    name = "use_localtime_mkdir",
-                    short_help_text = "create last directory component in strftime-generated filename (will be deprecated)",
-                    offset = offsetof (
-                        HLSContext,
-                        use_localtime_mkdir
-                    ),
-                    default_value = 0,
-                    minimum_value = 0,
-                    maximum_value = 1,
-                    option_flags = LibAVUtil.OptionFlags.ENCODING_PARAM
-                },
-            #endif
                 new LibAVUtil.BoolOption () {
                     name = "strftime_mkdir",
                     short_help_text = "create last directory component in strftime-generated filename",
@@ -805,9 +763,9 @@ public class HLSMuxer : LibAVFormat.OutputFormat {
     }
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/hlsenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_FILE | AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_FLUSH | AVFormatFlags1.NO_DIMENSIONS;
+            return LibAVFormat.FormatFlags1.NO_FILE | LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER | LibAVFormat.FormatFlags1.ALLOWS_FLUSH | LibAVFormat.FormatFlags1.NO_DIMENSIONS;
 
         }
 

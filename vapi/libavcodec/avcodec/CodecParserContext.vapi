@@ -371,19 +371,19 @@ public struct AVCodecParserContext {
     const struct AVCodecParser *parser;
     int64_t frame_offset; /* offset of the current frame */
     int64_t cur_offset; /* current offset
-                           (incremented by each av_parser_parse()) */
+                           (incremented by each av_parser_parse ()) */
     int64_t next_frame_offset; /* offset of the next frame */
     /* video info */
     int pict_type; /* XXX: Put it back in AVCodecContext. */
     /**
-     * This field is used for proper frame duration computation in lavf.
-     * It signals, how much longer the frame duration of the current frame
-     * is compared to normal frame duration.
-     *
-     * frame_duration = (1 + repeat_pict) * time_base
-     *
-     * It is used by codecs like H.264 to display telecined material.
-     */
+    This field is used for proper frame duration computation in lavf.
+    It signals, how much longer the frame duration of the current frame
+    is compared to normal frame duration.
+
+    frame_duration = (1 + repeat_pict) * time_base
+
+    It is used by codecs like H.264 to display telecined material.
+    ***********************************************************/
     int repeat_pict; /* XXX: Put it back in AVCodecContext. */
     int64_t pts;     /* pts of the current frame */
     int64_t dts;     /* dts of the current frame */
@@ -410,118 +410,118 @@ public struct AVCodecParserContext {
     int64_t cur_frame_end[AV_PARSER_PTS_NB];
 
     /**
-     * Set by parser to 1 for key frames and 0 for non-key frames.
-     * It is initialized to -1, so if the parser doesn't set this flag,
-     * old-style fallback using AV_PICTURE_TYPE_I picture type as key frames
-     * will be used.
-     */
+    Set by parser to 1 for key frames and 0 for non-key frames.
+    It is initialized to -1, so if the parser doesn't set this flag,
+    old-style fallback using AV_PICTURE_TYPE_I picture type as key frames
+    will be used.
+    ***********************************************************/
     int key_frame;
 
     // Timestamp generation support:
     /**
-     * Synchronization point for start of timestamp generation.
-     *
-     * Set to >0 for sync point, 0 for no sync point and <0 for undefined
-     * (default).
-     *
-     * For example, this corresponds to presence of H.264 buffering period
-     * SEI message.
-     */
+    Synchronization point for start of timestamp generation.
+
+    Set to >0 for sync point, 0 for no sync point and <0 for undefined
+    (default).
+
+    For example, this corresponds to presence of H.264 buffering period
+    SEI message.
+    ***********************************************************/
     int dts_sync_point;
 
     /**
-     * Offset of the current timestamp against last timestamp sync point in
-     * units of AVCodecContext.time_base.
-     *
-     * Set to INT_MIN when dts_sync_point unused. Otherwise, it must
-     * contain a valid timestamp offset.
-     *
-     * Note that the timestamp of sync point has usually a nonzero
-     * dts_ref_dts_delta, which refers to the previous sync point. Offset of
-     * the next frame after timestamp sync point will be usually 1.
-     *
-     * For example, this corresponds to H.264 cpb_removal_delay.
-     */
+    Offset of the current timestamp against last timestamp sync point in
+    units of AVCodecContext.time_base.
+
+    Set to INT_MIN when dts_sync_point unused. Otherwise, it must
+    contain a valid timestamp offset.
+
+    Note that the timestamp of sync point has usually a nonzero
+    dts_ref_dts_delta, which refers to the previous sync point. Offset of
+    the next frame after timestamp sync point will be usually 1.
+
+    For example, this corresponds to H.264 cpb_removal_delay.
+    ***********************************************************/
     int dts_ref_dts_delta;
 
     /**
-     * Presentation delay of current frame in units of AVCodecContext.time_base.
-     *
-     * Set to INT_MIN when dts_sync_point unused. Otherwise, it must
-     * contain valid non-negative timestamp delta (presentation time of a frame
-     * must not lie in the past).
-     *
-     * This delay represents the difference between decoding and presentation
-     * time of the frame.
-     *
-     * For example, this corresponds to H.264 dpb_output_delay.
-     */
+    Presentation delay of current frame in units of AVCodecContext.time_base.
+
+    Set to INT_MIN when dts_sync_point unused. Otherwise, it must
+    contain valid non-negative timestamp delta (presentation time of a frame
+    must not lie in the past).
+
+    This delay represents the difference between decoding and presentation
+    time of the frame.
+
+    For example, this corresponds to H.264 dpb_output_delay.
+    ***********************************************************/
     int pts_dts_delta;
 
     /**
-     * Position of the packet in file.
-     *
-     * Analogous to cur_frame_pts/dts
-     */
+    Position of the packet in file.
+
+    Analogous to cur_frame_pts/dts
+    ***********************************************************/
     int64_t cur_frame_pos[AV_PARSER_PTS_NB];
 
     /**
-     * Byte position of currently parsed frame in stream.
-     */
+    Byte position of currently parsed frame in stream.
+    ***********************************************************/
     int64_t pos;
 
     /**
-     * Previous frame byte position.
-     */
+    Previous frame byte position.
+    ***********************************************************/
     int64_t last_pos;
 
     /**
-     * Duration of the current frame.
-     * For audio, this is in units of 1 / AVCodecContext.sample_rate.
-     * For all other types, this is in units of AVCodecContext.time_base.
-     */
+    Duration of the current frame.
+    For audio, this is in units of 1 / AVCodecContext.sample_rate.
+    For all other types, this is in units of AVCodecContext.time_base.
+    ***********************************************************/
     int duration;
 
     enum AVFieldOrder field_order;
 
     /**
-     * Indicate whether a picture is coded as a frame, top field or bottom field.
-     *
-     * For example, H.264 field_pic_flag equal to 0 corresponds to
-     * AVPictureStructure.FRAME. An H.264 picture with field_pic_flag
-     * equal to 1 and bottom_field_flag equal to 0 corresponds to
-     * AVPictureStructure.TOP_FIELD.
-     */
+    Indicate whether a picture is coded as a frame, top field or bottom field.
+
+    For example, H.264 field_pic_flag equal to 0 corresponds to
+    AVPictureStructure.FRAME. An H.264 picture with field_pic_flag
+    equal to 1 and bottom_field_flag equal to 0 corresponds to
+    AVPictureStructure.TOP_FIELD.
+    ***********************************************************/
     enum AVPictureStructure picture_structure;
 
     /**
-     * Picture number incremented in presentation or output order.
-     * This field may be reinitialized at the first picture of a new sequence.
-     *
-     * For example, this corresponds to H.264 PicOrderCnt.
-     */
+    Picture number incremented in presentation or output order.
+    This field may be reinitialized at the first picture of a new sequence.
+
+    For example, this corresponds to H.264 PicOrderCnt.
+    ***********************************************************/
     int output_picture_number;
 
     /**
-     * Dimensions of the decoded video intended for presentation.
-     */
+    Dimensions of the decoded video intended for presentation.
+    ***********************************************************/
     int width;
     int height;
 
     /**
-     * Dimensions of the coded video.
-     */
+    Dimensions of the coded video.
+    ***********************************************************/
     int coded_width;
     int coded_height;
 
     /**
-     * The format of the coded data, corresponds to enum AVPixelFormat for video
-     * and for enum LibAVUtil.SampleFormat for audio.
-     *
-     * Note that a decoder can have considerable freedom in how exactly it
-     * decodes the data, so the format reported here might be different from the
-     * one returned by a decoder.
-     */
+    The format of the coded data, corresponds to enum AVPixelFormat for video
+    and for enum LibAVUtil.SampleFormat for audio.
+
+    Note that a decoder can have considerable freedom in how exactly it
+    decodes the data, so the format reported here might be different from the
+    one returned by a decoder.
+    ***********************************************************/
     int format;
 } AVCodecParserContext;
 
@@ -535,9 +535,9 @@ public struct AVCodecParserContext {
 ***********************************************************/
 
 #if FF_API_PARSER_CODECID
-AVCodecParserContext *av_parser_init(int codec_id);
+AVCodecParserContext *av_parser_init (int codec_id);
 #else
-AVCodecParserContext *av_parser_init(AVCodecID codec_id);
+AVCodecParserContext *av_parser_init (LibAVCodec.CodecID codec_id);
 #endif
 
 /***********************************************************
@@ -559,26 +559,26 @@ Parse a packet.
 
 Example:
 @code
-  while(in_len){
-      len = av_parser_parse2(myparser, AVCodecContext, &data, &size,
+  while (in_len){
+      len = av_parser_parse2 (myparser, AVCodecContext, &data, &size,
                                        in_data, in_len,
                                        pts, dts, pos);
       in_data += len;
       in_len  -= len;
 
-      if(size)
-         decode_frame(data, size);
+      if (size)
+         decode_frame (data, size);
   }
 @endcode
 ***********************************************************/
-int av_parser_parse2(AVCodecParserContext *s,
+int av_parser_parse2 (AVCodecParserContext *s,
                      AVCodecContext *avctx,
-                     uint8_t **poutbuf, int *poutbuf_size,
-                     const uint8_t *buf, int buf_size,
+                     out uint8[] poutbuf, int *poutbuf_size,
+                     const uint8[] buf, int buf_size,
                      int64_t pts, int64_t dts,
                      int64_t pos);
 
-void av_parser_close(AVCodecParserContext *s);
+void av_parser_close (AVCodecParserContext *s);
 
 /***********************************************************
 @}

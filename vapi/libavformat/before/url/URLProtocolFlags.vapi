@@ -23,7 +23,7 @@ namespace LibAVFormat {
 ***********************************************************/
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/url.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/url.h")]
 public enum URLProtocolFlags {
     /***********************************************************
     @brief The protocol name can be the first part of a nested protocol scheme

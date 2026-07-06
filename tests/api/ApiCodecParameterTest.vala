@@ -139,7 +139,7 @@ private class ApiCodecParameterTest : GLib.TestCase {
     }
 
     private static uint find_video_stream_info (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         uint decode
     ) {
         try {
@@ -155,7 +155,7 @@ private class ApiCodecParameterTest : GLib.TestCase {
                 !done
             ) {
                 LibAVCodec.CodecContext codec_context = null;
-                AVStream st;
+                LibAVFormat.Stream st;
 
                 ret = av_read_frame (
                     format_context,
@@ -181,7 +181,7 @@ private class ApiCodecParameterTest : GLib.TestCase {
                 codec_context = st.codec;
 
                 /***********************************************************
-                Writing to AVStream.codec_info_nb_frames must not be done by
+                Writing to LibAVFormat.Stream.codec_info_nb_frames must not be done by
                 user applications. It is done here for testing purposing as
                 find_video_stream_info tries to mimic avformat_find_stream_info
                 which writes to this field.
@@ -264,7 +264,7 @@ private class ApiCodecParameterTest : GLib.TestCase {
             i < format_context.nb_streams;
             i++
         ) {
-            AVStream st = format_context.streams[i];
+            LibAVFormat.Stream st = format_context.streams[i];
             avcodec_close (
                 st.codec
             );
@@ -275,7 +275,7 @@ private class ApiCodecParameterTest : GLib.TestCase {
     }
 
     private static void dump_video_streams (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         uint decode
     ) {
 
@@ -285,7 +285,7 @@ private class ApiCodecParameterTest : GLib.TestCase {
             i++
         ) {
             LibAVUtil.Option opt = null;
-            AVStream st = format_context.streams[i];
+            LibAVFormat.Stream st = format_context.streams[i];
             LibAVCodec.CodecContext codec_context = st.codec;
 
             GLib.print (
@@ -345,7 +345,7 @@ private class ApiCodecParameterTest : GLib.TestCase {
     }
 
     private static uint open_and_probe_video_streams (
-        out AVFormatContext format_context,
+        out LibAVFormat.FormatContext format_context,
         string filename,
         uint decode
     ) {
@@ -402,8 +402,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
     }
 
     private static uint check_video_streams (
-        AVFormatContext fmt_ctx1,
-        AVFormatContext fmt_ctx2
+        LibAVFormat.FormatContext fmt_ctx1,
+        LibAVFormat.FormatContext fmt_ctx2
     ) {
         uint ret = 0;
 
@@ -417,8 +417,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
             i++
         ) {
             LibAVUtil.Option opt = null;
-            AVStream st1 = fmt_ctx1.streams[i];
-            AVStream st2 = fmt_ctx2.streams[i];
+            LibAVFormat.Stream st1 = fmt_ctx1.streams[i];
+            LibAVFormat.Stream st2 = fmt_ctx2.streams[i];
             LibAVCodec.CodecContext codec_ctx1 = st1.codec;
             LibAVCodec.CodecContext codec_ctx2 = st2.codec;
 
@@ -509,8 +509,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
     ) {
         try {
             uint ret = 0;
-            AVFormatContext format_context = null;
-            AVFormatContext fmt_ctx_no_decode = null;
+            LibAVFormat.FormatContext format_context = null;
+            LibAVFormat.FormatContext fmt_ctx_no_decode = null;
 
             if (
                 argc < 2

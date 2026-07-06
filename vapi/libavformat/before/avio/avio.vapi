@@ -33,7 +33,7 @@ NULL is returned if no protocol could be found for the given URL.
 
 @return Name of the protocol or NULL.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/avio.h")]
 public string avio_find_protocol_name (
     string url
 );
@@ -47,7 +47,7 @@ public string avio_find_protocol_name (
 @param url_dst new url to resource if the operation succeeded
 @return >=0 on success or negative on error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/avio.h")]
 public int avpriv_io_move (
     string url_src,
     string url_dst
@@ -59,7 +59,7 @@ public int avpriv_io_move (
 @param url resource to be deleted.
 @return >=0 on success or negative on error.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avio.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/avio.h")]
 public int avpriv_io_delete (
     string url
 );

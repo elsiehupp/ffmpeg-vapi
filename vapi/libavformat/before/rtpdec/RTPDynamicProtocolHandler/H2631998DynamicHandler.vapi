@@ -52,9 +52,9 @@ public class H2631998DynamicHandler : RTPDynamicProtocolHandler {
     }
 
     [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
-    public override AVStreamParseType need_parsing {
+    public override LibAVFormat.StreamParseType need_parsing {
         public get {
-            return AVStreamParseType.FULL;
+            return LibAVFormat.StreamParseType.FULL;
 
         }
 
@@ -105,9 +105,9 @@ public class H2632000DynamicHandler : RTPDynamicProtocolHandler {
     }
 
     [CCode (cname="need_parsing",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec_h263.c")]
-    public override AVStreamParseType need_parsing {
+    public override LibAVFormat.StreamParseType need_parsing {
         public get {
-            return AVStreamParseType.FULL;
+            return LibAVFormat.StreamParseType.FULL;
 
         }
 

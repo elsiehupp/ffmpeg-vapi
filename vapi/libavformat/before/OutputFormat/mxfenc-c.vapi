@@ -408,9 +408,9 @@ public class MXFOPATOMMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -499,9 +499,9 @@ public class MXFD10Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 
@@ -599,9 +599,9 @@ public class MXFMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mxfenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 

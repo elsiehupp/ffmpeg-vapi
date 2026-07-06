@@ -135,7 +135,7 @@ private class ApiSeekTest : GLib.TestCase {
     }
 
     private static uint compute_crc_of_packets (
-        AVFormatContext format_context,
+        LibAVFormat.FormatContext format_context,
         uint video_stream,
         LibAVCodec.CodecContext codec_context,
         LibAVUtil.Frame frame,
@@ -439,7 +439,7 @@ private class ApiSeekTest : GLib.TestCase {
             LibAVCodec.CodecContext codec_context= null;
             LibAVCodec.CodecParameters origin_par = null;
             LibAVUtil.Frame frame = null;
-            AVFormatContext format_context = null;
+            LibAVFormat.FormatContext format_context = null;
             uint video_stream;
             uint result;
             uint i;

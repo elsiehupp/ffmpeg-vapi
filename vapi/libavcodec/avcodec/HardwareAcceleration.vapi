@@ -84,46 +84,46 @@ public class HardwareAcceleration {
 
 
 /***********************************************************
-@defgroup lavc_hwaccel AVHWAccel
+@defgroup lavc_hwaccel LibAVCodec.HardwareAcceleration
 
 @note  Nothing in this structure should be accessed by the user.  At some
        point in future it will not be externally visible at all.
 
 @{
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public struct AVHWAccel {
-    /**
-     * Name of the hardware accelerated codec.
-     * The name is globally unique among encoders and among decoders (but an
-     * encoder and a decoder can share the same name).
-     */
+[CCode (cname="struct AVHWAccel",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
+public struct LibAVCodec.HardwareAcceleration {
+    /***********************************************************
+    Name of the hardware accelerated codec.
+    The name is globally unique among encoders and among decoders (but an
+    encoder and a decoder can share the same name).
+    ***********************************************************/
     const string name;
 
-    /**
-     * Type of codec implemented by the hardware accelerator.
-     *
-     * See AVMEDIA_TYPE_xxx
-     */
+    /***********************************************************
+    Type of codec implemented by the hardware accelerator.
+
+    See AVMEDIA_TYPE_xxx
+    ***********************************************************/
     enum LibAVUtil.MediaType type;
 
-    /**
-     * Codec implemented by the hardware accelerator.
-     *
-     * See AV_CODEC_ID_xxx
-     */
-    enum AVCodecID id;
+    /***********************************************************
+    Codec implemented by the hardware accelerator.
 
-    /**
-     * Supported pixel format.
-     *
-     * Only hardware accelerated formats are supported here.
-     */
+    See AV_CODEC_ID_xxx
+    ***********************************************************/
+    enum LibAVCodec.CodecID id;
+
+    /***********************************************************
+    Supported pixel format.
+
+    Only hardware accelerated formats are supported here.
+    ***********************************************************/
     enum AVPixelFormat pix_fmt;
 
-    /**
-     * Hardware accelerated codec capabilities.
-     * see AV_HWACCEL_CODEC_CAP_*
-     */
+    /***********************************************************
+    Hardware accelerated codec capabilities.
+    see AV_HWACCEL_CODEC_CAP_*
+    ***********************************************************/
     int capabilities;
-} AVHWAccel;
+} LibAVCodec.HardwareAcceleration;

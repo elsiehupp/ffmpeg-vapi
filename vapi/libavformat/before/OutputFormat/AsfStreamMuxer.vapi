@@ -166,16 +166,16 @@ public class AsfMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.WANTS_GLOBAL_HEADER;
+            return LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER;
 
         }
 
     }
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 codec_asf_bmp_tags,
@@ -306,16 +306,16 @@ public class AsfStreamMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/asfenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.WANTS_GLOBAL_HEADER;
+            return LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER;
 
         }
 
     }
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 codec_asf_bmp_tags,

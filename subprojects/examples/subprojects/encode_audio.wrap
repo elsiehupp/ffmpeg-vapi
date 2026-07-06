@@ -1,0 +1,5 @@
+[wrap-file]
+directory = encode_audio
+
+[provide]
+program_names = encode_audio

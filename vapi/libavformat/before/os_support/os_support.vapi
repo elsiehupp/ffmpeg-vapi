@@ -114,7 +114,7 @@ namespace LibAVFormat {
 //  }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/os_support.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/os_support.h")]
 public enum PollEvent {
     /***********************************************************
     @brief Events & revents

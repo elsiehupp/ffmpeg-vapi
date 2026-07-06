@@ -1,0 +1,5 @@
+[wrap-file]
+directory = avio_read_callback
+
+[provide]
+program_names = avio_read_callback

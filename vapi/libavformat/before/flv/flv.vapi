@@ -30,16 +30,16 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Offsets for packed values
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public const size_t FLV_AUDIO_SAMPLESSIZE_OFFSET;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public const size_t FLV_AUDIO_SAMPLERATE_OFFSET;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public const size_t FLV_AUDIO_CODECID_OFFSET;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public const size_t FLV_VIDEO_FRAMETYPE_OFFSET;
 
 /***********************************************************
@@ -67,20 +67,20 @@ public enum FLVMask {
     VIDEO_FRAME_TYPE;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public const uint32 AMF_END_OF_OBJECT;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public const string KEYFRAMES_TAG;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public const string KEYFRAMES_TIMESTAMP_TAG;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public const string KEYFRAMES_BYTEOFFSET_TAG;
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public enum FLVHeaderFlags {
     [CCode (cname="FLV_HEADER_FLAG_HASVIDEO")]
     HAS_VIDEO,
@@ -89,7 +89,7 @@ public enum FLVHeaderFlags {
     HAS_AUDIO;
 }
 
-[CCode (cname="enum FlvTagType",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="enum FlvTagType",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public enum FlvTagType {
     [CCode (cname="FLV_TAG_TYPE_AUDIO")]
     AUDIO,
@@ -101,7 +101,7 @@ public enum FlvTagType {
     META;
 }
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public enum FLVStreamType {
     [CCode (cname="FLV_STREAM_TYPE_VIDEO")]
     VIDEO,
@@ -119,7 +119,7 @@ public enum FLVStreamType {
     NB;
 }
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public enum FLVAudioMode {
     [CCode (cname="FLV_MONO")]
     MONO, // = 0,
@@ -128,7 +128,7 @@ public enum FLVAudioMode {
     STEREO; // = 1;
 }
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public enum FLVSampleSize {
     [CCode (cname="FLV_SAMPLESSIZE_8BIT")]
     @8BIT, // = 0,
@@ -137,7 +137,7 @@ public enum FLVSampleSize {
     @16BIT; // = 1 << FLV_AUDIO_SAMPLESSIZE_OFFSET;
 }
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public enum FLVSampleRate {
     /***********************************************************
     @brief Signifies 5512Hz and 8000Hz in the case of NELLYMOSER
@@ -155,7 +155,7 @@ public enum FLVSampleRate {
     @44100HZ; // = 3 << FLV_AUDIO_SAMPLERATE_OFFSET;
 }
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public enum FLVVCodecIDWithOffset {
     [CCode (cname="FLV_CODECID_PCM")]
     PCM, // = 0,
@@ -191,7 +191,7 @@ public enum FLVVCodecIDWithOffset {
     SPEEX; // = 11 << FLV_AUDIO_CODECID_OFFSET;
 }
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public enum FLVVCodecID {
     [CCode (cname="FLV_CODECID_H263")]
     H263, // = 2,
@@ -219,7 +219,7 @@ public enum FLVVCodecID {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public enum FLVVideoFrameType {
     /***********************************************************
     @brief Key frame (for AVC, a seekable frame)
@@ -252,7 +252,7 @@ public enum FLVVideoFrameType {
     VIDEO_INFO_CMD;
 }
 
-[CCode (cname="enum AMFDataType",cheader_filename="subprojects/ffmpeg/libformat/flv.h")]
+[CCode (cname="enum AMFDataType",cheader_filename="subprojects/ffmpeg/libavformat/flv.h")]
 public enum AMFDataType {
     [CCode (cname="AMF_DATA_TYPE_NUMBER")]
     NUMBER,

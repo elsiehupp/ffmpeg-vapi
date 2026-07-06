@@ -148,7 +148,7 @@ public class LibAVFilter.Filter {
 
     public delegate int InitDictDelegate (
         LibAVFilter.FilterContext? av_filter_context,
-        LibAVUtil.Dictionary **options
+        ref LibAVUtil.Dictionary? options
     );
 
     /***********************************************************
@@ -309,7 +309,7 @@ public class LibAVFilter.Filter {
     Get the number of elements in an LibAVFilter.Filter's inputs or outputs array.
     ***********************************************************/
     [CCode (cname="avfilter_filter_pad_count",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
-    public uint avfilter_filter_pad_count(
+    public uint avfilter_filter_pad_count (
         LibAVFilter.Filter? filter,
         bool is_output
     );

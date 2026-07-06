@@ -22,12 +22,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="RSO_HEADER_SIZE",cheader_filename="subprojects/ffmpeg/libformat/rso.h")]
+[CCode (cname="RSO_HEADER_SIZE",cheader_filename="subprojects/ffmpeg/libavformat/rso.h")]
 public const size_t RSO_HEADER_SIZE;
 
 /***********************************************************
 @brief The libavcodec codecs we support, and the IDs they have in the file
 ***********************************************************/
-//  extern const AVCodecTag ff_codec_rso_tags[];
+//  extern const LibAVFormat.CodecTag ff_codec_rso_tags[];
 
 } // namespace LibAVFormat

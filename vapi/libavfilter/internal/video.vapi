@@ -21,14 +21,14 @@ namespace LibAVFilter {
 
 
 [CCode (cname="ff_default_get_video_buffer",cheader_filename="subprojects/ffmpeg/libavfilter/video.h")]
-public AVFrame? ff_default_get_video_buffer (
+public LibAVFormat.Frame? ff_default_get_video_buffer (
     LibAVFilter.FilterLink? link,
     int w,
     int h
 );
 
 [CCode (cname="ff_null_get_video_buffer",cheader_filename="subprojects/ffmpeg/libavfilter/video.h")]
-public AVFrame? ff_null_get_video_buffer (
+public LibAVFormat.Frame? ff_null_get_video_buffer (
     LibAVFilter.FilterLink? link,
     int w,
     int h
@@ -45,7 +45,7 @@ Request a picture buffer with a specific set of permissions.
              avfilter_unref_buffer when you are finished with it.
 ***********************************************************/
 [CCode (cname="ff_get_video_buffer",cheader_filename="subprojects/ffmpeg/libavfilter/video.h")]
-public AVFrame? ff_get_video_buffer (
+public LibAVFormat.Frame? ff_get_video_buffer (
     LibAVFilter.FilterLink? link,
     int w,
     int h

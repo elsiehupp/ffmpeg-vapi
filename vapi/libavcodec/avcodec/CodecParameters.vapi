@@ -35,7 +35,7 @@ avcodec_parameters_free ().
 ***********************************************************/
 [CCode (cname="struct AVCodecParameters",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
-public class CodecParameters {
+public class LibAVCodec.CodecParameters {
     /***********************************************************
     @brief General type of the encoded data.
     ***********************************************************/
@@ -317,6 +317,3 @@ public class CodecParameters {
 }
 
 } // namespace LibAVCodec
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public class AVCodecParameters { }

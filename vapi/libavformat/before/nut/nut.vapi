@@ -22,38 +22,38 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public const uint64 MAIN_STARTCODE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public const uint64 STREAM_STARTCODE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public const uint64 SYNCPOINT_STARTCODE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public const uint64 INDEX_STARTCODE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public const uint64 INFO_STARTCODE;
 
-[CCode (cname="ID_STRING",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="ID_STRING",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public const string NUT_ID_STRING; // "nut/multimedia container\0"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public const size_t MAX_DISTANCE; // (1024*32-1)
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public const int NUT_MAX_VERSION; // 4
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public const int NUT_STABLE_VERSION; // 3
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public const int NUT_MIN_VERSION; // 2
 
 [Flags]
-[CCode (cname="enum Flag",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="enum Flag",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public enum NUTFrameFlags {
     /***********************************************************
     @brief If set, frame is keyframe
@@ -128,7 +128,7 @@ public enum NUTFrameFlags {
     INVALID;
 }
 
-[CCode (cname="struct Syncpoint",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="struct Syncpoint",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 [Compact]
 public class Syncpoint {
     [CCode (cname="")]
@@ -137,14 +137,14 @@ public class Syncpoint {
     [CCode (cname="")]
     public uint64 back_ptr;
 
-    //  [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+    //  [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
     //  public uint64 global_key_pts;
 
     [CCode (cname="")]
     public int64 ts;
 }
 
-[CCode (cname="struct FrameCode",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="struct FrameCode",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 [Compact]
 public class FrameCode {
     [CCode (cname="")]
@@ -169,7 +169,7 @@ public class FrameCode {
     public uint8 header_idx;
 }
 
-[CCode (cname="struct StreamContext",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="struct StreamContext",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 [Compact]
 public class StreamContext {
     [CCode (cname="")]
@@ -203,14 +203,14 @@ public class StreamContext {
     public int64[] keyframe_pts;
 }
 
-[CCode (cname="struct ChapterContext",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="struct ChapterContext",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 [Compact]
 public class ChapterContext {
     [CCode (cname="")]
     public LibAVUtil.Rational time_base;
 }
 
-[CCode (cname="struct NUTContext",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="struct NUTContext",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 [Compact]
 public class NUTContext {
     [CCode (cname="")]
@@ -291,7 +291,7 @@ public class NUTContext {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public enum NUTFlags {
     /***********************************************************
     Use extended syncpoints.
@@ -306,15 +306,15 @@ public enum NUTFlags {
     PIPE;
 }
 
-//  extern const AVCodecTag ff_nut_subtitle_tags[];
-//  extern const AVCodecTag ff_nut_video_tags[];
-//  extern const AVCodecTag ff_nut_audio_tags[];
-//  extern const AVCodecTag ff_nut_audio_extra_tags[];
-//  extern const AVCodecTag ff_nut_data_tags[];
+//  extern const LibAVFormat.CodecTag ff_nut_subtitle_tags[];
+//  extern const LibAVFormat.CodecTag ff_nut_video_tags[];
+//  extern const LibAVFormat.CodecTag ff_nut_audio_tags[];
+//  extern const LibAVFormat.CodecTag ff_nut_audio_extra_tags[];
+//  extern const LibAVFormat.CodecTag ff_nut_data_tags[];
 
-//  extern const AVCodecTag ff_nut_codec_tags[];
+//  extern const LibAVFormat.CodecTag ff_nut_codec_tags[];
 
-[CCode (cname="struct Dispositions",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="struct Dispositions",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 [Compact]
 public class Dispositions {
     [CCode (cname="")]
@@ -324,32 +324,32 @@ public class Dispositions {
     public int flag;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public void ff_nut_reset_ts (
     NUTContext nut,
     LibAVUtil.Rational time_base,
     int64 val
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public int64 ff_lsb2full (
     StreamContext stream,
     int64 lsb
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public int ff_nut_sp_pos_cmp (
     void *a,
     void *b
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public int ff_nut_sp_pts_cmp (
     void *a,
     void *b
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public int ff_nut_add_sp (
     NUTContext nut,
     int64 pos,
@@ -357,7 +357,7 @@ public int ff_nut_add_sp (
     int64 ts
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/nut.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/nut.h")]
 public void ff_nut_free_sp (
     NUTContext nut
 );

@@ -123,31 +123,31 @@ public struct AVCodecParser {
 #if FF_API_PARSER_CODECID
     int codec_ids[7]; /* several codec IDs are permitted */
 #else
-    enum AVCodecID codec_ids[7]; /* several codec IDs are permitted */
+    enum LibAVCodec.CodecID codec_ids[7]; /* several codec IDs are permitted */
 #endif
 #if FF_API_PARSER_PRIVATE
     /*****************************************************************
-     * All fields below this line are not part of the public API. They
-     * may not be used outside of libavcodec and can be changed and
-     * removed at will.
-     * New public fields should be added right above.
+    All fields below this line are not part of the public API. They
+    may not be used outside of libavcodec and can be changed and
+    removed at will.
+    New public fields should be added right above.
      *****************************************************************
-     */
+    ***********************************************************/
     attribute_deprecated
     int priv_data_size;
     attribute_deprecated
     int (*parser_init)(AVCodecParserContext *s);
     /* This callback never returns an error, a negative value means that
-     * the frame start was in a previous packet. */
+    the frame start was in a previous packet. */
     attribute_deprecated
     int (*parser_parse)(AVCodecParserContext *s,
                         AVCodecContext *avctx,
-                        const uint8_t **poutbuf, int *poutbuf_size,
-                        const uint8_t *buf, int buf_size);
+                        const out uint8[] poutbuf, int *poutbuf_size,
+                        const uint8[] buf, int buf_size);
     attribute_deprecated
     void (*parser_close)(AVCodecParserContext *s);
     attribute_deprecated
-    int (*split)(AVCodecContext *avctx, const uint8_t *buf, int buf_size);
+    int (*split)(AVCodecContext *avctx, const uint8[] buf, int buf_size);
 #endif
 } AVCodecParser;
 
@@ -170,7 +170,7 @@ Iterate over all registered codec parsers.
 @return the next registered codec parser or NULL when the iteration is
         finished
 ***********************************************************/
-AVCodecParser? av_parser_iterate(void **opaque);
+AVCodecParser? av_parser_iterate (void **opaque);
 
 /***********************************************************
 @}

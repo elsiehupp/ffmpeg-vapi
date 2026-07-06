@@ -50,22 +50,22 @@ public class AudioFIRSegment {
     public int[] part_index;
 
     [CCode (cname="")]
-    public AVFrame sum;
+    public LibAVFormat.Frame sum;
 
     [CCode (cname="")]
-    public AVFrame block;
+    public LibAVFormat.Frame block;
 
     [CCode (cname="")]
-    public AVFrame buffer;
+    public LibAVFormat.Frame buffer;
 
     [CCode (cname="")]
-    public AVFrame coeff;
+    public LibAVFormat.Frame coeff;
 
     [CCode (cname="")]
-    public AVFrame input;
+    public LibAVFormat.Frame input;
 
     [CCode (cname="")]
-    public AVFrame output;
+    public LibAVFormat.Frame output;
 
     [CCode (cname="")]
     public RDFTContext **rdft;
@@ -164,10 +164,10 @@ public class AudioFIRContext {
     public int nb_segments;
 
     [CCode (cname="")]
-    public AVFrame in[2];
+    public LibAVFormat.Frame in[2];
 
     [CCode (cname="")]
-    public AVFrame video;
+    public LibAVFormat.Frame video;
 
     [CCode (cname="")]
     public int min_part_size;

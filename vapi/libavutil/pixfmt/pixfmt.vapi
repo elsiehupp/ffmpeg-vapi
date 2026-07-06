@@ -1,5 +1,5 @@
 /*
- * copyright (c) 2006 Michael Niedermayer <michaelni@gmx.at>
+ * Copyright (c) 2006 Michael Niedermayer <michaelni@gmx.at>
  *
  * This file is part of FFmpeg.
  *
@@ -55,11 +55,11 @@
  *
  * @par
  * When the pixel format is palettized RGB32 (LibAVUtil.PixelFormat.PAL8), the palettized
- * image data is stored in AVFrame.data[0]. The palette is transported in
- * AVFrame.data[1], is 1024 bytes long (256 4-byte entries) and is
+ * image data is stored in LibAVFormat.Frame.data[0]. The palette is transported in
+ * LibAVFormat.Frame.data[1], is 1024 bytes long (256 4-byte entries) and is
  * formatted the same as in LibAVUtil.PixelFormat.RGB32 described above (i.e., it is
  * also endian-specific). Note also that the individual RGB32 palette
- * components stored in AVFrame.data[1] should be in the range 0..255.
+ * components stored in LibAVFormat.Frame.data[1] should be in the range 0..255.
  * This is important as many custom PAL8 video codecs that were designed
  * to run on the IBM VGA graphics adapter use 6-bit palette components.
  *
@@ -93,12 +93,12 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.YUVJ444P,  ///< planar YUV 4:4:4, 24bpp, full scale (JPEG), deprecated in favor of LibAVUtil.PixelFormat.YUV444P and setting color_range
     LibAVUtil.PixelFormat.UYVY422,   ///< packed YUV 4:2:2, 16bpp, Cb Y0 Cr Y1
     LibAVUtil.PixelFormat.UYYVYY411, ///< packed YUV 4:1:1, 12bpp, Cb Y0 Y1 Cr Y2 Y3
-    LibAVUtil.PixelFormat.BGR8,      ///< packed RGB 3:3:2,  8bpp, (msb)2B 3G 3R(lsb)
-    LibAVUtil.PixelFormat.BGR4,      ///< packed RGB 1:2:1 bitstream,  4bpp, (msb)1B 2G 1R(lsb), a byte contains two pixels, the first pixel in the byte is the one composed by the 4 msb bits
-    LibAVUtil.PixelFormat.BGR4_BYTE, ///< packed RGB 1:2:1,  8bpp, (msb)1B 2G 1R(lsb)
-    LibAVUtil.PixelFormat.RGB8,      ///< packed RGB 3:3:2,  8bpp, (msb)3R 3G 2B(lsb)
-    LibAVUtil.PixelFormat.RGB4,      ///< packed RGB 1:2:1 bitstream,  4bpp, (msb)1R 2G 1B(lsb), a byte contains two pixels, the first pixel in the byte is the one composed by the 4 msb bits
-    LibAVUtil.PixelFormat.RGB4_BYTE, ///< packed RGB 1:2:1,  8bpp, (msb)1R 2G 1B(lsb)
+    LibAVUtil.PixelFormat.BGR8,      ///< packed RGB 3:3:2,  8bpp, (msb)2B 3G 3R (lsb)
+    LibAVUtil.PixelFormat.BGR4,      ///< packed RGB 1:2:1 bitstream,  4bpp, (msb)1B 2G 1R (lsb), a byte contains two pixels, the first pixel in the byte is the one composed by the 4 msb bits
+    LibAVUtil.PixelFormat.BGR4_BYTE, ///< packed RGB 1:2:1,  8bpp, (msb)1B 2G 1R (lsb)
+    LibAVUtil.PixelFormat.RGB8,      ///< packed RGB 3:3:2,  8bpp, (msb)3R 3G 2B (lsb)
+    LibAVUtil.PixelFormat.RGB4,      ///< packed RGB 1:2:1 bitstream,  4bpp, (msb)1R 2G 1B (lsb), a byte contains two pixels, the first pixel in the byte is the one composed by the 4 msb bits
+    LibAVUtil.PixelFormat.RGB4_BYTE, ///< packed RGB 1:2:1,  8bpp, (msb)1R 2G 1B (lsb)
     LibAVUtil.PixelFormat.NV12,      ///< planar YUV 4:2:0, 12bpp, 1 plane for Y and 1 plane for the UV components, which are interleaved (first byte U and the following byte V)
     LibAVUtil.PixelFormat.NV21,      ///< as above, but U and V bytes are swapped
 
@@ -115,20 +115,20 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.RGB48BE,   ///< packed RGB 16:16:16, 48bpp, 16R, 16G, 16B, the 2-byte value for each R/G/B component is stored as big-endian
     LibAVUtil.PixelFormat.RGB48LE,   ///< packed RGB 16:16:16, 48bpp, 16R, 16G, 16B, the 2-byte value for each R/G/B component is stored as little-endian
 
-    LibAVUtil.PixelFormat.RGB565BE,  ///< packed RGB 5:6:5, 16bpp, (msb)   5R 6G 5B(lsb), big-endian
-    LibAVUtil.PixelFormat.RGB565LE,  ///< packed RGB 5:6:5, 16bpp, (msb)   5R 6G 5B(lsb), little-endian
-    LibAVUtil.PixelFormat.RGB555BE,  ///< packed RGB 5:5:5, 16bpp, (msb)1X 5R 5G 5B(lsb), big-endian   , X=unused/undefined
-    LibAVUtil.PixelFormat.RGB555LE,  ///< packed RGB 5:5:5, 16bpp, (msb)1X 5R 5G 5B(lsb), little-endian, X=unused/undefined
+    LibAVUtil.PixelFormat.RGB565BE,  ///< packed RGB 5:6:5, 16bpp, (msb)   5R 6G 5B (lsb), big-endian
+    LibAVUtil.PixelFormat.RGB565LE,  ///< packed RGB 5:6:5, 16bpp, (msb)   5R 6G 5B (lsb), little-endian
+    LibAVUtil.PixelFormat.RGB555BE,  ///< packed RGB 5:5:5, 16bpp, (msb)1X 5R 5G 5B (lsb), big-endian   , X=unused/undefined
+    LibAVUtil.PixelFormat.RGB555LE,  ///< packed RGB 5:5:5, 16bpp, (msb)1X 5R 5G 5B (lsb), little-endian, X=unused/undefined
 
-    LibAVUtil.PixelFormat.BGR565BE,  ///< packed BGR 5:6:5, 16bpp, (msb)   5B 6G 5R(lsb), big-endian
-    LibAVUtil.PixelFormat.BGR565LE,  ///< packed BGR 5:6:5, 16bpp, (msb)   5B 6G 5R(lsb), little-endian
-    LibAVUtil.PixelFormat.BGR555BE,  ///< packed BGR 5:5:5, 16bpp, (msb)1X 5B 5G 5R(lsb), big-endian   , X=unused/undefined
-    LibAVUtil.PixelFormat.BGR555LE,  ///< packed BGR 5:5:5, 16bpp, (msb)1X 5B 5G 5R(lsb), little-endian, X=unused/undefined
+    LibAVUtil.PixelFormat.BGR565BE,  ///< packed BGR 5:6:5, 16bpp, (msb)   5B 6G 5R (lsb), big-endian
+    LibAVUtil.PixelFormat.BGR565LE,  ///< packed BGR 5:6:5, 16bpp, (msb)   5B 6G 5R (lsb), little-endian
+    LibAVUtil.PixelFormat.BGR555BE,  ///< packed BGR 5:5:5, 16bpp, (msb)1X 5B 5G 5R (lsb), big-endian   , X=unused/undefined
+    LibAVUtil.PixelFormat.BGR555LE,  ///< packed BGR 5:5:5, 16bpp, (msb)1X 5B 5G 5R (lsb), little-endian, X=unused/undefined
 
     /**
-     *  Hardware acceleration through VA-API, data[3] contains a
-     *  VASurfaceID.
-     */
+     Hardware acceleration through VA-API, data[3] contains a
+     VASurfaceID.
+    ***********************************************************/
     LibAVUtil.PixelFormat.VAAPI,
 
     LibAVUtil.PixelFormat.YUV420P16LE,  ///< planar YUV 4:2:0, 24bpp, (1 Cr & Cb sample per 2x2 Y samples), little-endian
@@ -139,10 +139,10 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.YUV444P16BE,  ///< planar YUV 4:4:4, 48bpp, (1 Cr & Cb sample per 1x1 Y samples), big-endian
     LibAVUtil.PixelFormat.DXVA2_VLD,    ///< HW decoding through DXVA2, Picture.data[3] contains a LPDIRECT3DSURFACE9 pointer
 
-    LibAVUtil.PixelFormat.RGB444LE,  ///< packed RGB 4:4:4, 16bpp, (msb)4X 4R 4G 4B(lsb), little-endian, X=unused/undefined
-    LibAVUtil.PixelFormat.RGB444BE,  ///< packed RGB 4:4:4, 16bpp, (msb)4X 4R 4G 4B(lsb), big-endian,    X=unused/undefined
-    LibAVUtil.PixelFormat.BGR444LE,  ///< packed BGR 4:4:4, 16bpp, (msb)4X 4B 4G 4R(lsb), little-endian, X=unused/undefined
-    LibAVUtil.PixelFormat.BGR444BE,  ///< packed BGR 4:4:4, 16bpp, (msb)4X 4B 4G 4R(lsb), big-endian,    X=unused/undefined
+    LibAVUtil.PixelFormat.RGB444LE,  ///< packed RGB 4:4:4, 16bpp, (msb)4X 4R 4G 4B (lsb), little-endian, X=unused/undefined
+    LibAVUtil.PixelFormat.RGB444BE,  ///< packed RGB 4:4:4, 16bpp, (msb)4X 4R 4G 4B (lsb), big-endian,    X=unused/undefined
+    LibAVUtil.PixelFormat.BGR444LE,  ///< packed BGR 4:4:4, 16bpp, (msb)4X 4B 4G 4R (lsb), little-endian, X=unused/undefined
+    LibAVUtil.PixelFormat.BGR444BE,  ///< packed BGR 4:4:4, 16bpp, (msb)4X 4B 4G 4R (lsb), big-endian,    X=unused/undefined
     LibAVUtil.PixelFormat.YA8,       ///< 8 bits gray, 8 bits alpha
 
     LibAVUtil.PixelFormat.Y400A = LibAVUtil.PixelFormat.YA8, ///< alias for LibAVUtil.PixelFormat.YA8
@@ -152,10 +152,10 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.BGR48LE,   ///< packed RGB 16:16:16, 48bpp, 16B, 16G, 16R, the 2-byte value for each R/G/B component is stored as little-endian
 
     /**
-     * The following 12 formats have the disadvantage of needing 1 format for each bit depth.
-     * Notice that each 9/10 bits sample is stored in 16 bits with extra padding.
-     * If you want to support multiple bit depths, then using LibAVUtil.PixelFormat.YUV420P16* with the bpp stored separately is better.
-     */
+    The following 12 formats have the disadvantage of needing 1 format for each bit depth.
+    Notice that each 9/10 bits sample is stored in 16 bits with extra padding.
+    If you want to support multiple bit depths, then using LibAVUtil.PixelFormat.YUV420P16* with the bpp stored separately is better.
+    ***********************************************************/
     LibAVUtil.PixelFormat.YUV420P9BE, ///< planar YUV 4:2:0, 13.5bpp, (1 Cr & Cb sample per 2x2 Y samples), big-endian
     LibAVUtil.PixelFormat.YUV420P9LE, ///< planar YUV 4:2:0, 13.5bpp, (1 Cr & Cb sample per 2x2 Y samples), little-endian
     LibAVUtil.PixelFormat.YUV420P10BE,///< planar YUV 4:2:0, 15bpp, (1 Cr & Cb sample per 2x2 Y samples), big-endian
@@ -219,50 +219,50 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.GBRAP16BE,    ///< planar GBRA 4:4:4:4 64bpp, big-endian
     LibAVUtil.PixelFormat.GBRAP16LE,    ///< planar GBRA 4:4:4:4 64bpp, little-endian
     /**
-     * HW acceleration through QSV, data[3] contains a pointer to the
-     * mfxFrameSurface1 structure.
-     *
-     * Before FFmpeg 5.0:
-     * mfxFrameSurface1.Data.MemId contains a pointer when importing
-     * the following frames as QSV frames:
-     *
-     * VAAPI:
-     * mfxFrameSurface1.Data.MemId contains a pointer to VASurfaceID
-     *
-     * DXVA2:
-     * mfxFrameSurface1.Data.MemId contains a pointer to IDirect3DSurface9
-     *
-     * FFmpeg 5.0 and above:
-     * mfxFrameSurface1.Data.MemId contains a pointer to the mfxHDLPair
-     * structure when importing the following frames as QSV frames:
-     *
-     * VAAPI:
-     * mfxHDLPair.first contains a VASurfaceID pointer.
-     * mfxHDLPair.second is always MFX_INFINITE.
-     *
-     * DXVA2:
-     * mfxHDLPair.first contains IDirect3DSurface9 pointer.
-     * mfxHDLPair.second is always MFX_INFINITE.
-     *
-     * D3D11:
-     * mfxHDLPair.first contains a ID3D11Texture2D pointer.
-     * mfxHDLPair.second contains the texture array index of the frame if the
-     * ID3D11Texture2D is an array texture, or always MFX_INFINITE if it is a
-     * normal texture.
-     */
+    HW acceleration through QSV, data[3] contains a pointer to the
+    mfxFrameSurface1 structure.
+
+    Before FFmpeg 5.0:
+    mfxFrameSurface1.Data.MemId contains a pointer when importing
+    the following frames as QSV frames:
+
+    VAAPI:
+    mfxFrameSurface1.Data.MemId contains a pointer to VASurfaceID
+
+    DXVA2:
+    mfxFrameSurface1.Data.MemId contains a pointer to IDirect3DSurface9
+
+    FFmpeg 5.0 and above:
+    mfxFrameSurface1.Data.MemId contains a pointer to the mfxHDLPair
+    structure when importing the following frames as QSV frames:
+
+    VAAPI:
+    mfxHDLPair.first contains a VASurfaceID pointer.
+    mfxHDLPair.second is always MFX_INFINITE.
+
+    DXVA2:
+    mfxHDLPair.first contains IDirect3DSurface9 pointer.
+    mfxHDLPair.second is always MFX_INFINITE.
+
+    D3D11:
+    mfxHDLPair.first contains a ID3D11Texture2D pointer.
+    mfxHDLPair.second contains the texture array index of the frame if the
+    ID3D11Texture2D is an array texture, or always MFX_INFINITE if it is a
+    normal texture.
+    ***********************************************************/
     LibAVUtil.PixelFormat.QSV,
     /**
-     * HW acceleration though MMAL, data[3] contains a pointer to the
-     * MMAL_BUFFER_HEADER_T structure.
-     */
+    HW acceleration though MMAL, data[3] contains a pointer to the
+    MMAL_BUFFER_HEADER_T structure.
+    ***********************************************************/
     LibAVUtil.PixelFormat.MMAL,
 
     LibAVUtil.PixelFormat.D3D11VA_VLD,  ///< HW decoding through Direct3D11 via old API, Picture.data[3] contains a ID3D11VideoDecoderOutputView pointer
 
     /**
-     * HW acceleration through CUDA. data[i] contain CUdeviceptr pointers
-     * exactly as for system memory frames.
-     */
+    HW acceleration through CUDA. data[i] contain CUdeviceptr pointers
+    exactly as for system memory frames.
+    ***********************************************************/
     LibAVUtil.PixelFormat.CUDA,
 
     LibAVUtil.PixelFormat.0RGB,        ///< packed RGB 8:8:8, 32bpp, XRGBXRGB...   X=unused/undefined
@@ -330,15 +330,15 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.P016BE, ///< like NV12, with 16bpp per component, big-endian
 
     /**
-     * Hardware surfaces for Direct3D11.
-     *
-     * This is preferred over the legacy LibAVUtil.PixelFormat.D3D11VA_VLD. The new D3D11
-     * hwaccel API and filtering support LibAVUtil.PixelFormat.D3D11 only.
-     *
-     * data[0] contains a ID3D11Texture2D pointer, and data[1] contains the
-     * texture array index of the frame as intptr_t if the ID3D11Texture2D is
-     * an array texture (or always 0 if it's a normal texture).
-     */
+    Hardware surfaces for Direct3D11.
+
+    This is preferred over the legacy LibAVUtil.PixelFormat.D3D11VA_VLD. The new D3D11
+    hwaccel API and filtering support LibAVUtil.PixelFormat.D3D11 only.
+
+    data[0] contains a ID3D11Texture2D pointer, and data[1] contains the
+    texture array index of the frame as intptr_t if the ID3D11Texture2D is
+    an array texture (or always 0 if it's a normal texture).
+    ***********************************************************/
     LibAVUtil.PixelFormat.D3D11,
 
     LibAVUtil.PixelFormat.GRAY9BE,   ///<        Y        , 9bpp, big-endian
@@ -350,17 +350,17 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.GBRAPF32LE, ///< IEEE-754 single precision planar GBRA 4:4:4:4, 128bpp, little-endian
 
     /**
-     * DRM-managed buffers exposed through PRIME buffer sharing.
-     *
-     * data[0] points to an AVDRMFrameDescriptor.
-     */
+    DRM-managed buffers exposed through PRIME buffer sharing.
+
+    data[0] points to an AVDRMFrameDescriptor.
+    ***********************************************************/
     LibAVUtil.PixelFormat.DRM_PRIME,
     /**
-     * Hardware surfaces for OpenCL.
-     *
-     * data[i] contain 2D image objects (typed in C as cl_mem, used
-     * in OpenCL as image2d_t) for each plane of the surface.
-     */
+    Hardware surfaces for OpenCL.
+
+    data[i] contain 2D image objects (typed in C as cl_mem, used
+    in OpenCL as image2d_t) for each plane of the surface.
+    ***********************************************************/
     LibAVUtil.PixelFormat.OPENCL,
 
     LibAVUtil.PixelFormat.GRAY14BE,   ///<        Y        , 14bpp, big-endian
@@ -378,19 +378,19 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.NV42,      ///< as above, but U and V bytes are swapped
 
     /**
-     * Vulkan hardware images.
-     *
-     * data[0] points to an AVVkFrame
-     */
+    Vulkan hardware images.
+
+    data[0] points to an AVVkFrame
+    ***********************************************************/
     LibAVUtil.PixelFormat.VULKAN,
 
     LibAVUtil.PixelFormat.Y210BE,    ///< packed YUV 4:2:2 like YUYV422, 20bpp, data in the high bits, big-endian
     LibAVUtil.PixelFormat.Y210LE,    ///< packed YUV 4:2:2 like YUYV422, 20bpp, data in the high bits, little-endian
 
-    LibAVUtil.PixelFormat.X2RGB10LE, ///< packed RGB 10:10:10, 30bpp, (msb)2X 10R 10G 10B(lsb), little-endian, X=unused/undefined
-    LibAVUtil.PixelFormat.X2RGB10BE, ///< packed RGB 10:10:10, 30bpp, (msb)2X 10R 10G 10B(lsb), big-endian, X=unused/undefined
-    LibAVUtil.PixelFormat.X2BGR10LE, ///< packed BGR 10:10:10, 30bpp, (msb)2X 10B 10G 10R(lsb), little-endian, X=unused/undefined
-    LibAVUtil.PixelFormat.X2BGR10BE, ///< packed BGR 10:10:10, 30bpp, (msb)2X 10B 10G 10R(lsb), big-endian, X=unused/undefined
+    LibAVUtil.PixelFormat.X2RGB10LE, ///< packed RGB 10:10:10, 30bpp, (msb)2X 10R 10G 10B (lsb), little-endian, X=unused/undefined
+    LibAVUtil.PixelFormat.X2RGB10BE, ///< packed RGB 10:10:10, 30bpp, (msb)2X 10R 10G 10B (lsb), big-endian, X=unused/undefined
+    LibAVUtil.PixelFormat.X2BGR10LE, ///< packed BGR 10:10:10, 30bpp, (msb)2X 10B 10G 10R (lsb), little-endian, X=unused/undefined
+    LibAVUtil.PixelFormat.X2BGR10BE, ///< packed BGR 10:10:10, 30bpp, (msb)2X 10B 10G 10R (lsb), big-endian, X=unused/undefined
 
     LibAVUtil.PixelFormat.P210BE,      ///< interleaved chroma YUV 4:2:2, 20bpp, data in the high bits, big-endian
     LibAVUtil.PixelFormat.P210LE,      ///< interleaved chroma YUV 4:2:2, 20bpp, data in the high bits, little-endian
@@ -417,8 +417,8 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.Y212BE,      ///< packed YUV 4:2:2 like YUYV422, 24bpp, data in the high bits, zeros in the low bits, big-endian
     LibAVUtil.PixelFormat.Y212LE,      ///< packed YUV 4:2:2 like YUYV422, 24bpp, data in the high bits, zeros in the low bits, little-endian
 
-    LibAVUtil.PixelFormat.XV30BE,      ///< packed XVYU 4:4:4, 32bpp, (msb)2X 10V 10Y 10U(lsb), big-endian, variant of Y410 where alpha channel is left undefined
-    LibAVUtil.PixelFormat.XV30LE,      ///< packed XVYU 4:4:4, 32bpp, (msb)2X 10V 10Y 10U(lsb), little-endian, variant of Y410 where alpha channel is left undefined
+    LibAVUtil.PixelFormat.XV30BE,      ///< packed XVYU 4:4:4, 32bpp, (msb)2X 10V 10Y 10U (lsb), big-endian, variant of Y410 where alpha channel is left undefined
+    LibAVUtil.PixelFormat.XV30LE,      ///< packed XVYU 4:4:4, 32bpp, (msb)2X 10V 10Y 10U (lsb), little-endian, variant of Y410 where alpha channel is left undefined
 
     LibAVUtil.PixelFormat.XV36BE,      ///< packed XVYU 4:4:4, 48bpp, data in the high bits, zeros in the low bits, big-endian, variant of Y412 where alpha channel is left undefined
     LibAVUtil.PixelFormat.XV36LE,      ///< packed XVYU 4:4:4, 48bpp, data in the high bits, zeros in the low bits, little-endian, variant of Y412 where alpha channel is left undefined
@@ -439,10 +439,10 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.GBRAP14LE,  ///< planar GBR 4:4:4:4 56bpp, little-endian
 
     /**
-     * Hardware surfaces for Direct3D 12.
-     *
-     * data[0] points to an AVD3D12VAFrame
-     */
+    Hardware surfaces for Direct3D 12.
+
+    data[0] points to an AVD3D12VAFrame
+    ***********************************************************/
     LibAVUtil.PixelFormat.D3D12,
 
     LibAVUtil.PixelFormat.AYUV,        ///< packed AYUV 4:4:4:4, 32bpp (1 Cr & Cb sample per 1x1 Y & A samples), AYUVAYUV...
@@ -451,8 +451,8 @@ enum AVPixelFormat {
 
     LibAVUtil.PixelFormat.VYU444,      ///< packed VYU 4:4:4, 24bpp (1 Cr & Cb sample per 1x1 Y), VYUVYU...
 
-    LibAVUtil.PixelFormat.V30XBE,      ///< packed VYUX 4:4:4 like XV30, 32bpp, (msb)10V 10Y 10U 2X(lsb), big-endian
-    LibAVUtil.PixelFormat.V30XLE,      ///< packed VYUX 4:4:4 like XV30, 32bpp, (msb)10V 10Y 10U 2X(lsb), little-endian
+    LibAVUtil.PixelFormat.V30XBE,      ///< packed VYUX 4:4:4 like XV30, 32bpp, (msb)10V 10Y 10U 2X (lsb), big-endian
+    LibAVUtil.PixelFormat.V30XLE,      ///< packed VYUX 4:4:4 like XV30, 32bpp, (msb)10V 10Y 10U 2X (lsb), little-endian
 
     LibAVUtil.PixelFormat.RGBF16BE,    ///< IEEE-754 half precision packed RGB 16:16:16, 48bpp, RGBRGB..., big-endian
     LibAVUtil.PixelFormat.RGBF16LE,    ///< IEEE-754 half precision packed RGB 16:16:16, 48bpp, RGBRGB..., little-endian
@@ -478,8 +478,8 @@ enum AVPixelFormat {
     LibAVUtil.PixelFormat.GRAYF16LE,  ///< IEEE-754 half precision Y, 16bpp, little-endian
 
     /**
-     * HW acceleration through AMF. data[0] contain AMFSurface pointer
-     */
+    HW acceleration through AMF. data[0] contain AMFSurface pointer
+    ***********************************************************/
     LibAVUtil.PixelFormat.AMF_SURFACE,
 
     LibAVUtil.PixelFormat.GRAY32BE,    ///<         Y        , 32bpp, big-endian
@@ -509,131 +509,131 @@ enum AVPixelFormat {
 };
 
 #if AV_HAVE_BIGENDIAN
-#   define LibAVUtil.PixelFormat.NE(be, le) LibAVUtil.PixelFormat.##be
+#   define LibAVUtil.PixelFormat.NE (be, le) LibAVUtil.PixelFormat.##be
 #else
-#   define LibAVUtil.PixelFormat.NE(be, le) LibAVUtil.PixelFormat.##le
+#   define LibAVUtil.PixelFormat.NE (be, le) LibAVUtil.PixelFormat.##le
 #endif
 
-#define LibAVUtil.PixelFormat.RGB32   LibAVUtil.PixelFormat.NE(ARGB, BGRA)
-#define LibAVUtil.PixelFormat.RGB32_1 LibAVUtil.PixelFormat.NE(RGBA, ABGR)
-#define LibAVUtil.PixelFormat.BGR32   LibAVUtil.PixelFormat.NE(ABGR, RGBA)
-#define LibAVUtil.PixelFormat.BGR32_1 LibAVUtil.PixelFormat.NE(BGRA, ARGB)
-#define LibAVUtil.PixelFormat.0RGB32  LibAVUtil.PixelFormat.NE(0RGB, BGR0)
-#define LibAVUtil.PixelFormat.0BGR32  LibAVUtil.PixelFormat.NE(0BGR, RGB0)
+#define LibAVUtil.PixelFormat.RGB32   LibAVUtil.PixelFormat.NE (ARGB, BGRA)
+#define LibAVUtil.PixelFormat.RGB32_1 LibAVUtil.PixelFormat.NE (RGBA, ABGR)
+#define LibAVUtil.PixelFormat.BGR32   LibAVUtil.PixelFormat.NE (ABGR, RGBA)
+#define LibAVUtil.PixelFormat.BGR32_1 LibAVUtil.PixelFormat.NE (BGRA, ARGB)
+#define LibAVUtil.PixelFormat.0RGB32  LibAVUtil.PixelFormat.NE (0RGB, BGR0)
+#define LibAVUtil.PixelFormat.0BGR32  LibAVUtil.PixelFormat.NE (0BGR, RGB0)
 
-#define LibAVUtil.PixelFormat.GRAY9  LibAVUtil.PixelFormat.NE(GRAY9BE,  GRAY9LE)
-#define LibAVUtil.PixelFormat.GRAY10 LibAVUtil.PixelFormat.NE(GRAY10BE, GRAY10LE)
-#define LibAVUtil.PixelFormat.GRAY12 LibAVUtil.PixelFormat.NE(GRAY12BE, GRAY12LE)
-#define LibAVUtil.PixelFormat.GRAY14 LibAVUtil.PixelFormat.NE(GRAY14BE, GRAY14LE)
-#define LibAVUtil.PixelFormat.GRAY16 LibAVUtil.PixelFormat.NE(GRAY16BE, GRAY16LE)
-#define LibAVUtil.PixelFormat.GRAY32 LibAVUtil.PixelFormat.NE(GRAY32BE, GRAY32LE)
-#define LibAVUtil.PixelFormat.YA16   LibAVUtil.PixelFormat.NE(YA16BE,   YA16LE)
-#define LibAVUtil.PixelFormat.RGB48  LibAVUtil.PixelFormat.NE(RGB48BE,  RGB48LE)
-#define LibAVUtil.PixelFormat.RGB565 LibAVUtil.PixelFormat.NE(RGB565BE, RGB565LE)
-#define LibAVUtil.PixelFormat.RGB555 LibAVUtil.PixelFormat.NE(RGB555BE, RGB555LE)
-#define LibAVUtil.PixelFormat.RGB444 LibAVUtil.PixelFormat.NE(RGB444BE, RGB444LE)
-#define LibAVUtil.PixelFormat.RGBA64 LibAVUtil.PixelFormat.NE(RGBA64BE, RGBA64LE)
-#define LibAVUtil.PixelFormat.BGR48  LibAVUtil.PixelFormat.NE(BGR48BE,  BGR48LE)
-#define LibAVUtil.PixelFormat.BGR565 LibAVUtil.PixelFormat.NE(BGR565BE, BGR565LE)
-#define LibAVUtil.PixelFormat.BGR555 LibAVUtil.PixelFormat.NE(BGR555BE, BGR555LE)
-#define LibAVUtil.PixelFormat.BGR444 LibAVUtil.PixelFormat.NE(BGR444BE, BGR444LE)
-#define LibAVUtil.PixelFormat.BGRA64 LibAVUtil.PixelFormat.NE(BGRA64BE, BGRA64LE)
+#define LibAVUtil.PixelFormat.GRAY9  LibAVUtil.PixelFormat.NE (GRAY9BE,  GRAY9LE)
+#define LibAVUtil.PixelFormat.GRAY10 LibAVUtil.PixelFormat.NE (GRAY10BE, GRAY10LE)
+#define LibAVUtil.PixelFormat.GRAY12 LibAVUtil.PixelFormat.NE (GRAY12BE, GRAY12LE)
+#define LibAVUtil.PixelFormat.GRAY14 LibAVUtil.PixelFormat.NE (GRAY14BE, GRAY14LE)
+#define LibAVUtil.PixelFormat.GRAY16 LibAVUtil.PixelFormat.NE (GRAY16BE, GRAY16LE)
+#define LibAVUtil.PixelFormat.GRAY32 LibAVUtil.PixelFormat.NE (GRAY32BE, GRAY32LE)
+#define LibAVUtil.PixelFormat.YA16   LibAVUtil.PixelFormat.NE (YA16BE,   YA16LE)
+#define LibAVUtil.PixelFormat.RGB48  LibAVUtil.PixelFormat.NE (RGB48BE,  RGB48LE)
+#define LibAVUtil.PixelFormat.RGB565 LibAVUtil.PixelFormat.NE (RGB565BE, RGB565LE)
+#define LibAVUtil.PixelFormat.RGB555 LibAVUtil.PixelFormat.NE (RGB555BE, RGB555LE)
+#define LibAVUtil.PixelFormat.RGB444 LibAVUtil.PixelFormat.NE (RGB444BE, RGB444LE)
+#define LibAVUtil.PixelFormat.RGBA64 LibAVUtil.PixelFormat.NE (RGBA64BE, RGBA64LE)
+#define LibAVUtil.PixelFormat.BGR48  LibAVUtil.PixelFormat.NE (BGR48BE,  BGR48LE)
+#define LibAVUtil.PixelFormat.BGR565 LibAVUtil.PixelFormat.NE (BGR565BE, BGR565LE)
+#define LibAVUtil.PixelFormat.BGR555 LibAVUtil.PixelFormat.NE (BGR555BE, BGR555LE)
+#define LibAVUtil.PixelFormat.BGR444 LibAVUtil.PixelFormat.NE (BGR444BE, BGR444LE)
+#define LibAVUtil.PixelFormat.BGRA64 LibAVUtil.PixelFormat.NE (BGRA64BE, BGRA64LE)
 
-#define LibAVUtil.PixelFormat.YUV420P9  LibAVUtil.PixelFormat.NE(YUV420P9BE , YUV420P9LE)
-#define LibAVUtil.PixelFormat.YUV422P9  LibAVUtil.PixelFormat.NE(YUV422P9BE , YUV422P9LE)
-#define LibAVUtil.PixelFormat.YUV444P9  LibAVUtil.PixelFormat.NE(YUV444P9BE , YUV444P9LE)
-#define LibAVUtil.PixelFormat.YUV420P10 LibAVUtil.PixelFormat.NE(YUV420P10BE, YUV420P10LE)
-#define LibAVUtil.PixelFormat.YUV422P10 LibAVUtil.PixelFormat.NE(YUV422P10BE, YUV422P10LE)
-#define LibAVUtil.PixelFormat.YUV440P10 LibAVUtil.PixelFormat.NE(YUV440P10BE, YUV440P10LE)
-#define LibAVUtil.PixelFormat.YUV444P10 LibAVUtil.PixelFormat.NE(YUV444P10BE, YUV444P10LE)
-#define LibAVUtil.PixelFormat.YUV420P12 LibAVUtil.PixelFormat.NE(YUV420P12BE, YUV420P12LE)
-#define LibAVUtil.PixelFormat.YUV422P12 LibAVUtil.PixelFormat.NE(YUV422P12BE, YUV422P12LE)
-#define LibAVUtil.PixelFormat.YUV440P12 LibAVUtil.PixelFormat.NE(YUV440P12BE, YUV440P12LE)
-#define LibAVUtil.PixelFormat.YUV444P12 LibAVUtil.PixelFormat.NE(YUV444P12BE, YUV444P12LE)
-#define LibAVUtil.PixelFormat.YUV420P14 LibAVUtil.PixelFormat.NE(YUV420P14BE, YUV420P14LE)
-#define LibAVUtil.PixelFormat.YUV422P14 LibAVUtil.PixelFormat.NE(YUV422P14BE, YUV422P14LE)
-#define LibAVUtil.PixelFormat.YUV444P14 LibAVUtil.PixelFormat.NE(YUV444P14BE, YUV444P14LE)
-#define LibAVUtil.PixelFormat.YUV420P16 LibAVUtil.PixelFormat.NE(YUV420P16BE, YUV420P16LE)
-#define LibAVUtil.PixelFormat.YUV422P16 LibAVUtil.PixelFormat.NE(YUV422P16BE, YUV422P16LE)
-#define LibAVUtil.PixelFormat.YUV444P16 LibAVUtil.PixelFormat.NE(YUV444P16BE, YUV444P16LE)
+#define LibAVUtil.PixelFormat.YUV420P9  LibAVUtil.PixelFormat.NE (YUV420P9BE , YUV420P9LE)
+#define LibAVUtil.PixelFormat.YUV422P9  LibAVUtil.PixelFormat.NE (YUV422P9BE , YUV422P9LE)
+#define LibAVUtil.PixelFormat.YUV444P9  LibAVUtil.PixelFormat.NE (YUV444P9BE , YUV444P9LE)
+#define LibAVUtil.PixelFormat.YUV420P10 LibAVUtil.PixelFormat.NE (YUV420P10BE, YUV420P10LE)
+#define LibAVUtil.PixelFormat.YUV422P10 LibAVUtil.PixelFormat.NE (YUV422P10BE, YUV422P10LE)
+#define LibAVUtil.PixelFormat.YUV440P10 LibAVUtil.PixelFormat.NE (YUV440P10BE, YUV440P10LE)
+#define LibAVUtil.PixelFormat.YUV444P10 LibAVUtil.PixelFormat.NE (YUV444P10BE, YUV444P10LE)
+#define LibAVUtil.PixelFormat.YUV420P12 LibAVUtil.PixelFormat.NE (YUV420P12BE, YUV420P12LE)
+#define LibAVUtil.PixelFormat.YUV422P12 LibAVUtil.PixelFormat.NE (YUV422P12BE, YUV422P12LE)
+#define LibAVUtil.PixelFormat.YUV440P12 LibAVUtil.PixelFormat.NE (YUV440P12BE, YUV440P12LE)
+#define LibAVUtil.PixelFormat.YUV444P12 LibAVUtil.PixelFormat.NE (YUV444P12BE, YUV444P12LE)
+#define LibAVUtil.PixelFormat.YUV420P14 LibAVUtil.PixelFormat.NE (YUV420P14BE, YUV420P14LE)
+#define LibAVUtil.PixelFormat.YUV422P14 LibAVUtil.PixelFormat.NE (YUV422P14BE, YUV422P14LE)
+#define LibAVUtil.PixelFormat.YUV444P14 LibAVUtil.PixelFormat.NE (YUV444P14BE, YUV444P14LE)
+#define LibAVUtil.PixelFormat.YUV420P16 LibAVUtil.PixelFormat.NE (YUV420P16BE, YUV420P16LE)
+#define LibAVUtil.PixelFormat.YUV422P16 LibAVUtil.PixelFormat.NE (YUV422P16BE, YUV422P16LE)
+#define LibAVUtil.PixelFormat.YUV444P16 LibAVUtil.PixelFormat.NE (YUV444P16BE, YUV444P16LE)
 
-#define LibAVUtil.PixelFormat.YUV444P10MSB LibAVUtil.PixelFormat.NE(YUV444P10MSBBE, YUV444P10MSBLE)
-#define LibAVUtil.PixelFormat.YUV444P12MSB LibAVUtil.PixelFormat.NE(YUV444P12MSBBE, YUV444P12MSBLE)
+#define LibAVUtil.PixelFormat.YUV444P10MSB LibAVUtil.PixelFormat.NE (YUV444P10MSBBE, YUV444P10MSBLE)
+#define LibAVUtil.PixelFormat.YUV444P12MSB LibAVUtil.PixelFormat.NE (YUV444P12MSBBE, YUV444P12MSBLE)
 
-#define LibAVUtil.PixelFormat.GBRP9     LibAVUtil.PixelFormat.NE(GBRP9BE ,    GBRP9LE)
-#define LibAVUtil.PixelFormat.GBRP10    LibAVUtil.PixelFormat.NE(GBRP10BE,    GBRP10LE)
-#define LibAVUtil.PixelFormat.GBRP12    LibAVUtil.PixelFormat.NE(GBRP12BE,    GBRP12LE)
-#define LibAVUtil.PixelFormat.GBRP14    LibAVUtil.PixelFormat.NE(GBRP14BE,    GBRP14LE)
-#define LibAVUtil.PixelFormat.GBRP16    LibAVUtil.PixelFormat.NE(GBRP16BE,    GBRP16LE)
-#define LibAVUtil.PixelFormat.GBRAP10   LibAVUtil.PixelFormat.NE(GBRAP10BE,   GBRAP10LE)
-#define LibAVUtil.PixelFormat.GBRAP12   LibAVUtil.PixelFormat.NE(GBRAP12BE,   GBRAP12LE)
-#define LibAVUtil.PixelFormat.GBRAP14   LibAVUtil.PixelFormat.NE(GBRAP14BE,   GBRAP14LE)
-#define LibAVUtil.PixelFormat.GBRAP16   LibAVUtil.PixelFormat.NE(GBRAP16BE,   GBRAP16LE)
-#define LibAVUtil.PixelFormat.GBRAP32   LibAVUtil.PixelFormat.NE(GBRAP32BE,   GBRAP32LE)
+#define LibAVUtil.PixelFormat.GBRP9     LibAVUtil.PixelFormat.NE (GBRP9BE ,    GBRP9LE)
+#define LibAVUtil.PixelFormat.GBRP10    LibAVUtil.PixelFormat.NE (GBRP10BE,    GBRP10LE)
+#define LibAVUtil.PixelFormat.GBRP12    LibAVUtil.PixelFormat.NE (GBRP12BE,    GBRP12LE)
+#define LibAVUtil.PixelFormat.GBRP14    LibAVUtil.PixelFormat.NE (GBRP14BE,    GBRP14LE)
+#define LibAVUtil.PixelFormat.GBRP16    LibAVUtil.PixelFormat.NE (GBRP16BE,    GBRP16LE)
+#define LibAVUtil.PixelFormat.GBRAP10   LibAVUtil.PixelFormat.NE (GBRAP10BE,   GBRAP10LE)
+#define LibAVUtil.PixelFormat.GBRAP12   LibAVUtil.PixelFormat.NE (GBRAP12BE,   GBRAP12LE)
+#define LibAVUtil.PixelFormat.GBRAP14   LibAVUtil.PixelFormat.NE (GBRAP14BE,   GBRAP14LE)
+#define LibAVUtil.PixelFormat.GBRAP16   LibAVUtil.PixelFormat.NE (GBRAP16BE,   GBRAP16LE)
+#define LibAVUtil.PixelFormat.GBRAP32   LibAVUtil.PixelFormat.NE (GBRAP32BE,   GBRAP32LE)
 
-#define LibAVUtil.PixelFormat.GBRP10MSB LibAVUtil.PixelFormat.NE(GBRP10MSBBE, GBRP10MSBLE)
-#define LibAVUtil.PixelFormat.GBRP12MSB LibAVUtil.PixelFormat.NE(GBRP12MSBBE, GBRP12MSBLE)
+#define LibAVUtil.PixelFormat.GBRP10MSB LibAVUtil.PixelFormat.NE (GBRP10MSBBE, GBRP10MSBLE)
+#define LibAVUtil.PixelFormat.GBRP12MSB LibAVUtil.PixelFormat.NE (GBRP12MSBBE, GBRP12MSBLE)
 
-#define LibAVUtil.PixelFormat.BAYER_BGGR16 LibAVUtil.PixelFormat.NE(BAYER_BGGR16BE,    BAYER_BGGR16LE)
-#define LibAVUtil.PixelFormat.BAYER_RGGB16 LibAVUtil.PixelFormat.NE(BAYER_RGGB16BE,    BAYER_RGGB16LE)
-#define LibAVUtil.PixelFormat.BAYER_GBRG16 LibAVUtil.PixelFormat.NE(BAYER_GBRG16BE,    BAYER_GBRG16LE)
-#define LibAVUtil.PixelFormat.BAYER_GRBG16 LibAVUtil.PixelFormat.NE(BAYER_GRBG16BE,    BAYER_GRBG16LE)
+#define LibAVUtil.PixelFormat.BAYER_BGGR16 LibAVUtil.PixelFormat.NE (BAYER_BGGR16BE,    BAYER_BGGR16LE)
+#define LibAVUtil.PixelFormat.BAYER_RGGB16 LibAVUtil.PixelFormat.NE (BAYER_RGGB16BE,    BAYER_RGGB16LE)
+#define LibAVUtil.PixelFormat.BAYER_GBRG16 LibAVUtil.PixelFormat.NE (BAYER_GBRG16BE,    BAYER_GBRG16LE)
+#define LibAVUtil.PixelFormat.BAYER_GRBG16 LibAVUtil.PixelFormat.NE (BAYER_GRBG16BE,    BAYER_GRBG16LE)
 
-#define LibAVUtil.PixelFormat.GBRPF16    LibAVUtil.PixelFormat.NE(GBRPF16BE,  GBRPF16LE)
-#define LibAVUtil.PixelFormat.GBRAPF16   LibAVUtil.PixelFormat.NE(GBRAPF16BE, GBRAPF16LE)
-#define LibAVUtil.PixelFormat.GBRPF32    LibAVUtil.PixelFormat.NE(GBRPF32BE,  GBRPF32LE)
-#define LibAVUtil.PixelFormat.GBRAPF32   LibAVUtil.PixelFormat.NE(GBRAPF32BE, GBRAPF32LE)
+#define LibAVUtil.PixelFormat.GBRPF16    LibAVUtil.PixelFormat.NE (GBRPF16BE,  GBRPF16LE)
+#define LibAVUtil.PixelFormat.GBRAPF16   LibAVUtil.PixelFormat.NE (GBRAPF16BE, GBRAPF16LE)
+#define LibAVUtil.PixelFormat.GBRPF32    LibAVUtil.PixelFormat.NE (GBRPF32BE,  GBRPF32LE)
+#define LibAVUtil.PixelFormat.GBRAPF32   LibAVUtil.PixelFormat.NE (GBRAPF32BE, GBRAPF32LE)
 
-#define LibAVUtil.PixelFormat.GRAYF16    LibAVUtil.PixelFormat.NE(GRAYF16BE, GRAYF16LE)
-#define LibAVUtil.PixelFormat.GRAYF32    LibAVUtil.PixelFormat.NE(GRAYF32BE, GRAYF32LE)
+#define LibAVUtil.PixelFormat.GRAYF16    LibAVUtil.PixelFormat.NE (GRAYF16BE, GRAYF16LE)
+#define LibAVUtil.PixelFormat.GRAYF32    LibAVUtil.PixelFormat.NE (GRAYF32BE, GRAYF32LE)
 
-#define LibAVUtil.PixelFormat.YAF16      LibAVUtil.PixelFormat.NE(YAF16BE, YAF16LE)
-#define LibAVUtil.PixelFormat.YAF32      LibAVUtil.PixelFormat.NE(YAF32BE, YAF32LE)
+#define LibAVUtil.PixelFormat.YAF16      LibAVUtil.PixelFormat.NE (YAF16BE, YAF16LE)
+#define LibAVUtil.PixelFormat.YAF32      LibAVUtil.PixelFormat.NE (YAF32BE, YAF32LE)
 
-#define LibAVUtil.PixelFormat.YUVA420P9  LibAVUtil.PixelFormat.NE(YUVA420P9BE , YUVA420P9LE)
-#define LibAVUtil.PixelFormat.YUVA422P9  LibAVUtil.PixelFormat.NE(YUVA422P9BE , YUVA422P9LE)
-#define LibAVUtil.PixelFormat.YUVA444P9  LibAVUtil.PixelFormat.NE(YUVA444P9BE , YUVA444P9LE)
-#define LibAVUtil.PixelFormat.YUVA420P10 LibAVUtil.PixelFormat.NE(YUVA420P10BE, YUVA420P10LE)
-#define LibAVUtil.PixelFormat.YUVA422P10 LibAVUtil.PixelFormat.NE(YUVA422P10BE, YUVA422P10LE)
-#define LibAVUtil.PixelFormat.YUVA444P10 LibAVUtil.PixelFormat.NE(YUVA444P10BE, YUVA444P10LE)
-#define LibAVUtil.PixelFormat.YUVA422P12 LibAVUtil.PixelFormat.NE(YUVA422P12BE, YUVA422P12LE)
-#define LibAVUtil.PixelFormat.YUVA444P12 LibAVUtil.PixelFormat.NE(YUVA444P12BE, YUVA444P12LE)
-#define LibAVUtil.PixelFormat.YUVA420P16 LibAVUtil.PixelFormat.NE(YUVA420P16BE, YUVA420P16LE)
-#define LibAVUtil.PixelFormat.YUVA422P16 LibAVUtil.PixelFormat.NE(YUVA422P16BE, YUVA422P16LE)
-#define LibAVUtil.PixelFormat.YUVA444P16 LibAVUtil.PixelFormat.NE(YUVA444P16BE, YUVA444P16LE)
+#define LibAVUtil.PixelFormat.YUVA420P9  LibAVUtil.PixelFormat.NE (YUVA420P9BE , YUVA420P9LE)
+#define LibAVUtil.PixelFormat.YUVA422P9  LibAVUtil.PixelFormat.NE (YUVA422P9BE , YUVA422P9LE)
+#define LibAVUtil.PixelFormat.YUVA444P9  LibAVUtil.PixelFormat.NE (YUVA444P9BE , YUVA444P9LE)
+#define LibAVUtil.PixelFormat.YUVA420P10 LibAVUtil.PixelFormat.NE (YUVA420P10BE, YUVA420P10LE)
+#define LibAVUtil.PixelFormat.YUVA422P10 LibAVUtil.PixelFormat.NE (YUVA422P10BE, YUVA422P10LE)
+#define LibAVUtil.PixelFormat.YUVA444P10 LibAVUtil.PixelFormat.NE (YUVA444P10BE, YUVA444P10LE)
+#define LibAVUtil.PixelFormat.YUVA422P12 LibAVUtil.PixelFormat.NE (YUVA422P12BE, YUVA422P12LE)
+#define LibAVUtil.PixelFormat.YUVA444P12 LibAVUtil.PixelFormat.NE (YUVA444P12BE, YUVA444P12LE)
+#define LibAVUtil.PixelFormat.YUVA420P16 LibAVUtil.PixelFormat.NE (YUVA420P16BE, YUVA420P16LE)
+#define LibAVUtil.PixelFormat.YUVA422P16 LibAVUtil.PixelFormat.NE (YUVA422P16BE, YUVA422P16LE)
+#define LibAVUtil.PixelFormat.YUVA444P16 LibAVUtil.PixelFormat.NE (YUVA444P16BE, YUVA444P16LE)
 
-#define LibAVUtil.PixelFormat.XYZ12      LibAVUtil.PixelFormat.NE(XYZ12BE, XYZ12LE)
-#define LibAVUtil.PixelFormat.NV20       LibAVUtil.PixelFormat.NE(NV20BE,  NV20LE)
-#define LibAVUtil.PixelFormat.AYUV64     LibAVUtil.PixelFormat.NE(AYUV64BE, AYUV64LE)
-#define LibAVUtil.PixelFormat.P010       LibAVUtil.PixelFormat.NE(P010BE,  P010LE)
-#define LibAVUtil.PixelFormat.P012       LibAVUtil.PixelFormat.NE(P012BE,  P012LE)
-#define LibAVUtil.PixelFormat.P016       LibAVUtil.PixelFormat.NE(P016BE,  P016LE)
+#define LibAVUtil.PixelFormat.XYZ12      LibAVUtil.PixelFormat.NE (XYZ12BE, XYZ12LE)
+#define LibAVUtil.PixelFormat.NV20       LibAVUtil.PixelFormat.NE (NV20BE,  NV20LE)
+#define LibAVUtil.PixelFormat.AYUV64     LibAVUtil.PixelFormat.NE (AYUV64BE, AYUV64LE)
+#define LibAVUtil.PixelFormat.P010       LibAVUtil.PixelFormat.NE (P010BE,  P010LE)
+#define LibAVUtil.PixelFormat.P012       LibAVUtil.PixelFormat.NE (P012BE,  P012LE)
+#define LibAVUtil.PixelFormat.P016       LibAVUtil.PixelFormat.NE (P016BE,  P016LE)
 
-#define LibAVUtil.PixelFormat.Y210       LibAVUtil.PixelFormat.NE(Y210BE,  Y210LE)
-#define LibAVUtil.PixelFormat.Y212       LibAVUtil.PixelFormat.NE(Y212BE,  Y212LE)
-#define LibAVUtil.PixelFormat.Y216       LibAVUtil.PixelFormat.NE(Y216BE,  Y216LE)
-#define LibAVUtil.PixelFormat.XV30       LibAVUtil.PixelFormat.NE(XV30BE,  XV30LE)
-#define LibAVUtil.PixelFormat.XV36       LibAVUtil.PixelFormat.NE(XV36BE,  XV36LE)
-#define LibAVUtil.PixelFormat.XV48       LibAVUtil.PixelFormat.NE(XV48BE,  XV48LE)
-#define LibAVUtil.PixelFormat.V30X       LibAVUtil.PixelFormat.NE(V30XBE,  V30XLE)
-#define LibAVUtil.PixelFormat.X2RGB10    LibAVUtil.PixelFormat.NE(X2RGB10BE, X2RGB10LE)
-#define LibAVUtil.PixelFormat.X2BGR10    LibAVUtil.PixelFormat.NE(X2BGR10BE, X2BGR10LE)
+#define LibAVUtil.PixelFormat.Y210       LibAVUtil.PixelFormat.NE (Y210BE,  Y210LE)
+#define LibAVUtil.PixelFormat.Y212       LibAVUtil.PixelFormat.NE (Y212BE,  Y212LE)
+#define LibAVUtil.PixelFormat.Y216       LibAVUtil.PixelFormat.NE (Y216BE,  Y216LE)
+#define LibAVUtil.PixelFormat.XV30       LibAVUtil.PixelFormat.NE (XV30BE,  XV30LE)
+#define LibAVUtil.PixelFormat.XV36       LibAVUtil.PixelFormat.NE (XV36BE,  XV36LE)
+#define LibAVUtil.PixelFormat.XV48       LibAVUtil.PixelFormat.NE (XV48BE,  XV48LE)
+#define LibAVUtil.PixelFormat.V30X       LibAVUtil.PixelFormat.NE (V30XBE,  V30XLE)
+#define LibAVUtil.PixelFormat.X2RGB10    LibAVUtil.PixelFormat.NE (X2RGB10BE, X2RGB10LE)
+#define LibAVUtil.PixelFormat.X2BGR10    LibAVUtil.PixelFormat.NE (X2BGR10BE, X2BGR10LE)
 
-#define LibAVUtil.PixelFormat.P210       LibAVUtil.PixelFormat.NE(P210BE, P210LE)
-#define LibAVUtil.PixelFormat.P410       LibAVUtil.PixelFormat.NE(P410BE, P410LE)
-#define LibAVUtil.PixelFormat.P212       LibAVUtil.PixelFormat.NE(P212BE, P212LE)
-#define LibAVUtil.PixelFormat.P412       LibAVUtil.PixelFormat.NE(P412BE, P412LE)
-#define LibAVUtil.PixelFormat.P216       LibAVUtil.PixelFormat.NE(P216BE, P216LE)
-#define LibAVUtil.PixelFormat.P416       LibAVUtil.PixelFormat.NE(P416BE, P416LE)
+#define LibAVUtil.PixelFormat.P210       LibAVUtil.PixelFormat.NE (P210BE, P210LE)
+#define LibAVUtil.PixelFormat.P410       LibAVUtil.PixelFormat.NE (P410BE, P410LE)
+#define LibAVUtil.PixelFormat.P212       LibAVUtil.PixelFormat.NE (P212BE, P212LE)
+#define LibAVUtil.PixelFormat.P412       LibAVUtil.PixelFormat.NE (P412BE, P412LE)
+#define LibAVUtil.PixelFormat.P216       LibAVUtil.PixelFormat.NE (P216BE, P216LE)
+#define LibAVUtil.PixelFormat.P416       LibAVUtil.PixelFormat.NE (P416BE, P416LE)
 
-#define LibAVUtil.PixelFormat.RGBF16     LibAVUtil.PixelFormat.NE(RGBF16BE, RGBF16LE)
-#define LibAVUtil.PixelFormat.RGBAF16    LibAVUtil.PixelFormat.NE(RGBAF16BE, RGBAF16LE)
+#define LibAVUtil.PixelFormat.RGBF16     LibAVUtil.PixelFormat.NE (RGBF16BE, RGBF16LE)
+#define LibAVUtil.PixelFormat.RGBAF16    LibAVUtil.PixelFormat.NE (RGBAF16BE, RGBAF16LE)
 
-#define LibAVUtil.PixelFormat.RGBF32     LibAVUtil.PixelFormat.NE(RGBF32BE, RGBF32LE)
-#define LibAVUtil.PixelFormat.RGBAF32    LibAVUtil.PixelFormat.NE(RGBAF32BE, RGBAF32LE)
+#define LibAVUtil.PixelFormat.RGBF32     LibAVUtil.PixelFormat.NE (RGBF32BE, RGBF32LE)
+#define LibAVUtil.PixelFormat.RGBAF32    LibAVUtil.PixelFormat.NE (RGBAF32BE, RGBAF32LE)
 
-#define LibAVUtil.PixelFormat.RGB96      LibAVUtil.PixelFormat.NE(RGB96BE, RGB96LE)
-#define LibAVUtil.PixelFormat.RGBA128    LibAVUtil.PixelFormat.NE(RGBA128BE, RGBA128LE)
+#define LibAVUtil.PixelFormat.RGB96      LibAVUtil.PixelFormat.NE (RGB96BE, RGB96LE)
+#define LibAVUtil.PixelFormat.RGBA128    LibAVUtil.PixelFormat.NE (RGBA128BE, RGBA128LE)
 
 /**
   * Chromaticity coordinates of the source primaries.
@@ -680,7 +680,7 @@ enum AVColorTransferCharacteristic {
     AVCOL_TRC_SMPTE240M    = 7,
     AVCOL_TRC_LINEAR       = 8,  ///< "Linear transfer characteristics"
     AVCOL_TRC_LOG          = 9,  ///< "Logarithmic transfer characteristic (100:1 range)"
-    AVCOL_TRC_LOG_SQRT     = 10, ///< "Logarithmic transfer characteristic (100 * Sqrt(10) : 1 range)"
+    AVCOL_TRC_LOG_SQRT     = 10, ///< "Logarithmic transfer characteristic (100 * Sqrt (10) : 1 range)"
     AVCOL_TRC_IEC61966_2_4 = 11, ///< IEC 61966-2-4
     AVCOL_TRC_BT1361_ECG   = 12, ///< ITU-R BT1361 Extended Colour Gamut
     AVCOL_TRC_IEC61966_2_1 = 13, ///< IEC 61966-2-1 (sRGB or sYCC)
@@ -749,37 +749,37 @@ enum AVColorRange {
     AVCOL_RANGE_UNSPECIFIED = 0,
 
     /**
-     * Narrow or limited range content.
-     *
-     * - For luma planes:
-     *
-     *       (219 * E + 16) * 2^(n-8)
-     *
-     *   F.ex. the range of 16-235 for 8 bits
-     *
-     * - For chroma planes:
-     *
-     *       (224 * E + 128) * 2^(n-8)
-     *
-     *   F.ex. the range of 16-240 for 8 bits
-     */
+    Narrow or limited range content.
+
+    - For luma planes:
+
+          (219 * E + 16) * 2^(n-8)
+
+      F.ex. the range of 16-235 for 8 bits
+
+    - For chroma planes:
+
+          (224 * E + 128) * 2^(n-8)
+
+      F.ex. the range of 16-240 for 8 bits
+    ***********************************************************/
     AVCOL_RANGE_MPEG        = 1,
 
     /**
-     * Full range content.
-     *
-     * - For RGB and luma planes:
-     *
-     *       (2^n - 1) * E
-     *
-     *   F.ex. the range of 0-255 for 8 bits
-     *
-     * - For chroma planes:
-     *
-     *       (2^n - 1) * E + 2^(n - 1)
-     *
-     *   F.ex. the range of 1-255 for 8 bits
-     */
+    Full range content.
+
+    - For RGB and luma planes:
+
+          (2^n - 1) * E
+
+      F.ex. the range of 0-255 for 8 bits
+
+    - For chroma planes:
+
+          (2^n - 1) * E + 2^(n - 1)
+
+      F.ex. the range of 1-255 for 8 bits
+    ***********************************************************/
     AVCOL_RANGE_JPEG        = 2,
     AVCOL_RANGE_NB               ///< Not part of ABI
 };
@@ -803,7 +803,7 @@ enum AVChromaLocation {
     AVCHROMA_LOC_UNSPECIFIED = 0,
     AVCHROMA_LOC_LEFT        = 1, ///< MPEG-2/4 4:2:0, H.264 default for 4:2:0
     AVCHROMA_LOC_CENTER      = 2, ///< MPEG-1 4:2:0, JPEG 4:2:0, H.263 4:2:0
-    AVCHROMA_LOC_TOPLEFT     = 3, ///< ITU-R 601, SMPTE 274M 296M S314M(DV 4:1:1), mpeg2 4:2:2
+    AVCHROMA_LOC_TOPLEFT     = 3, ///< ITU-R 601, SMPTE 274M 296M S314M (DV 4:1:1), mpeg2 4:2:2
     AVCHROMA_LOC_TOP         = 4,
     AVCHROMA_LOC_BOTTOMLEFT  = 5,
     AVCHROMA_LOC_BOTTOM      = 6,

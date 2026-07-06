@@ -39,7 +39,7 @@ XXX: find better solution with "preinit" method, needed also in
 public define DEFAULT_CODEC_ID; // AV_NE (AV_CODEC_ID_PCM_S16BE, AV_CODEC_ID_PCM_S16LE)
 
 [CCode (cname="ff_reorder_func")]
-public delegate void FfReorderDelegate(
+public delegate void FfReorderDelegate (
     const void *,
     void *,
     int
@@ -120,8 +120,8 @@ Open an ALSA PCM.
 @param sample_rate in: requested sample rate;
                    out: actually selected sample rate
 @param channels number of channels
-@param codec_id in: requested AVCodecID or AV_CODEC_ID_NONE;
-                out: actually selected AVCodecID, changed only if
+@param codec_id in: requested LibAVCodec.CodecID or AV_CODEC_ID_NONE;
+                out: actually selected LibAVCodec.CodecID, changed only if
                 AV_CODEC_ID_NONE was requested
 
 @return 0 if OK, LibAVUtil.ErrorCode.xxx on error
@@ -133,7 +133,7 @@ public int ff_alsa_open (
     snd_pcm_stream_t mode,
     uint? sample_rate,
     int channels,
-    AVCodecID? codec_id
+    LibAVCodec.CodecID? codec_id
 );
 
 /***********************************************************

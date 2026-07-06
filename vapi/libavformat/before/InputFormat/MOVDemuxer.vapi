@@ -343,9 +343,9 @@ public class MOVDemuxer : LibAVFormat.InputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mov.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_BYTE_SEEK | AVFormatFlags1.SEEK_TO_PTS;
+            return LibAVFormat.FormatFlags1.NO_BYTE_SEEK | LibAVFormat.FormatFlags1.SEEK_TO_PTS;
 
         }
 

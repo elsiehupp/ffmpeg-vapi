@@ -75,6 +75,9 @@ public class SubtitleRect {
     [CCode (cname="linesize")]
     public int linesize[4];
 
+    [CCode (cname="flags")]
+    public int flags;
+
     [CCode (cname="enum AVSubtitleType",cprefix="SUBTITLE_",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public enum SubtitleType {
         NONE,
@@ -114,36 +117,6 @@ public class SubtitleRect {
     [CCode (cname="ass")]
     public string ass;
 
-    [CCode (cname="flags")]
-    public int flags;
 }
 
 } // namespace LibAVCodec
-
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-public struct AVSubtitleRect {
-    int x;         ///< top left corner  of pict, undefined when pict is not set
-    int y;         ///< top left corner  of pict, undefined when pict is not set
-    int w;         ///< width            of pict, undefined when pict is not set
-    int h;         ///< height           of pict, undefined when pict is not set
-    int nb_colors; ///< number of colors in pict, undefined when pict is not set
-
-    /**
-     * data+linesize for the bitmap of this subtitle.
-     * Can be set for text/ass as well once they are rendered.
-     */
-    uint8_t *data[4];
-    int linesize[4];
-
-    int flags;
-    enum AVSubtitleType type;
-
-    string text;                     ///< 0 terminated plain UTF-8 text
-
-    /**
-     * 0 terminated ASS/SSA compatible event line.
-     * The presentation of this is unaffected by the other values in this
-     * struct.
-     */
-    string ass;
-} AVSubtitleRect;

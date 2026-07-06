@@ -22,10 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ID3v1_TAG_SIZE",cheader_filename="subprojects/ffmpeg/libformat/id3v1.h")]
+[CCode (cname="ID3v1_TAG_SIZE",cheader_filename="subprojects/ffmpeg/libavformat/id3v1.h")]
 public const size_t ID3v1_TAG_SIZE;
 
-[CCode (cname="ID3v1_GENRE_MAX",cheader_filename="subprojects/ffmpeg/libformat/id3v1.h")]
+[CCode (cname="ID3v1_GENRE_MAX",cheader_filename="subprojects/ffmpeg/libavformat/id3v1.h")]
 public const size_t ID3v1_GENRE_MAX;
 
 /***********************************************************
@@ -36,7 +36,7 @@ public const size_t ID3v1_GENRE_MAX;
 /***********************************************************
 @brief Read an ID3v1 tag
 ***********************************************************/
-[CCode (cname="ff_id3v1_read",cheader_filename="subprojects/ffmpeg/libformat/id3v1.h")]
+[CCode (cname="ff_id3v1_read",cheader_filename="subprojects/ffmpeg/libavformat/id3v1.h")]
 public void ff_id3v1_read (
     LibAVFormat.FormatContext format_context
 );

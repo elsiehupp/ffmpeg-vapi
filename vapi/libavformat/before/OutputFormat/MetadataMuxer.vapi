@@ -68,9 +68,9 @@ public class MetadataMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/ffmetaenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS | AVFormatFlags1.NO_STREAMS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS | LibAVFormat.FormatFlags1.NO_STREAMS;
 
         }
 

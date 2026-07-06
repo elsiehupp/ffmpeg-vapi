@@ -24,7 +24,7 @@ namespace LibAVFormat {
 
 //  #define RETURN_ERROR (code) do { ret = (code); goto fail; } while (0)
 
-[CCode (cname="ff_flac_parse_picture",cheader_filename="subprojects/ffmpeg/libformat/flag_picture.h")]
+[CCode (cname="ff_flac_parse_picture",cheader_filename="subprojects/ffmpeg/libavformat/flag_picture.h")]
 public int ff_flac_parse_picture (
     LibAVFormat.FormatContext format_context,
     uint8[] buffer,

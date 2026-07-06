@@ -26,6 +26,6 @@ namespace LibAVFormat {
 @file CAF common code
 ***********************************************************/
 
-//  extern const AVCodecTag ff_codec_caf_tags[];
+//  extern const LibAVFormat.CodecTag ff_codec_caf_tags[];
 
 } // namespace LibAVFormat

@@ -24,19 +24,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public const size_t MOV_FRAG_INFO_ALLOC_INCREMENT;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public const size_t MOV_INDEX_CLUSTER_SIZE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public const int MOV_TIMESCALE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public const size_t RTP_MAX_PACKET_SIZE;
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public enum MOVMode {
     [CCode (cname="MODE_MP4")]
     MP4,
@@ -67,7 +67,7 @@ public enum MOVMode {
     F4V;
 }
 
-[CCode (cname="struct MOVIentry",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="struct MOVIentry",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 [Compact]
 public class MOVIentry {
     [CCode (cname="")]
@@ -102,7 +102,7 @@ public class MOVIentry {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public enum MOVSampleFlags {
     [CCode (cname="MOV_SYNC_SAMPLE")]
     SYNC_SAMPLE,
@@ -114,7 +114,7 @@ public enum MOVSampleFlags {
     DISPOSABLE_SAMPLE;
 }
 
-[CCode (cname="struct HintSample",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="struct HintSample",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 [Compact]
 public class HintSample {
     [CCode (cname="")]
@@ -133,7 +133,7 @@ public class HintSample {
     public int own_data;
 }
 
-[CCode (cname="struct HintSampleQueue",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="struct HintSampleQueue",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 [Compact]
 public class HintSampleQueue {
     [CCode (cname="")]
@@ -146,7 +146,7 @@ public class HintSampleQueue {
     public HintSample samples;
 }
 
-[CCode (cname="struct MOVFragmentInfo",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="struct MOVFragmentInfo",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 [Compact]
 public class MOVFragmentInfo {
     [CCode (cname="")]
@@ -166,7 +166,7 @@ public class MOVFragmentInfo {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public enum MOVTrackFlags {
     [CCode (cname="MOV_TRACK_CTTS")]
     CTTS,
@@ -179,7 +179,7 @@ public enum MOVTrackFlags {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public enum MOVETimeCodeFlags {
     [CCode (cname="MOV_TIMECODE_FLAG_DROPFRAME")]
     DROP_FRAME,
@@ -191,7 +191,7 @@ public enum MOVETimeCodeFlags {
     ALLOW_NEGATIVE;
 }
 
-[CCode (cname="struct MOVTrack",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="struct MOVTrack",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 [Compact]
 public class MOVTrack {
     [CCode (cname="")]
@@ -342,7 +342,7 @@ public class MOVTrack {
     public LibAVCodec.Packet cover_image;
 
     [CCode (cname="")]
-    public AVIOContext mdat_buf;
+    public LibAVFormat.IOContext mdat_buf;
 
     [CCode (cname="")]
     public int64 data_offset;
@@ -384,7 +384,7 @@ public class MOVTrack {
     public int is_unaligned_qt_rgb;
 }
 
-[CCode (cname="struct VC1Info",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="struct VC1Info",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 [Compact]
 public class VC1Info {
     [CCode (cname="")]
@@ -409,7 +409,7 @@ public class VC1Info {
     public int slices;
 }
 
-[CCode (cname="enum MOVEncryptionScheme",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="enum MOVEncryptionScheme",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public enum MOVEncryptionScheme {
     [CCode (cname="MOV_ENC_NONE")]
     NONE,
@@ -418,7 +418,7 @@ public enum MOVEncryptionScheme {
     CENC_AES_CTR;
 }
 
-[CCode (cname="enum MOVPrftBox",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="enum MOVPrftBox",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public enum MOVPrftBox {
     [CCode (cname="MOV_PRFT_NONE")]
     NONE,
@@ -433,7 +433,7 @@ public enum MOVPrftBox {
     NB;
 }
 
-[CCode (cname="struct MOVMuxContext",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="struct MOVMuxContext",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 [Compact]
 public class MOVMuxContext {
     [CCode (cname="")]
@@ -503,7 +503,7 @@ public class MOVMuxContext {
     public int ism_lookahead;
 
     [CCode (cname="")]
-    public AVIOContext mdat_buf;
+    public LibAVFormat.IOContext mdat_buf;
 
     [CCode (cname="")]
     public int first_trun;
@@ -579,7 +579,7 @@ public class MOVMuxContext {
 }
 
 [Flags]
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public enum MOVFlags {
     [CCode (cname="FF_MOV_FLAG_RTP_HINT")]
     RTP_HINT,
@@ -648,20 +648,20 @@ public enum MOVFlags {
     SKIP_SIDX;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public int ff_mov_write_packet (
     LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public int ff_mov_init_hinting (
     LibAVFormat.FormatContext format_context,
     int index,
     int src_index
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public int ff_mov_add_hinted_packet (
     LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet,
@@ -671,7 +671,7 @@ public int ff_mov_add_hinted_packet (
     int sample_size
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/movenc.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/movenc.h")]
 public void ff_mov_close_hinting (
     MOVTrack track
 );

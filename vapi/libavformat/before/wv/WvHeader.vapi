@@ -21,11 +21,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/wv.h")]
 public const size_t WV_HEADER_SIZE; // 32
 
 [Flags]
-[CCode (cprefix="WV_FLAG_",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+[CCode (cprefix="WV_FLAG_",cheader_filename="subprojects/ffmpeg/libavformat/wv.h")]
 public enum BlockFlags {
     INITIAL_BLOCK,
     FINAL_BLOCK;
@@ -34,10 +34,10 @@ public enum BlockFlags {
 /***********************************************************
 @brief Specs say that maximum block size is 1Mb
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/wv.h")]
 public const size_t WV_BLOCK_LIMIT;
 
-[CCode (cname="struct WvHeader",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+[CCode (cname="struct WvHeader",cheader_filename="subprojects/ffmpeg/libavformat/wv.h")]
 [Compact]
 public class WvHeader {
     /***********************************************************
@@ -90,7 +90,7 @@ public class WvHeader {
 
     @return 0 on success, a negative LibAVUtil.ErrorCode code on failure
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/wv.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/wv.h")]
     public int ff_wv_parse_header (
         WvHeader wv,
         uint8[] data

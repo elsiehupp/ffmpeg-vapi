@@ -22,15 +22,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_flac_write_header",cheader_filename="subprojects/ffmpeg/libformat/flacenc.h")]
+[CCode (cname="ff_flac_write_header",cheader_filename="subprojects/ffmpeg/libavformat/flacenc.h")]
 public int ff_flac_write_header (
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     uint8[] extradata,
     int extradata_size,
     int last_block
 );
 
-[CCode (cname="ff_flac_is_native_layout",cheader_filename="subprojects/ffmpeg/libformat/flacenc.h")]
+[CCode (cname="ff_flac_is_native_layout",cheader_filename="subprojects/ffmpeg/libavformat/flacenc.h")]
 public int ff_flac_is_native_layout (
     uint64 channel_layout
 );

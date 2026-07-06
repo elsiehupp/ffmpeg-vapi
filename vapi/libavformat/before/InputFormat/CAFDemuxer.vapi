@@ -85,7 +85,7 @@ public class CAFDemuxer : LibAVFormat.InputFormat {
     );
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 ff_codec_caf_tags,

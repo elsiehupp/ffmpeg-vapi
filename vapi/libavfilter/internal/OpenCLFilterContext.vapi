@@ -213,7 +213,7 @@ Find the work size needed needed for a given plane of an image.
 public int ff_opencl_filter_work_size_from_image (
     LibAVFilter.FilterContext? avctx,
     size_t? work_size,
-    AVFrame frame,
+    LibAVFormat.Frame frame,
     int plane,
     int block_alignment
 );
@@ -224,7 +224,7 @@ be included in an OpenCL program.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/opencl.h")]
 public void ff_opencl_print_const_matrix_3x3 (
-    AVBPrint? buf,
+    LibAVFormat.BPrintBuffer? buf,
     string name_str,
     double mat[3][3]
 );

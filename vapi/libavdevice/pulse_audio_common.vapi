@@ -22,7 +22,7 @@ namespace LibAVDevice {
 
 [CCode (cname="ff_codec_id_to_pulse_format",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]
 public pa_sample_format_t ff_codec_id_to_pulse_format (
-    AVCodecID codec_id
+    LibAVCodec.CodecID codec_id
 );
 
 [CCode (cname="ff_pulse_audio_get_devices",cheader_filename="subprojects/ffmpeg/libavdevice/pulse_audio_common.h")]

@@ -94,16 +94,16 @@ public class SDLMotionJpegMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/smjpegenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER | LibAVFormat.FormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 
     }
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 ff_codec_smjpeg_video_tags,

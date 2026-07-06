@@ -27,7 +27,7 @@ public class AVIOContextClass : LibAVUtil.Log.Class {
     [CCode (cname="class_name",cheader_filename="subprojects/ffmpeg/libavformat/aviobuf.c")]
     public override string class_name {
         public get {
-            return "AVIOContext";
+            return "LibAVFormat.IOContext";
 
         }
 
@@ -59,7 +59,7 @@ public class AVIOContextClass : LibAVUtil.Log.Class {
                     name = "protocol_whitelist",
                     short_help_text = "List of protocols that are allowed to be used",
                     offset = offsetof (
-                        AVIOContext,
+                        LibAVFormat.IOContext,
                         protocol_whitelist
                     ),
                     default_value = "",

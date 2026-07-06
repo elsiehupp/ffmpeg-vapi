@@ -26,7 +26,7 @@ namespace LibAVFormat {
 /***********************************************************
 @brief TYhese statistics are used for rtcp receiver reports...
 ***********************************************************/
-[CCode (cname="struct RTPStatistics",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="struct RTPStatistics",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 [Compact]
 public class RTPStatistics {
     /***********************************************************

@@ -106,9 +106,9 @@ public class OggDemuxer : LibAVFormat.InputFormat {
     }
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/oggdec.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.USE_GENERIC_INDEX | AVFormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES | AVFormatFlags1.NO_BINARY_SEARCH;
+            return LibAVFormat.FormatFlags1.USE_GENERIC_INDEX | LibAVFormat.FormatFlags1.ALLOWS_TIMESTAMP_DISCONTINUITIES | LibAVFormat.FormatFlags1.NO_BINARY_SEARCH;
 
         }
 

@@ -81,9 +81,9 @@ public class SUPMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/supenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.ALLOWS_VARIABLE_FPS | LibAVFormat.FormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS;
 
         }
 

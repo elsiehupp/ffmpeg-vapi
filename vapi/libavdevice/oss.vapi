@@ -42,7 +42,7 @@ public class OSSAudioData {
     public int frame_size;
 
     [CCode (cname="")]
-    public AVCodecID codec_id;
+    public LibAVCodec.CodecID codec_id;
 
     [CCode (cname="")]
     public uint flip_left : 1;

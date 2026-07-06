@@ -256,7 +256,7 @@ public class FileURLProtocol : URLProtocol {
     [CCode (cname="file_read_dir",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]
     public override int url_read_dir (
         URLContext url_context,
-        out AVIODirEntry next
+        out LibAVFormat.IODirEntry next
     );
 
     [CCode (cname="file_close_dir",cheader_filename="subprojects/ffmpeg/libavformat/file.c")]

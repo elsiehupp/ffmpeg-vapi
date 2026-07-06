@@ -22,8 +22,8 @@ namespace LibAVFilter {
 /***********************************************************
 A filterchain is a list of filter specifications.
 
-Created as a child of LibAVFilter.FilterGraphSegment by avfilter_graph_segment_parse().
-Freed in avfilter_graph_segment_free().
+Created as a child of LibAVFilter.FilterGraphSegment by avfilter_graph_segment_parse ().
+Freed in avfilter_graph_segment_free ().
 ***********************************************************/
 [CCode (cname="struct AVFilterChain",cheader_filename="subprojects/ffmpeg/libavfilter/avfilter.h")]
 [Compact]

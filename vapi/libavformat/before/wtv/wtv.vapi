@@ -22,16 +22,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="WTV_SECTOR_BITS",cheader_filename="subprojects/ffmpeg/libformat/wtv.h")]
+[CCode (cname="WTV_SECTOR_BITS",cheader_filename="subprojects/ffmpeg/libavformat/wtv.h")]
 public const size_t WTV_SECTOR_BITS; // 12
 
-[CCode (cname="WTV_SECTOR_SIZE",cheader_filename="subprojects/ffmpeg/libformat/wtv.h")]
+[CCode (cname="WTV_SECTOR_SIZE",cheader_filename="subprojects/ffmpeg/libavformat/wtv.h")]
 public const size_t WTV_SECTOR_SIZE; // (1 << WTV_SECTOR_BITS)
 
-[CCode (cname="WTV_BIGSECTOR_BITS",cheader_filename="subprojects/ffmpeg/libformat/wtv.h")]
+[CCode (cname="WTV_BIGSECTOR_BITS",cheader_filename="subprojects/ffmpeg/libavformat/wtv.h")]
 public const size_t WTV_BIGSECTOR_BITS; // 18
 
-[CCode (cname="WTV_PAD8",cheader_filename="subprojects/ffmpeg/libformat/wtv.h")]
+[CCode (cname="WTV_PAD8",cheader_filename="subprojects/ffmpeg/libavformat/wtv.h")]
 public size_t WTV_PAD8 (
     size_t x
 ); // (((x) + 7) & ~7)

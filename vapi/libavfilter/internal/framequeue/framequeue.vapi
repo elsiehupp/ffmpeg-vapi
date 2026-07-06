@@ -21,7 +21,7 @@ along with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 namespace LibAVFilter {
 
 /***********************************************************
-FFFrameQueue: simple AVFrame queue API
+FFFrameQueue: simple LibAVFormat.Frame queue API
 
 Note: this API is not thread-safe. Concurrent access to the same queue
 must be protected by a mutex or any synchronization mechanism.
@@ -31,7 +31,7 @@ must be protected by a mutex or any synchronization mechanism.
 [Compact]
 public class FFFrameBucket {
     [CCode (cname="")]
-    public AVFrame? frame;
+    public LibAVFormat.Frame? frame;
 }
 
 /***********************************************************
@@ -52,7 +52,7 @@ public class FFFrameQueueGlobal {
 }
 
 /***********************************************************
-Queue of AVFrame pointers.
+Queue of LibAVFormat.Frame pointers.
 ***********************************************************/
 [CCode (cname="struct FFFrameQueue",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
 [Compact]
@@ -145,19 +145,19 @@ Add a frame.
 @return  >=0 or an AVERROR code.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framequeue.h")]
-public int ff_framequeue_add (FFFrameQueue? fq, AVFrame? frame);
+public int ff_framequeue_add (FFFrameQueue? fq, LibAVFormat.Frame? frame);
 
 /***********************************************************
 Take the first frame in the queue.
 Must not be used with empty queues.
 ***********************************************************/
-AVFrame? ff_framequeue_take (FFFrameQueue? fq);
+LibAVFormat.Frame? ff_framequeue_take (FFFrameQueue? fq);
 
 /***********************************************************
 Access a frame in the queue, without removing it.
 The first frame is numbered 0; the designated frame must exist.
 ***********************************************************/
-AVFrame? ff_framequeue_peek (FFFrameQueue? fq, size_t idx);
+LibAVFormat.Frame? ff_framequeue_peek (FFFrameQueue? fq, size_t idx);
 
 /***********************************************************
 Get the number of queued frames.

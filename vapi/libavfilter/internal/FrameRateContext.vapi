@@ -116,19 +116,19 @@ public class FrameRateContext {
     public int bitdepth;
 
     [CCode (cname="")]
-    public AVFrame work;
+    public LibAVFormat.Frame work;
 
     /***********************************************************
     last frame
     ***********************************************************/
     [CCode (cname="")]
-    public AVFrame f0;
+    public LibAVFormat.Frame f0;
 
     /***********************************************************
     current frame
     ***********************************************************/
     [CCode (cname="")]
-    public AVFrame f1;
+    public LibAVFormat.Frame f1;
 
     /***********************************************************
     last frame pts in dest_time_base

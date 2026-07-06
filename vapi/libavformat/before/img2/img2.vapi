@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="enum PatternType",cprefix="PT_",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+[CCode (cname="enum PatternType",cprefix="PT_",cheader_filename="subprojects/ffmpeg/libavformat/img2.h")]
 public enum PatternType {
     GLOB_SEQUENCE,
     GLOB,
@@ -31,7 +31,7 @@ public enum PatternType {
     DEFAULT;
 }
 
-[CCode (cname="struct VideoDemuxData",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+[CCode (cname="struct VideoDemuxData",cheader_filename="subprojects/ffmpeg/libavformat/img2.h")]
 [Compact]
 public class VideoDemuxData {
     /***********************************************************
@@ -121,7 +121,7 @@ public class VideoDemuxData {
     public int ts_from_file;
 }
 
-[CCode (cname="struct IdStrMap",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+[CCode (cname="struct IdStrMap",cheader_filename="subprojects/ffmpeg/libavformat/img2.h")]
 [Compact]
 public class IdStrMap {
     [CCode (cname="")]
@@ -135,12 +135,12 @@ public class IdStrMap {
 
 //  extern const LibAVUtil.Option ff_img_options[];
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/img2.h")]
 public int ff_img_read_header (
     LibAVFormat.FormatContext s1
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/img2.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/img2.h")]
 public int ff_img_read_packet (
     LibAVFormat.FormatContext s1,
     LibAVCodec.Packet packet

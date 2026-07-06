@@ -197,9 +197,9 @@ public class Image2Muxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS | AVFormatFlags1.NO_DIMENSIONS | AVFormatFlags1.NO_FILE;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS | LibAVFormat.FormatFlags1.NO_DIMENSIONS | LibAVFormat.FormatFlags1.NO_FILE;
 
         }
 
@@ -267,9 +267,9 @@ public class Image2PipeMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/img2enc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS | AVFormatFlags1.NO_DIMENSIONS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS | LibAVFormat.FormatFlags1.NO_DIMENSIONS;
 
         }
 

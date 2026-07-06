@@ -99,12 +99,12 @@ public void ff_fill_rgb2yuv_table (
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public double ff_determine_signal_peak (
-    AVFrame? in
+    LibAVFormat.Frame? in
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/colorspace.h")]
 public void ff_update_hdr_metadata (
-    AVFrame? in,
+    LibAVFormat.Frame? in,
     double peak
 );
 

@@ -1,5 +1,5 @@
 /***********************************************************
-copyright (c) 2006 Michael Niedermayer <michaelni@gmx.at>
+Copyright (c) 2006 Michael Niedermayer <michaelni@gmx.at>
 
 This file is part of FFmpeg.
 
@@ -37,34 +37,34 @@ common internal and external API header
 //  #endif /* HAVE_AV_CONFIG_H */
 
 //rounded division & shift
-#define RSHIFT(a,b) ((a) > 0 ? ((a) + ((1<<(b))>>1))>>(b) : ((a) + ((1<<(b))>>1)-1)>>(b))
+#define RSHIFT (a,b) ((a) > 0 ? ((a) + ((1<<(b))>>1))>>(b) : ((a) + ((1<<(b))>>1)-1)>>(b))
 /* assume b>0 */
-#define ROUNDED_DIV(a,b) (((a)>=0 ? (a) + ((b)>>1) : (a) - ((b)>>1))/(b))
+#define ROUNDED_DIV (a,b) (((a)>=0 ? (a) + ((b)>>1) : (a) - ((b)>>1))/(b))
 /* Fast a/(1<<b) rounded toward +inf. Assume a>=0 and b>=0 */
-#define AV_CEIL_RSHIFT(a,b) (!av_builtin_constant_p(b) ? -((-(a)) >> (b))
+#define AV_CEIL_RSHIFT (a,b) (!av_builtin_constant_p (b) ? -((-(a)) >> (b))
                                                        : ((a) + (1<<(b)) - 1) >> (b))
 /* Backwards compat. */
 #define FF_CEIL_RSHIFT AV_CEIL_RSHIFT
 
-#define FFUDIV(a,b) (((a)>0 ?(a):(a)-(b)+1) / (b))
-#define FFUMOD(a,b) ((a)-(b)*FFUDIV(a,b))
+#define FFUDIV (a,b) (((a)>0 ?(a):(a)-(b)+1) / (b))
+#define FFUMOD (a,b) ((a)-(b)*FFUDIV (a,b))
 
 /***********************************************************
 Absolute value, Note, INT_MIN / INT64_MIN result in undefined behavior as they
 are not representable as absolute values of their type. This is the same
-as with *abs()
-@see FFNABS()
+as with *abs ()
+@see FFNABS ()
 ***********************************************************/
-#define FFABS(a) ((a) >= 0 ? (a) : (-(a)))
-#define FFSIGN(a) ((a) > 0 ? 1 : -1)
+#define FFABS (a) ((a) >= 0 ? (a) : (-(a)))
+#define FFSIGN (a) ((a) > 0 ? 1 : -1)
 
 /***********************************************************
 Negative Absolute value.
 this works for all integers of all types.
 As with many macros, this evaluates its argument twice, it thus must not have
-a sideeffect, that is FFNABS(x++) has undefined behavior.
+a sideeffect, that is FFNABS (x++) has undefined behavior.
 ***********************************************************/
-#define FFNABS(a) ((a) <= 0 ? (a) : (-(a)))
+#define FFNABS (a) ((a) <= 0 ? (a) : (-(a)))
 
 /***********************************************************
 Unsigned Absolute value.
@@ -72,8 +72,8 @@ This takes the absolute value of a signed int and returns it as a uint.
 This also works with INT_MIN which would otherwise not be representable
 As with many macros, this evaluates its argument twice.
 ***********************************************************/
-#define FFABSU(a) ((a) <= 0 ? -(uint)(a) : (uint)(a))
-#define FFABS64U(a) ((a) <= 0 ? -(uint64)(a) : (uint64)(a))
+#define FFABSU (a) ((a) <= 0 ? -(uint)(a) : (uint)(a))
+#define FFABS64U (a) ((a) <= 0 ? -(uint64)(a) : (uint64)(a))
 
 /* misc math functions */
 
@@ -169,8 +169,8 @@ public static /*av_always_inline av_const*/ int av_clip_c (
     int amax
 );
 //  {
-//  #if defined(HAVE_AV_CONFIG_H) && defined(ASSERT_LEVEL) && ASSERT_LEVEL >= 2
-//      if (amin > amax) abort();
+//  #if defined (HAVE_AV_CONFIG_H) && defined (ASSERT_LEVEL) && ASSERT_LEVEL >= 2
+//      if (amin > amax) abort ();
 //  #endif
 //      if      (a < amin) return amin;
 //      else if (a > amax) return amax;
@@ -190,8 +190,8 @@ public static /*av_always_inline av_const*/ int64 av_clip64_c (
     int64 amax
 );
 //  {
-//  #if defined(HAVE_AV_CONFIG_H) && defined(ASSERT_LEVEL) && ASSERT_LEVEL >= 2
-//      if (amin > amax) abort();
+//  #if defined (HAVE_AV_CONFIG_H) && defined (ASSERT_LEVEL) && ASSERT_LEVEL >= 2
+//      if (amin > amax) abort ();
 //  #endif
 //      if      (a < amin) return amin;
 //      else if (a > amax) return amax;
@@ -259,7 +259,7 @@ public static /*av_always_inline av_const*/ int32 av_clipl_int32_c (
     int64 a
 );
 //  {
-//      if ((a+UINT64_C(0x80000000)) & ~UINT64_C(0xFFFFFFFF)) return (int32)((a>>63) ^ 0x7FFFFFFF);
+//      if ((a+UINT64_C (0x80000000)) & ~UINT64_C (0xFFFFFFFF)) return (int32)((a>>63) ^ 0x7FFFFFFF);
 //      else                                                  return (int32)a;
 //  }
 
@@ -306,8 +306,8 @@ public static /*av_always_inline av_const*/ uint av_zero_extend_c (
     uint p
 );
 //  {
-//  #if defined(HAVE_AV_CONFIG_H) && defined(ASSERT_LEVEL) && ASSERT_LEVEL >= 2
-//      if (p > 31) abort();
+//  #if defined (HAVE_AV_CONFIG_H) && defined (ASSERT_LEVEL) && ASSERT_LEVEL >= 2
+//      if (p > 31) abort ();
 //  #endif
 //      return a & ((1U << p) - 1);
 //  }
@@ -322,7 +322,7 @@ public static /*av_always_inline av_const*/ uint av_mod_uintp2_c (
     uint p
 );
 //  {
-//      return av_zero_extend_c(a, p);
+//      return av_zero_extend_c (a, p);
 //  }
 #endif
 
@@ -338,7 +338,7 @@ public static /*av_always_inline*/ int av_sat_add32_c (
     int b
 );
 //  {
-//      return av_clipl_int32((int64)a + b);
+//      return av_clipl_int32 ((int64)a + b);
 //  }
 
 /***********************************************************
@@ -346,14 +346,14 @@ Add a doubled value to another value with saturation at both stages.
 
 @param  a first value
 @param  b value doubled and added to a
-@return sum sat(a + sat(2*b)) with signed saturation
+@return sum sat (a + sat (2*b)) with signed saturation
 ***********************************************************/
 public static /*av_always_inline*/ int av_sat_dadd32_c (
     int a,
     int b
 );
 //  {
-//      return av_sat_add32(a, av_sat_add32(b, b));
+//      return av_sat_add32 (a, av_sat_add32 (b, b));
 //  }
 
 /***********************************************************
@@ -368,7 +368,7 @@ public static /*av_always_inline*/ int av_sat_sub32_c (
     int b
 );
 //  {
-//      return av_clipl_int32((int64)a - b);
+//      return av_clipl_int32 ((int64)a - b);
 //  }
 
 /***********************************************************
@@ -376,14 +376,14 @@ Subtract a doubled value from another value with saturation at both stages.
 
 @param  a first value
 @param  b value doubled and subtracted from a
-@return difference sat(a - sat(2*b)) with signed saturation
+@return difference sat (a - sat (2*b)) with signed saturation
 ***********************************************************/
 public static /*av_always_inline*/ int av_sat_dsub32_c (
     int a,
     int b
 );
 //  {
-//      return av_sat_sub32(a, av_sat_add32(b, b));
+//      return av_sat_sub32 (a, av_sat_add32 (b, b));
 //  }
 
 /***********************************************************
@@ -398,9 +398,9 @@ public static /*av_always_inline*/ int64 av_sat_add64_c (
     int64 b
 );
 //  {
-//  #if (!defined(__INTEL_COMPILER) && AV_GCC_VERSION_AT_LEAST(5,1)) || AV_HAS_BUILTIN(__builtin_add_overflow)
+//  #if (!defined (__INTEL_COMPILER) && AV_GCC_VERSION_AT_LEAST (5,1)) || AV_HAS_BUILTIN (__builtin_add_overflow)
 //      int64 tmp;
-//      return !__builtin_add_overflow(a, b, &tmp) ? tmp : (tmp < 0 ? INT64_MAX : INT64_MIN);
+//      return !__builtin_add_overflow (a, b, &tmp) ? tmp : (tmp < 0 ? INT64_MAX : INT64_MIN);
 //  #else
 //      int64 s = a+(uint64)b;
 //      if ((int64)(a^b | ~s^b) >= 0)
@@ -421,9 +421,9 @@ public static /*av_always_inline*/ int64 av_sat_sub64_c (
     int64 b
 );
 //  {
-//  #if (!defined(__INTEL_COMPILER) && AV_GCC_VERSION_AT_LEAST(5,1)) || AV_HAS_BUILTIN(__builtin_sub_overflow)
+//  #if (!defined (__INTEL_COMPILER) && AV_GCC_VERSION_AT_LEAST (5,1)) || AV_HAS_BUILTIN (__builtin_sub_overflow)
 //      int64 tmp;
-//      return !__builtin_sub_overflow(a, b, &tmp) ? tmp : (tmp < 0 ? INT64_MAX : INT64_MIN);
+//      return !__builtin_sub_overflow (a, b, &tmp) ? tmp : (tmp < 0 ? INT64_MAX : INT64_MIN);
 //  #else
 //      if (b <= 0 && a >= INT64_MAX + b)
 //          return INT64_MAX;
@@ -448,10 +448,10 @@ public static /*av_always_inline av_const*/ float av_clipf_c (
     float amax
 );
 //  {
-//  #if defined(HAVE_AV_CONFIG_H) && defined(ASSERT_LEVEL) && ASSERT_LEVEL >= 2
-//      if (amin > amax) abort();
+//  #if defined (HAVE_AV_CONFIG_H) && defined (ASSERT_LEVEL) && ASSERT_LEVEL >= 2
+//      if (amin > amax) abort ();
 //  #endif
-//      return FFMIN(FFMAX(a, amin), amax);
+//      return FFMIN (FFMAX (a, amin), amax);
 //  }
 
 /***********************************************************
@@ -469,21 +469,21 @@ public static /*av_always_inline av_const*/ double av_clipd_c (
     double amax
 );
 //  {
-//  #if defined(HAVE_AV_CONFIG_H) && defined(ASSERT_LEVEL) && ASSERT_LEVEL >= 2
-//      if (amin > amax) abort();
+//  #if defined (HAVE_AV_CONFIG_H) && defined (ASSERT_LEVEL) && ASSERT_LEVEL >= 2
+//      if (amin > amax) abort ();
 //  #endif
-//      return FFMIN(FFMAX(a, amin), amax);
+//      return FFMIN (FFMAX (a, amin), amax);
 //  }
 
-/** Compute ceil(log2(x)).
-@param x value used to compute ceil(log2(x))
-@return computed ceiling of log2(x)
+/** Compute ceil (log2 (x)).
+@param x value used to compute ceil (log2 (x))
+@return computed ceiling of log2 (x)
 ***********************************************************/
 public static /*av_always_inline av_const*/ int av_ceil_log2_c (
     int x
 );
 //  {
-//      return av_log2((x - 1U) << 1);
+//      return av_log2 ((x - 1U) << 1);
 //  }
 
 /***********************************************************
@@ -511,14 +511,14 @@ public static /*av_always_inline av_const*/ int av_popcount64_c (
     uint64 x
 );
 //  {
-//      return av_popcount((uint32)x) + av_popcount((uint32)(x >> 32));
+//      return av_popcount ((uint32)x) + av_popcount ((uint32)(x >> 32));
 //  }
 
 public static /*av_always_inline av_const*/ int av_parity_c (
     uint32 v
 );
 //  {
-//      return av_popcount(v) & 1;
+//      return av_popcount (v) & 1;
 //  }
 
 /***********************************************************
@@ -539,7 +539,7 @@ could interact with the internal while loop, and should force an
 exit from the macro code (e.g. through a goto or a return) in order
 to prevent undefined results.
 ***********************************************************/
-//  public #define GET_UTF8(val, GET_BYTE, ERROR)
+//  public #define GET_UTF8 (val, GET_BYTE, ERROR)
 //      val= (uint8)(GET_BYTE);
 //      {
 //          uint32 top = (val & 128) >> 1;
@@ -547,7 +547,7 @@ to prevent undefined results.
 //              {ERROR}
 //          while (val & top) {
 //              uint tmp = (uint8)(GET_BYTE) - 128;
-//              if(tmp>>6)
+//              if (tmp>>6)
 //                  {ERROR}
 //              val= (val<<6) + tmp;
 //              top <<= 5;
@@ -564,7 +564,7 @@ Convert a UTF-16 character (2 or 4 bytes) to its 32-bit UCS-4 encoded form.
 @param ERROR     Expression to be evaluated on invalid input,
                  typically a goto statement.
 ***********************************************************/
-//  public #define GET_UTF16(val, GET_16BIT, ERROR)
+//  public #define GET_UTF16 (val, GET_16BIT, ERROR)
 //      val = (uint16)(GET_16BIT);
 //      {
 //          uint hi = val - 0xD800;
@@ -577,7 +577,7 @@ Convert a UTF-16 character (2 or 4 bytes) to its 32-bit UCS-4 encoded form.
 //      }
 
 /***********************************************************
-@def PUT_UTF8(val, tmp, PUT_BYTE)
+@def PUT_UTF8 (val, tmp, PUT_BYTE)
 Convert a 32-bit Unicode character to its UTF-8 encoded form (up to 4 bytes long).
 @param val is an input-only argument and should be of type uint32. It holds
 a UCS-4 encoded Unicode character that is to be converted to UTF-8. If
@@ -592,7 +592,7 @@ executed up to 4 times for values in the valid UTF-8 range and up to
 7 times in the general case, depending on the length of the converted
 Unicode character.
 ***********************************************************/
-//  public #define PUT_UTF8(val, tmp, PUT_BYTE)
+//  public #define PUT_UTF8 (val, tmp, PUT_BYTE)
 //      {
 //          int bytes, shift;
 //          uint32 in = val;
@@ -600,7 +600,7 @@ Unicode character.
 //              tmp = in;
 //              PUT_BYTE
 //          } else {
-//              bytes = (av_log2(in) + 4) / 5;
+//              bytes = (av_log2 (in) + 4) / 5;
 //              shift = (bytes - 1) * 6;
 //              tmp = (256 - (256 >> bytes)) | (in >> shift);
 //              PUT_BYTE
@@ -613,7 +613,7 @@ Unicode character.
 //      }
 
 /***********************************************************
-@def PUT_UTF16(val, tmp, PUT_16BIT)
+@def PUT_UTF16 (val, tmp, PUT_16BIT)
 Convert a 32-bit Unicode character to its UTF-16 encoded form (2 or 4 bytes).
 @param val is an input-only argument and should be of type uint32. It holds
 a UCS-4 encoded Unicode character that is to be converted to UTF-16. If
@@ -626,7 +626,7 @@ in desired endianness. It could be a function or a statement, and uses tmp
 as the input byte.  For example, PUT_BYTE could be "*output++ = tmp;"
 PUT_BYTE will be executed 1 or 2 times depending on input character.
 ***********************************************************/
-//  public #define PUT_UTF16(val, tmp, PUT_16BIT)
+//  public #define PUT_UTF16 (val, tmp, PUT_16BIT)
 //      {
 //          uint32 in = val;
 //          if (in < 0x10000) {

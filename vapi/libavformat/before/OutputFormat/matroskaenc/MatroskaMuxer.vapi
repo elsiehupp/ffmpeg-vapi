@@ -22,96 +22,96 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-static const AVCodecTag additional_audio_tags[] = {
-    new AVCodecTag () {
+static const LibAVFormat.CodecTag additional_audio_tags[] = {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.ALAC,
         tag = 0XFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.MLP,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.OPUS,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S16BE,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S24BE,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.PCM_S32BE,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.QDMC,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.QDM2,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.RA_144,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.RA_288,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.COOK,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.TRUEHD,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.NONE,
         tag = 0xFFFFFFFF
     }
 
 };
 
-static const AVCodecTag additional_video_tags[] = {
-    new AVCodecTag () {
+static const LibAVFormat.CodecTag additional_video_tags[] = {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.RV10,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.RV20,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.RV30,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.NONE,
         tag = 0xFFFFFFFF
     }
 
 };
 
-static const AVCodecTag additional_subtitle_tags[] = {
-    new AVCodecTag () {
+static const LibAVFormat.CodecTag additional_subtitle_tags[] = {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.DVB_SUBTITLE,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.DVD_SUBTITLE,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.HDMV_PGS_SUBTITLE,
         tag = 0xFFFFFFFF
     },
-    new AVCodecTag () {
+    new LibAVFormat.CodecTag () {
         codec_id = LibAVCodec.CodecID.NONE,
         tag = 0xFFFFFFFF
     }
@@ -351,16 +351,16 @@ public class MatroskaMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
+            return LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER | LibAVFormat.FormatFlags1.ALLOWS_VARIABLE_FPS | LibAVFormat.FormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | LibAVFormat.FormatFlags1.ALLOWS_FLUSH;
 
         }
 
     }
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 ff_codec_bmp_tags,
@@ -540,9 +540,9 @@ public class WebMMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOWS_VARIABLE_FPS | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
+            return LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER | LibAVFormat.FormatFlags1.ALLOWS_VARIABLE_FPS | LibAVFormat.FormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | LibAVFormat.FormatFlags1.ALLOWS_FLUSH;
 
         }
 
@@ -678,16 +678,16 @@ public class MatroskaAudioMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/matroskaenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.WANTS_GLOBAL_HEADER | AVFormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | AVFormatFlags1.ALLOWS_FLUSH;
+            return LibAVFormat.FormatFlags1.WANTS_GLOBAL_HEADER | LibAVFormat.FormatFlags1.ALLOW_NON_STRICT_TIMESTAMPS | LibAVFormat.FormatFlags1.ALLOWS_FLUSH;
 
         }
 
     }
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 ff_codec_wav_tags,

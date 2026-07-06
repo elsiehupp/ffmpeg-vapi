@@ -1,0 +1,5 @@
+[wrap-file]
+directory = qsv_decode
+
+[provide]
+program_names = qsv_decode

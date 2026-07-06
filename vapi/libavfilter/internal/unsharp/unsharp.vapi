@@ -135,8 +135,8 @@ public class UnsharpContext {
 
     public delegate int ApplyUnsharpDeleegate (
         LibAVFilter.FilterContext? av_filter_context,
-        AVFrame? in,
-        AVFrame? out
+        LibAVFormat.Frame? in,
+        LibAVFormat.Frame? out
     );
 
     [CCode (cname="apply_unsharp")]

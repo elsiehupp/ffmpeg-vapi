@@ -83,7 +83,7 @@ public class WebVTTDemuxerClass : LibAVUtil.Log.Class {
                     name = "captions",
                     short_help_text = "WebVTT captions kind",
                     offset = 0,
-                    default_value = AVDispositionFlags.CAPTIONS,
+                    default_value = LibAVFormat.DispositionFlags.CAPTIONS,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = (
@@ -96,7 +96,7 @@ public class WebVTTDemuxerClass : LibAVUtil.Log.Class {
                     name = "descriptions",
                     short_help_text = "WebVTT descriptions kind",
                     offset = 0,
-                    default_value = AVDispositionFlags.DESCRIPTIONS,
+                    default_value = LibAVFormat.DispositionFlags.DESCRIPTIONS,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = (
@@ -109,7 +109,7 @@ public class WebVTTDemuxerClass : LibAVUtil.Log.Class {
                     name = "metadata",
                     short_help_text = "WebVTT metadata kind",
                     offset = 0,
-                    default_value = AVDispositionFlags.METADATA,
+                    default_value = LibAVFormat.DispositionFlags.METADATA,
                     minimum_value = int.MIN,
                     maximum_value = int.MAX,
                     option_flags = (

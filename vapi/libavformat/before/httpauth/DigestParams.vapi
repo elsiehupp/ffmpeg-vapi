@@ -25,7 +25,7 @@ namespace LibAVFormat {
 /***********************************************************
 @brief Authentication types, ordered from weakest to strongest.
 ***********************************************************/
-[CCode (cname="enum HTTPAuthType",cprefix="HTTP_AUTH_",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+[CCode (cname="enum HTTPAuthType",cprefix="HTTP_AUTH_",cheader_filename="subprojects/ffmpeg/libavformat/httpauth.h")]
 public enum HTTPAuthType {
     /***********************************************************
     @brief No authentication specified
@@ -44,7 +44,7 @@ public enum HTTPAuthType {
     DIGEST;
 }
 
-[CCode (cname="struct DigestParams",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+[CCode (cname="struct DigestParams",cheader_filename="subprojects/ffmpeg/libavformat/httpauth.h")]
 [Compact]
 public class DigestParams {
     /***********************************************************
@@ -95,7 +95,7 @@ public class DigestParams {
 @brief HTTP Authentication state structure. Must be zero-initialized
 before used with the functions below.
 ***********************************************************/
-[CCode (cname="struct HTTPAuthState",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+[CCode (cname="struct HTTPAuthState",cheader_filename="subprojects/ffmpeg/libavformat/httpauth.h")]
 [Compact]
 public class HTTPAuthState {
     /***********************************************************
@@ -123,14 +123,14 @@ public class HTTPAuthState {
     public int stale;
 }
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/httpauth.h")]
 public void ff_http_auth_handle_header (
     HTTPAuthState state,
     string key,
     string value
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/httpauth.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/httpauth.h")]
 public string ff_http_auth_create_response (
     HTTPAuthState state,
     string auth,

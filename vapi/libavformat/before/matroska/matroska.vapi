@@ -25,13 +25,13 @@ namespace LibAVFormat {
 /***********************************************************
 @brief EBML version supported
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const int EBML_VERSION;
 
 /***********************************************************
 @brief Top-level master-IDs
 ***********************************************************/
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum EBMLID {
     [CCode (cname="EBML_ID_HEADER")]
     HEADER,
@@ -75,7 +75,7 @@ public enum EBMLID {
 /***********************************************************
 @brief Matroska element IDs, max. 32 bits
 ***********************************************************/
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum MatroskaID {
     /***********************************************************
     @brief Toplevel segment
@@ -672,7 +672,7 @@ public enum MatroskaID {
     CHAPTER_PHYS_EQUIV;
 }
 
-[CCode (cname="enum MatroskaTrackType",cprefix="MATROSKA_TRACK_TYPE_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaTrackType",cprefix="MATROSKA_TRACK_TYPE_",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum MatroskaTrackType {
     NONE,
     VIDEO,
@@ -684,7 +684,7 @@ public enum MatroskaTrackType {
     METADATA;
 }
 
-[CCode (cname="enum MatroskaTrackEncodingCompAlgo",cprefix="MATROSKA_TRACK_ENCODING_COMP_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaTrackEncodingCompAlgo",cprefix="MATROSKA_TRACK_ENCODING_COMP_",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum MatroskaTrackEncodingCompAlgorithm {
     [CCode (cname="")]
     ZLIB,
@@ -699,14 +699,14 @@ public enum MatroskaTrackEncodingCompAlgorithm {
     HEADER_STRIP;
 }
 
-[CCode (cname="enum MatroskaVideoInterlaceFlag",cprefix="MATROSKA_VIDEO_INTERLACE_FLAG_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaVideoInterlaceFlag",cprefix="MATROSKA_VIDEO_INTERLACE_FLAG_",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum MatroskaVideoInterlaceFlag {
     UNDETERMINED,
     INTERLACED,
     PROGRESSIVE;
 }
 
-[CCode (cname="enum MatroskaVideoFieldOrder",cprefix="MATROSKA_VIDEO_FIELDORDER_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaVideoFieldOrder",cprefix="MATROSKA_VIDEO_FIELDORDER_",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum MatroskaVideoFieldOrder {
     PROGRESSIVE,
     UNDETERMINED,
@@ -716,7 +716,7 @@ public enum MatroskaVideoFieldOrder {
     BT;
 }
 
-[CCode (cname="enum MatroskaVideoStereoModeType",cprefix="MATROSKA_VIDEO_STEREOMODE_TYPE_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaVideoStereoModeType",cprefix="MATROSKA_VIDEO_STEREOMODE_TYPE_",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum MatroskaVideoStereoModeType {
     MONO,
     LEFT_RIGHT,
@@ -755,7 +755,7 @@ public enum MatroskaVideoStereoModeType {
     NB;
 }
 
-[CCode (cname="enum MatroskaVideoDisplayUnit",cprefix="MATROSKA_VIDEO_DISPLAYUNIT_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaVideoDisplayUnit",cprefix="MATROSKA_VIDEO_DISPLAYUNIT_",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum MatroskaVideoDisplayUnit {
     [CCode (cname="")]
     PIXELS,
@@ -773,7 +773,7 @@ public enum MatroskaVideoDisplayUnit {
     UNKNOWN;
 }
 
-[CCode (cname="enum MatroskaColourChromaSitingHorz",cprefix="MATROSKA_COLOUR_CHROMASITINGHORZ_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaColourChromaSitingHorz",cprefix="MATROSKA_COLOUR_CHROMASITINGHORZ_",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum MatroskaColourChromaSitingHorz {
     [CCode (cname="")]
     UNDETERMINED,
@@ -788,7 +788,7 @@ public enum MatroskaColourChromaSitingHorz {
     NB;
 }
 
-[CCode (cname="enum MatroskaColourChromaSitingVert",cprefix="MATROSKA_COLOUR_CHROMASITINGVERT_",header_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaColourChromaSitingVert",cprefix="MATROSKA_COLOUR_CHROMASITINGVERT_",header_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum MatroskaColourChromaSitingVert {
     [CCode (cname="")]
     UNDETERMINED,
@@ -803,7 +803,7 @@ public enum MatroskaColourChromaSitingVert {
     NB;
 }
 
-[CCode (cname="enum MatroskaVideoProjectionType",cprefix="MATROSKA_VIDEO_PROJECTION_TYPE_",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="enum MatroskaVideoProjectionType",cprefix="MATROSKA_VIDEO_PROJECTION_TYPE_",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public enum MatroskaVideoProjectionType {
     [CCode (cname="")]
     RECTANGULAR,
@@ -822,7 +822,7 @@ public enum MatroskaVideoProjectionType {
 @brief Matroska Codec IDs, strings
 ***********************************************************/
 
-[CCode (cname="struct CodecTags",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="struct CodecTags",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 [Compact]
 public class CodecTags {
     [CCode (cname="")]
@@ -835,10 +835,10 @@ public class CodecTags {
 /***********************************************************
 @brief Max. depth in the EBML tree structure
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const int EBML_MAX_DEPTH;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const int MATROSKA_VIDEO_STEREO_PLANE_COUNT;
 
 //  extern const CodecTags ff_mkv_codec_tags[];
@@ -852,37 +852,37 @@ public const int MATROSKA_VIDEO_STEREO_PLANE_COUNT;
 /***********************************************************
 @brief LibAVFormat.Stream Metadata tag keys for WebM Dash Manifest
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const string INITIALIZATION_RANGE; // "webm_dash_manifest_initialization_range"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const string CUES_START; // "webm_dash_manifest_cues_start"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const string CUES_END; // "webm_dash_manifest_cues_end"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const string FILENAME; // "webm_dash_manifest_file_name"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const string BANDWIDTH; // "webm_dash_manifest_bandwidth"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const string DURATION; // "webm_dash_manifest_duration"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const string CLUSTER_KEYFRAME; // "webm_dash_manifest_cluster_keyframe"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const string CUE_TIMESTAMPS; // "webm_dash_manifest_cue_timestamps"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const string TRACK_NUMBER; // "webm_dash_manifest_track_number"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public const string CODEC_PRIVATE_SIZE; // "webm_dash_manifest_codec_priv_size"
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/matroska.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/matroska.h")]
 public int ff_mkv_stereo3d_conv (
     LibAVFormat.Stream st,
     MatroskaVideoStereoModeType stereo_mode

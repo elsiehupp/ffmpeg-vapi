@@ -46,7 +46,7 @@ public static const LibAVUtil.SampleFormat ff_planar_sample_fmts_array[];
 default handler for get_audio_buffer () for audio inputs
 ***********************************************************/
 [CCode (cname="ff_default_get_audio_buffer",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
-public AVFrame? ff_default_get_audio_buffer (
+public LibAVFormat.Frame? ff_default_get_audio_buffer (
     LibAVFilter.FilterLink? link,
     int nb_samples
 );
@@ -55,7 +55,7 @@ public AVFrame? ff_default_get_audio_buffer (
 get_audio_buffer () handler for filters which simply pass audio along
 ***********************************************************/
 [CCode (cname="ff_null_get_audio_buffer",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
-public AVFrame? ff_null_get_audio_buffer (
+public LibAVFormat.Frame? ff_null_get_audio_buffer (
     LibAVFilter.FilterLink? link,
     int nb_samples
 );
@@ -70,7 +70,7 @@ Request an audio samples buffer with a specific set of permissions.
                       avfilter_unref_buffer when you are finished with it.
 ***********************************************************/
 [CCode (cname="ff_get_audio_buffer",cheader_filename="subprojects/ffmpeg/libavfilter/audio.h")]
-public AVFrame? ff_get_audio_buffer (
+public LibAVFormat.Frame? ff_get_audio_buffer (
     LibAVFilter.FilterLink? link,
     int nb_samples
 );

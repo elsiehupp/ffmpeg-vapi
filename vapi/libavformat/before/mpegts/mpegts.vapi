@@ -22,28 +22,28 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public const size_t TS_FEC_PACKET_SIZE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public const size_t TS_DVHS_PACKET_SIZE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public const size_t TS_PACKET_SIZE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public const size_t TS_MAX_PACKET_SIZE;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public const size_t NB_PID_MAX;
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public const size_t MAX_SECTION_SIZE;
 
 /***********************************************************
 @brief Pids
 ***********************************************************/
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public enum MpegTransportStreamPID {
     [CCode (cname="PAT_PID")]
     PAT,
@@ -55,7 +55,7 @@ public enum MpegTransportStreamPID {
 /***********************************************************
 @brief Table ids
 ***********************************************************/
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public enum MpegTransportStreamTableID {
     [CCode (cname="PAT_TID")]
     PAT,
@@ -70,7 +70,7 @@ public enum MpegTransportStreamTableID {
     SDT;
 }
 
-[CCode (cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public enum MpegTransportStreamType {
     [CCode (cname="STREAM_TYPE_VIDEO_MPEG1")]
     VIDEO_MPEG1,
@@ -130,15 +130,15 @@ public enum MpegTransportStreamType {
     AUDIO_EAC3;
 }
 
-[CCode (cname="struct MpegTSContext",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="struct MpegTSContext",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 [Compact]
 public class MpegTSContext {
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
     public MpegTSContext avpriv_mpegts_parse_open (
         LibAVFormat.FormatContext format_context
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
     public int avpriv_mpegts_parse_packet (
         MpegTSContext ts,
         LibAVCodec.Packet packet,
@@ -146,14 +146,14 @@ public class MpegTSContext {
         int len
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
     public void avpriv_mpegts_parse_close (
         MpegTSContext ts
     );
 
 }
 
-[CCode (cname="struct SLConfigDescr",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="struct SLConfigDescr",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 [Compact]
 public class SLConfigDescr {
     [CCode (cname="")]
@@ -199,7 +199,7 @@ public class SLConfigDescr {
     public int packet_seq_num_len;
 }
 
-[CCode (cname="struct Mp4Descr",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="struct Mp4Descr",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 [Compact]
 public class Mp4Descr {
     [CCode (cname="")]
@@ -224,7 +224,7 @@ public class Mp4Descr {
 @param desc_list_end End of buffer
 @return <0 to stop processing
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public int ff_parse_mpeg2_descriptor (
     LibAVFormat.FormatContext fc,
     LibAVFormat.Stream st,
@@ -241,7 +241,7 @@ public int ff_parse_mpeg2_descriptor (
 @brief Check presence of H264 startcode
 @return <0 to stop processing
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mpegts.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mpegts.h")]
 public int ff_check_h264_startcode (
     LibAVFormat.FormatContext format_context,
     LibAVFormat.Stream st,

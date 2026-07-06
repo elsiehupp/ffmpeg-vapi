@@ -89,13 +89,13 @@ public class IDETContext {
     public uint8 history[HIST_SIZE];
 
     [CCode (cname="")]
-    public AVFrame cur;
+    public LibAVFormat.Frame cur;
 
     [CCode (cname="")]
-    public AVFrame next;
+    public LibAVFormat.Frame next;
 
     [CCode (cname="")]
-    public AVFrame prev;
+    public LibAVFormat.Frame prev;
 
     [CCode (cname="")]
     public FfIdetFilterDelegate filter_line;

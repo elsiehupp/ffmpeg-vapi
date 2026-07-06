@@ -124,8 +124,8 @@ public int ff_vaapi_vpp_config_output (
 public int ff_vaapi_vpp_init_params (
     LibAVFilter.FilterContext? avctx,
     VAProcPipelineParameterBuffer? params,
-    AVFrame input_frame,
-    AVFrame output_frame
+    LibAVFormat.Frame input_frame,
+    LibAVFormat.Frame output_frame
 );
 
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/vaapi_vpp.h")]
@@ -141,7 +141,7 @@ public int ff_vaapi_vpp_make_param_buffers (
 public int ff_vaapi_vpp_render_picture (
     LibAVFilter.FilterContext? avctx,
     VAProcPipelineParameterBuffer? params,
-    AVFrame output_frame
+    LibAVFormat.Frame output_frame
 );
 
 } // namespace LibAVFilter

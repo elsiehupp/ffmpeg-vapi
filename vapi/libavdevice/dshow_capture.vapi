@@ -856,7 +856,7 @@ public class dshow_ctx {
     public LibAVUtil.PixelFormat pixel_format;
 
     [CCode (cname="")]
-    public AVCodecID video_codec_id;
+    public LibAVCodec.CodecID video_codec_id;
 
     [CCode (cname="")]
     public string framerate;

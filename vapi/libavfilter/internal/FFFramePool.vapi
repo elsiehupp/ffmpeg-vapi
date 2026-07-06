@@ -122,13 +122,13 @@ public int ff_frame_pool_get_audio_config (
 );
 
 /***********************************************************
-Allocate a new AVFrame, reussing old buffers from the pool when available.
+Allocate a new LibAVFormat.Frame, reussing old buffers from the pool when available.
 This function may be called simultaneously from multiple threads.
 
-@return a new AVFrame on success, NULL on error.
+@return a new LibAVFormat.Frame on success, NULL on error.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/framepool.h")]
-public AVFrame? ff_frame_pool_get (
+public LibAVFormat.Frame? ff_frame_pool_get (
     FFFramePool? pool
 );
 

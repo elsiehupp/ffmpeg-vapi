@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFilter {
 
 /***********************************************************
-FFBufQueue: simple AVFrame queue API
+FFBufQueue: simple LibAVFormat.Frame queue API
 
 Note: this API is not thread-safe. Concurrent access to the same queue
 must be protected by a mutex or any synchronization mechanism.
@@ -45,7 +45,7 @@ Structure holding the queue
 [Compact]
 public class FFBufQueue {
     [CCode (cname="")]
-    public AVFrame queue[FF_BUFQUEUE_SIZE];
+    public LibAVFormat.Frame queue[FF_BUFQUEUE_SIZE];
 
     [CCode (cname="")]
     public ushort head;
@@ -80,7 +80,7 @@ If the queue is already full, then the current last buffer is dropped
 public static inline void ff_bufqueue_add (
     void *log,
     FFBufQueue? queue,
-    AVFrame buf
+    LibAVFormat.Frame buf
 );
 //  {
 //      if (
@@ -99,7 +99,7 @@ Buffer with index 0 is the first buffer in the queue.
 Return NULL if the queue has not enough buffers.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bufferqueue.h")]
-public static inline AVFrame? ff_bufqueue_peek (
+public static inline LibAVFormat.Frame? ff_bufqueue_peek (
     FFBufQueue? queue,
     uint index
 );
@@ -113,12 +113,12 @@ Get the first buffer from the queue and remove it.
 Do not use on an empty queue.
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/bufferqueue.h")]
-public static inline AVFrame? ff_bufqueue_get (
+public static inline LibAVFormat.Frame? ff_bufqueue_get (
     FFBufQueue? queue
 );
 //  {
 //      [CCode (cname="")]
-//      public AVFrame ret = queue->queue[queue->head];
+//      public LibAVFormat.Frame ret = queue->queue[queue->head];
 //      av_assert0 (queue->available);
 //      queue->available--;
 //      queue->queue[queue->head] = NULL;
@@ -137,7 +137,7 @@ public static inline void ff_bufqueue_discard_all (
 //      while (
 //          queue->available
 //      ) {
-//          public AVFrame buf = ff_bufqueue_get (queue);
+//          public LibAVFormat.Frame buf = ff_bufqueue_get (queue);
 //          av_frame_free (&buf);
 //      }
 //  }

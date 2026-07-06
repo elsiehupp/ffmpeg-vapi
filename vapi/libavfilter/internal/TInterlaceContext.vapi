@@ -111,10 +111,10 @@ public class TInterlaceContext {
     public int vsub;
 
     [CCode (cname="")]
-    public AVFrame cur;
+    public LibAVFormat.Frame cur;
 
     [CCode (cname="")]
-    public AVFrame next;
+    public LibAVFormat.Frame next;
 
     /***********************************************************
     buffer used to fill padded lines

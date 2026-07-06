@@ -23,16 +23,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 namespace LibAVFormat {
 
 //  extern string const ff_rm_metadata[4];
-//  extern const AVCodecTag ff_rm_codec_tags[];
+//  extern const LibAVFormat.CodecTag ff_rm_codec_tags[];
 
-[CCode (cname="struct RMStream",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="struct RMStream",cheader_filename="subprojects/ffmpeg/libavformat/rm.h")]
 [Compact]
 public class RMStream { }
 
-[CCode (cname="ff_rm_alloc_rmstream",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="ff_rm_alloc_rmstream",cheader_filename="subprojects/ffmpeg/libavformat/rm.h")]
 public RMStream ff_rm_alloc_rmstream ();
 
-[CCode (cname="ff_rm_free_rmstream",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="ff_rm_free_rmstream",cheader_filename="subprojects/ffmpeg/libavformat/rm.h")]
 public void ff_rm_free_rmstream (
     RMStream rms
 );
@@ -46,7 +46,7 @@ public void ff_rm_free_rmstream (
 @brief Read the MDPR chunk, which contains stream-specific codec initialization
 parameters.
 
-@param format_context context containing RMContext and AVIOContext for stream reading
+@param format_context context containing RMContext and LibAVFormat.IOContext for stream reading
 @param pb context to read the data from
 @param st the stream that the MDPR chunk belongs to and where to store the
       parameters read from the chunk into
@@ -54,10 +54,10 @@ parameters.
 @param codec_data_size size of the MDPR chunk
 @return 0 on success, errno codes on error
 ***********************************************************/
-[CCode (cname="ff_rm_read_mdpr_codecdata",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="ff_rm_read_mdpr_codecdata",cheader_filename="subprojects/ffmpeg/libavformat/rm.h")]
 public int ff_rm_read_mdpr_codecdata (
     LibAVFormat.FormatContext format_context,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     LibAVFormat.Stream st,
     RMStream rst,
     uint codec_data_size,
@@ -67,7 +67,7 @@ public int ff_rm_read_mdpr_codecdata (
 /***********************************************************
 @brief Parse one rm-stream packet from the input bytestream.
 
-@param format_context context containing RMContext and AVIOContext for stream reading
+@param format_context context containing RMContext and LibAVFormat.IOContext for stream reading
 @param pb context to read the data from
 @param st stream to which the packet to be read belongs
 @param rst Real-specific stream information
@@ -81,10 +81,10 @@ public int ff_rm_read_mdpr_codecdata (
     value >0 means that no data was placed in packet, but that cached
     data is available by calling ff_rm_retrieve_cache ().
 ***********************************************************/
-[CCode (cname="ff_rm_parse_packet",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="ff_rm_parse_packet",cheader_filename="subprojects/ffmpeg/libavformat/rm.h")]
 public int ff_rm_parse_packet (
     LibAVFormat.FormatContext format_context,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     LibAVFormat.Stream st,
     RMStream rst,
     int len,
@@ -102,7 +102,7 @@ packet is parsed and returned. The result is that rm.audio_pkt_cnt is
 a positive number, the amount of cached packets. Using this function, each
 of those packets can be retrieved sequentially.
 
-@param format_context context containing RMContext and AVIOContext for stream reading
+@param format_context context containing RMContext and LibAVFormat.IOContext for stream reading
 @param pb context to read the data from
 @param st stream that this packet belongs to
 @param rst Real-specific stream information
@@ -110,10 +110,10 @@ of those packets can be retrieved sequentially.
 @return the number of samples left for subsequent calls to this same
      function, or 0 if all samples have been retrieved.
 ***********************************************************/
-[CCode (cname="ff_rm_retrieve_cache",cheader_filename="subprojects/ffmpeg/libformat/rm.h")]
+[CCode (cname="ff_rm_retrieve_cache",cheader_filename="subprojects/ffmpeg/libavformat/rm.h")]
 public int ff_rm_retrieve_cache (
     LibAVFormat.FormatContext format_context,
-    AVIOContext pb,
+    LibAVFormat.IOContext pb,
     LibAVFormat.Stream st,
     RMStream rst,
     LibAVCodec.Packet packet

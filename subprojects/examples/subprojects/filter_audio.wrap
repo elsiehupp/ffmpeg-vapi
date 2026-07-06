@@ -1,0 +1,5 @@
+[wrap-file]
+directory = filter_audio
+
+[provide]
+program_names = filter_audio

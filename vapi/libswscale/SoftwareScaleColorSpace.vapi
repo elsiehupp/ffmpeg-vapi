@@ -58,8 +58,8 @@ public enum LibSoftwareScale.SoftwareScaleColorSpace {
     @param colorspace One of the LibSoftwareScale.SoftwareScaleColorSpace.* macros. If invalid,
     LibSoftwareScale.SoftwareScaleColorSpace.DEFAULT is used.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
-    public int[] sws_getCoefficients (
+    [CCode (cname="sws_getCoefficients",cheader_filename="subprojects/ffmpeg/libswscale/swscale.h")]
+    public static int[] sws_getCoefficients (
         LibSoftwareScale.SoftwareScaleColorSpace colorspace
     );
 

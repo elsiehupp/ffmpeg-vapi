@@ -177,7 +177,7 @@ public class LibSMBClientURLProtocol : URLProtocol {
     [CCode (cname="libsmbc_read_dir",cheader_filename="subprojects/ffmpeg/libavformat/libsmbclient.c")]
     public override int url_read_dir (
         URLContext url_context,
-        out AVIODirEntry next
+        out LibAVFormat.IODirEntry next
     );
 
     [CCode (cname="libsmbc_close_dir",cheader_filename="subprojects/ffmpeg/libavformat/libsmbclient.c")]

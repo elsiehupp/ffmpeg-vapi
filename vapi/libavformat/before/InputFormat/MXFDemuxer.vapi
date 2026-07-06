@@ -128,9 +128,9 @@ public class MXFDemuxer : LibAVFormat.InputFormat {
     }
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/mfxdec.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.SEEK_TO_PTS;
+            return LibAVFormat.FormatFlags1.SEEK_TO_PTS;
 
         }
 

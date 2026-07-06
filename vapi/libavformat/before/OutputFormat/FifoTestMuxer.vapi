@@ -158,9 +158,9 @@ public class FifoTestMuxer : LibAVFormat.OutputFormat {
     //  .priv_class = failing_muxer_class,
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/fifo_test.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_FILE | AVFormatFlags1.ALLOWS_FLUSH;
+            return LibAVFormat.FormatFlags1.NO_FILE | LibAVFormat.FormatFlags1.ALLOWS_FLUSH;
 
         }
 

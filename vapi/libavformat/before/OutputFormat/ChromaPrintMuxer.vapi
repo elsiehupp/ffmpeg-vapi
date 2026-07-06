@@ -193,9 +193,9 @@ public class ChromaPrintMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/chromaprint.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 

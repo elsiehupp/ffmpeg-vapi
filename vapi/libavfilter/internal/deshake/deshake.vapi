@@ -117,7 +117,7 @@ public class DeshakeContext {
     Previous frame
     ***********************************************************/
     [CCode (cname="")]
-    public AVFrame ref;
+    public LibAVFormat.Frame ref;
 
     /***********************************************************
     Maximum horizontal shift
@@ -213,8 +213,8 @@ public class DeshakeContext {
         float[] matrix_uv,
         InterpolateMethod interpolate,
         FillMethod fill,
-        AVFrame? in,
-        AVFrame? out
+        LibAVFormat.Frame? in,
+        LibAVFormat.Frame? out
     );
 
     [CCode (cname="transform")]

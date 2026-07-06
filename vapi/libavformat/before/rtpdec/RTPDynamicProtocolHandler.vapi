@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct RTPDynamicProtocolHandler",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+[CCode (cname="struct RTPDynamicProtocolHandler",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
 public abstract class RTPDynamicProtocolHandler {
     [CCode (cname="")]
     public abstract string enc_name { public get; }
@@ -35,7 +35,7 @@ public abstract class RTPDynamicProtocolHandler {
     public abstract LibAVCodec.CodecID codec_id { public get; }
 
     [CCode (cname="")]
-    public abstract AVStreamParseType need_parsing { public get; }
+    public abstract LibAVFormat.StreamParseType need_parsing { public get; }
 
     /***********************************************************
     0 means no payload id is set. 0 is a valid
@@ -123,7 +123,7 @@ public abstract class RTPDynamicProtocolHandler {
     @return the next registered rtp dynamic protocol handler or NULL when the iteration is
             finished
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public RTPDynamicProtocolHandler ff_rtp_handler_iterate (
         out void *opaque
     );
@@ -134,7 +134,7 @@ public abstract class RTPDynamicProtocolHandler {
     @param name name of the requested rtp dynamic protocol handler
     @return A rtp dynamic protocol handler if one was found, NULL otherwise.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public RTPDynamicProtocolHandler ff_rtp_handler_find_by_name (
         string name,
         LibAVUtil.MediaType codec_type
@@ -146,7 +146,7 @@ public abstract class RTPDynamicProtocolHandler {
     @param id LibAVCodec.CodecID of the requested rtp dynamic protocol handler.
     @return A rtp dynamic protocol handler if one was found, NULL otherwise.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/rtpdec.h")]
+    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/rtpdec.h")]
     public RTPDynamicProtocolHandler ff_rtp_handler_find_by_id (
         int id,
         LibAVUtil.MediaType codec_type

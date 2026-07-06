@@ -1,0 +1,5 @@
+[wrap-file]
+directory = qsv_transcode
+
+[provide]
+program_names = qsv_transcode

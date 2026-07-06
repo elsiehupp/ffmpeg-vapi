@@ -22,11 +22,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="struct UID",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="struct UID",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 [Compact]
 public class UID { } // uint8[16]
 
-[CCode (cname="enum MXFMetadataSetType",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="enum MXFMetadataSetType",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 public enum MXFMetadataSetType {
     [CCode (cname="AnyType")]
     ANY,
@@ -92,7 +92,7 @@ public enum MXFMetadataSetType {
     AVC_SUB_DESCRIPTOR;
 }
 
-[CCode (cname="enum MXFFrameLayout",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="enum MXFFrameLayout",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 public enum MXFFrameLayout {
     [CCode (cname="FullFrame")]
     FULL_FRAME, // = 0,
@@ -110,7 +110,7 @@ public enum MXFFrameLayout {
     SEGMENTED_FRAME;
 }
 
-[CCode (cname="struct KLVPacket",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="struct KLVPacket",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 [Compact]
 public class KLVPacket {
     [CCode (cname="")]
@@ -126,7 +126,7 @@ public class KLVPacket {
     public int64 next_klv;
 }
 
-[CCode (cname="enum MXFWrappingIndicatorType",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="enum MXFWrappingIndicatorType",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 public enum MXFWrappingIndicatorType {
     [CCode (cname="NormalWrap")]
     NORMAL, // = 0,
@@ -141,7 +141,7 @@ public enum MXFWrappingIndicatorType {
     RAW_VIDEO;
 }
 
-[CCode (cname="struct MXFCodecUL",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="struct MXFCodecUL",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 [Compact]
 public class MXFCodecUL {
     [CCode (cname="")]
@@ -163,7 +163,7 @@ public class MXFCodecUL {
     public MXFWrappingIndicatorType wrapping_indicator_type;
 }
 
-[CCode (cname="struct MXFSamplesPerFrame",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="struct MXFSamplesPerFrame",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 [Compact]
 public class MXFSamplesPerFrame {
     [CCode (cname="")]
@@ -178,24 +178,24 @@ public class MXFSamplesPerFrame {
 //  extern const MXFCodecUL ff_mxf_pixel_format_uls[];
 //  extern const MXFCodecUL ff_mxf_codec_tag_uls[];
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 public int ff_mxf_decode_pixel_layout (
     char pixel_layout[16],
     LibAVUtil.PixelFormat pix_fmt
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 public MXFSamplesPerFrame ff_mxf_get_samples_per_frame (
     LibAVFormat.FormatContext format_context,
     LibAVUtil.Rational time_base
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 public int ff_mxf_get_content_package_rate (
     LibAVUtil.Rational time_base
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/mxf.h")]
+[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/mxf.h")]
 public const string PRIxUID;
 
 //  #define UID_ARG (x)

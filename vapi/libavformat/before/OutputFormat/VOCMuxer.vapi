@@ -108,7 +108,7 @@ public class VOCMuxer : LibAVFormat.OutputFormat {
     );
 
     [CCode (cname="codec_tag")]
-    public override AVCodecTag[] codec_tag_list {
+    public override LibAVFormat.CodecTag[] codec_tag_list {
         public get {
             return {
                 ff_voc_codec_tags,
@@ -120,9 +120,9 @@ public class VOCMuxer : LibAVFormat.OutputFormat {
     }
 
     [CCode (cname="flags",cheader_filename="subprojects/ffmpeg/libavformat/vocenc.c")]
-    public override AVFormatFlags1 flags {
+    public override LibAVFormat.FormatFlags1 flags {
         public get {
-            return AVFormatFlags1.NO_TIMESTAMPS;
+            return LibAVFormat.FormatFlags1.NO_TIMESTAMPS;
 
         }
 

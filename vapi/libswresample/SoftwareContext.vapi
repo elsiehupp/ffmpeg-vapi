@@ -1100,20 +1100,20 @@ public class LibSoftwareResample.SoftwareContext {
     /***********************************************************
     @}
 
-    @name AVFrame based API
+    @name LibAVFormat.Frame based API
     @{
     ***********************************************************/
 
     /***********************************************************
-    Convert the samples in the input AVFrame and write them to the output AVFrame.
+    Convert the samples in the input LibAVFormat.Frame and write them to the output LibAVFormat.Frame.
 
     Input and output AVFrames must have channel_layout, sample_rate and format set.
 
-    If the output AVFrame does not have the data pointers allocated the nb_samples
+    If the output LibAVFormat.Frame does not have the data pointers allocated the nb_samples
     field will be set using av_frame_get_buffer ()
     is called to allocate the frame.
 
-    The output AVFrame can be NULL or have fewer allocated samples than required.
+    The output LibAVFormat.Frame can be NULL or have fewer allocated samples than required.
     In this case, any remaining samples not written to the output will be added
     to an internal FIFO buffer, to be returned at the next call to this function
     or to swr_convert ().
@@ -1124,8 +1124,8 @@ public class LibSoftwareResample.SoftwareContext {
     swr_convert () with NULL input.
 
     If the LibSoftwareResample.SoftwareContext configuration does not match the output and
-    input AVFrame settings the conversion does not take place and depending on
-    which AVFrame is not matching LibAVUtil.ErrorCode.OUTPUT_CHANGED, LibAVUtil.ErrorCode.INPUT_CHANGED
+    input LibAVFormat.Frame settings the conversion does not take place and depending on
+    which LibAVFormat.Frame is not matching LibAVUtil.ErrorCode.OUTPUT_CHANGED, LibAVUtil.ErrorCode.INPUT_CHANGED
     or the result of a bitwise-OR of them is returned.
 
     @see swr_delay ()
@@ -1133,16 +1133,16 @@ public class LibSoftwareResample.SoftwareContext {
     @see swr_get_delay ()
 
     @param swr             audio resample context
-    @param output          output AVFrame
-    @param input           input AVFrame
+    @param output          output LibAVFormat.Frame
+    @param input           input LibAVFormat.Frame
     @return                0 on success, AVERROR on failure or nonmatching
                            configuration.
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
     public int swr_convert_frame (
         LibSoftwareResample.SoftwareContext? swr,
-        AVFrame output,
-        AVFrame? input
+        LibAVFormat.Frame output,
+        LibAVFormat.Frame? input
     );
 
     /***********************************************************
@@ -1155,15 +1155,15 @@ public class LibSoftwareResample.SoftwareContext {
     @see swr_close ();
 
     @param swr             audio resample context
-    @param output          output AVFrame
-    @param input           input AVFrame
+    @param output          output LibAVFormat.Frame
+    @param input           input LibAVFormat.Frame
     @return                0 on success, AVERROR on failure.
     ***********************************************************/
     [CCode (cname="",cheader_filename="subprojects/ffmpeg/libswresample/swresample.h")]
     public int swr_config_frame (
         LibSoftwareResample.SoftwareContext? swr,
-        AVFrame? out,
-        AVFrame? in
+        LibAVFormat.Frame? out,
+        LibAVFormat.Frame? in
     );
     /***********************************************************
     Version macros.

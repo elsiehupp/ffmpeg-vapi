@@ -1,0 +1,4 @@
+
+srcs += ([
+    './VAAPITranscodeApplication.vala'
+])

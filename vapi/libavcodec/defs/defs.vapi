@@ -43,7 +43,7 @@ public const size_t AV_INPUT_BUFFER_PADDING_SIZE; // 64
 @return number of bytes written to the buffer.
 ***********************************************************/
 [CCode (cname="av_xiphlacing",cheader_filename="subprojects/ffmpeg/libavcodec/defs.h")]
-public uint av_xiphlacing(
+public uint av_xiphlacing (
     uchar[] s,
     uint v
 );

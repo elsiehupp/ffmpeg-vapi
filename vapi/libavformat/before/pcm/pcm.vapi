@@ -22,13 +22,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 namespace LibAVFormat {
 
-[CCode (cname="ff_pcm_read_packet",cheader_filename="subprojects/ffmpeg/libformat/pdm.h")]
+[CCode (cname="ff_pcm_read_packet",cheader_filename="subprojects/ffmpeg/libavformat/pdm.h")]
 public int ff_pcm_read_packet (
     LibAVFormat.FormatContext format_context,
     LibAVCodec.Packet packet
 );
 
-[CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libformat/pdm.h")]
+[CCode (cname="ff_pcm_read_seek",cheader_filename="subprojects/ffmpeg/libavformat/pdm.h")]
 public int ff_pcm_read_seek (
     LibAVFormat.FormatContext format_context,
     int stream_index,

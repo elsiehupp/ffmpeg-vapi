@@ -1,0 +1,5 @@
+[wrap-file]
+directory = resample_audio
+
+[provide]
+program_names = resample_audio
