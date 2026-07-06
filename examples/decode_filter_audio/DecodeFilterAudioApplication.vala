@@ -224,8 +224,10 @@ private class DecodeFilterAudioApplication : GLib.Application {
 
         av_channel_layout_describe (
             &dec_ctx.ch_layout,
-            args + ret, sizeof (
-                args) - ret
+            args + ret,
+            sizeof (
+                args
+            ) - ret
         );
 
         ret = avfilter_graph_create_filter (
@@ -467,11 +469,13 @@ private class DecodeFilterAudioApplication : GLib.Application {
             p < p_end
         ) {
             fputc (
-            *p & 0xff, stdout
+                *p & 0xff,
+                stdout
             );
 
             fputc (
-                *p>>8 & 0xff, stdout
+                *p >> 8 & 0xff,
+                stdout
             );
 
             p++;
@@ -621,12 +625,14 @@ private class DecodeFilterAudioApplication : GLib.Application {
                         if (
                             av_buffersrc_add_frame_flags (
                                 buffersrc_ctx,
-                            frame, AV_BUFFERSRC_FLAG_KEEP_REF
+                                frame,
+                                AV_BUFFERSRC_FLAG_KEEP_REF
                             ) < 0
                         ) {
                             av_log (
                                 null,
-                            AV_LOG_ERROR, "Error while feeding the audio filtergraph\n"
+                                AV_LOG_ERROR,
+                                "Error while feeding the audio filtergraph\n"
                             );
 
                             break;

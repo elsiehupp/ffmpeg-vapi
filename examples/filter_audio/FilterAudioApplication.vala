@@ -166,7 +166,11 @@ private class FilterAudioApplication : GLib.Application {
         av_opt_set_q  (
             abuffer_ctx,
             "time_base",
-            new LibAVUtil.Rational () { numerator = 1, denominator = INPUT_SAMPLERATE }, AV_OPT_SEARCH_CHILDREN
+            new LibAVUtil.Rational () {
+                numerator = 1,
+                denominator = INPUT_SAMPLERATE
+            },
+            AV_OPT_SEARCH_CHILDREN
         );
 
         av_opt_set_int (
@@ -486,10 +490,13 @@ private class FilterAudioApplication : GLib.Application {
         );
 
         int plane_size = bps * frame.nb_samples * (
-            planar ? 1 : channels
+            planar
+            ? 1
+            : channels
         );
 
-        int i, j;
+        int i;
+        int j;
 
         for (
             i = 0;
@@ -510,7 +517,8 @@ private class FilterAudioApplication : GLib.Application {
 
             fprintf (
                 stdout,
-                "plane %d: 0x", i
+                "plane %d: 0x",
+                i
             );
 
             for (
@@ -554,7 +562,9 @@ private class FilterAudioApplication : GLib.Application {
         AVFrame? frame,
         int frame_num
     ) {
-        int err, i, j;
+        int err;
+        int i;
+        int j;
 
         /***********************************************************
         Set up the frame properties and allocate the buffer for the data.
@@ -621,7 +631,9 @@ private class FilterAudioApplication : GLib.Application {
         AVFilterContext? sink;
         AVFrame? frame;
         float duration;
-        int err, nb_frames, i;
+        int err;
+        int nb_frames;
+        int i;
 
         if (
             argc < 2

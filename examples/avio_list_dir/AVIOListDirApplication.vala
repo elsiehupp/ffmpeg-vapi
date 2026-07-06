@@ -93,8 +93,10 @@ private class AVIOListDirApplication : GLib.Application {
     ) {
         AVIODirEntry? entry = null;
         AVIODirContext? ctx = null;
-        int cnt, ret;
-        char filemode[4], uid_and_gid[20];
+        int cnt;
+        int ret;
+        char filemode[4];
+        char uid_and_gid[20];
 
         ret = avio_open_dir (
             &ctx,
@@ -171,7 +173,8 @@ private class AVIOListDirApplication : GLib.Application {
                 uid_and_gid,
                 20,
                 "%PRId64(%PRId64)",
-                entry.user_id, entry.group_id
+                entry.user_id,
+                entry.group_id
             );
 
             if (

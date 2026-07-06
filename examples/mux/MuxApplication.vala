@@ -203,8 +203,7 @@ private class MuxApplication : GLib.Application {
             );
 
             /***********************************************************
-            pkt is now blank (
-                av_interleaved_write_frame () takes ownership of
+            pkt is now blank (av_interleaved_write_frame () takes ownership of
             its contents and resets pkt), so that no unreferencing is necessary.
             This would be different if one used av_write_frame ().
             ***********************************************************/
@@ -687,9 +686,10 @@ private class MuxApplication : GLib.Application {
         OutputStream? ost
     ) {
         AVFrame? frame = ost.tmp_frame;
-        int j, i, v;
-        int16[] q = (
-            int16*)frame.data[0];
+        int j;
+        int i;
+        int v;
+        int16[] q = (int16[])frame.data[0];
 
         /***********************************************************
         check if we want to generate more frames
@@ -798,8 +798,8 @@ private class MuxApplication : GLib.Application {
                 ost.swr_ctx,
                 ost.frame.data,
                 dst_nb_samples,
-                (
-                    uint8[][] )frame.data, frame.nb_samples
+                (uint8[][])frame.data,
+                frame.nb_samples
             );
 
             if (
@@ -820,7 +820,11 @@ private class MuxApplication : GLib.Application {
 
             frame.pts = av_rescale_q (
                 ost.samples_count,
-                new LibAVUtil.Rational () {numerator = 1, denominator = codec_context.sample_rate}, codec_context.time_base
+                new LibAVUtil.Rational () {
+                    numerator = 1,
+                    denominator = codec_context.sample_rate
+                },
+                codec_context.time_base
             );
 
             ost.samples_count += dst_nb_samples;
@@ -1017,7 +1021,9 @@ private class MuxApplication : GLib.Application {
         int width,
         int height
     ) {
-        int x, y, i;
+        int x;
+        int y;
+        int i;
 
         i = frame_index;
 
@@ -1073,7 +1079,10 @@ private class MuxApplication : GLib.Application {
                 ost.next_pts,
                 codec_context.time_base,
                 STREAM_DURATION,
-                new LibAVUtil.Rational () {numerator = 1, denominator = 1 }
+                new LibAVUtil.Rational () {
+                    numerator = 1,
+                    denominator = 1
+                }
 
             ) > 0
         ) {
@@ -1225,15 +1234,18 @@ private class MuxApplication : GLib.Application {
         int argc,
         string[] argv
     ) {
-        OutputStream video_st = { 0 }, audio_st = { 0 };
+        OutputStream video_st = { 0 };
+        OutputStream audio_st = { 0 };
         AVOutputFormat? fmt;
         string filename;
         AVFormatContext? oc;
         AVCodec? audio_codec;
         AVCodec? video_codec;
         int ret;
-        int have_video = 0, have_audio = 0;
-        int encode_video = 0, encode_audio = 0;
+        int have_video = 0;
+        int have_audio = 0;
+        int encode_video = 0;
+        int encode_audio = 0;
         AVDictionary? opt = null;
         int i;
 

@@ -224,7 +224,8 @@ private static void check_add_median_pred (
     init_buffer (
         diff0,
         diff1,
-        uint8, width
+        uint8,
+        width
     );
 
     A0 = rnd () & 0xFF;
@@ -482,12 +483,15 @@ private static void check_add_left_pred_16 (
         check_func (
             llvid_dsp_context.add_left_pred_int16,
             "%s",
-            report)
+            report
+        )
     ) {
         res0 = call_ref (
-        dst0,
-        src0,
-        mask, width, acc
+            dst0,
+            src0,
+            mask,
+            width,
+            acc
         );
 
         res1 = call_new (
@@ -582,11 +586,15 @@ private static void check_add_gradient_pred (
         )
     ) {
         call_ref (
-            src0 + stride + 32, stride, w
+            src0 + stride + 32,
+            stride,
+            w
         );
 
         call_new (
-            src1 + stride + 32, stride, w
+            src1 + stride + 32,
+            stride,
+            w
         );
 
         /***********************************************************
@@ -596,16 +604,21 @@ private static void check_add_gradient_pred (
             memcmp (
                 src0,
                 src1,
-                stride)||
+                stride
+            )||
             memcmp (
-                src0+stride,
-                src1 + stride, w + 32)
+                src0 + stride,
+                src1 + stride,
+                w + 32
+            )
         ) {
             fail ();
         }
 
         bench_new (
-            src1 + stride + 32, stride, w
+            src1 + stride + 32,
+            stride,
+            w
         );
 
     }
@@ -623,7 +636,9 @@ private static void check_add_gradient_pred (
 private static void checkasm_check_llviddsp () {
     LLVidDSPContext llvid_dsp_context;
     int width = 16 * av_clip (
-        rnd (), 16, 128
+        rnd (),
+        16,
+        128
     );
 
     int accRnd = rnd () & 0xFF;
@@ -653,7 +668,8 @@ private static void checkasm_check_llviddsp () {
     check_add_left_pred (
         llvid_dsp_context,
         width,
-        0, "add_left_pred_zero"
+        0,
+        "add_left_pred_zero"
     );
 
     report (

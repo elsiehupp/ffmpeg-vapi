@@ -202,7 +202,10 @@ private static void check_sao_band (
             check_func (
                 hevc_dsp_context.sao_band_filter[i],
                 "hevc_sao_band_%dx%d_%d",
-                block_size, block_size, bit_depth)
+                block_size,
+                block_size,
+                bit_depth
+            )
         ) {
             call_ref (
                 dst0,
@@ -211,7 +214,8 @@ private static void check_sao_band (
                 stride,
                 offset_val,
                 left_class,
-                block_size, block_size
+                block_size,
+                block_size
             );
 
             call_new (
@@ -221,7 +225,8 @@ private static void check_sao_band (
                 stride,
                 offset_val,
                 left_class,
-                block_size, block_size
+                block_size,
+                block_size
             );
 
             if (
@@ -240,7 +245,8 @@ private static void check_sao_band (
                 stride,
                 offset_val,
                 left_class,
-                block_size, block_size
+                block_size,
+                block_size
             );
 
         }
@@ -330,16 +336,29 @@ private static void check_sao_edge (
             check_func (
                 hevc_dsp_context.sao_edge_filter[i],
                 "hevc_sao_edge_%dx%d_%d",
-                block_size, block_size, bit_depth)
+                block_size,
+                block_size,
+                bit_depth
+            )
         ) {
             call_ref (
                 dst0,
-                src0 + offset, stride, offset_val, eo, block_size, block_size
+                src0 + offset,
+                stride,
+                offset_val,
+                eo,
+                block_size,
+                block_size
             );
 
             call_new (
                 dst1,
-                src1 + offset, stride, offset_val, eo, block_size, block_size
+                src1 + offset,
+                stride,
+                offset_val,
+                eo,
+                block_size,
+                block_size
             );
 
             if (
@@ -353,7 +372,12 @@ private static void check_sao_edge (
 
             bench_new (
                 dst1,
-                src1 + offset, stride, offset_val, eo, block_size, block_size
+                src1 + offset,
+                stride,
+                offset_val,
+                eo,
+                block_size,
+                block_size
             );
 
         }

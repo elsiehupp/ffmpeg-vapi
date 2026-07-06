@@ -165,19 +165,24 @@ private static void test_mul_pair_single () {
     call_ref (
         dst0,
         src0,
-        src1, BUF_SIZE
+        src1,
+        BUF_SIZE
     );
 
     call_new (
         dst1,
         src0,
-        src1, BUF_SIZE
+        src1,
+        BUF_SIZE
     );
 
     if (
         !float_near_abs_eps_array (
-            (float[] )dst0, (
-                float[] )dst1, EPS, BUF_SIZE * 2)
+            (float[])dst0,
+            (float[])dst1,
+            EPS,
+            BUF_SIZE * 2
+        )
     ) {
         fail ();
     }
@@ -185,7 +190,8 @@ private static void test_mul_pair_single () {
     bench_new (
         dst1,
         src0,
-        src1, BUF_SIZE
+        src1,
+        BUF_SIZE
     );
 
 }
@@ -239,34 +245,41 @@ private static void test_hybrid_analysis () {
     );
 
     randomize (
-        (INTFLOAT *)dst0, BUF_SIZE * 2
+        (INTFLOAT *)dst0,
+        BUF_SIZE * 2
     );
 
     memcpy (
         dst1,
         dst0,
         BUF_SIZE * 2 * sizeof (
-            INTFLOAT)
+            INTFLOAT
+        )
     );
 
     call_ref (
         dst0,
         in,
         filter,
-        STRIDE, N
+        STRIDE,
+        N
     );
 
     call_new (
         dst1,
         in,
         filter,
-        STRIDE, N
+        STRIDE,
+        N
     );
 
     if (
         !float_near_abs_eps_array (
-            (float[] )dst0, (
-                float[] )dst1, EPS, BUF_SIZE * 2)
+            (float[])dst0,
+            (float[])dst1,
+            EPS,
+            BUF_SIZE * 2
+        )
     ) {
         fail ();
     }
@@ -275,7 +288,8 @@ private static void test_hybrid_analysis () {
         dst1,
         in,
         filter,
-        STRIDE, N
+        STRIDE,
+        N
     );
 
 }
@@ -341,13 +355,15 @@ private static void test_hybrid_analysis_ileave () {
     call_ref (
         out0,
         in,
-        3, 32
+        3,
+        32
     );
 
     call_new (
         out1,
         in,
-        3, 32
+        3,
+        32
     );
 
     /***********************************************************
@@ -358,7 +374,9 @@ private static void test_hybrid_analysis_ileave () {
             out0,
             out1,
             91 * 32 * 2 * sizeof (
-                INTFLOAT))
+                INTFLOAT
+            )
+        )
     ) {
         fail ();
     }
@@ -366,13 +384,15 @@ private static void test_hybrid_analysis_ileave () {
     call_ref (
         out0,
         in,
-        5, 32
+        5,
+        32
     );
 
     call_new (
         out1,
         in,
-        5, 32
+        5,
+        32
     );
 
     if (
@@ -380,7 +400,9 @@ private static void test_hybrid_analysis_ileave () {
             out0,
             out1,
             91 * 32 * 2 * sizeof (
-                INTFLOAT))
+                INTFLOAT
+            )
+        )
     ) {
         fail ();
     }
@@ -388,7 +410,8 @@ private static void test_hybrid_analysis_ileave () {
     bench_new (
         out1,
         in,
-        3, 32
+        3,
+        32
     );
 
 }
@@ -454,13 +477,15 @@ private static void test_hybrid_synthesis_deint () {
     call_ref (
         out0,
         in,
-        3, 32
+        3,
+        32
     );
 
     call_new (
         out1,
         in,
-        3, 32
+        3,
+        32
     );
 
     /***********************************************************
@@ -471,7 +496,9 @@ private static void test_hybrid_synthesis_deint () {
             out0,
             out1,
             2 * 38 * 64 * sizeof (
-                INTFLOAT))
+                INTFLOAT
+            )
+        )
     ) {
         fail ();
     }
@@ -479,13 +506,15 @@ private static void test_hybrid_synthesis_deint () {
     call_ref (
         out0,
         in,
-        5, 32
+        5,
+        32
     );
 
     call_new (
         out1,
         in,
-        5, 32
+        5,
+        32
     );
 
     if (
@@ -493,7 +522,9 @@ private static void test_hybrid_synthesis_deint () {
             out0,
             out1,
             2 * 38 * 64 * sizeof (
-                INTFLOAT))
+                INTFLOAT
+            )
+        )
     ) {
         fail ();
     }
@@ -501,7 +532,8 @@ private static void test_hybrid_synthesis_deint () {
     bench_new (
         out1,
         in,
-        3, 32
+        3,
+        32
     );
 
 }
@@ -576,12 +608,14 @@ private static void test_stereo_interpolate (
     //  );
 
     randomize (
-        (INTFLOAT *)l, BUF_SIZE * 2
+        (INTFLOAT *)l,
+        BUF_SIZE * 2
     );
 
     randomize (
         (
-        INTFLOAT *)r, BUF_SIZE * 2
+        INTFLOAT *)r,
+        BUF_SIZE * 2
     );
 
     for (
@@ -621,15 +655,18 @@ private static void test_stereo_interpolate (
                 r1,
                 r,
                 BUF_SIZE * 2 * sizeof (
-                    INTFLOAT)
+                    INTFLOAT
+                )
             );
 
             randomize (
-                (INTFLOAT *)h, 2 * 4
+                (INTFLOAT *)h,
+                2 * 4
             );
 
             randomize (
-                (INTFLOAT *)h_step, 2 * 4
+                (INTFLOAT *)h_step,
+                2 * 4
             );
 
             call_ref (

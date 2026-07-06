@@ -60,7 +60,13 @@ private static void check_hflip (
 
     int w = WIDTH;
     int i;
-    int step_array[4] = {1, 1, 1, 1};
+    int step_array[4] = {
+        1,
+        1,
+        1,
+        1
+    };
+
     FlipContext flip_context;
 
     //  declare_func (
@@ -127,19 +133,26 @@ private static void check_hflip (
         ) {
             call_ref (
                 src + (
-                    w - 1) * step, dst_ref, i
+                    w - 1
+                ) * step,
+                dst_ref,
+                i
             );
 
             call_new (
                 src + (
-                    w - 1) * step, dst_new, i
+                    w - 1
+                ) * step,
+                dst_new,
+                i
             );
 
             if (
                 memcmp (
                     dst_ref,
                     dst_new,
-                    i * step)
+                    i * step
+                )
             ) {
                 fail ();
             }
@@ -148,7 +161,10 @@ private static void check_hflip (
 
         bench_new (
             src + (
-                w - 1) * step, dst_new, w
+                w - 1
+            ) * step,
+            dst_new,
+            w
         );
 
     }
@@ -157,7 +173,8 @@ private static void check_hflip (
 
 private static void checkasm_check_vf_hflip () {
     check_hflip (
-        1, "byte"
+        1,
+        "byte"
     );
 
     report (
@@ -165,7 +182,8 @@ private static void checkasm_check_vf_hflip () {
     );
 
     check_hflip (
-        2, "short"
+        2,
+        "short"
     );
 
     report (

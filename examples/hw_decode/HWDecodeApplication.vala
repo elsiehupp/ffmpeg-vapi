@@ -212,13 +212,15 @@ private class HWDecodeApplication : GLib.Application {
                 }
 
                 tmp_frame = sw_frame;
-            } else
+            } else {
                 tmp_frame = frame;
+            }
 
             size = av_image_get_buffer_size (
                 tmp_frame.format,
                 tmp_frame.width,
-                                            tmp_frame.height, 1
+                tmp_frame.height,
+                1
             );
 
             buffer = av_malloc (
@@ -244,10 +246,9 @@ private class HWDecodeApplication : GLib.Application {
             ret = av_image_copy_to_buffer (
                 buffer,
                 size,
-                (
-                    uint8[][])tmp_frame.data,
-                (
-                    int[] )tmp_frame.linesize, tmp_frame.format,
+                (uint8[][])tmp_frame.data,
+                (int[])tmp_frame.linesize,
+                tmp_frame.format,
                 tmp_frame.width,
                 tmp_frame.height,
                 1
@@ -312,7 +313,8 @@ private class HWDecodeApplication : GLib.Application {
         string[] argv
     ) {
         AVFormatContext? input_ctx = null;
-        int video_stream, ret;
+        int video_stream;
+        int ret;
         AVStream? video = null;
         AVCodecContext? decoder_ctx = null;
         AVCodec? decoder = null;

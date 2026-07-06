@@ -136,11 +136,19 @@ private class EncodeVideoApplication : GLib.Application {
         string codec_name;
         AVCodec? codec;
         AVCodecContext? codec_context = null;
-        int i, ret, x, y;
+        int i;
+        int ret;
+        int x;
+        int y;
         FILE? file;
         AVFrame? frame;
         AVPacket? pkt;
-        uint8 endcode[] = { 0, 0, 1, 0xb7 };
+        uint8 endcode[] = {
+            0,
+            0,
+            1,
+            0xb7
+        };
 
         if (
             argc <= 2
@@ -222,8 +230,15 @@ private class EncodeVideoApplication : GLib.Application {
         /***********************************************************
         frames per second
         ***********************************************************/
-        codec_context.time_base = new LibAVUtil.Rational () {numerator = 1, denominator = 25};
-        codec_context.framerate = new LibAVUtil.Rational () {numerator = 25, denominator = 1};
+        codec_context.time_base = new LibAVUtil.Rational () {
+            numerator = 1,
+            denominator = 25
+        };
+
+        codec_context.framerate = new LibAVUtil.Rational () {
+            numerator = 25,
+            denominator = 1
+        };
 
         /***********************************************************
         emit one intra frame every ten frames

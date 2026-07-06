@@ -250,7 +250,9 @@ private static void checkasm_check_synth_filter () {
                 fail ();
                 fprintf (
                     stderr,
-                    "offsets do not match: %d, %d", offset0, offset1
+                    "offsets do not match: %d, %d",
+                    offset0,
+                    offset1
                 );
 
                 break;
@@ -275,7 +277,10 @@ private static void checkasm_check_synth_filter () {
                         16
                     )
                 ) {
-                    /*union*/ av_intfloat32 o0, o1, b0, b1;
+                    /*union*/ av_intfloat32 o0;
+                    /*union*/ av_intfloat32 o1;
+                    /*union*/ av_intfloat32 b0;
+                    /*union*/ av_intfloat32 b1;
 
                     fail ();
                     o0.f = out0[j];
@@ -317,7 +322,9 @@ private static void checkasm_check_synth_filter () {
                 &offset_b,
                 buf2_b,
                 window,
-                      out_b, in, scale
+                out_b,
+                in,
+                scale
             );
 
         }

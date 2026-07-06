@@ -71,7 +71,8 @@ private class ApiBandTest : GLib.TestCase {
         ) {
             Posix.memcpy (
                 slice_byte_buffer + codec_context.width * slice_position + i * codec_context.width,
-                frame.data[0] + offset[0] + i * frame.linesize[0], codec_context.width
+                frame.data[0] + offset[0] + i * frame.linesize[0],
+                codec_context.width
             );
 
         }
@@ -83,7 +84,8 @@ private class ApiBandTest : GLib.TestCase {
         ) {
             Posix.memcpy (
                 slice_byte_buffer + codec_context.width * codec_context.height + chroma_w * shift_slice_position + i * chroma_w,
-                frame.data[1] + offset[1] + i * frame.linesize[1], chroma_w
+                frame.data[1] + offset[1] + i * frame.linesize[1],
+                chroma_w
             );
 
         }
@@ -95,7 +97,8 @@ private class ApiBandTest : GLib.TestCase {
         ) {
             Posix.memcpy (
                 slice_byte_buffer + codec_context.width * codec_context.height + chroma_w * shift_height + chroma_w * shift_slice_position + i * chroma_w,
-                frame.data[2] + offset[2] + i * frame.linesize[2], chroma_w
+                frame.data[2] + offset[2] + i * frame.linesize[2],
+                chroma_w
             );
 
         }
@@ -122,7 +125,10 @@ private class ApiBandTest : GLib.TestCase {
         draw_horiz_band_called = 0;
 
         result = avformat_open_input (
-            out format_context, input_filename, null, null
+            out format_context,
+            input_filename,
+            null,
+            null
         );
 
         if (
@@ -367,7 +373,8 @@ private class ApiBandTest : GLib.TestCase {
                 result = avcodec_decode_video2 (
                     codec_context,
                     frame,
-                    out got_frame, out packet
+                    out got_frame,
+                    out packet
                 );
 
                 if (

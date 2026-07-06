@@ -32,7 +32,10 @@ private static void randomize_buffers (
         i += 4
     ) {
         AV_WN32A (
-            ((uint8[] ) src0) + i, rnd ()
+            (
+                (uint8[])src0
+            ) + i,
+            rnd ()
         );
 
     }
@@ -48,7 +51,8 @@ private static void iter_1d (
     void *var_end
 ) {
     for (
-        fix = fix_val, var = var_start;
+        fix = fix_val,
+        var = var_start;
         var <= var_end;
         var++
     ) {
@@ -161,22 +165,38 @@ private static void check_emu_edge_size (
 
     iter_1d (
         type,
-        y, 0 - src_h, x, 0 - src_w, src_w - 0
+        y,
+        0 - src_h,
+        x,
+        0 - src_w,
+        src_w - 0
     );
 
     iter_1d (
         type,
-        x, src_w - 0, y, 0 - src_h, src_h - 0
+        x,
+        src_w - 0,
+        y,
+        0 - src_h,
+        src_h - 0
     );
 
     iter_1d (
         type,
-        y, src_h - 0, x, 0 - src_w, src_w - 0
+        y,
+        src_h - 0,
+        x,
+        0 - src_w,
+        src_w - 0
     );
 
     iter_1d (
         type,
-        x, 0 - src_w, y, 0 - src_h, src_h - 0
+        x,
+        0 - src_w,
+        y,
+        0 - src_h,
+        src_h - 0
     );
 
 }

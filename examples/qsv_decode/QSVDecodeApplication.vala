@@ -95,11 +95,12 @@ private class QSVDecodeApplication : GLib.Application {
         while (
             ret >= 0
         ) {
-            int i, j;
+            int i;
+            int j;
 
             ret = avcodec_receive_frame (
-            decoder_ctx,
-            frame
+                decoder_ctx,
+                frame
             );
 
             if (
@@ -164,7 +165,8 @@ private class QSVDecodeApplication : GLib.Application {
                 ) {
                     avio_write (
                         output_ctx,
-                        sw_frame.data[i] + j * sw_frame.linesize[i], sw_frame.width
+                        sw_frame.data[i] + j * sw_frame.linesize[i],
+                        sw_frame.width
                     );
 
                 }
@@ -206,7 +208,8 @@ private class QSVDecodeApplication : GLib.Application {
 
         AVIOContext? output_ctx = null;
 
-        int ret, i;
+        int ret;
+        int i;
 
         AVBufferRef? device_ref = null;
 
@@ -237,7 +240,8 @@ private class QSVDecodeApplication : GLib.Application {
         ) {
             fprintf (
                 stderr,
-                "Cannot open input file '%s': ", argv[1]
+                "Cannot open input file '%s': ",
+                argv[1]
             );
 
             throw new Goto.FINISH (
@@ -283,8 +287,9 @@ private class QSVDecodeApplication : GLib.Application {
         ret = av_hwdevice_ctx_create (
             &device_ref,
             AV_HWDEVICE_TYPE_QSV,
-                                    "auto",
-                                    null, 0
+            "auto",
+            null,
+            0
         );
 
         if (

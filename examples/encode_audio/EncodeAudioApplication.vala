@@ -231,10 +231,14 @@ private class EncodeAudioApplication : GLib.Application {
         AVCodecContext? codec_context= null;
         AVFrame? frame;
         AVPacket? pkt;
-        int i, j, k, ret;
+        int i;
+        int j;
+        int k;
+        int ret;
         FILE? file;
         uint16[] samples;
-        float t, tincr;
+        float t;
+        float tincr;
 
         if (
             argc <= 1

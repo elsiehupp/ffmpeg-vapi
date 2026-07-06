@@ -40,12 +40,15 @@ private static void randomize_buffers () {
                     bits - 2
                 )
             ) - 1;
+
             AV_WN32A (
-                ref_src[j] + i, r
+                ref_src[j] + i,
+                r
             );
 
             AV_WN32A (
-                new_src[j] + i, r
+                new_src[j] + i,
+                r
             );
 
         }
@@ -119,15 +122,26 @@ private static void check_decorrelate (
 
 }
 
-private const string names[3] = { "ls", "rs", "ms" };
+private const string names[3] = {
+    "ls",
+    "rs",
+    "ms"
+};
+
 private struct Format {
     LibAVUtil.SampleFormat fmt;
     int bits;
 }
 
 private static Format fmts[] = {
-    { LibAVUtil.SampleFormat.SIGNED_16_BIT, 16 },
-    { LibAVUtil.SampleFormat.SIGNED_32_BIT, 32 },
+    {
+        LibAVUtil.SampleFormat.SIGNED_16_BIT,
+        16
+    },
+    {
+        LibAVUtil.SampleFormat.SIGNED_32_BIT,
+        32
+    },
 };
 
 private static void checkasm_check_flacdsp () {
@@ -156,13 +170,25 @@ private static void checkasm_check_flacdsp () {
     //  );
 
     uint8[] ref_src[] = {
-        &ref_buf[BUF_SIZE * 0], &ref_buf[BUF_SIZE * 1], &ref_buf[BUF_SIZE * 2], &ref_buf[BUF_SIZE * 3],
-        &ref_buf[BUF_SIZE * 4], &ref_buf[BUF_SIZE * 5], &ref_buf[BUF_SIZE * 6], &ref_buf[BUF_SIZE * 7]
+        &ref_buf[BUF_SIZE * 0],
+        &ref_buf[BUF_SIZE * 1],
+        &ref_buf[BUF_SIZE * 2],
+        &ref_buf[BUF_SIZE * 3],
+        &ref_buf[BUF_SIZE * 4],
+        &ref_buf[BUF_SIZE * 5],
+        &ref_buf[BUF_SIZE * 6],
+        &ref_buf[BUF_SIZE * 7]
     };
 
     uint8[] new_src[] = {
-        &new_buf[BUF_SIZE * 0], &new_buf[BUF_SIZE * 1], &new_buf[BUF_SIZE * 2], &new_buf[BUF_SIZE * 3],
-        &new_buf[BUF_SIZE * 4], &new_buf[BUF_SIZE * 5], &new_buf[BUF_SIZE * 6], &new_buf[BUF_SIZE * 7]
+        &new_buf[BUF_SIZE * 0],
+        &new_buf[BUF_SIZE * 1],
+        &new_buf[BUF_SIZE * 2],
+        &new_buf[BUF_SIZE * 3],
+        &new_buf[BUF_SIZE * 4],
+        &new_buf[BUF_SIZE * 5],
+        &new_buf[BUF_SIZE * 6],
+        &new_buf[BUF_SIZE * 7]
     };
 
     FLACDSPContext flac_dsp_context;
@@ -189,7 +215,9 @@ private static void checkasm_check_flacdsp () {
             if (
                 check_func (
                     flac_dsp_context.decorrelate[j],
-                    "flac_decorrelate_%s_%d", names[j], fmts[i].bits)
+                    "flac_decorrelate_%s_%d",
+                    names[j],
+                    fmts[i].bits)
             ) {
                 check_decorrelate (
                     &ref_dst,
@@ -219,7 +247,9 @@ private static void checkasm_check_flacdsp () {
             if (
                 check_func (
                     flac_dsp_context.decorrelate[0],
-                    "flac_decorrelate_indep%d_%d", j, fmts[i].bits)
+                    "flac_decorrelate_indep%d_%d",
+                    j,
+                    fmts[i].bits)
             ) {
                 check_decorrelate (
                     &ref_dst,

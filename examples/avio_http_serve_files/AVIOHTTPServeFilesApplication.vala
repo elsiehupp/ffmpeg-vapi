@@ -40,7 +40,9 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
     ) {
         AVIOContext? input = null;
         uint8 buf[1024];
-        int ret, n, reply_code;
+        int ret;
+        int n;
+        int reply_code;
         uint8[] resource = null;
         while (
             (ret = avio_handshake (
@@ -55,8 +57,7 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
 
 
             /***********************************************************
-            check for strlen (
-                resource) is necessary, because av_opt_get ()
+            check for strlen (resource) is necessary, because av_opt_get ()
 
             may return empty string.
             ***********************************************************/
@@ -92,7 +93,10 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
             resource &&
             resource[0] == '/' &&
             !strcmp (
-                (resource + 1), in_uri
+                (
+                    resource + 1
+                ),
+                in_uri
             )
         ) {
             reply_code = 200;
@@ -268,7 +272,8 @@ private class AVIOHTTPServeFilesApplication : GLib.Application {
         AVIOContext? server = null;
         string in_uri;
         string out_uri;
-        int ret, pid;
+        int ret;
+        int pid;
         av_log_set_level (
             AV_LOG_TRACE
         );

@@ -207,7 +207,8 @@ private class VAAPIEncodeApplication : GLib.Application {
         int argc,
         string[] argv
     ) {
-        int size, err;
+        int size;
+        int err;
         FILE? fin = null;
         FILE? fout = null;
         AVFrame? sw_frame = null;
@@ -332,9 +333,21 @@ private class VAAPIEncodeApplication : GLib.Application {
 
         avctx.width = width;
         avctx.height = height;
-        avctx.time_base = new LibAVUtil.Rational () {numerator = 1, denominator = 25};
-        avctx.framerate = new LibAVUtil.Rational () {numerator = 25, denominator = 1};
-        avctx.sample_aspect_ratio = new LibAVUtil.Rational () {numerator = 1, denominator = 1};
+        avctx.time_base = new LibAVUtil.Rational () {
+            numerator = 1,
+            denominator = 25
+        };
+
+        avctx.framerate = new LibAVUtil.Rational () {
+            numerator = 25,
+            denominator = 1
+        };
+
+        avctx.sample_aspect_ratio = new LibAVUtil.Rational () {
+            numerator = 1,
+            denominator = 1
+        };
+
         avctx.pix_fmt = LibAVUtil.PixelFormat.VAAPI;
 
         /***********************************************************

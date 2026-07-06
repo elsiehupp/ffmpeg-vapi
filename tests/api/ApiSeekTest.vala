@@ -259,7 +259,8 @@ private class ApiSeekTest : GLib.TestCase {
                 result = avcodec_decode_video2 (
                     codec_context,
                     frame,
-                    out got_frame, out packet
+                    out got_frame,
+                    out packet
                 );
 
                 if (
@@ -389,7 +390,8 @@ private class ApiSeekTest : GLib.TestCase {
         char[] end_of_string = null;
         number = strtol (
             string_with_number,
-            out end_of_string, 10
+            out end_of_string,
+            10
         );
 
         if (
@@ -440,8 +442,10 @@ private class ApiSeekTest : GLib.TestCase {
             AVFormatContext format_context = null;
             uint video_stream;
             uint result;
-            uint i, j;
-            ulong start_ts, end_ts;
+            uint i;
+            uint j;
+            ulong start_ts;
+            ulong end_ts;
 
             size_of_array = 0;
             number_of_elements = 0;
@@ -449,7 +453,10 @@ private class ApiSeekTest : GLib.TestCase {
             pts_array = null;
 
             result = avformat_open_input (
-                out format_context, input_filename, null, null
+                out format_context,
+                input_filename,
+                null,
+                null
             );
 
             if (

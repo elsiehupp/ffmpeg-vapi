@@ -66,7 +66,10 @@ private class DecodeVideoApplication : GLib.Application {
             i++
         ) {
             fwrite (
-                buf + i * wrap, 1, xsize, file
+                buf + i * wrap,
+                1,
+                xsize,
+                file
             );
 
         }
@@ -219,7 +222,9 @@ private class DecodeVideoApplication : GLib.Application {
             this ensures that no overreading happens for damaged MPEG streams)
         ***********************************************************/
         memset (
-            inbuf + INBUF_SIZE, 0, AV_INPUT_BUFFER_PADDING_SIZE
+            inbuf + INBUF_SIZE,
+            0,
+            AV_INPUT_BUFFER_PADDING_SIZE
         );
 
         /***********************************************************
@@ -370,14 +375,15 @@ private class DecodeVideoApplication : GLib.Application {
                 eof
             ) {
                 ret = av_parser_parse2 (
-                parser,
-                codec_context,
-                &pkt.data,
-                &pkt.size,
-                                    data,
-                                    data_size,
-                                    AV_NOPTS_VALUE,
-                                    AV_NOPTS_VALUE, 0
+                    parser,
+                    codec_context,
+                    &pkt.data,
+                    &pkt.size,
+                    data,
+                    data_size,
+                    AV_NOPTS_VALUE,
+                    AV_NOPTS_VALUE,
+                    0
                 );
 
                 if (

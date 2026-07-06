@@ -94,13 +94,15 @@ private class ScaleVideoApplication : GLib.Application {
         int src_h = 240;
         int dst_w;
         int dst_h;
-        AVPixelFormat src_pix_fmt = LibAVUtil.PixelFormat.YUV420P, dst_pix_fmt = LibAVUtil.PixelFormat.RGB24;
+        AVPixelFormat src_pix_fmt = LibAVUtil.PixelFormat.YUV420P;
+        AVPixelFormat dst_pix_fmt = LibAVUtil.PixelFormat.RGB24;
         string dst_size = null;
         string dst_filename = null;
         FILE? dst_file;
         int dst_bufsize;
         SwsContext? sws_ctx;
-        int i, ret;
+        int i;
+        int ret;
 
         if (
             argc != 3

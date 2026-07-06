@@ -49,11 +49,31 @@ private class DecodeAudioApplication : GLib.Application {
     }
 
     private static SampleFormatEntry sample_fmt_entries[] = {
-        { LibAVUtil.SampleFormat.UNSIGNED_8_BIT, "u8", "u8"    },
-        { LibAVUtil.SampleFormat.SIGNED_16_BIT, "s16be", "s16le" },
-        { LibAVUtil.SampleFormat.SIGNED_32_BIT, "s32be", "s32le" },
-        { LibAVUtil.SampleFormat.FLOAT, "f32be", "f32le" },
-        { LibAVUtil.SampleFormat.DOUBLE, "f64be", "f64le" },
+        {
+            LibAVUtil.SampleFormat.UNSIGNED_8_BIT,
+            "u8",
+            "u8"
+        },
+        {
+            LibAVUtil.SampleFormat.SIGNED_16_BIT,
+            "s16be",
+            "s16le"
+        },
+        {
+            LibAVUtil.SampleFormat.SIGNED_32_BIT,
+            "s32be",
+            "s32le"
+        },
+        {
+            LibAVUtil.SampleFormat.FLOAT,
+            "f32be",
+            "f32le"
+        },
+        {
+            LibAVUtil.SampleFormat.DOUBLE,
+            "f64be",
+            "f64le"
+        },
     };
 
     private static int get_format_from_sample_fmt (
@@ -191,7 +211,10 @@ private class DecodeAudioApplication : GLib.Application {
                     ch++
                 ) {
                     fwrite (
-                        frame.data[ch] + data_size*i, 1, data_size, outfile
+                        frame.data[ch] + data_size * i,
+                        1,
+                        data_size,
+                        outfile
                     );
 
                 }
@@ -417,10 +440,11 @@ private class DecodeAudioApplication : GLib.Application {
                 codec_context,
                 &pkt.data,
                 &pkt.size,
-                                data,
-                            data_size,
-                                AV_NOPTS_VALUE,
-                            AV_NOPTS_VALUE, 0
+                data,
+                data_size,
+                AV_NOPTS_VALUE,
+                AV_NOPTS_VALUE,
+                0
             );
 
             if (
@@ -463,8 +487,10 @@ private class DecodeAudioApplication : GLib.Application {
 
                 data = inbuf;
                 len = fread (
-                    data + data_size, 1,
-                    AUDIO_INBUF_SIZE - data_size, file
+                    data + data_size,
+                    1,
+                    AUDIO_INBUF_SIZE - data_size,
+                    file
                 );
 
                 if (
@@ -496,10 +522,11 @@ private class DecodeAudioApplication : GLib.Application {
 
         if (
             av_sample_fmt_is_planar (
-                sfmt)
+                sfmt
+            )
         ) {
             string packed = av_get_sample_fmt_name (
-            sfmt
+                sfmt
             );
 
             printf (
@@ -524,7 +551,9 @@ private class DecodeAudioApplication : GLib.Application {
             ret < 0
         ) {
             throw new Goto.END (
-            "");
+                ""
+            );
+
         }
 
         printf (
@@ -534,7 +563,7 @@ private class DecodeAudioApplication : GLib.Application {
             n_channels,
             codec_context.sample_rate,
             outfilename
-    );
+        );
 
     //  end:
         fclose (

@@ -133,7 +133,8 @@ private class ApiH264SliceTest : GLib.TestCase {
             ) {
                 av_hash_update (
                     hash,
-                    out frame.data[0][i * frame.linesize[0]], frame.width
+                    out frame.data[0][i * frame.linesize[0]],
+                    frame.width
                 );
 
             }
@@ -145,7 +146,8 @@ private class ApiH264SliceTest : GLib.TestCase {
             ) {
                 av_hash_update (
                     hash,
-                    out frame.data[1][i * frame.linesize[1]], frame.width >> desc.log2_chroma_w
+                    out frame.data[1][i * frame.linesize[1]],
+                    frame.width >> desc.log2_chroma_w
                 );
 
             }
@@ -157,7 +159,8 @@ private class ApiH264SliceTest : GLib.TestCase {
             ) {
                 av_hash_update (
                     hash,
-                    out frame.data[2][i * frame.linesize[2]], frame.width >> desc.log2_chroma_w
+                    out frame.data[2][i * frame.linesize[2]],
+                    frame.width >> desc.log2_chroma_w
                 );
 
             }
@@ -357,8 +360,11 @@ private class ApiH264SliceTest : GLib.TestCase {
         ) {
             uint16 size = 0;
             size_t ret = fread (
-            out size, 1, sizeof (
-                uint16),
+                out size,
+                1,
+                sizeof (
+                    uint16
+                ),
                 file
             );
 

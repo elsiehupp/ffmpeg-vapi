@@ -266,7 +266,8 @@ private class DemuxDecodeApplication : GLib.Application {
         AVFormatContext? fmt_ctx,
         AVMediaType type
     ) {
-        int ret, stream_index;
+        int ret;
+        int stream_index;
         AVStream? st;
         AVCodec? dec = null;
 
@@ -397,11 +398,31 @@ private class DemuxDecodeApplication : GLib.Application {
     }
 
     private static SampleFormatEntry sample_fmt_entries[] = {
-        { LibAVUtil.SampleFormat.UNSIGNED_8_BIT, "u8", "u8"    },
-        { LibAVUtil.SampleFormat.SIGNED_16_BIT, "s16be", "s16le" },
-        { LibAVUtil.SampleFormat.SIGNED_32_BIT, "s32be", "s32le" },
-        { LibAVUtil.SampleFormat.FLOAT, "f32be", "f32le" },
-        { LibAVUtil.SampleFormat.DOUBLE, "f64be", "f64le" },
+        {
+            LibAVUtil.SampleFormat.UNSIGNED_8_BIT,
+            "u8",
+            "u8"
+        },
+        {
+            LibAVUtil.SampleFormat.SIGNED_16_BIT,
+            "s16be",
+            "s16le"
+        },
+        {
+            LibAVUtil.SampleFormat.SIGNED_32_BIT,
+            "s32be",
+            "s32le"
+        },
+        {
+            LibAVUtil.SampleFormat.FLOAT,
+            "f32be",
+            "f32le"
+        },
+        {
+            LibAVUtil.SampleFormat.DOUBLE,
+            "f64be",
+            "f64le"
+        },
     };
 
     private static int get_format_from_sample_fmt (
@@ -455,11 +476,11 @@ private class DemuxDecodeApplication : GLib.Application {
             fprintf (
                 stderr,
                 "usage: %s  input_file video_output_file audio_output_file\n" +
-                    "API example program to show how to read frames from an input file.\n" +
-                    "This program reads frames from a file, decodes them, and writes decoded\n" +
-                    "video frames to a rawvideo file named video_output_file, and decoded\n" +
-                    "audio frames to a rawaudio file named audio_output_file.\n",
-                    argv[0]
+                "API example program to show how to read frames from an input file.\n" +
+                "This program reads frames from a file, decodes them, and writes decoded\n" +
+                "video frames to a rawvideo file named video_output_file, and decoded\n" +
+                "audio frames to a rawaudio file named audio_output_file.\n",
+                argv[0]
             );
 
             exit (
@@ -553,8 +574,10 @@ private class DemuxDecodeApplication : GLib.Application {
             ret = av_image_alloc (
                 video_dst_data,
                 video_dst_linesize,
-                                width,
-                            height, pix_fmt, 1
+                width,
+                height,
+                pix_fmt,
+                1
             );
 
             if (
@@ -566,7 +589,9 @@ private class DemuxDecodeApplication : GLib.Application {
                 );
 
                 throw new Goto.END (
-                    "");
+                    ""
+                );
+
             }
 
             video_dst_bufsize = ret;
@@ -623,7 +648,9 @@ private class DemuxDecodeApplication : GLib.Application {
 
             ret = 1;
             throw new Goto.END (
-                "");
+                ""
+            );
+
         }
 
         frame = av_frame_alloc ();

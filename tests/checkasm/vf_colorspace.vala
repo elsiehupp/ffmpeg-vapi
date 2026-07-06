@@ -104,7 +104,11 @@ private static void check_yuv2yuv () {
     //      [W * H * 2]
     //  );
 
-    uint8[] src[3] = { src_y, src_u, src_v };
+    uint8[] src[3] = {
+        src_y,
+        src_u,
+        src_v
+    };
 
     //  LOCAL_ALIGNED_32 (
     //      uint8,
@@ -142,8 +146,17 @@ private static void check_yuv2yuv () {
     //      [W * H * 2]
     //  );
 
-    uint8[] dst0[3] = { dst0_y, dst0_u, dst0_v };
-    uint8[] dst1[3] = { dst1_y, dst1_u, dst1_v };
+    uint8[] dst0[3] = {
+        dst0_y,
+        dst0_u,
+        dst0_v
+    };
+
+    uint8[] dst1[3] = {
+        dst1_y,
+        dst1_u,
+        dst1_v
+    };
 
     //  LOCAL_ALIGNED_32 (
     //      int16,
@@ -220,12 +233,20 @@ private static void check_yuv2yuv () {
                         colorspace_dsp_context.yuv2yuv[idepth][odepth][fmt],
                         "ff_colorspacedsp_yuv2yuv_%sp%dto%d",
                         format_string[fmt],
-                        idepth * 2 + 8, odepth * 2 + 8
+                        idepth * 2 + 8,
+                        odepth * 2 + 8
                     )
                 ) {
-                    int ss_w = !!fmt, ss_h = fmt == 2;
-                    int y_src_stride = W << !!idepth, y_dst_stride = W << !!odepth;
-                    int uv_src_stride = y_src_stride >> ss_w, uv_dst_stride = y_dst_stride >> ss_w;
+                    int ss_w = !!fmt;
+                    int ss_h = (
+                        fmt == 2
+                    );
+
+                    int y_src_stride = W << !!idepth;
+                    int y_dst_stride = W << !!odepth;
+
+                    int uv_src_stride = y_src_stride >> ss_w;
+                    int uv_dst_stride = y_dst_stride >> ss_w;
 
                     randomize_buffers ();
 
@@ -337,7 +358,11 @@ private static void check_yuv2rgb () {
     //      [W * H * 2]
     //  );
 
-    //  uint8[] src[3] = { src_y, src_u, src_v };
+    //  uint8[] src[3] = {
+    //      src_y,
+    //      src_u,
+    //      src_v
+    //  };
 
     //  LOCAL_ALIGNED_32 (
     //      int16,
@@ -375,9 +400,17 @@ private static void check_yuv2rgb () {
     //      [W * H]
     //  );
 
-    //  int16[] dst0[3] = { dst0_y, dst0_u, dst0_v }
+    //  int16[] dst0[3] = {
+    //      dst0_y,
+    //      dst0_u,
+    //      dst0_v
+    //  };
 
-    //  int16[] dst1[3] = { dst1_y, dst1_u, dst1_v };
+    //  int16[] dst1[3] = {
+    //      dst1_y,
+    //      dst1_u,
+    //      dst1_v
+    //  };
 
     //  LOCAL_ALIGNED_32 (
     //      int16,
@@ -430,10 +463,14 @@ private static void check_yuv2rgb () {
             if (
                 check_func (
                     colorspace_dsp_context.yuv2rgb[idepth][fmt],
-                           "ff_colorspacedsp_yuv2rgb_%sp%d",
-                           format_string[fmt], idepth * 2 + 8)
+                    "ff_colorspacedsp_yuv2rgb_%sp%d",
+                    format_string[fmt],
+                    idepth * 2 + 8
+                )
             ) {
-                int ss_w = !!fmt, ss_h = fmt == 2;
+                int ss_w = !!fmt;
+                int ss_h = fmt == 2;
+
                 int y_src_stride = W << !!idepth;
                 int uv_src_stride = y_src_stride >> ss_w;
 
@@ -576,7 +613,11 @@ private static void check_rgb2yuv () {
     //      [W * H * 2]
     //  );
 
-    //  int16[] src[3] = { src_y, src_u, src_v };
+    //  int16[] src[3] = {
+    //      src_y,
+    //      src_u,
+    //      src_v
+    //  };
 
     //  LOCAL_ALIGNED_32 (
     //      uint8,
@@ -614,9 +655,17 @@ private static void check_rgb2yuv () {
     //      [W * H * 2]
     //  );
 
-    //  uint8[] dst0[3] = { dst0_y, dst0_u, dst0_v }
+    //  uint8[] dst0[3] = {
+    //      dst0_y,
+    //      dst0_u,
+    //      dst0_v
+    //  };
 
-    //  uint8[] dst1[3] = { dst1_y, dst1_u, dst1_v };
+    //  uint8[] dst1[3] = {
+    //      dst1_y,
+    //      dst1_u,
+    //      dst1_v
+    //  };
 
     //  LOCAL_ALIGNED_32 (
     //      int16,
@@ -708,10 +757,16 @@ private static void check_rgb2yuv () {
             if (
                 check_func (
                     colorspace_dsp_context.rgb2yuv[odepth][fmt],
-                           "ff_colorspacedsp_rgb2yuv_%sp%d",
-                           format_string[fmt], odepth * 2 + 8)
+                    "ff_colorspacedsp_rgb2yuv_%sp%d",
+                    format_string[fmt],
+                    odepth * 2 + 8
+                )
             ) {
-                int ss_w = !!fmt, ss_h = fmt == 2;
+                int ss_w = !!fmt;
+                int ss_h = (
+                    fmt == 2
+                );
+
                 int y_dst_stride = W << !!odepth;
                 int uv_dst_stride = y_dst_stride >> ss_w;
 
@@ -824,8 +879,18 @@ private static void check_multiply3x3 () {
     //      [W * H]
     //  );
 
-    int16[] dst0[3] = { dst0_y, dst0_u, dst0_v };
-    int16[] dst1[3] = { dst1_y, dst1_u, dst1_v };
+    //  int16[] dst0[3] = {
+    //      dst0_y,
+    //      dst0_u,
+    //      dst0_v
+    //  };
+
+    //  int16[] dst1[3] = {
+    //      dst1_y,
+    //      dst1_u,
+    //      dst1_v
+    //  };
+
     int16[][] src = dst0;
 
     //  LOCAL_ALIGNED_32 (

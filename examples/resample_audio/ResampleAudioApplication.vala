@@ -43,16 +43,36 @@ private class ResampleAudioApplication : GLib.Application {
     }
 
     private static SampleFormatEntry sample_fmt_entries[] = {
-        { LibAVUtil.SampleFormat.UNSIGNED_8_BIT, "u8", "u8"    },
-        { LibAVUtil.SampleFormat.SIGNED_16_BIT, "s16be", "s16le" },
-        { LibAVUtil.SampleFormat.SIGNED_32_BIT, "s32be", "s32le" },
-        { LibAVUtil.SampleFormat.FLOAT, "f32be", "f32le" },
-        { LibAVUtil.SampleFormat.DOUBLE, "f64be", "f64le" },
+        {
+            LibAVUtil.SampleFormat.UNSIGNED_8_BIT,
+            "u8",
+            "u8"
+        },
+        {
+            LibAVUtil.SampleFormat.SIGNED_16_BIT,
+            "s16be",
+            "s16le"
+        },
+        {
+            LibAVUtil.SampleFormat.SIGNED_32_BIT,
+            "s32be",
+            "s32le"
+        },
+        {
+            LibAVUtil.SampleFormat.FLOAT,
+            "f32be",
+            "f32le"
+        },
+        {
+            LibAVUtil.SampleFormat.DOUBLE,
+            "f64be",
+            "f64le"
+        },
     };
 
     private static int get_format_from_sample_fmt (
         out string fmt_out,
-                                        LibAVUtil.SampleFormat sample_fmt
+        LibAVUtil.SampleFormat sample_fmt
     ) {
         int i;
         fmt_out = null;
@@ -138,13 +158,19 @@ private class ResampleAudioApplication : GLib.Application {
         int argc,
         string[] argv
     ) {
-        AVChannelLayout src_ch_layout = AV_CHANNEL_LAYOUT_STEREO, dst_ch_layout = AV_CHANNEL_LAYOUT_SURROUND;
-        int src_rate = 48000, dst_rate = 44100;
+        AVChannelLayout src_ch_layout = AV_CHANNEL_LAYOUT_STEREO;
+        AVChannelLayout dst_ch_layout = AV_CHANNEL_LAYOUT_SURROUND;
+        int src_rate = 48000;
+        int dst_rate = 44100;
         uint8[][] src_data = null;
         uint8[][] dst_data = null;
-        int src_nb_channels = 0, dst_nb_channels = 0;
-        int src_linesize, dst_linesize;
-        int src_nb_samples = 1024, dst_nb_samples, max_dst_nb_samples;
+        int src_nb_channels = 0;
+        int dst_nb_channels = 0;
+        int src_linesize;
+        int dst_linesize;
+        int src_nb_samples = 1024;
+        int dst_nb_samples;
+        int max_dst_nb_samples;
         LibAVUtil.SampleFormat src_sample_fmt = LibAVUtil.SampleFormat.DOUBLE;
         LibAVUtil.SampleFormat dst_sample_fmt = LibAVUtil.SampleFormat.SIGNED_16_BIT;
         string dst_filename = null;
@@ -162,9 +188,9 @@ private class ResampleAudioApplication : GLib.Application {
             fprintf (
                 stderr,
                 "Usage: %s output_file\n" +
-                    "API example program to show how to resample an audio stream with libswresample.\n" +
-                    "This program generates a series of audio frames, resamples them to a specified " +
-                    "output format and rate and saves them to an output file named output_file.\n",
+                "API example program to show how to resample an audio stream with libswresample.\n" +
+                "This program generates a series of audio frames, resamples them to a specified " +
+                "output format and rate and saves them to an output file named output_file.\n",
                 argv[0]
             );
 
@@ -289,7 +315,9 @@ private class ResampleAudioApplication : GLib.Application {
             &src_data,
             &src_linesize,
             src_nb_channels,
-                                                src_nb_samples, src_sample_fmt, 0
+            src_nb_samples,
+            src_sample_fmt,
+            0
         );
 
         if (
@@ -325,7 +353,9 @@ private class ResampleAudioApplication : GLib.Application {
             &dst_data,
             &dst_linesize,
             dst_nb_channels,
-                                                dst_nb_samples, dst_sample_fmt, 0
+            dst_nb_samples,
+            dst_sample_fmt,
+            0
         );
 
         if (
@@ -359,8 +389,11 @@ private class ResampleAudioApplication : GLib.Application {
             dst_nb_samples = av_rescale_rnd (
                 swr_get_delay (
                     swr_ctx,
-                    src_rate) +
-                                            src_nb_samples, dst_rate, src_rate, AV_ROUND_UP
+                    src_rate
+                ) + src_nb_samples,
+                dst_rate,
+                src_rate,
+                AV_ROUND_UP
             );
 
             if (
@@ -374,8 +407,9 @@ private class ResampleAudioApplication : GLib.Application {
                     dst_data,
                     &dst_linesize,
                     dst_nb_channels,
-                                    dst_nb_samples,
-                                    dst_sample_fmt, 1
+                    dst_nb_samples,
+                    dst_sample_fmt,
+                    1
                 );
 
                 if (
@@ -394,8 +428,8 @@ private class ResampleAudioApplication : GLib.Application {
                 swr_ctx,
                 dst_data,
                 dst_nb_samples,
-                (
-                    uint8[][] )src_data, src_nb_samples
+                (uint8[][])src_data,
+                src_nb_samples
             );
 
             if (
@@ -413,7 +447,9 @@ private class ResampleAudioApplication : GLib.Application {
             dst_bufsize = av_samples_get_buffer_size (
                 &dst_linesize,
                 dst_nb_channels,
-                                                    ret, dst_sample_fmt, 1
+                ret,
+                dst_sample_fmt,
+                1
             );
 
             if (

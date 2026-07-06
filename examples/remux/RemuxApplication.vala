@@ -74,7 +74,8 @@ private class RemuxApplication : GLib.Application {
         AVPacket? pkt = null;
         string in_filename;
         string out_filename;
-        int ret, i;
+        int ret;
+        int i;
         int stream_index = 0;
         int[] stream_mapping = null;
         int stream_mapping_size = 0;

@@ -71,13 +71,15 @@ private static void test_vector_fmul (
     call_ref (
         cdst,
         src0,
-        src1, LEN
+        src1,
+        LEN
     );
 
     call_new (
         odst,
         src0,
-        src1, LEN
+        src1,
+        LEN
     );
 
     for (
@@ -109,7 +111,8 @@ private static void test_vector_fmul (
     bench_new (
         odst,
         src0,
-        src1, LEN
+        src1,
+        LEN
     );
 
 }
@@ -143,13 +146,15 @@ private static void test_vector_dmul (
     call_ref (
         cdst,
         src0,
-        src1, LEN
+        src1,
+        LEN
     );
 
     call_new (
         odst,
         src0,
-        src1, LEN
+        src1,
+        LEN
     );
 
     for (
@@ -181,7 +186,8 @@ private static void test_vector_dmul (
     bench_new (
         odst,
         src0,
-        src1, LEN
+        src1,
+        LEN
     );
 
 }
@@ -218,13 +224,17 @@ private static void test_vector_fmul_add (
     call_ref (
         cdst,
         src0,
-        src1, src2, LEN
+        src1,
+        src2,
+        LEN
     );
 
     call_new (
         odst,
         src0,
-        src1, src2, LEN
+        src1,
+        src2,
+        LEN
     );
 
     for (
@@ -256,7 +266,9 @@ private static void test_vector_fmul_add (
     bench_new (
         odst,
         src0,
-        src1, src2, LEN
+        src1,
+        src2,
+        LEN
     );
 
 }
@@ -369,13 +381,17 @@ private static void test_vector_fmul_window (
     call_ref (
         cdst,
         src0,
-        src1, win, LEN / 2
+        src1,
+        win,
+        LEN / 2
     );
 
     call_new (
         odst,
         src0,
-        src1, win, LEN / 2
+        src1,
+        win,
+        LEN / 2
     );
 
     for (
@@ -407,7 +423,9 @@ private static void test_vector_fmul_window (
     bench_new (
         odst,
         src0,
-        src1, win, LEN / 2
+        src1,
+        win,
+        LEN / 2
     );
 
 }

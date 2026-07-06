@@ -213,7 +213,8 @@ private class ApiFLACTest : GLib.TestCase {
         uint out_offset = 0;
         uint result = 0;
         bool got_output = false;
-        uint in_frame_bytes, out_frame_bytes;
+        uint in_frame_bytes;
+        uint out_frame_bytes;
 
         in_frame = av_frame_alloc ();
         if (
@@ -342,13 +343,17 @@ private class ApiFLACTest : GLib.TestCase {
             }
 
             Posix.memcpy (
-                raw_in + in_offset, in_frame.data[0], in_frame_bytes
+                raw_in + in_offset,
+                in_frame.data[0],
+                in_frame_bytes
             );
 
             in_offset += in_frame_bytes;
             result = avcodec_encode_audio2 (
                 enc_ctx,
-                out enc_pkt, in_frame, out got_output
+                out enc_pkt,
+                in_frame,
+                out got_output
             );
 
             if (
@@ -371,9 +376,10 @@ private class ApiFLACTest : GLib.TestCase {
                 got_output
             ) {
                 result = avcodec_decode_audio4 (
-                dec_ctx,
-                out_frame,
-                out got_output, out enc_pkt
+                    dec_ctx,
+                    out_frame,
+                    out got_output,
+                    out enc_pkt
                 );
 
                 if (
@@ -455,7 +461,9 @@ private class ApiFLACTest : GLib.TestCase {
                     }
 
                     Posix.memcpy (
-                        raw_out + out_offset, out_frame.data[0], out_frame_bytes
+                        raw_out + out_offset,
+                        out_frame.data[0],
+                        out_frame_bytes
                     );
 
                     out_offset += out_frame_bytes;
@@ -558,7 +566,9 @@ private class ApiFLACTest : GLib.TestCase {
             48000,
             192000
         };
-        uint cl, sr;
+
+        uint cl;
+        uint sr;
 
         enc = avcodec_find_encoder (
             LibAVCodec.CodecID.FLAC
@@ -595,19 +605,23 @@ private class ApiFLACTest : GLib.TestCase {
         for (
             cl = 0;
             cl < FF_ARRAY_ELEMS (
-                channel_layouts);
+                channel_layouts
+            );
             cl++
         ) {
             for (
                 sr = 0;
                 sr < FF_ARRAY_ELEMS (
-                    sample_rates);
+                    sample_rates
+                );
                 sr++
             ) {
                 if (
                     init_encoder (
                         enc,
-                        out enc_ctx, channel_layouts[cl], sample_rates[sr]
+                        out enc_ctx,
+                        channel_layouts[cl],
+                        sample_rates[sr]
                     ) != 0
                 ) {
                     return 1;
@@ -616,7 +630,8 @@ private class ApiFLACTest : GLib.TestCase {
                 if (
                     init_decoder (
                         dec,
-                        out dec_ctx, channel_layouts[cl]
+                        out dec_ctx,
+                        channel_layouts[cl]
                     ) != 0
                 ) {
                     return 1;

@@ -92,9 +92,10 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
             do {
                 ret = avcodec_decode_video2 (
-                codec_context,
-                frame,
-                out got_frame, packet
+                    codec_context,
+                    frame,
+                    out got_frame,
+                    packet
                 );
 
                 av_assert0 (
@@ -199,7 +200,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
                 ret = try_decode_video_frame (
                     codec_context,
-                    out packet, decode
+                    out packet,
+                    decode
                 );
 
                 if (
@@ -524,7 +526,9 @@ private class ApiCodecParameterTest : GLib.TestCase {
             }
 
             ret = open_and_probe_video_streams (
-                out fmt_ctx_no_decode, argv[1], 0
+                out fmt_ctx_no_decode,
+                argv[1],
+                0
             );
 
             if (
@@ -544,7 +548,9 @@ private class ApiCodecParameterTest : GLib.TestCase {
             }
 
             ret = open_and_probe_video_streams (
-                out format_context, argv[1], 1
+                out format_context,
+                argv[1],
+                1
             );
 
             if (

@@ -235,7 +235,8 @@ private static void check_idct () {
     randomize_buffers (
         src,
         dst,
-        4, coef
+        4,
+        coef
     );
 
     dct4x4 (
@@ -436,7 +437,10 @@ private static void check_idct_dc4 () {
                 );
 
                 randomize_buffers (
-                    src + stride * blocky + blockx, dst + stride * blocky + blockx, stride, coef[i]
+                    src + stride * blocky + blockx,
+                    dst + stride * blocky + blockx,
+                    stride,
+                    coef[i]
                 );
 
                 dct4x4 (
@@ -581,7 +585,9 @@ private static void check_luma_dc_wht () {
             blockx < 4;
             blockx++
         ) {
-            uint8 src[16], dst[16];
+            uint8 src[16];
+            uint8 dst[16];
+
             randomize_buffers (
                 src,
                 dst,
@@ -729,7 +735,8 @@ private static void randomize_buffers () {
         k += 4
     ) {
         AV_WN32A (
-            buf + k, rnd ()
+            buf + k,
+            rnd ()
         );
 
     }
@@ -748,8 +755,17 @@ private static void randomize_buffers () {
 //      int
 //  );
 
-private const string dx_names[] = { "", "h4", "h6" };
-private const string dy_names[] = { "", "v4", "v6" };
+private const string dx_names[] = {
+    "",
+    "h4",
+    "h6"
+};
+
+private const string dy_names[] = {
+    "",
+    "v4",
+    "v6"
+};
 
 private static void check_mc () {
     //  LOCAL_ALIGNED_16 (
@@ -865,9 +881,12 @@ private static void check_mc () {
                     if (
                         check_func (
                             tab[hsize][dy][dx],
-                            "vp8_put_%s", str)
+                            "vp8_put_%s",
+                            str
+                        )
                     ) {
-                        int mx, my;
+                        int mx;
+                        int my;
                         int i;
                         if (
                             type == 0
@@ -957,19 +976,29 @@ private static void check_mc () {
                         call_ref (
                             dst0,
                             size,
-                            src, SRC_BUF_STRIDE, height, mx, my
+                            src,
+                            SRC_BUF_STRIDE,
+                            height,
+                            mx,
+                            my
                         );
 
                         call_new (
                             dst1,
                             size,
-                            src, SRC_BUF_STRIDE, height, mx, my
+                            src,
+                            SRC_BUF_STRIDE,
+                            height,
+                            mx,
+                            my
                         );
 
                         if (
                             memcmp (
                                 dst0,
-                            dst1, size * height)
+                                dst1,
+                                size * height
+                            )
                         ) {
                             fail ();
                         }
@@ -977,7 +1006,11 @@ private static void check_mc () {
                         bench_new (
                             dst1,
                             size,
-                            src, SRC_BUF_STRIDE, height, mx, my
+                            src,
+                            SRC_BUF_STRIDE,
+                            height,
+                            mx,
+                            my
                         );
 
                     }
@@ -1080,12 +1113,19 @@ private static void randomize_loopfilter_buffers (
         i += 2
     ) {
         /***********************************************************
+        Row 0 will trigger hev for q0/q1, row 2 will trigger hev for p0/p1,
+        rows 4 and 6 will not trigger hev.
+        force_hev 1 will make sure all rows trigger hev, while force_hev -1
+        makes none of them trigger it.
         ***********************************************************/
-        // Row 0 will trigger hev for q0/q1, row 2 will trigger hev for p0/p1,
-        // rows 4 and 6 will not trigger hev.
-        // force_hev 1 will make sure all rows trigger hev, while force_hev -1
-        // makes none of them trigger it.
-        int idx = off + i * istride, p2, p1, p0, q0, q1, q2;
+        int idx = off + i * istride;
+        int p2;
+        int p1;
+        int p0;
+        int q0;
+        int q1;
+        int q2;
+
         setpx (
             idx,
             0,
@@ -1102,14 +1142,16 @@ private static void randomize_loopfilter_buffers (
                 1,
                 q1,
                 q0,
-                hev_thresh + 1, flim_I - hev_thresh - 1
+                hev_thresh + 1,
+                flim_I - hev_thresh - 1
             );
 
         } else {
             setdx (
                 idx,
                 1,
-                q1 = q0, hev_thresh
+                q1 = q0,
+                hev_thresh
             );
 
         }
@@ -1117,7 +1159,8 @@ private static void randomize_loopfilter_buffers (
         setdx (
             idx,
             2,
-            q2 = q1, flim_I
+            q2 = q1,
+            flim_I
         );
 
         setdx (
@@ -1130,7 +1173,8 @@ private static void randomize_loopfilter_buffers (
         setdx (
             idx,
             -1,
-            p0 = q0, flim_E >> 2
+            p0 = q0,
+            flim_E >> 2
         );
 
         if (
@@ -1143,14 +1187,16 @@ private static void randomize_loopfilter_buffers (
                 -2,
                 p1,
                 p0,
-                hev_thresh + 1, flim_I - hev_thresh - 1
+                hev_thresh + 1,
+                flim_I - hev_thresh - 1
             );
 
         } else {
             setdx (
                 idx,
                 -2,
-                p1 = p0, hev_thresh
+                p1 = p0,
+                hev_thresh
             );
 
         }
@@ -1158,7 +1204,8 @@ private static void randomize_loopfilter_buffers (
         setdx (
             idx,
             -3,
-            p2 = p1, flim_I
+            p2 = p1,
+            flim_I
         );
 
         setdx (
@@ -1210,7 +1257,12 @@ private static void randomize_buffers (
     randomize_loopfilter_buffers (
         lineoff,
         str,
-        dir, flim_E, flim_I, hev_thresh, buf, force_hev
+        dir,
+        flim_E,
+        flim_I,
+        hev_thresh,
+        buf,
+        force_hev
     );
 
 }
@@ -1303,7 +1355,17 @@ private static void check_loopfilter_16y () {
                 check_func (
                     func,
                     "vp8_loop_filter16y%s_%s",
-                    edge ? "_inner" : "", dir ? "v" : "h")
+                    (
+                        edge
+                        ? "_inner"
+                        : ""
+                    ),
+                    (
+                        dir
+                        ? "v"
+                        : "h"
+                    )
+                )
             ) {
                 for (
                     force_hev = -1;
@@ -1311,7 +1373,10 @@ private static void check_loopfilter_16y () {
                     force_hev++
                 ) {
                     fill_loopfilter_buffers (
-                        buf0 - midoff, 16, 16, 16
+                        buf0 - midoff,
+                        16,
+                        16,
+                        16
                     );
 
                     randomize_buffers (
@@ -1329,7 +1394,9 @@ private static void check_loopfilter_16y () {
                     );
 
                     memcpy (
-                        buf1 - midoff, buf0 - midoff, 16 * 16
+                        buf1 - midoff,
+                        buf0 - midoff,
+                        16 * 16
                     );
 
                     call_ref (
@@ -1350,7 +1417,10 @@ private static void check_loopfilter_16y () {
 
                     if (
                         memcmp (
-                            buf0 - midoff, buf1 - midoff, 16 * 16)
+                            buf0 - midoff,
+                            buf1 - midoff,
+                            16 * 16
+                        )
                     ) {
                         fail ();
                     }
@@ -1358,7 +1428,10 @@ private static void check_loopfilter_16y () {
                 }
 
                 fill_loopfilter_buffers (
-                    buf0 - midoff, 16, 16, 16
+                    buf0 - midoff,
+                    16,
+                    16,
+                    16
                 );
 
                 randomize_buffers (
@@ -1494,7 +1567,17 @@ private static void check_loopfilter_8uv () {
                 check_func (
                     func,
                     "vp8_loop_filter8uv%s_%s",
-                    edge ? "_inner" : "", dir ? "v" : "h")
+                    (
+                        edge
+                        ? "_inner"
+                        : ""
+                    ),
+                    (
+                        dir
+                        ? "v"
+                        : "h"
+                    )
+                )
             ) {
                 for (
                     force_hev = -1;
@@ -1502,11 +1585,17 @@ private static void check_loopfilter_8uv () {
                     force_hev++
                 ) {
                     fill_loopfilter_buffers (
-                        buf0u - midoff, 16, 16, 16
+                        buf0u - midoff,
+                        16,
+                        16,
+                        16
                     );
 
                     fill_loopfilter_buffers (
-                        buf0v - midoff, 16, 16, 16
+                        buf0v - midoff,
+                        16,
+                        16,
+                        16
                     );
 
                     randomize_buffers (
@@ -1524,11 +1613,15 @@ private static void check_loopfilter_8uv () {
                     );
 
                     memcpy (
-                        buf1u - midoff, buf0u - midoff, 16 * 16
+                        buf1u - midoff,
+                        buf0u - midoff,
+                        16 * 16
                     );
 
                     memcpy (
-                        buf1v - midoff, buf0v - midoff, 16 * 16
+                        buf1v - midoff,
+                        buf0v - midoff,
+                        16 * 16
                     );
 
                     call_ref (
@@ -1551,9 +1644,15 @@ private static void check_loopfilter_8uv () {
 
                     if (
                         memcmp (
-                            buf0u - midoff, buf1u - midoff, 16 * 16) ||
+                            buf0u - midoff,
+                            buf1u - midoff,
+                            16 * 16
+                        ) ||
                         memcmp (
-                            buf0v - midoff, buf1v - midoff, 16 * 16)
+                            buf0v - midoff,
+                            buf1v - midoff,
+                            16 * 16
+                        )
                     ) {
                         fail ();
                     }
@@ -1561,11 +1660,17 @@ private static void check_loopfilter_8uv () {
                 }
 
                 fill_loopfilter_buffers (
-                    buf0u - midoff, 16, 16, 16
+                    buf0u - midoff,
+                    16,
+                    16,
+                    16
                 );
 
                 fill_loopfilter_buffers (
-                    buf0v - midoff, 16, 16, 16
+                    buf0v - midoff,
+                    16,
+                    16,
+                    16
                 );
 
                 randomize_buffers (
@@ -1644,11 +1749,18 @@ private static void check_loopfilter_simple () {
             check_func (
                 func,
                 "vp8_loop_filter_simple_%s",
-                dir ? "v" : "h"
+                (
+                    dir
+                    ? "v"
+                    : "h"
+                )
             )
         ) {
             fill_loopfilter_buffers (
-                buf0 - midoff, 16, 16, 16
+                buf0 - midoff,
+                16,
+                16,
+                16
             );
 
             randomize_buffers (
@@ -1666,7 +1778,9 @@ private static void check_loopfilter_simple () {
             );
 
             memcpy (
-                buf1 - midoff, buf0 - midoff, 16 * 16
+                buf1 - midoff,
+                buf0 - midoff,
+                16 * 16
             );
 
             call_ref (
@@ -1683,7 +1797,10 @@ private static void check_loopfilter_simple () {
 
             if (
                 memcmp (
-                    buf0 - midoff, buf1 - midoff, 16 * 16)
+                    buf0 - midoff,
+                    buf1 - midoff,
+                    16 * 16
+                )
             ) {
                 fail ();
             }

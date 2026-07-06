@@ -45,7 +45,10 @@ private class ApiH264Test : GLib.TestCase {
         bool end_of_stream = false;
 
         result = avformat_open_input (
-            out format_context, input_filename, null, null
+            out format_context,
+            input_filename,
+            null,
+            null
         );
 
         if (
@@ -260,7 +263,8 @@ private class ApiH264Test : GLib.TestCase {
                 result = avcodec_decode_video2 (
                     codec_context,
                     frame,
-                    out got_frame, out packet
+                    out got_frame,
+                    out packet
                 );
 
                 if (

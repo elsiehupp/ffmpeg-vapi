@@ -100,27 +100,36 @@ private static void check_get_pixels (
         randomize_buffers ();
 
         call_ref (
-            dst0 + dst_offset, src10 + src_offset, 8
+            dst0 + dst_offset,
+            src10 + src_offset,
+            8
         );
 
         call_new (
-            dst1 + dst_offset, src11 + src_offset, 8
+            dst1 + dst_offset,
+            src11 + src_offset,
+            8
         );
 
         if (
             memcmp (
                 src10,
                 src11,
-                BUF_SIZE)|| memcmp (
-                    dst0,
-                    dst1,
-                    BUF_SIZE)
+                BUF_SIZE
+            ) ||
+            memcmp (
+                dst0,
+                dst1,
+                BUF_SIZE
+            )
         ) {
             fail ();
         }
 
         bench_new (
-            dst1 + dst_offset, src11 + src_offset, 8
+            dst1 + dst_offset,
+            src11 + src_offset,
+            8
         );
 
     }
@@ -158,11 +167,17 @@ private static void check_diff_pixels (
         randomize_buffers ();
 
         call_ref (
-            dst0 + dst_offset, src10 + src_offset, src20 + src_offset, 8
+            dst0 + dst_offset,
+            src10 + src_offset,
+            src20 + src_offset,
+            8
         );
 
         call_new (
-            dst1 + dst_offset, src11 + src_offset, src21 + src_offset, 8
+            dst1 + dst_offset,
+            src11 + src_offset,
+            src21 + src_offset,
+            8
         );
 
         if (
@@ -186,7 +201,10 @@ private static void check_diff_pixels (
         }
 
         bench_new (
-            dst1 + dst_offset, src11 + src_offset, src21 + src_offset, 8
+            dst1 + dst_offset,
+            src11 + src_offset,
+            src21 + src_offset,
+            8
         );
 
     }

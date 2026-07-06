@@ -54,7 +54,8 @@ private static void test_sum64x5 () {
     //  );
 
     randomize (
-        (INTFLOAT *)dst0, 64 + 256
+        (INTFLOAT *)dst0,
+        64 + 256
     );
 
     memcpy (
@@ -107,7 +108,8 @@ private static void test_sum_square () {
     //  );
 
     randomize (
-        (INTFLOAT *)src, 256 * 2
+        (INTFLOAT *)src,
+        256 * 2
     );
 
     res0 = call_ref (
@@ -124,7 +126,8 @@ private static void test_sum_square () {
         !float_near_abs_eps (
             res0,
             res1,
-            EPS)
+            EPS
+        )
     ) {
         fail ();
     }
@@ -155,15 +158,16 @@ private static void test_neg_odd_64 () {
     //  );
 
     randomize (
-        (INTFLOAT *)dst0, 64
+        (INTFLOAT *)dst0,
+        64
     );
 
     memcpy (
         dst1,
         dst0,
-        (
-            64) * sizeof (
-                INTFLOAT)
+        64 * sizeof (
+            INTFLOAT
+        )
     );
 
     call_ref (
@@ -179,7 +183,8 @@ private static void test_neg_odd_64 () {
             dst0,
             dst1,
             EPS,
-            64)
+            64
+        )
     ) {
         fail ();
     }
@@ -209,15 +214,16 @@ private static void test_qmf_pre_shuffle () {
     //  );
 
     randomize (
-        (INTFLOAT *)dst0, 128
+        (INTFLOAT *)dst0,
+        128
     );
 
     memcpy (
         dst1,
         dst0,
-        (
-            128) * sizeof (
-                INTFLOAT)
+        128 * sizeof (
+            INTFLOAT
+        )
     );
 
     call_ref (
@@ -233,7 +239,8 @@ private static void test_qmf_pre_shuffle () {
             dst0,
             dst1,
             EPS,
-            128)
+            128
+        )
     ) {
         fail ();
     }
@@ -272,7 +279,8 @@ private static void test_qmf_post_shuffle () {
     //  );
 
     randomize (
-        (INTFLOAT *)src, 64
+        (INTFLOAT *)src,
+        64
     );
 
     call_ref (
@@ -287,8 +295,11 @@ private static void test_qmf_post_shuffle () {
 
     if (
         !float_near_abs_eps_array (
-            (INTFLOAT *)dst0, (
-                INTFLOAT *)dst1, EPS, 64)
+            (INTFLOAT *)dst0,
+            (INTFLOAT *)dst1,
+            EPS,
+            64
+        )
     ) {
         fail ();
     }
@@ -326,7 +337,8 @@ private static void test_qmf_deint_neg () {
     //  );
 
     randomize (
-        (INTFLOAT *)src, 64
+        (INTFLOAT *)src,
+        64
     );
 
     call_ref (
@@ -344,7 +356,8 @@ private static void test_qmf_deint_neg () {
             dst0,
             dst1,
             EPS,
-            64)
+            64
+        )
     ) {
         fail ();
     }
@@ -390,22 +403,28 @@ private static void test_qmf_deint_bfly () {
 
     memset (
         dst0,
-        0, 128 * sizeof (
-            INTFLOAT)
+        0,
+        128 * sizeof (
+            INTFLOAT
+        )
     );
 
     memset (
         dst1,
-        0, 128 * sizeof (
-            INTFLOAT)
+        0,
+        128 * sizeof (
+            INTFLOAT
+        )
     );
 
     randomize (
-        (INTFLOAT *)src0, 64
+        (INTFLOAT *)src0,
+        64
     );
 
     randomize (
-        (INTFLOAT *)src1, 64
+        (INTFLOAT *)src1,
+        64
     );
 
     call_ref (
@@ -425,7 +444,8 @@ private static void test_qmf_deint_bfly () {
             dst0,
             dst1,
             EPS,
-            128)
+            128
+        )
     ) {
         fail ();
     }
@@ -468,18 +488,23 @@ private static void test_autocorrelate () {
 
     memset (
         dst0,
-        0, 3 * 2 * 2 * sizeof (
-            INTFLOAT)
+        0,
+        3 * 2 * 2 * sizeof (
+            INTFLOAT
+        )
     );
 
     memset (
         dst1,
-        0, 3 * 2 * 2 * sizeof (
-            INTFLOAT)
+        0,
+        3 * 2 * 2 * sizeof (
+            INTFLOAT
+        )
     );
 
     randomize (
-        (INTFLOAT *)src, 80
+        (INTFLOAT *)src,
+        80
     );
 
     call_ref (
@@ -494,8 +519,11 @@ private static void test_autocorrelate () {
 
     if (
         !float_near_abs_eps_array (
-            (INTFLOAT *)dst0, (
-                INTFLOAT *)dst1, EPS, 3 * 2 * 2)
+            (INTFLOAT *)dst0,
+            (INTFLOAT *)dst1,
+            EPS,
+            3 * 2 * 2
+        )
     ) {
         fail ();
     }
@@ -557,15 +585,18 @@ private static void test_hf_gen () {
     //  );
 
     randomize (
-        (INTFLOAT *)low, 128 * 2
+        (INTFLOAT *)low,
+        128 * 2
     );
 
     randomize (
-        (INTFLOAT *)alpha0, 2
+        (INTFLOAT *)alpha0,
+        2
     );
 
     randomize (
-        (INTFLOAT *)alpha1, 2
+        (INTFLOAT *)alpha1,
+        2
     );
 
     for (
@@ -577,14 +608,16 @@ private static void test_hf_gen () {
             dst0,
             0,
             128 * 2 * sizeof (
-                INTFLOAT)
+                INTFLOAT
+            )
         );
 
         memset (
             dst1,
             0,
             128 * 2 * sizeof (
-                INTFLOAT)
+                INTFLOAT
+            )
         );
 
         call_ref (
@@ -609,8 +642,11 @@ private static void test_hf_gen () {
 
         if (
             !float_near_abs_eps_array (
-                (INTFLOAT *)dst0, (
-                    INTFLOAT *)dst1, EPS, 128 * 2)
+                (INTFLOAT *)dst0,
+                (INTFLOAT *)dst1,
+                EPS,
+                128 * 2
+            )
         ) {
             fail ();
         }
@@ -667,31 +703,38 @@ private static void test_hf_g_filt () {
     //  );
 
     randomize (
-        (INTFLOAT *)high, 128 * 40 * 2
+        (INTFLOAT *)high,
+        128 * 40 * 2
     );
 
     randomize (
-        (INTFLOAT *)g_filt, 128
+        (INTFLOAT *)g_filt,
+        128
     );
 
     call_ref (
         dst0,
         high,
         g_filt,
-        128, 20
+        128,
+        20
     );
 
     call_new (
         dst1,
         high,
         g_filt,
-        128, 20
+        128,
+        20
     );
 
     if (
         !float_near_abs_eps_array (
-            (INTFLOAT *)dst0, (
-                INTFLOAT *)dst1, EPS, 128 * 2)
+            (INTFLOAT *)dst0,
+            (INTFLOAT *)dst1,
+            EPS,
+            128 * 2
+        )
     ) {
         fail ();
     }
@@ -700,7 +743,8 @@ private static void test_hf_g_filt () {
         dst1,
         high,
         g_filt,
-        128, 20
+        128,
+        20
     );
 
 }
@@ -761,11 +805,13 @@ private static void test_hf_apply_noise (
     //  );
 
     randomize (
-        (INTFLOAT *)s_m, 128
+        (INTFLOAT *)s_m,
+        128
     );
 
     randomize (
-        (INTFLOAT *)q_filt, 128
+        (INTFLOAT *)q_filt,
+        128
     );
 
     for (
