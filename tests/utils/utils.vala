@@ -20,21 +20,34 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 
 private const uint SCALEBITS = 8;
-private const uint ONE_HALF = (1 << (SCALEBITS - 1));
-private static uint FIX (float x) {
-    return ((uint) (x * (1 << SCALEBITS) + 0.5));
+private const uint ONE_HALF = (1 << (SCALEBITS - 1)
+);
+
+private static uint FIX (
+    float x
+) {
+    return (
+        (uint) (x * (1 << SCALEBITS) + 0.5)
+    );
+
 }
 
 private static void err_if (
     bool expr
 ) {
-    if (expr) {
+    if (
+        expr
+    ) {
         fprintf (
             stderr,
             "%s\n",
-            strerror (errno)
+            strerror (
+                errno)
         );
-        exit (1);
+        exit (
+            1
+        );
+
     }
 
 }
@@ -62,8 +75,16 @@ private static void rgb24_to_yuv420p (
     wrap = width_2;
     wrap3 = width_2 * 3;
     p = src;
-    for (y = 0; y < height_2; y += 2) {
-        for (x = 0; x < width_2; x += 2) {
+    for (
+        y = 0;
+        y < height_2;
+        y += 2
+    ) {
+        for (
+            x = 0;
+            x < width_2;
+            x += 2
+        ) {
             r = p[0];
             g = p[1];
             b = p[2];
@@ -131,7 +152,7 @@ private static void pgmyuv_save (
     uint height,
     uchar[] rgb_tab
 ) {
-    GLib.File f;
+    GLib.File file;
     uint h2;
     uint w2;
     uchar[] cb;
@@ -144,46 +165,105 @@ private static void pgmyuv_save (
     cb_tab = new uchar[width * height / 4];
     cr_tab = new uchar[width * height / 4];
 
-    rgb24_to_yuv420p (lum_tab, cb_tab, cr_tab, rgb_tab, width, height);
+    rgb24_to_yuv420p (
+        lum_tab, cb_tab, cr_tab, rgb_tab, width, height
+    );
 
-    if (filename != "") {
-        f = fopen (filename, "wb");
-        fprintf (f, "P5\n%d %d\n%d\n", width, height * 3 / 2, 255);
+    if (
+        filename != ""
+    ) {
+        file = fopen (
+            filename,
+            "wb"
+        );
+
+        fprintf (
+            file,
+            "P5\n%d %d\n%d\n",
+            width, height * 3 / 2, 255
+        );
+
     } else {
-        f = stdout;
+        file = stdout;
     }
 
-    err_if (fwrite (lum_tab, 1, width * height, f) != width * height);
+    err_if (
+        fwrite (
+            lum_tab, 1, width * height, file) != width * height
+    );
+
     h2 = height / 2;
     w2 = width / 2;
     cb = cb_tab;
     cr = cr_tab;
 
-    if (filename != "") {
-        for (uint i = 0; i < h2; i++) {
-            err_if (fwrite (cb, 1, w2, f) != w2);
-            err_if (fwrite (cr, 1, w2, f) != w2);
+    if (
+        filename != ""
+    ) {
+        for (
+            uint i = 0;
+            i < h2;
+            i++
+        ) {
+            err_if (
+                fwrite (
+                    cb, 1, w2, file) != w2
+            );
+
+            err_if (
+                fwrite (
+                    cr, 1, w2, file) != w2
+            );
+
             cb += w2;
             cr += w2;
         }
 
-        fclose (f);
+        fclose (
+            file
+        );
+
     } else {
-        for (uint i = 0; i < h2; i++) {
-            err_if (fwrite (cb, 1, w2, f) != w2);
+        for (
+            uint i = 0;
+            i < h2;
+            i++
+        ) {
+            err_if (
+                fwrite (
+                    cb, 1, w2, file) != w2
+            );
+
             cb += w2;
         }
 
-        for (uint i = 0; i < h2; i++) {
-            err_if (fwrite (cr, 1, w2, f) != w2);
+        for (
+            uint i = 0;
+            i < h2;
+            i++
+        ) {
+            err_if (
+                fwrite (
+                    cr, 1, w2, file) != w2
+            );
+
             cr += w2;
         }
 
     }
 
-    free (lum_tab);
-    free (cb_tab);
-    free (cr_tab);
+    free (
+        lum_tab
+    );
+
+    free (
+        cb_tab
+    );
+
+    free (
+        cr_tab
+    );
+
 }
 
 private static uchar[] rgb_tab;
@@ -200,8 +280,11 @@ private static void put_pixel (
 ) {
     uchar[] p;
 
-    if (x < 0 || x >= width_2 ||
-        y < 0 || y >= height_2
+    if (
+        x < 0 ||
+        x >= width_2 ||
+        y < 0 ||
+        y >= height_2
     ) {
         return;
     }

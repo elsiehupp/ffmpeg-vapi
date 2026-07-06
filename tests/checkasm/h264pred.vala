@@ -147,7 +147,9 @@ private const uint32 pixel_mask[3] = {
     0xffffffff, 0x01ff01ff, 0x03ff03ff
 };
 
-private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8);
+private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8
+);
+
 private const size_t BUF_SIZE = (3 * 16 * 17);
 
 private static bool check_pred_func (
@@ -156,7 +158,8 @@ private static bool check_pred_func (
     void *mode_name
 ) {
     return (
-        mode_name && (
+        mode_name &&
+        (
             codec_ids[codec] == AV_CODEC_ID_H264
             ? check_func (func, "pred%s_%s_%d", name, mode_name, bit_depth)
             : check_func (func, "pred%s_%s", name, mode_name)
@@ -168,10 +171,23 @@ private static bool check_pred_func (
 private static void randomize_buffers () {
     uint32 mask = pixel_mask[bit_depth - 8];
     int i;
-    for (i = 0; i < BUF_SIZE; i += 4) {
+    for (
+        i = 0;
+        i < BUF_SIZE;
+        i += 4
+    ) {
         uint32 r = rnd () & mask;
-        AV_WN32A (buf0 + i, r);
-        AV_WN32A (buf1 + i, r);
+
+        AV_WN32A (
+            buf0 + i,
+            r
+        );
+
+        AV_WN32A (
+            buf1 + i,
+            r
+        );
+
     }
 
 }
@@ -184,31 +200,57 @@ private const size_t src0 = (buf0 + 4 * 16);
 private const size_t src1 = (buf1 + 4 * 16);
 
 //  declare_func_emms (
-//      AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT, void, uint8[] src, uint8[] topright, size_t stride
+//      AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT,
+//      void,
+//      uint8[] src,
+//      uint8[] topright,
+//      size_t stride
 //  );
 
 private static void check_pred4x4 (
-    H264PredContext? h,
+    H264PredContext? h264_pred_context,
     uint8[] buf0,
     uint8[] buf1,
     int codec,
     int chroma_format,
     int bit_depth
 ) {
-    if (chroma_format == 1) {
+    if (
+        chroma_format == 1
+    ) {
         uint8[] topright = buf0 + 2*16;
         int pred_mode;
 
-        for (pred_mode = 0; pred_mode < 15; pred_mode++) {
-            if (check_pred_func (h.pred4x4[pred_mode], "4x4", pred4x4_modes[codec][pred_mode])) {
+        for (
+            pred_mode = 0;
+            pred_mode < 15;
+            pred_mode++
+        ) {
+            if (
+                check_pred_func (
+                    h264_pred_context.pred4x4[pred_mode], "4x4", pred4x4_modes[codec][pred_mode])
+            ) {
                 randomize_buffers ();
-                //  call_ref (src0, topright, 12*SIZEOF_PIXEL);
-                //  call_new (src1, topright, 12*SIZEOF_PIXEL);
-                if (memcmp (buf0, buf1, BUF_SIZE)) {
+
+                call_ref (
+                    src0, topright, 12*SIZEOF_PIXEL
+                );
+
+                call_new (
+                    src1, topright, 12*SIZEOF_PIXEL
+                );
+
+                if (
+                    memcmp (
+                        buf0, buf1, BUF_SIZE)
+                ) {
                     fail ();
                 }
 
-                bench_new (src1, topright, 12*SIZEOF_PIXEL);
+                bench_new (
+                    src1, topright, 12*SIZEOF_PIXEL
+                );
+
             }
 
         }
@@ -217,10 +259,15 @@ private static void check_pred4x4 (
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT, void, uint8[] src, size_t stride);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT,
+//      void,
+//      uint8[] src,
+//      size_t stride
+//  );
 
 private static void check_pred8x8 (
-    H264PredContext? h,
+    H264PredContext? h264_pred_context,
     uint8[] buf0,
     uint8[] buf1,
     int codec,
@@ -229,46 +276,92 @@ private static void check_pred8x8 (
 ) {
     int pred_mode;
 
-    for (pred_mode = 0; pred_mode < 11; pred_mode++) {
-        if (check_pred_func (h.pred8x8[pred_mode], (chroma_format == 2) ? "8x16" : "8x8",
-                            pred8x8_modes[codec][pred_mode])) {
+    for (
+        pred_mode = 0;
+        pred_mode < 11;
+        pred_mode++
+    ) {
+        if (
+            check_pred_func (
+                h264_pred_context.pred8x8[pred_mode], (chroma_format == 2) ? "8x16" : "8x8",
+                            pred8x8_modes[codec][pred_mode])
+        ) {
             randomize_buffers ();
-            //  call_ref (src0, 24*SIZEOF_PIXEL);
-            //  call_new (src1, 24*SIZEOF_PIXEL);
-            if (memcmp (buf0, buf1, BUF_SIZE)) {
+            call_ref (
+                src0, 24*SIZEOF_PIXEL
+            );
+
+            call_new (
+                src1, 24*SIZEOF_PIXEL
+            );
+
+            if (
+                memcmp (
+                    buf0, buf1, BUF_SIZE)
+            ) {
                 fail ();
             }
 
-            bench_new (src1, 24*SIZEOF_PIXEL);
+            bench_new (
+                src1, 24*SIZEOF_PIXEL
+            );
+
         }
 
     }
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT, void, uint8[] src, size_t stride);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT,
+//      void,
+//      uint8[] src,
+//      size_t stride
+//  );
 
 private static void check_pred16x16 (
-    H264PredContext? h,
+    H264PredContext? h264_pred_context,
     uint8[] buf0,
     uint8[] buf1,
     int codec,
     int chroma_format,
     int bit_depth
 ) {
-    if (chroma_format == 1) {
+    if (
+        chroma_format == 1
+    ) {
         int pred_mode;
 
-        for (pred_mode = 0; pred_mode < 9; pred_mode++) {
-            if (check_pred_func (h.pred16x16[pred_mode], "16x16", pred16x16_modes[codec][pred_mode])) {
+        for (
+            pred_mode = 0;
+            pred_mode < 9;
+            pred_mode++
+        ) {
+            if (
+                check_pred_func (
+                    h264_pred_context.pred16x16[pred_mode], "16x16", pred16x16_modes[codec][pred_mode])
+            ) {
                 randomize_buffers ();
-                //  call_ref (src0, 48);
-                //  call_new (src1, 48);
-                if (memcmp (buf0, buf1, BUF_SIZE)) {
+
+                call_ref (
+                    src0, 48
+                );
+
+                call_new (
+                    src1, 48
+                );
+
+                if (
+                    memcmp (
+                        buf0, buf1, BUF_SIZE)
+                ) {
                     fail ();
                 }
 
-                bench_new (src1, 48);
+                bench_new (
+                    src1, 48
+                );
+
             }
 
         }
@@ -277,27 +370,54 @@ private static void check_pred16x16 (
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMXEXT, void, uint8[] src, int topleft, int topright, size_t stride);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMXEXT,
+//      void,
+//      uint8[] src,
+//      int topleft,
+//      int topright,
+//      size_t stride
+//  );
 
 private static void check_pred8x8l (
-    H264PredContext? h,
+    H264PredContext? h264_pred_context,
     uint8[] buf0,
     uint8[] buf1,
     int codec,
     int chroma_format,
     int bit_depth
 ) {
-    if (chroma_format == 1 && codec_ids[codec] == AV_CODEC_ID_H264) {
+    if (
+        chroma_format == 1 &&
+        codec_ids[codec] == AV_CODEC_ID_H264
+    ) {
         int pred_mode;
 
-        for (pred_mode = 0; pred_mode < 12; pred_mode++) {
-            if (check_pred_func (h.pred8x8l[pred_mode], "8x8l", pred4x4_modes[codec][pred_mode])) {
+        for (
+            pred_mode = 0;
+            pred_mode < 12;
+            pred_mode++
+        ) {
+            if (
+                check_pred_func (
+                    h264_pred_context.pred8x8l[pred_mode], "8x8l", pred4x4_modes[codec][pred_mode])
+            ) {
                 int neighbors;
-                for (neighbors = 0; neighbors <= 0xc000; neighbors += 0x4000) {
+                for (
+                    neighbors = 0;
+                    neighbors <= 0xc000;
+                    neighbors += 0x4000
+                ) {
                     int has_topleft = neighbors & 0x8000;
                     int has_topright = neighbors & 0x4000;
 
-                    if ((pred_mode == DIAG_DOWN_RIGHT_PRED || pred_mode == VERT_RIGHT_PRED) && !has_topleft) {
+                    if (
+                        (
+                            pred_mode == DIAG_DOWN_RIGHT_PRED ||
+                            pred_mode == VERT_RIGHT_PRED
+                        ) &&
+                        !has_topleft
+                    ) {
                         /***********************************************************
                         Those aren't allowed according to the spec
                         ***********************************************************/
@@ -305,13 +425,26 @@ private static void check_pred8x8l (
                     }
 
                     randomize_buffers ();
-                    //  call_ref (src0, has_topleft, has_topright, 24*SIZEOF_PIXEL);
-                    //  call_new (src1, has_topleft, has_topright, 24*SIZEOF_PIXEL);
-                    if (memcmp (buf0, buf1, BUF_SIZE)) {
+
+                    call_ref (
+                        src0, has_topleft, has_topright, 24*SIZEOF_PIXEL
+                    );
+
+                    call_new (
+                        src1, has_topleft, has_topright, 24*SIZEOF_PIXEL
+                    );
+
+                    if (
+                        memcmp (
+                            buf0, buf1, BUF_SIZE)
+                    ) {
                         fail ();
                     }
 
-                    bench_new (src1, has_topleft, has_topright, 24*SIZEOF_PIXEL);
+                    bench_new (
+                        src1, has_topleft, has_topright, 24*SIZEOF_PIXEL
+                    );
+
                 }
 
             }
@@ -347,25 +480,59 @@ private const Test tests[] = {
 
 private static void checkasm_check_h264pred () {
 
-    //  LOCAL_ALIGNED_16 (uint8, buf0, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, buf1, [BUF_SIZE]);
-    H264PredContext h;
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      buf0,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      buf1,
+    //      [BUF_SIZE]
+    //  );
+
+    H264PredContext h264_pred_context;
     int test, codec, chroma_format, bit_depth;
 
-    for (test = 0; test < FF_ARRAY_ELEMS (tests); test++) {
-        for (codec = 0; codec < 4; codec++) {
+    for (
+        test = 0;
+        test < FF_ARRAY_ELEMS (tests);
+        test++
+    ) {
+        for (
+            codec = 0;
+            codec < 4;
+            codec++
+        ) {
             int codec_id = codec_ids[codec];
-            for (bit_depth = 8; bit_depth <= (codec_id == AV_CODEC_ID_H264 ? 10 : 8); bit_depth++) {
-                for (chroma_format = 1; chroma_format <= (codec_id == AV_CODEC_ID_H264 ? 2 : 1); chroma_format++) {
-                    ff_h264_pred_init (&h, codec_id, bit_depth, chroma_format);
-                    tests[test].func (&h, buf0, buf1, codec, chroma_format, bit_depth);
+            for (
+                bit_depth = 8;
+                bit_depth <= (codec_id == AV_CODEC_ID_H264 ? 10 : 8);
+                bit_depth++
+            ) {
+                for (
+                    chroma_format = 1;
+                    chroma_format <= (codec_id == AV_CODEC_ID_H264 ? 2 : 1);
+                    chroma_format++
+                ) {
+                    ff_h264_pred_init (
+                        &h264_pred_context, codec_id, bit_depth, chroma_format
+                    );
+
+                    tests[test].func (&h264_pred_context, buf0, buf1, codec, chroma_format, bit_depth
+                    );
+
                 }
 
             }
 
         }
 
-        report ("%s", tests[test].name);
+        report (
+            "%s", tests[test].name
+        );
+
     }
 
 }

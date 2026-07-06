@@ -37,7 +37,11 @@ private class ApiThreadMessageTest : GLib.TestCase {
         public abstract void *thread ();
 
         public static void SPAWN_THREADS (LibAVUtil.ThreadMessageQueue queue) throws Goto {
-            for (int i = 0; i < count; i++) {
+            for (
+                int i = 0;
+                i < count;
+                i++
+            ) {
                 AbstractData td = instance_array[i];
 
                 td.id = i;
@@ -53,15 +57,21 @@ private class ApiThreadMessageTest : GLib.TestCase {
                     thread,
                     td
                 );
-                if (ret) {
-                    uint err = AVERROR (ret);
+
+                if (
+                    ret
+                ) {
+                    uint err = AVERROR (ret
+                    );
+
                     av_log (
                         null,
                         AV_LOG_ERROR,
                         "Unable to start " +
                         stringify () +
                         " thread: %s\n",
-                        av_err2str (err)
+                        av_err2str (
+                            err)
                     );
                     throw new Goto.END ();
                 }
@@ -71,22 +81,32 @@ private class ApiThreadMessageTest : GLib.TestCase {
         }
 
         public static void WAIT_THREADS () throws Goto {
-            for (uint i = 0; i < count; i++) {
+            for (
+                uint i = 0;
+                i < count;
+                i++
+            ) {
                 AbstractData td = instance_array[i];
 
                 ret = pthread_join (
                     td.tid,
                     null
                 );
-                if (ret) {
-                    uint err = AVERROR (ret);
+
+                if (
+                    ret
+                ) {
+                    uint err = AVERROR (ret
+                    );
+
                     av_log (
                         null,
                         AV_LOG_ERROR,
                         "Unable to join " +
                         stringify () +
                         " thread: %s\n",
-                        av_err2str (err)
+                        av_err2str (
+                            err)
                     );
                     throw new Goto.END ();
                 }
@@ -121,15 +141,24 @@ private class ApiThreadMessageTest : GLib.TestCase {
                 this.id,
                 this.workload
             );
-            for (uint i = 0; i < this.workload; i++) {
-                if (rand () % this.workload < this.workload / 10) {
+            for (
+                uint i = 0;
+                i < this.workload;
+                i++
+            ) {
+                if (
+                    rand () % this.workload < this.workload / 10
+                ) {
                     av_log (
                         null,
                         AV_LOG_INFO,
                         "sender #%d: flushing the queue\n",
                         this.id
                     );
-                    av_thread_message_flush (this.queue);
+                    av_thread_message_flush (
+                        this.queue
+                    );
+
                 } else {
                     char[] val;
                     LibAVUtil.Dictionary meta = null;
@@ -138,8 +167,12 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         frame = av_frame_alloc (),
                     };
 
-                    if (msg.frame == null) {
-                        ret = AVERROR (ENOMEM);
+                    if (
+                        msg.frame == null
+                    ) {
+                        ret = AVERROR (ENOMEM
+                        );
+
                         break;
                     }
 
@@ -153,9 +186,16 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         this.workload,
                         this.id
                     );
-                    if (val == null) {
-                        av_frame_free (out msg.frame);
-                        ret = AVERROR (ENOMEM);
+                    if (
+                        val == null
+                    ) {
+                        av_frame_free (
+                            out msg.frame
+                        );
+
+                        ret = AVERROR (ENOMEM
+                        );
+
                         break;
                     }
 
@@ -165,8 +205,13 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         val,
                         AV_DICT_DONT_STRDUP_VAL
                     );
-                    if (ret < 0) {
-                        av_frame_free (out msg.frame);
+                    if (
+                        ret < 0
+                    ) {
+                        av_frame_free (
+                            out msg.frame
+                        );
+
                         break;
                     }
 
@@ -183,8 +228,13 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         msg.frame,
                         32
                     );
-                    if (ret < 0) {
-                        av_frame_free (out msg.frame);
+                    if (
+                        ret < 0
+                    ) {
+                        av_frame_free (
+                            out msg.frame
+                        );
+
                         break;
                     }
 
@@ -206,8 +256,13 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         out msg,
                         0
                     );
-                    if (ret < 0) {
-                        av_frame_free (out msg.frame);
+                    if (
+                        ret < 0
+                    ) {
+                        av_frame_free (
+                            out msg.frame
+                        );
+
                         break;
                     }
 
@@ -220,7 +275,8 @@ private class ApiThreadMessageTest : GLib.TestCase {
                 AV_LOG_INFO,
                 "sender #%d: my work is done here (%s)\n",
                 this.id,
-                av_err2str (ret)
+                av_err2str (
+                    ret)
             );
             av_thread_message_queue_set_err_recv (
                 this.queue,
@@ -244,32 +300,49 @@ private class ApiThreadMessageTest : GLib.TestCase {
         public override void *thread () {
             uint ret = 0;
 
-            for (uint i = 0; i < this.workload; i++) {
-                if (rand () % this.workload < this.workload / 10) {
+            for (
+                uint i = 0;
+                i < this.workload;
+                i++
+            ) {
+                if (
+                    rand () % this.workload < this.workload / 10
+                ) {
                     av_log (
                         null,
                         AV_LOG_INFO,
-                        "receiver #%d: flushing the queue, " +
-                        "discarding %d ThreadMessage (s)\n",
+                        "receiver #%d: flushing the queue, discarding %d ThreadMessage (s)\n",
                         this.id,
-                        av_thread_message_queue_nb_elems (this.queue)
+                        av_thread_message_queue_nb_elems (
+                            this.queue)
                     );
-                    av_thread_message_flush (this.queue);
+                    av_thread_message_flush (
+                        this.queue
+                    );
+
                 } else {
                     ThreadMessage msg;
                     LibAVUtil.Dictionary meta;
-                    LibAVUtil.DictionaryEntry e;
+                    LibAVUtil.DictionaryEntry dictionary_entry;
 
                     ret = av_thread_message_queue_recv (
                         this.queue,
                         out msg,
                         0
                     );
-                    if (ret < 0)
+
+                    if (
+                        ret < 0
+                    ) {
                         break;
-                    av_assert0 (msg.magic == MAGIC);
+                    }
+
+                    av_assert0 (
+                        msg.magic == MAGIC
+                    );
+
                     meta = msg.frame.metadata;
-                    e = av_dict_get (
+                    dictionary_entry = av_dict_get (
                         meta,
                         "sig",
                         null,
@@ -279,10 +352,13 @@ private class ApiThreadMessageTest : GLib.TestCase {
                         null,
                         AV_LOG_INFO,
                         "got \"%s\" (%p)\n",
-                        e.value,
+                        dictionary_entry.value,
                         msg.frame
                     );
-                    av_frame_free (out msg.frame);
+                    av_frame_free (
+                        out msg.frame
+                    );
+
                 }
 
             }
@@ -305,30 +381,55 @@ private class ApiThreadMessageTest : GLib.TestCase {
 
     public class ThreadMessage {
         public LibAVUtil.Frame frame;
-        // we add some junk in the ThreadMessage to make sure the ThreadMessage size is > sizeof (void*)
+
+        /***********************************************************
+        we add some junk in the ThreadMessage to make sure the ThreadMessage size is > sizeof (void*)
+        ***********************************************************/
         public uint magic;
 
-        //  static void free_frame
+        /***********************************************************
+        static void free_frame
+        ***********************************************************/
         ~ThreadMessage () {
-            av_assert0 (msg.magic == MAGIC);
-            av_frame_free (out msg.frame);
+            av_assert0 (
+                msg.magic == MAGIC
+            );
+
+            av_frame_free (
+                out msg.frame
+            );
+
         }
 
     }
 
     private const uint64 MAGIC = 0xdeadc0de;
 
-    private static uint end (Goto ret) {
-        av_thread_message_queue_free (out queue);
-        av_freep (SenderData.instance_array);
-        av_freep (ReceiverData.instance_array);
+    private static uint end (
+        Goto ret
+    ) {
+        av_thread_message_queue_free (
+            out queue
+        );
 
-        if (ret < 0 && ret != AVERROR_EOF) {
+        av_freep (
+            SenderData.instance_array
+        );
+
+        av_freep (
+            ReceiverData.instance_array
+        );
+
+        if (
+            ret < 0 &&
+            ret != AVERROR_EOF
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Error: %s\n",
-                av_err2str (ret)
+                av_err2str (
+                    ret)
             );
             return 1;
         }
@@ -344,7 +445,9 @@ private class ApiThreadMessageTest : GLib.TestCase {
         uint max_queue_size;
         LibAVUtil.ThreadMessageQueue queue = null;
 
-        if (ac != 8) {
+        if (
+            ac != 8
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
@@ -356,17 +459,36 @@ private class ApiThreadMessageTest : GLib.TestCase {
             return 1;
         }
 
-        max_queue_size = atoi (av[1]);
-        SenderData.count = atoi (av[2]);
-        SenderData.min_load = atoi (av[3]);
-        SenderData.max_load = atoi (av[4]);
-        ReceiverData.count = atoi (av[5]);
-        ReceiverData.min_load = atoi (av[6]);
-        ReceiverData.max_load = atoi (av[7]);
+        max_queue_size = atoi (av[1]
+        );
 
-        if (max_queue_size <= 0 ||
-            SenderData.count <= 0 || SenderData.min_load <= 0 || SenderData.max_load <= 0 ||
-            ReceiverData.count <= 0 || ReceiverData.min_load <= 0 || ReceiverData.max_load <= 0) {
+        SenderData.count = atoi (av[2]
+        );
+
+        SenderData.min_load = atoi (av[3]
+        );
+
+        SenderData.max_load = atoi (av[4]
+        );
+
+        ReceiverData.count = atoi (av[5]
+        );
+
+        ReceiverData.min_load = atoi (av[6]
+        );
+
+        ReceiverData.max_load = atoi (av[7]
+        );
+
+        if (
+            max_queue_size <= 0 ||
+            SenderData.count <= 0 ||
+            SenderData.min_load <= 0 ||
+            SenderData.max_load <= 0 ||
+            ReceiverData.count <= 0 ||
+            ReceiverData.min_load <= 0 ||
+            ReceiverData.max_load <= 0
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
@@ -391,24 +513,37 @@ private class ApiThreadMessageTest : GLib.TestCase {
 
         SenderData.instance_array = av_mallocz_array (
             SenderData.count,
-            sizeof (SenderData.instance_array)
+            sizeof (
+                SenderData.instance_array)
         );
         ReceiverData.instance_array = av_mallocz_array (
             ReceiverData.count,
-            sizeof (ReceiverData.instance_array)
+            sizeof (
+                ReceiverData.instance_array
+            )
         );
-        if (!SenderData.instance_array || !ReceiverData.instance_array) {
-            ret = AVERROR (ENOMEM);
+        if (
+            !SenderData.instance_array ||
+            !ReceiverData.instance_array
+        ) {
+            ret = AVERROR (ENOMEM
+            );
+
             throw new Goto.END ();
         }
 
         ret = av_thread_message_queue_alloc (
             out queue,
             max_queue_size,
-            sizeof (ThreadMessage)
+            sizeof (
+                ThreadMessage)
         );
-        if (ret < 0)
+
+        if (
+            ret < 0
+        ) {
             throw new Goto.END ();
+        }
 
         av_thread_message_queue_set_free_func (
             queue,
@@ -417,16 +552,35 @@ private class ApiThreadMessageTest : GLib.TestCase {
 
 
         try {
-            SPAWN_THREADS (receiver);
-            SPAWN_THREADS (sender);
+            SPAWN_THREADS (
+                receiver
+            );
 
-            WAIT_THREADS (sender);
-            WAIT_THREADS (receiver);
-        } catch (Goto ret) {
-            end (ret);
+            SPAWN_THREADS (
+                sender
+            );
+
+            WAIT_THREADS (
+                sender
+            );
+
+            WAIT_THREADS (
+                receiver
+            );
+
+        } catch (
+            Goto ret
+        ) {
+            end (
+                ret
+            );
+
         }
 
-        end (ret);
+        end (
+            ret
+        );
+
     }
 
 }

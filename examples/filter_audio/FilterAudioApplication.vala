@@ -36,20 +36,20 @@ abuffersink: This provides the endpoint where you can read the samples after
              they have passed through the filter chain.
 ***********************************************************/
 
-//  #include <inttypes.h>
-//  #include <math.h>
-//  #include <stdio.h>
-//  #include <stdlib.h>
+//#include <inttypes.h>
+//#include <math.h>
+//#include <stdio.h>
+//#include <stdlib.h>
 
-//  #include <libavutil/channel_layout.h>
-//  #include <libavutil/md5.h>
-//  #include <libavutil/mem.h>
-//  #include <libavutil/opt.h>
-//  #include <libavutil/samplefmt.h>
+//#include <libavutil/channel_layout.h>
+//#include <libavutil/md5.h>
+//#include <libavutil/mem.h>
+//#include <libavutil/opt.h>
+//#include <libavutil/samplefmt.h>
 
-//  #include <libavfilter/avfilter.h>
-//  #include <libavfilter/buffersink.h>
-//  #include <libavfilter/buffersrc.h>
+//#include <libavfilter/avfilter.h>
+//#include <libavfilter/buffersink.h>
+//#include <libavfilter/buffersrc.h>
 
 private class FilterAudioApplication : GLib.Application {
 
@@ -84,70 +84,142 @@ private class FilterAudioApplication : GLib.Application {
         Create a new filtergraph, which will contain all the filters.
         ***********************************************************/
         filter_graph = avfilter_graph_alloc ();
-        if (!filter_graph) {
-            fprintf (stderr, "Unable to create filter graph.\n");
-            return AVERROR (ENOMEM);
+        if (
+            !filter_graph) {
+            fprintf (
+                stderr,
+                "Unable to create filter graph.\n"
+            );
+
+            return AVERROR (ENOMEM
+            );
+
         }
 
         /***********************************************************
         Create the abuffer filter;
         it will be used for feeding the data into the graph.
         ***********************************************************/
-        abuffer = avfilter_get_by_name ("abuffer");
-        if (!abuffer) {
-            fprintf (stderr, "Could not find the abuffer filter.\n");
+        abuffer = avfilter_get_by_name ("abuffer"
+        );
+
+        if (
+            !abuffer) {
+            fprintf (
+                stderr,
+                "Could not find the abuffer filter.\n"
+            );
+
             return AVERROR_FILTER_NOT_FOUND;
         }
 
-        abuffer_ctx = avfilter_graph_alloc_filter (filter_graph, abuffer, "src");
-        if (!abuffer_ctx) {
-            fprintf (stderr, "Could not allocate the abuffer instance.\n");
-            return AVERROR (ENOMEM);
+        abuffer_ctx = avfilter_graph_alloc_filter (filter_graph, abuffer, "src"
+        );
+
+        if (
+            !abuffer_ctx) {
+            fprintf (
+                stderr,
+                "Could not allocate the abuffer instance.\n"
+            );
+
+            return AVERROR (ENOMEM
+            );
+
         }
 
         /***********************************************************
         Set the filter options through the AVOptions API.
         ***********************************************************/
-        av_channel_layout_describe (&INPUT_CHANNEL_LAYOUT, ch_layout, sizeof (ch_layout));
-        av_opt_set    (abuffer_ctx, "channel_layout", ch_layout, AV_OPT_SEARCH_CHILDREN);
-        av_opt_set    (abuffer_ctx, "sample_fmt", av_get_sample_fmt_name (INPUT_FORMAT), AV_OPT_SEARCH_CHILDREN);
-        av_opt_set_q  (abuffer_ctx, "time_base", new LibAVUtil.Rational () { numerator = 1, denominator = INPUT_SAMPLERATE }, AV_OPT_SEARCH_CHILDREN);
-        av_opt_set_int (abuffer_ctx, "sample_rate", INPUT_SAMPLERATE, AV_OPT_SEARCH_CHILDREN);
+        av_channel_layout_describe (
+            &INPUT_CHANNEL_LAYOUT, ch_layout, sizeof (ch_layout)
+        );
+
+        av_opt_set    (abuffer_ctx, "channel_layout", ch_layout, AV_OPT_SEARCH_CHILDREN
+        );
+
+        av_opt_set    (abuffer_ctx, "sample_fmt", av_get_sample_fmt_name (INPUT_FORMAT), AV_OPT_SEARCH_CHILDREN
+        );
+
+        av_opt_set_q  (abuffer_ctx, "time_base", new LibAVUtil.Rational () { numerator = 1, denominator = INPUT_SAMPLERATE }, AV_OPT_SEARCH_CHILDREN
+        );
+
+        av_opt_set_int (
+            abuffer_ctx, "sample_rate", INPUT_SAMPLERATE, AV_OPT_SEARCH_CHILDREN
+        );
 
         /***********************************************************
         Now initialize the filter; we pass null options, since we have already
         set all the options above.
         ***********************************************************/
-        err = avfilter_init_str (abuffer_ctx, null);
-        if (err < 0) {
-            fprintf (stderr, "Could not initialize the abuffer filter.\n");
+        err = avfilter_init_str (abuffer_ctx, null
+        );
+
+        if (
+            err < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not initialize the abuffer filter.\n"
+            );
+
             return err;
         }
 
         /***********************************************************
         Create volume filter.
         ***********************************************************/
-        volume = avfilter_get_by_name ("volume");
-        if (!volume) {
-            fprintf (stderr, "Could not find the volume filter.\n");
+        volume = avfilter_get_by_name ("volume"
+        );
+
+        if (
+            !volume) {
+            fprintf (
+                stderr,
+                "Could not find the volume filter.\n"
+            );
+
             return AVERROR_FILTER_NOT_FOUND;
         }
 
-        volume_ctx = avfilter_graph_alloc_filter (filter_graph, volume, "volume");
-        if (!volume_ctx) {
-            fprintf (stderr, "Could not allocate the volume instance.\n");
-            return AVERROR (ENOMEM);
+        volume_ctx = avfilter_graph_alloc_filter (filter_graph, volume, "volume"
+        );
+
+        if (
+            !volume_ctx) {
+            fprintf (
+                stderr,
+                "Could not allocate the volume instance.\n"
+            );
+
+            return AVERROR (ENOMEM
+            );
+
         }
 
         /***********************************************************
         A different way of passing the options is as key/value pairs in a
         dictionary.
         ***********************************************************/
-        av_dict_set (&options_dict, "volume", AV_STRINGIFY (VOLUME_VAL), 0);
-        err = avfilter_init_dict (volume_ctx, &options_dict);
-        av_dict_free (&options_dict);
-        if (err < 0) {
-            fprintf (stderr, "Could not initialize the volume filter.\n");
+        av_dict_set (
+            &options_dict, "volume", AV_STRINGIFY (VOLUME_VAL), 0
+        );
+
+        err = avfilter_init_dict (volume_ctx, &options_dict
+        );
+
+        av_dict_free (
+            &options_dict
+        );
+
+        if (
+            err < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not initialize the volume filter.\n"
+            );
+
             return err;
         }
 
@@ -155,28 +227,55 @@ private class FilterAudioApplication : GLib.Application {
         Create the aformat filter;
         it ensures that the output is of the format we want.
         ***********************************************************/
-        aformat = avfilter_get_by_name ("aformat");
-        if (!aformat) {
-            fprintf (stderr, "Could not find the aformat filter.\n");
+        aformat = avfilter_get_by_name ("aformat"
+        );
+
+        if (
+            !aformat) {
+            fprintf (
+                stderr,
+                "Could not find the aformat filter.\n"
+            );
+
             return AVERROR_FILTER_NOT_FOUND;
         }
 
-        aformat_ctx = avfilter_graph_alloc_filter (filter_graph, aformat, "aformat");
-        if (!aformat_ctx) {
-            fprintf (stderr, "Could not allocate the aformat instance.\n");
-            return AVERROR (ENOMEM);
+        aformat_ctx = avfilter_graph_alloc_filter (filter_graph, aformat, "aformat"
+        );
+
+        if (
+            !aformat_ctx) {
+            fprintf (
+                stderr,
+                "Could not allocate the aformat instance.\n"
+            );
+
+            return AVERROR (ENOMEM
+            );
+
         }
 
         /***********************************************************
         A third way of passing the options is in a string of the form
         key1=value1:key2=value2....
         ***********************************************************/
-        snprintf (options_str, sizeof (options_str),
+        snprintf (
+            options_str, sizeof (options_str),
                 "sample_fmts=%s:sample_rates=%d:channel_layouts=stereo",
-                av_get_sample_fmt_name (LibAVUtil.SampleFormat.SIGNED_16_BIT), 44100);
-        err = avfilter_init_str (aformat_ctx, options_str);
-        if (err < 0) {
-            av_log (null, AV_LOG_ERROR, "Could not initialize the aformat filter.\n");
+                av_get_sample_fmt_name (
+                    LibAVUtil.SampleFormat.SIGNED_16_BIT), 44100
+        );
+
+        err = avfilter_init_str (aformat_ctx, options_str
+        );
+
+        if (
+            err < 0
+        ) {
+            av_log (
+                null, AV_LOG_ERROR, "Could not initialize the aformat filter.\n"
+            );
+
             return err;
         }
 
@@ -184,24 +283,48 @@ private class FilterAudioApplication : GLib.Application {
         Finally create the abuffersink filter;
         it will be used to get the filtered data out of the graph.
         ***********************************************************/
-        abuffersink = avfilter_get_by_name ("abuffersink");
-        if (!abuffersink) {
-            fprintf (stderr, "Could not find the abuffersink filter.\n");
+        abuffersink = avfilter_get_by_name ("abuffersink"
+        );
+
+        if (
+            !abuffersink) {
+            fprintf (
+                stderr,
+                "Could not find the abuffersink filter.\n"
+            );
+
             return AVERROR_FILTER_NOT_FOUND;
         }
 
-        abuffersink_ctx = avfilter_graph_alloc_filter (filter_graph, abuffersink, "sink");
-        if (!abuffersink_ctx) {
-            fprintf (stderr, "Could not allocate the abuffersink instance.\n");
-            return AVERROR (ENOMEM);
+        abuffersink_ctx = avfilter_graph_alloc_filter (filter_graph, abuffersink, "sink"
+        );
+
+        if (
+            !abuffersink_ctx) {
+            fprintf (
+                stderr,
+                "Could not allocate the abuffersink instance.\n"
+            );
+
+            return AVERROR (ENOMEM
+            );
+
         }
 
         /***********************************************************
         This filter takes no options.
         ***********************************************************/
-        err = avfilter_init_str (abuffersink_ctx, null);
-        if (err < 0) {
-            fprintf (stderr, "Could not initialize the abuffersink instance.\n");
+        err = avfilter_init_str (abuffersink_ctx, null
+        );
+
+        if (
+            err < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not initialize the abuffersink instance.\n"
+            );
+
             return err;
         }
 
@@ -209,26 +332,47 @@ private class FilterAudioApplication : GLib.Application {
         Connect the filters;
         in this simple case the filters just form a linear chain.
         ***********************************************************/
-        err = avfilter_link (abuffer_ctx, 0, volume_ctx, 0);
-        if (err >= 0) {
-            err = avfilter_link (volume_ctx, 0, aformat_ctx, 0);
+        err = avfilter_link (abuffer_ctx, 0, volume_ctx, 0
+        );
+
+        if (
+            err >= 0) {
+            err = avfilter_link (volume_ctx, 0, aformat_ctx, 0
+            );
+
         }
 
-        if (err >= 0) {
-            err = avfilter_link (aformat_ctx, 0, abuffersink_ctx, 0);
+        if (
+            err >= 0) {
+            err = avfilter_link (aformat_ctx, 0, abuffersink_ctx, 0
+            );
+
         }
 
-        if (err < 0) {
-            fprintf (stderr, "Error connecting filters\n");
+        if (
+            err < 0
+        ) {
+            fprintf (
+                stderr,
+                "Error connecting filters\n"
+            );
+
             return err;
         }
 
         /***********************************************************
         Configure the graph.
         ***********************************************************/
-        err = avfilter_graph_config (filter_graph, null);
-        if (err < 0) {
-            av_log (null, AV_LOG_ERROR, "Error configuring the filter graph\n");
+        err = avfilter_graph_config (filter_graph, null
+        );
+
+        if (
+            err < 0
+        ) {
+            av_log (
+                null, AV_LOG_ERROR, "Error configuring the filter graph\n"
+            );
+
             return err;
         }
 
@@ -247,28 +391,60 @@ private class FilterAudioApplication : GLib.Application {
         AVMD5? md5,
         AVFrame? frame
     ) {
-        int planar = av_sample_fmt_is_planar (frame.format);
+        int planar = av_sample_fmt_is_planar (frame.format
+        );
+
         int channels = frame.ch_layout.nb_channels;
         int planes = planar ? channels : 1;
-        int bps = av_get_bytes_per_sample (frame.format);
-        int plane_size = bps * frame.nb_samples * (planar ? 1 : channels);
+        int bps = av_get_bytes_per_sample (frame.format
+        );
+
+        int plane_size = bps * frame.nb_samples * (planar ? 1 : channels
+        );
+
         int i, j;
 
-        for (i = 0; i < planes; i++) {
+        for (
+            i = 0;
+            i < planes;
+            i++
+        ) {
             uint8 checksum[16];
 
-            av_md5_init (md5);
-            av_md5_sum (checksum, frame.extended_data[i], plane_size);
+            av_md5_init (
+                md5
+            );
 
-            fprintf (stdout, "plane %d: 0x", i);
-            for (j = 0; j < sizeof (checksum); j++) {
-                fprintf (stdout, "%02X", checksum[j]);
+            av_md5_sum (
+                checksum, frame.extended_data[i], plane_size
+            );
+
+            fprintf (
+                stdout, "plane %d: 0x", i
+            );
+
+            for (
+                j = 0;
+                j < sizeof (
+                    checksum
+                );
+                j++
+            ) {
+                fprintf (
+                    stdout, "%02X", checksum[j]
+                );
+
             }
 
-            fprintf (stdout, "\n");
+            fprintf (
+                stdout, "\n"
+        );
+
         }
 
-        fprintf (stdout, "\n");
+        fprintf (
+            stdout, "\n"
+        );
 
         return 0;
     }
@@ -290,23 +466,40 @@ private class FilterAudioApplication : GLib.Application {
         ***********************************************************/
         frame.sample_rate = INPUT_SAMPLERATE;
         frame.format = INPUT_FORMAT;
-        av_channel_layout_copy (&frame.ch_layout, &INPUT_CHANNEL_LAYOUT);
+        av_channel_layout_copy (
+            &frame.ch_layout, &INPUT_CHANNEL_LAYOUT
+        );
+
         frame.nb_samples = FRAME_SIZE;
         frame.pts = frame_num * FRAME_SIZE;
 
-        err = av_frame_get_buffer (frame, 0);
-        if (err < 0) {
+        err = av_frame_get_buffer (frame, 0
+        );
+
+        if (
+            err < 0
+        ) {
             return err;
         }
 
         /***********************************************************
         Fill the data for each channel.
         ***********************************************************/
-        for (i = 0; i < 5; i++) {
+        for (
+            i = 0;
+            i < 5;
+            i++
+        ) {
             float[] data = (float*)frame.extended_data[i];
 
-            for (j = 0; j < frame.nb_samples; j++) {
-                data[j] = sin (2 * M_PI * (frame_num + j) * (i + 1) / FRAME_SIZE);
+            for (
+                j = 0;
+                j < frame.nb_samples;
+                j++
+            ) {
+                data[j] = sin (2 * M_PI * (frame_num + j) * (i + 1) / FRAME_SIZE
+                );
+
             }
 
         }
@@ -326,15 +519,29 @@ private class FilterAudioApplication : GLib.Application {
         float duration;
         int err, nb_frames, i;
 
-        if (argc < 2) {
-            fprintf (stderr, "Usage: %s <duration>\n", argv[0]);
+        if (
+            argc < 2) {
+            fprintf (
+                stderr,
+                "Usage: %s <duration>\n",
+                argv[0]
+            );
+
             return 1;
         }
 
-        duration = atof (argv[1]);
+        duration = atof (argv[1]
+        );
+
         nb_frames = duration * INPUT_SAMPLERATE / FRAME_SIZE;
-        if (nb_frames <= 0) {
-            fprintf (stderr, "Invalid duration: %s\n", argv[1]);
+        if (
+            nb_frames <= 0) {
+            fprintf (
+                stderr,
+                "Invalid duration: %s\n",
+                argv[1]
+            );
+
             return 1;
         }
 
@@ -342,50 +549,100 @@ private class FilterAudioApplication : GLib.Application {
         Allocate the frame we will be using to store the data.
         ***********************************************************/
         frame = av_frame_alloc ();
-        if (!frame) {
-            fprintf (stderr, "Error allocating the frame\n");
+        if (
+            !frame) {
+            fprintf (
+                stderr,
+                "Error allocating the frame\n"
+            );
+
             return 1;
         }
 
         md5 = av_md5_alloc ();
-        if (!md5) {
-            av_frame_free (&frame);
-            fprintf (stderr, "Error allocating the MD5 context\n");
+        if (
+            !md5) {
+            av_frame_free (
+                &frame
+            );
+
+            fprintf (
+                stderr,
+                "Error allocating the MD5 context\n"
+            );
+
             return 1;
         }
 
         /***********************************************************
         Set up the filtergraph.
         ***********************************************************/
-        err = init_filter_graph (&graph, &src, &sink);
-        if (err < 0) {
-            av_frame_free (&frame);
-            av_freep (&md5);
-            fprintf (stderr, "Unable to init filter graph:");
+        err = init_filter_graph (&graph, &src, &sink
+        );
+
+        if (
+            err < 0
+        ) {
+            av_frame_free (
+                &frame
+            );
+
+            av_freep (
+                &md5
+            );
+
+            fprintf (
+                stderr,
+                "Unable to init filter graph:"
+            );
+
             return 1;
         }
 
         /***********************************************************
         the main filtering loop
         ***********************************************************/
-        for (i = 0; i < nb_frames; i++) {
+        for (
+            i = 0;
+            i < nb_frames;
+            i++
+        ) {
             /***********************************************************
             get an input frame to be filtered
             ***********************************************************/
-            err = get_input (frame, i);
-            if (err < 0) {
-                fprintf (stderr, "Error generating input frame:");
-                //  goto fail;
+            err = get_input (frame, i
+            );
+
+            if (
+                err < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Error generating input frame:"
+                );
+
+                throw new Goto.FAIL ("");
             }
 
             /***********************************************************
             Send the frame to the input of the filtergraph.
             ***********************************************************/
-            err = av_buffersrc_add_frame (src, frame);
-            if (err < 0) {
-                av_frame_unref (frame);
-                fprintf (stderr, "Error submitting the frame to the filtergraph:");
-                //  goto fail;
+            err = av_buffersrc_add_frame (src, frame
+            );
+
+            if (
+                err < 0
+            ) {
+                av_frame_unref (
+                    frame
+                );
+
+                fprintf (
+                    stderr,
+                    "Error submitting the frame to the filtergraph:"
+                );
+
+                throw new Goto.FAIL ("");
             }
 
             /***********************************************************
@@ -395,21 +652,35 @@ private class FilterAudioApplication : GLib.Application {
                 /***********************************************************
                 now do something with our filtered frame
                 ***********************************************************/
-                err = process_output (md5, frame);
-                if (err < 0) {
-                    fprintf (stderr, "Error processing the filtered frame:");
-                    //  goto fail;
+                err = process_output (md5, frame
+                );
+
+                if (
+                    err < 0) {
+                    fprintf (
+                        stderr,
+                        "Error processing the filtered frame:"
+                    );
+
+                    throw new Goto.FAIL ("");
                 }
 
-                av_frame_unref (frame);
+                av_frame_unref (
+                    frame
+                );
+
             }
 
-            if (err == AVERROR (EAGAIN)) {
+            if (
+                err == AVERROR (EAGAIN)
+            ) {
                 /***********************************************************
                 Need to feed more frames in.
                 ***********************************************************/
                 continue;
-            } else if (err == AVERROR_EOF) {
+            } else if (
+                err == AVERROR_EOF
+            ) {
                 /***********************************************************
                 Nothing more to do, finish.
                 ***********************************************************/
@@ -418,24 +689,50 @@ private class FilterAudioApplication : GLib.Application {
                 /***********************************************************
                 An error occurred.
                 ***********************************************************/
-                fprintf (stderr, "Error filtering the data:");
-                //  goto fail;
+                fprintf (
+                    stderr,
+                    "Error filtering the data:"
+                );
+
+                throw new Goto.FAIL ("");
             }
 
         }
 
-        avfilter_graph_free (&graph);
-        av_frame_free (&frame);
-        av_freep (&md5);
+        avfilter_graph_free (
+            &graph
+        );
+
+        av_frame_free (
+            &frame
+        );
+
+        av_freep (
+            &md5
+        );
 
         return 0;
 
     //  fail:
-        avfilter_graph_free (&graph);
-        av_frame_free (&frame);
-        av_freep (&md5);
+        avfilter_graph_free (
+            &graph
+        );
 
-        fprintf (stderr, "%s\n", av_err2str (err));
+        av_frame_free (
+            &frame
+        );
+
+        av_freep (
+            &md5
+        );
+
+        fprintf (
+            stderr,
+            "%s\n",
+            av_err2str (
+                err)
+        );
+
         return 1;
     }
 

@@ -33,10 +33,19 @@ private static void randomize_plane (
     void *buf,
     void *type
 ) {
-    int w, h;
-    type?  tmp = buf;
-    for (h = 0; h < HEIGHT; h++) {
-        for (w = 0; w < WIDTH; w++) {
+    int w;
+    int h;
+    type[] tmp = buf;
+    for (
+        h = 0;
+        h < HEIGHT;
+        h++
+    ) {
+        for (
+            w = 0;
+            w < WIDTH;
+            w++
+        ) {
             tmp[w] = rnd () & 0xFF;
         }
 
@@ -51,9 +60,18 @@ private static void cmp_plane (
     void *s
 ) {
     int h;
-    for (h = 0; h < HEIGHT; h++) {
-        if (memcmp (buf0 + h * WIDTH_PADDED,
-            buf1 + h * WIDTH_PADDED, WIDTH * s)) {
+    for (
+        h = 0;
+        h < HEIGHT;
+        h++
+    ) {
+        if (
+            memcmp (
+                buf0 + h * WIDTH_PADDED,
+                buf1 + h * WIDTH_PADDED,
+                WIDTH * s
+            )
+        ) {
             fail ();
         }
 
@@ -65,54 +83,215 @@ private static void cmp_plane (
 private static void CHECK_RESTORE (
     void *type
 ) {
-    //  LOCAL_ALIGNED_32 (type, src_r0, [BUFFER_SIZE]);
-    //  LOCAL_ALIGNED_32 (type, src_g0, [BUFFER_SIZE]);
-    //  LOCAL_ALIGNED_32 (type, src_b0, [BUFFER_SIZE]);
-    //  LOCAL_ALIGNED_32 (type, src_r1, [BUFFER_SIZE]);
-    //  LOCAL_ALIGNED_32 (type, src_g1, [BUFFER_SIZE]);
-    //  LOCAL_ALIGNED_32 (type, src_b1, [BUFFER_SIZE]);
-    //  declare_func (void, type? src_r, type? src_g, type? src_b,
-    //              size_t linesize_r, size_t linesize_g,
-    //              size_t linesize_b, int width, int height);
-    memset (src_r0, 0, BUFFER_SIZE * sizeof (type));
-    memset (src_g0, 0, BUFFER_SIZE * sizeof (type));
-    memset (src_b0, 0, BUFFER_SIZE * sizeof (type));
-    randomize_plane (src_r0, type);
-    randomize_plane (src_g0, type);
-    randomize_plane (src_b0, type);
-    memcpy (src_r1, src_r0, BUFFER_SIZE * sizeof (type));
-    memcpy (src_g1, src_g0, BUFFER_SIZE * sizeof (type));
-    memcpy (src_b1, src_b0, BUFFER_SIZE * sizeof (type));
-    //  call_ref (src_r0, src_g0, src_b0, WIDTH_PADDED, WIDTH_PADDED, WIDTH_PADDED, WIDTH, HEIGHT);
-    //  call_new (src_r1, src_g1, src_b1, WIDTH_PADDED, WIDTH_PADDED, WIDTH_PADDED, WIDTH, HEIGHT);
-    cmp_plane (src_r0, src_r1, sizeof (type));
-    cmp_plane (src_g0, src_g1, sizeof (type));
-    cmp_plane (src_b0, src_b1, sizeof (type));
-    bench_new (src_r1, src_g1, src_b1, WIDTH_PADDED, WIDTH_PADDED, WIDTH_PADDED, WIDTH, HEIGHT);
+    //  LOCAL_ALIGNED_32 (
+    //      type,
+    //      src_r0,
+    //      [BUFFER_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      type,
+    //      src_g0,
+    //      [BUFFER_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      type,
+    //      src_b0,
+    //      [BUFFER_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      type,
+    //      src_r1,
+    //      [BUFFER_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      type,
+    //      src_g1,
+    //      [BUFFER_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      type,
+    //      src_b1,
+    //      [BUFFER_SIZE]
+    //  );
+
+    //  declare_func (
+    //      void,
+    //      type? src_r,
+    //      type? src_g,
+    //      type? src_b,
+    //      size_t linesize_r,
+    //      size_t linesize_g,
+    //      size_t linesize_b,
+    //      int width,
+    //      int height
+    //  );
+
+    //  memset (
+    //      src_r0,
+    //      0,
+    //      BUFFER_SIZE * sizeof (
+    //          type
+    //      )
+    //  );
+
+    //  memset (
+    //      src_g0,
+    //      0,
+    //      BUFFER_SIZE * sizeof (
+    //          type
+    //      )
+    //  );
+
+    //  memset (
+    //      src_b0,
+    //      0,
+    //      BUFFER_SIZE * sizeof (
+    //          type
+    //      )
+    //  );
+
+    randomize_plane (
+        src_r0,
+        type
+    );
+
+    randomize_plane (
+        src_g0,
+        type
+    );
+
+    randomize_plane (
+        src_b0,
+        type
+    );
+
+    //  memcpy (
+    //      src_r1,
+    //      src_r0,
+    //      BUFFER_SIZE * sizeof (
+    //          type
+    //      )
+    //  );
+
+    //  memcpy (
+    //      src_g1,
+    //      src_g0,
+    //      BUFFER_SIZE * sizeof (
+    //          type
+    //      )
+    //  );
+
+    //  memcpy (
+    //      src_b1,
+    //      src_b0,
+    //      BUFFER_SIZE * sizeof (
+    //          type
+    //      )
+    //  );
+
+    call_ref (
+        src_r0,
+        src_g0,
+        src_b0,
+        WIDTH_PADDED,
+        WIDTH_PADDED,
+        WIDTH_PADDED,
+        WIDTH,
+        HEIGHT
+    );
+
+    call_new (
+        src_r1,
+        src_g1,
+        src_b1,
+        WIDTH_PADDED,
+        WIDTH_PADDED,
+        WIDTH_PADDED,
+        WIDTH,
+        HEIGHT
+    );
+
+    cmp_plane (
+        src_r0,
+        src_r1,
+        sizeof (type)
+    );
+
+    cmp_plane (
+        src_g0,
+        src_g1,
+        sizeof (type)
+    );
+
+    cmp_plane (
+        src_b0,
+        src_b1,
+        sizeof (type)
+    );
+
+    bench_new (
+        src_r1,
+        src_g1,
+        src_b1,
+        WIDTH_PADDED,
+        WIDTH_PADDED,
+        WIDTH_PADDED,
+        WIDTH,
+        HEIGHT
+    );
+
 }
 
 private static void check_restore_rgb_planes () {
-    CHECK_RESTORE (uint8);
+    CHECK_RESTORE (
+        uint8
+    );
+
 }
 
 private static void check_restore_rgb_planes10 () {
-    CHECK_RESTORE (uint16);
+    CHECK_RESTORE (
+        uint16
+    );
+
 }
 
 private static void checkasm_check_utvideodsp () {
-    UTVideoDSPContext h;
+    UTVideoDSPContext ut_video_dsp_context;
 
-    ff_utvideodsp_init (&h);
+    ff_utvideodsp_init (
+        &ut_video_dsp_context
+    );
 
-    if (check_func (h.restore_rgb_planes, "restore_rgb_planes")) {
+    if (
+        check_func (
+            ut_video_dsp_context.restore_rgb_planes,
+            "restore_rgb_planes"
+        )
+    ) {
         check_restore_rgb_planes ();
     }
 
-    report ("restore_rgb_planes");
+    report (
+        "restore_rgb_planes"
+    );
 
-    if (check_func (h.restore_rgb_planes10, "restore_rgb_planes10")) {
+    if (
+        check_func (
+            ut_video_dsp_context.restore_rgb_planes10,
+            "restore_rgb_planes10"
+        )
+    ) {
         check_restore_rgb_planes10 ();
     }
 
-    report ("restore_rgb_planes10");
+    report (
+        "restore_rgb_planes10"
+    );
+
 }

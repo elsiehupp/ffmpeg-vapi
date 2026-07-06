@@ -22,44 +22,95 @@ private static void randomize_buffers (
     size_t size
 ) {
     int i;
-    for (i = 0; i < size; i++) {
+    for (
+        i = 0;
+        i < size;
+        i++
+    ) {
         uint16 r = rnd ();
-        AV_WN16A (buf0 + i, r);
-        AV_WN16A (buf1 + i, r);
+        AV_WN16A (
+            buf0 + i,
+            r
+        );
+
+        AV_WN16A (
+            buf1 + i,
+            r
+        );
+
     }
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, int16[] block);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      int16[] block
+//  );
 
 //  private static void check_clear (
 //      void *func,
 //      void *size
 //  ) {
-//      if (check_func (h.func, "blockdsp." #func)) {
+//      if (
+//          check_func (
+//              block_dsp_context.func,
+//              "blockdsp." #func
+//          )
+//      ) {
 //          randomize_buffers (size);
-//          //  call_ref (buf0);
-//          //  call_new (buf1);
-//          if (memcmp (buf0, buf1, sizeof (buf0) * size)) {
+//          call_ref (buf0);
+//          call_new (buf1);
+//          if (
+//              memcmp (
+//                  buf0,
+//                  buf1,
+//                  sizeof (
+//                      buf0
+//                  ) * size
+//              )
+//          ) {
 //              fail ();
 //          }
 
-//          bench_new (buf0);
+//          bench_new (
+//              buf0
+//          );
+
 //      }
 
 //  }
 
 private static void checkasm_check_blockdsp () {
-    //  LOCAL_ALIGNED_32 (uint16, buf0, [6 * 8 * 8]);
-    //  LOCAL_ALIGNED_32 (uint16, buf1, [6 * 8 * 8]);
+    //  LOCAL_ALIGNED_32 (
+    //      uint16,
+    //      buf0,
+    //      [6 * 8 * 8]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      uint16,
+    //      buf1,
+    //      [6 * 8 * 8]
+    //  );
 
     AVCodecContext avctx = { 0 };
-    BlockDSPContext h;
+    BlockDSPContext block_dsp_context;
 
-    ff_blockdsp_init (&h, &avctx);
+    ff_blockdsp_init (
+        &block_dsp_context, &avctx
+    );
 
-    check_clear (clear_block, 8 * 8);
-    check_clear (clear_blocks, 8 * 8 * 6);
+    check_clear (
+        clear_block, 8 * 8
+    );
 
-    report ("blockdsp");
+    check_clear (
+        clear_blocks, 8 * 8 * 6
+    );
+
+    report (
+        "blockdsp"
+    );
+
 }

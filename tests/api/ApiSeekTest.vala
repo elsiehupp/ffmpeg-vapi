@@ -38,21 +38,32 @@ private class ApiSeekTest : GLib.TestCase {
         uint32 crc,
         int64 pts
     ) {
-        if (size_of_array <= number_of_elements) {
-            if (size_of_array == 0) {
+        if (
+            size_of_array <= number_of_elements) {
+            if (
+                size_of_array == 0) {
                 size_of_array = 10;
             }
 
             size_of_array *= 2;
-            crc_array = av_realloc_f (crc_array, size_of_array, sizeof (uint32));
-            pts_array = av_realloc_f (pts_array, size_of_array, sizeof (int64));
-            if ((crc_array == null) || (pts_array == null)) {
+            crc_array = av_realloc_f (crc_array, size_of_array, sizeof (uint32)
+            );
+
+            pts_array = av_realloc_f (pts_array, size_of_array, sizeof (int64)
+            );
+
+            if (
+                crc_array == null ||
+                pts_array == null
+            ) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
                     "Can't allocate array to store crcs\n"
                 );
-                return AVERROR (ENOMEM);
+                return AVERROR (ENOMEM
+                );
+
             }
 
         }
@@ -67,10 +78,20 @@ private class ApiSeekTest : GLib.TestCase {
         uint32 crc,
         int64 pts
     ) {
-        for (uint i = 0; i < number_of_elements; i++) {
-            if (pts_array[i] == pts) {
-                if (crc_array[i] == crc) {
-                    GLib.print ("Comparing 0x%08l %ll %d is OK\n", crc, pts, i);
+        for (
+            uint i = 0;
+            i < number_of_elements;
+            i++
+        ) {
+            if (
+                pts_array[i] == pts) {
+                if (
+                    crc_array[i] == crc) {
+                    GLib.print (
+                        "Comparing 0x%08l %ll %d is OK\n",
+                        crc, pts, i
+                    );
+
                     return 0;
                 }
 
@@ -113,26 +134,40 @@ private class ApiSeekTest : GLib.TestCase {
         uint32 crc;
         LibAVCodec.Packet packet;
 
-        byte_buffer_size = av_image_get_buffer_size (codec_context.pix_fmt, codec_context.width, codec_context.height, 16);
-        byte_buffer = av_malloc (byte_buffer_size);
-        if (byte_buffer == null) {
+        byte_buffer_size = av_image_get_buffer_size (codec_context.pix_fmt, codec_context.width, codec_context.height, 16
+        );
+
+        byte_buffer = av_malloc (byte_buffer_size
+        );
+
+        if (
+            byte_buffer == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate buffer\n"
             );
-            return AVERROR (ENOMEM);
+            return AVERROR (ENOMEM
+            );
+
         }
 
-        if (!no_seeking) {
+        if (
+            !no_seeking) {
             result = av_seek_frame (
                 format_context,
                 video_stream,
                 ts_start,
                 AVSEEK_FLAG_ANY
             );
-            GLib.print ("Seeking to %ll, computing crc for frames with pts < %ll\n", ts_start, ts_end);
-            if (result < 0) {
+            GLib.print (
+                "Seeking to %ll, computing crc for frames with pts < %ll\n",
+                ts_start,
+                ts_end
+            );
+
+            if (
+                result < 0) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
@@ -141,26 +176,42 @@ private class ApiSeekTest : GLib.TestCase {
                 return result;
             }
 
-            avcodec_flush_buffers (codec_context);
+            avcodec_flush_buffers (
+                codec_context
+            );
+
         }
 
-        av_init_packet (out packet);
+        av_init_packet (
+            out packet
+        );
+
         do {
-            if (!end_of_stream) {
-                if (av_read_frame (format_context, out packet) < 0) {
+            if (
+                !end_of_stream) {
+                if (
+                    av_read_frame (
+                        format_context, out packet) < 0) {
                     end_of_stream = 1;
                 }
 
             }
 
-            if (end_of_stream) {
+            if (
+                end_of_stream) {
                 packet.data = null;
                 packet.size = 0;
             }
 
-            if (packet.stream_index == video_stream || end_of_stream) {
+            if (
+                packet.stream_index == video_stream ||
+                end_of_stream
+            ) {
                 got_frame = 0;
-                if ((packet.pts == AV_NOPTS_VALUE) && (!end_of_stream)) {
+                if (
+                    packet.pts == AV_NOPTS_VALUE &&
+                    !end_of_stream
+                ) {
                     av_log (
                         null,
                         AV_LOG_ERROR,
@@ -169,8 +220,11 @@ private class ApiSeekTest : GLib.TestCase {
                     return -1;
                 }
 
-                result = avcodec_decode_video2 (codec_context, frame, out got_frame, out packet);
-                if (result < 0) {
+                result = avcodec_decode_video2 (codec_context, frame, out got_frame, out packet
+                );
+
+                if (
+                    result < 0) {
                     av_log (
                         null,
                         AV_LOG_ERROR,
@@ -179,11 +233,15 @@ private class ApiSeekTest : GLib.TestCase {
                     return result;
                 }
 
-                if (got_frame) {
+                if (
+                    got_frame) {
                     number_of_written_bytes = av_image_copy_to_buffer (byte_buffer, byte_buffer_size,
                                             (uint8[])frame.data, (uint[]) frame.linesize,
-                                            codec_context.pix_fmt, codec_context.width, codec_context.height, 1);
-                    if (number_of_written_bytes < 0) {
+                                            codec_context.pix_fmt, codec_context.width, codec_context.height, 1
+                    );
+
+                    if (
+                        number_of_written_bytes < 0) {
                         av_log (
                             null,
                             AV_LOG_ERROR,
@@ -192,21 +250,36 @@ private class ApiSeekTest : GLib.TestCase {
                         return number_of_written_bytes;
                     }
 
-                    if ((!no_seeking) && (frame.pts > ts_end)) {
+                    if (
+                        !no_seeking &&
+                        frame.pts > ts_end
+                    ) {
                         break;
                     }
 
-                    crc = av_adler32_update (0, (uint8[])byte_buffer, number_of_written_bytes);
-                    GLib.print ("%10ll, 0x%08l\n", frame.pts, crc);
-                    if (no_seeking) {
-                        if (add_crc_to_array (crc, frame.pts) < 0) {
+                    crc = av_adler32_update (0, (uint8[])byte_buffer, number_of_written_bytes
+                    );
+
+                    GLib.print (
+                        "%10ll, 0x%08l\n",
+                        frame.pts,
+                        crc
+                    );
+
+                    if (
+                        no_seeking) {
+                        if (
+                            add_crc_to_array (
+                                crc, frame.pts) < 0) {
                             return -1;
                         }
 
                     }
 
                     else {
-                        if (compare_crc_in_array (crc, frame.pts) < 0) {
+                        if (
+                            compare_crc_in_array (
+                                crc, frame.pts) < 0) {
                             return -1;
                         }
 
@@ -216,12 +289,34 @@ private class ApiSeekTest : GLib.TestCase {
 
             }
 
-            av_packet_unref (out packet);
-            av_init_packet (out packet);
-        } while ((!end_of_stream || got_frame) && (no_seeking || (frame.pts + frame.pkt_duration <= ts_end)));
+            av_packet_unref (
+                out packet
+            );
 
-        av_packet_unref (out packet);
-        av_freep (out byte_buffer);
+            av_init_packet (
+                out packet
+            );
+
+        } while (
+            (
+                !end_of_stream ||
+                got_frame
+            ) &&
+            (
+                no_seeking ||
+                (
+                    frame.pts + frame.pkt_duration <= ts_end
+                )
+            )
+        );
+
+        av_packet_unref (
+            out packet
+        );
+
+        av_freep (
+            out byte_buffer
+        );
 
         return 0;
     }
@@ -231,18 +326,28 @@ private class ApiSeekTest : GLib.TestCase {
     ) {
         ulong number;
         char[] end_of_string = null;
-        number = strtol (string_with_number, out end_of_string, 10);
-        if ((strlen (string_with_number) != end_of_string - string_with_number)  || (number < 0)) {
+        number = strtol (string_with_number, out end_of_string, 10
+        );
+
+        if (
+            strlen (
+                string_with_number) != (
+                end_of_string - string_with_number
+            ) ||
+            number < 0
+        ) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Incorrect input ranges of seeking\n"
             );
             return -1;
-        }
-
-        else if ((number == LONG_MAX) || (number == LONG_MIN)) {
-            if (errno == ERANGE) {
+        } else if (
+            number == LONG_MAX ||
+            number == LONG_MIN
+        ) {
+            if (
+                errno == ERANGE) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
@@ -277,8 +382,11 @@ private class ApiSeekTest : GLib.TestCase {
             crc_array = null;
             pts_array = null;
 
-            result = avformat_open_input (out format_context, input_filename, null, null);
-            if (result < 0) {
+            result = avformat_open_input (out format_context, input_filename, null, null
+            );
+
+            if (
+                result < 0) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
@@ -287,21 +395,35 @@ private class ApiSeekTest : GLib.TestCase {
                 return result;
             }
 
-            result = avformat_find_stream_info (format_context, null);
-            if (result < 0) {
+            result = avformat_find_stream_info (format_context, null
+            );
+
+            if (
+                result < 0) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
                     "Can't get stream info\n"
                 );
-                throw new Goto.END ("");
+                throw new Goto.END (""
+            );
+
             }
 
-            start_ts = read_seek_range (start);
-            end_ts = read_seek_range (end);
-            if ((start_ts < 0) || (end_ts < 0)) {
+            start_ts = read_seek_range (start
+            );
+
+            end_ts = read_seek_range (end
+            );
+
+            if (
+                start_ts < 0 ||
+                end_ts < 0
+            ) {
                 result = -1;
-                throw new Goto.END ("");
+                throw new Goto.END (""
+            );
+
             }
 
             //TODO: add ability to work with audio format
@@ -313,80 +435,127 @@ private class ApiSeekTest : GLib.TestCase {
                 null,
                 0
             );
-            if (video_stream < 0) {
+            if (
+                video_stream < 0) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
                     "Can't find video stream in input file\n"
                 );
                 result = video_stream;
-                throw new Goto.END ("");
+                throw new Goto.END (""
+            );
+
             }
 
             origin_par = format_context.streams[video_stream].codecpar;
 
-            codec = avcodec_find_decoder (origin_par.codec_id);
-            if (codec == null) {
+            codec = avcodec_find_decoder (origin_par.codec_id
+            );
+
+            if (
+                codec == null) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
                     "Can't find decoder\n"
                 );
                 result = AVERROR_DECODER_NOT_FOUND;
-                throw new Goto.END ("");
+                throw new Goto.END (""
+            );
+
             }
 
-            codec_context = avcodec_alloc_context3 (codec);
-            if (codec_context == null) {
+            codec_context = avcodec_alloc_context3 (codec
+            );
+
+            if (
+                codec_context == null) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
                     "Can't allocate decoder context\n"
                 );
-                result = AVERROR (ENOMEM);
-                throw new Goto.END ("");
+                result = AVERROR (ENOMEM
+                );
+
+                throw new Goto.END (""
+            );
+
             }
 
-            result = avcodec_parameters_to_context (codec_context, origin_par);
-            if (result) {
+            result = avcodec_parameters_to_context (codec_context, origin_par
+            );
+
+            if (
+                result) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
                     "Can't copy decoder context\n"
                 );
-                throw new Goto.END ("");
+                throw new Goto.END (""
+            );
+
             }
 
-            result = avcodec_open2 (codec_context, codec, null);
-            if (result < 0) {
+            result = avcodec_open2 (codec_context, codec, null
+            );
+
+            if (
+                result < 0) {
                 av_log (
                     codec_context,
                     AV_LOG_ERROR,
                     "Can't open decoder\n"
                 );
-                throw new Goto.END ("");
+                throw new Goto.END (""
+            );
+
             }
 
             frame = av_frame_alloc ();
-            if (frame == null) {
+            if (
+                frame == null) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
                     "Can't allocate frame\n"
                 );
-                result = AVERROR (ENOMEM);
-                throw new Goto.END ("");
+                result = AVERROR (ENOMEM
+                );
+
+                throw new Goto.END (""
+            );
+
             }
 
-            result = compute_crc_of_packets (format_context, video_stream, codec_context, frame, 0, 0, 1);
-            if (result != 0) {
-                throw new Goto.END ("");
+            result = compute_crc_of_packets (format_context, video_stream, codec_context, frame, 0, 0, 1
+            );
+
+            if (
+                result != 0) {
+                throw new Goto.END (""
+            );
+
             }
 
-            for (uint i = start_ts; i < end_ts; i += 100) {
-                for (uint j = i + 100; j < end_ts; j += 100) {
-                    result = compute_crc_of_packets (format_context, video_stream, codec_context, frame, i, j, 0);
-                    if (result != 0) {
+            for (
+                uint i = start_ts;
+                i < end_ts;
+                i += 100
+            ) {
+                for (
+                    uint j = i + 100;
+                    j < end_ts;
+                    j += 100
+                ) {
+                    result = compute_crc_of_packets (
+                        format_context, video_stream, codec_context, frame, i, j, 0
+                    );
+
+                    if (
+                        result != 0) {
                         break;
                     }
 
@@ -396,12 +565,30 @@ private class ApiSeekTest : GLib.TestCase {
 
         } catch (Goto foobar) { }
 
-        av_freep (out crc_array);
-        av_freep (out pts_array);
-        av_frame_free (out frame);
-        avcodec_close (codec_context);
-        avformat_close_input (out format_context);
-        avcodec_free_context (out codec_context);
+        av_freep (
+            out crc_array
+        );
+
+        av_freep (
+            out pts_array
+        );
+
+        av_frame_free (
+            out frame
+        );
+
+        avcodec_close (
+            codec_context
+        );
+
+        avformat_close_input (
+            out format_context
+        );
+
+        avcodec_free_context (
+            out codec_context
+        );
+
         return result;
     }
 
@@ -409,7 +596,8 @@ private class ApiSeekTest : GLib.TestCase {
         uint argc,
         string[] argv
     ) {
-        if (argc < 4) {
+        if (
+            argc < 4) {
             av_log (
                 null,
                 AV_LOG_ERROR,
@@ -418,7 +606,9 @@ private class ApiSeekTest : GLib.TestCase {
             return 1;
         }
 
-        if (seek_test (argv[1], argv[2], argv[3]) != 0) {
+        if (
+            seek_test (
+                argv[1], argv[2], argv[3]) != 0) {
             return 1;
         }
 

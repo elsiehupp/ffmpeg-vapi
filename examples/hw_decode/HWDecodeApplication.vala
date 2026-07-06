@@ -31,16 +31,16 @@ Perform HW-accelerated decoding with output frames from HW video
 surfaces.
 ***********************************************************/
 
-//  #include <stdio.h>
+//#include <stdio.h>
 
-//  #include <libavcodec/avcodec.h>
-//  #include <libavformat/avformat.h>
-//  #include <libavutil/mem.h>
-//  #include <libavutil/pixdesc.h>
-//  #include <libavutil/hwcontext.h>
-//  #include <libavutil/opt.h>
-//  #include <libavutil/avassert.h>
-//  #include <libavutil/imgutils.h>
+//#include <libavcodec/avcodec.h>
+//#include <libavformat/avformat.h>
+//#include <libavutil/mem.h>
+//#include <libavutil/pixdesc.h>
+//#include <libavutil/hwcontext.h>
+//#include <libavutil/opt.h>
+//#include <libavutil/avassert.h>
+//#include <libavutil/imgutils.h>
 
 private class HWDecodeApplication : GLib.Application {
 
@@ -52,15 +52,23 @@ private class HWDecodeApplication : GLib.Application {
         AVCodecContext? ctx,
         AVHWDeviceType type
     ) {
-        int err = 0;
+        int err = av_hwdevice_ctx_create (
+            &hw_device_ctx, type,
+            null, null, 0
+        );
 
-        if ((err = av_hwdevice_ctx_create (&hw_device_ctx, type,
-                                        null, null, 0)) < 0) {
-            fprintf (stderr, "Failed to create specified HW device.\n");
+        if (
+            err < 0) {
+            fprintf (
+                stderr,
+                "Failed to create specified HW device.\n"
+            );
+
             return err;
         }
 
-        ctx.hw_device_ctx = av_buffer_ref (hw_device_ctx);
+        ctx.hw_device_ctx = av_buffer_ref (hw_device_ctx
+        );
 
         return err;
     }
@@ -71,14 +79,22 @@ private class HWDecodeApplication : GLib.Application {
     ) {
         AVPixelFormat[] p;
 
-        for (p = pix_fmts; *p != -1; p++) {
+        for (
+            p = pix_fmts;
+            *p != -1;
+            p++
+        ) {
             if (*p == hw_pix_fmt) {
                 return *p;
             }
 
         }
 
-        fprintf (stderr, "Failed to get HW surface format.\n");
+        fprintf (
+            stderr,
+            "Failed to get HW surface format.\n"
+        );
+
         return LibAVUtil.PixelFormat.NONE;
     }
 
@@ -93,36 +109,84 @@ private class HWDecodeApplication : GLib.Application {
         int size;
         int ret = 0;
 
-        ret = avcodec_send_packet (avctx, packet);
-        if (ret < 0) {
-            fprintf (stderr, "Error during decoding\n");
+        ret = avcodec_send_packet (avctx, packet
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Error during decoding\n"
+            );
+
             return ret;
         }
 
-        while (true) {
-            if (!(frame = av_frame_alloc ()) || !(sw_frame = av_frame_alloc ())) {
-                fprintf (stderr, "Can not alloc frame\n");
-                ret = AVERROR (ENOMEM);
-                //  goto fail;
+        while (
+            true
+        ) {
+            frame = av_frame_alloc ();
+            sw_frame = av_frame_alloc ();
+            if (
+                !frame ||
+                !frame
+            ) {
+                fprintf (
+                    stderr,
+                    "Can not alloc frame\n"
+                );
+
+                ret = AVERROR (ENOMEM
+                );
+
+                throw new Goto.FAIL ("");
             }
 
-            ret = avcodec_receive_frame (avctx, frame);
-            if (ret == AVERROR (EAGAIN) || ret == AVERROR_EOF) {
-                av_frame_free (&frame);
-                av_frame_free (&sw_frame);
+            ret = avcodec_receive_frame (avctx, frame
+            );
+
+            if (
+                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR_EOF
+            ) {
+                av_frame_free (
+                    &frame
+                );
+
+                av_frame_free (
+                    &sw_frame
+                );
+
                 return 0;
-            } else if (ret < 0) {
-                fprintf (stderr, "Error while decoding\n");
-                //  goto fail;
+            } else if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Error while decoding\n"
+                );
+
+                throw new Goto.FAIL ("");
             }
 
-            if (frame.format == hw_pix_fmt) {
+            if (
+                frame.format == hw_pix_fmt) {
                 /***********************************************************
                 retrieve data from GPU to CPU
                 ***********************************************************/
-                if ((ret = av_hwframe_transfer_data (sw_frame, frame, 0)) < 0) {
-                    fprintf (stderr, "Error transferring the data to system memory\n");
-                    //  goto fail;
+                ret = av_hwframe_transfer_data (sw_frame, frame, 0
+                );
+
+                if (
+                    ret < 0
+                ) {
+                    fprintf (
+                        stderr,
+                        "Error transferring the data to system memory\n"
+                    );
+
+                    throw new Goto.FAIL ("");
                 }
 
                 tmp_frame = sw_frame;
@@ -130,12 +194,23 @@ private class HWDecodeApplication : GLib.Application {
                 tmp_frame = frame;
 
             size = av_image_get_buffer_size (tmp_frame.format, tmp_frame.width,
-                                            tmp_frame.height, 1);
-            buffer = av_malloc (size);
-            if (!buffer) {
-                fprintf (stderr, "Can not alloc buffer\n");
-                ret = AVERROR (ENOMEM);
-                //  goto fail;
+                                            tmp_frame.height, 1
+            );
+
+            buffer = av_malloc (size
+            );
+
+            if (
+                !buffer) {
+                fprintf (
+                    stderr,
+                    "Can not alloc buffer\n"
+                );
+
+                ret = AVERROR (ENOMEM
+                );
+
+                throw new Goto.FAIL ("");
             }
 
             ret = av_image_copy_to_buffer (
@@ -145,21 +220,47 @@ private class HWDecodeApplication : GLib.Application {
                 tmp_frame.width, tmp_frame.height, 1
             );
 
-            if (ret < 0) {
-                fprintf (stderr, "Can not copy image to buffer\n");
-                //  goto fail;
+            if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Can not copy image to buffer\n"
+                );
+
+                throw new Goto.FAIL ("");
             }
 
-            if ((ret = fwrite (buffer, 1, size, output_file)) < 0) {
-                fprintf (stderr, "Failed to dump raw data.\n");
-                //  goto fail;
+            ret = fwrite (buffer, 1, size, output_file
+            );
+
+            if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Failed to dump raw data.\n"
+                );
+
+                throw new Goto.FAIL ("");
             }
 
         //  fail:
-            av_frame_free (&frame);
-            av_frame_free (&sw_frame);
-            av_freep (&buffer);
-            if (ret < 0) {
+            av_frame_free (
+                &frame
+            );
+
+            av_frame_free (
+                &sw_frame
+            );
+
+            av_freep (
+                &buffer
+            );
+
+            if (
+                ret < 0
+            ) {
                 return ret;
             }
 
@@ -180,62 +281,126 @@ private class HWDecodeApplication : GLib.Application {
         AVHWDeviceType type;
         int i;
 
-        if (argc < 4) {
-            fprintf (stderr, "Usage: %s <device type> <input file> <output file>\n", argv[0]);
+        if (
+            argc < 4) {
+            fprintf (
+                stderr,
+                "Usage: %s <device type> <input file> <output file>\n",
+                argv[0]
+            );
+
             return -1;
         }
 
-        type = av_hwdevice_find_type_by_name (argv[1]);
-        if (type == AV_HWDEVICE_TYPE_NONE) {
-            fprintf (stderr, "Device type %s is not supported.\n", argv[1]);
-            fprintf (stderr, "Available device types:");
+        type = av_hwdevice_find_type_by_name (argv[1]
+        );
+
+        if (
+            type == AV_HWDEVICE_TYPE_NONE) {
+            fprintf (
+                stderr,
+                "Device type %s is not supported.\n",
+                argv[1]
+            );
+
+            fprintf (
+                stderr,
+                "Available device types:"
+            );
+
             while ((type = av_hwdevice_iterate_types (type)) != AV_HWDEVICE_TYPE_NONE) {
-                fprintf (stderr, " %s", av_hwdevice_get_type_name (type));
+                fprintf (
+                    stderr,
+                    " %s", av_hwdevice_get_type_name (type)
+                );
+
             }
 
-            fprintf (stderr, "\n");
+            fprintf (
+                stderr,
+                "\n"
+            );
+
             return -1;
         }
 
         packet = av_packet_alloc ();
-        if (!packet) {
-            fprintf (stderr, "Failed to allocate AVPacket\n");
+        if (
+            !packet) {
+            fprintf (
+                stderr,
+                "Failed to allocate AVPacket\n"
+            );
+
             return -1;
         }
 
         /***********************************************************
         open the input file
         ***********************************************************/
-        if (avformat_open_input (&input_ctx, argv[2], null, null) != 0) {
-            fprintf (stderr, "Cannot open input file '%s'\n", argv[2]);
+        if (
+            avformat_open_input (
+                &input_ctx, argv[2], null, null) != 0) {
+            fprintf (
+                stderr,
+                "Cannot open input file '%s'\n",
+                argv[2]
+            );
+
             return -1;
         }
 
-        if (avformat_find_stream_info (input_ctx, null) < 0) {
-            fprintf (stderr, "Cannot find input stream information.\n");
+        if (
+            avformat_find_stream_info (
+                input_ctx, null) < 0) {
+            fprintf (
+                stderr,
+                "Cannot find input stream information.\n"
+            );
+
             return -1;
         }
 
         /***********************************************************
         find the video stream information
         ***********************************************************/
-        ret = av_find_best_stream (input_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &decoder, 0);
-        if (ret < 0) {
-            fprintf (stderr, "Cannot find a video stream in the input file\n");
+        ret = av_find_best_stream (input_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &decoder, 0
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Cannot find a video stream in the input file\n"
+            );
+
             return -1;
         }
 
         video_stream = ret;
 
-        for (i = 0;; i++) {
-            AVCodecHWConfig? config = avcodec_get_hw_config (decoder, i);
-            if (!config) {
-                fprintf (stderr, "Decoder %s does not support device type %s.\n",
-                        decoder.name, av_hwdevice_get_type_name (type));
+        for (
+            i = 0;
+            ;
+            i++
+        ) {
+            AVCodecHWConfig? config = avcodec_get_hw_config (decoder, i
+            );
+
+            if (
+                !config) {
+                fprintf (
+                    stderr,
+                    "Decoder %s does not support device type %s.\n",
+                        decoder.name, av_hwdevice_get_type_name (type)
+                );
+
                 return -1;
             }
 
-            if (config.methods & AV_CODEC_HW_CONFIG_METHOD_HW_DEVICE_CTX &&
+            if (
+                config.methods & AV_CODEC_HW_CONFIG_METHOD_HW_DEVICE_CTX &&
                 config.device_type == type) {
                 hw_pix_fmt = config.pix_fmt;
                 break;
@@ -243,60 +408,114 @@ private class HWDecodeApplication : GLib.Application {
 
         }
 
-        if (!(decoder_ctx = avcodec_alloc_context3 (decoder))) {
-            return AVERROR (ENOMEM);
+        decoder_ctx = avcodec_alloc_context3 (decoder
+        );
+
+        if (
+            !decoder_ctx) {
+            return AVERROR (ENOMEM
+            );
+
         }
 
         video = input_ctx.streams[video_stream];
-        if (avcodec_parameters_to_context (decoder_ctx, video.codecpar) < 0) {
-            avcodec_free_context (&decoder_ctx);
+        if (
+            avcodec_parameters_to_context (
+                decoder_ctx, video.codecpar) < 0) {
+            avcodec_free_context (
+                &decoder_ctx
+            );
+
             return -1;
         }
 
         decoder_ctx.get_format = get_hw_format;
 
-        if (hw_decoder_init (decoder_ctx, type) < 0) {
+        if (
+            hw_decoder_init (
+                decoder_ctx, type) < 0) {
             return -1;
         }
 
-        if ((ret = avcodec_open2 (decoder_ctx, decoder, null)) < 0) {
-            fprintf (stderr, "Failed to open codec for stream #%u\n", video_stream);
+        ret = avcodec_open2 (decoder_ctx, decoder, null
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Failed to open codec for stream #%u\n",
+                video_stream
+            );
+
             return -1;
         }
 
         /***********************************************************
         open the file to dump raw data
         ***********************************************************/
-        output_file = fopen (argv[3], "w+b");
+        output_file = fopen (
+            argv[3],
+            "w+b"
+        );
 
         /***********************************************************
         actual decoding and dump the raw data
         ***********************************************************/
-        while (ret >= 0) {
-            if ((ret = av_read_frame (input_ctx, packet)) < 0) {
+        while (
+            ret >= 0) {
+            ret = av_read_frame (input_ctx, packet
+            );
+
+            if (
+                ret < 0
+            ) {
                 break;
             }
 
-            if (video_stream == packet.stream_index) {
-                ret = decode_write (decoder_ctx, packet);
+            if (
+                video_stream == packet.stream_index) {
+                ret = decode_write (decoder_ctx, packet
+                );
+
             }
 
-            av_packet_unref (packet);
+            av_packet_unref (
+                packet
+            );
+
         }
 
         /***********************************************************
         flush the decoder
         ***********************************************************/
-        ret = decode_write (decoder_ctx, null);
+        ret = decode_write (decoder_ctx, null
+        );
 
-        if (output_file) {
-            fclose (output_file);
+        if (
+            output_file) {
+            fclose (
+                output_file
+            );
+
         }
 
-        av_packet_free (&packet);
-        avcodec_free_context (&decoder_ctx);
-        avformat_close_input (&input_ctx);
-        av_buffer_unref (&hw_device_ctx);
+        av_packet_free (
+            &packet
+        );
+
+        avcodec_free_context (
+            &decoder_ctx
+        );
+
+        avformat_close_input (
+            &input_ctx
+        );
+
+        av_buffer_unref (
+            &hw_device_ctx
+        );
 
         return 0;
     }

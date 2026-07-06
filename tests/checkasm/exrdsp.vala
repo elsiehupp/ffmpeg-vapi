@@ -23,67 +23,185 @@ private const size_t PADDED_BUF_SIZE = BUF_SIZE + AV_INPUT_BUFFER_PADDING_SIZE *
 
 private static void randomize_buffers () {
     int i;
-    for (i = 0; i < BUF_SIZE; i += 4) {
+    for (
+        i = 0;
+        i < BUF_SIZE;
+        i += 4
+    ) {
         uint32 r = rnd ();
-        AV_WN32A (src + i, r);
+
+        AV_WN32A (
+            src + i,
+            r
+        );
+
     }
 
 }
 
 private static void check_reorder_pixels () {
-    //  LOCAL_ALIGNED_32 (uint8, src, [PADDED_BUF_SIZE]);
-    //  LOCAL_ALIGNED_32 (uint8, dst_ref, [PADDED_BUF_SIZE]);
-    //  LOCAL_ALIGNED_32 (uint8, dst_new, [PADDED_BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      src,
+    //      [PADDED_BUF_SIZE]
+    //  );
 
-    //  declare_func (void, uint8[] dst, uint8[] src, size_t size);
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      dst_ref,
+    //      [PADDED_BUF_SIZE]
+    //  );
 
-    memset (src, 0, PADDED_BUF_SIZE);
-    memset (dst_ref, 0, PADDED_BUF_SIZE);
-    memset (dst_new, 0, PADDED_BUF_SIZE);
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      dst_new,
+    //      [PADDED_BUF_SIZE]
+    //  );
+
+    //  declare_func (
+    //      void,
+    //      uint8[] dst,
+    //      uint8[] src,
+    //      size_t size
+    //  );
+
+    memset (
+        src,
+        0,
+        PADDED_BUF_SIZE
+    );
+
+    memset (
+        dst_ref,
+        0,
+        PADDED_BUF_SIZE
+    );
+
+    memset (
+        dst_new,
+        0,
+        PADDED_BUF_SIZE
+    );
+
     randomize_buffers ();
-    //  call_ref (dst_ref, src, BUF_SIZE);
-    //  call_new (dst_new, src, BUF_SIZE);
-    if (memcmp (dst_ref, dst_new, BUF_SIZE)) {
+
+    call_ref (
+        dst_ref,
+        src,
+        UF_SIZE
+    );
+
+    call_new (
+        dst_new,
+        src,
+        BUF_SIZE
+    );
+
+    if (
+        memcmp (
+            dst_ref,
+            dst_new,
+            BUF_SIZE
+        )
+    ) {
         fail ();
     }
 
-    bench_new (dst_new, src, BUF_SIZE);
+    bench_new (
+        dst_new, src, BUF_SIZE
+    );
+
 }
 
 private static void check_predictor () {
-    //  LOCAL_ALIGNED_32 (uint8, src, [PADDED_BUF_SIZE]);
-    //  LOCAL_ALIGNED_32 (uint8, dst_ref, [PADDED_BUF_SIZE]);
-    //  LOCAL_ALIGNED_32 (uint8, dst_new, [PADDED_BUF_SIZE]);
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      src,
+    //      [PADDED_BUF_SIZE]
+    //  );
 
-    //  declare_func (void, uint8[] src, size_t size);
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      dst_ref,
+    //      [PADDED_BUF_SIZE]
+    //  );
 
-    memset (src, 0, PADDED_BUF_SIZE);
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      dst_new,
+    //      [PADDED_BUF_SIZE]
+    //  );
+
+    //  declare_func (
+    //      void,
+    //      uint8[] src,
+    //      size_t size
+    //  );
+
+    memset (
+        src, 0, PADDED_BUF_SIZE
+    );
+
     randomize_buffers ();
-    memcpy (dst_ref, src, PADDED_BUF_SIZE);
-    memcpy (dst_new, src, PADDED_BUF_SIZE);
-    //  call_ref (dst_ref, BUF_SIZE);
-    //  call_new (dst_new, BUF_SIZE);
-    if (memcmp (dst_ref, dst_new, BUF_SIZE)) {
+
+    memcpy (
+        dst_ref, src, PADDED_BUF_SIZE
+    );
+
+    memcpy (
+        dst_new, src, PADDED_BUF_SIZE
+    );
+
+    call_ref (
+        dst_ref, BUF_SIZE
+    );
+
+    call_new (
+        dst_new, BUF_SIZE
+    );
+
+    if (
+        memcmp (
+            dst_ref, dst_new, BUF_SIZE)
+    ) {
         fail ();
     }
 
-    bench_new (dst_new, BUF_SIZE);
+    bench_new (
+        dst_new, BUF_SIZE
+    );
+
 }
 
 private static void checkasm_check_exrdsp () {
-    ExrDSPContext h;
+    ExrDSPContext exr_dsp_context;
 
-    ff_exrdsp_init (&h);
+    ff_exrdsp_init (
+        &exr_dsp_context
+    );
 
-    if (check_func (h.reorder_pixels, "reorder_pixels")) {
+    if (
+        check_func (
+            exr_dsp_context.reorder_pixels, "reorder_pixels"
+        )
+    ) {
         check_reorder_pixels ();
     }
 
-    report ("reorder_pixels");
+    report (
+        "reorder_pixels"
+    );
 
-    if (check_func (h.predictor, "predictor")) {
+    if (
+        check_func (
+            exr_dsp_context.predictor, "predictor"
+        )
+    ) {
         check_predictor ();
     }
 
-    report ("predictor");
+    report (
+        "predictor"
+    );
+
 }

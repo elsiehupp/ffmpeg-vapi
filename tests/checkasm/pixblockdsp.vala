@@ -23,28 +23,69 @@ private const size_t BUF_SIZE = (BUF_UNITS * 128 + 8 * BUF_UNITS);
 
 private static void randomize_buffers () {
     int i;
-    for (i = 0; i < BUF_SIZE; i += 4) {
+    for (
+        i = 0;
+        i < BUF_SIZE;
+        i += 4
+    ) {
         uint32 r = rnd ();
-        AV_WN32A (src10 + i, r);
-        AV_WN32A (src11 + i, r);
+
+        AV_WN32A (
+            src10 + i,
+            r
+        );
+
+        AV_WN32A (
+            src11 + i,
+            r
+        );
+
         r = rnd ();
-        AV_WN32A (src20 + i, r);
-        AV_WN32A (src21 + i, r);
+
+        AV_WN32A (
+            src20 + i,
+            r
+        );
+
+        AV_WN32A (
+            src21 + i,
+            r
+        );
+
         r = rnd ();
-        AV_WN32A (dst0_ + i, r);
-        AV_WN32A (dst1_ + i, r);
+
+        AV_WN32A (
+            dst0_ + i,
+            r
+        );
+
+        AV_WN32A (
+            dst1_ + i,
+            r
+        );
+
     }
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, int16[] block, uint8[] pixels, size_t line_size);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      int16[] block,
+//      uint8[] pixels,
+//      size_t line_size
+//  );
 
 private static void check_get_pixels (
     void *type
 ) {
     int i;
 
-    for (i = 0; i < BUF_UNITS; i++) {
+    for (
+        i = 0;
+        i < BUF_UNITS;
+        i++
+    ) {
         /***********************************************************
         Test various alignments
         ***********************************************************/
@@ -54,25 +95,49 @@ private static void check_get_pixels (
         ***********************************************************/
         int dst_offset = i * 64;
         randomize_buffers ();
-        //  call_ref (dst0 + dst_offset, src10 + src_offset, 8);
-        //  call_new (dst1 + dst_offset, src11 + src_offset, 8);
-        if (memcmp (src10, src11, BUF_SIZE)|| memcmp (dst0, dst1, BUF_SIZE)) {
+
+        call_ref (
+            dst0 + dst_offset, src10 + src_offset, 8
+        );
+
+        call_new (
+            dst1 + dst_offset, src11 + src_offset, 8
+        );
+
+        if (
+            memcmp (
+                src10, src11, BUF_SIZE)|| memcmp (dst0, dst1, BUF_SIZE)
+        ) {
             fail ();
         }
 
-        bench_new (dst1 + dst_offset, src11 + src_offset, 8);
+        bench_new (
+            dst1 + dst_offset, src11 + src_offset, 8
+        );
+
     }
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, int16[] av_restrict block, uint8[] s1, uint8[] s2, size_t stride);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      int16[] av_restrict block,
+//      uint8[] s1,
+//      uint8[] s2,
+//      size_t stride
+//  );
 
 private static void check_diff_pixels (
     void *type
 ) {
     int i;
 
-    for (i = 0; i < BUF_UNITS; i++) {
+    for (
+        i = 0;
+        i < BUF_UNITS;
+        i++
+    ) {
         /***********************************************************
         Test various alignments
         ***********************************************************/
@@ -82,42 +147,113 @@ private static void check_diff_pixels (
         ***********************************************************/
         int dst_offset = i * 64;
         randomize_buffers ();
-        //  call_ref (dst0 + dst_offset, src10 + src_offset, src20 + src_offset, 8);
-        //  call_new (dst1 + dst_offset, src11 + src_offset, src21 + src_offset, 8);
-        if (memcmp (src10, src11, BUF_SIZE) || memcmp (src20, src21, BUF_SIZE) || memcmp (dst0, dst1, BUF_SIZE)) {
+
+        call_ref (
+            dst0 + dst_offset, src10 + src_offset, src20 + src_offset, 8
+        );
+
+        call_new (
+            dst1 + dst_offset, src11 + src_offset, src21 + src_offset, 8
+        );
+
+        if (
+            memcmp (
+                src10, src11, BUF_SIZE
+            ) ||
+            memcmp (
+                src20, src21, BUF_SIZE
+            ) ||
+            memcmp (
+                dst0, dst1, BUF_SIZE
+            )
+        ) {
             fail ();
         }
 
-        bench_new (dst1 + dst_offset, src11 + src_offset, src21 + src_offset, 8);
+        bench_new (
+            dst1 + dst_offset, src11 + src_offset, src21 + src_offset, 8
+        );
+
     }
 
 }
 
 private static void checkasm_check_pixblockdsp () {
-    //  LOCAL_ALIGNED_16 (uint8, src10, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, src11, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, src20, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, src21, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, dst0_, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, dst1_, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      src10,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      src11,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      src20,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      src21,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst0_,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst1_,
+    //      [BUF_SIZE]
+    //  );
+
     uint16[] dst0 = (uint16[] )dst0_;
     uint16[] dst1 = (uint16[] )dst1_;
-    PixblockDSPContext h;
+    PixblockDSPContext pixblock_dsp_context;
     AVCodecContext avctx = new AVCodecContext () {
         bits_per_raw_sample = 8
     };
 
-    ff_pixblockdsp_init (&h, &avctx);
+    ff_pixblockdsp_init (
+        &pixblock_dsp_context, &avctx
+    );
 
-    if (check_func (h.get_pixels, "get_pixels")) {
-        check_get_pixels (uint8);
+    if (
+        check_func (
+            pixblock_dsp_context.get_pixels, "get_pixels"
+        )
+    ) {
+        check_get_pixels (
+            uint8
+        );
+
     }
 
-    report ("get_pixels");
+    report (
+        "get_pixels"
+    );
 
-    if (check_func (h.diff_pixels, "diff_pixels")) {
-        check_diff_pixels (uint8);
+    if (
+        check_func (
+            pixblock_dsp_context.diff_pixels, "diff_pixels"
+        )
+    ) {
+        check_diff_pixels (
+            uint8
+        );
+
     }
 
-    report ("diff_pixels");
+    report (
+        "diff_pixels"
+    );
+
 }

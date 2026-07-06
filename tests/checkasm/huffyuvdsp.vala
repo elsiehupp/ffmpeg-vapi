@@ -23,63 +23,137 @@ private static void randomize_buffers (
     int size
 ) {
     int j;
-    for (j = 0; j < size; j++) {
+    for (
+        j = 0;
+        j < size;
+        j++
+    ) {
         buf[j] = rnd () & 0xFFFF;
     }
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint16[] dst, uint16[] src, uint mask, int w);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      uint16[] dst,
+//      uint16[] src,
+//      uint mask,
+//      int w
+//  );
 
 private static void check_add_int16 (
-    HuffYUVDSPContext c,
+    HuffYUVDSPContext huff_yuv_dsp_context,
     uint mask,
     int width,
     string name
 ) {
-    uint16[] src0 = av_mallocz (width * sizeof (uint16));
-    uint16[] src1 = av_mallocz (width * sizeof (uint16));
-    uint16[] dst0 = av_mallocz (width * sizeof (uint16));
-    uint16[] dst1 = av_mallocz (width * sizeof (uint16));
+    uint16[] src0 = av_mallocz (width * sizeof (uint16)
+    );
 
-    if (!src0 || !src1 || !dst0 || !dst1) {
+    uint16[] src1 = av_mallocz (width * sizeof (uint16)
+    );
+
+    uint16[] dst0 = av_mallocz (width * sizeof (uint16)
+    );
+
+    uint16[] dst1 = av_mallocz (width * sizeof (uint16)
+    );
+
+    if (
+        !src0 ||
+        !src1 ||
+        !dst0 ||
+        !dst1
+    ) {
         fail ();
     }
 
-    randomize_buffers (src0, width);
-    memcpy (src1, src0, width * sizeof (uint16));
+    randomize_buffers (
+        src0, width
+    );
 
-    if (check_func (c.add_int16, "%s", name)) {
-        //  call_ref (dst0, src0, mask, width);
-        //  call_new (dst1, src1, mask, width);
-        if (memcmp (dst0, dst1, width * sizeof (uint16))) {
+    memcpy (
+        src1, src0, width * sizeof (uint16)
+    );
+
+    if (
+        check_func (
+            huff_yuv_dsp_context.add_int16,
+            "%s",
+            name
+        )
+    ) {
+        call_ref (
+            dst0, src0, mask, width
+        );
+
+        call_new (
+            dst1, src1, mask, width
+        );
+
+        if (
+            memcmp (
+                dst0, dst1, width * sizeof (uint16))
+        ) {
             fail ();
         }
 
-        bench_new (dst1, src1, mask, width);
+        bench_new (
+            dst1, src1, mask, width
+        );
+
     }
 
-    av_free (src0);
-    av_free (src1);
-    av_free (dst0);
-    av_free (dst1);
+    av_free (
+        src0
+    );
+
+    av_free (
+        src1
+    );
+
+    av_free (
+        dst0
+    );
+
+    av_free (
+        dst1
+    );
+
 }
 
 private static void checkasm_check_huffyuvdsp () {
-    HuffYUVDSPContext c;
-    int width = 16 * av_clip (rnd (), 16, 128);
+    HuffYUVDSPContext huff_yuv_dsp_context;
+    int width = 16 * av_clip (rnd (), 16, 128
+    );
 
-    ff_huffyuvdsp_init (&c, LibAVUtil.PixelFormat.YUV422P);
+    ff_huffyuvdsp_init (
+        &huff_yuv_dsp_context, LibAVUtil.PixelFormat.YUV422P
+    );
 
     /***********************************************************
     ! test width not multiple of mmsize
     ***********************************************************/
-    check_add_int16 (c, 65535, width, "add_int16_rnd_width");
-    report ("add_int16_rnd_width");
+    check_add_int16 (
+        huff_yuv_dsp_context, 65535, width,
+        "add_int16_rnd_width"
+    );
+
+    report (
+        "add_int16_rnd_width"
+    );
 
     /***********************************************************
     ! test always with the same size (for perf test)
     ***********************************************************/
-    check_add_int16 (c, 65535, 16*128, "add_int16_128");
-    report ("add_int16_128");
+    check_add_int16 (
+        huff_yuv_dsp_context, 65535, 16*128,
+        "add_int16_128"
+    );
+
+    report (
+        "add_int16_128"
+    );
+
 }

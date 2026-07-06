@@ -23,11 +23,25 @@ private const size_t MAX_CHANNELS = 8;
 
 private static void randomize_buffers () {
     int i, j;
-    for (i = 0; i < BUF_SIZE; i += 4) {
-        for (j = 0; j < channels; j++) {
+    for (
+        i = 0;
+        i < BUF_SIZE;
+        i += 4
+    ) {
+        for (
+            j = 0;
+            j < channels;
+            j++
+        ) {
             uint32 r = rnd () & (1 << (bits - 2)) - 1;
-            AV_WN32A (ref_src[j] + i, r);
-            AV_WN32A (new_src[j] + i, r);
+            AV_WN32A (
+                ref_src[j] + i, r
+            );
+
+            AV_WN32A (
+                new_src[j] + i, r
+            );
+
         }
 
     }
@@ -42,18 +56,54 @@ private static void check_decorrelate (
     int channels,
     int bits
 ) {
-    //  declare_func (void, ref uint8[] out, int32[] *in, int channels, int len, int shift);
+    //  declare_func (
+    //      void,
+    //      ref uint8[] out,
+    //      int32[] *in,
+    //      int channels,
+    //      int len,
+    //      int shift
+    //  );
 
     randomize_buffers ();
-    //  call_ref (ref_dst, (int32[] *)ref_src, channels, BUF_SIZE / sizeof (int32), 8);
-    //  call_new (new_dst, (int32[] *)new_src, channels, BUF_SIZE / sizeof (int32), 8);
-    if (memcmp (*ref_dst, *new_dst, bits == 16 ? BUF_SIZE * (channels/2) : BUF_SIZE * channels) ||
+
+    //  call_ref (
+    //      ref_dst,
+    //      (int32[] *)ref_src,
+    //      channels,
+    //      BUF_SIZE / sizeof (
+    //          int32
+    //      ),
+    //      8
+    //  );
+
+    //  call_new (
+    //      new_dst,
+    //      (int32[] *)new_src,
+    //      channels,
+    //      BUF_SIZE / sizeof (
+    //          int32
+    //      ),
+    //      8
+    //  );
+
+    if (
+        memcmp (*ref_dst, *new_dst, bits == 16 ? BUF_SIZE * (channels/2) : BUF_SIZE * channels) ||
         memcmp (*ref_src, *new_src, BUF_SIZE * channels)
     ) {
         fail ();
     }
 
-    //  bench_new (new_dst, (int32[] *)new_src, channels, BUF_SIZE / sizeof (int32), 8);
+    //  bench_new (
+    //      new_dst,
+    //      (int32[] *)new_src,
+    //      channels,
+    //      BUF_SIZE / sizeof (
+    //          int32
+    //      ),
+    //      8
+    //  );
+
 }
 
 private const string names[3] = { "ls", "rs", "ms" };
@@ -68,35 +118,88 @@ private static Format fmts[] = {
 };
 
 private static void checkasm_check_flacdsp () {
-    //  LOCAL_ALIGNED_16 (uint8, ref_dst, [BUF_SIZE*MAX_CHANNELS]);
-    //  LOCAL_ALIGNED_16 (uint8, ref_buf, [BUF_SIZE*MAX_CHANNELS]);
-    //  LOCAL_ALIGNED_16 (uint8, new_dst, [BUF_SIZE*MAX_CHANNELS]);
-    //  LOCAL_ALIGNED_16 (uint8, new_buf, [BUF_SIZE*MAX_CHANNELS]);
-    uint8[] ref_src[] = { &ref_buf[BUF_SIZE*0], &ref_buf[BUF_SIZE*1], &ref_buf[BUF_SIZE*2], &ref_buf[BUF_SIZE*3],
-                           &ref_buf[BUF_SIZE*4], &ref_buf[BUF_SIZE*5], &ref_buf[BUF_SIZE*6], &ref_buf[BUF_SIZE*7] };
-    uint8[] new_src[] = { &new_buf[BUF_SIZE*0], &new_buf[BUF_SIZE*1], &new_buf[BUF_SIZE*2], &new_buf[BUF_SIZE*3],
-                           &new_buf[BUF_SIZE*4], &new_buf[BUF_SIZE*5], &new_buf[BUF_SIZE*6], &new_buf[BUF_SIZE*7] };
-    FLACDSPContext h;
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      ref_dst,
+    //      [BUF_SIZE * MAX_CHANNELS]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      ref_buf,
+    //      [BUF_SIZE * MAX_CHANNELS]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      new_dst,
+    //      [BUF_SIZE * MAX_CHANNELS]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      new_buf,
+    //      [BUF_SIZE * MAX_CHANNELS]
+    //  );
+
+    uint8[] ref_src[] = { &ref_buf[BUF_SIZE * 0], &ref_buf[BUF_SIZE * 1], &ref_buf[BUF_SIZE * 2], &ref_buf[BUF_SIZE * 3],
+                           &ref_buf[BUF_SIZE * 4], &ref_buf[BUF_SIZE * 5], &ref_buf[BUF_SIZE * 6], &ref_buf[BUF_SIZE * 7] };
+    uint8[] new_src[] = { &new_buf[BUF_SIZE * 0], &new_buf[BUF_SIZE * 1], &new_buf[BUF_SIZE * 2], &new_buf[BUF_SIZE * 3],
+                           &new_buf[BUF_SIZE * 4], &new_buf[BUF_SIZE * 5], &new_buf[BUF_SIZE * 6], &new_buf[BUF_SIZE * 7] };
+    FLACDSPContext flac_dsp_context;
     int i, j;
 
-    for (i = 0; i < 2; i++) {
-        ff_flacdsp_init (&h, fmts[i].fmt, 2, 0);
-        for (j = 0; j < 3; j++) {
-            if (check_func (h.decorrelate[j], "flac_decorrelate_%s_%d", names[j], fmts[i].bits)) {
-                check_decorrelate (&ref_dst, ref_src, &new_dst, new_src, 2, fmts[i].bits);
+    for (
+        i = 0;
+        i < 2;
+        i++
+    ) {
+        ff_flacdsp_init (
+            &flac_dsp_context, fmts[i].fmt, 2, 0
+        );
+
+        for (
+            j = 0;
+            j < 3;
+            j++
+        ) {
+            if (
+                check_func (
+                    flac_dsp_context.decorrelate[j], "flac_decorrelate_%s_%d", names[j], fmts[i].bits)
+            ) {
+                check_decorrelate (
+                    &ref_dst, ref_src, &new_dst, new_src, 2, fmts[i].bits
+                );
+
             }
 
         }
 
-        for (j = 2; j <= MAX_CHANNELS; j += 2) {
-            ff_flacdsp_init (&h, fmts[i].fmt, j, 0);
-            if (check_func (h.decorrelate[0], "flac_decorrelate_indep%d_%d", j, fmts[i].bits)) {
-                check_decorrelate (&ref_dst, ref_src, &new_dst, new_src, j, fmts[i].bits);
+        for (
+            j = 2;
+            j <= MAX_CHANNELS;
+            j += 2
+        ) {
+            ff_flacdsp_init (
+                &flac_dsp_context, fmts[i].fmt, j, 0
+            );
+
+            if (
+                check_func (
+                    flac_dsp_context.decorrelate[0], "flac_decorrelate_indep%d_%d", j, fmts[i].bits)
+            ) {
+                check_decorrelate (
+                    &ref_dst, ref_src, &new_dst, new_src, j, fmts[i].bits
+                );
+
             }
 
         }
 
     }
 
-    report ("decorrelate");
+    report (
+        "decorrelate"
+    );
+
 }

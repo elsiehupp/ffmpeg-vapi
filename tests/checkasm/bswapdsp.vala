@@ -22,13 +22,35 @@ private const size_t BUF_SIZE = 512;
 
 private static void randomize_buffers () {
     int i;
-    for (i = 0; i < BUF_SIZE; i += 4) {
+    for (
+        i = 0;
+        i < BUF_SIZE;
+        i += 4
+    ) {
         uint32 r = rnd ();
-        AV_WN32A (src0 + i, r);
-        AV_WN32A (src1 + i, r);
+
+        AV_WN32A (
+            src0 + i,
+            r
+        );
+
+        AV_WN32A (
+            src1 + i,
+            r
+        );
+
         r = rnd ();
-        AV_WN32A (dst0 + i, r);
-        AV_WN32A (dst1 + i, r);
+
+        AV_WN32A (
+            dst0 + i,
+            r
+        );
+
+        AV_WN32A (
+            dst1 + i,
+            r
+        );
+
     }
 
 }
@@ -37,41 +59,107 @@ private static void check_bswap (
     void *type
 ) {
     int w;
-    //  declare_func (void, type? dst, type? src, int w);
 
-    for (w = 0; w < BUF_SIZE / sizeof (type); w++) {
+    //  declare_func (
+    //      void,
+    //      type? dst,
+    //      type? src,
+    //      int w
+    //  );
+
+    for (
+        w = 0;
+        w < BUF_SIZE / sizeof (
+            type
+        );
+        w++
+    ) {
         int offset = (BUF_SIZE / sizeof (type) - w) & 15;
         /***********************************************************
         Test various alignments
         ***********************************************************/
         randomize_buffers ();
-        //  call_ref ((type? )dst0 + offset, (type? )src0 + offset, w);
-        //  call_new ((type? )dst1 + offset, (type? )src1 + offset, w);
-        if (memcmp (src0, src1, BUF_SIZE) || memcmp (dst0, dst1, BUF_SIZE)) {
+
+        call_ref ((type[])dst0 + offset, (type[])src0 + offset, w
+        );
+
+        call_new ((type[])dst1 + offset, (type[])src1 + offset, w
+        );
+
+        if (
+            memcmp (
+                src0, src1, BUF_SIZE
+            ) ||
+            memcmp (
+                dst0, dst1, BUF_SIZE
+            )
+        ) {
             fail ();
         }
 
-        bench_new ((type? )dst1 + offset, (type? )src1 + offset, w);
+        bench_new (
+            (type[])dst1 + offset, (type[])src1 + offset, w
+        );
+
     }
 
 }
 
 private static void checkasm_check_bswapdsp () {
-    //  LOCAL_ALIGNED_16 (uint8, src0, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, src1, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, dst0, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, dst1, [BUF_SIZE]);
-    BswapDSPContext h;
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      src0,
+    //      [BUF_SIZE]
+    //  );
 
-    ff_bswapdsp_init (&h);
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      src1,
+    //      [BUF_SIZE]
+    //  );
 
-    if (check_func (h.bswap_buf, "bswap_buf")) {
-        check_bswap (uint32);
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst0,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst1,
+    //      [BUF_SIZE]
+    //  );
+
+    BswapDSPContext bswap_dsp_context;
+
+    ff_bswapdsp_init (
+        &bswap_dsp_context
+    );
+
+    if (
+        check_func (
+            bswap_dsp_context.bswap_buf, "bswap_buf"
+        )
+    ) {
+        check_bswap (
+            uint32
+        );
+
     }
 
-    if (check_func (h.bswap16_buf, "bswap16_buf")) {
-        check_bswap (uint16);
+    if (
+        check_func (
+            bswap_dsp_context.bswap16_buf, "bswap16_buf"
+        )
+    ) {
+        check_bswap (
+            uint16
+        );
+
     }
 
-    report ("bswap");
+    report (
+        "bswap"
+    );
+
 }

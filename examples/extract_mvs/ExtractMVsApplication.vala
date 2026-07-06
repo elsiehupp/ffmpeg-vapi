@@ -29,9 +29,9 @@ Read from input file, decode video stream and print a motion vectors
 representation to stdout.
 ***********************************************************/
 
-//  #include <libavutil/motion_vector.h>
-//  #include <libavcodec/avcodec.h>
-//  #include <libavformat/avformat.h>
+//#include <libavutil/motion_vector.h>
+//#include <libavcodec/avcodec.h>
+//#include <libavformat/avformat.h>
 
 private class ExtractMVsApplication : GLib.Application {
 
@@ -47,41 +47,83 @@ private class ExtractMVsApplication : GLib.Application {
     private static int decode_packet (
         AVPacket? pkt
     ) {
-        int ret = avcodec_send_packet (video_dec_ctx, pkt);
-        if (ret < 0) {
-            fprintf (stderr, "Error while sending a packet to the decoder: %s\n", av_err2str (ret));
+        int ret = avcodec_send_packet (video_dec_ctx, pkt
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Error while sending a packet to the decoder: %s\n",
+                av_err2str (
+                    ret)
+            );
+
             return ret;
         }
 
-        while (ret >= 0)  {
-            ret = avcodec_receive_frame (video_dec_ctx, frame);
-            if (ret == AVERROR (EAGAIN) || ret == AVERROR_EOF) {
+        while (
+            ret >= 0)  {
+            ret = avcodec_receive_frame (video_dec_ctx, frame
+            );
+
+            if (
+                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR_EOF
+            ) {
                 break;
-            } else if (ret < 0) {
-                fprintf (stderr, "Error while receiving a frame from the decoder: %s\n", av_err2str (ret));
+            } else if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Error while receiving a frame from the decoder: %s\n",
+                    av_err2str (
+                        ret)
+                );
+
                 return ret;
             }
 
-            if (ret >= 0) {
+            if (
+                ret >= 0
+            ) {
                 int i;
                 AVFrameSideData? sd;
 
                 video_frame_count++;
-                sd = av_frame_get_side_data (frame, AV_FRAME_DATA_MOTION_VECTORS);
-                if (sd) {
+                sd = av_frame_get_side_data (frame, AV_FRAME_DATA_MOTION_VECTORS
+                );
+
+                if (
+                    sd
+                ) {
                     AVMotionVector? mvs = (AVMotionVector? )sd.data;
-                    for (i = 0; i < sd.size / sizeof (mvs); i++) {
+                    for (
+                        i = 0;
+                        i < sd.size / sizeof (
+                            mvs
+                        );
+                        i++
+                    ) {
                         AVMotionVector? mv = &mvs[i];
-                        printf ("%d,%2d,%2d,%2d,%4d,%4d,%4d,%4d,0x%PRIx64,%4d,%4d,%4d\n",
+                        printf (
+                            "%d,%2d,%2d,%2d,%4d,%4d,%4d,%4d,0x%PRIx64,%4d,%4d,%4d\n",
                             video_frame_count, mv.source,
                             mv.w, mv.h, mv.src_x, mv.src_y,
                             mv.dst_x, mv.dst_y, mv.flags,
-                            mv.motion_x, mv.motion_y, mv.motion_scale);
+                            mv.motion_x, mv.motion_y, mv.motion_scale
+                        );
+
                     }
 
                 }
 
-                av_frame_unref (frame);
+                av_frame_unref (
+                    frame
+                );
+
             }
 
         }
@@ -99,37 +141,82 @@ private class ExtractMVsApplication : GLib.Application {
         AVCodec? dec = null;
         AVDictionary? opts = null;
 
-        ret = av_find_best_stream (fmt_ctx, type, -1, -1, &dec, 0);
-        if (ret < 0) {
-            fprintf (stderr, "Could not find %s stream in input file '%s'\n",
-                    av_get_media_type_string (type), src_filename);
+        ret = av_find_best_stream (fmt_ctx, type, -1, -1, &dec, 0
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not find %s stream in input file '%s'\n",
+                    av_get_media_type_string (
+                        type), src_filename
+            );
+
             return ret;
         } else {
             int stream_idx = ret;
             st = fmt_ctx.streams[stream_idx];
 
-            dec_ctx = avcodec_alloc_context3 (dec);
-            if (!dec_ctx) {
-                fprintf (stderr, "Failed to allocate codec\n");
-                return AVERROR (EINVAL);
+            dec_ctx = avcodec_alloc_context3 (dec
+            );
+
+            if (
+                !dec_ctx
+            ) {
+                fprintf (
+                    stderr,
+                    "Failed to allocate codec\n"
+                );
+
+                return AVERROR (EINVAL
+                );
+
             }
 
-            ret = avcodec_parameters_to_context (dec_ctx, st.codecpar);
-            if (ret < 0) {
-                fprintf (stderr, "Failed to copy codec parameters to codec context\n");
-                avcodec_free_context (&dec_ctx);
+            ret = avcodec_parameters_to_context (dec_ctx, st.codecpar
+            );
+
+            if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Failed to copy codec parameters to codec context\n"
+                );
+
+                avcodec_free_context (
+                    &dec_ctx
+                );
+
                 return ret;
             }
 
             /***********************************************************
             Init the video decoder
             ***********************************************************/
-            av_dict_set (&opts, "flags2", "+export_mvs", 0);
-            ret = avcodec_open2 (dec_ctx, dec, &opts);
-            av_dict_free (&opts);
-            if (ret < 0) {
-                fprintf (stderr, "Failed to open %s codec\n",
-                        av_get_media_type_string (type));
+            av_dict_set (
+                &opts, "flags2", "+export_mvs", 0
+            );
+
+            ret = avcodec_open2 (dec_ctx, dec, &opts
+            );
+
+            av_dict_free (
+                &opts
+            );
+
+            if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Failed to open %s codec\n",
+                        av_get_media_type_string (
+                            type)
+                );
+
                 return ret;
             }
 
@@ -148,59 +235,134 @@ private class ExtractMVsApplication : GLib.Application {
         int ret = 0;
         AVPacket? pkt = null;
 
-        if (argc != 2) {
-            fprintf (stderr, "Usage: %s <video>\n", argv[0]);
-            exit (1);
+        if (
+            argc != 2
+        ) {
+            fprintf (
+                stderr,
+                "Usage: %s <video>\n",
+                argv[0]
+            );
+
+            exit (
+                1
+            );
+
         }
 
         src_filename = argv[1];
 
-        if (avformat_open_input (&fmt_ctx, src_filename, null, null) < 0) {
-            fprintf (stderr, "Could not open source file %s\n", src_filename);
-            exit (1);
+        if (
+            avformat_open_input (
+                &fmt_ctx, src_filename, null, null
+            ) < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not open source file %s\n",
+                src_filename
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        if (avformat_find_stream_info (fmt_ctx, null) < 0) {
-            fprintf (stderr, "Could not find stream information\n");
-            exit (1);
+        if (
+            avformat_find_stream_info (
+                fmt_ctx, null
+            ) < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not find stream information\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        open_codec_context (fmt_ctx, AVMEDIA_TYPE_VIDEO);
+        open_codec_context (
+            fmt_ctx, AVMEDIA_TYPE_VIDEO
+        );
 
-        av_dump_format (fmt_ctx, 0, src_filename, 0);
+        av_dump_format (
+            fmt_ctx, 0, src_filename, 0
+        );
 
-        if (!video_stream) {
-            fprintf (stderr, "Could not find video stream in the input, aborting\n");
+        if (
+            !video_stream
+        ) {
+            fprintf (
+                stderr,
+                "Could not find video stream in the input, aborting\n"
+            );
+
             ret = 1;
-            //  goto end;
+            throw new Goto.END ("");
         }
 
         frame = av_frame_alloc ();
-        if (!frame) {
-            fprintf (stderr, "Could not allocate frame\n");
-            ret = AVERROR (ENOMEM);
-            //  goto end;
+        if (
+            !frame
+        ) {
+            fprintf (
+                stderr,
+                "Could not allocate frame\n"
+            );
+
+            ret = AVERROR (ENOMEM
+            );
+
+            throw new Goto.END ("");
         }
 
         pkt = av_packet_alloc ();
-        if (!pkt) {
-            fprintf (stderr, "Could not allocate AVPacket\n");
-            ret = AVERROR (ENOMEM);
-            //  goto end;
+        if (
+            !pkt
+        ) {
+            fprintf (
+                stderr,
+                "Could not allocate AVPacket\n"
+            );
+
+            ret = AVERROR (ENOMEM
+            );
+
+            throw new Goto.END ("");
         }
 
-        printf ("framenum,source,blockw,blockh,srcx,srcy,dstx,dsty,flags,motion_x,motion_y,motion_scale\n");
+        printf (
+            "framenum,source,blockw,blockh,srcx,srcy,dstx,dsty,flags,motion_x,motion_y,motion_scale\n"
+        );
 
         /***********************************************************
         read frames from the file
         ***********************************************************/
-        while (av_read_frame (fmt_ctx, pkt) >= 0) {
-            if (pkt.stream_index == video_stream_idx) {
-                ret = decode_packet (pkt);
+        while (
+            av_read_frame (
+                fmt_ctx, pkt
+            ) >= 0
+        ) {
+            if (
+                pkt.stream_index == video_stream_idx
+            ) {
+                ret = decode_packet (
+                    pkt
+                );
+
             }
 
-            av_packet_unref (pkt);
-            if (ret < 0) {
+            av_packet_unref (
+                pkt
+            );
+
+            if (
+                ret < 0
+            ) {
                 break;
             }
 
@@ -209,13 +371,27 @@ private class ExtractMVsApplication : GLib.Application {
         /***********************************************************
         flush cached frames
         ***********************************************************/
-        decode_packet (null);
+        decode_packet (
+            null
+    );
 
     //  end:
-        avcodec_free_context (&video_dec_ctx);
-        avformat_close_input (&fmt_ctx);
-        av_frame_free (&frame);
-        av_packet_free (&pkt);
+        avcodec_free_context (
+            &video_dec_ctx
+        );
+
+        avformat_close_input (
+            &fmt_ctx
+        );
+
+        av_frame_free (
+            &frame
+        );
+
+        av_packet_free (
+            &pkt
+        );
+
         return ret < 0;
     }
 

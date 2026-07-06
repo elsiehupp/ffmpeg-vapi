@@ -23,8 +23,17 @@ private static void randomize_buffers (
     int h
 ) {
     int i;
-    for (i = 0; i < w * h * sizeof (src0); i += 4) {
-        AV_WN32A (((uint8[] ) src0) + i, rnd ());
+    for (
+        i = 0;
+        i < w * h * sizeof (
+            src0
+        );
+        i += 4
+    ) {
+        AV_WN32A (
+            ((uint8[] ) src0) + i, rnd ()
+        );
+
     }
 
 }
@@ -37,20 +46,48 @@ private static void iter_1d (
     void *var_start,
     void *var_end
 ) {
-    for (fix = fix_val, var = var_start; var <= var_end; var++) {
-        //  call_ref ((type? ) dst0, (type? ) (src0 + y * pw + x),
-        //           bw * sizeof (type), pw * sizeof (type),
-        //           bw, bh, x, y, pw, ph);
-        //  call_new ((type? ) dst1, (type? ) (src1 + y * pw + x),
-        //           bw * sizeof (type), pw * sizeof (type),
-        //           bw, bh, x, y, pw, ph);
-        if (memcmp (dst0, dst1, bw * bh * sizeof (type))) {
+    for (
+        fix = fix_val, var = var_start;
+        var <= var_end;
+        var++
+    ) {
+        call_ref (
+            (type[])dst0,
+            (type[])(
+                src0 + y * pw + x
+            ),
+            bw * sizeof (
+                type
+            ),
+            pw * sizeof (
+                type
+            ),
+            bw,
+            bh,
+            x,
+            y,
+            pw,
+            ph
+        );
+
+        call_new (
+            (type[])dst1, (type[])(src1 + y * pw + x),
+            bw * sizeof (type), pw * sizeof (type),
+            bw, bh, x, y, pw, ph
+        );
+
+        if (
+            memcmp (
+                dst0, dst1, bw * bh * sizeof (type))
+        ) {
             fail ();
         }
 
-        bench_new ((type? ) dst1, (type? ) (src1 + y * pw + x),
+        bench_new ((type[])dst1, (type[])(src1 + y * pw + x),
                   bw * sizeof (type), pw * sizeof (type),
-                  bw, bh, x, y, pw, ph);
+                  bw, bh, x, y, pw, ph
+        );
+
     }
 
 }
@@ -62,46 +99,129 @@ private static void check_emu_edge_size (
     void *dst_w,
     void *dst_h
 ) {
-    //  LOCAL_ALIGNED_16 (type, src0, [src_w * src_h]);
-    //  LOCAL_ALIGNED_16 (type, src1, [src_w * src_h]);
+    //  LOCAL_ALIGNED_16 (
+    //      type,
+    //      src0,
+    //      [src_w * src_h]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      type,
+    //      src1,
+    //      [src_w * src_h]
+    //  );
+
     int bw = dst_w, bh = dst_h;
     int pw = src_w, ph = src_h;
     int y, x;
-    randomize_buffers (src_w, src_h);
-    memcpy (src1, src0, pw * ph * sizeof (type));
-    iter_1d (type, y, 0 - src_h, x, 0 - src_w, src_w - 0);
-    iter_1d (type, x, src_w - 0, y, 0 - src_h, src_h - 0);
-    iter_1d (type, y, src_h - 0, x, 0 - src_w, src_w - 0);
-    iter_1d (type, x, 0 - src_w, y, 0 - src_h, src_h - 0);
+
+    randomize_buffers (
+        src_w, src_h
+    );
+
+    memcpy (
+        src1, src0, pw * ph * sizeof (type)
+    );
+
+    iter_1d (
+        type,
+        y, 0 - src_h, x, 0 - src_w, src_w - 0
+    );
+
+    iter_1d (
+        type,
+        x, src_w - 0, y, 0 - src_h, src_h - 0
+    );
+
+    iter_1d (
+        type,
+        y, src_h - 0, x, 0 - src_w, src_w - 0
+    );
+
+    iter_1d (
+        type,
+        x, 0 - src_w, y, 0 - src_h, src_h - 0
+    );
+
 }
 
 //  declare_func_emms (
 //      AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT,
-//      void, type? dst, type? src,
+//      void,
+//      type? dst,
+//      type? src,
 //      size_t dst_linesize,
 //      size_t src_linesize,
-//      int block_w, int block_h,
-//      int src_x, int src_y,
-//      int src_w, int src_h
+//      int block_w,
+//      int block_h,
+//      int src_x,
+//      int src_y,
+//      int src_w,
+//      int src_h
 //  );
 
 private static void check_emu_edge (
     void *type
 ) {
-    //  LOCAL_ALIGNED_16 (type, dst0, [64 * 64]);
-    //  LOCAL_ALIGNED_16 (type, dst1, [64 * 64]);
-    check_emu_edge_size (type, 16, 1, 64, 64);
-    check_emu_edge_size (type, 16, 16, 64, 64);
-    check_emu_edge_size (type, 64, 64, 64, 64);
+    //  LOCAL_ALIGNED_16 (
+    //      type,
+    //      dst0,
+    //      [64 * 64]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      type,
+    //      dst1,
+    //      [64 * 64]
+    //  );
+
+    check_emu_edge_size (
+        type,
+        16,
+        1,
+        64,
+        64
+    );
+
+    check_emu_edge_size (
+        type,
+        16,
+        16,
+        64,
+        64
+    );
+
+    check_emu_edge_size (
+        type,
+        64,
+        64,
+        64,
+        64
+    );
+
 }
 
 private static void checkasm_check_videodsp () {
     VideoDSPContext vdsp;
 
-    ff_videodsp_init (&vdsp, 8);
-    if (check_func (vdsp.emulated_edge_mc, "emulated_edge_mc_8")) {
-        check_emu_edge (uint8);
+    ff_videodsp_init (
+        &vdsp, 8
+    );
+
+    if (
+        check_func (
+            vdsp.emulated_edge_mc,
+            "emulated_edge_mc_8"
+        )
+    ) {
+        check_emu_edge (
+            uint8
+        );
+
     }
 
-    report ("emulated_edge_mc");
+    report (
+        "emulated_edge_mc"
+    );
+
 }

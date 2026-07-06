@@ -24,7 +24,11 @@ private static void randomize_buffers (
 ) {
     int j;
     uint8[] tmp_buf = (uint8[] )buf;
-    for (j = 0; j < size; j++) {
+    for (
+        j = 0;
+        j < size;
+        j++
+    ) {
         tmp_buf[j] = rnd () & 0xFF;
     }
 
@@ -36,62 +40,142 @@ private static void init_buffer (
     void *type,
     void *width
 ) {
-    if (!a0 || !a1) {
+    if (
+        !a0 ||
+        !a1
+    ) {
         fail ();
     }
 
-    randomize_buffers (a0, width * sizeof (type));
-    memcpy (a1, a0, width*sizeof (type));
-}
+    randomize_buffers (
+        a0, width * sizeof (type)
+    );
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] dst, uint8[] src, size_t w);
+    memcpy (
+        a1, a0, width*sizeof (type)
+    );
 
-private static void check_add_bytes (LLVidDSPContext c, int width) {
-    uint8[] dst0 = av_mallocz (width);
-    uint8[] dst1 = av_mallocz (width);
-    uint8[] src0 = av_mallocz_array (width, sizeof (uint8));
-    uint8[] src1 = av_mallocz_array (width, sizeof (uint8));
-
-    init_buffer (src0, src1, uint8, width);
-
-    if (!dst0 || !dst1) {
-        fail ();
-    }
-
-
-    if (check_func (c.add_bytes, "add_bytes")) {
-        //  call_ref (dst0, src0, width);
-        //  call_new (dst1, src1, width);
-        if (memcmp (dst0, dst1, width)) {
-            fail ();
-        }
-
-        bench_new (dst1, src1, width);
-    }
-
-    av_free (src0);
-    av_free (src1);
-    av_free (dst0);
-    av_free (dst1);
 }
 
 //  declare_func_emms (
-//      AV_CPU_FLAG_MMX, void, uint8[] dst, uint8[] src1,
-//      uint8[] diff, size_t w,
-//      int[] left, int[] left_top
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      uint8[] dst,
+//      uint8[] src,
+//      size_t w
 //  );
 
-private static void check_add_median_pred (LLVidDSPContext c, int width) {
-    int A0, A1, B0, B1;
-    uint8[] dst0 = av_mallocz (width);
-    uint8[] dst1 = av_mallocz (width);
-    uint8[] src0 = av_mallocz_array (width, sizeof (uint8));
-    uint8[] src1 = av_mallocz_array (width, sizeof (uint8));
-    uint8[] diff0 = av_mallocz_array (width, sizeof (uint8));
-    uint8[] diff1 = av_mallocz_array (width, sizeof (uint8));
+private static void check_add_bytes (
+    LLVidDSPContext llvid_dsp_context, int width
+) {
+    uint8[] dst0 = av_mallocz (width
+    );
 
-    init_buffer (src0, src1, uint8, width);
-    init_buffer (diff0, diff1, uint8, width);
+    uint8[] dst1 = av_mallocz (width
+    );
+
+    uint8[] src0 = av_mallocz_array (width, sizeof (uint8)
+    );
+
+    uint8[] src1 = av_mallocz_array (width, sizeof (uint8)
+    );
+
+    init_buffer (
+        src0, src1, uint8, width
+    );
+
+    if (
+        !dst0 ||
+        !dst1
+    ) {
+        fail ();
+    }
+
+
+    if (
+        check_func (
+            llvid_dsp_context.add_bytes, "add_bytes"
+        )
+    ) {
+        call_ref (
+            dst0, src0, width
+        );
+
+        call_new (
+            dst1, src1, width
+        );
+
+        if (
+            memcmp (
+                dst0, dst1, width)
+        ) {
+            fail ();
+        }
+
+        bench_new (
+            dst1, src1, width
+        );
+
+    }
+
+    av_free (
+        src0
+    );
+
+    av_free (
+        src1
+    );
+
+    av_free (
+        dst0
+    );
+
+    av_free (
+        dst1
+    );
+
+}
+
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      uint8[] dst,
+//      uint8[] src1,
+//      uint8[] diff,
+//      size_t w,
+//      int[] left,
+//      int[] left_top
+//  );
+
+private static void check_add_median_pred (
+    LLVidDSPContext llvid_dsp_context, int width
+) {
+    int A0, A1, B0, B1;
+    uint8[] dst0 = av_mallocz (width
+    );
+
+    uint8[] dst1 = av_mallocz (width
+    );
+
+    uint8[] src0 = av_mallocz_array (width, sizeof (uint8)
+    );
+
+    uint8[] src1 = av_mallocz_array (width, sizeof (uint8)
+    );
+
+    uint8[] diff0 = av_mallocz_array (width, sizeof (uint8)
+    );
+
+    uint8[] diff1 = av_mallocz_array (width, sizeof (uint8)
+    );
+
+    init_buffer (
+        src0, src1, uint8, width
+    );
+
+    init_buffer (
+        diff0, diff1, uint8, width
+    );
 
     A0 = rnd () & 0xFF;
     B0 = rnd () & 0xFF;
@@ -99,100 +183,237 @@ private static void check_add_median_pred (LLVidDSPContext c, int width) {
     B1 = B0;
 
 
-    if (check_func (c.add_median_pred, "add_median_pred")) {
-        //  call_ref (dst0, src0, diff0, width, &A0, &B0);
-        //  call_new (dst1, src1, diff1, width, &A1, &B1);
-        if (memcmp (dst0, dst1, width) || (A0 != A1) || (B0 != B1)) {
+    if (
+        check_func (
+            llvid_dsp_context.add_median_pred, "add_median_pred"
+        )
+    ) {
+        call_ref (
+            dst0, src0, diff0, width, &A0, &B0
+        );
+
+        call_new (
+            dst1, src1, diff1, width, &A1, &B1
+        );
+
+        if (
+            memcmp (
+                dst0, dst1, width
+            ) ||
+            A0 != A1 ||
+            B0 != B1
+        ) {
             fail ();
         }
 
-        bench_new (dst1, src1, diff1, width, &A1, &B1);
+        bench_new (
+            dst1, src1, diff1, width, &A1, &B1
+        );
+
     }
 
-    av_free (src0);
-    av_free (src1);
-    av_free (diff0);
-    av_free (diff1);
-    av_free (dst0);
-    av_free (dst1);
+    av_free (
+        src0
+    );
+
+    av_free (
+        src1
+    );
+
+    av_free (
+        diff0
+    );
+
+    av_free (
+        diff1
+    );
+
+    av_free (
+        dst0
+    );
+
+    av_free (
+        dst1
+    );
+
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, int, uint8[] dst, uint8[] src, size_t w, int acc);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX,
+//      int,
+//      uint8[] dst,
+//      uint8[] src,
+//      size_t w,
+//      int acc
+//  );
 
-private static void check_add_left_pred (LLVidDSPContext c, int width, int acc, string report) {
+private static void check_add_left_pred (
+    LLVidDSPContext llvid_dsp_context,
+    int width,
+    int acc,
+    string report
+) {
     int res0, res1;
-    uint8[] dst0 = av_mallocz (width);
-    uint8[] dst1 = av_mallocz (width);
-    uint8[] src0 = av_mallocz_array (width, sizeof (uint8));
-    uint8[] src1 = av_mallocz_array (width, sizeof (uint8));
+    uint8[] dst0 = av_mallocz (width
+    );
 
-    init_buffer (src0, src1, uint8, width);
+    uint8[] dst1 = av_mallocz (width
+    );
 
-    if (!dst0 || !dst1) {
+    uint8[] src0 = av_mallocz_array (width, sizeof (uint8)
+    );
+
+    uint8[] src1 = av_mallocz_array (width, sizeof (uint8)
+    );
+
+    init_buffer (
+        src0, src1, uint8, width
+    );
+
+    if (
+        !dst0 ||
+        !dst1
+    ) {
         fail ();
     }
 
-    if (check_func (c.add_left_pred, "%s", report)) {
-        res0 = call_ref (dst0, src0, width, acc);
-        res1 = call_new (dst1, src1, width, acc);
-        if ((res0 & 0xFF) != (res1 & 0xFF)||
-            memcmp (dst0, dst1, width)) {
+    if (
+        check_func (
+            llvid_dsp_context.add_left_pred, "%s", report)
+    ) {
+        res0 = call_ref (dst0, src0, width, acc
+        );
+
+        res1 = call_new (dst1, src1, width, acc
+        );
+
+        if (
+            (res0 & 0xFF) != (res1 & 0xFF)||
+            memcmp (
+                dst0, dst1, width)
+        ) {
             fail ();
         }
 
-        bench_new (dst1, src1, width, acc);
+        bench_new (
+            dst1, src1, width, acc
+        );
+
     }
 
-    av_free (src0);
-    av_free (src1);
-    av_free (dst0);
-    av_free (dst1);
+    av_free (
+        src0
+    );
+
+    av_free (
+        src1
+    );
+
+    av_free (
+        dst0
+    );
+
+    av_free (
+        dst1
+    );
+
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, int, uint16[] dst, uint16[] src, uint mask, size_t w, uint acc);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX,
+//      int,
+//      uint16[] dst,
+//      uint16[] src,
+//      uint mask,
+//      size_t w,
+//      uint acc
+//  );
 
 private static void check_add_left_pred_16 (
-    LLVidDSPContext c,
+    LLVidDSPContext llvid_dsp_context,
     uint mask,
     int width,
     uint acc,
     string report
 ) {
     int res0, res1;
-    uint16[] dst0 = av_mallocz_array (width, sizeof (uint16));
-    uint16[] dst1 = av_mallocz_array (width, sizeof (uint16));
-    uint16[] src0 = av_mallocz_array (width, sizeof (uint16));
-    uint16[] src1 = av_mallocz_array (width, sizeof (uint16));
+    uint16[] dst0 = av_mallocz_array (width, sizeof (uint16)
+    );
 
-    init_buffer (src0, src1, uint16, width);
+    uint16[] dst1 = av_mallocz_array (width, sizeof (uint16)
+    );
 
-    if (!dst0 || !dst1) {
+    uint16[] src0 = av_mallocz_array (width, sizeof (uint16)
+    );
+
+    uint16[] src1 = av_mallocz_array (width, sizeof (uint16)
+    );
+
+    init_buffer (
+        src0, src1, uint16, width
+    );
+
+    if (
+        !dst0 ||
+        !dst1
+    ) {
         fail ();
     }
 
-    if (check_func (c.add_left_pred_int16, "%s", report)) {
-        res0 = call_ref (dst0, src0, mask, width, acc);
-        res1 = call_new (dst1, src1, mask, width, acc);
-        if ((res0 &0xFFFF) != (res1 &0xFFFF)||
-            memcmp (dst0, dst1, width)) {
+    if (
+        check_func (
+            llvid_dsp_context.add_left_pred_int16, "%s", report)
+    ) {
+        res0 = call_ref (dst0, src0, mask, width, acc
+        );
+
+        res1 = call_new (dst1, src1, mask, width, acc
+        );
+
+        if (
+            (res0 & 0xFFFF) != (res1 & 0xFFFF) ||
+            memcmp (
+                dst0, dst1, width)
+        ) {
             fail ();
         }
 
-        bench_new (dst1, src1, mask, width, acc);
+        bench_new (
+            dst1, src1, mask, width, acc
+        );
+
     }
 
-    av_free (src0);
-    av_free (src1);
-    av_free (dst0);
-    av_free (dst1);
+    av_free (
+        src0
+    );
+
+    av_free (
+        src1
+    );
+
+    av_free (
+        dst0
+    );
+
+    av_free (
+        dst1
+    );
+
 }
 
 //  declare_func_emms (
-//      AV_CPU_FLAG_MMX, void, uint8[] src, size_t stride,
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      uint8[] src,
+//      size_t stride,
 //      size_t width
 //  );
 
-private static void check_add_gradient_pred (LLVidDSPContext c, int w) {
+private static void check_add_gradient_pred (
+    LLVidDSPContext llvid_dsp_context,
+    int w
+) {
     int src_size, stride;
     uint8[] src0;
     uint8[] src1;
@@ -202,51 +423,114 @@ private static void check_add_gradient_pred (LLVidDSPContext c, int w) {
     dsp need previous line, and ignore the start of the line
     ***********************************************************/
     src_size = (stride + 32) * 2;
-    src0 = av_mallocz (src_size);
-    src1 = av_mallocz (src_size);
+    src0 = av_mallocz (src_size
+    );
 
-    init_buffer (src0, src1, uint8, src_size);
+    src1 = av_mallocz (src_size
+    );
 
-    if (check_func (c.add_gradient_pred, "add_gradient_pred")) {
-        //  call_ref (src0 + stride + 32, stride, w);
-        //  call_new (src1 + stride + 32, stride, w);
+    init_buffer (
+        src0, src1, uint8, src_size
+    );
+
+    if (
+        check_func (
+            llvid_dsp_context.add_gradient_pred, "add_gradient_pred"
+        )
+    ) {
+        call_ref (
+            src0 + stride + 32, stride, w
+        );
+
+        call_new (
+            src1 + stride + 32, stride, w
+        );
+
         /***********************************************************
         previous line doesn't change
         ***********************************************************/
-        if (memcmp (src0, src1, stride)||
-            memcmp (src0+stride, src1 + stride, w + 32)) {
+        if (
+            memcmp (
+                src0, src1, stride)||
+            memcmp (
+                src0+stride, src1 + stride, w + 32)
+        ) {
             fail ();
         }
 
-        bench_new (src1 + stride + 32, stride, w);
+        bench_new (
+            src1 + stride + 32, stride, w
+        );
+
     }
 
-    av_free (src0);
-    av_free (src1);
+    av_free (
+        src0
+    );
+
+    av_free (
+        src1
+    );
+
 }
 
 private static void checkasm_check_llviddsp () {
-    LLVidDSPContext c;
-    int width = 16 * av_clip (rnd (), 16, 128);
+    LLVidDSPContext llvid_dsp_context;
+    int width = 16 * av_clip (rnd (), 16, 128
+    );
+
     int accRnd = rnd () & 0xFF;
 
-    ff_llviddsp_init (&c);
+    ff_llviddsp_init (
+        &llvid_dsp_context
+    );
 
-    check_add_bytes (c, width);
-    report ("add_bytes");
+    check_add_bytes (
+        llvid_dsp_context, width
+    );
 
-    check_add_median_pred (c, width);
-    report ("add_median_pred");
+    report (
+        "add_bytes"
+    );
 
-    check_add_left_pred (c, width, 0, "add_left_pred_zero");
-    report ("add_left_pred_zero");
+    check_add_median_pred (
+        llvid_dsp_context, width
+    );
 
-    check_add_left_pred (c, width, accRnd, "add_left_pred_rnd_acc");
-    report ("add_left_pred_rnd_acc");
+    report (
+        "add_median_pred"
+    );
 
-    check_add_left_pred_16 (c, 255, width, accRnd, "add_left_pred_int16");
-    report ("add_left_pred_int16");
+    check_add_left_pred (
+        llvid_dsp_context, width, 0, "add_left_pred_zero"
+    );
 
-    check_add_gradient_pred (c, width);
-    report ("add_gradient_pred");
+    report (
+        "add_left_pred_zero"
+    );
+
+    check_add_left_pred (
+        llvid_dsp_context, width, accRnd, "add_left_pred_rnd_acc"
+    );
+
+    report (
+        "add_left_pred_rnd_acc"
+    );
+
+    check_add_left_pred_16 (
+        llvid_dsp_context, 255, width, accRnd, "add_left_pred_int16"
+    );
+
+    report (
+        "add_left_pred_int16"
+    );
+
+    check_add_gradient_pred (
+        llvid_dsp_context, width
+    );
+
+    report (
+        "add_gradient_pred"
+    );
+
 }

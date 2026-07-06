@@ -30,21 +30,45 @@ private const int32 pixel_mask_lf[3] = {
     0x03ff000f
 };
 
-private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8);
-private const size_t SIZEOF_COEF = (2 * ((bit_depth + 7) / 8));
+private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8
+);
+
+private const size_t SIZEOF_COEF = (2 * ((bit_depth + 7) / 8)
+);
+
 private const size_t PIXEL_STRIDE = 16;
 
 private static void randomize_buffers () {
     int x, y;
     uint32 mask = pixel_mask[bit_depth - 8];
-    for (y = 0; y < sz; y++) {
-        for (x = 0; x < PIXEL_STRIDE; x += 4) {
-            AV_WN32A (src + y * PIXEL_STRIDE + x, rnd () & mask);
-            AV_WN32A (dst + y * PIXEL_STRIDE + x, rnd () & mask);
+    for (
+        y = 0;
+        y < sz;
+        y++
+    ) {
+        for (
+            x = 0;
+            x < PIXEL_STRIDE;
+            x += 4
+        ) {
+            AV_WN32A (
+                src + y * PIXEL_STRIDE + x, rnd () & mask
+            );
+
+            AV_WN32A (
+                dst + y * PIXEL_STRIDE + x, rnd () & mask
+            );
+
         }
 
-        for (x = 0; x < sz; x++) {
-            if (bit_depth == 8) {
+        for (
+            x = 0;
+            x < sz;
+            x++
+        ) {
+            if (
+                bit_depth == 8
+            ) {
                 coef[y * sz + x] = src[y * PIXEL_STRIDE + x] -
                                     dst[y * PIXEL_STRIDE + x];
             } else {
@@ -58,48 +82,6 @@ private static void randomize_buffers () {
     }
 
 }
-
-//  private static void dct4x4_impl (
-//      void *size,
-//      void *dctcoef
-//  ) {
-//      static void dct4x4_##size (dctcoef? coef) {
-//          int i, y, x;
-//          dctcoef tmp[16];
-//          for (i = 0; i < 4; i++) {
-//              int z0 = coef[i*4 + 0] + coef[i*4 + 3];
-//              int z1 = coef[i*4 + 1] + coef[i*4 + 2];
-//              int z2 = coef[i*4 + 0] - coef[i*4 + 3];
-//              int z3 = coef[i*4 + 1] - coef[i*4 + 2];
-//              tmp[i + 4*0] =   z0 +   z1;
-//              tmp[i + 4*1] = 2*z2 +   z3;
-//              tmp[i + 4*2] =   z0 -   z1;
-//              tmp[i + 4*3] =   z2 - 2*z3;
-//          }
-
-//          for (i = 0; i < 4; i++) {
-//              int z0 = tmp[i*4 + 0] + tmp[i*4 + 3];
-//              int z1 = tmp[i*4 + 1] + tmp[i*4 + 2];
-//              int z2 = tmp[i*4 + 0] - tmp[i*4 + 3];
-//              int z3 = tmp[i*4 + 1] - tmp[i*4 + 2];
-//              coef[i*4 + 0] =   z0 +   z1;
-//              coef[i*4 + 1] = 2*z2 +   z3;
-//              coef[i*4 + 2] =   z0 -   z1;
-//              coef[i*4 + 3] =   z2 - 2*z3;
-//          }
-
-//          for (y = 0; y < 4; y++) {
-//              for (x = 0; x < 4; x++) {
-//                  int scale[] = { 13107 * 10, 8066 * 13, 5243 * 16 };
-//                  int idx = (y & 1) + (x & 1);
-//                  coef[y*4 + x] = (coef[y*4 + x] * scale[idx] + (1 << 14)) >> 15;
-//              }
-
-//          }
-
-//      }
-
-//  }
 
 private static void DCT8_1D (
     void *src,
@@ -119,127 +101,484 @@ private static void DCT8_1D (
     int b1 = a2 + a4;
     int b2 = a0 - a6;
     int b3 = a2 - a4;
-    int b4 = a3 + a5 + (a1 + (a1 >> 1));
-    int b5 = a1 - a7 - (a5 + (a5 >> 1));
-    int b6 = a1 + a7 - (a3 + (a3 >> 1));
-    int b7 = a3 - a5 + (a7 + (a7 >> 1));
+    int b4 = a3 + a5 + (a1 + (a1 >> 1)
+    );
+
+    int b5 = a1 - a7 - (a5 + (a5 >> 1)
+    );
+
+    int b6 = a1 + a7 - (a3 + (a3 >> 1)
+    );
+
+    int b7 = a3 - a5 + (a7 + (a7 >> 1)
+    );
+
     (dst)[dststride * 0] =  b0 +  b1;
-    (dst)[dststride * 1] =  b4 + (b7 >> 2);
-    (dst)[dststride * 2] =  b2 + (b3 >> 1);
-    (dst)[dststride * 3] =  b5 + (b6 >> 2);
+    (dst)[dststride * 1] =  b4 + (b7 >> 2
+    );
+
+    (dst)[dststride * 2] =  b2 + (b3 >> 1
+    );
+
+    (dst)[dststride * 3] =  b5 + (b6 >> 2
+    );
+
     (dst)[dststride * 4] =  b0  - b1;
-    (dst)[dststride * 5] =  b6 - (b5 >> 2);
+    (dst)[dststride * 5] =  b6 - (b5 >> 2
+    );
+
     (dst)[dststride * 6] = (b2 >> 1) - b3;
     (dst)[dststride * 7] = (b4 >> 2) - b7;
 }
 
-//  private static void dct8x8_impl (size, dctcoef) {
-//      static void dct8x8_##size (dctcoef? coef) {
-//          int i, x, y;
-//          dctcoef tmp[64];
-//          for (i = 0; i < 8; i++)
-//              DCT8_1D (coef + i, 8, tmp + i, 8);
+private static void dct4x4_16 (
+    int16[] coef
+) {
+    int i, y, x;
+    int16 tmp[16];
+    for (
+        i = 0;
+        i < 4;
+        i++
+    ) {
+        int z0 = coef[i*4 + 0] + coef[i*4 + 3];
+        int z1 = coef[i*4 + 1] + coef[i*4 + 2];
+        int z2 = coef[i*4 + 0] - coef[i*4 + 3];
+        int z3 = coef[i*4 + 1] - coef[i*4 + 2];
+        tmp[i + 4*0] =   z0 +   z1;
+        tmp[i + 4*1] = 2*z2 +   z3;
+        tmp[i + 4*2] =   z0 -   z1;
+        tmp[i + 4*3] =   z2 - 2*z3;
+    }
 
-//          for (i = 0; i < 8; i++)
-//              DCT8_1D (tmp + 8*i, 1, coef + i, 8);
+    for (
+        i = 0;
+        i < 4;
+        i++
+    ) {
+        int z0 = tmp[i*4 + 0] + tmp[i*4 + 3];
+        int z1 = tmp[i*4 + 1] + tmp[i*4 + 2];
+        int z2 = tmp[i*4 + 0] - tmp[i*4 + 3];
+        int z3 = tmp[i*4 + 1] - tmp[i*4 + 2];
+        coef[i*4 + 0] =   z0 +   z1;
+        coef[i*4 + 1] = 2*z2 +   z3;
+        coef[i*4 + 2] =   z0 -   z1;
+        coef[i*4 + 3] =   z2 - 2*z3;
+    }
 
-//          for (y = 0; y < 8; y++) {
-//              for (x = 0; x < 8; x++) {
-//                  private const int scale[] = {
-//                      13107 * 20, 11428 * 18, 20972 * 32,
-//                      12222 * 19, 16777 * 25, 15481 * 24,
-//                  };
-//                  private const int idxmap[] = {
-//                      0, 3, 4, 3,
-//                      3, 1, 5, 1,
-//                      4, 5, 2, 5,
-//                      3, 1, 5, 1,
-//                  };
-//                  int idx = idxmap[(y & 3) * 4 + (x & 3)];
-//                  coef[y*8 + x] = ((int64)coef[y*8 + x] * scale[idx] + (1 << 17)) >> 18;
-//              }
+    for (
+        y = 0;
+        y < 4;
+        y++
+    ) {
+        for (
+            x = 0;
+            x < 4;
+            x++
+        ) {
+            int scale[] = { 13107 * 10, 8066 * 13, 5243 * 16 };
+            int idx = (y & 1) + (x & 1
+            );
 
-//          }
+            coef[y*4 + x] = (coef[y*4 + x] * scale[idx] + (1 << 14)) >> 15;
+        }
 
-//      }
-
-//  }
-
-//  dct4x4_impl (16, int16)
-//  dct4x4_impl (32, int32)
-
-//  dct8x8_impl (16, int16)
-//  dct8x8_impl (32, int32)
-
-private static void dct4x4 (int16[] coef, int bit_depth) {
-    if (bit_depth == 8)
-        dct4x4_16 (coef);
-    else
-        dct4x4_32 ((int32[] ) coef);
-}
-
-private static void dct8x8 (int16[] coef, int bit_depth) {
-    if (bit_depth == 8) {
-        dct8x8_16 (coef);
-    } else {
-        dct8x8_32 ((int32[] ) coef);
     }
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] dst, int16[] block, int stride);
+private static void dct4x4_32 (
+    int32[] coef
+) {
+    int i, y, x;
+    int32 tmp[16];
+    for (
+        i = 0;
+        i < 4;
+        i++
+    ) {
+        int z0 = coef[i*4 + 0] + coef[i*4 + 3];
+        int z1 = coef[i*4 + 1] + coef[i*4 + 2];
+        int z2 = coef[i*4 + 0] - coef[i*4 + 3];
+        int z3 = coef[i*4 + 1] - coef[i*4 + 2];
+        tmp[i + 4*0] =   z0 +   z1;
+        tmp[i + 4*1] = 2*z2 +   z3;
+        tmp[i + 4*2] =   z0 -   z1;
+        tmp[i + 4*3] =   z2 - 2*z3;
+    }
+
+    for (
+        i = 0;
+        i < 4;
+        i++
+    ) {
+        int z0 = tmp[i*4 + 0] + tmp[i*4 + 3];
+        int z1 = tmp[i*4 + 1] + tmp[i*4 + 2];
+        int z2 = tmp[i*4 + 0] - tmp[i*4 + 3];
+        int z3 = tmp[i*4 + 1] - tmp[i*4 + 2];
+        coef[i*4 + 0] =   z0 +   z1;
+        coef[i*4 + 1] = 2*z2 +   z3;
+        coef[i*4 + 2] =   z0 -   z1;
+        coef[i*4 + 3] =   z2 - 2*z3;
+    }
+
+    for (
+        y = 0;
+        y < 4;
+        y++
+    ) {
+        for (
+            x = 0;
+            x < 4;
+            x++
+        ) {
+            int scale[] = { 13107 * 10, 8066 * 13, 5243 * 16 };
+            int idx = (y & 1) + (x & 1
+            );
+
+            coef[y*4 + x] = (coef[y*4 + x] * scale[idx] + (1 << 14)) >> 15;
+        }
+
+    }
+
+}
+
+
+private static void dct8x8_16 (
+    int16[] coef
+) {
+    int i, x, y;
+    int16 tmp[64];
+    for (
+        i = 0;
+        i < 8;
+        i++
+    ) {
+        DCT8_1D (
+            coef + i, 8, tmp + i, 8
+        );
+
+    }
+
+    for (
+        i = 0;
+        i < 8;
+        i++
+    ) {
+        DCT8_1D (
+            tmp + 8*i, 1, coef + i, 8
+        );
+
+    }
+
+    for (
+        y = 0;
+        y < 8;
+        y++
+    ) {
+        for (
+            x = 0;
+            x < 8;
+            x++
+        ) {
+            int scale[] = {
+                13107 * 20, 11428 * 18, 20972 * 32,
+                12222 * 19, 16777 * 25, 15481 * 24,
+            };
+            int idxmap[] = {
+                0, 3, 4, 3,
+                3, 1, 5, 1,
+                4, 5, 2, 5,
+                3, 1, 5, 1,
+            };
+            int idx = idxmap[(y & 3) * 4 + (x & 3)];
+            coef[y*8 + x] = ((int64)coef[y*8 + x] * scale[idx] + (1 << 17)) >> 18;
+        }
+
+    }
+
+}
+
+private static void dct8x8_32 (
+    int32[] coef
+) {
+    int i, x, y;
+    int32 tmp[64];
+    for (
+        i = 0;
+        i < 8;
+        i++
+    ) {
+        DCT8_1D (
+            coef + i, 8, tmp + i, 8
+        );
+
+    }
+
+    for (
+        i = 0;
+        i < 8;
+        i++
+    ) {
+        DCT8_1D (
+            tmp + 8*i, 1, coef + i, 8
+        );
+
+    }
+
+    for (
+        y = 0;
+        y < 8;
+        y++
+    ) {
+        for (
+            x = 0;
+            x < 8;
+            x++
+        ) {
+            int scale[] = {
+                13107 * 20, 11428 * 18, 20972 * 32,
+                12222 * 19, 16777 * 25, 15481 * 24,
+            };
+            int idxmap[] = {
+                0, 3, 4, 3,
+                3, 1, 5, 1,
+                4, 5, 2, 5,
+                3, 1, 5, 1,
+            };
+            int idx = idxmap[(y & 3) * 4 + (x & 3)];
+            coef[y*8 + x] = ((int64)coef[y*8 + x] * scale[idx] + (1 << 17)) >> 18;
+        }
+
+    }
+
+}
+
+
+private static void dct4x4 (
+    int16[] coef,
+    int bit_depth
+) {
+    if (
+        bit_depth == 8
+    ) {
+        dct4x4_16 (
+            coef
+        );
+
+    } else {
+        dct4x4_32 ((int32[] ) coef
+        );
+
+    }
+
+}
+
+private static void dct8x8 (
+    int16[] coef,
+    int bit_depth
+) {
+    if (
+        bit_depth == 8
+    ) {
+        dct8x8_16 (
+            coef
+        );
+
+    } else {
+        dct8x8_32 ((int32[] ) coef
+        );
+
+    }
+
+}
+
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      uint8[] dst,
+//      int16[] block,
+//      int stride
+//  );
 
 private static void check_idct () {
-    //  LOCAL_ALIGNED_16 (uint8, src, [8 * 8 * 2]);
-    //  LOCAL_ALIGNED_16 (uint8, dst, [8 * 8 * 2]);
-    //  LOCAL_ALIGNED_16 (uint8, dst0, [8 * 8 * 2]);
-    //  LOCAL_ALIGNED_16 (uint8, dst1_base, [8 * 8 * 2 + 32]);
-    //  LOCAL_ALIGNED_16 (int16, coef, [8 * 8 * 2]);
-    //  LOCAL_ALIGNED_16 (int16, subcoef0, [8 * 8 * 2]);
-    //  LOCAL_ALIGNED_16 (int16, subcoef1, [8 * 8 * 2]);
-    H264DSPContext h;
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      src,
+    //      [8 * 8 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst,
+    //      [8 * 8 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst0,
+    //      [8 * 8 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst1_base,
+    //      [8 * 8 * 2 + 32]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      int16,
+    //      coef,
+    //      [8 * 8 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      int16,
+    //      subcoef0,
+    //      [8 * 8 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      int16,
+    //      subcoef1,
+    //      [8 * 8 * 2]
+    //  );
+
+    H264DSPContext h264_dsp_context;
     int bit_depth, sz, align, dc;
 
-    for (bit_depth = 8; bit_depth <= 10; bit_depth++) {
-        ff_h264dsp_init (&h, bit_depth, 1);
-        for (sz = 4; sz <= 8; sz += 4) {
+    for (
+        bit_depth = 8;
+        bit_depth <= 10;
+        bit_depth++
+    ) {
+        ff_h264dsp_init (
+            &h264_dsp_context, bit_depth, 1
+        );
+
+        for (
+            sz = 4;
+            sz <= 8;
+            sz += 4
+        ) {
             randomize_buffers ();
 
-            if (sz == 4)
-                dct4x4 (coef, bit_depth);
-            else
-                dct8x8 (coef, bit_depth);
+            if (
+                sz == 4
+            ) {
+                dct4x4 (
+                    coef, bit_depth
+                );
 
-            for (dc = 0; dc <= 1; dc++) {
+            } else {
+                dct8x8 (
+                    coef, bit_depth
+                );
+
+            }
+
+            for (
+                dc = 0;
+                dc <= 1;
+                dc++
+            ) {
                 //  void (*idct)(uint8[], int16[], int) = null;
-                switch ((sz << 1) | dc) {
-                case (4 << 1) | 0: idct = h.h264_idct_add; break;
-                case (4 << 1) | 1: idct = h.h264_idct_dc_add; break;
-                case (8 << 1) | 0: idct = h.h264_idct8_add; break;
-                case (8 << 1) | 1: idct = h.h264_idct8_dc_add; break;
+                switch (
+                    (sz << 1) | dc
+                ) {
+                    case (
+                        4 << 1
+                    ) | 0: {
+                        idct = h264_dsp_context.h264_idct_add;
+                        break;
+                    }
+
+                    case (
+                        4 << 1
+                    ) | 1: {
+                        idct = h264_dsp_context.h264_idct_dc_add;
+                        break;
+                    }
+
+                    case (
+                        8 << 1
+                    ) | 0: {
+                        idct = h264_dsp_context.h264_idct8_add;
+                        break;
+                    }
+
+                    case (
+                        8 << 1
+                    ) | 1: {
+                        idct = h264_dsp_context.h264_idct8_dc_add;
+                        break;
+                    }
+
                 }
 
-                if (check_func (idct, "h264_idct%d_add%s_%dbpp", sz, dc ? "_dc" : "", bit_depth)) {
-                    for (align = 0; align < 16; align += sz * SIZEOF_PIXEL) {
+                if (
+                    check_func (
+                        idct,
+                        "h264_idct%d_add%s_%dbpp", sz, dc ? "_dc" : "", bit_depth
+                    )
+                ) {
+                    for (
+                        align = 0;
+                        align < 16;
+                        align += sz * SIZEOF_PIXEL
+                    ) {
                         uint8[] dst1 = dst1_base + align;
-                        if (dc) {
-                            memset (subcoef0, 0, sz * sz * SIZEOF_COEF);
-                            memcpy (subcoef0, coef, SIZEOF_COEF);
+                        if (
+                            dc
+                        ) {
+                            memset (
+                                subcoef0, 0, sz * sz * SIZEOF_COEF
+                            );
+
+                            memcpy (
+                                subcoef0, coef, SIZEOF_COEF
+                            );
+
                         } else {
-                            memcpy (subcoef0, coef, sz * sz * SIZEOF_COEF);
+                            memcpy (
+                                subcoef0, coef, sz * sz * SIZEOF_COEF
+                            );
+
                         }
 
-                        memcpy (dst0, dst, sz * PIXEL_STRIDE);
-                        memcpy (dst1, dst, sz * PIXEL_STRIDE);
-                        memcpy (subcoef1, subcoef0, sz * sz * SIZEOF_COEF);
-                        //  call_ref (dst0, subcoef0, PIXEL_STRIDE);
-                        //  call_new (dst1, subcoef1, PIXEL_STRIDE);
-                        if (memcmp (dst0, dst1, sz * PIXEL_STRIDE) ||
-                            memcmp (subcoef0, subcoef1, sz * sz * SIZEOF_COEF)) {
+                        memcpy (
+                            dst0, dst, sz * PIXEL_STRIDE
+                        );
+
+                        memcpy (
+                            dst1, dst, sz * PIXEL_STRIDE
+                        );
+
+                        memcpy (
+                            subcoef1, subcoef0, sz * sz * SIZEOF_COEF
+                        );
+
+                        call_ref (
+                            dst0, subcoef0, PIXEL_STRIDE
+                        );
+
+                        call_new (
+                            dst1, subcoef1, PIXEL_STRIDE
+                        );
+
+                        if (
+                            memcmp (
+                                dst0, dst1, sz * PIXEL_STRIDE) ||
+                            memcmp (
+                                subcoef0, subcoef1, sz * sz * SIZEOF_COEF)
+                        ) {
                             fail ();
                         }
 
-                        bench_new (dst1, subcoef1, sz * SIZEOF_PIXEL);
+                        bench_new (
+                            dst1, subcoef1, sz * SIZEOF_PIXEL
+                        );
+
                     }
 
                 }
@@ -252,46 +591,112 @@ private static void check_idct () {
 
 }
 
-//  declare_func_emms (AV_CPU_FLAG_MMX, void, uint8[] dst, int[] block_offset, int16[] block, int stride, uint8 nnzc[15*8]);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      uint8[] dst,
+//      int[] block_offset,
+//      int16[] block,
+//      int stride,
+//      uint8 nnzc[15 * 8]
+//  );
 
 private static void check_idct_multiple () {
-    //  LOCAL_ALIGNED_16 (uint8, dst_full, [16 * 16 * 2]);
-    //  LOCAL_ALIGNED_16 (int16, coef_full, [16 * 16 * 2]);
-    //  LOCAL_ALIGNED_16 (uint8, dst0, [16 * 16 * 2]);
-    //  LOCAL_ALIGNED_16 (uint8, dst1, [16 * 16 * 2]);
-    //  LOCAL_ALIGNED_16 (int16, coef0, [16 * 16 * 2]);
-    //  LOCAL_ALIGNED_16 (int16, coef1, [16 * 16 * 2]);
-    //  LOCAL_ALIGNED_16 (uint8, nnzc, [15 * 8]);
-    H264DSPContext h;
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst_full,
+    //      [16 * 16 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      int16,
+    //      coef_full,
+    //      [16 * 16 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst0,
+    //      [16 * 16 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst1,
+    //      [16 * 16 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      int16,
+    //      coef0,
+    //      [16 * 16 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      int16,
+    //      coef1,
+    //      [16 * 16 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      nnzc,
+    //      [15 * 8]
+    //  );
+
+    H264DSPContext h264_dsp_context;
     int bit_depth, i, y, func;
 
-    for (bit_depth = 8; bit_depth <= 10; bit_depth++) {
-        ff_h264dsp_init (&h, bit_depth, 1);
-        for (func = 0; func < 3; func++) {
+    for (
+        bit_depth = 8;
+        bit_depth <= 10;
+        bit_depth++
+    ) {
+        ff_h264dsp_init (
+            &h264_dsp_context, bit_depth, 1
+        );
+
+        for (
+            func = 0;
+            func < 3;
+            func++
+        ) {
             //  void (*idct)(uint8[], int[], int16[], int, uint8[]) = null;
             string name;
             int sz = 4, intra = 0;
             int block_offset[16] = { 0 };
-            switch (func) {
+            switch (
+                func
+            ) {
             case 0:
-                idct = h.h264_idct_add16;
+                idct = h264_dsp_context.h264_idct_add16;
                 name = "h264_idct_add16";
                 break;
             case 1:
-                idct = h.h264_idct_add16intra;
+                idct = h264_dsp_context.h264_idct_add16intra;
                 name = "h264_idct_add16intra";
                 intra = 1;
                 break;
             case 2:
-                idct = h.h264_idct8_add4;
+                idct = h264_dsp_context.h264_idct8_add4;
                 name = "h264_idct8_add4";
                 sz = 8;
                 break;
             }
 
-            memset (nnzc, 0, 15 * 8);
-            memset (coef_full, 0, 16 * 16 * SIZEOF_COEF);
-            for (i = 0; i < 16 * 16; i += sz * sz) {
+            memset (
+                nnzc, 0, 15 * 8
+            );
+
+            memset (
+                coef_full, 0, 16 * 16 * SIZEOF_COEF
+            );
+
+            for (
+                i = 0;
+                i < 16 * 16;
+                i += sz * sz
+            ) {
                 uint8 src[8 * 8 * 2];
                 uint8 dst[8 * 8 * 2];
                 int16 coef[8 * 8 * 2];
@@ -302,40 +707,96 @@ private static void check_idct_multiple () {
                 int nnz = rnd () % 3;
 
                 randomize_buffers ();
-                if (sz == 4)
-                    dct4x4 (coef, bit_depth);
-                else
-                    dct8x8 (coef, bit_depth);
+                if (
+                    sz == 4
+                ) {
+                    dct4x4 (
+                        coef, bit_depth
+                    );
 
-                for (y = 0; y < sz; y++)
-                    memcpy (&dst_full[offset + y * 16 * SIZEOF_PIXEL],
-                           &dst[PIXEL_STRIDE * y], sz * SIZEOF_PIXEL);
+                } else {
+                    dct8x8 (
+                        coef, bit_depth
+                    );
 
-                if (nnz > 1)
+                }
+
+                for (
+                    y = 0;
+                    y < sz;
+                    y++
+                ) {
+                    memcpy (
+                        &dst_full[offset + y * 16 * SIZEOF_PIXEL],
+                        &dst[PIXEL_STRIDE * y], sz * SIZEOF_PIXEL
+                    );
+                }
+
+                if (
+                    nnz > 1
+                ) {
                     nnz = sz * sz;
-                memcpy (&coef_full[i * SIZEOF_COEF/sizeof (coef[0])],
-                       coef, nnz * SIZEOF_COEF);
+                }
 
-                if (intra && nnz == 1)
+                memcpy (
+                    &coef_full[i * SIZEOF_COEF/sizeof (coef[0])],
+                    coef, nnz * SIZEOF_COEF
+                );
+
+                if (
+                    intra &&
+                    nnz == 1
+                ) {
                     nnz = 0;
+                }
 
                 nnzc[scan8[i / 16]] = nnz;
                 block_offset[i / 16] = offset;
             }
 
-            if (check_func (idct, "%s_%dbpp", name, bit_depth)) {
-                memcpy (coef0, coef_full, 16 * 16 * SIZEOF_COEF);
-                memcpy (coef1, coef_full, 16 * 16 * SIZEOF_COEF);
-                memcpy (dst0, dst_full, 16 * 16 * SIZEOF_PIXEL);
-                memcpy (dst1, dst_full, 16 * 16 * SIZEOF_PIXEL);
-                //  call_ref (dst0, block_offset, coef0, 16 * SIZEOF_PIXEL, nnzc);
-                //  call_new (dst1, block_offset, coef1, 16 * SIZEOF_PIXEL, nnzc);
-                if (memcmp (dst0, dst1, 16 * 16 * SIZEOF_PIXEL) ||
-                    memcmp (coef0, coef1, 16 * 16 * SIZEOF_COEF)) {
+            if (
+                check_func (
+                    idct,
+                    "%s_%dbpp", name, bit_depth
+                )
+            ) {
+                memcpy (
+                    coef0, coef_full, 16 * 16 * SIZEOF_COEF
+                );
+
+                memcpy (
+                    coef1, coef_full, 16 * 16 * SIZEOF_COEF
+                );
+
+                memcpy (
+                    dst0, dst_full, 16 * 16 * SIZEOF_PIXEL
+                );
+
+                memcpy (
+                    dst1, dst_full, 16 * 16 * SIZEOF_PIXEL
+                );
+
+                call_ref (
+                    dst0, block_offset, coef0, 16 * SIZEOF_PIXEL, nnzc
+                );
+
+                call_new (
+                    dst1, block_offset, coef1, 16 * SIZEOF_PIXEL, nnzc
+                );
+
+                if (
+                    memcmp (
+                        dst0, dst1, 16 * 16 * SIZEOF_PIXEL) ||
+                    memcmp (
+                        coef0, coef1, 16 * 16 * SIZEOF_COEF)
+                ) {
                     fail ();
                 }
 
-                bench_new (dst1, block_offset, coef1, 16 * SIZEOF_PIXEL, nnzc);
+                bench_new (
+                    dst1, block_offset, coef1, 16 * SIZEOF_PIXEL, nnzc
+                );
+
             }
 
         }
@@ -344,27 +805,94 @@ private static void check_idct_multiple () {
 
 }
 
-//  private static void CHECK_LOOP_FILTER_1 (name, align, idc) {
-//      if (check_func (h.name, #name #idc "_%dbpp", bit_depth)) {
-//          for (j = 0; j < 36; j++) {
+//  private static void CHECK_LOOP_FILTER_1 (
+//      void *name,
+//      void *align,
+//      void *idc
+//  ) {
+//      if (
+//          check_func (
+//              h264_dsp_context.name,
+//              #name #idc "_%dbpp",
+//              bit_depth
+//          )
+//      ) {
+//          for (
+//              j = 0;
+//              j < 36;
+//              j++
+//          ) {
 //              intptr_t off = 8 * 32 + (j & 15) * 4 * !align;
-//              for (i = 0; i < 1024; i+=4) {
-//                  AV_WN32A (dst + i, rnd () & mask);
+//              for (
+//                  i = 0;
+//                  i < 1024;
+//                  i += 4
+//              ) {
+//                  AV_WN32A (
+//                      dst + i,
+//                      rnd () & mask
+//                  );
+
 //              }
 
-//              memcpy (dst0, dst, 32 * 16 * 2);
-//              memcpy (dst1, dst, 32 * 16 * 2);
+//              memcpy (
+//                  dst0,
+//                  dst,
+//                  32 * 16 * 2
+//              );
 
-//              //  call_ref (dst0 + off, 32, alphas[j], betas[j], tc0[j]);
-//              //  call_new (dst1 + off, 32, alphas[j], betas[j], tc0[j]);
-//              if (memcmp (dst0, dst1, 32 * 16 * SIZEOF_PIXEL)) {
-//                  fprintf (stderr, #name #idc ": j:%d, alpha:%d beta:%d " +
-//                          "tc0:{%d,%d,%d,%d}\n", j, alphas[j], betas[j],
-//                          tc0[j][0], tc0[j][1], tc0[j][2], tc0[j][3]);
+//              memcpy (
+//                  dst1,
+//                  dst,
+//                  32 * 16 * 2
+//              );
+
+//              call_ref (
+//                  dst0 + off,
+//                  32,
+//                  alphas[j],
+//                  betas[j],
+//                  tc0[j]
+//              );
+
+//              call_new (
+//                  dst1 + off,
+//                  32,
+//                  alphas[j],
+//                  betas[j],
+//                  tc0[j]
+//              );
+
+//              if (
+//                  memcmp (
+//                      dst0,
+//                      dst1,
+//                      32 * 16 * SIZEOF_PIXEL
+//                  )
+//              ) {
+//                  fprintf (
+//                      stderr,
+//                      #name #idc ": j:%d, alpha:%d beta:%d tc0:{%d,%d,%d,%d}\n",
+//                      j,
+//                      alphas[j],
+//                      betas[j],
+//                      tc0[j][0],
+//                      tc0[j][1],
+//                      tc0[j][2],
+//                      tc0[j][3]
+//                  );
+
 //                  fail ();
 //              }
 
-//              bench_new (dst1, 32, alphas[j], betas[j], tc0[j]);
+//              bench_new (
+//                  dst1,
+//                  32,
+//                  alphas[j],
+//                  betas[j],
+//                  tc0[j]
+//              );
+
 //          }
 
 //      }
@@ -372,26 +900,61 @@ private static void check_idct_multiple () {
 //  }
 
 //  declare_func_emms (
-//      AV_CPU_FLAG_MMX, void, uint8[] pix, size_t stride,
-//      int alpha, int beta, int8[] tc0
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      uint8[] pix,
+//      size_t stride,
+//      int alpha,
+//      int beta,
+//      int8[] tc0
 //  );
 
 private static void check_loop_filter () {
-    //  LOCAL_ALIGNED_16 (uint8, dst, [32 * 16 * 2]);
-    //  LOCAL_ALIGNED_16 (uint8, dst0, [32 * 16 * 2]);
-    //  LOCAL_ALIGNED_16 (uint8, dst1, [32 * 16 * 2]);
-    H264DSPContext h;
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst,
+    //      [32 * 16 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst0,
+    //      [32 * 16 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst1,
+    //      [32 * 16 * 2]
+    //  );
+
+    H264DSPContext h264_dsp_context;
     int bit_depth;
     int alphas[36], betas[36];
     //  int8 tc0[36][4];
 
-    for (bit_depth = 8; bit_depth <= 10; bit_depth++) {
+    for (
+        bit_depth = 8;
+        bit_depth <= 10;
+        bit_depth++
+    ) {
         int i, j, a, c;
         uint32 mask = pixel_mask_lf[bit_depth - 8];
-        ff_h264dsp_init (&h, bit_depth, 1);
-        for (i = 35, a = 255, c = 250; i >= 0; i--) {
-            alphas[i] = a << (bit_depth - 8);
-            betas[i] = (i + 1) / 2 << (bit_depth - 8);
+        ff_h264dsp_init (
+            &h264_dsp_context, bit_depth, 1
+        );
+
+        for (
+            i = 35, a = 255, c = 250;
+            i >= 0;
+            i--
+        ) {
+            alphas[i] = a << (bit_depth - 8
+            );
+
+            betas[i] = (i + 1) / 2 << (bit_depth - 8
+            );
+
             tc0[i][0] = tc0[i][3] = (c + 6) / 10;
             tc0[i][1] = (c + 7) / 15;
             tc0[i][2] = (c + 9) / 20;
@@ -399,40 +962,136 @@ private static void check_loop_filter () {
             c = c*9/10;
         }
 
-        //  CHECK_LOOP_FILTER_1 (h264_v_loop_filter_luma, 1,);
-        //  CHECK_LOOP_FILTER_1 (h264_h_loop_filter_luma, 0,);
-        //  CHECK_LOOP_FILTER_1 (h264_h_loop_filter_luma_mbaff, 0,);
-        //  CHECK_LOOP_FILTER_1 (h264_v_loop_filter_chroma, 1,);
-        //  CHECK_LOOP_FILTER_1 (h264_h_loop_filter_chroma, 0,);
-        //  CHECK_LOOP_FILTER_1 (h264_h_loop_filter_chroma_mbaff, 0,);
+        //  CHECK_LOOP_FILTER_1 (
+        //      h264_v_loop_filter_luma,
+        //      1,
+        //  );
 
-        ff_h264dsp_init (&h, bit_depth, 2);
-        //  CHECK_LOOP_FILTER_1 (h264_h_loop_filter_chroma, 0, 422);
-        //  CHECK_LOOP_FILTER_1 (h264_h_loop_filter_chroma_mbaff, 0, 422);
+        //  CHECK_LOOP_FILTER_1 (
+        //      h264_h_loop_filter_luma,
+        //      0,
+        //  );
+
+        //  CHECK_LOOP_FILTER_1 (
+        //      h264_h_loop_filter_luma_mbaff,
+        //      0,
+        //  );
+
+        //  CHECK_LOOP_FILTER_1 (
+        //      h264_v_loop_filter_chroma,
+        //      1,
+        //  );
+
+        //  CHECK_LOOP_FILTER_1 (
+        //      h264_h_loop_filter_chroma,
+        //      0,
+        //  );
+
+        //  CHECK_LOOP_FILTER_1 (
+        //      h264_h_loop_filter_chroma_mbaff,
+        //      0,
+        //  );
+
+        ff_h264dsp_init (
+            &h264_dsp_context, bit_depth, 2
+        );
+
+        CHECK_LOOP_FILTER_1 (
+            h264_h_loop_filter_chroma,
+            0,
+            422
+        );
+
+        CHECK_LOOP_FILTER_1 (
+            h264_h_loop_filter_chroma_mbaff,
+            0,
+            422
+        );
+
     }
 
 }
 
-//  private static void CHECK_LOOP_FILTER_2 (name, align, idc) {
-//      if (check_func (h.name, #name #idc "_%dbpp", bit_depth)) {
-//          for (j = 0; j < 36; j++) {
+//  private static void CHECK_LOOP_FILTER_2 (
+//      void *name,
+//      void *align,
+//      void *idc
+//  ) {
+//      if (
+//          check_func (
+//              h264_dsp_context.name,
+//              #name #idc "_%dbpp",
+//              bit_depth
+//          )
+//      ) {
+//          for (
+//              j = 0;
+//              j < 36;
+//              j++
+//          ) {
 //              intptr_t off = 8 * 32 + (j & 15) * 4 * !align;
-//              for (i = 0; i < 1024; i+=4) {
-//                  AV_WN32A (dst + i, rnd () & mask);
+//              for (
+//                  i = 0;
+//                  i < 1024;
+//                  i += 4
+//              ) {
+//                  AV_WN32A (
+//                      dst + i,
+//                      rnd () & mask
+//                  );
+
 //              }
 
-//              memcpy (dst0, dst, 32 * 16 * 2);
-//              memcpy (dst1, dst, 32 * 16 * 2);
+//              memcpy (
+//                  dst0,
+//                  dst,
+//                  32 * 16 * 2
+//              );
 
-//              //  call_ref (dst0 + off, 32, alphas[j], betas[j]);
-//              //  call_new (dst1 + off, 32, alphas[j], betas[j]);
-//              if (memcmp (dst0, dst1, 32 * 16 * SIZEOF_PIXEL)) {
-//                  fprintf (stderr, #name #idc ": j:%d, alpha:%d beta:%d\n",
-//                          j, alphas[j], betas[j]);
+//              memcpy (
+//                  dst1,
+//                  dst,
+//                  32 * 16 * 2
+//              );
+
+//              call_ref (
+//                  dst0 + off,
+//                  32,
+//                  alphas[j],
+//                  betas[j]
+//              );
+
+//              call_new (
+//                  dst1 + off,
+//                  32,
+//                  alphas[j],
+//                  betas[j]
+//              );
+
+//              if (
+//                  memcmp (
+//                      dst0,
+//                      dst1,
+//                      32 * 16 * SIZEOF_PIXEL
+//                  )
+//              ) {
+//                  fprintf (
+//                      stderr,
+//                      #name #idc ": j:%d, alpha:%d beta:%d\n",
+//                      j,
+//                      alphas[j],
+//                      betas[j]
+//                  );
 //                  fail ();
 //              }
 
-//              bench_new (dst1, 32, alphas[j], betas[j]);
+//              bench_new (
+//                  dst1,
+//                  32,
+//                  alphas[j],
+//                  betas[j]
+//              );
+
 //          }
 
 //      }
@@ -440,38 +1099,110 @@ private static void check_loop_filter () {
 //  }
 
 //  declare_func_emms (
-//      AV_CPU_FLAG_MMX, void, uint8[] pix, size_t stride,
-//      int alpha, int beta
+//      AV_CPU_FLAG_MMX,
+//      void,
+//      uint8[] pix,
+//      size_t stride,
+//      int alpha,
+//      int beta
 //  );
 
 private static void check_loop_filter_intra () {
-    //  LOCAL_ALIGNED_16 (uint8, dst, [32 * 16 * 2]);
-    //  LOCAL_ALIGNED_16 (uint8, dst0, [32 * 16 * 2]);
-    //  LOCAL_ALIGNED_16 (uint8, dst1, [32 * 16 * 2]);
-    H264DSPContext h;
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst,
+    //      [32 * 16 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst0,
+    //      [32 * 16 * 2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst1,
+    //      [32 * 16 * 2]
+    //  );
+
+    H264DSPContext h264_dsp_context;
     int bit_depth;
     int alphas[36], betas[36];
 
-    for (bit_depth = 8; bit_depth <= 10; bit_depth++) {
+    for (
+        bit_depth = 8;
+        bit_depth <= 10;
+        bit_depth++
+    ) {
         int i, j, a;
         uint32 mask = pixel_mask_lf[bit_depth - 8];
-        ff_h264dsp_init (&h, bit_depth, 1);
-        for (i = 35, a = 255; i >= 0; i--) {
-            alphas[i] = a << (bit_depth - 8);
-            betas[i] = (i + 1) / 2 << (bit_depth - 8);
+        ff_h264dsp_init (
+            &h264_dsp_context, bit_depth, 1
+        );
+
+        for (
+            i = 35, a = 255;
+            i >= 0;
+            i--
+        ) {
+            alphas[i] = a << (bit_depth - 8
+            );
+
+            betas[i] = (i + 1) / 2 << (bit_depth - 8
+            );
+
             a = a*9/10;
         }
 
-        //  CHECK_LOOP_FILTER_2 (h264_v_loop_filter_luma_intra, 1,);
-        //  CHECK_LOOP_FILTER_2 (h264_h_loop_filter_luma_intra, 0,);
-        //  CHECK_LOOP_FILTER_2 (h264_h_loop_filter_luma_mbaff_intra, 0,);
-        //  CHECK_LOOP_FILTER_2 (h264_v_loop_filter_chroma_intra, 1,);
-        //  CHECK_LOOP_FILTER_2 (h264_h_loop_filter_chroma_intra, 0,);
-        //  CHECK_LOOP_FILTER_2 (h264_h_loop_filter_chroma_mbaff_intra, 0,);
+        //  CHECK_LOOP_FILTER_2 (
+        //      h264_v_loop_filter_luma_intra,
+        //      1,
+        //  );
 
-        ff_h264dsp_init (&h, bit_depth, 2);
-        //  CHECK_LOOP_FILTER_2 (h264_h_loop_filter_chroma_intra, 0, 422);
-        //  CHECK_LOOP_FILTER_2 (h264_h_loop_filter_chroma_mbaff_intra, 0, 422);
+        //  CHECK_LOOP_FILTER_2 (
+        //      h264_h_loop_filter_luma_intra,
+        //      0,
+        //  );
+
+        //  CHECK_LOOP_FILTER_2 (
+        //      h264_h_loop_filter_luma_mbaff_intra,
+        //      0,
+        //  );
+
+        //  CHECK_LOOP_FILTER_2 (
+        //      h264_v_loop_filter_chroma_intra,
+        //      1,
+        //  );
+
+        //  CHECK_LOOP_FILTER_2 (
+        //      h264_h_loop_filter_chroma_intra,
+        //      0,
+        //  );
+
+        //  CHECK_LOOP_FILTER_2 (
+        //      h264_h_loop_filter_chroma_mbaff_intra,
+        //      0,
+        //  );
+
+        ff_h264dsp_init (
+            &h264_dsp_context,
+            bit_depth,
+            2
+        );
+
+        CHECK_LOOP_FILTER_2 (
+            h264_h_loop_filter_chroma_intra,
+            0,
+            422
+        );
+
+        CHECK_LOOP_FILTER_2 (
+            h264_h_loop_filter_chroma_mbaff_intra,
+            0,
+            422
+        );
+
     }
 
 }
@@ -479,11 +1210,18 @@ private static void check_loop_filter_intra () {
 private static void checkasm_check_h264dsp () {
     check_idct ();
     check_idct_multiple ();
-    report ("idct");
+    report (
+        "idct"
+    );
 
     check_loop_filter ();
-    report ("loop_filter");
+    report (
+        "loop_filter"
+    );
 
     check_loop_filter_intra ();
-    report ("loop_filter_intra");
+    report (
+        "loop_filter_intra"
+    );
+
 }

@@ -21,13 +21,23 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 private const size_t WIDTH = 256;
 private const size_t HEIGHT = 256;
 private const size_t BUF_UNITS = 3;
-private const size_t SIZE_PER_UNIT = (WIDTH * HEIGHT);
+private const size_t SIZE_PER_UNIT = (WIDTH * HEIGHT
+);
+
 private const size_t BUF_SIZE = (BUF_UNITS * SIZE_PER_UNIT);
 
 private static void randomize_buffers () {
     int i, j;
-    for (i = 0; i < HEIGHT; i++) {
-        for (j = 0; j < WIDTH; j++) {
+    for (
+        i = 0;
+        i < HEIGHT;
+        i++
+    ) {
+        for (
+            j = 0;
+            j < WIDTH;
+            j++
+        ) {
             top1[i * WIDTH + j] =
             top2[i * WIDTH + j] = i;
             bot1[i * WIDTH + j] =
@@ -36,36 +46,96 @@ private static void randomize_buffers () {
 
     }
 
-    for (i = 0; i < SIZE_PER_UNIT; i += 4) {
+    for (
+        i = 0;
+        i < SIZE_PER_UNIT;
+        i += 4
+    ) {
         uint32 r = rnd ();
-        AV_WN32A (dst1 + i, r);
-        AV_WN32A (dst2 + i, r);
+
+        AV_WN32A (
+            dst1 + i,
+            r
+        );
+
+        AV_WN32A (
+            dst2 + i,
+            r
+        );
+
     }
 
-    for (; i < BUF_SIZE; i += 4) {
+    for (
+        ;
+        i < BUF_SIZE;
+        i += 4
+    ) {
         uint32 r = rnd ();
-        AV_WN32A (top1 + i, r);
-        AV_WN32A (top2 + i, r);
+
+        AV_WN32A (
+            top1 + i,
+            r
+        );
+
+        AV_WN32A (
+            top2 + i,
+            r
+        );
+
         r = rnd ();
-        AV_WN32A (bot1 + i, r);
-        AV_WN32A (bot2 + i, r);
+
+        AV_WN32A (
+            bot1 + i,
+            r
+        );
+
+        AV_WN32A (
+            bot2 + i,
+            r
+        );
+
         r = rnd ();
-        AV_WN32A (dst1 + i, r);
-        AV_WN32A (dst2 + i, r);
+
+        AV_WN32A (
+            dst1 + i,
+            r
+        );
+
+        AV_WN32A (
+            dst2 + i,
+            r
+        );
+
     }
 
 }
 
-private static void check_blend_func (depth) {
+private static void check_blend_func (
+    void *depth
+) {
     int i, w;
-    //  declare_func (void, uint8[] top, size_t top_linesize,
-                    uint8[] bottom, size_t bottom_linesize,
-                    uint8[] dst, size_t dst_linesize,
-                    size_t width, size_t height,
-                    FilterParams? param, double[] values);
+
+    //  declare_func (
+    //      void,
+    //      uint8[] top,
+    //      size_t top_linesize,
+    //      uint8[] bottom,
+    //      size_t bottom_linesize,
+    //      uint8[] dst,
+    //      size_t dst_linesize,
+    //      size_t width,
+    //      size_t height,
+    //      FilterParams? param,
+    //      double[] values
+    //  );
+
     w = WIDTH / depth;
 
-    for (i = 0; i < BUF_UNITS - 1; i++) {
+    for (
+        i = 0;
+        i < BUF_UNITS - 1;
+        i++
+    ) {
         /***********************************************************
         Test various alignments
         ***********************************************************/
@@ -75,85 +145,133 @@ private static void check_blend_func (depth) {
         ***********************************************************/
         int dst_offset = i * SIZE_PER_UNIT;
         randomize_buffers ();
-        //  call_ref (top1 + src_offset, w, bot1 + src_offset, w,
-        //              dst1 + dst_offset, w, w, HEIGHT, &param, null);
-        //  call_new (top2 + src_offset, w, bot2 + src_offset, w,
-        //              dst2 + dst_offset, w, w, HEIGHT, &param, null);
-        if (memcmp (top1, top2, BUF_SIZE) || memcmp (bot1, bot2, BUF_SIZE) || memcmp (dst1, dst2, BUF_SIZE)) {
+
+        call_ref (
+            top1 + src_offset,
+            w,
+            bot1 + src_offset, w,
+            dst1 + dst_offset, w,
+            w,
+            HEIGHT,
+            &param,
+            null
+        );
+
+        call_new (
+            top2 + src_offset,
+            w,
+            bot2 + src_offset,
+            w,
+            dst2 + dst_offset,
+            w,
+            w,
+            HEIGHT,
+            &param,
+            null
+        );
+
+        if (
+            memcmp (
+                top1, top2, BUF_SIZE
+            ) ||
+            memcmp (
+                bot1, bot2, BUF_SIZE
+            ) ||
+            memcmp (
+                dst1, dst2, BUF_SIZE
+            )
+        ) {
             fail ();
         }
 
     }
 
-    bench_new (top2, w / 4, bot2, w / 4, dst2, w / 4,
-                w / 4, HEIGHT / 4, &param, null);
+    bench_new (
+        top2, w / 4, bot2, w / 4, dst2, w / 4,
+                w / 4, HEIGHT / 4, &param, null
+    );
+
 }
 
 private static void checkasm_check_blend () {
-    uint8[] top1 = av_malloc (BUF_SIZE);
-    uint8[] top2 = av_malloc (BUF_SIZE);
-    uint8[] bot1 = av_malloc (BUF_SIZE);
-    uint8[] bot2 = av_malloc (BUF_SIZE);
-    uint8[] dst1 = av_malloc (BUF_SIZE);
-    uint8[] dst2 = av_malloc (BUF_SIZE);
+    uint8[] top1 = av_malloc (BUF_SIZE
+    );
+
+    uint8[] top2 = av_malloc (BUF_SIZE
+    );
+
+    uint8[] bot1 = av_malloc (BUF_SIZE
+    );
+
+    uint8[] bot2 = av_malloc (BUF_SIZE
+    );
+
+    uint8[] dst1 = av_malloc (BUF_SIZE
+    );
+
+    uint8[] dst2 = av_malloc (BUF_SIZE
+    );
+
     FilterParams param = new FilterParams () {
         opacity = 1.0
     };
 
 }
 
-private static void check_and_report (
-    void *name,
-    void *val,
-    void *depth
-) {
-    param.mode = val;
-    ff_blend_init (&param, depth - 1);
-    if (check_func (param.blend, #name)) {
-        check_blend_func (depth);
-    }
+//  private static void check_and_report (
+//      void *name,
+//      void *val,
+//      void *depth
+//  ) {
+//      param.mode = val;
+//      ff_blend_init (&param, depth - 1);
+//      if (
+//          check_func (param.blend, #name)
+//      ) {
+//          check_blend_func (depth);
+//      }
 
-    check_and_report (addition, BLEND_ADDITION, 1);
-    check_and_report (grainmerge, BLEND_GRAINMERGE, 1);
-    check_and_report (and, BLEND_AND, 1);
-    check_and_report (average, BLEND_AVERAGE, 1);
-    check_and_report (darken, BLEND_DARKEN, 1);
-    check_and_report (grainextract, BLEND_GRAINEXTRACT, 1);
-    check_and_report (hardmix, BLEND_HARDMIX, 1);
-    check_and_report (lighten, BLEND_LIGHTEN, 1);
-    check_and_report (multiply, BLEND_MULTIPLY, 1);
-    check_and_report (or, BLEND_OR, 1);
-    check_and_report (phoenix, BLEND_PHOENIX, 1);
-    check_and_report (screen, BLEND_SCREEN, 1);
-    check_and_report (subtract, BLEND_SUBTRACT, 1);
-    check_and_report (xor, BLEND_XOR, 1);
-    check_and_report (difference, BLEND_DIFFERENCE, 1);
-    check_and_report (extremity, BLEND_EXTREMITY, 1);
-    check_and_report (negation, BLEND_NEGATION, 1);
+//      check_and_report (addition, BLEND_ADDITION, 1);
+//      check_and_report (grainmerge, BLEND_GRAINMERGE, 1);
+//      check_and_report (and, BLEND_AND, 1);
+//      check_and_report (average, BLEND_AVERAGE, 1);
+//      check_and_report (darken, BLEND_DARKEN, 1);
+//      check_and_report (grainextract, BLEND_GRAINEXTRACT, 1);
+//      check_and_report (hardmix, BLEND_HARDMIX, 1);
+//      check_and_report (lighten, BLEND_LIGHTEN, 1);
+//      check_and_report (multiply, BLEND_MULTIPLY, 1);
+//      check_and_report (or, BLEND_OR, 1);
+//      check_and_report (phoenix, BLEND_PHOENIX, 1);
+//      check_and_report (screen, BLEND_SCREEN, 1);
+//      check_and_report (subtract, BLEND_SUBTRACT, 1);
+//      check_and_report (xor, BLEND_XOR, 1);
+//      check_and_report (difference, BLEND_DIFFERENCE, 1);
+//      check_and_report (extremity, BLEND_EXTREMITY, 1);
+//      check_and_report (negation, BLEND_NEGATION, 1);
 
-    report ("8bit");
+//      report ("8bit");
 
-    check_and_report (addition_16, BLEND_ADDITION, 2);
-    check_and_report (grainmerge_16, BLEND_GRAINMERGE, 2);
-    check_and_report (and_16, BLEND_AND, 2);
-    check_and_report (average_16, BLEND_AVERAGE, 2);
-    check_and_report (darken_16, BLEND_DARKEN, 2);
-    check_and_report (grainextract_16, BLEND_GRAINEXTRACT, 2);
-    check_and_report (difference_16, BLEND_DIFFERENCE, 2);
-    check_and_report (extremity_16, BLEND_EXTREMITY, 2);
-    check_and_report (negation_16, BLEND_NEGATION, 2);
-    check_and_report (lighten_16, BLEND_LIGHTEN, 2);
-    check_and_report (or_16, BLEND_OR, 2);
-    check_and_report (phoenix_16, BLEND_PHOENIX, 2);
-    check_and_report (subtract_16, BLEND_SUBTRACT, 2);
-    check_and_report (xor_16, BLEND_SUBTRACT, 2);
+//      check_and_report (addition_16, BLEND_ADDITION, 2);
+//      check_and_report (grainmerge_16, BLEND_GRAINMERGE, 2);
+//      check_and_report (and_16, BLEND_AND, 2);
+//      check_and_report (average_16, BLEND_AVERAGE, 2);
+//      check_and_report (darken_16, BLEND_DARKEN, 2);
+//      check_and_report (grainextract_16, BLEND_GRAINEXTRACT, 2);
+//      check_and_report (difference_16, BLEND_DIFFERENCE, 2);
+//      check_and_report (extremity_16, BLEND_EXTREMITY, 2);
+//      check_and_report (negation_16, BLEND_NEGATION, 2);
+//      check_and_report (lighten_16, BLEND_LIGHTEN, 2);
+//      check_and_report (or_16, BLEND_OR, 2);
+//      check_and_report (phoenix_16, BLEND_PHOENIX, 2);
+//      check_and_report (subtract_16, BLEND_SUBTRACT, 2);
+//      check_and_report (xor_16, BLEND_SUBTRACT, 2);
 
-    report ("16bit");
+//      report ("16bit");
 
-    av_freep (&top1);
-    av_freep (&top2);
-    av_freep (&bot1);
-    av_freep (&bot2);
-    av_freep (&dst1);
-    av_freep (&dst2);
-}
+//      av_freep (&top1);
+//      av_freep (&top2);
+//      av_freep (&bot1);
+//      av_freep (&bot2);
+//      av_freep (&dst1);
+//      av_freep (&dst2);
+//  }

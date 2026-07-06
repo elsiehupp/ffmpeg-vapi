@@ -27,16 +27,16 @@ API example for decoding and filtering
 @example decode_filter_video.c
 ***********************************************************/
 
-//  #include <stdio.h>
-//  #include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
 
-//  #include <libavcodec/avcodec.h>
-//  #include <libavformat/avformat.h>
-//  #include <libavfilter/buffersink.h>
-//  #include <libavfilter/buffersrc.h>
-//  #include <libavutil/mem.h>
-//  #include <libavutil/opt.h>
-//  #include <libavutil/time.h>
+//#include <libavcodec/avcodec.h>
+//#include <libavformat/avformat.h>
+//#include <libavfilter/buffersink.h>
+//#include <libavfilter/buffersrc.h>
+//#include <libavutil/mem.h>
+//#include <libavutil/opt.h>
+//#include <libavutil/time.h>
 
 private class DecodeFilterVideoApplication : GLib.Application {
 
@@ -60,22 +60,45 @@ private class DecodeFilterVideoApplication : GLib.Application {
         AVCodec? dec;
         int ret;
 
-        if ((ret = avformat_open_input (&fmt_ctx, filename, null, null)) < 0) {
-            av_log (null, AV_LOG_ERROR, "Cannot open input file\n");
+        ret = avformat_open_input (&fmt_ctx, filename, null, null
+        );
+
+        if (
+            ret < 0
+        ) {
+            av_log (
+                null, AV_LOG_ERROR, "Cannot open input file\n"
+            );
+
             return ret;
         }
 
-        if ((ret = avformat_find_stream_info (fmt_ctx, null)) < 0) {
-            av_log (null, AV_LOG_ERROR, "Cannot find stream information\n");
+        ret = avformat_find_stream_info (fmt_ctx, null
+        );
+
+        if (
+            ret < 0
+        ) {
+            av_log (
+                null, AV_LOG_ERROR, "Cannot find stream information\n"
+            );
+
             return ret;
         }
 
         /***********************************************************
         select the video stream
         ***********************************************************/
-        ret = av_find_best_stream (fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &dec, 0);
-        if (ret < 0) {
-            av_log (null, AV_LOG_ERROR, "Cannot find a video stream in the input file\n");
+        ret = av_find_best_stream (fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &dec, 0
+        );
+
+        if (
+            ret < 0
+        ) {
+            av_log (
+                null, AV_LOG_ERROR, "Cannot find a video stream in the input file\n"
+            );
+
             return ret;
         }
 
@@ -84,16 +107,33 @@ private class DecodeFilterVideoApplication : GLib.Application {
         /***********************************************************
         create decoding context
         ***********************************************************/
-        dec_ctx = avcodec_alloc_context3 (dec);
-        if (!dec_ctx)
-            return AVERROR (ENOMEM);
-        avcodec_parameters_to_context (dec_ctx, fmt_ctx.streams[video_stream_index].codecpar);
+        dec_ctx = avcodec_alloc_context3 (dec
+        );
+
+        if (
+            !dec_ctx) {
+            return AVERROR (ENOMEM
+            );
+
+        }
+
+        avcodec_parameters_to_context (
+            dec_ctx, fmt_ctx.streams[video_stream_index].codecpar
+        );
 
         /***********************************************************
         init the video decoder
         ***********************************************************/
-        if ((ret = avcodec_open2 (dec_ctx, dec, null)) < 0) {
-            av_log (null, AV_LOG_ERROR, "Cannot open video decoder\n");
+        ret = avcodec_open2 (dec_ctx, dec, null
+        );
+
+        if (
+            ret < 0
+        ) {
+            av_log (
+                null, AV_LOG_ERROR, "Cannot open video decoder\n"
+            );
+
             return ret;
         }
 
@@ -105,55 +145,96 @@ private class DecodeFilterVideoApplication : GLib.Application {
     ) {
         char args[512];
         int ret = 0;
-        AVFilter? buffersrc = avfilter_get_by_name ("buffer");
-        AVFilter? buffersink = avfilter_get_by_name ("buffersink");
+        AVFilter? buffersrc = avfilter_get_by_name ("buffer"
+        );
+
+        AVFilter? buffersink = avfilter_get_by_name ("buffersink"
+        );
+
         AVFilterInOut? outputs = avfilter_inout_alloc ();
         AVFilterInOut? inputs = avfilter_inout_alloc ();
         LibAVUtil.Rational time_base = fmt_ctx.streams[video_stream_index].time_base;
 
         filter_graph = avfilter_graph_alloc ();
-        if (!outputs || !inputs || !filter_graph) {
-            ret = AVERROR (ENOMEM);
-            //  goto end;
+        if (
+            !outputs ||
+            !inputs ||
+            !filter_graph
+        ) {
+            ret = AVERROR (ENOMEM
+            );
+
+            throw new Goto.END ("");
         }
 
         /***********************************************************
         buffer video source: the decoded frames from the decoder will be inserted here.
         ***********************************************************/
-        snprintf (args, sizeof (args),
+        snprintf (
+            args, sizeof (args),
                 "video_size=%dx%d:pix_fmt=%d:time_base=%d/%d:pixel_aspect=%d/%d",
                 dec_ctx.width, dec_ctx.height, dec_ctx.pix_fmt,
                 time_base.num, time_base.den,
-                dec_ctx.sample_aspect_ratio.num, dec_ctx.sample_aspect_ratio.den);
+                dec_ctx.sample_aspect_ratio.num, dec_ctx.sample_aspect_ratio.den
+        );
 
         ret = avfilter_graph_create_filter (&buffersrc_ctx, buffersrc, "in",
-                                        args, null, filter_graph);
-        if (ret < 0) {
-            av_log (null, AV_LOG_ERROR, "Cannot create buffer source\n");
-            //  goto end;
+                                        args, null, filter_graph
+        );
+
+        if (
+            ret < 0
+        ) {
+            av_log (
+                null, AV_LOG_ERROR, "Cannot create buffer source\n"
+            );
+
+            throw new Goto.END ("");
         }
 
         /***********************************************************
         buffer video sink: to terminate the filter chain.
         ***********************************************************/
-        buffersink_ctx = avfilter_graph_alloc_filter (filter_graph, buffersink, "out");
-        if (!buffersink_ctx) {
-            av_log (null, AV_LOG_ERROR, "Cannot create buffer sink\n");
-            ret = AVERROR (ENOMEM);
-            //  goto end;
+        buffersink_ctx = avfilter_graph_alloc_filter (filter_graph, buffersink, "out"
+        );
+
+        if (
+            !buffersink_ctx) {
+            av_log (
+                null, AV_LOG_ERROR, "Cannot create buffer sink\n"
+            );
+
+            ret = AVERROR (ENOMEM
+            );
+
+            throw new Goto.END ("");
         }
 
         ret = av_opt_set (buffersink_ctx, "pixel_formats", "gray8",
-                        AV_OPT_SEARCH_CHILDREN);
-        if (ret < 0) {
-            av_log (null, AV_LOG_ERROR, "Cannot set output pixel format\n");
-            //  goto end;
+                        AV_OPT_SEARCH_CHILDREN
+        );
+
+        if (
+            ret < 0
+        ) {
+            av_log (
+                null, AV_LOG_ERROR, "Cannot set output pixel format\n"
+            );
+
+            throw new Goto.END ("");
         }
 
-        ret = avfilter_init_dict (buffersink_ctx, null);
-        if (ret < 0) {
-            av_log (null, AV_LOG_ERROR, "Cannot initialize buffer sink\n");
-            //  goto end;
+        ret = avfilter_init_dict (buffersink_ctx, null
+        );
+
+        if (
+            ret < 0
+        ) {
+            av_log (
+                null, AV_LOG_ERROR, "Cannot initialize buffer sink\n"
+            );
+
+            throw new Goto.END ("");
         }
 
         /***********************************************************
@@ -167,7 +248,9 @@ private class DecodeFilterVideoApplication : GLib.Application {
         filter input label is not specified, it is set to "in" by
         default.
         ***********************************************************/
-        outputs.name = av_strdup ("in");
+        outputs.name = av_strdup ("in"
+        );
+
         outputs.filter_ctx = buffersrc_ctx;
         outputs.pad_idx = 0;
         outputs.next = null;
@@ -178,25 +261,41 @@ private class DecodeFilterVideoApplication : GLib.Application {
         filter output label is not specified, it is set to "out" by
         default.
         ***********************************************************/
-        inputs.name = av_strdup ("out");
+        inputs.name = av_strdup ("out"
+        );
+
         inputs.filter_ctx = buffersink_ctx;
         inputs.pad_idx = 0;
         inputs.next = null;
 
-        if ((ret = avfilter_graph_parse_ptr (
+        ret = avfilter_graph_parse_ptr (
             filter_graph, filters_descr,
             &inputs, &outputs, null
-        )) < 0) {
-            //  goto end;
+        );
+
+        if (
+            ret < 0
+        ) {
+            throw new Goto.END ("");
         }
 
-        if ((ret = avfilter_graph_config (filter_graph, null)) < 0) {
-            //  goto end;
+        ret = avfilter_graph_config (filter_graph, null
+        );
+
+        if (
+            ret < 0
+        ) {
+            throw new Goto.END ("");
         }
 
     //  end:
-        avfilter_inout_free (&inputs);
-        avfilter_inout_free (&outputs);
+        avfilter_inout_free (
+            &inputs
+        );
+
+        avfilter_inout_free (
+            &outputs
+        );
 
         return ret;
     }
@@ -210,16 +309,29 @@ private class DecodeFilterVideoApplication : GLib.Application {
         uint8[] p;
         int64 delay;
 
-        if (frame.pts != AV_NOPTS_VALUE) {
-            if (last_pts != AV_NOPTS_VALUE) {
+        if (
+            frame.pts != AV_NOPTS_VALUE) {
+            if (
+                last_pts != AV_NOPTS_VALUE) {
                 /***********************************************************
                 sleep roughly the right amount of time;
                 usleep is in microseconds, just like AV_TIME_BASE.
                 ***********************************************************/
-                delay = av_rescale_q (frame.pts - last_pts,
-                                    time_base, AV_TIME_BASE_Q);
-                if (delay > 0 && delay < 1000000)
-                    av_usleep (delay);
+                delay = av_rescale_q (
+                    frame.pts - last_pts,
+                    time_base, AV_TIME_BASE_Q
+                );
+
+                if (
+                    delay > 0 &&
+                    delay < 1000000
+                ) {
+                    av_usleep (
+                        delay
+                    );
+
+                }
+
             }
 
             last_pts = frame.pts;
@@ -229,16 +341,37 @@ private class DecodeFilterVideoApplication : GLib.Application {
         Trivial ASCII grayscale display.
         ***********************************************************/
         p0 = frame.data[0];
-        puts ("\033c");
-        for (y = 0; y < frame.height; y++) {
+        puts (
+            "\033c"
+        );
+
+        for (
+            y = 0;
+            y < frame.height;
+            y++
+        ) {
             p = p0;
-            for (x = 0; x < frame.width; x++)
-                putchar (" .-+#"[*(p++) / 52]);
-            putchar ('\n');
+            for (
+                x = 0;
+                x < frame.width;
+                x++
+            ) {
+                putchar (
+                    " .-+#"[*(p++) / 52]
+                );
+
+            }
+
+            putchar ('\n'
+            );
+
             p0 += frame.linesize[0];
         }
 
-        fflush (stdout);
+        fflush (
+            stdout
+        );
+
     }
 
     private static int main (
@@ -250,45 +383,104 @@ private class DecodeFilterVideoApplication : GLib.Application {
         AVFrame? frame;
         AVFrame? filt_frame;
 
-        if (argc != 2) {
-            fprintf (stderr, "Usage: %s file\n", argv[0]);
-            exit (1);
+        if (
+            argc != 2) {
+            fprintf (
+                stderr,
+                "Usage: %s file\n",
+                argv[0]
+            );
+
+            exit (
+                1
+            );
+
         }
 
         frame = av_frame_alloc ();
         filt_frame = av_frame_alloc ();
         packet = av_packet_alloc ();
-        if (!frame || !filt_frame || !packet) {
-            fprintf (stderr, "Could not allocate frame or packet\n");
-            exit (1);
+        if (
+            !frame ||
+            !filt_frame ||
+            !packet
+        ) {
+            fprintf (
+                stderr,
+                "Could not allocate frame or packet\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        if ((ret = open_input_file (argv[1])) < 0)
-            //  goto end;
-        if ((ret = init_filters (filter_descr)) < 0)
-            //  goto end;
+        ret = open_input_file (argv[1]
+        );
+
+        if (
+            ret < 0
+        ) {
+            throw new Goto.END ("");
+        }
+
+        ret = init_filters (filter_descr
+        );
+
+        if (
+            ret < 0
+        ) {
+            throw new Goto.END ("");
+        }
 
         /***********************************************************
         read all packets
         ***********************************************************/
-        while (true) {
-            if ((ret = av_read_frame (fmt_ctx, packet)) < 0)
-                break;
+        while (
+            true) {
+            ret = av_read_frame (fmt_ctx, packet
+            );
 
-            if (packet.stream_index == video_stream_index) {
-                ret = avcodec_send_packet (dec_ctx, packet);
-                if (ret < 0) {
-                    av_log (null, AV_LOG_ERROR, "Error while sending a packet to the decoder\n");
+            if (
+                ret < 0
+            ) {
+                break;
+            }
+
+            if (
+                packet.stream_index == video_stream_index) {
+                ret = avcodec_send_packet (dec_ctx, packet
+                );
+
+                if (
+                    ret < 0
+                ) {
+                    av_log (
+                        null, AV_LOG_ERROR, "Error while sending a packet to the decoder\n"
+                    );
+
                     break;
                 }
 
-                while (ret >= 0) {
-                    ret = avcodec_receive_frame (dec_ctx, frame);
-                    if (ret == AVERROR (EAGAIN) || ret == AVERROR_EOF) {
+                while (
+                    ret >= 0) {
+                    ret = avcodec_receive_frame (dec_ctx, frame
+                    );
+
+                    if (
+                        ret == AVERROR (EAGAIN) ||
+                        ret == AVERROR_EOF
+                    ) {
                         break;
-                    } else if (ret < 0) {
-                        av_log (null, AV_LOG_ERROR, "Error while receiving a frame from the decoder\n");
-                        //  goto end;
+                    } else if (
+                        ret < 0
+                    ) {
+                        av_log (
+                            null, AV_LOG_ERROR, "Error while receiving a frame from the decoder\n"
+                        );
+
+                        throw new Goto.END ("");
                     }
 
                     frame.pts = frame.best_effort_timestamp;
@@ -296,70 +488,155 @@ private class DecodeFilterVideoApplication : GLib.Application {
                     /***********************************************************
                     push the decoded frame into the filtergraph
                     ***********************************************************/
-                    if (av_buffersrc_add_frame_flags (buffersrc_ctx, frame, AV_BUFFERSRC_FLAG_KEEP_REF) < 0) {
-                        av_log (null, AV_LOG_ERROR, "Error while feeding the filtergraph\n");
+                    if (
+                        av_buffersrc_add_frame_flags (
+                            buffersrc_ctx, frame, AV_BUFFERSRC_FLAG_KEEP_REF) < 0) {
+                        av_log (
+                            null, AV_LOG_ERROR, "Error while feeding the filtergraph\n"
+                        );
+
                         break;
                     }
 
                     /***********************************************************
                     pull filtered frames from the filtergraph
                     ***********************************************************/
-                    while (true) {
-                        ret = av_buffersink_get_frame (buffersink_ctx, filt_frame);
-                        if (ret == AVERROR (EAGAIN) || ret == AVERROR_EOF)
+                    while (
+                        true) {
+                        ret = av_buffersink_get_frame (buffersink_ctx, filt_frame
+                        );
+
+                        if (
+                            ret == AVERROR (EAGAIN) ||
+                            ret == AVERROR_EOF
+                        ) {
                             break;
-                        if (ret < 0)
-                            //  goto end;
-                        display_frame (filt_frame, buffersink_ctx.inputs[0].time_base);
-                        av_frame_unref (filt_frame);
+                        }
+
+                        if (
+                            ret < 0
+                        ) {
+                            throw new Goto.END ("");
+                        }
+
+                        display_frame (
+                            filt_frame, buffersink_ctx.inputs[0].time_base
+                        );
+
+                        av_frame_unref (
+                            filt_frame
+                        );
+
                     }
 
-                    av_frame_unref (frame);
+                    av_frame_unref (
+                        frame
+                    );
+
                 }
 
             }
 
-            av_packet_unref (packet);
+            av_packet_unref (
+                packet
+            );
+
         }
 
-        if (ret == AVERROR_EOF) {
+        if (
+            ret == AVERROR_EOF) {
             /***********************************************************
             signal EOF to the filtergraph
             ***********************************************************/
-            if (av_buffersrc_add_frame_flags (buffersrc_ctx, null, 0) < 0) {
-                av_log (null, AV_LOG_ERROR, "Error while closing the filtergraph\n");
-                //  goto end;
+            if (
+                av_buffersrc_add_frame_flags (
+                    buffersrc_ctx, null, 0) < 0) {
+                av_log (
+                    null, AV_LOG_ERROR, "Error while closing the filtergraph\n"
+                );
+
+                throw new Goto.END ("");
             }
 
             /***********************************************************
             pull remaining frames from the filtergraph
             ***********************************************************/
-            while (true) {
-                ret = av_buffersink_get_frame (buffersink_ctx, filt_frame);
-                if (ret == AVERROR (EAGAIN) || ret == AVERROR_EOF)
+            while (
+                true) {
+                ret = av_buffersink_get_frame (buffersink_ctx, filt_frame
+                );
+
+                if (
+                    ret == AVERROR (EAGAIN) ||
+                    ret == AVERROR_EOF
+                ) {
                     break;
-                if (ret < 0)
-                    //  goto end;
-                display_frame (filt_frame, buffersink_ctx.inputs[0].time_base);
-                av_frame_unref (filt_frame);
+                }
+
+                if (
+                    ret < 0
+                ) {
+                    throw new Goto.END ("");
+                }
+
+                display_frame (
+                    filt_frame, buffersink_ctx.inputs[0].time_base
+                );
+
+                av_frame_unref (
+                    filt_frame
+                );
+
             }
 
         }
 
     //  end:
-        avfilter_graph_free (&filter_graph);
-        avcodec_free_context (&dec_ctx);
-        avformat_close_input (&fmt_ctx);
-        av_frame_free (&frame);
-        av_frame_free (&filt_frame);
-        av_packet_free (&packet);
+        avfilter_graph_free (
+            &filter_graph
+        );
 
-        if (ret < 0 && ret != AVERROR_EOF) {
-            fprintf (stderr, "Error occurred: %s\n", av_err2str (ret));
-            exit (1);
+        avcodec_free_context (
+            &dec_ctx
+        );
+
+        avformat_close_input (
+            &fmt_ctx
+        );
+
+        av_frame_free (
+            &frame
+        );
+
+        av_frame_free (
+            &filt_frame
+        );
+
+        av_packet_free (
+            &packet
+        );
+
+        if (
+            ret < 0 &&
+            ret != AVERROR_EOF
+        ) {
+            fprintf (
+                stderr,
+                "Error occurred: %s\n",
+                av_err2str (
+                    ret)
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        exit (0);
+        exit (
+            0
+        );
+
     }
 
 }

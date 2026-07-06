@@ -25,7 +25,11 @@ private static void randomize_buffers (
 ) {
     int j;
     uint8[] tmp_buf = (uint8[] )buf;
-    for (j = 0; j < size; j++) {
+    for (
+        j = 0;
+        j < size;
+        j++
+    ) {
         tmp_buf[j] = rnd () & 0xFF;
     }
 
@@ -34,56 +38,157 @@ private static void randomize_buffers (
 private static void check_threshold (
     int depth
 ) {
-    //  LOCAL_ALIGNED_32 (uint8, in, [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, threshold, [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, min, [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, max, [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, out_ref, [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, out_new, [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      in,
+    //      [WIDTH_PADDED]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      threshold,
+    //      [WIDTH_PADDED]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      min,
+    //      [WIDTH_PADDED]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      max,
+    //      [WIDTH_PADDED]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      out_ref,
+    //      [WIDTH_PADDED]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      out_new,
+    //      [WIDTH_PADDED]
+    //  );
+
     size_t line_size = WIDTH_PADDED;
     int w = WIDTH;
 
-    //  declare_func (void, uint8[] input, uint8[] threshold,
-    //               uint8[] min, uint8[] max, uint8[] output,
-    //               size_t ilinesize, size_t tlinesize,
-    //               size_t flinesize, size_t slinesize,
-    //               size_t olinesize, int w, int h);
+    //  declare_func (
+    //      void,
+    //      uint8[] input,
+    //      uint8[] threshold,
+    //      uint8[] min,
+    //      uint8[] max,
+    //      uint8[] output,
+    //      size_t ilinesize,
+    //      size_t tlinesize,
+    //      size_t flinesize,
+    //      size_t slinesize,
+    //      size_t olinesize,
+    //      int w,
+    //      int h
+    //  );
 
-    ThresholdContext s;
-    s.depth = depth;
-    ff_threshold_init (&s);
+    ThresholdContext threshold_context;
+    threshold_context.depth = depth;
+    ff_threshold_init (
+        &threshold_context
+    );
 
-    memset (input, 0, WIDTH_PADDED);
-    memset (threshold, 0, WIDTH_PADDED);
-    memset (min, 0, WIDTH_PADDED);
-    memset (max, 0, WIDTH_PADDED);
-    memset (out_ref, 0, WIDTH_PADDED);
-    memset (out_new, 0, WIDTH_PADDED);
-    randomize_buffers (input, WIDTH);
-    randomize_buffers (threshold, WIDTH);
-    randomize_buffers (min, WIDTH);
-    randomize_buffers (max, WIDTH);
+    memset (
+        input, 0, WIDTH_PADDED
+    );
 
-    if (depth == 16) {
+    memset (
+        threshold, 0, WIDTH_PADDED
+    );
+
+    memset (
+        min, 0, WIDTH_PADDED
+    );
+
+    memset (
+        max, 0, WIDTH_PADDED
+    );
+
+    memset (
+        out_ref, 0, WIDTH_PADDED
+    );
+
+    memset (
+        out_new, 0, WIDTH_PADDED
+    );
+
+    randomize_buffers (
+        input, WIDTH
+    );
+
+    randomize_buffers (
+        threshold, WIDTH
+    );
+
+    randomize_buffers (
+        min, WIDTH
+    );
+
+    randomize_buffers (
+        max, WIDTH
+    );
+
+    if (
+        depth == 16
+    ) {
         w /= 2;
     }
 
-    if (check_func (s.threshold, "threshold%d", depth)) {
-        //  call_ref (input, threshold, min, max, out_ref, line_size, line_size, line_size, line_size, line_size, w, 1);
-        //  call_new (input, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1);
-        if (memcmp (out_ref, out_new, WIDTH)) {
+    if (
+        check_func (
+            threshold_context.threshold,
+            "threshold%d", depth
+        )
+    ) {
+        call_ref (
+            input, threshold, min, max, out_ref, line_size, line_size, line_size, line_size, line_size, w, 1
+        );
+
+        call_new (
+            input, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1
+        );
+
+        if (
+            memcmp (
+                out_ref, out_new, WIDTH)
+        ) {
             fail ();
         }
 
-        bench_new (input, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1);
+        bench_new (
+            input, threshold, min, max, out_new, line_size, line_size, line_size, line_size, line_size, w, 1
+        );
+
     }
 
 }
 
 private static void checkasm_check_vf_threshold () {
-    check_threshold (8);
-    report ("threshold8");
+    check_threshold (
+        8
+    );
 
-    check_threshold (16);
-    report ("threshold16");
+    report (
+        "threshold8"
+    );
+
+    check_threshold (
+        16
+    );
+
+    report (
+        "threshold16"
+    );
+
 }

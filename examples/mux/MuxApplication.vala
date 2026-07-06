@@ -28,20 +28,20 @@ Generate a synthetic audio and video signal and mux them to a media file in
 any supported libavformat format. The default codecs are used.
 ***********************************************************/
 
-//  #include <stdlib.h>
-//  #include <stdio.h>
-//  #include <string.h>
-//  #include <math.h>
+//#include <stdlib.h>
+//#include <stdio.h>
+//#include <string.h>
+//#include <math.h>
 
-//  #include <libavutil/avassert.h>
-//  #include <libavutil/channel_layout.h>
-//  #include <libavutil/opt.h>
-//  #include <libavutil/mathematics.h>
-//  #include <libavutil/timestamp.h>
-//  #include <libavcodec/avcodec.h>
-//  #include <libavformat/avformat.h>
-//  #include <libswscale/swscale.h>
-//  #include <libswresample/swresample.h>
+//#include <libavutil/avassert.h>
+//#include <libavutil/channel_layout.h>
+//#include <libavutil/opt.h>
+//#include <libavutil/mathematics.h>
+//#include <libavutil/timestamp.h>
+//#include <libavcodec/avcodec.h>
+//#include <libavformat/avformat.h>
+//#include <libswscale/swscale.h>
+//#include <libswresample/swresample.h>
 
 private class MuxApplication : GLib.Application {
 
@@ -59,7 +59,10 @@ private class MuxApplication : GLib.Application {
 
     private const LibSoftwareScale.SoftwareScaleFlags SCALE_FLAGS = LibSoftwareScale.SoftwareScaleFlags.BICUBIC;
 
-    // a wrapper around a single output AVStream
+
+    /***********************************************************
+    a wrapper around a single output AVStream
+    ***********************************************************/
     private struct OutputStream {
         AVStream? st;
         AVCodecContext? enc;
@@ -89,58 +92,115 @@ private class MuxApplication : GLib.Application {
     ) {
         LibAVUtil.Rational? time_base = &fmt_ctx.streams[pkt.stream_index].time_base;
 
-        printf ("pts:%s pts_time:%s dts:%s dts_time:%s duration:%s duration_time:%s stream_index:%d\n",
-            av_ts2str (pkt.pts), av_ts2timestr (pkt.pts, time_base),
-            av_ts2str (pkt.dts), av_ts2timestr (pkt.dts, time_base),
-            av_ts2str (pkt.duration), av_ts2timestr (pkt.duration, time_base),
-            pkt.stream_index);
+        printf (
+            "pts:%s pts_time:%s dts:%s dts_time:%s duration:%s duration_time:%s stream_index:%d\n",
+            av_ts2str (
+                pkt.pts), av_ts2timestr (pkt.pts, time_base),
+            av_ts2str (
+                pkt.dts), av_ts2timestr (pkt.dts, time_base),
+            av_ts2str (
+                pkt.duration), av_ts2timestr (pkt.duration, time_base),
+            pkt.stream_index
+        );
+
     }
 
     private static int write_frame (
         AVFormatContext? fmt_ctx,
-        AVCodecContext? c,
+        AVCodecContext? codec_context,
         AVStream? st,
         AVFrame? frame,
         AVPacket? pkt
     ) {
         int ret;
 
-        // send the frame to the encoder
-        ret = avcodec_send_frame (c, frame);
-        if (ret < 0) {
-            fprintf (stderr, "Error sending a frame to the encoder: %s\n",
-                    av_err2str (ret));
-            exit (1);
+
+        /***********************************************************
+        send the frame to the encoder
+        ***********************************************************/
+        ret = avcodec_send_frame (codec_context, frame
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Error sending a frame to the encoder: %s\n",
+                    av_err2str (
+                        ret)
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        while (ret >= 0) {
-            ret = avcodec_receive_packet (c, pkt);
-            if (ret == AVERROR (EAGAIN) || ret == AVERROR_EOF)
+        while (
+            ret >= 0) {
+            ret = avcodec_receive_packet (codec_context, pkt
+            );
+
+            if (
+                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR_EOF
+            ) {
                 break;
-            else if (ret < 0) {
-                fprintf (stderr, "Error encoding a frame: %s\n", av_err2str (ret));
-                exit (1);
+            } else if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Error encoding a frame: %s\n",
+                    av_err2str (
+                        ret)
+                );
+
+                exit (
+                    1
+                );
+
             }
 
             /***********************************************************
             rescale output packet timestamp values from codec to stream timebase
             ***********************************************************/
-            av_packet_rescale_ts (pkt, c.time_base, st.time_base);
+            av_packet_rescale_ts (
+                pkt, codec_context.time_base, st.time_base
+            );
+
             pkt.stream_index = st.index;
 
             /***********************************************************
             Write the compressed frame to the media file.
             ***********************************************************/
-            log_packet (fmt_ctx, pkt);
-            ret = av_interleaved_write_frame (fmt_ctx, pkt);
+            log_packet (
+                fmt_ctx, pkt
+            );
+
+            ret = av_interleaved_write_frame (fmt_ctx, pkt
+            );
+
             /***********************************************************
             pkt is now blank (av_interleaved_write_frame () takes ownership of
             its contents and resets pkt), so that no unreferencing is necessary.
             This would be different if one used av_write_frame ().
             ***********************************************************/
-            if (ret < 0) {
-                fprintf (stderr, "Error while writing output packet: %s\n", av_err2str (ret));
-                exit (1);
+            if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Error while writing output packet: %s\n",
+                    av_err2str (
+                        ret)
+                );
+
+                exit (
+                    1
+                );
+
             }
 
         }
@@ -157,68 +217,119 @@ private class MuxApplication : GLib.Application {
         out AVCodec? codec_out,
         AVCodecID codec_id
     ) {
-        AVCodecContext? c;
+        AVCodecContext? codec_context;
         int i;
 
         /***********************************************************
         find the encoder
         ***********************************************************/
-        codec_out = avcodec_find_encoder (codec_id);
-        if (!(codec_out)) {
-            fprintf (stderr, "Could not find encoder for '%s'\n",
-                    avcodec_get_name (codec_id));
-            exit (1);
+        codec_out = avcodec_find_encoder (codec_id
+        );
+
+        if (
+            !codec_out) {
+            fprintf (
+                stderr,
+                "Could not find encoder for '%s'\n",
+                    avcodec_get_name (
+                        codec_id)
+            );
+
+            exit (
+                1
+            );
+
         }
 
         ost.tmp_pkt = av_packet_alloc ();
-        if (!ost.tmp_pkt) {
-            fprintf (stderr, "Could not allocate AVPacket\n");
-            exit (1);
+        if (
+            !ost.tmp_pkt) {
+            fprintf (
+                stderr,
+                "Could not allocate AVPacket\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        ost.st = avformat_new_stream (oc, null);
-        if (!ost.st) {
-            fprintf (stderr, "Could not allocate stream\n");
-            exit (1);
+        ost.st = avformat_new_stream (oc, null
+        );
+
+        if (
+            !ost.st) {
+            fprintf (
+                stderr,
+                "Could not allocate stream\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
         ost.st.id = oc.nb_streams-1;
-        c = avcodec_alloc_context3 (codec_out);
-        if (!c) {
-            fprintf (stderr, "Could not alloc an encoding context\n");
-            exit (1);
+        codec_context = avcodec_alloc_context3 (codec_out
+        );
+
+        if (
+            !codec_context) {
+            fprintf (
+                stderr,
+                "Could not alloc an encoding context\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        ost.enc = c;
+        ost.enc = codec_context;
 
-        switch (codec_out.type) {
+        switch (
+            codec_out.type) {
         case AVMEDIA_TYPE_AUDIO:
-            c.sample_fmt = codec_out.sample_fmts ?
+            codec_context.sample_fmt = codec_out.sample_fmts ?
                 codec_out.sample_fmts[0] : LibAVUtil.SampleFormat.FLOAT_PLANAR;
-            c.bit_rate = 64000;
-            c.sample_rate = 44100;
-            if (codec_out.supported_samplerates) {
-                c.sample_rate = codec_out.supported_samplerates[0];
-                for (i = 0; codec_out.supported_samplerates[i]; i++) {
-                    if (codec_out.supported_samplerates[i] == 44100)
-                        c.sample_rate = 44100;
+            codec_context.bit_rate = 64000;
+            codec_context.sample_rate = 44100;
+            if (
+                codec_out.supported_samplerates) {
+                codec_context.sample_rate = codec_out.supported_samplerates[0];
+                for (
+                    i = 0;
+                    codec_out.supported_samplerates[i];
+                    i++
+                ) {
+                    if (
+                        codec_out.supported_samplerates[i] == 44100) {
+                        codec_context.sample_rate = 44100;
+                    }
+
                 }
 
             }
 
-            av_channel_layout_copy (&c.ch_layout, &(AVChannelLayout)AV_CHANNEL_LAYOUT_STEREO);
-            ost.st.time_base = new LibAVUtil.Rational () {numerator = 1, denominator = c.sample_rate };
+            av_channel_layout_copy (
+                &codec_context.ch_layout, &(AVChannelLayout)AV_CHANNEL_LAYOUT_STEREO
+            );
+
+            ost.st.time_base = new LibAVUtil.Rational () {numerator = 1, denominator = codec_context.sample_rate };
             break;
 
         case AVMEDIA_TYPE_VIDEO:
-            c.codec_id = codec_id;
+            codec_context.codec_id = codec_id;
 
-            c.bit_rate = 400000;
+            codec_context.bit_rate = 400000;
             /***********************************************************
             Resolution must be a multiple of two.
             ***********************************************************/
-            c.width = 352;
-            c.height = 288;
+            codec_context.width = 352;
+            codec_context.height = 288;
             /***********************************************************
             timebase: This is the fundamental unit of time (in seconds) in terms
             of which frame timestamps are represented. For fixed-fps content,
@@ -226,26 +337,28 @@ private class MuxApplication : GLib.Application {
             identical to 1.
             ***********************************************************/
             ost.st.time_base = new LibAVUtil.Rational () {numerator = 1, denominator = STREAM_FRAME_RATE };
-            c.time_base = ost.st.time_base;
+            codec_context.time_base = ost.st.time_base;
             /***********************************************************
             emit one intra frame every twelve frames at most
             ***********************************************************/
-            c.gop_size = 12;
-            c.pix_fmt = STREAM_PIX_FMT;
-            if (c.codec_id == AV_CODEC_ID_MPEG2VIDEO) {
+            codec_context.gop_size = 12;
+            codec_context.pix_fmt = STREAM_PIX_FMT;
+            if (
+                codec_context.codec_id == AV_CODEC_ID_MPEG2VIDEO) {
                 /***********************************************************
                 just for testing, we also add B-frames
                 ***********************************************************/
-                c.max_b_frames = 2;
+                codec_context.max_b_frames = 2;
             }
 
-            if (c.codec_id == AV_CODEC_ID_MPEG1VIDEO) {
+            if (
+                codec_context.codec_id == AV_CODEC_ID_MPEG1VIDEO) {
                 /***********************************************************
                 Needed to avoid using macroblocks in which some coeffs overflow.
                 This does not happen with normal video, it just happens here as
                 the motion of the chroma plane does not match the luma plane.
                 ***********************************************************/
-                c.mb_decision = 2;
+                codec_context.mb_decision = 2;
             }
 
             break;
@@ -257,8 +370,11 @@ private class MuxApplication : GLib.Application {
         /***********************************************************
         Some formats want stream headers to be separate.
         ***********************************************************/
-        if (oc.oformat.flags & AVFMT_GLOBALHEADER)
-            c.flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
+        if (
+            oc.oformat.flags & AVFMT_GLOBALHEADER) {
+            codec_context.flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
+        }
+
     }
 
     /**************************************************************/
@@ -273,20 +389,41 @@ private class MuxApplication : GLib.Application {
         int nb_samples
     ) {
         AVFrame? frame = av_frame_alloc ();
-        if (!frame) {
-            fprintf (stderr, "Error allocating an audio frame\n");
-            exit (1);
+        if (
+            !frame) {
+            fprintf (
+                stderr,
+                "Error allocating an audio frame\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
         frame.format = sample_fmt;
-        av_channel_layout_copy (&frame.ch_layout, channel_layout);
+        av_channel_layout_copy (
+            &frame.ch_layout, channel_layout
+        );
+
         frame.sample_rate = sample_rate;
         frame.nb_samples = nb_samples;
 
-        if (nb_samples) {
-            if (av_frame_get_buffer (frame, 0) < 0) {
-                fprintf (stderr, "Error allocating an audio buffer\n");
-                exit (1);
+        if (
+            nb_samples) {
+            if (
+                av_frame_get_buffer (
+                    frame, 0) < 0) {
+                fprintf (
+                    stderr,
+                    "Error allocating an audio buffer\n"
+                );
+
+                exit (
+                    1
+                );
+
             }
 
         }
@@ -300,78 +437,150 @@ private class MuxApplication : GLib.Application {
         OutputStream? ost,
         AVDictionary? opt_arg
     ) {
-        AVCodecContext? c;
+        AVCodecContext? codec_context;
         int nb_samples;
         int ret;
         AVDictionary? opt = null;
 
-        c = ost.enc;
+        codec_context = ost.enc;
 
         /***********************************************************
         open it
         ***********************************************************/
-        av_dict_copy (&opt, opt_arg, 0);
-        ret = avcodec_open2 (c, codec, &opt);
-        av_dict_free (&opt);
-        if (ret < 0) {
-            fprintf (stderr, "Could not open audio codec: %s\n", av_err2str (ret));
-            exit (1);
+        av_dict_copy (
+            &opt, opt_arg, 0
+        );
+
+        ret = avcodec_open2 (codec_context, codec, &opt
+        );
+
+        av_dict_free (
+            &opt
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not open audio codec: %s\n",
+                av_err2str (
+                    ret)
+            );
+
+            exit (
+                1
+            );
+
         }
 
         /***********************************************************
         init signal generator
         ***********************************************************/
         ost.t = 0;
-        ost.tincr = 2 * M_PI * 110.0 / c.sample_rate;
+        ost.tincr = 2 * M_PI * 110.0 / codec_context.sample_rate;
         /***********************************************************
         increment frequency by 110 Hz per second
         ***********************************************************/
-        ost.tincr2 = 2 * M_PI * 110.0 / c.sample_rate / c.sample_rate;
+        ost.tincr2 = 2 * M_PI * 110.0 / codec_context.sample_rate / codec_context.sample_rate;
 
-        if (c.codec.capabilities & AV_CODEC_CAP_VARIABLE_FRAME_SIZE)
+        if (
+            codec_context.codec.capabilities & AV_CODEC_CAP_VARIABLE_FRAME_SIZE) {
             nb_samples = 10000;
-        else
-            nb_samples = c.frame_size;
+        } else {
+            nb_samples = codec_context.frame_size;
+        }
 
-        ost.frame = alloc_audio_frame (c.sample_fmt, &c.ch_layout,
-                                        c.sample_rate, nb_samples);
-        ost.tmp_frame = alloc_audio_frame (LibAVUtil.SampleFormat.SIGNED_16_BIT, &c.ch_layout,
-                                        c.sample_rate, nb_samples);
+        ost.frame = alloc_audio_frame (codec_context.sample_fmt, &codec_context.ch_layout,
+                                        codec_context.sample_rate, nb_samples
+        );
+
+        ost.tmp_frame = alloc_audio_frame (LibAVUtil.SampleFormat.SIGNED_16_BIT, &codec_context.ch_layout,
+                                        codec_context.sample_rate, nb_samples
+        );
 
         /***********************************************************
         copy the stream parameters to the muxer
         ***********************************************************/
-        ret = avcodec_parameters_from_context (ost.st.codecpar, c);
-        if (ret < 0) {
-            fprintf (stderr, "Could not copy the stream parameters\n");
-            exit (1);
+        ret = avcodec_parameters_from_context (ost.st.codecpar, codec_context
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not copy the stream parameters\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
         /***********************************************************
         create resampler context
         ***********************************************************/
         ost.swr_ctx = swr_alloc ();
-        if (!ost.swr_ctx) {
-            fprintf (stderr, "Could not allocate resampler context\n");
-            exit (1);
+        if (
+            !ost.swr_ctx) {
+            fprintf (
+                stderr,
+                "Could not allocate resampler context\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
         /***********************************************************
         set options
         ***********************************************************/
-        av_opt_set_chlayout (ost.swr_ctx, "in_chlayout", &c.ch_layout, 0);
-        av_opt_set_int (ost.swr_ctx, "in_sample_rate", c.sample_rate, 0);
-        av_opt_set_sample_fmt (ost.swr_ctx, "in_sample_fmt", LibAVUtil.SampleFormat.SIGNED_16_BIT, 0);
-        av_opt_set_chlayout (ost.swr_ctx, "out_chlayout", &c.ch_layout, 0);
-        av_opt_set_int (ost.swr_ctx, "out_sample_rate", c.sample_rate, 0);
-        av_opt_set_sample_fmt (ost.swr_ctx, "out_sample_fmt", c.sample_fmt, 0);
+        av_opt_set_chlayout (
+            ost.swr_ctx, "in_chlayout", &codec_context.ch_layout, 0
+        );
+
+        av_opt_set_int (
+            ost.swr_ctx, "in_sample_rate", codec_context.sample_rate, 0
+        );
+
+        av_opt_set_sample_fmt (
+            ost.swr_ctx, "in_sample_fmt", LibAVUtil.SampleFormat.SIGNED_16_BIT, 0
+        );
+
+        av_opt_set_chlayout (
+            ost.swr_ctx, "out_chlayout", &codec_context.ch_layout, 0
+        );
+
+        av_opt_set_int (
+            ost.swr_ctx, "out_sample_rate", codec_context.sample_rate, 0
+        );
+
+        av_opt_set_sample_fmt (
+            ost.swr_ctx, "out_sample_fmt", codec_context.sample_fmt, 0
+        );
 
         /***********************************************************
         initialize the resampling context
         ***********************************************************/
-        if ((ret = swr_init (ost.swr_ctx)) < 0) {
-            fprintf (stderr, "Failed to initialize the resampling context\n");
-            exit (1);
+        ret = swr_init (ost.swr_ctx
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Failed to initialize the resampling context\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
     }
@@ -390,14 +599,35 @@ private class MuxApplication : GLib.Application {
         /***********************************************************
         check if we want to generate more frames
         ***********************************************************/
-        if (av_compare_ts (ost.next_pts, ost.enc.time_base,
-                        STREAM_DURATION, new LibAVUtil.Rational () {numerator = 1, denominator = 1 }) > 0)
-            return null;
+        if (
+            av_compare_ts (
+            ost.next_pts, ost.enc.time_base,
+            STREAM_DURATION,
+            new LibAVUtil.Rational () {
+                numerator = 1,
+                denominator = 1
+            }
 
-        for (j = 0; j <frame.nb_samples; j++) {
-            v = (int)(sin (ost.t) * 10000);
-            for (i = 0; i < ost.enc.ch_layout.nb_channels; i++)
+        ) > 0) {
+            return null;
+        }
+
+        for (
+            j = 0;
+            j < frame.nb_samples;
+            j++
+        ) {
+            v = (int)(sin (ost.t) * 10000
+            );
+
+            for (
+                i = 0;
+                i < ost.enc.ch_layout.nb_channels;
+                i++
+            ) {
                 *q++ = v;
+            }
+
             ost.t     += ost.tincr;
             ost.tincr += ost.tincr2;
         }
@@ -416,52 +646,80 @@ private class MuxApplication : GLib.Application {
         AVFormatContext? oc,
         OutputStream? ost
     ) {
-        AVCodecContext? c;
+        AVCodecContext? codec_context;
         AVFrame? frame;
         int ret;
         int dst_nb_samples;
 
-        c = ost.enc;
+        codec_context = ost.enc;
 
-        frame = get_audio_frame (ost);
+        frame = get_audio_frame (ost
+        );
 
-        if (frame) {
+        if (
+            frame) {
             /***********************************************************
             convert samples from native format to destination codec format, using the resampler
             ***********************************************************/
             /***********************************************************
             compute destination number of samples
             ***********************************************************/
-            dst_nb_samples = swr_get_delay (ost.swr_ctx, c.sample_rate) + frame.nb_samples;
-            av_assert0 (dst_nb_samples == frame.nb_samples);
+            dst_nb_samples = swr_get_delay (ost.swr_ctx, codec_context.sample_rate) + frame.nb_samples;
+            av_assert0 (
+                dst_nb_samples == frame.nb_samples
+            );
 
             /***********************************************************
             when we pass a frame to the encoder, it may keep a reference to it
             internally;
             make sure we do not overwrite it here
             ***********************************************************/
-            ret = av_frame_make_writable (ost.frame);
-            if (ret < 0)
-                exit (1);
+            ret = av_frame_make_writable (ost.frame
+            );
+
+            if (
+                ret < 0
+            ) {
+                exit (
+                    1
+                );
+
+            }
 
             /***********************************************************
             convert to destination format
             ***********************************************************/
-            ret = swr_convert (ost.swr_ctx,
-                            ost.frame.data, dst_nb_samples,
-                            (uint8[][] )frame.data, frame.nb_samples);
-            if (ret < 0) {
-                fprintf (stderr, "Error while converting\n");
-                exit (1);
+            ret = swr_convert (
+                ost.swr_ctx,
+                ost.frame.data, dst_nb_samples,
+                (uint8[][] )frame.data, frame.nb_samples
+            );
+
+            if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Error while converting\n"
+                );
+
+                exit (
+                    1
+                );
+
             }
 
             frame = ost.frame;
 
-            frame.pts = av_rescale_q (ost.samples_count, new LibAVUtil.Rational () {numerator = 1, denominator = c.sample_rate}, c.time_base);
+            frame.pts = av_rescale_q (ost.samples_count, new LibAVUtil.Rational () {numerator = 1, denominator = codec_context.sample_rate}, codec_context.time_base
+            );
+
             ost.samples_count += dst_nb_samples;
         }
 
-        return write_frame (oc, c, ost.st, frame, ost.tmp_pkt);
+        return write_frame (oc, codec_context, ost.st, frame, ost.tmp_pkt
+        );
+
     }
 
     /**************************************************************/
@@ -478,8 +736,10 @@ private class MuxApplication : GLib.Application {
         int ret;
 
         frame = av_frame_alloc ();
-        if (!frame)
+        if (
+            !frame) {
             return null;
+        }
 
         frame.format = pix_fmt;
         frame.width = width;
@@ -488,10 +748,21 @@ private class MuxApplication : GLib.Application {
         /***********************************************************
         allocate the buffers for the frame data
         ***********************************************************/
-        ret = av_frame_get_buffer (frame, 0);
-        if (ret < 0) {
-            fprintf (stderr, "Could not allocate frame data.\n");
-            exit (1);
+        ret = av_frame_get_buffer (frame, 0
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not allocate frame data.\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
         return frame;
@@ -504,28 +775,56 @@ private class MuxApplication : GLib.Application {
         AVDictionary? opt_arg
     ) {
         int ret;
-        AVCodecContext? c = ost.enc;
+        AVCodecContext? codec_context = ost.enc;
         AVDictionary? opt = null;
 
-        av_dict_copy (&opt, opt_arg, 0);
+        av_dict_copy (
+            &opt, opt_arg, 0
+        );
 
         /***********************************************************
         open the codec
         ***********************************************************/
-        ret = avcodec_open2 (c, codec, &opt);
-        av_dict_free (&opt);
-        if (ret < 0) {
-            fprintf (stderr, "Could not open video codec: %s\n", av_err2str (ret));
-            exit (1);
+        ret = avcodec_open2 (codec_context, codec, &opt
+        );
+
+        av_dict_free (
+            &opt
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not open video codec: %s\n",
+                av_err2str (
+                    ret)
+            );
+
+            exit (
+                1
+            );
+
         }
 
         /***********************************************************
         allocate and init a reusable frame
         ***********************************************************/
-        ost.frame = alloc_frame (c.pix_fmt, c.width, c.height);
-        if (!ost.frame) {
-            fprintf (stderr, "Could not allocate video frame\n");
-            exit (1);
+        ost.frame = alloc_frame (codec_context.pix_fmt, codec_context.width, codec_context.height
+        );
+
+        if (
+            !ost.frame) {
+            fprintf (
+                stderr,
+                "Could not allocate video frame\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
         /***********************************************************
@@ -534,11 +833,22 @@ private class MuxApplication : GLib.Application {
         output format.
         ***********************************************************/
         ost.tmp_frame = null;
-        if (c.pix_fmt != LibAVUtil.PixelFormat.YUV420P) {
-            ost.tmp_frame = alloc_frame (LibAVUtil.PixelFormat.YUV420P, c.width, c.height);
-            if (!ost.tmp_frame) {
-                fprintf (stderr, "Could not allocate temporary video frame\n");
-                exit (1);
+        if (
+            codec_context.pix_fmt != LibAVUtil.PixelFormat.YUV420P) {
+            ost.tmp_frame = alloc_frame (LibAVUtil.PixelFormat.YUV420P, codec_context.width, codec_context.height
+            );
+
+            if (
+                !ost.tmp_frame) {
+                fprintf (
+                    stderr,
+                    "Could not allocate temporary video frame\n"
+                );
+
+                exit (
+                    1
+                );
+
             }
 
         }
@@ -546,10 +856,22 @@ private class MuxApplication : GLib.Application {
         /***********************************************************
         copy the stream parameters to the muxer
         ***********************************************************/
-        ret = avcodec_parameters_from_context (ost.st.codecpar, c);
-        if (ret < 0) {
-            fprintf (stderr, "Could not copy the stream parameters\n");
-            exit (1);
+        ret = avcodec_parameters_from_context (
+            ost.st.codecpar, codec_context
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not copy the stream parameters\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
     }
@@ -570,15 +892,34 @@ private class MuxApplication : GLib.Application {
         /***********************************************************
         Y
         ***********************************************************/
-        for (y = 0; y < height; y++)
-            for (x = 0; x < width; x++)
+        for (
+            y = 0;
+            y < height;
+            y++
+        ) {
+            for (
+                x = 0;
+                x < width;
+                x++
+            ) {
                 pict.data[0][y * pict.linesize[0] + x] = x + y + i * 3;
+            }
+
+        }
 
         /***********************************************************
         Cb and Cr
         ***********************************************************/
-        for (y = 0; y < height / 2; y++) {
-            for (x = 0; x < width / 2; x++) {
+        for (
+            y = 0;
+            y < height / 2;
+            y++
+        ) {
+            for (
+                x = 0;
+                x < width / 2;
+                x++
+            ) {
                 pict.data[1][y * pict.linesize[1] + x] = 128 + y + i * 2;
                 pict.data[2][y * pict.linesize[2] + x] = 64 + x + i * 5;
             }
@@ -590,16 +931,18 @@ private class MuxApplication : GLib.Application {
     private static AVFrame? get_video_frame (
         OutputStream? ost
     ) {
-        AVCodecContext? c = ost.enc;
+        AVCodecContext? codec_context = ost.enc;
 
         /***********************************************************
         check if we want to generate more frames
         ***********************************************************/
-        if (av_compare_ts (
-            ost.next_pts, c.time_base,
-            STREAM_DURATION, new LibAVUtil.Rational () {numerator = 1, denominator = 1 }
+        if (
+            av_compare_ts (
+                ost.next_pts, codec_context.time_base,
+                STREAM_DURATION, new LibAVUtil.Rational () {numerator = 1, denominator = 1 }
 
-        ) > 0) {
+            ) > 0
+        ) {
             return null;
         }
 
@@ -607,34 +950,66 @@ private class MuxApplication : GLib.Application {
         when we pass a frame to the encoder, it may keep a reference to it
         internally; make sure we do not overwrite it here
         ***********************************************************/
-        if (av_frame_make_writable (ost.frame) < 0)
-            exit (1);
+        if (
+            av_frame_make_writable (
+                ost.frame
+            ) < 0
+        ) {
+            exit (
+                1
+            );
 
-        if (c.pix_fmt != LibAVUtil.PixelFormat.YUV420P) {
+        }
+
+        if (
+            codec_context.pix_fmt != LibAVUtil.PixelFormat.YUV420P
+        ) {
             /***********************************************************
             as we only generate a YUV420P picture, we must convert it
             to the codec pixel format if needed
             ***********************************************************/
-            if (!ost.sws_ctx) {
-                ost.sws_ctx = sws_getContext (c.width, c.height,
-                                            LibAVUtil.PixelFormat.YUV420P,
-                                            c.width, c.height,
-                                            c.pix_fmt,
-                                            SCALE_FLAGS, null, null, null);
-                if (!ost.sws_ctx) {
-                    fprintf (stderr,
-                            "Could not initialize the conversion context\n");
-                    exit (1);
+            if (
+                !ost.sws_ctx
+            ) {
+                ost.sws_ctx = sws_getContext (
+                    codec_context.width, codec_context.height,
+                    LibAVUtil.PixelFormat.YUV420P,
+                    codec_context.width, codec_context.height,
+                    codec_context.pix_fmt,
+                    SCALE_FLAGS, null, null, null
+                );
+
+                if (
+                    !ost.sws_ctx
+                ) {
+                    fprintf (
+                        stderr,
+                            "Could not initialize the conversion context\n"
+                    );
+
+                    exit (
+                        1
+                    );
+
                 }
 
             }
 
-            fill_yuv_image (ost.tmp_frame, ost.next_pts, c.width, c.height);
-            sws_scale (ost.sws_ctx, (uint8[][]) ost.tmp_frame.data,
-                    ost.tmp_frame.linesize, 0, c.height, ost.frame.data,
-                    ost.frame.linesize);
+            fill_yuv_image (
+                ost.tmp_frame, ost.next_pts, codec_context.width, codec_context.height
+            );
+
+            sws_scale (
+                ost.sws_ctx, (uint8[][]) ost.tmp_frame.data,
+                    ost.tmp_frame.linesize, 0, codec_context.height, ost.frame.data,
+                    ost.frame.linesize
+            );
+
         } else {
-            fill_yuv_image (ost.frame, ost.next_pts, c.width, c.height);
+            fill_yuv_image (
+                ost.frame, ost.next_pts, codec_context.width, codec_context.height
+            );
+
         }
 
         ost.frame.pts = ost.next_pts++;
@@ -650,19 +1025,39 @@ private class MuxApplication : GLib.Application {
         AVFormatContext? oc,
         OutputStream? ost
     ) {
-        return write_frame (oc, ost.enc, ost.st, get_video_frame (ost), ost.tmp_pkt);
+        return write_frame (oc, ost.enc, ost.st, get_video_frame (ost), ost.tmp_pkt
+        );
+
     }
 
     private static void close_stream (
         AVFormatContext? oc,
         OutputStream? ost
     ) {
-        avcodec_free_context (&ost.enc);
-        av_frame_free (&ost.frame);
-        av_frame_free (&ost.tmp_frame);
-        av_packet_free (&ost.tmp_pkt);
-        sws_freeContext (ost.sws_ctx);
-        swr_free (&ost.swr_ctx);
+        avcodec_free_context (
+            &ost.enc
+        );
+
+        av_frame_free (
+            &ost.frame
+        );
+
+        av_frame_free (
+            &ost.tmp_frame
+        );
+
+        av_packet_free (
+            &ost.tmp_pkt
+        );
+
+        sws_freeContext (
+            ost.sws_ctx
+        );
+
+        swr_free (
+            &ost.swr_ctx
+        );
+
     }
 
     /**************************************************************/
@@ -686,34 +1081,68 @@ private class MuxApplication : GLib.Application {
         AVDictionary? opt = null;
         int i;
 
-        if (argc < 2) {
-            printf ("usage: %s output_file\n" +
+        if (
+            argc < 2
+        ) {
+            printf (
+                "usage: %s output_file\n" +
                 "API example program to output a media file with libavformat.\n" +
                 "This program generates a synthetic audio and video stream, encodes and\n" +
                 "muxes them into a file named output_file.\n" +
                 "The output format is automatically guessed according to the file extension.\n" +
                 "Raw images can also be output by using '%%d' in the filename.\n" +
-                "\n", argv[0]);
+                "\n",
+                argv[0]
+            );
+
             return 1;
         }
 
         filename = argv[1];
-        for (i = 2; i+1 < argc; i+=2) {
-            if (!strcmp (argv[i], "-flags") || !strcmp (argv[i], "-fflags"))
-                av_dict_set (&opt, argv[i]+1, argv[i+1], 0);
+        for (
+            i = 2;
+            i + 1 < argc;
+            i += 2
+        ) {
+            if (
+                !strcmp (
+                    argv[i], "-flags"
+                ) ||
+                !strcmp (
+                    argv[i], "-fflags"
+                )
+            ) {
+                av_dict_set (
+                    &opt, argv[i]+1, argv[i+1], 0
+                );
+
+            }
+
         }
 
         /***********************************************************
         allocate the output media context
         ***********************************************************/
-        avformat_alloc_output_context2 (&oc, null, null, filename);
-        if (!oc) {
-            printf ("Could not deduce output format from file extension: using MPEG.\n");
-            avformat_alloc_output_context2 (&oc, null, "mpeg", filename);
+        avformat_alloc_output_context2 (
+            &oc, null, null, filename
+        );
+
+        if (
+            !oc) {
+            printf (
+                "Could not deduce output format from file extension: using MPEG.\n"
+            );
+
+            avformat_alloc_output_context2 (
+                &oc, null, "mpeg", filename
+            );
+
         }
 
-        if (!oc)
+        if (
+            !oc) {
             return 1;
+        }
 
         fmt = oc.oformat;
 
@@ -721,14 +1150,22 @@ private class MuxApplication : GLib.Application {
         Add the audio and video streams using the default format codecs
         and initialize the codecs.
         ***********************************************************/
-        if (fmt.video_codec != AV_CODEC_ID_NONE) {
-            add_stream (&video_st, oc, &video_codec, fmt.video_codec);
+        if (
+            fmt.video_codec != AV_CODEC_ID_NONE) {
+            add_stream (
+                &video_st, oc, &video_codec, fmt.video_codec
+            );
+
             have_video = 1;
             encode_video = 1;
         }
 
-        if (fmt.audio_codec != AV_CODEC_ID_NONE) {
-            add_stream (&audio_st, oc, &audio_codec, fmt.audio_codec);
+        if (
+            fmt.audio_codec != AV_CODEC_ID_NONE) {
+            add_stream (
+                &audio_st, oc, &audio_codec, fmt.audio_codec
+            );
+
             have_audio = 1;
             encode_audio = 1;
         }
@@ -737,22 +1174,46 @@ private class MuxApplication : GLib.Application {
         Now that all the parameters are set, we can open the audio and
         video codecs and allocate the necessary encode buffers.
         ***********************************************************/
-        if (have_video)
-            open_video (oc, video_codec, &video_st, opt);
+        if (
+            have_video) {
+            open_video (
+                oc, video_codec, &video_st, opt
+            );
 
-        if (have_audio)
-            open_audio (oc, audio_codec, &audio_st, opt);
+        }
 
-        av_dump_format (oc, 0, filename, 1);
+        if (
+            have_audio) {
+            open_audio (
+                oc, audio_codec, &audio_st, opt
+            );
+
+        }
+
+        av_dump_format (
+            oc, 0, filename, 1
+        );
 
         /***********************************************************
         open the output file, if needed
         ***********************************************************/
-        if (!(fmt.flags & AVFMT_NOFILE)) {
-            ret = avio_open (&oc.pb, filename, AVIO_FLAG_WRITE);
-            if (ret < 0) {
-                fprintf (stderr, "Could not open '%s': %s\n", filename,
-                        av_err2str (ret));
+        if (
+            !(fmt.flags & AVFMT_NOFILE)
+        ) {
+            ret = avio_open (&oc.pb, filename, AVIO_FLAG_WRITE
+            );
+
+            if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Could not open '%s': %s\n",
+                    filename,
+                    av_err2str (
+                        ret)
+                );
+
                 return 1;
             }
 
@@ -761,47 +1222,91 @@ private class MuxApplication : GLib.Application {
         /***********************************************************
         Write the stream header, if any.
         ***********************************************************/
-        ret = avformat_write_header (oc, &opt);
-        if (ret < 0) {
-            fprintf (stderr, "Error occurred when opening output file: %s\n",
-                    av_err2str (ret));
+        ret = avformat_write_header (oc, &opt
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Error occurred when opening output file: %s\n",
+                    av_err2str (
+                        ret)
+            );
+
             return 1;
         }
 
-        while (encode_video || encode_audio) {
+        while (
+            encode_video ||
+            encode_audio
+        ) {
             /***********************************************************
             select the stream to encode
             ***********************************************************/
-            if (encode_video &&
-                (!encode_audio || av_compare_ts (video_st.next_pts, video_st.enc.time_base,
-                                                audio_st.next_pts, audio_st.enc.time_base) <= 0)) {
-                encode_video = !write_video_frame (oc, &video_st);
+            if (
+                encode_video &&
+                (
+                    !encode_audio ||
+                    av_compare_ts (
+                        video_st.next_pts, video_st.enc.time_base,
+                        audio_st.next_pts, audio_st.enc.time_base
+                    ) <= 0
+                )
+            ) {
+                encode_video = !write_video_frame (oc, &video_st
+                );
+
             } else {
-                encode_audio = !write_audio_frame (oc, &audio_st);
+                encode_audio = !write_audio_frame (oc, &audio_st
+                );
+
             }
 
         }
 
-        av_write_trailer (oc);
+        av_write_trailer (
+            oc
+        );
 
         /***********************************************************
         Close each codec.
         ***********************************************************/
-        if (have_video)
-            close_stream (oc, &video_st);
-        if (have_audio)
-            close_stream (oc, &audio_st);
+        if (
+            have_video) {
+            close_stream (
+                oc, &video_st
+            );
 
-        if (!(fmt.flags & AVFMT_NOFILE))
+        }
+
+        if (
+            have_audio) {
+            close_stream (
+                oc, &audio_st
+            );
+
+        }
+
+        if (
+            !(fmt.flags & AVFMT_NOFILE)
+        ) {
             /***********************************************************
             Close the output file.
             ***********************************************************/
-            avio_closep (&oc.pb);
+            avio_closep (
+                &oc.pb
+            );
+
+        }
 
         /***********************************************************
         free the stream
         ***********************************************************/
-        avformat_free_context (oc);
+        avformat_free_context (
+            oc
+        );
 
         return 0;
     }

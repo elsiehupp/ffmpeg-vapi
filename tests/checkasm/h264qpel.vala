@@ -24,19 +24,43 @@ private const uint32 pixel_mask[3] = {
     0x03ff03ff
 };
 
-private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8);
+private const size_t SIZEOF_PIXEL = ((bit_depth + 7) / 8
+);
+
 private const size_t BUF_SIZE = (2 * 16 * (16 + 3 + 4));
 
 private static void randomize_buffers () {
     uint32 mask = pixel_mask[bit_depth - 8];
     int k;
-    for (k = 0; k < BUF_SIZE; k += 4) {
+    for (
+        k = 0;
+        k < BUF_SIZE;
+        k += 4
+    ) {
         uint32 r = rnd () & mask;
-        AV_WN32A (buf0 + k, r);
-        AV_WN32A (buf1 + k, r);
+
+        AV_WN32A (
+            buf0 + k,
+            r
+        );
+
+        AV_WN32A (
+            buf1 + k,
+            r
+        );
+
         r = rnd ();
-        AV_WN32A (dst0 + k, r);
-        AV_WN32A (dst1 + k, r);
+
+        AV_WN32A (
+            dst0 + k,
+            r
+        );
+
+        AV_WN32A (
+            dst1 + k,
+            r
+        );
+
     }
 
 }
@@ -48,34 +72,101 @@ private const size_t src0 = (buf0 + 3 * 2 * 16);
 
 private const size_t src1 = (buf1 + 3 * 2 * 16);
 
-//  declare_func_emms (AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT, void, uint8[] dst, uint8[] src, size_t stride);
+//  declare_func_emms (
+//      AV_CPU_FLAG_MMX | AV_CPU_FLAG_MMXEXT,
+//      void,
+//      uint8[] dst,
+//      uint8[] src,
+//      size_t stride
+//  );
 
 private static void checkasm_check_h264qpel () {
-    //  LOCAL_ALIGNED_16 (uint8, buf0, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, buf1, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, dst0, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (uint8, dst1, [BUF_SIZE]);
-    H264QpelContext h;
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      buf0,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      buf1,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst0,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      uint8,
+    //      dst1,
+    //      [BUF_SIZE]
+    //  );
+
+    H264QpelContext h264_qpel_context;
     int op, bit_depth, i, j;
 
-    for (op = 0; op < 2; op++) {
-        qpel_mc_func (*tab)[16] = op ? h.avg_h264_qpel_pixels_tab : h.put_h264_qpel_pixels_tab;
+    for (
+        op = 0;
+        op < 2;
+        op++
+    ) {
+        qpel_mc_func (*tab)[16] = op ? h264_qpel_context.avg_h264_qpel_pixels_tab : h264_qpel_context.put_h264_qpel_pixels_tab;
         string op_name = op ? "avg" : "put";
 
-        for (bit_depth = 8; bit_depth <= 10; bit_depth++) {
-            ff_h264qpel_init (&h, bit_depth);
-            for (i = 0; i < (op ? 3 : 4); i++) {
+        for (
+            bit_depth = 8;
+            bit_depth <= 10;
+            bit_depth++
+        ) {
+            ff_h264qpel_init (
+                &h264_qpel_context, bit_depth
+            );
+
+            for (
+                i = 0;
+                i < (op ? 3 : 4);
+                i++
+            ) {
                 int size = 16 >> i;
-                for (j = 0; j < 16; j++) {
-                    if (check_func (tab[i][j], "%s_h264_qpel_%d_mc%d%d_%d", op_name, size, j & 3, j >> 2, bit_depth)) {
+                for (
+                    j = 0;
+                    j < 16;
+                    j++
+                ) {
+                    if (
+                        check_func (
+                            tab[i][j],
+                            "%s_h264_qpel_%d_mc%d%d_%d",
+                            op_name, size, j & 3, j >> 2, bit_depth
+                        )
+                    ) {
                         randomize_buffers ();
-                        //  call_ref (dst0, src0, size * SIZEOF_PIXEL);
-                        //  call_new (dst1, src1, size * SIZEOF_PIXEL);
-                        if (memcmp (buf0, buf1, BUF_SIZE) || memcmp (dst0, dst1, BUF_SIZE)) {
+                        call_ref (
+                            dst0, src0, size * SIZEOF_PIXEL
+                        );
+
+                        call_new (
+                            dst1, src1, size * SIZEOF_PIXEL
+                        );
+
+                        if (
+                            memcmp (
+                                buf0, buf1, BUF_SIZE
+                            ) ||
+                            memcmp (
+                                dst0, dst1, BUF_SIZE
+                            )
+                        ) {
                             fail ();
                         }
 
-                        bench_new (dst1, src1, size * SIZEOF_PIXEL);
+                        bench_new (
+                            dst1, src1, size * SIZEOF_PIXEL
+                        );
+
                     }
 
                 }
@@ -84,7 +175,10 @@ private static void checkasm_check_h264qpel () {
 
         }
 
-        report ("%s", op_name);
+        report (
+            "%s", op_name
+        );
+
     }
 
 }

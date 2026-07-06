@@ -22,97 +22,351 @@ private const size_t BUF_SIZE = 256;
 
 private static void randomize_buffers () {
     int i;
-    for (i = 0; i < BUF_SIZE; i++) {
-        src0[i] = sign_extend (rnd (), 24);
-        src1[i] = sign_extend (rnd (), 24);
-        src2[i] = sign_extend (rnd (), 24);
+    for (
+        i = 0;
+        i < BUF_SIZE;
+        i++
+    ) {
+        src0[i] = sign_extend (rnd (), 24
+        );
+
+        src1[i] = sign_extend (rnd (), 24
+        );
+
+        src2[i] = sign_extend (rnd (), 24
+        );
+
     }
 
 }
 
-private static void check_vector_fmul (int[] src0, int[] src1) {
-    //  LOCAL_ALIGNED_32 (int, ref, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_32 (int, new, [BUF_SIZE]);
+private static void check_vector_fmul (
+    int[] src0, int[] src1
+) {
+    //  LOCAL_ALIGNED_32 (
+    //      int,
+    //      ref,
+    //      [BUF_SIZE]
+    //  );
 
-    //  declare_func (void, int[] dst, int[] src0, int[] src1, int len);
+    //  LOCAL_ALIGNED_32 (
+    //      int,
+    //      new,
+    //      [BUF_SIZE]
+    //  );
 
-    //  call_ref (ref, src0, src1, BUF_SIZE);
-    //  call_new (new, src0, src1, BUF_SIZE);
-    //  if (memcmp (ref, new, BUF_SIZE * sizeof (int))) {
+    //  declare_func (
+    //      void,
+    //      int[] dst,
+    //      int[] src0,
+    //      int[] src1,
+    //      int len
+    //  );
+
+    //  call_ref (
+    //      ref,
+    //      src0,
+    //      src1,
+    //      BUF_SIZE
+    //  );
+
+    //  call_new (
+    //      new,
+    //      src0,
+    //      src1,
+    //      BUF_SIZE
+    //  );
+
+    //  if (
+    //      memcmp (
+    //          ref,
+    //          new,
+    //          BUF_SIZE * sizeof (
+    //              int
+    //          )
+    //      )
+    //  ) {
     //      fail ();
     //  }
 
-    //  bench_new (new, src0, src1, BUF_SIZE);
+    //  bench_new (
+    //      new,
+    //      src0,
+    //      src1,
+    //      BUF_SIZE
+    //  );
+
 }
 
-private static void check_vector_fmul_add (int[] src0, int[] src1, int[] src2) {
-    //  LOCAL_ALIGNED_32 (int, ref, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_32 (int, new, [BUF_SIZE]);
+private static void check_vector_fmul_add (
+    int[] src0, int[] src1, int[] src2
+) {
+    //  LOCAL_ALIGNED_32 (
+    //      int,
+    //      ref,
+    //      [BUF_SIZE]
+    //  );
 
-    //  declare_func (void, int[] dst, int[] src0, int[] src1, int[] src2, int len);
+    //  LOCAL_ALIGNED_32 (
+    //      int,
+    //      new,
+    //      [BUF_SIZE]
+    //  );
 
-    //  call_ref (ref, src0, src1, src2, BUF_SIZE);
-    //  call_new (new, src0, src1, src2, BUF_SIZE);
-    //  if (memcmp (ref, new, BUF_SIZE * sizeof (int))) {
+    //  declare_func (
+    //      void,
+    //      int[] dst,
+    //      int[] src0,
+    //      int[] src1,
+    //      int[] src2,
+    //      int len
+    //  );
+
+    //  call_ref (
+    //      ref,
+    //      src0,
+    //      src1,
+    //      src2,
+    //      BUF_SIZE
+    //  );
+
+    //  call_new (
+    //      new,
+    //      src0,
+    //      src1,
+    //      src2,
+    //      BUF_SIZE
+    //  );
+
+    //  if (
+    //      memcmp (
+    //          ref,
+    //          new,
+    //          BUF_SIZE * sizeof (
+    //              int
+    //          )
+    //      )
+    //  ) {
     //      fail ();
     //  }
 
-    //  bench_new (new, src0, src1, src2, BUF_SIZE);
+    //  bench_new (
+    //      new,
+    //      src0,
+    //      src1,
+    //      src2,
+    //      BUF_SIZE
+    //  );
+
 }
 
-private static void check_vector_fmul_window (int32[] src0, int32[] src1, int32[] win) {
-    //  LOCAL_ALIGNED_32 (int32, ref, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_32 (int32, new, [BUF_SIZE]);
+private static void check_vector_fmul_window (
+    int32[] src0, int32[] src1, int32[] win
+) {
+    //  LOCAL_ALIGNED_32 (
+    //      int32,
+    //      ref,
+    //      [BUF_SIZE]
+    //  );
 
-    //  declare_func (void, int32[] dst, int32[] src0, int32[] src1, int32[] win, int len);
+    //  LOCAL_ALIGNED_32 (
+    //      int32,
+    //      new,
+    //      [BUF_SIZE]
+    //  );
 
-    //  call_ref (ref, src0, src1, win, BUF_SIZE / 2);
-    //  call_new (new, src0, src1, win, BUF_SIZE / 2);
-    //  if (memcmp (ref, new, BUF_SIZE * sizeof (int32))) {
+    //  declare_func (
+    //      void,
+    //      int32[] dst,
+    //      int32[] src0,
+    //      int32[] src1,
+    //      int32[] win,
+    //      int len
+    //  );
+
+    //  call_ref (
+    //      ref,
+    //      src0,
+    //      src1,
+    //      win,
+    //      BUF_SIZE / 2
+    //  );
+
+    //  call_new (
+    //      new,
+    //      src0,
+    //      src1,
+    //      win,
+    //      BUF_SIZE / 2
+    //  );
+
+    //  if (
+    //      memcmp (
+    //          ref,
+    //          new,
+    //          BUF_SIZE * sizeof (
+    //              int32
+    //          )
+    //      )
+    //  ) {
     //      fail ();
     //  }
 
-    //  bench_new (new, src0, src1, win, BUF_SIZE / 2);
+    //  bench_new (
+    //      new,
+    //      src0,
+    //      src1,
+    //      win,
+    //      BUF_SIZE / 2
+    //  );
+
 }
 
-private static void check_vector_fmul_window_scaled (int32[] src0, int32[] src1, int32[] win) {
-    //  LOCAL_ALIGNED_16 (int16, ref, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (int16, new, [BUF_SIZE]);
+private static void check_vector_fmul_window_scaled (
+    int32[] src0, int32[] src1, int32[] win
+) {
+    //  LOCAL_ALIGNED_16 (
+    //      int16,
+    //      ref,
+    //      [BUF_SIZE]
+    //  );
 
-    //  declare_func (void, int16[] dst, int32[] src0, int32[] src1, int32[] win, int len, uint8 bits);
+    //  LOCAL_ALIGNED_16 (
+    //      int16,
+    //      new,
+    //      [BUF_SIZE]
+    //  );
 
-    //  call_ref (ref, src0, src1, win, BUF_SIZE / 2, 2);
-    //  call_new (new, src0, src1, win, BUF_SIZE / 2, 2);
-    //  if (memcmp (ref, new, BUF_SIZE * sizeof (int16))) {
+    //  declare_func (
+    //      void,
+    //      int16[] dst,
+    //      int32[] src0,
+    //      int32[] src1,
+    //      int32[] win,
+    //      int len,
+    //      uint8 bits
+    //  );
+
+    //  call_ref (
+    //      ref,
+    //      src0,
+    //      src1,
+    //      win,
+    //      BUF_SIZE / 2,
+    //      2
+    //  );
+
+    //  call_new (
+    //      new,
+    //      src0,
+    //      src1,
+    //      win,
+    //      BUF_SIZE / 2,
+    //      2
+    //  );
+
+    //  if (
+    //      memcmp (
+    //          ref,
+    //          new,
+    //          BUF_SIZE * sizeof (
+    //              int16
+    //          )
+    //      )
+    //  ) {
     //      fail ();
     //  }
 
-    //  bench_new (new, src0, src1, win, BUF_SIZE / 2, 2);
+    //  bench_new (
+    //      new,
+    //      src0,
+    //      src1,
+    //      win,
+    //      BUF_SIZE / 2,
+    //      2
+    //  );
+
 }
 
-private static void check_butterflies (int[] src0, int[] src1) {
-    //  LOCAL_ALIGNED_16 (int, ref0, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (int, ref1, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (int, new0, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (int, new1, [BUF_SIZE]);
+private static void check_butterflies (
+    int[] src0, int[] src1
+) {
+    //  LOCAL_ALIGNED_16 (
+    //      int,
+    //      ref0,
+    //      [BUF_SIZE]
+    //  );
 
-    //  declare_func (void, int[] av_restrict src0, int[] av_restrict src1, int len);
+    //  LOCAL_ALIGNED_16 (
+    //      int,
+    //      ref1,
+    //      [BUF_SIZE]
+    //  );
 
-    memcpy (ref0, src0, BUF_SIZE * sizeof (src0));
-    memcpy (ref1, src1, BUF_SIZE * sizeof (src1));
-    memcpy (new0, src0, BUF_SIZE * sizeof (src0));
-    memcpy (new1, src1, BUF_SIZE * sizeof (src1));
+    //  LOCAL_ALIGNED_16 (
+    //      int,
+    //      new0,
+    //      [BUF_SIZE]
+    //  );
 
-    //  call_ref (ref0, ref1, BUF_SIZE);
-    //  call_new (new0, new1, BUF_SIZE);
-    if (memcmp (ref0, new0, BUF_SIZE * sizeof (ref0)) ||
-        memcmp (ref1, new1, BUF_SIZE * sizeof (ref1))) {
+    //  LOCAL_ALIGNED_16 (
+    //      int,
+    //      new1,
+    //      [BUF_SIZE]
+    //  );
+
+    //  declare_func (
+    //      void,
+    //      int[] av_restrict src0,
+    //      int[] av_restrict src1,
+    //      int len
+    //  );
+
+    memcpy (
+        ref0, src0, BUF_SIZE * sizeof (src0)
+    );
+
+    memcpy (
+        ref1, src1, BUF_SIZE * sizeof (src1)
+    );
+
+    memcpy (
+        new0, src0, BUF_SIZE * sizeof (src0)
+    );
+
+    memcpy (
+        new1, src1, BUF_SIZE * sizeof (src1)
+    );
+
+    call_ref (
+        ref0, ref1, BUF_SIZE
+    );
+
+    call_new (
+        new0, new1, BUF_SIZE
+    );
+
+    if (
+        memcmp (
+            ref0, new0, BUF_SIZE * sizeof (ref0)) ||
+        memcmp (
+            ref1, new1, BUF_SIZE * sizeof (ref1))
+    ) {
         fail ();
     }
 
-    memcpy (new0, src0, BUF_SIZE * sizeof (src0));
-    memcpy (new1, src1, BUF_SIZE * sizeof (src1));
-    bench_new (new0, new1, BUF_SIZE);
+    memcpy (
+        new0, src0, BUF_SIZE * sizeof (src0)
+    );
+
+    memcpy (
+        new1, src1, BUF_SIZE * sizeof (src1)
+    );
+
+    bench_new (
+        new0, new1, BUF_SIZE
+    );
+
 }
 
 private static void check_scalarproduct_fixed (
@@ -122,55 +376,151 @@ private static void check_scalarproduct_fixed (
     //  int ref;
     //  int new;
 
-    //  declare_func (int, int[] src0, int[] src1, int len);
+    //  declare_func (
+    //      int,
+    //      int[] src0,
+    //      int[] src1,
+    //      int len
+    //  );
 
-    //  ref = call_ref (src0, src1, BUF_SIZE);
-    //  new = call_new (src0, src1, BUF_SIZE);
-    //  if (ref != new) {
+    //  ref = call_ref (
+    //      src0,
+    //      src1,
+    //      BUF_SIZE
+    //  );
+
+    //  new = call_new (
+    //      src0,
+    //      src1,
+    //      BUF_SIZE
+    //  );
+
+    //  if (
+    //      ref != new
+    //  ) {
     //      fail ();
     //  }
 
-    bench_new (src0, src1, BUF_SIZE);
+    bench_new (
+        src0, src1, BUF_SIZE
+    );
+
 }
 
 private static void checkasm_check_fixed_dsp () {
-    //  LOCAL_ALIGNED_32 (int32, src0, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_32 (int32, src1, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_32 (int32, src2, [BUF_SIZE]);
-    AVFixedDSPContext? fdsp = avpriv_alloc_fixed_dsp (1);
+    //  LOCAL_ALIGNED_32 (
+    //      int32,
+    //      src0,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      int32,
+    //      src1,
+    //      [BUF_SIZE]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      int32,
+    //      src2,
+    //      [BUF_SIZE]
+    //  );
+
+    AVFixedDSPContext? fdsp = avpriv_alloc_fixed_dsp (1
+    );
 
     randomize_buffers ();
-    if (check_func (fdsp.vector_fmul, "vector_fmul_fixed")) {
-        check_vector_fmul (src0, src1);
+
+    if (
+        check_func (
+            fdsp.vector_fmul, "vector_fmul_fixed"
+        )
+    ) {
+        check_vector_fmul (
+            src0, src1
+        );
+
     }
 
-    if (check_func (fdsp.vector_fmul_add, "vector_fmul_add_fixed")) {
-        check_vector_fmul_add (src0, src1, src2);
+    if (
+        check_func (
+            fdsp.vector_fmul_add, "vector_fmul_add_fixed"
+        )
+    ) {
+        check_vector_fmul_add (
+            src0, src1, src2
+        );
+
     }
 
-    if (check_func (fdsp.vector_fmul_reverse, "vector_fmul_reverse_fixed")) {
-        check_vector_fmul (src0, src1);
+    if (
+        check_func (
+            fdsp.vector_fmul_reverse, "vector_fmul_reverse_fixed"
+        )
+    ) {
+        check_vector_fmul (
+            src0, src1
+        );
+
     }
 
-    if (check_func (fdsp.vector_fmul_window, "vector_fmul_window_fixed")) {
-        check_vector_fmul_window (src0, src1, src2);
+    if (
+        check_func (
+            fdsp.vector_fmul_window, "vector_fmul_window_fixed"
+        )
+    ) {
+        check_vector_fmul_window (
+            src0, src1, src2
+        );
+
     }
 
-    if (check_func (fdsp.vector_fmul_window_scaled, "vector_fmul_window_scaled_fixed")) {
-        check_vector_fmul_window_scaled (src0, src1, src2);
+    if (
+        check_func (
+            fdsp.vector_fmul_window_scaled, "vector_fmul_window_scaled_fixed"
+        )
+    ) {
+        check_vector_fmul_window_scaled (src0, src1, src2
+        );
+
     }
 
-    report ("vector_fmul");
-    if (check_func (fdsp.butterflies_fixed, "butterflies_fixed")) {
-        check_butterflies (src0, src1);
+    report (
+        "vector_fmul"
+    );
+
+    if (
+        check_func (
+            fdsp.butterflies_fixed, "butterflies_fixed"
+        )
+    ) {
+        check_butterflies (
+            src0, src1
+        );
+
     }
 
-    report ("butterflies_fixed");
-    if (check_func (fdsp.scalarproduct_fixed, "scalarproduct_fixed")) {
-        check_scalarproduct_fixed (src0, src1);
+    report (
+        "butterflies_fixed"
+    );
+
+    if (
+        check_func (
+            fdsp.scalarproduct_fixed, "scalarproduct_fixed"
+        )
+    ) {
+        check_scalarproduct_fixed (
+            src0, src1
+        );
+
     }
 
-    report ("scalarproduct_fixed");
+    report (
+        "scalarproduct_fixed"
+    );
 
-    av_freep (&fdsp);
+    av_freep (
+        &fdsp
+    );
+
 }

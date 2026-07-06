@@ -25,7 +25,11 @@ private static void randomize_buffers (
 ) {
     int j;
     uint8[] tmp_buf = (uint8[] )buf;
-    for (j = 0; j < size; j++) {
+    for (
+        j = 0;
+        j < size;
+        j++
+    ) {
         tmp_buf[j] = rnd () & 0xFF;
     }
 
@@ -35,50 +39,122 @@ private static void check_hflip (
     int step,
     string report_name
 ) {
-    //  LOCAL_ALIGNED_32 (uint8, src, [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, dst_ref, [WIDTH_PADDED]);
-    //  LOCAL_ALIGNED_32 (uint8, dst_new, [WIDTH_PADDED]);
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      src,
+    //      [WIDTH_PADDED]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      dst_ref,
+    //      [WIDTH_PADDED]
+    //  );
+
+    //  LOCAL_ALIGNED_32 (
+    //      uint8,
+    //      dst_new,
+    //      [WIDTH_PADDED]
+    //  );
+
     int w = WIDTH;
     int i;
     int step_array[4] = {1, 1, 1, 1};
-    FlipContext s;
+    FlipContext flip_context;
 
-    //  declare_func (void, uint8[] src, uint8[] dst, int w);
+    //  declare_func (
+    //      void,
+    //      uint8[] src,
+    //      uint8[] dst,
+    //      int w
+    //  );
 
-    memset (src, 0, WIDTH_PADDED);
-    memset (dst_ref, 0, WIDTH_PADDED);
-    memset (dst_new, 0, WIDTH_PADDED);
-    randomize_buffers (src, WIDTH_PADDED);
+    memset (
+        src, 0, WIDTH_PADDED
+    );
 
-    if (step == 2) {
+    memset (
+        dst_ref, 0, WIDTH_PADDED
+    );
+
+    memset (
+        dst_new, 0, WIDTH_PADDED
+    );
+
+    randomize_buffers (
+        src, WIDTH_PADDED
+    );
+
+    if (
+        step == 2
+    ) {
         w /= 2;
-        for (i = 0; i < 4; i++) {
+        for (
+            i = 0;
+            i < 4;
+            i++
+        ) {
             step_array[i] = step;
         }
 
     }
 
-    ff_hflip_init (&s, step_array, 4);
+    ff_hflip_init (
+        &flip_context, step_array, 4
+    );
 
-    if (check_func (s.flip_line[0], "hflip_%s", report_name)) {
-        for (i = 1; i < w; i++) {
-            //  call_ref (src + (w - 1) * step, dst_ref, i);
-            //  call_new (src + (w - 1) * step, dst_new, i);
-            if (memcmp (dst_ref, dst_new, i * step)) {
+    if (
+        check_func (
+            flip_context.flip_line[0],
+            "hflip_%s",
+            report_name
+        )
+    ) {
+        for (
+            i = 1;
+            i < w;
+            i++
+        ) {
+            call_ref (
+                src + (w - 1) * step, dst_ref, i
+            );
+
+            call_new (
+                src + (w - 1) * step, dst_new, i
+            );
+
+            if (
+                memcmp (
+                    dst_ref, dst_new, i * step)
+            ) {
                 fail ();
             }
 
         }
 
-        bench_new (src + (w - 1) * step, dst_new, w);
+        bench_new (
+            src + (w - 1) * step, dst_new, w
+        );
+
     }
 
 }
 
 private static void checkasm_check_vf_hflip () {
-    check_hflip (1, "byte");
-    report ("hflip_byte");
+    check_hflip (
+        1, "byte"
+    );
 
-    check_hflip (2, "short");
-    report ("hflip_short");
+    report (
+        "hflip_byte"
+    );
+
+    check_hflip (
+        2, "short"
+    );
+
+    report (
+        "hflip_short"
+    );
+
 }

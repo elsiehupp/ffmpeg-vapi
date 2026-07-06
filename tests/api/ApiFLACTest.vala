@@ -46,10 +46,22 @@ private class ApiFLACTest : GLib.TestCase {
         uint16 channels,
         uint16 frame_size
     ) {
-        for (uint16 j = 0; j < frame_size; j++) {
-            frame_data[channels * j] = 10000 * ((j / 10 * i) % 2);
-            for (uint16 k = 1; k < channels; k++) {
-                frame_data[channels * j + k] = frame_data[channels * j] * (k + 1);
+        for (
+            uint16 j = 0;
+            j < frame_size;
+            j++
+        ) {
+            frame_data[channels * j] = 10000 * ((j / 10 * i) % 2
+            );
+
+            for (
+                uint16 k = 1;
+                k < channels;
+                k++
+            ) {
+                frame_data[channels * j + k] = frame_data[channels * j] * (k + 1
+                );
+
             }
 
         }
@@ -67,7 +79,10 @@ private class ApiFLACTest : GLib.TestCase {
         uint result;
         char name_buff[NAME_BUFF_SIZE];
 
-        av_get_channel_layout_string (name_buff, NAME_BUFF_SIZE, 0, ch_layout);
+        av_get_channel_layout_string (
+            name_buff, NAME_BUFF_SIZE, 0, ch_layout
+        );
+
         av_log (
             null,
             AV_LOG_INFO,
@@ -76,22 +91,30 @@ private class ApiFLACTest : GLib.TestCase {
             sample_rate
         );
 
-        codec_context = avcodec_alloc_context3 (enc);
-        if (codec_context == null) {
+        codec_context = avcodec_alloc_context3 (enc
+        );
+
+        if (
+            codec_context == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate encoder context\n"
             );
-            return AVERROR (ENOMEM);
+            return AVERROR (ENOMEM
+            );
+
         }
 
         codec_context.sample_fmt = LibAVUtil.SampleFormat.SIGNED_16_BIT;
         codec_context.sample_rate = sample_rate;
         codec_context.channel_layout = ch_layout;
 
-        result = avcodec_open2 (codec_context, enc, null);
-        if (result < 0) {
+        result = avcodec_open2 (codec_context, enc, null
+        );
+
+        if (
+            result < 0) {
             av_log (
                 codec_context,
                 AV_LOG_ERROR,
@@ -112,14 +135,19 @@ private class ApiFLACTest : GLib.TestCase {
         LibAVCodec.CodecContext codec_context;
         uint result;
 
-        codec_context = avcodec_alloc_context3 (dec);
-        if (codec_context == null) {
+        codec_context = avcodec_alloc_context3 (dec
+        );
+
+        if (
+            codec_context == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate decoder context\n"
             );
-            return AVERROR (ENOMEM);
+            return AVERROR (ENOMEM
+            );
+
         }
 
         codec_context.request_sample_fmt = LibAVUtil.SampleFormat.SIGNED_16_BIT;
@@ -130,8 +158,11 @@ private class ApiFLACTest : GLib.TestCase {
         codec_context.request_channel_layout = ch_layout;
         codec_context.channel_layout = ch_layout;
 
-        result = avcodec_open2 (codec_context, dec, null);
-        if (result < 0) {
+        result = avcodec_open2 (codec_context, dec, null
+        );
+
+        if (
+            result < 0) {
             av_log (
                 codec_context,
                 AV_LOG_ERROR,
@@ -162,66 +193,98 @@ private class ApiFLACTest : GLib.TestCase {
         uint in_frame_bytes, out_frame_bytes;
 
         in_frame = av_frame_alloc ();
-        if (in_frame == null) {
+        if (
+            in_frame == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate input frame\n"
             );
-            return AVERROR (ENOMEM);
+            return AVERROR (ENOMEM
+            );
+
         }
 
         in_frame.nb_samples = enc_ctx.frame_size;
         in_frame.format = enc_ctx.sample_fmt;
         in_frame.channel_layout = enc_ctx.channel_layout;
-        if (av_frame_get_buffer (in_frame, 32) != 0) {
+        if (
+            av_frame_get_buffer (
+                in_frame, 32) != 0) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate a buffer for input frame\n"
             );
-            return AVERROR (ENOMEM);
+            return AVERROR (ENOMEM
+            );
+
         }
 
         out_frame = av_frame_alloc ();
-        if (out_frame == null) {
+        if (
+            out_frame == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate output frame\n"
             );
-            return AVERROR (ENOMEM);
+            return AVERROR (ENOMEM
+            );
+
         }
 
-        raw_in = av_malloc (in_frame.linesize[0] * NUMBER_OF_AUDIO_FRAMES);
-        if (raw_in == null) {
+        raw_in = av_malloc (in_frame.linesize[0] * NUMBER_OF_AUDIO_FRAMES
+        );
+
+        if (
+            raw_in == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate memory for raw_in\n"
             );
-            return AVERROR (ENOMEM);
+            return AVERROR (ENOMEM
+            );
+
         }
 
-        raw_out = av_malloc (in_frame.linesize[0] * NUMBER_OF_AUDIO_FRAMES);
-        if (raw_out == null) {
+        raw_out = av_malloc (in_frame.linesize[0] * NUMBER_OF_AUDIO_FRAMES
+        );
+
+        if (
+            raw_out == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
                 "Can't allocate memory for raw_out\n"
             );
-            return AVERROR (ENOMEM);
+            return AVERROR (ENOMEM
+            );
+
         }
 
-        for (uint i = 0; i < NUMBER_OF_AUDIO_FRAMES; i++) {
-            av_init_packet (out enc_pkt);
+        for (
+            uint i = 0;
+            i < NUMBER_OF_AUDIO_FRAMES;
+            i++
+        ) {
+            av_init_packet (
+                out enc_pkt
+            );
+
             enc_pkt.data = null;
             enc_pkt.size = 0;
 
             generate_raw_frame ((uint16[])(in_frame.data[0]), i, enc_ctx.sample_rate,
-                            enc_ctx.channels, enc_ctx.frame_size);
-            in_frame_bytes = in_frame.nb_samples * in_frame.channels * sizeof (uint16);
-            if (in_frame_bytes > in_frame.linesize[0]) {
+                            enc_ctx.channels, enc_ctx.frame_size
+            );
+
+            in_frame_bytes = in_frame.nb_samples * in_frame.channels * sizeof (uint16
+            );
+
+            if (
+                in_frame_bytes > in_frame.linesize[0]) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
@@ -230,10 +293,16 @@ private class ApiFLACTest : GLib.TestCase {
                 return 1;
             }
 
-            Posix.memcpy (raw_in + in_offset, in_frame.data[0], in_frame_bytes);
+            Posix.memcpy (
+                raw_in + in_offset, in_frame.data[0], in_frame_bytes
+            );
+
             in_offset += in_frame_bytes;
-            result = avcodec_encode_audio2 (enc_ctx, out enc_pkt, in_frame, out got_output);
-            if (result < 0) {
+            result = avcodec_encode_audio2 (enc_ctx, out enc_pkt, in_frame, out got_output
+            );
+
+            if (
+                result < 0) {
                 av_log (
                     null,
                     AV_LOG_ERROR,
@@ -246,9 +315,13 @@ private class ApiFLACTest : GLib.TestCase {
             If we get an encoded packet, feed it straight to the decoder
             ***********************************************************/
 
-            if (got_output) {
-                result = avcodec_decode_audio4 (dec_ctx, out_frame, out got_output, out enc_pkt);
-                if (result < 0) {
+            if (
+                got_output) {
+                result = avcodec_decode_audio4 (dec_ctx, out_frame, out got_output, out enc_pkt
+                );
+
+                if (
+                    result < 0) {
                     av_log (
                         null,
                         AV_LOG_ERROR,
@@ -257,8 +330,10 @@ private class ApiFLACTest : GLib.TestCase {
                     return result;
                 }
 
-                if (got_output) {
-                    if (result != enc_pkt.size) {
+                if (
+                    got_output) {
+                    if (
+                        result != enc_pkt.size) {
                         av_log (
                             null,
                             AV_LOG_INFO,
@@ -267,7 +342,8 @@ private class ApiFLACTest : GLib.TestCase {
                         return AVERROR_UNKNOWN;
                     }
 
-                    if (in_frame.nb_samples != out_frame.nb_samples) {
+                    if (
+                        in_frame.nb_samples != out_frame.nb_samples) {
                         av_log (
                             null,
                             AV_LOG_ERROR,
@@ -276,7 +352,8 @@ private class ApiFLACTest : GLib.TestCase {
                         return AVERROR_UNKNOWN;
                     }
 
-                    if (in_frame.channel_layout != out_frame.channel_layout) {
+                    if (
+                        in_frame.channel_layout != out_frame.channel_layout) {
                         av_log (
                             null,
                             AV_LOG_ERROR,
@@ -285,7 +362,8 @@ private class ApiFLACTest : GLib.TestCase {
                         return AVERROR_UNKNOWN;
                     }
 
-                    if (in_frame.format != out_frame.format) {
+                    if (
+                        in_frame.format != out_frame.format) {
                         av_log (
                             null,
                             AV_LOG_ERROR,
@@ -294,8 +372,11 @@ private class ApiFLACTest : GLib.TestCase {
                         return AVERROR_UNKNOWN;
                     }
 
-                    out_frame_bytes = out_frame.nb_samples * out_frame.channels * sizeof (uint16);
-                    if (out_frame_bytes > out_frame.linesize[0]) {
+                    out_frame_bytes = out_frame.nb_samples * out_frame.channels * sizeof (uint16
+                    );
+
+                    if (
+                        out_frame_bytes > out_frame.linesize[0]) {
                         av_log (
                             null,
                             AV_LOG_ERROR,
@@ -304,16 +385,24 @@ private class ApiFLACTest : GLib.TestCase {
                         return 1;
                     }
 
-                    Posix.memcpy (raw_out + out_offset, out_frame.data[0], out_frame_bytes);
+                    Posix.memcpy (
+                        raw_out + out_offset, out_frame.data[0], out_frame_bytes
+                    );
+
                     out_offset += out_frame_bytes;
                 }
 
             }
 
-            av_packet_unref (out enc_pkt);
+            av_packet_unref (
+                out enc_pkt
+            );
+
         }
 
-        if (memcmp (raw_in, raw_out, out_frame_bytes * NUMBER_OF_AUDIO_FRAMES) != 0) {
+        if (
+            memcmp (
+                raw_in, raw_out, out_frame_bytes * NUMBER_OF_AUDIO_FRAMES) != 0) {
             av_log (
                 null,
                 AV_LOG_ERROR,
@@ -328,26 +417,48 @@ private class ApiFLACTest : GLib.TestCase {
             "OK\n"
         );
 
-        av_freep (out raw_in);
-        av_freep (out raw_out);
-        av_frame_free (out in_frame);
-        av_frame_free (out out_frame);
+        av_freep (
+            out raw_in
+        );
+
+        av_freep (
+            out raw_out
+        );
+
+        av_frame_free (
+            out in_frame
+        );
+
+        av_frame_free (
+            out out_frame
+        );
+
         return 0;
     }
 
     private static uint close_encoder (
         out LibAVCodec.CodecContext enc_ctx
     ) {
-        avcodec_close (*enc_ctx);
-        av_freep (enc_ctx);
+        avcodec_close (*enc_ctx
+        );
+
+        av_freep (
+            enc_ctx
+        );
+
         return 0;
     }
 
     private static uint close_decoder (
         out LibAVCodec.CodecContext dec_ctx
     ) {
-        avcodec_close (*dec_ctx);
-        av_freep (dec_ctx);
+        avcodec_close (*dec_ctx
+        );
+
+        av_freep (
+            dec_ctx
+        );
+
         return 0;
     }
 
@@ -373,8 +484,11 @@ private class ApiFLACTest : GLib.TestCase {
         };
         uint cl, sr;
 
-        enc = avcodec_find_encoder (LibAVCodec.CodecID.FLAC);
-        if (enc == null) {
+        enc = avcodec_find_encoder (LibAVCodec.CodecID.FLAC
+        );
+
+        if (
+            enc == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
@@ -383,8 +497,11 @@ private class ApiFLACTest : GLib.TestCase {
             return 1;
         }
 
-        dec = avcodec_find_decoder (LibAVCodec.CodecID.FLAC);
-        if (dec == null) {
+        dec = avcodec_find_decoder (LibAVCodec.CodecID.FLAC
+        );
+
+        if (
+            dec == null) {
             av_log (
                 null,
                 AV_LOG_ERROR,
@@ -393,22 +510,42 @@ private class ApiFLACTest : GLib.TestCase {
             return 1;
         }
 
-        for (cl = 0; cl < FF_ARRAY_ELEMS (channel_layouts); cl++) {
-            for (sr = 0; sr < FF_ARRAY_ELEMS (sample_rates); sr++) {
-                if (init_encoder (enc, out enc_ctx, channel_layouts[cl], sample_rates[sr]) != 0) {
+        for (
+            cl = 0;
+            cl < FF_ARRAY_ELEMS (channel_layouts);
+            cl++
+        ) {
+            for (
+                sr = 0;
+                sr < FF_ARRAY_ELEMS (sample_rates);
+                sr++
+            ) {
+                if (
+                    init_encoder (
+                        enc, out enc_ctx, channel_layouts[cl], sample_rates[sr]) != 0) {
                     return 1;
                 }
 
-                if (init_decoder (dec, out dec_ctx, channel_layouts[cl]) != 0) {
+                if (
+                    init_decoder (
+                        dec, out dec_ctx, channel_layouts[cl]) != 0) {
                     return 1;
                 }
 
-                if (run_test (enc, dec, enc_ctx, dec_ctx) != 0) {
+                if (
+                    run_test (
+                        enc, dec, enc_ctx, dec_ctx) != 0) {
                     return 1;
                 }
 
-                close_encoder (out enc_ctx);
-                close_decoder (out dec_ctx);
+                close_encoder (
+                    out enc_ctx
+                );
+
+                close_decoder (
+                    out dec_ctx
+                );
+
             }
 
         }

@@ -28,11 +28,11 @@ Read from an MPEG1 video file, decode frames, and generate PGM images as
 output.
 ***********************************************************/
 
-//  #include <stdio.h>
-//  #include <stdlib.h>
-//  #include <string.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
 
-//  #include <libavcodec/avcodec.h>
+//#include <libavcodec/avcodec.h>
 
 private class DecodeVideoApplication : GLib.Application {
 
@@ -45,16 +45,33 @@ private class DecodeVideoApplication : GLib.Application {
         int ysize,
         string filename
     ) {
-        FILE? f;
+        FILE? file;
         int i;
 
-        f = fopen (filename,"wb");
-        fprintf (f, "P5\n%d %d\n%d\n", xsize, ysize, 255);
-        for (i = 0; i < ysize; i++) {
-            fwrite (buf + i * wrap, 1, xsize, f);
+        file = fopen (filename,"wb"
+        );
+
+        fprintf (
+            file,
+            "P5\n%d %d\n%d\n",
+            xsize, ysize, 255
+        );
+
+        for (
+            i = 0;
+            i < ysize;
+            i++
+        ) {
+            fwrite (
+                buf + i * wrap, 1, xsize, file
+            );
+
         }
 
-        fclose (f);
+        fclose (
+            file
+        );
+
     }
 
     private static void decode (
@@ -66,31 +83,70 @@ private class DecodeVideoApplication : GLib.Application {
         char buf[1024];
         int ret;
 
-        ret = avcodec_send_packet (dec_ctx, pkt);
-        if (ret < 0) {
-            fprintf (stderr, "Error sending a packet for decoding\n");
-            exit (1);
+        ret = avcodec_send_packet (dec_ctx, pkt
+        );
+
+        if (
+            ret < 0
+        ) {
+            fprintf (
+                stderr,
+                "Error sending a packet for decoding\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        while (ret >= 0) {
-            ret = avcodec_receive_frame (dec_ctx, frame);
-            if (ret == AVERROR (EAGAIN) || ret == AVERROR_EOF) {
+        while (
+            ret >= 0
+        ) {
+            ret = avcodec_receive_frame (dec_ctx, frame
+            );
+
+            if (
+                ret == AVERROR (EAGAIN) ||
+                ret == AVERROR_EOF
+            ) {
                 return;
-            } else if (ret < 0) {
-                fprintf (stderr, "Error during decoding\n");
-                exit (1);
+            } else if (
+                ret < 0
+            ) {
+                fprintf (
+                    stderr,
+                    "Error during decoding\n"
+                );
+
+                exit (
+                    1
+                );
+
             }
 
-            printf ("saving frame %3PRId64\n", dec_ctx.frame_num);
-            fflush (stdout);
+            printf (
+                "saving frame %3PRId64\n",
+                dec_ctx.frame_num
+            );
+
+            fflush (
+                stdout
+            );
 
             /***********************************************************
             the picture is allocated by the decoder. no need to
             free it
             ***********************************************************/
-            snprintf (buf, sizeof (buf), "%s-%PRId64", filename, dec_ctx.frame_num);
-            pgm_save (frame.data[0], frame.linesize[0],
-                    frame.width, frame.height, buf);
+            snprintf (
+                buf, sizeof (buf), "%s-%PRId64", filename, dec_ctx.frame_num
+            );
+
+            pgm_save (
+                frame.data[0], frame.linesize[0],
+                    frame.width, frame.height, buf
+            );
+
         }
 
     }
@@ -103,8 +159,8 @@ private class DecodeVideoApplication : GLib.Application {
         string outfilename;
         AVCodec? codec;
         AVCodecParserContext? parser;
-        AVCodecContext? c = null;
-        FILE? f;
+        AVCodecContext? codec_context = null;
+        FILE? file;
         AVFrame? frame;
         uint8 inbuf[INBUF_SIZE + AV_INPUT_BUFFER_PADDING_SIZE];
         uint8[] data;
@@ -113,44 +169,94 @@ private class DecodeVideoApplication : GLib.Application {
         int eof;
         AVPacket? pkt;
 
-        if (argc <= 2) {
-            fprintf (stderr, "Usage: %s <input file> <output file>\n" +
-                    "And check your input file is encoded by mpeg1video please.\n", argv[0]);
-            exit (0);
+        if (
+            argc <= 2
+        ) {
+            fprintf (
+                stderr,
+                "Usage: %s <input file> <output file>\n" +
+                "And check your input file is encoded by mpeg1video please.\n",
+                argv[0]
+            );
+
+            exit (
+                0
+            );
+
         }
 
         filename = argv[1];
         outfilename = argv[2];
 
         pkt = av_packet_alloc ();
-        if (!pkt) {
-            exit (1);
+        if (
+            !pkt
+        ) {
+            exit (
+                1
+            );
+
         }
 
         /***********************************************************
         set end of buffer to 0 (this ensures that no overreading happens for damaged MPEG streams)
         ***********************************************************/
-        memset (inbuf + INBUF_SIZE, 0, AV_INPUT_BUFFER_PADDING_SIZE);
+        memset (
+            inbuf + INBUF_SIZE, 0, AV_INPUT_BUFFER_PADDING_SIZE
+        );
 
         /***********************************************************
         find the MPEG-1 video decoder
         ***********************************************************/
-        codec = avcodec_find_decoder (AV_CODEC_ID_MPEG1VIDEO);
-        if (!codec) {
-            fprintf (stderr, "Codec not found\n");
-            exit (1);
+        codec = avcodec_find_decoder (AV_CODEC_ID_MPEG1VIDEO
+        );
+
+        if (
+            !codec
+        ) {
+            fprintf (
+                stderr,
+                "Codec not found\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        parser = av_parser_init (codec.id);
-        if (!parser) {
-            fprintf (stderr, "parser not found\n");
-            exit (1);
+        parser = av_parser_init (codec.id
+        );
+
+        if (
+            !parser
+        ) {
+            fprintf (
+                stderr,
+                "parser not found\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        c = avcodec_alloc_context3 (codec);
-        if (!c) {
-            fprintf (stderr, "Could not allocate video codec context\n");
-            exit (1);
+        codec_context = avcodec_alloc_context3 (codec
+        );
+
+        if (
+            !codec_context
+        ) {
+            fprintf (
+                stderr,
+                "Could not allocate video codec context\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
         /***********************************************************
@@ -162,29 +268,66 @@ private class DecodeVideoApplication : GLib.Application {
         /***********************************************************
         open it
         ***********************************************************/
-        if (avcodec_open2 (c, codec, null) < 0) {
-            fprintf (stderr, "Could not open codec\n");
-            exit (1);
+        if (
+            avcodec_open2 (
+                codec_context, codec, null
+            ) < 0
+        ) {
+            fprintf (
+                stderr,
+                "Could not open codec\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
-        f = fopen (filename, "rb");
-        if (!f) {
-            fprintf (stderr, "Could not open %s\n", filename);
-            exit (1);
+        file = fopen (filename, "rb"
+        );
+
+        if (
+            !file
+        ) {
+            fprintf (
+                stderr,
+                "Could not open %s\n",
+                filename
+            );
+
+            exit (
+                1
+            );
+
         }
 
         frame = av_frame_alloc ();
-        if (!frame) {
-            fprintf (stderr, "Could not allocate video frame\n");
-            exit (1);
+        if (
+            !frame
+        ) {
+            fprintf (
+                stderr,
+                "Could not allocate video frame\n"
+            );
+
+            exit (
+                1
+            );
+
         }
 
         do {
             /***********************************************************
             read raw data from the input file
             ***********************************************************/
-            data_size = fread (inbuf, 1, INBUF_SIZE, f);
-            if (ferror (f)) {
+            data_size = fread (inbuf, 1, INBUF_SIZE, file
+            );
+
+            if (
+                ferror (
+                    file)
+            ) {
                 break;
             }
 
@@ -194,38 +337,75 @@ private class DecodeVideoApplication : GLib.Application {
             use the parser to split the data into frames
             ***********************************************************/
             data = inbuf;
-            while (data_size > 0 || eof) {
-                ret = av_parser_parse2 (parser, c, &pkt.data, &pkt.size,
-                                    data, data_size, AV_NOPTS_VALUE, AV_NOPTS_VALUE, 0);
-                if (ret < 0) {
-                    fprintf (stderr, "Error while parsing\n");
-                    exit (1);
+            while (
+                data_size > 0 ||
+                eof
+            ) {
+                ret = av_parser_parse2 (parser, codec_context, &pkt.data, &pkt.size,
+                                    data, data_size, AV_NOPTS_VALUE, AV_NOPTS_VALUE, 0
+                );
+
+                if (
+                    ret < 0
+                ) {
+                    fprintf (
+                        stderr,
+                        "Error while parsing\n"
+                    );
+
+                    exit (
+                        1
+                    );
+
                 }
 
                 data      += ret;
                 data_size -= ret;
 
-                if (pkt.size) {
-                    decode (c, frame, pkt, outfilename);
-                } else if (eof) {
+                if (
+                    pkt.size
+                ) {
+                    decode (
+                        codec_context, frame, pkt, outfilename
+                    );
+
+                } else if (
+                    eof
+                ) {
                     break;
                 }
 
             }
 
-        } while (!eof);
+        } while (!eof
+        );
 
         /***********************************************************
         flush the decoder
         ***********************************************************/
-        decode (c, frame, null, outfilename);
+        decode (
+            codec_context, frame, null, outfilename
+        );
 
-        fclose (f);
+        fclose (
+            file
+        );
 
-        av_parser_close (parser);
-        avcodec_free_context (&c);
-        av_frame_free (&frame);
-        av_packet_free (&pkt);
+        av_parser_close (
+            parser
+        );
+
+        avcodec_free_context (
+            &codec_context
+        );
+
+        av_frame_free (
+            &frame
+        );
+
+        av_packet_free (
+            &pkt
+        );
 
         return 0;
     }

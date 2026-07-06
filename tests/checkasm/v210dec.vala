@@ -34,8 +34,16 @@ private static uint32 get_v210 () {
 
 private const size_t NUM_SAMPLES = 2048;
 
-private static void randomize_buffers (uint32[] src0, uint32[] src1, int len) {
-    for (int i = 0; i < len; i++) {
+private static void randomize_buffers (
+    uint32[] src0,
+    uint32[] src1,
+    int len
+) {
+    for (
+        int i = 0;
+        i < len;
+        i++
+    ) {
         uint32 value = get_v210 ();
         src0[i] = value;
         src1[i] = value;
@@ -44,12 +52,19 @@ private static void randomize_buffers (uint32[] src0, uint32[] src1, int len) {
 }
 
 private static void checkasm_check_v210dec () {
-    V210DecContext h;
+    V210DecContext v210_dec_context;
 
-    h.aligned_input = 0;
-    ff_v210dec_init (&h);
+    v210_dec_context.aligned_input = 0;
+    ff_v210dec_init (
+        &v210_dec_context
+    );
 
-    if (check_func (h.unpack_frame, "v210_unpack")) {
+    if (
+        check_func (
+            v210_dec_context.unpack_frame,
+            "v210_unpack"
+        )
+    ) {
         uint32 src0[NUM_SAMPLES/3];
         uint32 src1[NUM_SAMPLES/3];
         uint16 y0[NUM_SAMPLES/2];
@@ -58,19 +73,47 @@ private static void checkasm_check_v210dec () {
         uint16 u1[NUM_SAMPLES/4];
         uint16 v0[NUM_SAMPLES/4];
         uint16 v1[NUM_SAMPLES/4];
-        //  declare_func (void, uint32[] src, uint16[] y, uint16[] u, uint16[] v, int width);
+
+        //  declare_func (
+        //      void,
+        //      uint32[] src,
+        //      uint16[] y,
+        //      uint16[] u,
+        //      uint16[] v,
+        //      int width
+        //  );
+
         int pixels = NUM_SAMPLES / 2 / 6 * 6;
 
-        randomize_buffers (src0, src1, NUM_SAMPLES/3);
-        //  call_ref (src0, y0, u0, v0, pixels);
-        //  call_new (src1, y1, u1, v1, pixels);
-        //  if (memcmp (src0, src1, NUM_SAMPLES/3 * sizeof src0[0])
-        //          || memcmp (y0, y1, pixels * sizeof y0[0])
-        //          || memcmp (u0, u1, pixels/2 * sizeof u0[0])
-        //          || memcmp (v0, v1, pixels/2 * sizeof v0[0]))
-        //      fail ();
-        bench_new (src1, y1, u1, v1, pixels);
+        randomize_buffers (
+            src0, src1, NUM_SAMPLES/3
+        );
+
+        call_ref (
+            src0, y0, u0, v0, pixels
+        );
+
+        call_new (
+            src1, y1, u1, v1, pixels
+        );
+
+        if (
+            memcmp (src0, src1, NUM_SAMPLES/3 * sizeof (src0[0])) ||
+            memcmp (y0, y1, pixels * sizeof (y0[0])) ||
+            memcmp (u0, u1, pixels/2 * sizeof (u0[0])) ||
+            memcmp (v0, v1, pixels/2 * sizeof (v0[0]))
+        ) {
+            fail ();
+        }
+
+        bench_new (
+            src1, y1, u1, v1, pixels
+        );
+
     }
 
-    report ("v210_unpack");
+    report (
+        "v210_unpack"
+    );
+
 }

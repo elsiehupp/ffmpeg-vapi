@@ -18,8 +18,12 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 private const size_t WIDTH = 256;
 private const size_t HEIGHT = 256;
-private const size_t PIXELS = (WIDTH * HEIGHT);
-private const size_t BUF_SIZE = (PIXELS * 4);
+private const size_t PIXELS = (WIDTH * HEIGHT
+);
+
+private const size_t BUF_SIZE = (
+    PIXELS * 4
+);
 
 private static void randomize_buffers (
     void *buf,
@@ -27,41 +31,90 @@ private static void randomize_buffers (
 ) {
     int j;
     float[] tmp_buf = (float[] )buf;
-    for (j = 0; j < size; j++) {
-        tmp_buf[j] = (float)(rnd () & 0xFF);
+    for (
+        j = 0;
+        j < size;
+        j++
+    ) {
+        tmp_buf[j] = (float)(rnd () & 0xFF
+        );
+
     }
 
 }
 
 private static void checkasm_check_vf_gblur () {
-    float[] dst_ref = av_malloc (BUF_SIZE);
-    float[] dst_new = av_malloc (BUF_SIZE);
+    float[] dst_ref = av_malloc (BUF_SIZE
+    );
+
+    float[] dst_new = av_malloc (BUF_SIZE
+    );
+
     int w = WIDTH;
     int h = HEIGHT;
     int steps = 2;
     float nu = 0.101f;
     float bscale = 1.112f;
-    GBlurContext s;
+    GBlurContext gblur_context;
 
-    //  declare_func (void, float[] dst, int w, int h, int steps, float nu, float bscale);
+    //  declare_func (
+    //      void,
+    //      float[] dst,
+    //      int w,
+    //      int h,
+    //      int steps,
+    //      float nu,
+    //      float bscale
+    //  );
 
-    randomize_buffers (dst_ref, PIXELS);
-    memcpy (dst_new, dst_ref, BUF_SIZE);
+    randomize_buffers (
+        dst_ref, PIXELS
+    );
 
-    ff_gblur_init (&s);
+    memcpy (
+        dst_new, dst_ref, BUF_SIZE
+    );
 
-    if (check_func (s.horiz_slice, "horiz_slice")) {
-        //  call_ref (dst_ref, w, h, steps, nu, bscale);
-        //  call_new (dst_new, w, h, steps, nu, bscale);
+    ff_gblur_init (
+        &gblur_context
+    );
 
-        if (!float_near_abs_eps_array (dst_ref, dst_new, 0.01f, PIXELS)) {
+    if (
+        check_func (
+            gblur_context.horiz_slice,
+            "horiz_slice"
+        )
+    ) {
+        call_ref (
+            dst_ref, w, h, steps, nu, bscale
+        );
+
+        call_new (
+            dst_new, w, h, steps, nu, bscale
+        );
+
+        if (
+            !float_near_abs_eps_array (dst_ref, dst_new, 0.01f, PIXELS)
+        ) {
             fail ();
         }
 
-        bench_new (dst_new, w, h, 1, nu, bscale);
+        bench_new (
+            dst_new, w, h, 1, nu, bscale
+        );
+
     }
 
-    report ("horiz_slice");
-    av_freep (&dst_ref);
-    av_freep (&dst_new);
+    report (
+        "horiz_slice"
+    );
+
+    av_freep (
+        &dst_ref
+    );
+
+    av_freep (
+        &dst_new
+    );
+
 }

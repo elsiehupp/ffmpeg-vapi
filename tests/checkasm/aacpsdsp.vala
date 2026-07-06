@@ -18,14 +18,20 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 
 private const size_t N = 32;
 private const size_t STRIDE = 128;
-private const size_t BUF_SIZE = (N * STRIDE);
+private const size_t BUF_SIZE = (
+    N * STRIDE
+);
 
 private static void randomize (
     void *buf,
     int len
 ) {
     int i;
-    for (i = 0; i < len; i++) {
+    for (
+        i = 0;
+        i < len;
+        i++
+    ) {
         INTFLOAT f = (INTFLOAT)rnd () / UINT_MAX;
         (void *buf)[i] = f;
     }
@@ -35,82 +41,250 @@ private static void randomize (
 private const float EPS = 0.005f;
 
 private static void test_add_squares () {
-    //  LOCAL_ALIGNED_16 (INTFLOAT, dst0, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, dst1, [BUF_SIZE]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, src, [BUF_SIZE], [2]);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      dst0,
+    //      [BUF_SIZE]
+    //  );
 
-    //  declare_func (void, INTFLOAT *dst,
-    //               INTFLOAT (*src)[2], int n);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      dst1,
+    //      [BUF_SIZE]
+    //  );
 
-    randomize ((INTFLOAT *)src, BUF_SIZE * 2);
-    randomize (dst0, BUF_SIZE);
-    memcpy (dst1, dst0, BUF_SIZE * sizeof (INTFLOAT));
-    //  call_ref (dst0, src, BUF_SIZE);
-    //  call_new (dst1, src, BUF_SIZE);
-    if (!float_near_abs_eps_array (dst0, dst1, EPS, BUF_SIZE)) {
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      src,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
+
+    //  declare_func (
+    //      void,
+    //      INTFLOAT *dst,
+    //      INTFLOAT (*src)[2],
+    //      int n
+    //  );
+
+    randomize (
+        (INTFLOAT *)src, BUF_SIZE * 2
+    );
+
+    randomize (
+        dst0, BUF_SIZE
+    );
+
+    memcpy (
+        dst1, dst0, BUF_SIZE * sizeof (INTFLOAT)
+    );
+
+    call_ref (
+        dst0, src, BUF_SIZE
+    );
+
+    call_new (
+        dst1, src, BUF_SIZE
+    );
+
+    if (
+        !float_near_abs_eps_array (dst0, dst1, EPS, BUF_SIZE)
+    ) {
         fail ();
     }
 
-    bench_new (dst1, src, BUF_SIZE);
+    bench_new (
+        dst1, src, BUF_SIZE
+    );
+
 }
 
 private static void test_mul_pair_single () {
-    //  LOCAL_ALIGNED_16 (INTFLOAT, dst0, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, dst1, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, src0, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, src1, [BUF_SIZE]);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      dst0,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
 
-    //  declare_func (void, INTFLOAT (*dst)[2],
-    //                     INTFLOAT (*src0)[2], INTFLOAT *src1, int n);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      dst1,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
 
-    randomize ((INTFLOAT *)src0, BUF_SIZE * 2);
-    randomize (src1, BUF_SIZE);
-    //  call_ref (dst0, src0, src1, BUF_SIZE);
-    //  call_new (dst1, src0, src1, BUF_SIZE);
-    if (!float_near_abs_eps_array ((float[] )dst0, (float[] )dst1, EPS, BUF_SIZE * 2)) {
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      src0,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      src1,
+    //      [BUF_SIZE]
+    //  );
+
+    //  declare_func (
+    //      void,
+    //      INTFLOAT (*dst)[2],
+    //      INTFLOAT (*src0)[2],
+    //      INTFLOAT *src1,
+    //      int n
+    //  );
+
+    randomize (
+        (INTFLOAT *)src0,
+        BUF_SIZE * 2
+    );
+
+    randomize (
+        src1, BUF_SIZE
+    );
+
+    call_ref (
+        dst0, src0, src1, BUF_SIZE
+    );
+
+    call_new (
+        dst1, src0, src1, BUF_SIZE
+    );
+
+    if (
+        !float_near_abs_eps_array ((float[] )dst0, (float[] )dst1, EPS, BUF_SIZE * 2)
+    ) {
         fail ();
     }
 
-    bench_new (dst1, src0, src1, BUF_SIZE);
+    bench_new (
+        dst1, src0, src1, BUF_SIZE
+    );
+
 }
 
 private static void test_hybrid_analysis () {
-    //  LOCAL_ALIGNED_16 (INTFLOAT, dst0, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, dst1, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, in, [13], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, filter, [N], [8][2]);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      dst0,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
 
-    //  declare_func (void, INTFLOAT (*out)[2], INTFLOAT (*in)[2],
-    //               INTFLOAT (*filter)[8][2],
-    //               size_t stride, int n);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      dst1,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
 
-    //  randomize ((INTFLOAT *)in, 13 * 2);
-    randomize ((INTFLOAT *)filter, N * 8 * 2);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      in,
+    //      [13],
+    //      [2]
+    //  );
 
-    randomize ((INTFLOAT *)dst0, BUF_SIZE * 2);
-    memcpy (dst1, dst0, BUF_SIZE * 2 * sizeof (INTFLOAT));
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      filter,
+    //      [N],
+    //      [8][2]
+    //  );
 
-    //  call_ref (dst0, in, filter, STRIDE, N);
-    //  call_new (dst1, in, filter, STRIDE, N);
+    //  declare_func (
+    //      void,
+    //      INTFLOAT (*out)[2],
+    //      INTFLOAT (*in)[2],
+    //      INTFLOAT (*filter)[8][2],
+    //      size_t stride,
+    //      int n
+    //  );
 
-    if (!float_near_abs_eps_array ((float[] )dst0, (float[] )dst1, EPS, BUF_SIZE * 2)) {
+    //  randomize (
+    //      (INTFLOAT *)in,
+    //      13 * 2
+    //  );
+
+    randomize (
+        (INTFLOAT *)filter,
+        N * 8 * 2
+    );
+
+    randomize (
+        (INTFLOAT *)dst0, BUF_SIZE * 2
+    );
+
+    memcpy (
+        dst1, dst0, BUF_SIZE * 2 * sizeof (INTFLOAT)
+    );
+
+    call_ref (
+        dst0, in, filter, STRIDE, N
+    );
+
+    call_new (
+        dst1, in, filter, STRIDE, N
+    );
+
+    if (
+        !float_near_abs_eps_array ((float[] )dst0, (float[] )dst1, EPS, BUF_SIZE * 2)
+    ) {
         fail ();
     }
 
-    bench_new (dst1, in, filter, STRIDE, N);
+    bench_new (
+        dst1, in, filter, STRIDE, N
+    );
+
 }
 
 private static void test_hybrid_analysis_ileave () {
-    //  LOCAL_ALIGNED_16 (INTFLOAT, in, [2], [38][64]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, out0, [91], [32][2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, out1, [91], [32][2]);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      in,
+    //      [2],
+    //      [38][64]
+    //  );
 
-    //  declare_func (void, INTFLOAT (*out)[32][2], INTFLOAT L[2][38][64],
-    //                     int i, int len);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      out0,
+    //      [91],
+    //      [32][2]
+    //  );
 
-    randomize ((INTFLOAT *)out0, 91 * 32 * 2);
-    //  randomize ((INTFLOAT *)in, 2 * 38 * 64);
-    memcpy (out1, out0, 91 * 32 * 2 * sizeof (INTFLOAT));
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      out1,
+    //      [91],
+    //      [32][2]
+    //  );
+
+    //  declare_func (
+    //      void,
+    //      INTFLOAT (*out)[32][2],
+    //      INTFLOAT L[2][38][64],
+    //      int i,
+    //      int len
+    //  );
+
+    //  randomize (
+    //      (INTFLOAT *)out0,
+    //      91 * 32 * 2
+    //  );
+
+    //  randomize (
+    //      (INTFLOAT *)in,
+    //      2 * 38 * 64
+    //  );
+
+    memcpy (
+        out1,
+        out0,
+        91 * 32 * 2 * sizeof (INTFLOAT)
+    );
 
     /***********************************************************
     len is hardcoded to 32 as that's the only value used in
@@ -122,37 +296,91 @@ private static void test_hybrid_analysis_ileave () {
     micro-optimized for them and will fail for almost every
     other value.
     ***********************************************************/
-    //  call_ref (out0, in, 3, 32);
-    //  call_new (out1, in, 3, 32);
+    call_ref (
+        out0, in, 3, 32
+    );
+
+    call_new (
+        out1, in, 3, 32
+    );
 
     /***********************************************************
     the function just moves data around, so memcmp is enough
     ***********************************************************/
-    if (memcmp (out0, out1, 91 * 32 * 2 * sizeof (INTFLOAT))) {
+    if (
+        memcmp (
+            out0, out1, 91 * 32 * 2 * sizeof (INTFLOAT))
+    ) {
         fail ();
     }
 
-    //  call_ref (out0, in, 5, 32);
-    //  call_new (out1, in, 5, 32);
+    call_ref (
+        out0, in, 5, 32
+    );
 
-    if (memcmp (out0, out1, 91 * 32 * 2 * sizeof (INTFLOAT))) {
+    call_new (
+        out1, in, 5, 32
+    );
+
+    if (
+        memcmp (
+            out0, out1, 91 * 32 * 2 * sizeof (INTFLOAT))
+    ) {
         fail ();
     }
 
-    //  bench_new (out1, in, 3, 32);
+    bench_new (out1, in, 3, 32
+    );
+
 }
 
 private static void test_hybrid_synthesis_deint () {
-    //  LOCAL_ALIGNED_16 (INTFLOAT, out0, [2], [38][64]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, out1, [2], [38][64]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, in, [91], [32][2]);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      out0,
+    //      [2],
+    //      [38][64]
+    //  );
 
-    //  declare_func (void, INTFLOAT out[2][38][64], INTFLOAT (*in)[32][2],
-    //                     int i, int len);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      out1,
+    //      [2],
+    //      [38][64]
+    //  );
 
-    //  randomize ((INTFLOAT *)in, 91 * 32 * 2);
-    randomize ((INTFLOAT *)out0, 2 * 38 * 64);
-    memcpy (out1, out0, 2 * 38 * 64 * sizeof (INTFLOAT));
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      in,
+    //      [91],
+    //      [32][2]
+    //  );
+
+    //  declare_func (
+    //      void,
+    //      INTFLOAT out[2][38][64],
+    //      INTFLOAT (*in)[32][2],
+    //      int i,
+    //      int len
+    //  );
+
+    //  randomize (
+    //      (INTFLOAT *)in,
+    //      91 * 32 * 2
+    //  );
+
+    randomize (
+        (INTFLOAT *)out0,
+        2 * 38 * 64
+    );
+
+    memcpy (
+        out1,
+        out0,
+        2 * 38 * 64 * sizeof (
+            INTFLOAT
+        )
+    );
 
     /***********************************************************
     len is hardcoded to 32 as that's the only value used in
@@ -164,65 +392,183 @@ private static void test_hybrid_synthesis_deint () {
     micro-optimized for them and will fail for almost every
     other value.
     ***********************************************************/
-    //  call_ref (out0, in, 3, 32);
-    //  call_new (out1, in, 3, 32);
+    call_ref (
+        out0, in, 3, 32
+    );
+
+    call_new (
+        out1, in, 3, 32
+    );
 
     /***********************************************************
     the function just moves data around, so memcmp is enough
     ***********************************************************/
-    if (memcmp (out0, out1, 2 * 38 * 64 * sizeof (INTFLOAT))) {
+    if (
+        memcmp (
+            out0, out1, 2 * 38 * 64 * sizeof (INTFLOAT))
+    ) {
         fail ();
     }
 
-    //  call_ref (out0, in, 5, 32);
-    //  call_new (out1, in, 5, 32);
+    call_ref (
+        out0, in, 5, 32
+    );
 
-    if (memcmp (out0, out1, 2 * 38 * 64 * sizeof (INTFLOAT))) {
+    call_new (
+        out1, in, 5, 32
+    );
+
+    if (
+        memcmp (
+            out0, out1, 2 * 38 * 64 * sizeof (INTFLOAT))
+    ) {
         fail ();
     }
 
-    bench_new (out1, in, 3, 32);
+    bench_new (
+        out1, in, 3, 32
+    );
+
 }
 
 private static void test_stereo_interpolate (
     PSDSPContext? psdsp
 ) {
     int i;
-    //  LOCAL_ALIGNED_16 (INTFLOAT, l, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, r, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, l0, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, r0, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, l1, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, r1, [BUF_SIZE], [2]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, h, [2], [4]);
-    //  LOCAL_ALIGNED_16 (INTFLOAT, h_step, [2], [4]);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      l,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
 
-    //  declare_func (void, INTFLOAT (*l)[2], INTFLOAT (*r)[2],
-    //                     INTFLOAT h[2][4], INTFLOAT h_step[2][4], int len);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      r,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
 
-    randomize ((INTFLOAT *)l, BUF_SIZE * 2);
-    randomize ((INTFLOAT *)r, BUF_SIZE * 2);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      l0,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
 
-    for (i = 0; i < 2; i++) {
-        if (check_func (psdsp.stereo_interpolate[i], "ps_stereo_interpolate%s", i ? "_ipdopd" : "")) {
-            memcpy (l0, l, BUF_SIZE * 2 * sizeof (INTFLOAT));
-            memcpy (l1, l, BUF_SIZE * 2 * sizeof (INTFLOAT));
-            memcpy (r0, r, BUF_SIZE * 2 * sizeof (INTFLOAT));
-            memcpy (r1, r, BUF_SIZE * 2 * sizeof (INTFLOAT));
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      r0,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
 
-            randomize ((INTFLOAT *)h, 2 * 4);
-            randomize ((INTFLOAT *)h_step, 2 * 4);
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      l1,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
 
-            //  call_ref (l0, r0, h, h_step, BUF_SIZE);
-            //  call_new (l1, r1, h, h_step, BUF_SIZE);
-            if (!float_near_abs_eps_array ((float[] )l0, (float[] )l1, EPS, BUF_SIZE * 2) ||
-                !float_near_abs_eps_array ((float[] )r0, (float[] )r1, EPS, BUF_SIZE * 2)) {
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      r1,
+    //      [BUF_SIZE],
+    //      [2]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      h,
+    //      [2],
+    //      [4]
+    //  );
+
+    //  LOCAL_ALIGNED_16 (
+    //      INTFLOAT,
+    //      h_step,
+    //      [2],
+    //      [4]
+    //  );
+
+    //  declare_func (
+    //      void,
+    //      INTFLOAT (*l)[2],
+    //      INTFLOAT (*r)[2],
+    //      INTFLOAT h[2][4],
+    //      INTFLOAT h_step[2][4],
+    //      int len
+    //  );
+
+    randomize (
+        (INTFLOAT *)l, BUF_SIZE * 2
+    );
+
+    randomize (
+        (
+        INTFLOAT *)r, BUF_SIZE * 2
+    );
+
+    for (
+        i = 0;
+        i < 2;
+        i++
+    ) {
+        if (
+            check_func (
+                psdsp.stereo_interpolate[i],
+                "ps_stereo_interpolate%s", i ? "_ipdopd" : ""
+            )
+        ) {
+            memcpy (
+                l0, l, BUF_SIZE * 2 * sizeof (INTFLOAT)
+            );
+
+            memcpy (
+                l1, l, BUF_SIZE * 2 * sizeof (INTFLOAT)
+            );
+
+            memcpy (
+                r0, r, BUF_SIZE * 2 * sizeof (INTFLOAT)
+            );
+
+            memcpy (
+                r1, r, BUF_SIZE * 2 * sizeof (INTFLOAT)
+            );
+
+            randomize ((INTFLOAT *)h, 2 * 4
+            );
+
+            randomize ((INTFLOAT *)h_step, 2 * 4
+            );
+
+            call_ref (
+                l0, r0, h, h_step, BUF_SIZE
+            );
+
+            call_new (
+                l1, r1, h, h_step, BUF_SIZE
+            );
+
+            if (
+                !float_near_abs_eps_array ((float[] )l0, (float[] )l1, EPS, BUF_SIZE * 2) ||
+                !float_near_abs_eps_array ((float[] )r0, (float[] )r1, EPS, BUF_SIZE * 2)
+            ) {
                 fail ();
             }
 
-            memcpy (l1, l, BUF_SIZE * 2 * sizeof (INTFLOAT));
-            memcpy (r1, r, BUF_SIZE * 2 * sizeof (INTFLOAT));
-            bench_new (l1, r1, h, h_step, BUF_SIZE);
+            memcpy (
+                l1, l, BUF_SIZE * 2 * sizeof (INTFLOAT)
+            );
+
+            memcpy (
+                r1, r, BUF_SIZE * 2 * sizeof (INTFLOAT)
+            );
+
+            bench_new (
+                l1, r1, h, h_step, BUF_SIZE
+            );
+
         }
 
     }
@@ -232,38 +578,76 @@ private static void test_stereo_interpolate (
 private static void checkasm_check_aacpsdsp () {
     PSDSPContext psdsp;
 
-    ff_psdsp_init (&psdsp);
+    ff_psdsp_init (
+        &psdsp
+    );
 
-    if (check_func (psdsp.add_squares, "ps_add_squares")) {
+    if (
+        check_func (
+            psdsp.add_squares, "ps_add_squares"
+        )
+    ) {
         test_add_squares ();
     }
 
-    report ("add_squares");
+    report (
+        "add_squares"
+    );
 
-    if (check_func (psdsp.mul_pair_single, "ps_mul_pair_single")) {
+    if (
+        check_func (
+            psdsp.mul_pair_single, "ps_mul_pair_single"
+        )
+    ) {
         test_mul_pair_single ();
     }
 
-    report ("mul_pair_single");
+    report (
+        "mul_pair_single"
+    );
 
-    if (check_func (psdsp.hybrid_analysis, "ps_hybrid_analysis")) {
+    if (
+        check_func (
+            psdsp.hybrid_analysis, "ps_hybrid_analysis"
+        )
+    ) {
         test_hybrid_analysis ();
     }
 
-    report ("hybrid_analysis");
+    report (
+        "hybrid_analysis"
+    );
 
-    if (check_func (psdsp.hybrid_analysis_ileave, "ps_hybrid_analysis_ileave")) {
+    if (
+        check_func (
+            psdsp.hybrid_analysis_ileave, "ps_hybrid_analysis_ileave"
+        )
+    ) {
         test_hybrid_analysis_ileave ();
     }
 
-    report ("hybrid_analysis_ileave");
+    report (
+        "hybrid_analysis_ileave"
+    );
 
-    if (check_func (psdsp.hybrid_synthesis_deint, "ps_hybrid_synthesis_deint")) {
+    if (
+        check_func (
+            psdsp.hybrid_synthesis_deint, "ps_hybrid_synthesis_deint"
+        )
+    ) {
         test_hybrid_synthesis_deint ();
     }
 
-    report ("hybrid_synthesis_deint");
+    report (
+        "hybrid_synthesis_deint"
+    );
 
-    test_stereo_interpolate (&psdsp);
-    report ("stereo_interpolate");
+    test_stereo_interpolate (
+        &psdsp
+    );
+
+    report (
+        "stereo_interpolate"
+    );
+
 }
