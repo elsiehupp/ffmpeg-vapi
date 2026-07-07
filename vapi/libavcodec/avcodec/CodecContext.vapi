@@ -2916,7 +2916,7 @@ You can use AVOptions (av_opt* / av_set/get*()) to access these fields from user
 applications.
 The name string for AVOptions options matches the associated command line
 parameter name and can be found in libavcodec/options_table.h
-The AVOption/command line parameter names differ in some cases from the C
+The LibAVUtil.Option/command line parameter names differ in some cases from the C
 structure field names for historic reasons or brevity.
 sizeof (AVCodecContext) must not be used outside libav*.
 ***********************************************************/
@@ -3235,7 +3235,7 @@ public struct AVCodecContext {
     the output frames. This is mainly used to set up hardware acceleration,
     then the provided format list contains the corresponding hwaccel pixel
     formats alongside the "software" one. The software pixel format may also
-    be retrieved from \ref sw_pix_fmt.
+    be retrieved from @ref sw_pix_fmt.
 
     This callback will be called when the coded frame properties (such as
     resolution, pixel format, etc.) change and more than one output format is
@@ -4143,21 +4143,21 @@ public struct AVCodecContext {
     - encoding: unused
     - decoding: Set by user.
     ***********************************************************/
-    enum AVDiscard skip_loop_filter;
+    enum LibAVCodec.Discard skip_loop_filter;
 
     /***********************************************************
     Skip IDCT/dequantization for selected frames.
     - encoding: unused
     - decoding: Set by user.
     ***********************************************************/
-    enum AVDiscard skip_idct;
+    enum LibAVCodec.Discard skip_idct;
 
     /***********************************************************
     Skip decoding for selected frames.
     - encoding: unused
     - decoding: Set by user.
     ***********************************************************/
-    enum AVDiscard skip_frame;
+    enum LibAVCodec.Discard skip_frame;
 
     /***********************************************************
     Skip processing alpha if supported by codec.

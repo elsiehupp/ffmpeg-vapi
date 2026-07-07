@@ -36,7 +36,7 @@ public abstract class LibAVFormat.InputFormat {
     @brief A comma separated list of short names for the format. New names
     may be appended with a minor bump.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="name")]
     public abstract string name { public get; }
 
     /***********************************************************
@@ -44,7 +44,7 @@ public abstract class LibAVFormat.InputFormat {
     than name. You should use the NULL_IF_CONFIG_SMALL () macro
     to define it.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="long_name")]
     public abstract string long_name { public get; }
 
     /***********************************************************
@@ -60,7 +60,7 @@ public abstract class LibAVFormat.InputFormat {
         LibAVFormat.FormatFlags1.NO_BYTE_SEEK,
         LibAVFormat.FormatFlags1.SEEK_TO_PTS.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="flags")]
     public abstract LibAVFormat.FormatFlags1 flags { public get; }
 
     /***********************************************************
@@ -68,16 +68,16 @@ public abstract class LibAVFormat.InputFormat {
     usually not use extension format guessing because it is not
     reliable enough
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="extensions")]
     public abstract string extensions { public get; }
 
-    [CCode (cname="")]
+    [CCode (cname="codec_tag_list")]
     public LibAVFormat.CodecTag codec_tag_list;
 
     /***********************************************************
     @brief LibAVUtil.Log.Class for the private context
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="priv_class")]
     public LibAVUtil.Log.Class priv_class;
 
     /***********************************************************
@@ -85,7 +85,7 @@ public abstract class LibAVFormat.InputFormat {
     It is used check for matching mime types while probing.
     @see av_probe_input_format2
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="mime_type")]
     public abstract string mime_type { public get; }
 
     /***********************************************************
@@ -94,19 +94,19 @@ public abstract class LibAVFormat.InputFormat {
     removed at will.
     New public fields should be added right above.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="next")]
     public LibAVFormat.InputFormat next;
 
     /***********************************************************
     @brief Raw demuxers store their codec ID here.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="raw_codec_id")]
     public abstract LibAVCodec.CodecID raw_codec_id { public get; }
 
     /***********************************************************
     @brief Size of private data so that it can be allocated in the wrapper.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="priv_data_size")]
     public abstract size_t priv_data_size { public get; }
 
     /***********************************************************
@@ -114,7 +114,7 @@ public abstract class LibAVFormat.InputFormat {
     The buffer provided is guaranteed to be AVPROBE_PADDING_SIZE bytes
     big so you do not have to check for that unless you need more.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="read_probe")]
     public abstract int read_probe (
         LibAVFormat.ProbeData format_context
     );
@@ -124,7 +124,7 @@ public abstract class LibAVFormat.InputFormat {
     structure. Return 0 if OK. 'avformat_new_stream' should be
     called to create new streams.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="read_header")]
     public abstract int read_header (
         LibAVFormat.FormatContext format_context
     );
@@ -138,7 +138,7 @@ public abstract class LibAVFormat.InputFormat {
             When returning an error, packet must not have been allocated
             or must be freed before returning
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="read_packet")]
     public abstract int read_packet (
         LibAVFormat.FormatContext format_context,
         LibAVCodec.Packet packet
@@ -148,7 +148,7 @@ public abstract class LibAVFormat.InputFormat {
     @brief Close the stream. The LibAVFormat.FormatContext and AVStreams are not
     freed by this function
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="read_close")]
     public abstract int read_close (
         LibAVFormat.FormatContext format_context
     );
@@ -161,7 +161,7 @@ public abstract class LibAVFormat.InputFormat {
                  match is available.
     @return >= 0 on success (but not necessarily the new offset)
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="read_seek")]
     public abstract int read_seek (
         LibAVFormat.FormatContext format_context,
         int stream_index,
@@ -173,7 +173,7 @@ public abstract class LibAVFormat.InputFormat {
     @brief Get the next timestamp in stream[stream_index].time_base units.
     @return the timestamp or AV_NOPTS_VALUE if an error occurred
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="read_timestamp")]
     public abstract int64 read_timestamp (
         LibAVFormat.FormatContext format_context,
         int stream_index,
@@ -185,7 +185,7 @@ public abstract class LibAVFormat.InputFormat {
     @brief Start/resume playing - only meaningful if using a network-based format
     (RTSP).
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="read_play")]
     public abstract int read_play (
         LibAVFormat.FormatContext format_context
     );
@@ -194,7 +194,7 @@ public abstract class LibAVFormat.InputFormat {
     @brief Pause playing - only meaningful if using a network-based format
     (RTSP).
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="read_pause")]
     public abstract int read_pause (
         LibAVFormat.FormatContext format_context
     );
@@ -205,7 +205,7 @@ public abstract class LibAVFormat.InputFormat {
     can be presented successfully will be closest to ts and within min/max_ts.
     Active streams are all streams that have LibAVFormat.Stream.discard < AVDISCARD_ALL.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="read_seek2")]
     public abstract int read_seek2 (
         LibAVFormat.FormatContext format_context,
         int stream_index,
@@ -219,7 +219,7 @@ public abstract class LibAVFormat.InputFormat {
     @brief Returns device list with it properties.
     @see avdevice_list_devices () for more details.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="get_device_list")]
     public abstract int get_device_list (
         LibAVFormat.FormatContext format_context,
         LibAVFormat.DeviceInfoList device_list
@@ -229,7 +229,7 @@ public abstract class LibAVFormat.InputFormat {
     @brief Initialize device capabilities submodule.
     @see avdevice_capabilities_create () for more details.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="create_device_capabilities")]
     public abstract int create_device_capabilities (
         LibAVFormat.FormatContext format_context,
         LibAVFormat.DeviceCapabilitiesQuery caps
@@ -239,7 +239,7 @@ public abstract class LibAVFormat.InputFormat {
     @brief Free device capabilities submodule.
     @see avdevice_capabilities_free () for more details.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="free_device_capabilities")]
     public abstract int free_device_capabilities (
         LibAVFormat.FormatContext format_context,
         LibAVFormat.DeviceCapabilitiesQuery caps
@@ -254,7 +254,7 @@ public abstract class LibAVFormat.InputFormat {
     @return the next registered demuxer or NULL when the iteration is
             finished
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_demuxer_iterate",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVFormat.InputFormat? av_demuxer_iterate (
         out void *opaque
     );
@@ -267,7 +267,7 @@ public abstract class LibAVFormat.InputFormat {
     /***********************************************************
     @brief Find LibAVFormat.InputFormat based on the short name of the input format.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_find_input_format",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVFormat.InputFormat? av_find_input_format (
         string short_name
     );
@@ -288,14 +288,7 @@ public abstract class LibAVFormat.InputFormat {
 @addtogroup lavf_decoding
 @{
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libavformat/avformat.h")]
 typedef struct LibAVFormat.InputFormat {
-    /***********************************************************
-    A comma separated list of short names for the format. New names
-    may be appended with a minor bump.
-    ***********************************************************/
-    const string name;
-
     /***********************************************************
     Descriptive name for the format, meant to be more human-readable
     than name. You should use the NULL_IF_CONFIG_SMALL () macro

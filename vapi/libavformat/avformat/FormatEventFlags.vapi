@@ -31,6 +31,10 @@ Main libavformat public API header
 public enum LibAVFormat.FormatEventFlags {
     /***********************************************************
     @brief The call resulted in updated metadata.
+    - demuxing: the demuxer read new metadata from the file and updated
+      LibAVFormat.FormatContext.metadata accordingly
+    - muxing: the user updated LibAVFormat.FormatContext.metadata and wishes the muxer to
+      write it into the file
     ***********************************************************/
     [CCode (cname="AVFMT_EVENT_FLAG_METADATA_UPDATED")]
     METADATA_UPDATED;

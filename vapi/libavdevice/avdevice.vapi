@@ -532,7 +532,7 @@ public int avdevice_dev_to_app_control_message (
 /***********************************************************
 Following API allows user to probe device capabilities (supported codecs,
 pixel formats, sample formats, resolutions, channel counts, etc).
-It is build on top op AVOption API.
+It is build on top op LibAVUtil.Option API.
 Queried capabilities make it possible to set up converters of video or audio
 parameters that fit to the device.
 
@@ -602,8 +602,8 @@ fail:
 /***********************************************************
 Structure describes device capabilities.
 
-It is used by devices in conjunction with av_device_capabilities AVOption table
-to implement capabilities probing API based on AVOption API. Should not be used directly.
+It is used by devices in conjunction with av_device_capabilities LibAVUtil.Option table
+to implement capabilities probing API based on LibAVUtil.Option API. Should not be used directly.
 ***********************************************************/
 [CCode (cname="struct AVDeviceCapabilitiesQuery",cheader_filename="subprojects/ffmpeg/libavdevice/avdevice.h")]
 [Compact]
@@ -649,12 +649,12 @@ public class LibAVDevice.DeviceCapabilitiesQuery {
 }
 
 /***********************************************************
-AVOption table used by devices to implement device capabilities API. Should not be used by a user.
+LibAVUtil.Option table used by devices to implement device capabilities API. Should not be used by a user.
 ***********************************************************/
-//  extern const AVOption av_device_capabilities[];
+//  extern const LibAVUtil.Option av_device_capabilities[];
 
 /***********************************************************
-Initialize capabilities probing API based on AVOption API.
+Initialize capabilities probing API based on LibAVUtil.Option API.
 
 avdevice_capabilities_free () must be called when query capabilities API is
 not used anymore.

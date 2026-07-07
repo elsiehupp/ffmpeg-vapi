@@ -382,7 +382,7 @@ public void ff_ebur128_add_frames_short (
 );
 
 /***********************************************************
-@brief See \ref ebur128_add_frames_short
+@brief See @ref ebur128_add_frames_short
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_int (
@@ -392,7 +392,7 @@ public void ff_ebur128_add_frames_int (
 );
 
 /***********************************************************
-@brief See \ref ebur128_add_frames_short
+@brief See @ref ebur128_add_frames_short
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_float (
@@ -402,7 +402,7 @@ public void ff_ebur128_add_frames_float (
 );
 
 /***********************************************************
-@brief See \ref ebur128_add_frames_short
+@brief See @ref ebur128_add_frames_short
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_double (
@@ -428,7 +428,7 @@ public void ff_ebur128_add_frames_planar_short (
 );
 
 /***********************************************************
-@brief See \ref ebur128_add_frames_planar_short
+@brief See @ref ebur128_add_frames_planar_short
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_planar_int (
@@ -439,7 +439,7 @@ public void ff_ebur128_add_frames_planar_int (
 );
 
 /***********************************************************
-@brief See \ref ebur128_add_frames_planar_short
+@brief See @ref ebur128_add_frames_planar_short
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_planar_float (
@@ -450,7 +450,7 @@ public void ff_ebur128_add_frames_planar_float (
 );
 
 /***********************************************************
-@brief See \ref ebur128_add_frames_planar_short
+@brief See @ref ebur128_add_frames_planar_short
 ***********************************************************/
 [CCode (cname="",cheader_filename="subprojects/ffmpeg/libavfilter/ebur128.h")]
 public void ff_ebur128_add_frames_planar_double (

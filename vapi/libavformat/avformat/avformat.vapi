@@ -406,7 +406,7 @@ Look in the examples section for an application example how to use the Metadata 
 
 /* packet functions */
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="AV_PROGRAM_RUNNING",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public const int AV_PROGRAM_RUNNING;
 
 /***********************************************************
@@ -421,19 +421,19 @@ etc.
 /***********************************************************
 @brief Return the LIBAVFORMAT_VERSION_INT constant.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="avformat_version",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static uint avformat_version ();
 
 /***********************************************************
 @brief Return the libavformat build-time configuration.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="avformat_configuration",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static string avformat_configuration ();
 
 /***********************************************************
 @brief Return the libavformat license.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="avformat_license",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static string avformat_license ();
 
 /***********************************************************
@@ -450,14 +450,14 @@ This function will be deprecated once support for older GnuTLS and
 OpenSSL libraries is removed, and this function has no purpose
 anymore.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="avformat_network_init",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static int avformat_network_init ();
 
 /***********************************************************
 @brief Undo the initialization done by avformat_network_init. Call it only
 once for each time you called avformat_network_init.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="avformat_network_deinit",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static int avformat_network_deinit ();
 
 /***********************************************************
@@ -483,7 +483,7 @@ Miscellaneous utility functions related to both muxing and demuxing
 
 @see av_hex_dump_log, av_pkt_dump2, av_pkt_dump_log2
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="av_hex_dump",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static void av_hex_dump (
     GLib.File? file,
     uint8[] buffer,
@@ -502,7 +502,7 @@ higher importance.
 
 @see av_hex_dump, av_pkt_dump2, av_pkt_dump_log2
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="av_hex_dump_log",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static void av_hex_dump_log (
     void *avcl,
     int level,
@@ -518,7 +518,7 @@ If no codec id is found returns LibAVCodec.CodecID.NONE.
 in LibAVFormat.InputFormat.codec_tag_list and LibAVFormat.OutputFormat.codec_tag_list
 @param tag codec tag to match to a codec ID
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="av_codec_get_id",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static LibAVCodec.CodecID av_codec_get_id (
     LibAVFormat.CodecTag[] tags,
     uint tag
@@ -532,7 +532,7 @@ If no codec tag is found returns 0.
 in LibAVFormat.InputFormat.codec_tag_list and LibAVFormat.OutputFormat.codec_tag_list
 @param id codec ID to match to a codec tag
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="av_codec_get_tag",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static uint av_codec_get_tag (
     LibAVFormat.CodecTag[] tags,
     LibAVCodec.CodecID id
@@ -547,7 +547,7 @@ in LibAVFormat.InputFormat.codec_tag_list and LibAVFormat.OutputFormat.codec_tag
 @param tag A pointer to the found tag
 @return 0 if id was not found in tags, > 0 if it was found
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="av_codec_get_tag2",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static int av_codec_get_tag2 (
     LibAVFormat.CodecTag[] tags,
     LibAVCodec.CodecID id,
@@ -574,7 +574,7 @@ value.
 @param path_size the size of the path buffer
 @param url the URL to split
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="av_url_split",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static void av_url_split (
     string proto,
     int proto_size,
@@ -601,7 +601,7 @@ of digits and '%%'.
 @param flags LibAVFormat.FormatFrameFilenameFlags.*
 @return 0 if OK, -1 on format error
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="av_get_frame_filename2",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static int av_get_frame_filename2 (
     string buffer,
     int buf_size,
@@ -610,7 +610,7 @@ public static int av_get_frame_filename2 (
     int flags
 );
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="av_get_frame_filename",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static int av_get_frame_filename (
     string buffer,
     int buf_size,
@@ -624,7 +624,7 @@ public static int av_get_frame_filename (
 @param filename possible numbered sequence string
 @return 1 if a valid numbered sequence string, 0 otherwise
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="av_filename_number_test",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static int av_filename_number_test (
     string filename
 );
@@ -636,7 +636,7 @@ extensions, 0 otherwise.
 @param filename file name to check against the given extensions
 @param extensions a comma-separated list of filename extensions
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="av_match_ext",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static int av_match_ext (
     string filename,
     string extensions
@@ -657,25 +657,25 @@ LibAVCodec.CodecID id = av_codec_get_id (table, tag);
 /***********************************************************
 @return the table mapping RIFF FourCCs for video to libavcodec LibAVCodec.CodecID.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="avformat_get_riff_video_tags",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static LibAVFormat.CodecTag? avformat_get_riff_video_tags ();
 
 /***********************************************************
 @return the table mapping RIFF FourCCs for audio to LibAVCodec.CodecID.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="avformat_get_riff_audio_tags",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static LibAVFormat.CodecTag? avformat_get_riff_audio_tags ();
 
 /***********************************************************
 @return the table mapping MOV FourCCs for video to libavcodec LibAVCodec.CodecID.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="avformat_get_mov_video_tags",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static LibAVFormat.CodecTag? avformat_get_mov_video_tags ();
 
 /***********************************************************
 @return the table mapping MOV FourCCs for audio to LibAVCodec.CodecID.
 ***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+[CCode (cname="avformat_get_mov_audio_tags",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public static LibAVFormat.CodecTag? avformat_get_mov_audio_tags ();
 
 /***********************************************************

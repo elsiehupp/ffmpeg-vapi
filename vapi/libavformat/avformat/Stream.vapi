@@ -37,9 +37,14 @@ sizeof (LibAVFormat.Stream) must not be used outside libav*.
 [Compact]
 public class LibAVFormat.Stream {
     /***********************************************************
+    A class for @ref avoptions. Set on stream creation.
+    ***********************************************************/
+    public LibAVUtil.Log.Class? av_class;
+
+    /***********************************************************
     @brief Stream index in LibAVFormat.FormatContext
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="index")]
     public int index;
 
     /***********************************************************
@@ -48,11 +53,11 @@ public class LibAVFormat.Stream {
     - decoding: set by libavformat
     - encoding: set by the user, replaced by libavformat if left unset
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="id")]
     public int id;
 
-    [CCode (cname="")]
-    public void *priv_data;
+    //  [CCode (cname="priv_data")]
+    //  public void *priv_data;
 
     /***********************************************************
     @brief This is the fundamental unit of time (in seconds) in terms
@@ -66,7 +71,7 @@ public class LibAVFormat.Stream {
               written into the file (which may or may not be related to the
               user-provided one, depending on the format).
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="time_base")]
     public LibAVUtil.Rational time_base;
 
     /***********************************************************
@@ -77,7 +82,7 @@ public class LibAVFormat.Stream {
     @note The ASF header does NOT contain a correct start_time the ASF
     demuxer must NOT set this.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="start_time")]
     public int64 start_time;
 
     /***********************************************************
@@ -88,25 +93,29 @@ public class LibAVFormat.Stream {
     Encoding: May be set by the caller before avformat_write_header () to
     provide a hint to the muxer about the estimated duration.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="duration")]
     public int64 duration;
 
     /***********************************************************
     @brief Number of frames in this stream if known or 0
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="nb_frames")]
     public int64 nb_frames;
 
     /***********************************************************
     @brief LibAVFormat.DispositionFlags bit field
+    Stream disposition - a combination of LibAVFormat.DispositionFlags flags.
+    - demuxing: set by libavformat when creating the stream or in
+                avformat_find_stream_info ().
+    - muxing: may be set by the caller before avformat_write_header ().
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="disposition")]
     public LibAVFormat.DispositionFlags disposition;
 
     /***********************************************************
     @brief Selects which packets can be discarded at will and do not need to be demuxed.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="discard")]
     public LibAVCodec.Discard discard;
 
     /***********************************************************
@@ -115,10 +124,10 @@ public class LibAVFormat.Stream {
     - encoding: Set by user.
     - decoding: Set by libavformat.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="sample_aspect_ratio")]
     public LibAVUtil.Rational sample_aspect_ratio;
 
-    [CCode (cname="")]
+    [CCode (cname="metadata")]
     public LibAVUtil.Dictionary metadata;
 
     /***********************************************************
@@ -128,7 +137,7 @@ public class LibAVFormat.Stream {
                 avformat_find_stream_info ().
     - muxing: May be set by the caller before avformat_write_header ().
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="avg_frame_rate")]
     public LibAVUtil.Rational avg_frame_rate;
 
     /***********************************************************
@@ -138,7 +147,7 @@ public class LibAVFormat.Stream {
     decoding: set by libavformat, must not be modified by the caller.
     encoding: unused
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="attached_pic")]
     public LibAVCodec.Packet attached_pic;
 
     /***********************************************************
@@ -159,21 +168,29 @@ public class LibAVFormat.Stream {
 
     @see av_format_inject_global_side_data ()
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="side_data")]
     public LibAVCodec.PacketSideData[] side_data;
 
     /***********************************************************
     @brief The number of elements in the LibAVFormat.Stream.side_data array.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="nb_side_data")]
     public int nb_side_data;
 
     /***********************************************************
-    @brief Flags for the user to detect events happening on the stream. Flags must
-    be cleared by the user once the event has been handled.
+    @brief Flags indicating events happening on the stream.
+
+    Flags must be cleared by the user once the event has been handled.
     A combination of LibAVFormat.FormatStreamEventFlags.
+
+    - demuxing: may be set by the demuxer in avformat_open_input (),
+      avformat_find_stream_info () and av_read_frame (). Flags must be cleared
+      by the user once the event has been handled.
+    - muxing: may be set by the user after avformat_write_header (). to
+      indicate a user-triggered event.  The muxer will clear the flags for
+      events it has handled in av_[interleaved]_write_frame ().
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="event_flags")]
     public LibAVFormat.FormatStreamEventFlags event_flags;
 
     /***********************************************************
@@ -184,7 +201,7 @@ public class LibAVFormat.Stream {
     For example, if the time base is 1/90000 and all frames have either
     approximately 3600 or 1800 timer ticks, then r_frame_rate will be 50/1.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="r_frame_rate")]
     public LibAVUtil.Rational r_frame_rate;
 
     /***********************************************************
@@ -196,8 +213,8 @@ public class LibAVFormat.Stream {
                 avformat_find_stream_info ()
     - muxing: filled by the caller before avformat_write_header ()
     ***********************************************************/
-    [CCode (cname="")]
-    public LibAVCodec.CodecParameters codecpar;
+    [CCode (cname="codecpar")]
+    public LibAVCodec.CodecParameters? codecpar;
 
     //  /***********************************************************
     //  All fields below this line are not part of the public API. They
@@ -258,6 +275,9 @@ public class LibAVFormat.Stream {
 
     //  /***********************************************************
     //  number of bits in pts (used for wrapping control)
+
+    //  - demuxing: set by libavformat
+    //  - muxing: set by libavformat
     //  ***********************************************************/
     //  public int pts_wrap_bits;
 
@@ -445,7 +465,7 @@ public class LibAVFormat.Stream {
     //  ***********************************************************/
     //  public AVStreamInternal internal;
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_stream_get_parser",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVCodec.CodecParserContext? av_stream_get_parser (
         LibAVFormat.Stream? stream
     );
@@ -455,7 +475,7 @@ public class LibAVFormat.Stream {
 
     the retuned value is undefined when used with a demuxer.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_stream_get_end_pts",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int64 av_stream_get_end_pts (
         LibAVFormat.Stream stream
     );
@@ -488,10 +508,21 @@ public class LibAVFormat.Stream {
 
     @return newly created stream or NULL on error.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_new_stream",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVFormat.Stream? avformat_new_stream (
         LibAVFormat.FormatContext? format_context,
         LibAVCodec.Codec? codec
+    );
+
+    /***********************************************************
+    Get the index entry count for the given LibAVFormat.Stream.
+
+    @param stream stream
+    @return the number of index entries in the stream
+    ***********************************************************/
+    [CCode (cname="avformat_index_get_entries_count",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    public static int avformat_index_get_entries_count (
+        LibAVFormat.Stream? stream
     );
 
     /***********************************************************
@@ -509,7 +540,7 @@ public class LibAVFormat.Stream {
                  if LibAVFormat.FormatSeekFlags.ANY seek to any frame, only keyframes otherwise
     @return < 0 if no such timestamp could be found
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_index_search_timestamp",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_index_search_timestamp (
         LibAVFormat.Stream? stream,
         int64 timestamp,
@@ -522,7 +553,7 @@ public class LibAVFormat.Stream {
 
     @param timestamp timestamp in the time base of the given stream
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_add_index_entry",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_add_index_entry (
         LibAVFormat.Stream? stream,
         int64 pos,
@@ -540,7 +571,7 @@ public class LibAVFormat.Stream {
     @param dump_payload True if the payload must be displayed, too.
     @param stream LibAVFormat.Stream that the packet belongs to
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_pkt_dump2",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public void av_pkt_dump2 (
         GLib.File? file,
         LibAVCodec.Packet? packet,
@@ -560,7 +591,7 @@ public class LibAVFormat.Stream {
     @param dump_payload True if the payload must be displayed, too.
     @param stream LibAVFormat.Stream that the packet belongs to
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_pkt_dump_log2",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public void av_pkt_dump_log2 (
         void *avcl,
         int level,
@@ -574,260 +605,90 @@ public class LibAVFormat.Stream {
 
     @param stream input stream to extract the timebase from
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_stream_get_codec_timebase",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Rational av_stream_get_codec_timebase (
         LibAVFormat.Stream? stream
     );
 
+
+
+
+
+
+
+
+
+
+
+
+
+    /***********************************************************
+    @defgroup lavf_core Core functions
+    @ingroup libavf
+
+    Functions for querying libavformat capabilities, allocating core structures,
+    etc.
+    @{
+    ***********************************************************/
+
+    /***********************************************************
+    Get the LibAVUtil.Log.Class for LibAVFormat.Stream. It can be used in combination with
+    AV_OPT_SEARCH_FAKE_OBJ for examining options.
+
+    @see av_opt_find ().
+    ***********************************************************/
+    [CCode (cname="av_stream_get_class",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    public static LibAVUtil.Log.Class? av_stream_get_class ();
+
+    /***********************************************************
+    @}
+    ***********************************************************/
+
+    /***********************************************************
+    Get the LibAVFormat.IndexEntry corresponding to the given index.
+
+    @param stream          Stream containing the requested LibAVFormat.IndexEntry.
+    @param idx         The desired index.
+    @return A pointer to the requested LibAVFormat.IndexEntry if it exists, NULL otherwise.
+
+    @note The pointer returned by this function is only guaranteed to be valid
+        until any function that takes the stream or the parent LibAVFormat.FormatContext
+        as input argument is called.
+    ***********************************************************/
+    [CCode (cname="avformat_index_get_entry",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    public static LibAVFormat.IndexEntry? avformat_index_get_entry (
+        LibAVFormat.Stream? stream,
+        int idx
+    );
+
+    /***********************************************************
+    Get the LibAVFormat.IndexEntry corresponding to the given timestamp.
+
+    @param stream          Stream containing the requested LibAVFormat.IndexEntry.
+    @param wanted_timestamp   Timestamp to retrieve the index entry for.
+    @param flags       If AVSEEK_FLAG_BACKWARD then the returned entry will correspond
+                    to the timestamp which is <= the requested one, if backward
+                    is 0, then it will be >=
+                    if AVSEEK_FLAG_ANY seek to any frame, only keyframes otherwise.
+    @return A pointer to the requested LibAVFormat.IndexEntry if it exists, NULL otherwise.
+
+    @note The pointer returned by this function is only guaranteed to be valid
+        until any function that takes the stream or the parent LibAVFormat.FormatContext
+        as input argument is called.
+    ***********************************************************/
+    [CCode (cname="avformat_index_get_entry_from_timestamp",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    public static LibAVFormat.IndexEntry? avformat_index_get_entry_from_timestamp (
+        LibAVFormat.Stream? stream,
+        int64_t wanted_timestamp,
+        int flags
+    );
+
+
+    /***********************************************************
+    @}
+    ***********************************************************/
+
+
 }
 
 } // namespace LibAVFormat
-
-/***********************************************************
-Stream structure.
-New fields can be added to the end with minor version bumps.
-Removal, reordering and changes to existing fields require a major
-version bump.
-sizeof (LibAVFormat.Stream) must not be used outside libav*.
-***********************************************************/
-typedef struct LibAVFormat.Stream {
-    /***********************************************************
-    A class for @ref avoptions. Set on stream creation.
-    ***********************************************************/
-    public LibAVUtil.Log.Class? av_class;
-
-    int index;    /**< stream index in LibAVFormat.FormatContext */
-    /***********************************************************
-    Format-specific stream ID.
-    decoding: set by libavformat
-    encoding: set by the user, replaced by libavformat if left unset
-    ***********************************************************/
-    int id;
-
-    /***********************************************************
-    Codec parameters associated with this stream. Allocated and freed by
-    libavformat in avformat_new_stream () and avformat_free_context ()
-    respectively.
-
-    - demuxing: filled by libavformat on stream creation or in
-                avformat_find_stream_info ()
-    - muxing: filled by the caller before avformat_write_header ()
-    ***********************************************************/
-    LibAVCodec.CodecParameters *codecpar;
-
-    void *priv_data;
-
-    /***********************************************************
-    This is the fundamental unit of time (in seconds) in terms
-    of which frame timestamps are represented.
-
-    decoding: set by libavformat
-    encoding: May be set by the caller before avformat_write_header () to
-              provide a hint to the muxer about the desired timebase. In
-              avformat_write_header (), the muxer will overwrite this field
-              with the timebase that will actually be used for the timestamps
-              written into the file (which may or may not be related to the
-              user-provided one, depending on the format).
-    ***********************************************************/
-    LibAVUtil.Rational time_base;
-
-    /***********************************************************
-    Decoding: pts of the first frame of the stream in presentation order, in stream time base.
-    Only set this if you are absolutely 100% sure that the value you set
-    it to really is the pts of the first frame.
-    This may be undefined (AV_NOPTS_VALUE).
-    @note The ASF header does NOT contain a correct start_time the ASF
-    demuxer must NOT set this.
-    ***********************************************************/
-    int64_t start_time;
-
-    /***********************************************************
-    Decoding: duration of the stream, in stream time base.
-    If a source file does not specify a duration, but does specify
-    a bitrate, this value will be estimated from bitrate and file size.
-
-    Encoding: May be set by the caller before avformat_write_header () to
-    provide a hint to the muxer about the estimated duration.
-    ***********************************************************/
-    int64_t duration;
-
-    int64_t nb_frames;                 ///< number of frames in this stream if known or 0
-
-    /***********************************************************
-    Stream disposition - a combination of LibAVFormat.DispositionFlags flags.
-    - demuxing: set by libavformat when creating the stream or in
-                avformat_find_stream_info ().
-    - muxing: may be set by the caller before avformat_write_header ().
-    ***********************************************************/
-    LibAVFormat.DispositionFlags disposition;
-
-    enum AVDiscard discard; ///< Selects which packets can be discarded at will and do not need to be demuxed.
-
-    /***********************************************************
-    sample aspect ratio (0 if unknown)
-    - encoding: Set by user.
-    - decoding: Set by libavformat.
-    ***********************************************************/
-    LibAVUtil.Rational sample_aspect_ratio;
-
-    LibAVUtil.Dictionary *metadata;
-
-    /***********************************************************
-    Average framerate
-
-    - demuxing: May be set by libavformat when creating the stream or in
-                avformat_find_stream_info ().
-    - muxing: May be set by the caller before avformat_write_header ().
-    ***********************************************************/
-    LibAVUtil.Rational avg_frame_rate;
-
-    /***********************************************************
-    For streams with LibAVFormat.DispositionFlags.ATTACHED_PIC disposition, this packet
-    will contain the attached picture.
-
-    decoding: set by libavformat, must not be modified by the caller.
-    encoding: unused
-    ***********************************************************/
-    LibAVCodec.Packet attached_pic;
-
-    /***********************************************************
-    Flags indicating events happening on the stream, a combination of
-    LibAVFormat.FormatStreamEventFlags.
-
-    - demuxing: may be set by the demuxer in avformat_open_input (),
-      avformat_find_stream_info () and av_read_frame (). Flags must be cleared
-      by the user once the event has been handled.
-    - muxing: may be set by the user after avformat_write_header (). to
-      indicate a user-triggered event.  The muxer will clear the flags for
-      events it has handled in av_[interleaved]_write_frame ().
-    ***********************************************************/
-    LibAVFormat.FormatStreamEventFlags event_flags;
-
-    /***********************************************************
-    Real base framerate of the stream.
-    This is the lowest framerate with which all timestamps can be
-    represented accurately (it is the least common multiple of all
-    framerates in the stream). Note, this value is just a guess!
-    For example, if the time base is 1/90000 and all frames have either
-    approximately 3600 or 1800 timer ticks, then r_frame_rate will be 50/1.
-    ***********************************************************/
-    LibAVUtil.Rational r_frame_rate;
-
-    /***********************************************************
-    Number of bits in timestamps. Used for wrapping control.
-
-    - demuxing: set by libavformat
-    - muxing: set by libavformat
-
-    ***********************************************************/
-    int pts_wrap_bits;
-} LibAVFormat.Stream;
-
-/***********************************************************
-@defgroup lavf_core Core functions
-@ingroup libavf
-
-Functions for querying libavformat capabilities, allocating core structures,
-etc.
-@{
-***********************************************************/
-
-/***********************************************************
-Get the LibAVUtil.Log.Class for LibAVFormat.Stream. It can be used in combination with
-AV_OPT_SEARCH_FAKE_OBJ for examining options.
-
-@see av_opt_find ().
-***********************************************************/
-public static LibAVUtil.Log.Class? av_stream_get_class ();
-
-/***********************************************************
-@}
-***********************************************************/
-
-/***********************************************************
-@defgroup lavf_core Core functions
-@ingroup libavf
-
-Functions for querying libavformat capabilities, allocating core structures,
-etc.
-@{
-***********************************************************/
-
-
-/***********************************************************
-Add a new stream to a media file.
-
-When demuxing, it is called by the demuxer in read_header (). If the
-flag LibAVFormat.FormatContextFlags.NO_HEADER is set in s.ctx_flags, then it may also
-be called in read_packet ().
-
-When muxing, should be called by the user before avformat_write_header ().
-
-User is required to call avformat_free_context () to clean up the allocation
-by avformat_new_stream ().
-
-@param s media file handle
-@param c unused, does nothing
-
-@return newly created stream or NULL on error.
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public static LibAVFormat.Stream? avformat_new_stream (
-    LibAVFormat.FormatContext? s,
-    AVCodec? c
-);
-
-/***********************************************************
-Get the index entry count for the given LibAVFormat.Stream.
-
-@param stream stream
-@return the number of index entries in the stream
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public static int avformat_index_get_entries_count (
-    LibAVFormat.Stream? stream
-);
-
-/***********************************************************
-Get the LibAVFormat.IndexEntry corresponding to the given index.
-
-@param stream          Stream containing the requested LibAVFormat.IndexEntry.
-@param idx         The desired index.
-@return A pointer to the requested LibAVFormat.IndexEntry if it exists, NULL otherwise.
-
-@note The pointer returned by this function is only guaranteed to be valid
-      until any function that takes the stream or the parent LibAVFormat.FormatContext
-      as input argument is called.
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public static LibAVFormat.IndexEntry? avformat_index_get_entry (
-    LibAVFormat.Stream? stream,
-    int idx
-);
-
-/***********************************************************
-Get the LibAVFormat.IndexEntry corresponding to the given timestamp.
-
-@param stream          Stream containing the requested LibAVFormat.IndexEntry.
-@param wanted_timestamp   Timestamp to retrieve the index entry for.
-@param flags       If AVSEEK_FLAG_BACKWARD then the returned entry will correspond
-                   to the timestamp which is <= the requested one, if backward
-                   is 0, then it will be >=
-                   if AVSEEK_FLAG_ANY seek to any frame, only keyframes otherwise.
-@return A pointer to the requested LibAVFormat.IndexEntry if it exists, NULL otherwise.
-
-@note The pointer returned by this function is only guaranteed to be valid
-      until any function that takes the stream or the parent LibAVFormat.FormatContext
-      as input argument is called.
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public static LibAVFormat.IndexEntry? avformat_index_get_entry_from_timestamp (
-    LibAVFormat.Stream? stream,
-    int64_t wanted_timestamp,
-    int flags
-);
-
-
-/***********************************************************
-@}
-***********************************************************/

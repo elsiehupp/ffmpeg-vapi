@@ -35,37 +35,37 @@ sizeof (LibAVFormat.Program) must not be used outside libav*.
 [CCode (cname="struct AVProgram",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 [Compact]
 public class LibAVFormat.Program {
-    [CCode (cname="")]
+    [CCode (cname="id")]
     public int id;
 
-    [CCode (cname="")]
+    [CCode (cname="lags")]
     public int lags;
 
     /***********************************************************
     @brief Selects which program to discard and which to feed to the caller
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="discard")]
     public LibAVCodec.Discard discard;
 
-    [CCode (cname="")]
+    [CCode (cname="stream_index")]
     public uint[] stream_index;
 
-    [CCode (cname="")]
+    [CCode (cname="nb_stream_indexes")]
     public uint nb_stream_indexes;
 
-    [CCode (cname="")]
+    [CCode (cname="metadata")]
     public LibAVUtil.Dictionary metadata;
 
-    [CCode (cname="")]
+    [CCode (cname="program_num")]
     public int program_num;
 
-    [CCode (cname="")]
+    [CCode (cname="pmt_pid")]
     public int pmt_pid;
 
-    [CCode (cname="")]
+    [CCode (cname="pcr_pid")]
     public int pcr_pid;
 
-    [CCode (cname="")]
+    [CCode (cname="pmt_version")]
     public int pmt_version;
 
     //  /***********************************************************
@@ -97,7 +97,7 @@ public class LibAVFormat.Program {
     @{
     ***********************************************************/
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_new_program",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVFormat.Program? av_new_program (
         LibAVFormat.FormatContext? format_context,
         int id
@@ -118,7 +118,7 @@ sizeof (LibAVFormat.Program) must not be used outside libav*.
 typedef struct LibAVFormat.Program {
     int            id;
     int            flags;
-    enum AVDiscard discard;        ///< selects which program to discard and which to feed to the caller
+    enum LibAVCodec.Discard discard;        ///< selects which program to discard and which to feed to the caller
     uint   *stream_index;
     uint   nb_stream_indexes;
     LibAVUtil.Dictionary *metadata;

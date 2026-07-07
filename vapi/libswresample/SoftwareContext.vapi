@@ -123,7 +123,7 @@ structure.
 [Compact]
 public class LibSoftwareResample.SoftwareContext {
     /***********************************************************
-    LibAVUtil.Log.Class used for AVOption and av_log ()
+    LibAVUtil.Log.Class used for LibAVUtil.Option and av_log ()
     ***********************************************************/
     [CCode (cname="")]
     internal LibAVUtil.Log.Class? av_class;
@@ -723,7 +723,7 @@ public class LibSoftwareResample.SoftwareContext {
 
     /***********************************************************
     Initialize context after user parameters have been set.
-    @note The context must be configured using the AVOption API.
+    @note The context must be configured using the LibAVUtil.Option API.
 
     @see av_opt_set_int ()
     @see av_opt_set_dict ()
@@ -875,7 +875,7 @@ public class LibSoftwareResample.SoftwareContext {
 
     @name Low-level option setting functions
     These functons provide a means to set low-level options that is not possible
-    with the AVOption API.
+    with the LibAVUtil.Option API.
     @{
     ***********************************************************/
 

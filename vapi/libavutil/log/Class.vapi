@@ -343,7 +343,7 @@ public class LibAVUtil.Log.Class {
 
     @see av_set_default_options ()
     ***********************************************************/
-    public AVOption? option;
+    public LibAVUtil.Option? option;
 
     /***********************************************************
     LibAVUtil.Version.VERSI with which this structure was created.

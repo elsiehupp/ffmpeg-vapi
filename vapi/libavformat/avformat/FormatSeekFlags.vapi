@@ -56,11 +56,3 @@ public enum LibAVFormat.FormatSeekFlags {
 
 } // namespace LibAVFormat
 
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-#define AVSEEK_FLAG_BACKWARD 1 ///< seek backward
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-#define AVSEEK_FLAG_BYTE     2 ///< seeking based on position in bytes
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-#define AVSEEK_FLAG_ANY      4 ///< seek to any frame, even non-keyframes
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-#define AVSEEK_FLAG_FRAME    8 ///< seeking based on frame number

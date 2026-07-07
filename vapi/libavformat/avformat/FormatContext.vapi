@@ -43,27 +43,33 @@ structure field names for historic reasons or brevity.
 [CCode (cname="struct AVFormatContext",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
 public abstract class LibAVFormat.FormatContext {
     /***********************************************************
+    @brief Name of this format context, only used for logging purposes.
+    ***********************************************************/
+    [CCode (cname="name")]
+    public string name;
+
+    /***********************************************************
     @brief A class for logging and @ref avoptions. Set by avformat_alloc_context ().
     Exports (de)muxer private options if they exist.
     ***********************************************************/
-    [CCode (cname="")]
-    public LibAVUtil.Log.Class av_class;
+    [CCode (cname="av_class")]
+    public LibAVUtil.Log.Class? av_class;
 
     /***********************************************************
     @brief The input container format.
 
     Demuxing only, set by avformat_open_input ().
     ***********************************************************/
-    [CCode (cname="")]
-    public LibAVFormat.InputFormat iformat;
+    [CCode (cname="iformat")]
+    public LibAVFormat.InputFormat? iformat;
 
     /***********************************************************
     @brief The output container format.
 
     Muxing only, must be set by the caller before avformat_write_header ().
     ***********************************************************/
-    [CCode (cname="")]
-    public LibAVFormat.OutputFormat oformat;
+    [CCode (cname="oformat")]
+    public LibAVFormat.OutputFormat? oformat;
 
     /***********************************************************
     @brief Format private data. This is an AVOptions-enabled struct
@@ -72,7 +78,7 @@ public abstract class LibAVFormat.FormatContext {
     - muxing: set by avformat_write_header ()
     - demuxing: set by avformat_open_input ()
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="priv_data")]
     public void *priv_data;
 
     /***********************************************************
@@ -87,8 +93,8 @@ public abstract class LibAVFormat.FormatContext {
     iformat/oformat.flags. In such a case, the (de)muxer will handle
     I/O in some other way and this field will be NULL.
     ***********************************************************/
-    [CCode (cname="")]
-    public LibAVFormat.IOContext pb;
+    [CCode (cname="pb")]
+    public LibAVFormat.IOContext? pb;
 
     /***********************************************************
     @brief Stream info
@@ -98,7 +104,7 @@ public abstract class LibAVFormat.FormatContext {
     @brief Flags signalling stream properties. A combination of LibAVFormat.FormatContextFlags.
     Set by libavformat.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="ctx_flags")]
     public LibAVFormat.FormatContextFlags ctx_flags;
 
     /***********************************************************
@@ -112,7 +118,7 @@ public abstract class LibAVFormat.FormatContext {
 
     Freed by libavformat in avformat_free_context ().
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="streams")]
     public LibAVFormat.Stream[] streams;
 
     /***********************************************************
@@ -120,7 +126,7 @@ public abstract class LibAVFormat.FormatContext {
 
     Set by avformat_new_stream (), must not be modified by any other code.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="nb_streams")]
     public uint nb_streams;
 
     /***********************************************************
@@ -136,7 +142,7 @@ public abstract class LibAVFormat.FormatContext {
 
     Freed by libavformat in avformat_free_context ().
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="url")]
     public string url;
 
     /***********************************************************
@@ -146,7 +152,7 @@ public abstract class LibAVFormat.FormatContext {
 
     Demuxing only, set by libavformat.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="start_time")]
     public int64 start_time;
 
     /***********************************************************
@@ -157,7 +163,7 @@ public abstract class LibAVFormat.FormatContext {
 
     Demuxing only, set by libavformat.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="duration")]
     public int64 duration;
 
     /***********************************************************
@@ -165,28 +171,34 @@ public abstract class LibAVFormat.FormatContext {
     available. Never set it directly if the file_size and the
     duration are known as FFmpeg can compute it automatically.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="bit_rate")]
     public int64 bit_rate;
 
-    [CCode (cname="")]
+    [CCode (cname="packet_size")]
     public uint packet_size;
 
-    [CCode (cname="")]
+    [CCode (cname="max_delay")]
     public int max_delay;
 
     /***********************************************************
     @brief Flags modifying the (de)muxer behaviour. A combination of LibAVFormat.FormatFlags.*.
     Set by the user before avformat_open_input () / avformat_write_header ().
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="flags")]
     public LibAVFormat.FormatFlags flags;
 
     /***********************************************************
-    @brief Maximum size of the data read from input for determining
-    the input container format.
+    Maximum number of bytes read from input in order to determine stream
+    properties. Used when reading the global header and in
+    avformat_find_stream_info ().
+
     Demuxing only, set by the caller before avformat_open_input ().
+
+    @note this is \e not  used for determining the @ref LibAVFormat.InputFormat
+          "input format"
+    @see format_probesize
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="probesize")]
     public int64 probesize;
 
     /***********************************************************
@@ -195,40 +207,40 @@ public abstract class LibAVFormat.FormatContext {
     Demuxing only, set by the caller before avformat_find_stream_info ().
     Can be set to 0 to let avformat choose using a heuristic.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="max_analyze_duration")]
     public int64 max_analyze_duration;
 
-    [CCode (cname="")]
+    [CCode (cname="key")]
     public uint8[] key;
 
-    [CCode (cname="")]
+    [CCode (cname="keylen")]
     public int keylen;
 
-    [CCode (cname="")]
+    [CCode (cname="programs")]
     public LibAVFormat.Program[] programs;
 
-    [CCode (cname="")]
+    [CCode (cname="nb_programs")]
     public uint nb_programs;
 
     /***********************************************************
     @brief Forced video codec_id.
     Demuxing: Set by user.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="video_codec_id")]
     public LibAVCodec.CodecID video_codec_id;
 
     /***********************************************************
     @brief Forced audio codec_id.
     Demuxing: Set by user.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="audio_codec_id")]
     public LibAVCodec.CodecID audio_codec_id;
 
     /***********************************************************
     @brief Forced subtitle codec_id.
     Demuxing: Set by user.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="subtitle_codec_id")]
     public LibAVCodec.CodecID subtitle_codec_id;
 
     /***********************************************************
@@ -241,15 +253,40 @@ public abstract class LibAVFormat.FormatContext {
     - muxing: unused
     - demuxing: set by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="max_index_size")]
     public uint max_index_size;
 
     /***********************************************************
     @brief Maximum amount of memory in bytes to use for buffering frames
     obtained from realtime capture devices.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="max_picture_buffer")]
     public uint max_picture_buffer;
+
+    /***********************************************************
+    A list of all stream groups in the file. New groups are created with
+    avformat_stream_group_create (), and filled with avformat_stream_group_add_stream ().
+
+    - demuxing: groups may be created by libavformat in avformat_open_input ().
+                If LibAVFormat.FormatContextFlags.NO_HEADER is set in ctx_flags, then new groups may also
+                appear in av_read_frame ().
+    - muxing: groups may be created by the user before avformat_write_header ().
+
+    Freed by libavformat in avformat_free_context ().
+    ***********************************************************/
+    [CCode (cname="stream_groups")]
+    public LibAVFormat.StreamGroup[] stream_groups;
+
+    /***********************************************************
+    Number of elements in LibAVFormat.FormatContext.stream_groups.
+
+    Set by avformat_stream_group_create (), must not be modified by any other code.
+    ***********************************************************/
+    [CCode (cname="nb_stream_groups")]
+    public uint nb_stream_groups;
+
+    [CCode (cname="chapters")]
+    public LibAVFormat.Chapter[] chapters;
 
     /***********************************************************
     @brief Number of chapters in LibAVFormat.Chapter array.
@@ -262,10 +299,7 @@ public abstract class LibAVFormat.FormatContext {
     - muxing: set by user
     - demuxing: set by libavformat
     ***********************************************************/
-    [CCode (cname="")]
-    public LibAVFormat.Chapter[] chapters;
-
-    [CCode (cname="")]
+    [CCode (cname="nb_chapters")]
     public uint nb_chapters;
 
     /***********************************************************
@@ -276,8 +310,8 @@ public abstract class LibAVFormat.FormatContext {
 
     Freed by libavformat in avformat_free_context ().
     ***********************************************************/
-    [CCode (cname="")]
-    public LibAVUtil.Dictionary metadata;
+    [CCode (cname="metadata")]
+    public LibAVUtil.Dictionary? metadata;
 
     /***********************************************************
     @brief Start time of the stream in real world time, in microseconds
@@ -290,7 +324,7 @@ public abstract class LibAVFormat.FormatContext {
                 the value may become known after some number of frames
                 have been received.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="start_time_realtime")]
     public int64 start_time_realtime;
 
     /***********************************************************
@@ -298,7 +332,7 @@ public abstract class LibAVFormat.FormatContext {
     avformat_find_stream_info ().
     Demuxing only, set by the caller before avformat_find_stream_info ().
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="fps_probe_size")]
     public int fps_probe_size;
 
     /***********************************************************
@@ -306,7 +340,7 @@ public abstract class LibAVFormat.FormatContext {
     misdetect some more or less valid parts as errors.
     Demuxing only, set by the caller before avformat_open_input ().
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="error_recognition")]
     public int error_recognition;
 
     /***********************************************************
@@ -318,13 +352,13 @@ public abstract class LibAVFormat.FormatContext {
     should also be passed to avio_open2 () if it's used to
     open the file.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="interrupt_callback")]
     public LibAVFormat.IOInterruptCallback interrupt_callback;
 
     /***********************************************************
     @brief Flags to enable debugging.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="debug")]
     public LibAVFormat.FormatDebugFlags debug;
 
     /***********************************************************
@@ -343,14 +377,14 @@ public abstract class LibAVFormat.FormatContext {
 
     Muxing only, set by the caller before avformat_write_header ().
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="max_interleave_delta")]
     public int64 max_interleave_delta;
 
     /***********************************************************
     @brief Allow non-standard and experimental extension
     @see LibAVCodec.CodecContext.strict_std_compliance
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="strict_std_compliance")]
     public int strict_std_compliance;
 
     /***********************************************************
@@ -358,14 +392,14 @@ public abstract class LibAVFormat.FormatContext {
     be cleared by the user once the event has been handled.
     A combination of AVFMT_EVENT_FLAG_*.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="event_flags")]
     public LibAVFormat.FormatEventFlags event_flags;
 
     /***********************************************************
     @brief Maximum number of packets to read while waiting for the first timestamp.
     Decoding only.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="max_ts_probe")]
     public int max_ts_probe;
 
     /***********************************************************
@@ -375,14 +409,14 @@ public abstract class LibAVFormat.FormatContext {
     - muxing: Set by user
     - demuxing: unused
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="avoid_negative_ts")]
     public LibAVFormat.FormatAvoidNegativeTimestampFlags avoid_negative_ts;
 
     /***********************************************************
     @brief Transport stream id.
     This will be moved into demuxer private options. Thus no API/ABI compatibility
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="ts_id")]
     public int ts_id;
 
     /***********************************************************
@@ -391,7 +425,7 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: Set by user
     - decoding: unused
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="audio_preload")]
     public int audio_preload;
 
     /***********************************************************
@@ -400,7 +434,7 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: Set by user
     - decoding: unused
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="max_chunk_duration")]
     public int max_chunk_duration;
 
     /***********************************************************
@@ -409,8 +443,16 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: Set by user
     - decoding: unused
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="max_chunk_size")]
     public int max_chunk_size;
+
+    /***********************************************************
+    Maximum number of packets that can be probed
+    - encoding: unused
+    - decoding: set by user
+    ***********************************************************/
+    [CCode (cname="max_probe_packets")]
+    public int max_probe_packets;
 
     /***********************************************************
     @brief Forces the use of wallclock timestamps as pts/dts of packets
@@ -443,7 +485,7 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: unused
     - decoding: Set by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="skip_initial_bytes")]
     public int64 skip_initial_bytes;
 
     /***********************************************************
@@ -451,7 +493,7 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: unused
     - decoding: Set by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="correct_ts_overflow")]
     public uint correct_ts_overflow;
 
     /***********************************************************
@@ -459,7 +501,7 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: unused
     - decoding: Set by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="seek2any")]
     public int seek2any;
 
     /***********************************************************
@@ -467,7 +509,7 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: Set by user
     - decoding: unused
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="flush_packets")]
     public int flush_packets;
 
     /***********************************************************
@@ -477,15 +519,23 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: unused
     - decoding: set by avformat, read by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="probe_score")]
     public int probe_score;
 
     /***********************************************************
     @brief Number of bytes to read maximally to identify format.
     - encoding: unused
     - decoding: set by user
+
+    Maximum number of bytes read from input in order to identify the
+    @ref LibAVFormat.InputFormat "input format". Only used when the format is not set
+    explicitly by the caller.
+
+    Demuxing only, set by the caller before avformat_open_input ().
+
+    @see probesize
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="format_probesize")]
     public int format_probesize;
 
     /***********************************************************
@@ -494,7 +544,7 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="codec_whitelist")]
     public string codec_whitelist;
 
     /***********************************************************
@@ -503,14 +553,14 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="format_whitelist")]
     public string format_whitelist;
 
     /***********************************************************
     @brief An opaque field for libavformat internal usage.
     Must not be accessed in any way by callers.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="internal")]
     public AVFormatInternal internal;
 
     /***********************************************************
@@ -519,7 +569,7 @@ public abstract class LibAVFormat.FormatContext {
     is repositioned, for example when doing byte based seeking.
     Demuxers can use the flag to detect such changes.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="io_repositioned")]
     public int io_repositioned;
 
     /***********************************************************
@@ -528,8 +578,8 @@ public abstract class LibAVFormat.FormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    [CCode (cname="")]
-    public abstract LibAVCodec.Codec video_codec { public get; }
+    [CCode (cname="video_codec")]
+    public abstract LibAVCodec.Codec? video_codec { public get; }
 
     /***********************************************************
     @brief Forced audio codec.
@@ -537,8 +587,8 @@ public abstract class LibAVFormat.FormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    [CCode (cname="")]
-    public abstract LibAVCodec.Codec audio_codec { public get; }
+    [CCode (cname="audio_codec")]
+    public abstract LibAVCodec.Codec? audio_codec { public get; }
 
     /***********************************************************
     @brief Forced subtitle codec.
@@ -546,8 +596,8 @@ public abstract class LibAVFormat.FormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    [CCode (cname="")]
-    public abstract LibAVCodec.Codec subtitle_codec { public get; }
+    [CCode (cname="subtitle_codec")]
+    public abstract LibAVCodec.Codec? subtitle_codec { public get; }
 
     /***********************************************************
     @brief Forced data codec.
@@ -555,22 +605,22 @@ public abstract class LibAVFormat.FormatContext {
     the same codec_id.
     Demuxing: Set by user
     ***********************************************************/
-    [CCode (cname="")]
-    public abstract LibAVCodec.Codec data_codec { public get; }
+    [CCode (cname="data_codec")]
+    public abstract LibAVCodec.Codec? data_codec { public get; }
 
     /***********************************************************
     @brief Number of bytes to be written as padding in a metadata header.
     Demuxing: Unused.
     Muxing: Set by user via av_format_set_metadata_header_padding.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="metadata_header_padding")]
     public int metadata_header_padding;
 
     /***********************************************************
     User data.
     This is a place for some private data of the user.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="opaque")]
     public void *opaque;
 
     /***********************************************************
@@ -595,16 +645,23 @@ public abstract class LibAVFormat.FormatContext {
     //  );
 
     /***********************************************************
+    @brief User data.
+    This is a place for some private data of the user.
+    ***********************************************************/
+    [CCode (cname="opaque")]
+    public void *opaque;
+
+    /***********************************************************
     @brief Callback used by devices to communicate with application.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="control_message_cb")]
     public AVFormatControlMessage control_message_cb;
 
     /***********************************************************
     @brief Output timestamp offset, in microseconds.
     Muxing: set by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="output_ts_offset")]
     public int64 output_ts_offset;
 
     /***********************************************************
@@ -613,14 +670,14 @@ public abstract class LibAVFormat.FormatContext {
     - muxing: Set by user.
     - demuxing: Set by user.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="dump_separator")]
     public uint8[] dump_separator;
 
     /***********************************************************
     @brief Forced Data codec_id.
     Demuxing: Set by user.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="data_codec_id")]
     public LibAVCodec.CodecID data_codec_id;
 
     /***********************************************************
@@ -628,7 +685,7 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="protocol_whitelist")]
     public string protocol_whitelist;
 
     /***********************************************************
@@ -651,7 +708,7 @@ public abstract class LibAVFormat.FormatContext {
     passed to this callback may be different from the one facing the caller.
     It will, however, have the same 'opaque' field.
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="io_open")]
     public abstract int io_open (
         LibAVFormat.FormatContext? format_context,
         out LibAVFormat.IOContext pb,
@@ -661,12 +718,54 @@ public abstract class LibAVFormat.FormatContext {
     );
 
     /***********************************************************
+    @brief A callback for opening new IO streams.
+
+    Whenever a muxer or a demuxer needs to open an IO stream (typically from
+    avformat_open_input () for demuxers, but for certain formats can happen at
+    other times as well), it will call this callback to obtain an IO context.
+
+    @param format_context the format context
+    @param pb on success, the newly opened IO context should be returned here
+    @param url the url to open
+    @param flags a combination of AVIO_FLAG_*
+    @param options a dictionary of additional options, with the same
+                   semantics as in avio_open2 ()
+    @return 0 on success, a negative AVERROR code on failure
+
+    @note Certain muxers and demuxers do nesting, i.e. they open one or more
+    additional internal format contexts. Thus the LibAVFormat.FormatContext pointer
+    passed to this callback may be different from the one facing the caller.
+    It will, however, have the same 'opaque' field.
+    ***********************************************************/
+    [CCode (cname="io_open")]
+    public abstract int io_open (
+        LibAVFormat.FormatContext? format_context,
+        out LibAVFormat.IOContext? pb,
+        string url,
+        int flags,
+        ref LibAVUtil.Dictionary? options
+    );
+
+    /***********************************************************
     @brief A callback for closing the streams opened with LibAVFormat.FormatContext.io_open ().
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="io_close")]
     public abstract void io_close (
         LibAVFormat.FormatContext? format_context,
         LibAVFormat.IOContext pb
+    );
+
+    /***********************************************************
+    @brief A callback for closing the streams opened with LibAVFormat.FormatContext.io_open ().
+
+    @param format_context the format context
+    @param pb IO context to be closed and freed
+    @return 0 on success, a negative AVERROR code on failure
+    ***********************************************************/
+    [CCode (cname="io_close2")]
+    public abstract int io_close2 (
+        LibAVFormat.FormatContext? format_context,
+        LibAVFormat.IOContext? pb
     );
 
     /***********************************************************
@@ -674,7 +773,7 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="protocol_blacklist")]
     public string protocol_blacklist;
 
     /***********************************************************
@@ -682,22 +781,35 @@ public abstract class LibAVFormat.FormatContext {
     - encoding: unused
     - decoding: set by user
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="max_streams")]
     public int max_streams;
 
     /***********************************************************
     @brief Skip duration calcuation in estimate_timings_from_pts.
     - encoding: unused
     - decoding: set by user
+
+    @see duration_probesize
     ***********************************************************/
-    [CCode (cname="")]
+    [CCode (cname="skip_estimate_duration_from_pts")]
     public int skip_estimate_duration_from_pts;
+
+    /***********************************************************
+    @brief Maximum number of bytes read from input in order to determine stream durations
+    when using estimate_timings_from_pts in avformat_find_stream_info ().
+    Demuxing only, set by the caller before avformat_find_stream_info ().
+    Can be set to 0 to let avformat choose using a heuristic.
+
+    @see skip_estimate_duration_from_pts
+    ***********************************************************/
+    [CCode (cname="duration_probesize")]
+    public int64 duration_probesize;
 
     /***********************************************************
     @brief This function will cause global side data to be injected in the next packet
     of each stream as well as after any subsequent seek.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_format_inject_global_side_data",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public void av_format_inject_global_side_data (
         LibAVFormat.FormatContext? format_context
     );
@@ -707,7 +819,7 @@ public abstract class LibAVFormat.FormatContext {
 
     @return LibAVFormat.DurationEstimationMethod.FROM_PTS, LibAVFormat.DurationEstimationMethod.FROM_STREAM, or LibAVFormat.DurationEstimationMethod.FROM_BITRATE.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_fmt_ctx_get_duration_estimation_method",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVFormat.DurationEstimationMethod av_fmt_ctx_get_duration_estimation_method (
         LibAVFormat.FormatContext? format_context
     );
@@ -717,14 +829,14 @@ public abstract class LibAVFormat.FormatContext {
     avformat_free_context () can be used to free the context and everything
     allocated by the framework within it.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_alloc_context",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVFormat.FormatContext? avformat_alloc_context ();
 
     /***********************************************************
     @brief Free an LibAVFormat.FormatContext and all its streams.
     @param format_context context to free
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_free_context",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public void avformat_free_context (
         LibAVFormat.FormatContext? format_context
     );
@@ -735,7 +847,7 @@ public abstract class LibAVFormat.FormatContext {
 
     @see av_opt_find ().
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_get_class",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Log.Class? avformat_get_class ();
 
     /***********************************************************
@@ -754,7 +866,7 @@ public abstract class LibAVFormat.FormatContext {
     @return >= 0 in case of success, a negative LibAVUtil.ErrorCode code in case of
     failure
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_alloc_output_context2",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int avformat_alloc_output_context2 (
         out LibAVFormat.FormatContext? format_context,
         LibAVFormat.OutputFormat? oformat,
@@ -782,7 +894,7 @@ public abstract class LibAVFormat.FormatContext {
 
     @note If you want to use custom IO, preallocate the format context and set its pb field.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_open_input",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int avformat_open_input (
         out LibAVFormat.FormatContext? ps,
         string url,
@@ -811,7 +923,7 @@ public abstract class LibAVFormat.FormatContext {
     @todo Let the user decide somehow what information is needed so that
           we do not waste time getting stuff the user does not need.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_find_stream_info",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int avformat_find_stream_info (
         LibAVFormat.FormatContext? ic,
         out LibAVUtil.Dictionary? options
@@ -827,14 +939,14 @@ public abstract class LibAVFormat.FormatContext {
     @return the next program which belongs to stream_index, NULL if no program is found or
             the last program is not among the programs of ic.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_find_program_from_stream",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVFormat.Program? av_find_program_from_stream (
         LibAVFormat.FormatContext? ic,
         LibAVFormat.Program? last,
         int stream_index
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_program_add_stream_index",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public void av_program_add_stream_index (
         LibAVFormat.FormatContext? ac,
         int progid,
@@ -866,7 +978,7 @@ public abstract class LibAVFormat.FormatContext {
     @note If av_find_best_stream returns successfully and decoder_ret is not
            NULL, then decoder_ret is guaranteed to be set to a valid LibAVCodec.Codec.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_find_best_stream",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_find_best_stream (
         LibAVFormat.FormatContext? ic,
         LibAVUtil.MediaType type,
@@ -900,7 +1012,7 @@ public abstract class LibAVFormat.FormatContext {
 
     @return 0 if OK, < 0 on error or end of file
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_read_frame",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_read_frame (
         LibAVFormat.FormatContext? format_context,
         LibAVCodec.Packet? packet
@@ -919,7 +1031,7 @@ public abstract class LibAVFormat.FormatContext {
     @param flags flags which select direction and seeking mode
     @return >= 0 on success
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_seek_frame",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_seek_frame (
         LibAVFormat.FormatContext? format_context,
         int stream_index,
@@ -955,7 +1067,7 @@ public abstract class LibAVFormat.FormatContext {
           Thus do not use this yet. It may change at any time, do not expect
           ABI compatibility yet!
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_seek_file",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int avformat_seek_file (
         LibAVFormat.FormatContext? format_context,
         int stream_index,
@@ -981,7 +1093,7 @@ public abstract class LibAVFormat.FormatContext {
     @param format_context media file handle
     @return >=0 on success, error code otherwise
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_flush",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int avformat_flush (
         LibAVFormat.FormatContext? format_context
     );
@@ -990,7 +1102,7 @@ public abstract class LibAVFormat.FormatContext {
     @brief Start playing a network-based stream (e.g. RTSP stream) at the
     current position.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_read_play",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_read_play (
         LibAVFormat.FormatContext? format_context
     );
@@ -1000,7 +1112,7 @@ public abstract class LibAVFormat.FormatContext {
 
     Use av_read_play () to resume it.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_read_pause",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_read_pause (
         LibAVFormat.FormatContext? format_context
     );
@@ -1009,7 +1121,7 @@ public abstract class LibAVFormat.FormatContext {
     @brief Close an opened input LibAVFormat.FormatContext. Free it and all its contents
     and set format_context to NULL.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_close_input",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public void avformat_close_input (
         out LibAVFormat.FormatContext? format_context
     );
@@ -1037,7 +1149,7 @@ public abstract class LibAVFormat.FormatContext {
     @see av_opt_find, av_dict_set, avio_open, av_oformat_next, avformat_init_output.
     ***********************************************************/
     //  av_warn_unused_result
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_write_header",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int avformat_write_header (
         LibAVFormat.FormatContext? format_context,
         ref LibAVUtil.Dictionary? options
@@ -1063,7 +1175,7 @@ public abstract class LibAVFormat.FormatContext {
     @see av_opt_find, av_dict_set, avio_open, av_oformat_next, avformat_write_header.
     ***********************************************************/
     //  av_warn_unused_result
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_init_output",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int avformat_init_output (
         LibAVFormat.FormatContext? format_context,
         ref LibAVUtil.Dictionary? options
@@ -1106,7 +1218,7 @@ public abstract class LibAVFormat.FormatContext {
 
     @see av_interleaved_write_frame ()
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_write_frame",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_write_frame (
         LibAVFormat.FormatContext? format_context,
         LibAVCodec.Packet? packet
@@ -1155,7 +1267,7 @@ public abstract class LibAVFormat.FormatContext {
 
     @see av_write_frame (), LibAVFormat.FormatContext.max_interleave_delta
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_interleaved_write_frame",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_interleaved_write_frame (
         LibAVFormat.FormatContext? format_context,
         LibAVCodec.Packet? packet
@@ -1169,7 +1281,7 @@ public abstract class LibAVFormat.FormatContext {
 
     See av_interleaved_write_frame () for details.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_write_uncoded_frame",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_write_uncoded_frame (
         LibAVFormat.FormatContext? format_context,
         int stream_index,
@@ -1192,7 +1304,7 @@ public abstract class LibAVFormat.FormatContext {
 
     @return  >=0 for success, a negative code on error
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_interleaved_write_uncoded_frame",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_interleaved_write_uncoded_frame (
         LibAVFormat.FormatContext? format_context,
         int stream_index,
@@ -1205,7 +1317,7 @@ public abstract class LibAVFormat.FormatContext {
     @return  >=0 if an uncoded frame can be written to that muxer and stream,
              <0 if not
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_write_uncoded_frame_query",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_write_uncoded_frame_query (
         LibAVFormat.FormatContext? format_context,
         int stream_index
@@ -1220,7 +1332,7 @@ public abstract class LibAVFormat.FormatContext {
     @param format_context media file handle
     @return 0 if OK, LibAVUtil.ErrorCode.xxx on error
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_write_trailer",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_write_trailer (
         LibAVFormat.FormatContext? format_context
     );
@@ -1240,7 +1352,7 @@ public abstract class LibAVFormat.FormatContext {
     Note: some formats or devices may not allow to measure dts and wall
     atomically.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_get_output_timestamp",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_get_output_timestamp (
         LibAVFormat.FormatContext? format_context,
         int stream,
@@ -1248,7 +1360,7 @@ public abstract class LibAVFormat.FormatContext {
         out int64 wall
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_find_default_stream_index",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int av_find_default_stream_index (
         LibAVFormat.FormatContext? format_context
     );
@@ -1263,7 +1375,7 @@ public abstract class LibAVFormat.FormatContext {
     @param url the URL to print, such as source or destination file
     @param is_output Select whether the specified context is an input (0) or output (1)
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_dump_format",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public void av_dump_format (
         LibAVFormat.FormatContext? ic,
         int index,
@@ -1288,7 +1400,7 @@ public abstract class LibAVFormat.FormatContext {
     @param frame the frame with the aspect ratio to be determined
     @return the guessed (valid) sample_aspect_ratio, 0/1 if no idea
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_guess_sample_aspect_ratio",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Rational av_guess_sample_aspect_ratio (
         LibAVFormat.FormatContext? format,
         LibAVFormat.Stream? stream,
@@ -1303,7 +1415,7 @@ public abstract class LibAVFormat.FormatContext {
     @param frame the frame for which the frame rate should be determined, may be NULL
     @return the guessed (valid) frame rate, 0/1 if no idea
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="av_guess_frame_rate",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public LibAVUtil.Rational av_guess_frame_rate (
         LibAVFormat.FormatContext? format_context,
         LibAVFormat.Stream? stream,
@@ -1323,737 +1435,74 @@ public abstract class LibAVFormat.FormatContext {
 
     @note A stream specifier can match several streams in the format.
     ***********************************************************/
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_match_stream_specifier",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int avformat_match_stream_specifier (
         LibAVFormat.FormatContext? format_context,
         LibAVFormat.Stream? st,
         string spec
     );
 
-    [CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    [CCode (cname="avformat_queue_attached_pictures",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
     public int avformat_queue_attached_pictures (
         LibAVFormat.FormatContext? format_context
     );
 
-}
-
-} // namespace LibAVFormat
-
-/***********************************************************
-Format I/O context.
-New fields can be added to the end with minor version bumps.
-Removal, reordering and changes to existing fields require a major
-version bump.
-sizeof (LibAVFormat.FormatContext) must not be used outside libav*, use
-avformat_alloc_context () to create an LibAVFormat.FormatContext.
-
-Fields can be accessed through AVOptions (av_opt*),
-the name string used matches the associated command line parameter name and
-can be found in libavformat/options_table.h.
-The AVOption/command line parameter names differ in some cases from the C
-structure field names for historic reasons or brevity.
-***********************************************************/
-typedef struct LibAVFormat.FormatContext {
-    /***********************************************************
-    A class for logging and @ref avoptions. Set by avformat_alloc_context ().
-    Exports (de)muxer private options if they exist.
-    ***********************************************************/
-    public LibAVUtil.Log.Class? av_class;
-
-    /***********************************************************
-    The input container format.
-
-    Demuxing only, set by avformat_open_input ().
-    ***********************************************************/
-    const struct LibAVFormat.InputFormat *iformat;
-
-    /***********************************************************
-    The output container format.
-
-    Muxing only, must be set by the caller before avformat_write_header ().
-    ***********************************************************/
-    const struct LibAVFormat.OutputFormat *oformat;
-
-    /***********************************************************
-    Format private data. This is an AVOptions-enabled struct
-    if and only if iformat/oformat.priv_class is not NULL.
-
-    - muxing: set by avformat_write_header ()
-    - demuxing: set by avformat_open_input ()
-    ***********************************************************/
-    void *priv_data;
-
-    /***********************************************************
-    I/O context.
-
-    - demuxing: either set by the user before avformat_open_input () (then
-                the user must close it manually) or set by avformat_open_input ().
-    - muxing: set by the user before avformat_write_header (). The caller must
-              take care of closing / freeing the IO context.
-
-    Do NOT set this field if LibAVFormat.FormatFlags1.NO_FILE flag is set in
-    iformat/oformat.flags. In such a case, the (de)muxer will handle
-    I/O in some other way and this field will be NULL.
-    ***********************************************************/
-    LibAVFormat.IOContext *pb;
-
-    /* stream info */
-    /***********************************************************
-    Flags signalling stream properties. A combination of AVFMTCTX_*.
-    Set by libavformat.
-    ***********************************************************/
-    int ctx_flags;
-
-    /***********************************************************
-    Number of elements in LibAVFormat.FormatContext.streams.
-
-    Set by avformat_new_stream (), must not be modified by any other code.
-    ***********************************************************/
-    uint nb_streams;
-    /***********************************************************
-    A list of all streams in the file. New streams are created with
-    avformat_new_stream ().
-
-    - demuxing: streams are created by libavformat in avformat_open_input ().
-                If LibAVFormat.FormatContextFlags.NO_HEADER is set in ctx_flags, then new streams may also
-                appear in av_read_frame ().
-    - muxing: streams are created by the user before avformat_write_header ().
-
-    Freed by libavformat in avformat_free_context ().
-    ***********************************************************/
-    LibAVFormat.Stream **streams;
-
-    /***********************************************************
-    Number of elements in LibAVFormat.FormatContext.stream_groups.
-
-    Set by avformat_stream_group_create (), must not be modified by any other code.
-    ***********************************************************/
-    uint nb_stream_groups;
-    /***********************************************************
-    A list of all stream groups in the file. New groups are created with
-    avformat_stream_group_create (), and filled with avformat_stream_group_add_stream ().
-
-    - demuxing: groups may be created by libavformat in avformat_open_input ().
-                If LibAVFormat.FormatContextFlags.NO_HEADER is set in ctx_flags, then new groups may also
-                appear in av_read_frame ().
-    - muxing: groups may be created by the user before avformat_write_header ().
-
-    Freed by libavformat in avformat_free_context ().
-    ***********************************************************/
-    LibAVFormat.StreamGroup **stream_groups;
-
-    /***********************************************************
-    Number of chapters in LibAVFormat.Chapter array.
-    When muxing, chapters are normally written in the file header,
-    so nb_chapters should normally be initialized before write_header
-    is called. Some muxers (e.g. mov and mkv) can also write chapters
-    in the trailer.  To write chapters in the trailer, nb_chapters
-    must be zero when write_header is called and non-zero when
-    write_trailer is called.
-    - muxing: set by user
-    - demuxing: set by libavformat
-    ***********************************************************/
-    uint nb_chapters;
-    LibAVFormat.Chapter **chapters;
-
-    /***********************************************************
-    input or output URL. Unlike the old filename field, this field has no
-    length restriction.
-
-    - demuxing: set by avformat_open_input (), initialized to an empty
-                string if url parameter was NULL in avformat_open_input ().
-    - muxing: may be set by the caller before calling avformat_write_header ()
-              (or avformat_init_output () if that is called first) to a string
-              which is freeable by av_free (). Set to an empty string if it
-              was NULL in avformat_init_output ().
-
-    Freed by libavformat in avformat_free_context ().
-    ***********************************************************/
-    string url;
-
-    /***********************************************************
-    Position of the first frame of the component, in
-    AV_TIME_BASE fractional seconds. NEVER set this value directly:
-    It is deduced from the LibAVFormat.Stream values.
-
-    Demuxing only, set by libavformat.
-    ***********************************************************/
-    int64_t start_time;
-
-    /***********************************************************
-    Duration of the stream, in AV_TIME_BASE fractional
-    seconds. Only set this value if you know none of the individual stream
-    durations and also do not set any of them. This is deduced from the
-    LibAVFormat.Stream values if not set.
-
-    Demuxing only, set by libavformat.
-    ***********************************************************/
-    int64_t duration;
-
-    /***********************************************************
-    Total stream bitrate in bit/s, 0 if not
-    available. Never set it directly if the file_size and the
-    duration are known as FFmpeg can compute it automatically.
-    ***********************************************************/
-    int64_t bit_rate;
-
-    uint packet_size;
-    int max_delay;
-
-    /***********************************************************
-    Flags modifying the (de)muxer behaviour. A combination of AVFMT_FLAG_*.
-    Set by the user before avformat_open_input () / avformat_write_header ().
-    ***********************************************************/
-    int flags;
-#define AVFMT_FLAG_GENPTS       0x0001 ///< Generate missing pts even if it requires parsing future frames.
-#define AVFMT_FLAG_IGNIDX       0x0002 ///< Ignore index.
-#define AVFMT_FLAG_NONBLOCK     0x0004 ///< Do not block when reading packets from input.
-#define AVFMT_FLAG_IGNDTS       0x0008 ///< Ignore DTS on frames that contain both DTS & PTS
-#define AVFMT_FLAG_NOFILLIN     0x0010 ///< Do not infer any values from other values, just return what is stored in the container
-#define AVFMT_FLAG_NOPARSE      0x0020 ///< Do not use AVParsers, you also must set AVFMT_FLAG_NOFILLIN as the filling code works on frames and no parsing -> no frames. Also seeking to frames can not work if parsing to find frame boundaries has been disabled
-#define AVFMT_FLAG_NOBUFFER     0x0040 ///< Do not buffer frames when possible
-#define AVFMT_FLAG_CUSTOM_IO    0x0080 ///< The caller has supplied a custom LibAVFormat.IOContext, don't avio_close () it.
-#define AVFMT_FLAG_DISCARD_CORRUPT  0x0100 ///< Discard frames marked corrupted
-#define AVFMT_FLAG_FLUSH_PACKETS    0x0200 ///< Flush the LibAVFormat.IOContext every packet.
-/***********************************************************
-When muxing, try to avoid writing any random/volatile data to the output.
-This includes any random IDs, real-time timestamps/dates, muxer version, etc.
-
-This flag is mainly intended for testing.
-***********************************************************/
-#define AVFMT_FLAG_BITEXACT         0x0400
-#define AVFMT_FLAG_SORT_DTS    0x10000 ///< try to interleave outputted packets by dts (using this flag can slow demuxing down)
-#define AVFMT_FLAG_FAST_SEEK   0x80000 ///< Enable fast, but inaccurate seeks for some formats
-#define AVFMT_FLAG_AUTO_BSF   0x200000 ///< Add bitstream filters as requested by the muxer
-
-    /***********************************************************
-    Maximum number of bytes read from input in order to determine stream
-    properties. Used when reading the global header and in
-    avformat_find_stream_info ().
-
-    Demuxing only, set by the caller before avformat_open_input ().
-
-    @note this is \e not  used for determining the \ref LibAVFormat.InputFormat
-          "input format"
-    @see format_probesize
-    ***********************************************************/
-    int64_t probesize;
-
-    /***********************************************************
-    Maximum duration (in AV_TIME_BASE units) of the data read
-    from input in avformat_find_stream_info ().
-    Demuxing only, set by the caller before avformat_find_stream_info ().
-    Can be set to 0 to let avformat choose using a heuristic.
-    ***********************************************************/
-    int64_t max_analyze_duration;
-
-    const uint8[] key;
-    int keylen;
-
-    uint nb_programs;
-    LibAVFormat.Program **programs;
-
-    /***********************************************************
-    Forced video codec_id.
-    Demuxing: Set by user.
-    ***********************************************************/
-    enum LibAVCodec.CodecID video_codec_id;
-
-    /***********************************************************
-    Forced audio codec_id.
-    Demuxing: Set by user.
-    ***********************************************************/
-    enum LibAVCodec.CodecID audio_codec_id;
-
-    /***********************************************************
-    Forced subtitle codec_id.
-    Demuxing: Set by user.
-    ***********************************************************/
-    enum LibAVCodec.CodecID subtitle_codec_id;
-
-    /***********************************************************
-    Forced Data codec_id.
-    Demuxing: Set by user.
-    ***********************************************************/
-    enum LibAVCodec.CodecID data_codec_id;
-
-    /***********************************************************
-    Metadata that applies to the whole file.
-
-    - demuxing: set by libavformat in avformat_open_input ()
-    - muxing: may be set by the caller before avformat_write_header ()
-
-    Freed by libavformat in avformat_free_context ().
-    ***********************************************************/
-    LibAVUtil.Dictionary *metadata;
-
-    /***********************************************************
-    Start time of the stream in real world time, in microseconds
-    since the Unix epoch (00:00 1st January 1970). That is, pts=0 in the
-    stream was captured at this real world time.
-    - muxing: Set by the caller before avformat_write_header (). If set to
-              either 0 or AV_NOPTS_VALUE, then the current wall-time will
-              be used.
-    - demuxing: Set by libavformat. AV_NOPTS_VALUE if unknown. Note that
-                the value may become known after some number of frames
-                have been received.
-    ***********************************************************/
-    int64_t start_time_realtime;
-
-    /***********************************************************
-    The number of frames used for determining the framerate in
-    avformat_find_stream_info ().
-    Demuxing only, set by the caller before avformat_find_stream_info ().
-    ***********************************************************/
-    int fps_probe_size;
-
-    /***********************************************************
-    Error recognition; higher values will detect more errors but may
-    misdetect some more or less valid parts as errors.
-    Demuxing only, set by the caller before avformat_open_input ().
-    ***********************************************************/
-    int error_recognition;
-
-    /***********************************************************
-    Custom interrupt callbacks for the I/O layer.
-
-    demuxing: set by the user before avformat_open_input ().
-    muxing: set by the user before avformat_write_header ()
-    (mainly useful for LibAVFormat.FormatFlags1.NO_FILE formats). The callback
-    should also be passed to avio_open2 () if it's used to
-    open the file.
-    ***********************************************************/
-    LibAVFormat.IOInterruptCallback interrupt_callback;
-
-    /***********************************************************
-    Flags to enable debugging.
-    ***********************************************************/
-    LibAVFormat.FormatDebugFlags debug;
-
-    /***********************************************************
-    The maximum number of streams.
-    - encoding: unused
-    - decoding: set by user
-    ***********************************************************/
-    int max_streams;
-
-    /***********************************************************
-    Maximum amount of memory in bytes to use for the index of each stream.
-    If the index exceeds this size, entries will be discarded as
-    needed to maintain a smaller size. This can lead to slower or less
-    accurate seeking (depends on demuxer).
-    Demuxers for which a full in-memory index is mandatory will ignore
-    this.
-    - muxing: unused
-    - demuxing: set by user
-    ***********************************************************/
-    uint max_index_size;
-
-    /***********************************************************
-    Maximum amount of memory in bytes to use for buffering frames
-    obtained from realtime capture devices.
-    ***********************************************************/
-    uint max_picture_buffer;
-
-    /***********************************************************
-    Maximum buffering duration for interleaving.
-
-    To ensure all the streams are interleaved correctly,
-    av_interleaved_write_frame () will wait until it has at least one packet
-    for each stream before actually writing any packets to the output file.
-    When some streams are "sparse" (i.e. there are large gaps between
-    successive packets), this can result in excessive buffering.
-
-    This field specifies the maximum difference between the timestamps of the
-    first and the last packet in the muxing queue, above which libavformat
-    will output a packet regardless of whether it has queued a packet for all
-    the streams.
-
-    Muxing only, set by the caller before avformat_write_header ().
-    ***********************************************************/
-    int64_t max_interleave_delta;
-
-    /***********************************************************
-    Maximum number of packets to read while waiting for the first timestamp.
-    Decoding only.
-    ***********************************************************/
-    int max_ts_probe;
-
-    /***********************************************************
-    Max chunk time in microseconds.
-    Note, not all formats support this and unpredictable things may happen if it is used when not supported.
-    - encoding: Set by user
-    - decoding: unused
-    ***********************************************************/
-    int max_chunk_duration;
-
-    /***********************************************************
-    Max chunk size in bytes
-    Note, not all formats support this and unpredictable things may happen if it is used when not supported.
-    - encoding: Set by user
-    - decoding: unused
-    ***********************************************************/
-    int max_chunk_size;
-
-    /***********************************************************
-    Maximum number of packets that can be probed
-    - encoding: unused
-    - decoding: set by user
-    ***********************************************************/
-    int max_probe_packets;
-
-    /***********************************************************
-    Allow non-standard and experimental extension
-    @see AVCodecContext.strict_std_compliance
-    ***********************************************************/
-    int strict_std_compliance;
-
-    /***********************************************************
-    Flags indicating events happening on the file, a combination of
-    AVFMT_EVENT_FLAG_*.
-
-    - demuxing: may be set by the demuxer in avformat_open_input (),
-      avformat_find_stream_info () and av_read_frame (). Flags must be cleared
-      by the user once the event has been handled.
-    - muxing: may be set by the user after avformat_write_header () to
-      indicate a user-triggered event.  The muxer will clear the flags for
-      events it has handled in av_[interleaved]_write_frame ().
-    ***********************************************************/
-    int event_flags;
-/***********************************************************
-- demuxing: the demuxer read new metadata from the file and updated
-  LibAVFormat.FormatContext.metadata accordingly
-- muxing: the user updated LibAVFormat.FormatContext.metadata and wishes the muxer to
-  write it into the file
-***********************************************************/
-#define AVFMT_EVENT_FLAG_METADATA_UPDATED 0x0001
-
-
-    /***********************************************************
-    Avoid negative timestamps during muxing.
-    Any value of the AVFMT_AVOID_NEG_TS_* constants.
-    Note, this works better when using av_interleaved_write_frame ().
-    - muxing: Set by user
-    - demuxing: unused
-    ***********************************************************/
-    int avoid_negative_ts;
-#define AVFMT_AVOID_NEG_TS_AUTO             -1 ///< Enabled when required by target format
-#define AVFMT_AVOID_NEG_TS_DISABLED          0 ///< Do not shift timestamps even when they are negative.
-#define AVFMT_AVOID_NEG_TS_MAKE_NON_NEGATIVE 1 ///< Shift timestamps so they are non negative
-#define AVFMT_AVOID_NEG_TS_MAKE_ZERO         2 ///< Shift timestamps so that they start at 0
-
-    /***********************************************************
-    Audio preload in microseconds.
-    Note, not all formats support this and unpredictable things may happen if it is used when not supported.
-    - encoding: Set by user
-    - decoding: unused
-    ***********************************************************/
-    int audio_preload;
-
-    /***********************************************************
-    forces the use of wallclock timestamps as pts/dts of packets
-    This has undefined results in the presence of B frames.
-    - encoding: unused
-    - decoding: Set by user
-    ***********************************************************/
-    int use_wallclock_as_timestamps;
-
-    /***********************************************************
-    Skip duration calculation in estimate_timings_from_pts.
-    - encoding: unused
-    - decoding: set by user
-
-    @see duration_probesize
-    ***********************************************************/
-    int skip_estimate_duration_from_pts;
-
-    /***********************************************************
-    avio flags, used to force LibAVFormat.IOOpenFlags.DIRECT.
-    - encoding: unused
-    - decoding: Set by user
-    ***********************************************************/
-    int avio_flags;
-
     /***********************************************************
-    The duration field can be estimated through various ways, and this field can be used
-    to know how the duration was estimated.
-    - encoding: unused
-    - decoding: Read by user
-    ***********************************************************/
-    enum LibAVFormat.DurationEstimationMethod duration_estimation_method;
-
-    /***********************************************************
-    Skip initial bytes when opening stream
-    - encoding: unused
-    - decoding: Set by user
-    ***********************************************************/
-    int64_t skip_initial_bytes;
-
-    /***********************************************************
-    Correct single timestamp overflows
-    - encoding: unused
-    - decoding: Set by user
-    ***********************************************************/
-    uint correct_ts_overflow;
-
-    /***********************************************************
-    Force seeking to any (also non key) frames.
-    - encoding: unused
-    - decoding: Set by user
-    ***********************************************************/
-    int seek2any;
-
-    /***********************************************************
-    Flush the I/O context after each packet.
-    - encoding: Set by user
-    - decoding: unused
-    ***********************************************************/
-    int flush_packets;
-
-    /***********************************************************
-    format probing score.
-    The maximal score is AVPROBE_SCORE_MAX, its set when the demuxer probes
-    the format.
-    - encoding: unused
-    - decoding: set by avformat, read by user
-    ***********************************************************/
-    int probe_score;
-
-    /***********************************************************
-    Maximum number of bytes read from input in order to identify the
-    \ref LibAVFormat.InputFormat "input format". Only used when the format is not set
-    explicitly by the caller.
-
-    Demuxing only, set by the caller before avformat_open_input ().
-
-    @see probesize
-    ***********************************************************/
-    int format_probesize;
-
-    /***********************************************************
-    ',' separated list of allowed decoders.
-    If NULL then all are allowed
-    - encoding: unused
-    - decoding: set by user
-    ***********************************************************/
-    string codec_whitelist;
-
-    /***********************************************************
-    ',' separated list of allowed demuxers.
-    If NULL then all are allowed
-    - encoding: unused
-    - decoding: set by user
-    ***********************************************************/
-    string format_whitelist;
+    Send a command to the demuxer
 
-    /***********************************************************
-    ',' separated list of allowed protocols.
-    - encoding: unused
-    - decoding: set by user
-    ***********************************************************/
-    string protocol_whitelist;
-
-    /***********************************************************
-    ',' separated list of disallowed protocols.
-    - encoding: unused
-    - decoding: set by user
-    ***********************************************************/
-    string protocol_blacklist;
-
-    /***********************************************************
-    IO repositioned flag.
-    This is set by avformat when the underlying IO context read pointer
-    is repositioned, for example when doing byte based seeking.
-    Demuxers can use the flag to detect such changes.
-    ***********************************************************/
-    int io_repositioned;
-
-    /***********************************************************
-    Forced video codec.
-    This allows forcing a specific decoder, even when there are multiple with
-    the same codec_id.
-    Demuxing: Set by user
-    ***********************************************************/
-    const struct AVCodec *video_codec;
+    Sends the specified command and (depending on the command)
+    optionally a command-specific payload to the demuxer to handle.
 
-    /***********************************************************
-    Forced audio codec.
-    This allows forcing a specific decoder, even when there are multiple with
-    the same codec_id.
-    Demuxing: Set by user
+    @param format_context     Format context, must be allocated with
+                ::avformat_alloc_context.
+    @param id    Identifier of type ::LibAVFormat.FormatCommandID,
+                indicating the command to send.
+    @param data  Command-specific data, allocated by the caller
+                and ownership remains with the caller.
+                For details what is expected here, consult the
+                documentation of the respective ::LibAVFormat.FormatCommandID.
     ***********************************************************/
-    const struct AVCodec *audio_codec;
+    [CCode (cname="avformat_send_command",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    public static int avformat_send_command (
+        LibAVFormat.FormatContext? format_context,
+        LibAVFormat.FormatCommandID id,
+        void *data
+    );
 
-    /***********************************************************
-    Forced subtitle codec.
-    This allows forcing a specific decoder, even when there are multiple with
-    the same codec_id.
-    Demuxing: Set by user
-    ***********************************************************/
-    const struct AVCodec *subtitle_codec;
 
-    /***********************************************************
-    Forced data codec.
-    This allows forcing a specific decoder, even when there are multiple with
-    the same codec_id.
-    Demuxing: Set by user
-    ***********************************************************/
-    const struct AVCodec *data_codec;
 
-    /***********************************************************
-    Number of bytes to be written as padding in a metadata header.
-    Demuxing: Unused.
-    Muxing: Set by user.
-    ***********************************************************/
-    int metadata_header_padding;
 
-    /***********************************************************
-    User data.
-    This is a place for some private data of the user.
-    ***********************************************************/
-    void *opaque;
 
-    /***********************************************************
-    Callback used by devices to communicate with application.
-    ***********************************************************/
-    av_format_control_message control_message_cb;
 
-    /***********************************************************
-    Output timestamp offset, in microseconds.
-    Muxing: set by user
-    ***********************************************************/
-    int64_t output_ts_offset;
 
-    /***********************************************************
-    dump format separator.
-    can be ", " or "\n      " or anything else
-    - muxing: Set by user.
-    - demuxing: Set by user.
-    ***********************************************************/
-    uint8[] dump_separator;
 
     /***********************************************************
-    A callback for opening new IO streams.
-
-    Whenever a muxer or a demuxer needs to open an IO stream (typically from
-    avformat_open_input () for demuxers, but for certain formats can happen at
-    other times as well), it will call this callback to obtain an IO context.
+    Receive a command reply from the demuxer
 
-    @param s the format context
-    @param pb on success, the newly opened IO context should be returned here
-    @param url the url to open
-    @param flags a combination of AVIO_FLAG_*
-    @param options a dictionary of additional options, with the same
-                   semantics as in avio_open2 ()
-    @return 0 on success, a negative AVERROR code on failure
+    Retrieves a reply for a previously sent command from the muxer.
 
-    @note Certain muxers and demuxers do nesting, i.e. they open one or more
-    additional internal format contexts. Thus the LibAVFormat.FormatContext pointer
-    passed to this callback may be different from the one facing the caller.
-    It will, however, have the same 'opaque' field.
+    @param format_context         Format context, must be allocated with
+                    ::avformat_alloc_context.
+    @param id        Identifier of type ::LibAVFormat.FormatCommandID,
+                    indicating the command for which to retrieve
+                    the reply.
+    @param data_out  Pointee is set to the command reply, the actual
+                    type depends on the command. This is allocated by
+                    the muxer and must be freed with ::av_free.
+                    For details on the actual data set here, consult the
+                    documentation of the respective ::LibAVFormat.FormatCommandID.
     ***********************************************************/
-    int (*io_open)(struct LibAVFormat.FormatContext *s, LibAVFormat.IOContext **pb, const string url,
-        int flags,
-        ref LibAVUtil.Dictionary? options
+    [CCode (cname="avformat_receive_command_reply",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
+    public static int avformat_receive_command_reply (
+        LibAVFormat.FormatContext? format_context,
+        LibAVFormat.FormatCommandID id,
+        out void *data_out
     );
 
     /***********************************************************
-    A callback for closing the streams opened with LibAVFormat.FormatContext.io_open ().
-
-    @param s the format context
-    @param pb IO context to be closed and freed
-    @return 0 on success, a negative AVERROR code on failure
+    @}
     ***********************************************************/
-    int (*io_close2)(struct LibAVFormat.FormatContext *s, LibAVFormat.IOContext *pb);
 
-    /***********************************************************
-    Maximum number of bytes read from input in order to determine stream durations
-    when using estimate_timings_from_pts in avformat_find_stream_info ().
-    Demuxing only, set by the caller before avformat_find_stream_info ().
-    Can be set to 0 to let avformat choose using a heuristic.
-
-    @see skip_estimate_duration_from_pts
-    ***********************************************************/
-    int64_t duration_probesize;
-
-    /***********************************************************
-    Name of this format context, only used for logging purposes.
-    ***********************************************************/
-    string name;
 }
 
 } // namespace LibAVFormat
-
-
-
-
-/***********************************************************
-Send a command to the demuxer
-
-Sends the specified command and (depending on the command)
-optionally a command-specific payload to the demuxer to handle.
-
-@param s     Format context, must be allocated with
-             ::avformat_alloc_context.
-@param id    Identifier of type ::LibAVFormat.FormatCommandID,
-             indicating the command to send.
-@param data  Command-specific data, allocated by the caller
-             and ownership remains with the caller.
-             For details what is expected here, consult the
-             documentation of the respective ::LibAVFormat.FormatCommandID.
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public static int avformat_send_command (
-    LibAVFormat.FormatContext? s,
-    LibAVFormat.FormatCommandID id,
-    void *data
-);
-
-/***********************************************************
-Receive a command reply from the demuxer
-
-Retrieves a reply for a previously sent command from the muxer.
-
-@param s         Format context, must be allocated with
-                 ::avformat_alloc_context.
-@param id        Identifier of type ::LibAVFormat.FormatCommandID,
-                 indicating the command for which to retrieve
-                 the reply.
-@param data_out  Pointee is set to the command reply, the actual
-                 type depends on the command. This is allocated by
-                 the muxer and must be freed with ::av_free.
-                 For details on the actual data set here, consult the
-                 documentation of the respective ::LibAVFormat.FormatCommandID.
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public static int avformat_receive_command_reply (
-    LibAVFormat.FormatContext?s,
-    LibAVFormat.FormatCommandID id,
-    out void *data_out
-);
-
-/***********************************************************
-Close an opened input LibAVFormat.FormatContext. Free it and all its contents
-and set *s to NULL.
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public static void avformat_close_input (LibAVFormat.FormatContext **s);
-/***********************************************************
-@}
-***********************************************************/
-
-/***********************************************************
-Print detailed information about the input or output format, such as
-duration, bitrate, streams, container, programs, metadata, side data,
-codec and time base.
-
-@param ic        the context to analyze
-@param index     index of the stream to dump information about
-@param url       the URL to print, such as source or destination file
-@param is_output Select whether the specified context is an input (0) or output (1)
-***********************************************************/
-[CCode (cname="",cheader_filename="subprojects/ffmpeg/libformat/avformat.h")]
-public static void av_dump_format (LibAVFormat.FormatContext *ic,
-                    int index,
-                    const string url,
-                    int is_output);

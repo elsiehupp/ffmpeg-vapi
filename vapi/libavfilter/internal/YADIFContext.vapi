@@ -222,6 +222,6 @@ public int ff_yadif_request_frame (
     LibAVFilter.FilterLink? link
 );
 
-//  extern const AVOption ff_yadif_options[];
+//  extern const LibAVUtil.Option ff_yadif_options[];
 
 } // namespace LibAVFilter

@@ -450,7 +450,7 @@ public class LibAVResample.AudioResampleContext {
     @deprecated use libswresample
 
     Initialize LibAVResample.AudioResampleContext.
-    @note The context must be configured using the AVOption API.
+    @note The context must be configured using the LibAVUtil.Option API.
     @note The fields "in_channel_layout", "out_channel_layout",
           "in_sample_rate", "out_sample_rate", "in_sample_fmt",
           "out_sample_fmt" must be set.
@@ -506,7 +506,7 @@ public class LibAVResample.AudioResampleContext {
     /***********************************************************
     @deprecated use libswresample
 
-    Free LibAVResample.AudioResampleContext and associated AVOption values.
+    Free LibAVResample.AudioResampleContext and associated LibAVUtil.Option values.
 
     This also calls avresample_close () before freeing.
 

@@ -35,6 +35,13 @@ public enum LibAVFormat.FormatAvoidNegativeTimestampFlags {
     [CCode (cname="AVFMT_AVOID_NEG_TS_AUTO")]
     AUTO,
 
+
+    /***********************************************************
+    @brief Do not shift timestamps even when they are negative.
+    ***********************************************************/
+    [CCode (cname="AVFMT_AVOID_NEG_TS_DISABLED")]
+    DISABLED,
+
     /***********************************************************
     @brief Shift timestamps so they are non negative
     ***********************************************************/
