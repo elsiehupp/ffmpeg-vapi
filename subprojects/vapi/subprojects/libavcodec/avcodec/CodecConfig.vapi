@@ -70,7 +70,7 @@ public enum CodecConfig {
     COLOR_RANGE,
 
     /***********************************************************
-    LibAVUtil.ColorSpace, terminated by AVCOL_SPC_UNSPECIFIED
+    LibAVUtil.ColorSpace, terminated by LibAVUtil.ColorSpace.UNSPECIFIED
     ***********************************************************/
     [CCode (cname="AV_CODEC_CONFIG_COLOR_SPACE")]
     COLOR_SPACE,

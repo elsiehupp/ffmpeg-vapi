@@ -197,7 +197,7 @@ public class CodecContext {
     public LibAVUtil.MediaType codec_type;
 
     [CCode (cname="codec")]
-    internal LibAVCodec.Codec codec;
+    internal LibAVCodec.Codec? codec;
 
     /***********************************************************
     @see @link LibAVCodec.CodecID
@@ -309,19 +309,21 @@ public class CodecContext {
     public CodecFlags2 flags2;
 
     /***********************************************************
-    @description Some codecs need / can use extradata like Huffman tables.
+    @brief Out-of-band global headers that may be used by some codecs.
 
-        - MJPEG: Huffman tables
-        - rv10: additional flags
-        - MPEG-4: global headers (they can be in the bitstream or here)
+    - decoding: Should be set by the caller when available (typically from a
+      demuxer) before opening the decoder; some decoders require this to be
+      set and will fail to initialize otherwise.
 
-        The allocated memory should be AV_INPUT_BUFFER_PADDING_SIZE bytes larger
-        than extradata_size to avoid problems if it is read with the bitstream reader.
-        The bytewise contents of extradata must not depend on the architecture or CPU endianness.
-        Must be allocated with the av_malloc () family of functions.
+      The array must be allocated with the av_malloc () family of functions;
+      allocated size must be at least AV_INPUT_BUFFER_PADDING_SIZE bytes
+      larger than extradata_size.
 
-    - encoding: Set/allocated/freed by
-    - decoding: Set/allocated/freed by user.
+    - encoding: May be set by the encoder in avcodec_open2 () (possibly
+      depending on whether the LibAVCodec.CodecFlags1.GLOBAL_HEADER flag is set).
+
+    After being set, the array is owned by the codec and freed in
+    avcodec_free_context ().
     ***********************************************************/
     [CCode (cname="extradata")]
     public uint8[] extradata;
@@ -331,22 +333,21 @@ public class CodecContext {
 
     /***********************************************************
     @description This is the fundamental unit of time (in seconds) in terms
-        of which frame timestamps are represented. For fixed-fps content,
-        timebase should be 1/framerate and timestamp increments should be
-        identically 1.
-        This often, but not always is the inverse of the frame rate or field rate
-        for video. 1/time_base is not the average frame rate if the frame rate is not
-        constant.
+    of which frame timestamps are represented. For fixed-fps content,
+    timebase should be 1/framerate and timestamp increments should be
+    identically 1.
+    This often, but not always is the inverse of the frame rate or field rate
+    for video. 1/time_base is not the average frame rate if the frame rate is not
+    constant.
 
-        Like containers, elementary streams also can store timestamps, 1/time_base
-        is the unit in which these timestamps are specified.
-        As example of such codec time base see ISO/IEC 14496-2:2001 (E)
-        vop_time_increment_resolution and fixed_vop_rate
-        (fixed_vop_rate == 0 implies that it is different from the framerate)
+    Like containers, elementary streams also can store timestamps, 1/time_base
+    is the unit in which these timestamps are specified.
+    As example of such codec time base see ISO/IEC 14496-2:2001 (E)
+    vop_time_increment_resolution and fixed_vop_rate
+    (fixed_vop_rate == 0 implies that it is different from the framerate)
 
     - encoding: MUST be set by user.
-    - decoding: the use of this field for decoding is deprecated.
-        Use framerate instead.
+    - decoding: unused.
     ***********************************************************/
     [CCode (cname="time_base")]
     public LibAVUtil.Rational time_base;
@@ -2898,127 +2899,6 @@ sizeof (LibAVCodec.CodecContext) must not be used outside libav*.
 
 [CCode (cname="struct AVCodecContext",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 public struct LibAVCodec.CodecContext {
-    /***********************************************************
-    information on struct for av_log
-    - set by avcodec_alloc_context3
-    ***********************************************************/
-    public LibAVUtil.Log.Class? av_class;
-    int log_level_offset;
-
-    enum LibAVUtil.MediaType codec_type; /* see LibAVUtil.MediaType */
-    const struct AVCodec  *codec;
-    enum LibAVCodec.CodecID     codec_id; /* see LibAVCodec.CodecID */
-
-    /***********************************************************
-    fourcc (LSB first, so "ABCD" -> ('D'<<24) + ('C'<<16) + ('B'<<8) + 'A').
-    This is used to work around some encoder bugs.
-    A demuxer should set this to what is stored in the field used to identify the codec.
-    If there are multiple such fields in a container then the demuxer should choose the one
-    which maximizes the information about the used codec.
-    If the codec tag field in a container is larger than 32 bits then the demuxer should
-    remap the longer ID to 32 bits with a table or other structure. Alternatively a new
-    extra_codec_tag + size could be added but for this a clear advantage must be demonstrated
-    first.
-    - encoding: Set by user, if not then the default based on codec_id will be used.
-    - decoding: Set by user, will be converted to uppercase by libavcodec during init.
-    ***********************************************************/
-    uint codec_tag;
-
-    void *priv_data;
-
-    /***********************************************************
-    Private context used for internal data.
-
-    Unlike priv_data, this is not codec-specific. It is used in general
-    libavcodec functions.
-    ***********************************************************/
-    struct AVCodecInternal *internal;
-
-    /***********************************************************
-    Private data of the user, can be used to carry app specific stuff.
-    - encoding: Set by user.
-    - decoding: Set by user.
-    ***********************************************************/
-    void *opaque;
-
-    /***********************************************************
-    the average bitrate
-    - encoding: Set by user; unused for constant quantizer encoding.
-    - decoding: Set by user, may be overwritten by libavcodec
-                if this info is available in the stream
-    ***********************************************************/
-    int64 bit_rate;
-
-    /***********************************************************
-    LibAVCodec.CodecFlags1
-    - encoding: Set by user.
-    - decoding: Set by user.
-    ***********************************************************/
-    public LibAVCodec.CodecFlags1 flags;
-
-    /***********************************************************
-    LibAVCodec.CodecFlags2
-    - encoding: Set by user.
-    - decoding: Set by user.
-    ***********************************************************/
-    public LibAVCodec.CodecFlags2 flags2;
-
-    /***********************************************************
-    Out-of-band global headers that may be used by some codecs.
-
-    - decoding: Should be set by the caller when available (typically from a
-      demuxer) before opening the decoder; some decoders require this to be
-      set and will fail to initialize otherwise.
-
-      The array must be allocated with the av_malloc () family of functions;
-      allocated size must be at least AV_INPUT_BUFFER_PADDING_SIZE bytes
-      larger than extradata_size.
-
-    - encoding: May be set by the encoder in avcodec_open2 () (possibly
-      depending on whether the LibAVCodec.CodecFlags1.GLOBAL_HEADER flag is set).
-
-    After being set, the array is owned by the codec and freed in
-    avcodec_free_context ().
-    ***********************************************************/
-    uint8[] extradata;
-    int extradata_size;
-
-    /***********************************************************
-    This is the fundamental unit of time (in seconds) in terms
-    of which frame timestamps are represented. For fixed-fps content,
-    timebase should be 1/framerate and timestamp increments should be
-    identically 1.
-    This often, but not always is the inverse of the frame rate or field rate
-    for video. 1/time_base is not the average frame rate if the frame rate is not
-    constant.
-
-    Like containers, elementary streams also can store timestamps, 1/time_base
-    is the unit in which these timestamps are specified.
-    As example of such codec time base see ISO/IEC 14496-2:2001 (E)
-    vop_time_increment_resolution and fixed_vop_rate
-    (fixed_vop_rate == 0 implies that it is different from the framerate)
-
-    - encoding: MUST be set by user.
-    - decoding: unused.
-    ***********************************************************/
-    LibAVUtil.Rational time_base;
-
-    /***********************************************************
-    Timebase in which pkt_dts/pts and LibAVCodec.Packet.dts/pts are expressed.
-    - encoding: unused.
-    - decoding: set by user.
-    ***********************************************************/
-    LibAVUtil.Rational pkt_timebase;
-
-    /***********************************************************
-    - decoding: For codecs that store a framerate value in the compressed
-                bitstream, the decoder may export it here. { 0, 1} when
-                unknown.
-    - encoding: May be used to signal the framerate of CFR content to an
-                encoder.
-    ***********************************************************/
-    LibAVUtil.Rational framerate;
-
     /***********************************************************
     Codec delay.
 
