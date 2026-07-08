@@ -6,7 +6,9 @@ srcs += ([
 
 deps = [
     # meson.get_compiler ('vala').find_library ('posix'),
-    # dependency ('glib-2.0'),
+
+    dependency ('glib-2.0'),
+    dependency ('gio-2.0'),
     # subproject(
     #     'glib'
     # ).get_variable (
