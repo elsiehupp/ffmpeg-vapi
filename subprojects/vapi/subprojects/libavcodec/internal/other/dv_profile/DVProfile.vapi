@@ -17,7 +17,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @brief Minimum number of bytes to read from a DV stream in order to

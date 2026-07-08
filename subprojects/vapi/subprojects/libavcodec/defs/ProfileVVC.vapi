@@ -16,7 +16,6 @@ License along with FFmpeg; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup libavc

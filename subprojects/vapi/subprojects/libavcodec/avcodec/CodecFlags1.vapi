@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup libavc
@@ -38,7 +37,7 @@ allocating core structures, etc.
 /***********************************************************
 @brief Encoding support
 
-These flags can be passed in CodecContext.flags before initialization.
+These flags can be passed in LibAVCodec.CodecContext.flags before initialization.
 
 @note Not everything is supported yet.
 ***********************************************************/

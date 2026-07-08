@@ -17,7 +17,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup lavc_fft
@@ -31,16 +30,16 @@ FFT functions
 
 [CCode (cname="struct FFTSample",cheader_filename="subprojects/ffmpeg/libavcodec/avfft.h")]
 [Compact]
-public class FFTSample : float { }
+public class LibAVCodec.FFTSample : float { }
 
 [CCode (cname="struct FFTComplex",cheader_filename="subprojects/ffmpeg/libavcodec/avfft.h")]
 [Compact]
 public class FFTComplex {
     [CCode (cname="re")]
-    public FFTSample re;
+    public LibAVCodec.FFTSample re;
 
     [CCode (cname="im")]
-    public FFTSample im;
+    public LibAVCodec.FFTSample im;
 }
 
 } // namespace LibAVCodec

@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2012 Sebastien Zwickert
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup lavc_codec_hwaccel_videotoolbox
@@ -99,7 +98,7 @@ public class VideoToolboxContext {
     ***********************************************************/
     [CCode (cname="av_videotoolbox_default_init",cheader_filename="subprojects/ffmpeg/libavcodec/videotoolbox.h")]
     public int av_videotoolbox_default_init (
-        CodecContext codec_context
+        LibAVCodec.CodecContext codec_context
     );
 
     /***********************************************************
@@ -113,7 +112,7 @@ public class VideoToolboxContext {
     ***********************************************************/
     [CCode (cname="av_videotoolbox_default_init2",cheader_filename="subprojects/ffmpeg/libavcodec/videotoolbox.h")]
     public int av_videotoolbox_default_init2 (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         VideoToolboxContext vtctx
     );
 
@@ -125,7 +124,7 @@ public class VideoToolboxContext {
     ***********************************************************/
     [CCode (cname="av_videotoolbox_default_free",cheader_filename="subprojects/ffmpeg/libavcodec/videotoolbox.h")]
     public void av_videotoolbox_default_free (
-        CodecContext codec_context
+        LibAVCodec.CodecContext codec_context
     );
 
 }

@@ -32,11 +32,11 @@ deps = [
     ).get_variable (
         'libavfilter_dep'
     ),
-    subproject(
-        'vapi'
-    ).get_variable (
-        'libavdevice_dep'
-    ),
+    # subproject(
+    #     'vapi'
+    # ).get_variable (
+    #     'libavdevice_dep'
+    # ),
     subproject(
         'vapi'
     ).get_variable (

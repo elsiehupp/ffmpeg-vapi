@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup libavc
@@ -40,7 +39,7 @@ internal class LibAVCodec.CodecHardwareConfig {
         /***********************************************************
         @brief The codec supports this format via the hw_device_ctx interface.
 
-        When selecting this format, CodecContext.hw_device_ctx should
+        When selecting this format, LibAVCodec.CodecContext.hw_device_ctx should
         have been set to a device of the specified type before calling
         avcodec_open2 ().
         ***********************************************************/
@@ -51,7 +50,7 @@ internal class LibAVCodec.CodecHardwareConfig {
         @brief The codec supports this format via the hw_frames_ctx interface.
 
         When selecting this format for a decoder,
-        CodecContext.hw_frames_ctx should be set to a suitable frames
+        LibAVCodec.CodecContext.hw_frames_ctx should be set to a suitable frames
         context inside the get_format () callback. The frames context
         must have been created on a device of the specified type.
         ***********************************************************/

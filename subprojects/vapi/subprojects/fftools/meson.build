@@ -1,11 +1,5 @@
 project ('org.ffmpeg.LibAV.FFTools', 'c', 'vala', version: '1.0.0')
 
-srcs = files ([
-    './main.vala',
-    './cmdutils.vapi',
-    './ffmpeg.vapi'
-])
-
 deps = [
     # meson.get_compiler ('vala').find_library ('posix'),
     # dependency ('glib-2.0'),
@@ -19,16 +13,16 @@ deps = [
     # ).get_variable (
     #     'libavcodec_dep'
     # ),
-    # subproject(
-    #     'libavformat'
-    # ).get_variable (
-    #     'libavformat_dep'
-    # ),
-    # subproject(
-    #     'libavutil'
-    # ).get_variable (
-    #     'libavutil_dep'
-    # ),
+    subproject(
+        'libavformat'
+    ).get_variable (
+        'libavformat_dep'
+    ),
+    subproject(
+        'libavutil'
+    ).get_variable (
+        'libavutil_dep'
+    ),
     # subproject(
     #     'libavfilter'
     # ).get_variable (
@@ -50,6 +44,12 @@ deps = [
     #     'libswscale_dep'
     # )
 ]
+
+srcs = files ([
+    './main.vala',
+    './cmdutils.vapi',
+    './ffmpeg.vapi'
+])
 
 fftools_lib = library(
     meson.project_name(),

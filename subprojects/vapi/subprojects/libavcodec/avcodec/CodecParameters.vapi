@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup libavc
@@ -287,7 +286,7 @@ public class LibAVCodec.CodecParameters {
     [CCode (cname="avcodec_parameters_from_context",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_parameters_from_context (
         CodecParameters par,
-        CodecContext codec
+        LibAVCodec.CodecContext codec
     );
 
     /***********************************************************
@@ -300,13 +299,13 @@ public class LibAVCodec.CodecParameters {
     ***********************************************************/
     [CCode (cname="avcodec_parameters_to_context",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_parameters_to_context (
-        CodecContext codec,
+        LibAVCodec.CodecContext codec,
         CodecParameters par
     );
 
     /***********************************************************
     @brief This function is the same as av_get_audio_frame_duration (), except it works
-    with CodecParameters instead of an CodecContext.
+    with CodecParameters instead of an LibAVCodec.CodecContext.
     ***********************************************************/
     [CCode (cname="av_get_audio_frame_duration2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     internal int av_get_audio_frame_duration2 (

@@ -37,7 +37,7 @@ private static void randomize_input () {
 }
 
 private static void checkasm_check_synth_filter () {
-    FFTContext imdct;
+    LibAVCodec.FFTContext imdct;
     SynthFilterContext synth;
 
     ff_mdct_init (
@@ -135,7 +135,7 @@ private static void checkasm_check_synth_filter () {
 
         //  declare_func (
         //      void,
-        //      FFTContext?,
+        //      LibAVCodec.FFTContext?,
         //      float[],
         //      int[],
         //      float[32],

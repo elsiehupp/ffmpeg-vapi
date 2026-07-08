@@ -17,7 +17,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup lavc_fft
@@ -55,7 +54,7 @@ public class DCTContext {
     [CCode (cname="av_dct_calc",cheader_filename="subprojects/ffmpeg/libavcodec/avfft.h")]
     public void av_dct_calc (
         DCTContext dct_context,
-        FFTSample data
+        LibAVCodec.FFTSample data
     );
 
     [CCode (cname="av_dct_end",cheader_filename="subprojects/ffmpeg/libavcodec/avfft.h")]

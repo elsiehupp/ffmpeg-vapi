@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup libavc
@@ -57,7 +56,7 @@ public abstract class LibAVCodec.CodecParser {
 
     internal delegate int ParserParseDelegate (
         CodecParserContext parser_context,
-        CodecContext avctx,
+        LibAVCodec.CodecContext avctx,
         out uint8[] poutbuf,
         out int poutbuf_size,
         uint8[] buffer,
@@ -79,7 +78,7 @@ public abstract class LibAVCodec.CodecParser {
     internal ParserCloseDelegate? parser_close;
 
     internal delegate int ParserSplitDelegate (
-        CodecContext avctx,
+        LibAVCodec.CodecContext avctx,
         uint8[] buffer,
         int buf_size
     );

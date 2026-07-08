@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2009 Laurent Aimar
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup lavc_codec_hwaccel_dxva2
@@ -37,7 +36,7 @@ Public LibAVCodec DXVA2 header.
 @brief This structure is used to provides the necessary configurations and data
 to the DXVA2 FFmpeg HWAccel implementation.
 
-The application must make it available as CodecContext.hwaccel_context.
+The application must make it available as LibAVCodec.CodecContext.hwaccel_context.
 ***********************************************************/
 [CCode (cname="struct dxva_context",cheader_filename="subprojects/ffmpeg/libavcodec/dxva2.h")]
 [Compact]

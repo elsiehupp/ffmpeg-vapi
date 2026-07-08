@@ -22,11 +22,11 @@ deps = [
     # ).get_variable (
     #     'libavformat_dep'
     # ),
-    # subproject(
-    #     'libavutil'
-    # ).get_variable (
-    #     'libavutil_dep'
-    # ),
+    subproject(
+        'libavutil'
+    ).get_variable (
+        'libavutil_dep'
+    ),
     # subproject(
     #     'libavfilter'
     # ).get_variable (

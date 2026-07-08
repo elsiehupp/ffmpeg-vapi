@@ -19,12 +19,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @brief Intel MediaSDK QSV public API
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @brief This struct is used for communicating QSV parameters between LibAVCodec and
 the caller. It is managed by the caller and must be assigned to
-CodecContext.hwaccel_context.
+LibAVCodec.CodecContext.hwaccel_context.
 - decoding: hwaccel_context must be set on return from the get_format ()
         callback
 - encoding: hwaccel_context must be set before avcodec_open2 ()

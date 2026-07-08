@@ -1,20 +1,5 @@
 project ('org.ffmpeg.LibAV.SoftwareResample', 'c', 'vala', version: '1.0.0')
 
-srcs = files ([
-    './main.vala',
-    './ResampleContext.vapi',
-    './SoftwareResampleFilterType.vapi',
-    './SoftwareResampleDitherType.vapi',
-    './DitherContext.vapi',
-    './SoftwareResampleEngine.vapi',
-    './AudioConvert.vapi',
-    './AudioData.vapi',
-    './Resampler.vapi',
-    './SoftwareContext.vapi',
-    './SoftwareResampleFlags.vapi',
-    './Version.vapi'
-])
-
 deps = [
     # meson.get_compiler ('vala').find_library ('posix'),
     # dependency ('glib-2.0'),
@@ -33,11 +18,11 @@ deps = [
     ).get_variable (
         'libavformat_dep'
     ),
-    # subproject(
-    #     'libavutil'
-    # ).get_variable (
-    #     'libavutil_dep'
-    # ),
+    subproject(
+        'libavutil'
+    ).get_variable (
+        'libavutil_dep'
+    ),
     # subproject(
     #     'libavfilter'
     # ).get_variable (
@@ -59,6 +44,21 @@ deps = [
     #     'libswscale_dep'
     # )
 ]
+
+srcs = files ([
+    './main.vala',
+    './ResampleContext.vapi',
+    './SoftwareResampleFilterType.vapi',
+    './SoftwareResampleDitherType.vapi',
+    './DitherContext.vapi',
+    './SoftwareResampleEngine.vapi',
+    './AudioConvert.vapi',
+    './AudioData.vapi',
+    './Resampler.vapi',
+    './SoftwareContext.vapi',
+    './SoftwareResampleFlags.vapi',
+    './Version.vapi'
+])
 
 libswresample_lib = library(
     meson.project_name(),

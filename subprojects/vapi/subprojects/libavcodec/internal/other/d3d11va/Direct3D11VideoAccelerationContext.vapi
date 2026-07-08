@@ -22,7 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2015 Steve Lhomme
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup lavc_codec_hwaccel_d3d11va
@@ -43,7 +42,7 @@ Public LibAVCodec D3D11VA header.
 @brief This structure is used to provides the necessary configurations and data
 to the Direct3D11 FFmpeg HWAccel implementation.
 
-The application must make it available as CodecContext.hwaccel_context.
+The application must make it available as LibAVCodec.CodecContext.hwaccel_context.
 
 Use av_d3d11va_alloc_context () exclusively to allocate an Direct3D11VideoAccelerationContext.
 ***********************************************************/

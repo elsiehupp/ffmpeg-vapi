@@ -43,11 +43,11 @@ deps = [
     # ).get_variable (
     #     'libavcodec_dep'
     # ),
-    # subproject(
-    #     'libavformat'
-    # ).get_variable (
-    #     'libavformat_dep'
-    # ),
+    subproject(
+        'libavformat'
+    ).get_variable (
+        'libavformat_dep'
+    ),
     subproject(
         'libavutil'
     ).get_variable (

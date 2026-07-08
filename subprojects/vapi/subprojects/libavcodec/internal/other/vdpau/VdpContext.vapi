@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2008 NVIDIA
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup lavc_codec_hwaccel_vdpau
@@ -49,7 +48,7 @@ presentation (vo_vdpau.c) module.
 
 [CCode (cname="AVVDPAU_Render2",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
 public delegate int AVVDPAU_Render2 (
-    CodecContext codec_context,
+    LibAVCodec.CodecContext codec_context,
     LibAVUtil.Frame frame,
     VdpPictureInfo info,
     uint32 u,
@@ -61,8 +60,8 @@ public delegate int AVVDPAU_Render2 (
 the client video application.
 The user shall allocate the structure via the av_alloc_vdpau_hwaccel
 function and make it available as
-CodecContext.hwaccel_context. Members can be set by the user once
-during initialization or through each CodecContext.get_buffer ()
+LibAVCodec.CodecContext.hwaccel_context. Members can be set by the user once
+during initialization or through each LibAVCodec.CodecContext.get_buffer ()
 function call. In any case, they must be valid prior to calling
 decoding functions.
 
@@ -130,7 +129,7 @@ public class VdpContext {
     ***********************************************************/
     [CCode (cname="av_vdpau_bind_context",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
     public int av_vdpau_bind_context (
-        CodecContext avctx,
+        LibAVCodec.CodecContext avctx,
         VdpDevice device,
         VdpGetProcAddress get_proc_address,
         HardwareAccelerationFlags flags
@@ -155,7 +154,7 @@ public class VdpContext {
     ***********************************************************/
     [CCode (cname="av_vdpau_get_surface_parameters",cheader_filename="subprojects/ffmpeg/libavcodec/vdpau.h")]
     public int av_vdpau_get_surface_parameters (
-        CodecContext avctx,
+        LibAVCodec.CodecContext avctx,
         VdpChromaType type,
         uint32[] width,
         uint32[] height

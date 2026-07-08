@@ -40,11 +40,11 @@ deps = [
     ).get_variable (
         'libavfilter_dep'
     ),
-    subproject(
-        'libavdevice'
-    ).get_variable (
-        'libavdevice_dep'
-    ),
+    # subproject(
+    #     'libavdevice'
+    # ).get_variable (
+    #     'libavdevice_dep'
+    # ),
     subproject(
         'libswresample'
     ).get_variable (
@@ -81,11 +81,11 @@ libavfilter_dep = subproject(
     'libavfilter_dep'
 )
 
-libavdevice_dep = subproject(
-    'libavdevice'
-).get_variable (
-    'libavdevice_dep'
-)
+# libavdevice_dep = subproject(
+#     'libavdevice'
+# ).get_variable (
+#     'libavdevice_dep'
+# )
 
 libswresample_dep = subproject(
     'libswresample'

@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2016 Matthieu Bouron <matthieu.bouron stupeflix.com>
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @brief This structure holds a reference to a android/view/Surface object that will
@@ -58,7 +57,7 @@ public LibAVCodec.MediaCodecContext av_mediacodec_alloc_context ();
 ***********************************************************/
 [CCode (cname="av_mediacodec_default_init",cheader_filename="subprojects/ffmpeg/libavcodec/mediacodec.h")]
 public int av_mediacodec_default_init (
-    CodecContext avctx,
+    LibAVCodec.CodecContext avctx,
     LibAVCodec.MediaCodecContext media_codec_context,
     void *surface
 );
@@ -71,7 +70,7 @@ av_mediacodec_default_init ().
 ***********************************************************/
 [CCode (cname="av_mediacodec_default_free",cheader_filename="subprojects/ffmpeg/libavcodec/mediacodec.h")]
 public void av_mediacodec_default_free (
-    CodecContext avctx
+    LibAVCodec.CodecContext avctx
 );
 
 } // namespace LibAVCodec

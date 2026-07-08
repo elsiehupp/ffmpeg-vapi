@@ -17,7 +17,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 ***********************************************************/
 
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup lavc_fft
@@ -49,7 +48,7 @@ public class RDFTContext {
     [CCode (cname="av_rdft_calc",cheader_filename="subprojects/ffmpeg/libavcodec/avfft.h")]
     public void av_rdft_calc (
         RDFTContext s,
-        FFTSample data
+        LibAVCodec.FFTSample data
     );
 
     [CCode (cname="av_rdft_end",cheader_filename="subprojects/ffmpeg/libavcodec/avfft.h")]

@@ -23,7 +23,7 @@ namespace LibAVFilter {
 [Compact]
 public class Coeffs {
     [CCode (cname="")]
-    public FFTSample? val;
+    public LibAVCodec.FFTSample? val;
 
     [CCode (cname="")]
     public int start;
@@ -113,7 +113,7 @@ public class ShowCQTContext {
     public double? freq;
 
     [CCode (cname="")]
-    public FFTContext? fft_ctx;
+    public LibAVCodec.FFTContext? fft_ctx;
 
     [CCode (cname="")]
     public Coeffs? coeffs;

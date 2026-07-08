@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup libavc
@@ -199,7 +198,7 @@ internal class LibAVCodec.Codec {
         /***********************************************************
         @brief This codec takes the reordered_opaque field from input
         LibAVUtil.Frame and returns it in the corresponding field in
-        CodecContext after encoding.
+        LibAVCodec.CodecContext after encoding.
         ***********************************************************/
         ENCODER_REORDERED_OPAQUE;
     }

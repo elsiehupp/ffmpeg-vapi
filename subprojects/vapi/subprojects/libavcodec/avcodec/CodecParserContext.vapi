@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 @copyright 2001 Fabrice Bellard
 ***********************************************************/
 namespace LibAVCodec {
-using LibAVUtil;
 
 /***********************************************************
 @file @ingroup libavc
@@ -62,7 +61,7 @@ public class CodecParserContext {
     ***********************************************************/
 
     /***********************************************************
-    @brief XXX: Put it back in CodecContext.
+    @brief XXX: Put it back in LibAVCodec.CodecContext.
     ***********************************************************/
     [CCode (cname="pict_type")]
     public int pict_type;
@@ -76,7 +75,7 @@ public class CodecParserContext {
 
     It is used by codecs like H.264 to display telecined material.
 
-    XXX: Put it back in CodecContext.
+    XXX: Put it back in LibAVCodec.CodecContext.
     ***********************************************************/
     [CCode (cname="repeat_pict")]
     public int repeat_pict;
@@ -174,7 +173,7 @@ public class CodecParserContext {
 
     /***********************************************************
     @brief Offset of the current timestamp against last timestamp sync point in
-    units of CodecContext.time_base.
+    units of LibAVCodec.CodecContext.time_base.
 
     Set to int.MIN when dts_sync_point unused. Otherwise, it must
     contain a valid timestamp offset.
@@ -189,7 +188,7 @@ public class CodecParserContext {
     internal int dts_ref_dts_delta;
 
     /***********************************************************
-    @brief Presentation delay of current frame in units of CodecContext.time_base.
+    @brief Presentation delay of current frame in units of LibAVCodec.CodecContext.time_base.
 
     Set to int.MIN when dts_sync_point unused. Otherwise, it must
     contain valid non-negative timestamp delta (presentation time of a frame
@@ -225,8 +224,8 @@ public class CodecParserContext {
 
     /***********************************************************
     @brief Duration of the current frame.
-    For audio, this is in units of 1 / CodecContext.sample_rate.
-    For all other types, this is in units of CodecContext.time_base.
+    For audio, this is in units of 1 / LibAVCodec.CodecContext.sample_rate.
+    For all other types, this is in units of LibAVCodec.CodecContext.time_base.
     ***********************************************************/
     [CCode (cname="duration")]
     internal int duration;
@@ -315,7 +314,7 @@ public class CodecParserContext {
     @code
     while (in_len) {
         len = av_parser_parse2 (
-            myparser, CodecContext, &data, &size,
+            myparser, LibAVCodec.CodecContext, &data, &size,
             in_data, in_len,
             pts, dts, pos
         );
@@ -330,7 +329,7 @@ public class CodecParserContext {
     [CCode (cname="av_parser_parse2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_parser_parse2 (
         CodecParserContext? codec_parser_context,
-        CodecContext? avctx,
+        LibAVCodec.CodecContext? avctx,
         out uint8[] poutbuf,
         out int poutbuf_size,
         uint8[] buffer,

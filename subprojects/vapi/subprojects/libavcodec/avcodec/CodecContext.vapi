@@ -54,15 +54,15 @@ Encoding/Decoding Library
 @ingroup libavc
 @defgroup lavc_encdec send/receive encoding and decoding API overview
 
-The LibACCodec.CodecContext.avcodec_send_packet ()/avcodec_receive_frame ()/avcodec_send_frame ()/
+The LibACCodec.LibAVCodec.CodecContext.avcodec_send_packet ()/avcodec_receive_frame ()/avcodec_send_frame ()/
 avcodec_receive_packet () functions provide an encode/decode API, which
 decouples input and output.
 
 The API is very similar for encoding/decoding and audio/video, and works as
 follows:
-- Set up and open the CodecContext as usual.
+- Set up and open the LibAVCodec.CodecContext as usual.
 - Send valid input:
-    - For decoding, call LibACCodec.CodecContext.avcodec_send_packet () to give the decoder raw
+    - For decoding, call LibACCodec.LibAVCodec.CodecContext.avcodec_send_packet () to give the decoder raw
         compressed data in an Packet.
     - For encoding, call avcodec_send_frame () to give the encoder an LibAVUtil.Frame
         containing uncompressed audio or video.
@@ -97,7 +97,7 @@ End of stream situations. These require "flushing" (aka draining) the codec,
 as the codec might buffer multiple frames or packets internally for
 performance or out of necessity (consider B-frames).
 This is handled as follows:
-- Instead of valid input, send null to the LibACCodec.CodecContext.avcodec_send_packet () (decoding)
+- Instead of valid input, send null to the LibACCodec.LibAVCodec.CodecContext.avcodec_send_packet () (decoding)
     or avcodec_send_frame () (encoding) functions. This will enter draining
     mode.
 - Call avcodec_receive_frame () (decoding) or avcodec_receive_packet ()
@@ -108,8 +108,8 @@ This is handled as follows:
 
 Using the API as outlined above is highly recommended. But it is also
 possible to call functions outside of this rigid schema. For example, you can
-call LibACCodec.CodecContext.avcodec_send_packet () repeatedly without calling
-avcodec_receive_frame (). In this case, LibACCodec.CodecContext.avcodec_send_packet () will succeed
+call LibACCodec.LibAVCodec.CodecContext.avcodec_send_packet () repeatedly without calling
+avcodec_receive_frame (). In this case, LibACCodec.LibAVCodec.CodecContext.avcodec_send_packet () will succeed
 until the codec's internal buffer has been filled up (which is typically of
 size 1 per output frame, after initial input), and then reject input with
 LibAVUtil.ErrorCode (EAGAIN). Once it starts rejecting input, you have no choice but to
@@ -123,7 +123,7 @@ permit unlimited buffering of input or output.
 
 This API replaces the following legacy functions:
 - avcodec_decode_video2 () and avcodec_decode_audio4 ():
-    Use LibACCodec.CodecContext.avcodec_send_packet () to feed input to the decoder, then use
+    Use LibACCodec.LibAVCodec.CodecContext.avcodec_send_packet () to feed input to the decoder, then use
     avcodec_receive_frame () to receive decoded frames after each packet.
     Unlike with the old video decoding API, multiple frames might result from
     a packet. For audio, splitting the input packet into frames by partially
@@ -138,7 +138,7 @@ This API replaces the following legacy functions:
     possible.
 - The new API does not handle subtitles yet.
 
-Mixing new and old function calls on the same CodecContext is not allowed,
+Mixing new and old function calls on the same LibAVCodec.CodecContext is not allowed,
 and will result in undefined behavior.
 
 Some codecs might require using the new API; using the old API will return
@@ -147,7 +147,7 @@ an error when calling it. All codecs support the new API.
 A codec is not allowed to return LibAVUtil.ErrorCode (EAGAIN) for both sending and receiving. This
 would be an invalid state, which could put the codec user into an endless
 loop. The API has no concept of time either: it cannot happen that trying to
-do LibACCodec.CodecContext.avcodec_send_packet () results in LibAVUtil.ErrorCode (EAGAIN), but a repeated call 1 second
+do LibACCodec.LibAVCodec.CodecContext.avcodec_send_packet () results in LibAVUtil.ErrorCode (EAGAIN), but a repeated call 1 second
 later accepts the packet (with no other receive/flush API calls involved).
 The API is a strict state machine, and the passage of time is not supposed
 to influence it. Some timing-dependent behavior might still be deemed
@@ -157,7 +157,7 @@ avoided that the current state is "unstable" and can "flip-flop" between
 the send/receive APIs allowing progress. For example, it's not allowed that
 the codec randomly decides that it actually wants to consume a packet now
 instead of returning a frame, after it just returned LibAVUtil.ErrorCode (EAGAIN) on an
-LibACCodec.CodecContext.avcodec_send_packet () call.
+LibACCodec.LibAVCodec.CodecContext.avcodec_send_packet () call.
 ***********************************************************/
 
 /***********************************************************
@@ -171,11 +171,11 @@ The name string for LibAVUtil.Options options matches the associated command lin
 parameter name and can be found in LibAVCodec/options_table.h
 The LibAVUtil.Option/command line parameter names differ in some cases from the C
 structure field names for historic reasons or brevity.
-sizeof (CodecContext) must not be used outside libav*.
+sizeof (LibAVCodec.CodecContext) must not be used outside libav*.
 ***********************************************************/
 [CCode (cname="struct AVCodecContext",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
 [Compact]
-public class CodecContext {
+public class LibAVCodec.CodecContext {
     [CCode (cname="AV_NUM_DATA_POINTERS",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public const size_t AV_NUM_DATA_POINTERS;
 
@@ -456,7 +456,7 @@ public class CodecContext {
     public LibAVUtil.PixelFormat pixel_format;
 
     public delegate void DrawHorizontalBandDelegate (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         LibAVUtil.Frame input_frame,
         int offset[AV_NUM_DATA_POINTERS],
         int y,
@@ -493,7 +493,7 @@ public class CodecContext {
     public DrawHorizontalBandDelegate draw_horiz_band;
 
     public delegate LibAVUtil.PixelFormat GetFormatDelegate (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         LibAVUtil.PixelFormat fmt
     );
 
@@ -1122,7 +1122,7 @@ public class CodecContext {
     public LibAVUtil.SampleFormat request_sample_fmt;
 
     public delegate int GetBuffer2Delegate (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         LibAVUtil.Frame frame,
         int flags
     );
@@ -1141,7 +1141,7 @@ public class CodecContext {
         - width, height (video only)
         - sample_rate, channel_layout, nb_samples (audio only)
         Their values may differ from the corresponding values in
-        CodecContext. This callback must use the frame values, not the codec
+        LibAVCodec.CodecContext. This callback must use the frame values, not the codec
         context values, to calculate the required buffer size.
 
         This callback must fill the following fields in the frame:
@@ -1755,12 +1755,12 @@ public class CodecContext {
     public int thread_safe_callbacks;
 
     public delegate int ExecutionDelegateDelegate (
-        CodecContext c2,
+        LibAVCodec.CodecContext c2,
         void *arg
     );
 
     public delegate int ExecutionDelegate (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         ExecutionDelegateDelegate func,
         void *arg2,
         out int ret,
@@ -1783,14 +1783,14 @@ public class CodecContext {
     public ExecutionDelegate execute;
 
     public delegate int Execute2DelegateDelegate (
-        CodecContext c2,
+        LibAVCodec.CodecContext c2,
         void *arg,
         int jobnr,
         int threadnr
     );
 
     public delegate int Execute2Delegate (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         Execute2DelegateDelegate func,
         void *arg2,
         out int ret,
@@ -2131,7 +2131,7 @@ public class CodecContext {
         format, this field should be set by the caller to a reference
         to the LibAVUtil.HardwareFrameContext describing input frames.
         LibAVUtil.HardwareFrameContext.format must be equal to
-        CodecContext.pixel_format.
+        LibAVCodec.CodecContext.pixel_format.
 
         This field should be set before avcodec_open2 () is called.
 
@@ -2210,7 +2210,7 @@ public class CodecContext {
 
     - encoding: unused
     - decoding: Set by user (either before avcodec_open2 (), or in the
-        CodecContext.get_format callback)
+        LibAVCodec.CodecContext.get_format callback)
     ***********************************************************/
     [CCode (cname="hwaccel_flags")]
     public HardwareAccelerationFlags hwaccel_flags;
@@ -2235,7 +2235,7 @@ public class CodecContext {
         LibAVCodec is unable to apply cropping from the top/left border.
 
     @note when this option is set to zero, the width/height fields of the
-        CodecContext and output AVFrames have different meanings. The codec
+        LibAVCodec.CodecContext and output AVFrames have different meanings. The codec
         context fields store display dimensions (with the coded dimensions in
         coded_width/height), while the frame fields store the coded dimensions
         (with the display dimensions being determined by the crop_* fields).
@@ -2268,7 +2268,7 @@ public class CodecContext {
     public int discard_damaged_percentage;
 
     /***********************************************************
-    @description Allocate an CodecContext and set its fields to default values. The
+    @description Allocate an LibAVCodec.CodecContext and set its fields to default values. The
         resulting struct should be freed with avcodec_free_context ().
 
     @param codec if non-null, allocate private data and initialize defaults
@@ -2278,10 +2278,10 @@ public class CodecContext {
         which may result in suboptimal default settings (this is
         important mainly for encoders, e.g. libx264).
 
-    @return An CodecContext filled with default values or null on failure.
+    @return An LibAVCodec.CodecContext filled with default values or null on failure.
     ***********************************************************/
     [CCode (cname="avcodec_alloc_context3",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
-    public CodecContext avcodec_alloc_context3 (
+    public LibAVCodec.CodecContext avcodec_alloc_context3 (
         Codec codec
     );
 
@@ -2291,11 +2291,11 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_free_context",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_free_context (
-        CodecContext codec_context
+        LibAVCodec.CodecContext codec_context
     );
 
     /***********************************************************
-    @description Initialize the CodecContext to use the given Codec. Prior to using this
+    @description Initialize the LibAVCodec.CodecContext to use the given Codec. Prior to using this
         function the context has to be allocated with avcodec_alloc_context3 ().
 
         The functions avcodec_find_decoder_by_name (), avcodec_find_encoder_by_name (),
@@ -2326,7 +2326,7 @@ public class CodecContext {
         previously passed to avcodec_alloc_context3 () or
         for this context, then this parameter MUST be either null or
         equal to the previously passed codec.
-    @param options A dictionary filled with CodecContext and codec-private options.
+    @param options A dictionary filled with LibAVCodec.CodecContext and codec-private options.
         On return this object will be filled with options that were not found.
 
     @return zero on success, a negative value on error
@@ -2335,16 +2335,16 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_open2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_open2 (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         Codec codec,
         out LibAVUtil.Dictionary options
     );
 
     /***********************************************************
-    @description Close a given CodecContext and free all the data associated with it
-        (but not the CodecContext itself).
+    @description Close a given LibAVCodec.CodecContext and free all the data associated with it
+        (but not the LibAVCodec.CodecContext itself).
 
-        Calling this function on an CodecContext that hasn't been opened will free
+        Calling this function on an LibAVCodec.CodecContext that hasn't been opened will free
         the codec-specific data allocated in avcodec_alloc_context3 () with a non-null
         codec. Subsequent calls will do nothing.
 
@@ -2355,7 +2355,7 @@ public class CodecContext {
     ***********************************************************/
     //  [CCode (cname="avcodec_close",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     //  public int avcodec_close (
-    //      CodecContext codec_context
+    //      LibAVCodec.CodecContext codec_context
     //  );
 
     /***********************************************************
@@ -2364,25 +2364,25 @@ public class CodecContext {
     ***********************************************************/
 
     /***********************************************************
-    The default callback for CodecContext.get_encode_buffer (). It is made public so
+    The default callback for LibAVCodec.CodecContext.get_encode_buffer (). It is made public so
     it can be called by custom get_encode_buffer () implementations for encoders without
     CodecCapabilityFlags.DR1 set.
     ***********************************************************/
     [CCode (cname="avcodec_default_get_encode_buffer",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_default_get_encode_buffer (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         LibAVUtil.Frame frame,
         int flags
     );
 
     /***********************************************************
-    @description The default callback for CodecContext.get_buffer2 (). It is made public so
+    @description The default callback for LibAVCodec.CodecContext.get_buffer2 (). It is made public so
         it can be called by custom get_buffer2 () implementations for decoders without
         CodecCapabilityFlags.DR1 set.
     ***********************************************************/
     [CCode (cname="avcodec_default_get_buffer2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_default_get_buffer2 (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         LibAVUtil.Frame frame,
         int flags
     );
@@ -2396,7 +2396,7 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_align_dimensions",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_align_dimensions (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         int width,
         int height
     );
@@ -2410,7 +2410,7 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_align_dimensions2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_align_dimensions2 (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         int width,
         int height,
         int linesize_align[AV_NUM_DATA_POINTERS]
@@ -2430,7 +2430,7 @@ public class CodecContext {
 
     [CCode (cname="avcodec_encode_subtitle",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_encode_subtitle (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         uint8[] buffer,
         int buf_size,
         Subtitle sub
@@ -2463,7 +2463,7 @@ public class CodecContext {
         returning subtitles. It is safe to flush even those decoders that are not
         marked with CodecCapabilityFlags.DELAY, then no subtitles will be returned.
 
-    @note The CodecContext MUST have been opened with @link avcodec_open2 ()
+    @note The LibAVCodec.CodecContext MUST have been opened with @link avcodec_open2 ()
         before packets may be fed to the decoder.
 
     @param codec_context the codec context
@@ -2474,7 +2474,7 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_decode_subtitle2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_decode_subtitle2 (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         out Subtitle sub,
         out int got_sub_ptr,
         Packet avpkt
@@ -2484,9 +2484,9 @@ public class CodecContext {
     /***********************************************************
     @brief Supply raw packet data as input to a decoder.
 
-    @description Internally, this call will copy relevant CodecContext fields, which can
+    @description Internally, this call will copy relevant LibAVCodec.CodecContext fields, which can
         influence decoding per-packet, and apply them when the packet is actually
-        decoded. (For example CodecContext.skip_frame, which might direct the
+        decoded. (For example LibAVCodec.CodecContext.skip_frame, which might direct the
         decoder to drop the frame contained by the packet sent with this function.)
 
     @warning The input buffer, avpkt->data must be AV_INPUT_BUFFER_PADDING_SIZE
@@ -2494,10 +2494,10 @@ public class CodecContext {
         readers read 32 or 64 bits at once and could read over the end.
 
     @warning Do not mix this API with the legacy API (like avcodec_decode_video2 ())
-        on the same CodecContext. It will return unexpected results now
+        on the same LibAVCodec.CodecContext. It will return unexpected results now
         or in future LibAVCodec versions.
 
-    @note The CodecContext MUST have been opened with @link avcodec_open2 ()
+    @note The LibAVCodec.CodecContext MUST have been opened with @link avcodec_open2 ()
         before packets may be fed to the decoder.
 
     @param codec_context codec context
@@ -2534,7 +2534,7 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_send_packet",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_send_packet (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         Packet avpkt
     );
     /***********************************************************
@@ -2564,7 +2564,7 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_receive_frame",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_receive_frame (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         LibAVUtil.Frame frame
     );
 
@@ -2605,7 +2605,7 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_send_frame",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_send_frame (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         LibAVUtil.Frame frame
     );
 
@@ -2626,14 +2626,14 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_receive_packet",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_receive_packet (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         Packet avpkt
     );
 
     /***********************************************************
     @description Create and return a LibAVUtil.HardwareFrameContext with values adequate for hardware
         decoding. This is meant to get called from the get_format callback, and is
-        a helper for preparing a LibAVUtil.HardwareFrameContext for CodecContext.hw_frames_ctx.
+        a helper for preparing a LibAVUtil.HardwareFrameContext for LibAVCodec.CodecContext.hw_frames_ctx.
         This API is for decoding with certain hardware acceleration modes/APIs only.
 
         The returned LibAVUtil.HardwareFrameContext is not initialized. The caller must do this
@@ -2642,8 +2642,8 @@ public class CodecContext {
         Calling this function is not a requirement, but makes it simpler to avoid
         codec or hardware API specific details when manually allocating frames.
 
-        Alternatively to this, an API user can set CodecContext.hw_device_ctx,
-        which sets up CodecContext.hw_frames_ctx fully automatically, and makes
+        Alternatively to this, an API user can set LibAVCodec.CodecContext.hw_device_ctx,
+        which sets up LibAVCodec.CodecContext.hw_frames_ctx fully automatically, and makes
         it unnecessary to call this function or having to care about
         LibAVUtil.HardwareFrameContext initialization at all.
 
@@ -2664,11 +2664,11 @@ public class CodecContext {
         - After calling this API function, it is the user's responsibility to
             initialize the LibAVUtil.HardwareFrameContext (returned by the out_frames_ref parameter
         ),
-            and to set CodecContext.hw_frames_ctx to it. If done, this must be done
+            and to set LibAVCodec.CodecContext.hw_frames_ctx to it. If done, this must be done
             before returning from get_format (this is implied by the normal
-            CodecContext.hw_frames_ctx API rules).
+            LibAVCodec.CodecContext.hw_frames_ctx API rules).
         - The LibAVUtil.HardwareFrameContext parameters may change every time time get_format is
-            called. Also, CodecContext.hw_frames_ctx is reset before get_format. So
+            called. Also, LibAVCodec.CodecContext.hw_frames_ctx is reset before get_format. So
             you are inherently required to go through this process again on every
             get_format call.
         - It is perfectly possible to call this function without actually using
@@ -2705,7 +2705,7 @@ public class CodecContext {
         Essentially, out_frames_ref returns the same as av_hwframe_ctx_alloc (), but
         with basic frame parameters set.
 
-        The function is stateless, and does not change the CodecContext or the
+        The function is stateless, and does not change the LibAVCodec.CodecContext or the
         device_ref LibAVUtil.HardwareDeviceContext.
 
     @param codec_context The context which is currently calling get_format, and which
@@ -2722,7 +2722,7 @@ public class CodecContext {
         have special semantics:
         LibAVUtil.ErrorCode (ENOENT): the decoder does not support this functionality. Setup
         is always manual, or it is a decoder which does not
-        support setting CodecContext.hw_frames_ctx at all,
+        support setting LibAVCodec.CodecContext.hw_frames_ctx at all,
         or it is a software format.
         LibAVUtil.ErrorCode (EINVAL): it is known that hardware decoding is not supported for
         this configuration, or the device_ref is not supported
@@ -2730,7 +2730,7 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_get_hw_frames_parameters",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_get_hw_frames_parameters (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         LibAVUtil.BufferRef device_ref,
         LibAVUtil.PixelFormat hw_pix_fmt,
         out LibAVUtil.BufferRef out_frames_ref
@@ -2742,7 +2742,7 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_is_open",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_is_open (
-        CodecContext codec_context
+        LibAVCodec.CodecContext codec_context
     );
 
     /***********************************************************
@@ -2758,24 +2758,24 @@ public class CodecContext {
     public void avcodec_string (
         string buffer,
         int buf_size,
-        CodecContext enc,
+        LibAVCodec.CodecContext enc,
         int encode
     );
 
     [CCode (cname="avcodec_default_get_format",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public LibAVUtil.PixelFormat avcodec_default_get_format (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         LibAVUtil.PixelFormat fmt
     );
 
     public delegate int DefaultExecuteDelegate (
-        CodecContext c2,
+        LibAVCodec.CodecContext c2,
         void *arg2
     );
 
     [CCode (cname="avcodec_default_execute",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_default_execute (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         DefaultExecuteDelegate func,
         void *arg,
         out int ret,
@@ -2784,7 +2784,7 @@ public class CodecContext {
     );
 
     public delegate int DefaultExecute2Delegate (
-        CodecContext c2,
+        LibAVCodec.CodecContext c2,
         void *arg2,
         int arg3,
         int arg4
@@ -2792,7 +2792,7 @@ public class CodecContext {
 
     [CCode (cname="avcodec_default_execute2",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int avcodec_default_execute2 (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         DefaultExecute2Delegate func,
         void *arg,
         out int ret,
@@ -2810,7 +2810,7 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="avcodec_flush_buffers",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public void avcodec_flush_buffers (
-        CodecContext codec_context
+        LibAVCodec.CodecContext codec_context
     );
 
     /***********************************************************
@@ -2823,7 +2823,7 @@ public class CodecContext {
     ***********************************************************/
     [CCode (cname="av_get_audio_frame_duration",cheader_filename="subprojects/ffmpeg/libavcodec/avcodec.h")]
     public int av_get_audio_frame_duration (
-        CodecContext codec_context,
+        LibAVCodec.CodecContext codec_context,
         int frame_bytes
     );
 
@@ -2851,7 +2851,7 @@ public string avcodec_configuration ();
 public string avcodec_license ();
 
 /***********************************************************
-@brief Get the LibAVUtil.Log.Class for CodecContext. It can be used in combination with
+@brief Get the LibAVUtil.Log.Class for LibAVCodec.CodecContext. It can be used in combination with
 OptionSearchFlags.FAKE_OBJECT_PARAMETER for examining options.
 
 @see @link av_opt_find ().
