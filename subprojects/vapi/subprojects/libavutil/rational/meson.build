@@ -1,4 +1,4 @@
 
 srcs += ([
-    './rational/rational.vapi'
+    './rational/Rational.vapi'
 ])
