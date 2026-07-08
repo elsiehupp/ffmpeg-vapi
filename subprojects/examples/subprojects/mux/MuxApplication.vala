@@ -65,7 +65,7 @@ private class MuxApplication : GLib.Application {
     ***********************************************************/
     private struct OutputStream {
         LibAVFormat.Stream? st;
-        AVCodecContext? enc;
+        LibAVCodec.CodecContext? enc;
 
         /***********************************************************
         pts of the next frame that will be generated
@@ -116,7 +116,7 @@ private class MuxApplication : GLib.Application {
 
     private static int write_frame (
         LibAVFormat.FormatContext? fmt_ctx,
-        AVCodecContext? codec_context,
+        LibAVCodec.CodecContext? codec_context,
         LibAVFormat.Stream? st,
         LibAVFormat.Frame? frame,
         LibAVCodec.Packet? pkt
@@ -237,7 +237,7 @@ private class MuxApplication : GLib.Application {
         out AVCodec? codec_out,
         LibAVCodec.CodecID codec_id
     ) {
-        AVCodecContext? codec_context;
+        LibAVCodec.CodecContext? codec_context;
         int i;
 
         /***********************************************************
@@ -322,7 +322,7 @@ private class MuxApplication : GLib.Application {
         switch (
             codec_out.type
         ) {
-            case AVMEDIA_TYPE_AUDIO: {
+            case LibAVUtil.MediaType.AUDIO: {
                 codec_context.sample_fmt = (
                     codec_out.sample_fmts
                     ? codec_out.sample_fmts[0]
@@ -363,7 +363,7 @@ private class MuxApplication : GLib.Application {
                 break;
             }
 
-            case AVMEDIA_TYPE_VIDEO: {
+            case LibAVUtil.MediaType.VIDEO: {
                 codec_context.codec_id = codec_id;
 
                 codec_context.bit_rate = 400000;
@@ -391,7 +391,7 @@ private class MuxApplication : GLib.Application {
                 codec_context.gop_size = 12;
                 codec_context.pix_fmt = STREAM_PIX_FMT;
                 if (
-                    codec_context.codec_id == AV_CODEC_ID_MPEG2VIDEO
+                    codec_context.codec_id == LibAVCodec.CodecID.MPEG2VIDEO
                 ) {
                     /***********************************************************
                     just for testing, we also add B-frames
@@ -400,7 +400,7 @@ private class MuxApplication : GLib.Application {
                 }
 
                 if (
-                    codec_context.codec_id == AV_CODEC_ID_MPEG1VIDEO
+                    codec_context.codec_id == LibAVCodec.CodecID.MPEG1VIDEO
                 ) {
                     /***********************************************************
                     Needed to avoid using macroblocks in which some coeffs overflow.
@@ -496,7 +496,7 @@ private class MuxApplication : GLib.Application {
         OutputStream? ost,
         LibAVUtil.Dictionary? opt_arg
     ) {
-        AVCodecContext? codec_context;
+        LibAVCodec.CodecContext? codec_context;
         int nb_samples;
         int ret;
         LibAVUtil.Dictionary? opt = null;
@@ -746,7 +746,7 @@ private class MuxApplication : GLib.Application {
         LibAVFormat.FormatContext? oc,
         OutputStream? ost
     ) {
-        AVCodecContext? codec_context;
+        LibAVCodec.CodecContext? codec_context;
         LibAVFormat.Frame? frame;
         int ret;
         int dst_nb_samples;
@@ -896,7 +896,7 @@ private class MuxApplication : GLib.Application {
         LibAVUtil.Dictionary? opt_arg
     ) {
         int ret;
-        AVCodecContext? codec_context = ost.enc;
+        LibAVCodec.CodecContext? codec_context = ost.enc;
         LibAVUtil.Dictionary? opt = null;
 
         av_dict_copy (
@@ -1069,7 +1069,7 @@ private class MuxApplication : GLib.Application {
     private static LibAVFormat.Frame? get_video_frame (
         OutputStream? ost
     ) {
-        AVCodecContext? codec_context = ost.enc;
+        LibAVCodec.CodecContext? codec_context = ost.enc;
 
         /***********************************************************
         check if we want to generate more frames
@@ -1332,7 +1332,7 @@ private class MuxApplication : GLib.Application {
         and initialize the codecs.
         ***********************************************************/
         if (
-            fmt.video_codec != AV_CODEC_ID_NONE
+            fmt.video_codec != LibAVCodec.CodecID.NONE
         ) {
             add_stream (
                 &video_st,
@@ -1346,7 +1346,7 @@ private class MuxApplication : GLib.Application {
         }
 
         if (
-            fmt.audio_codec != AV_CODEC_ID_NONE
+            fmt.audio_codec != LibAVCodec.CodecID.NONE
         ) {
             add_stream (
                 &audio_st,

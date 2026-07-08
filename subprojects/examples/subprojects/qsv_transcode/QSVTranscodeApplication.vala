@@ -48,8 +48,8 @@ private class QSVTranscodeApplication : GLib.Application {
     private static LibAVFormat.FormatContext? ifmt_ctx = null;
     private static LibAVFormat.FormatContext? ofmt_ctx = null;
     private static AVBufferRef? hw_device_ctx = null;
-    private static AVCodecContext? decoder_ctx = null;
-    private static AVCodecContext? encoder_ctx = null;
+    private static LibAVCodec.CodecContext? decoder_ctx = null;
+    private static LibAVCodec.CodecContext? encoder_ctx = null;
     private static int video_stream = -1;
 
     [Compact]
@@ -153,7 +153,7 @@ private class QSVTranscodeApplication : GLib.Application {
     private static int frame_number = 0;
 
     private static int dynamic_set_parameter (
-        AVCodecContext? avctx
+        LibAVCodec.CodecContext? avctx
     ) {
         LibAVUtil.Dictionary? opts = null;
         int ret = 0;
@@ -257,7 +257,7 @@ private class QSVTranscodeApplication : GLib.Application {
     }
 
     private static int get_format (
-        AVCodecContext? avctx,
+        LibAVCodec.CodecContext? avctx,
         AVPixelFormat[] pix_fmts
     ) {
         while (
@@ -329,7 +329,7 @@ private class QSVTranscodeApplication : GLib.Application {
 
         ret = av_find_best_stream (
             ifmt_ctx,
-            AVMEDIA_TYPE_VIDEO,
+            LibAVUtil.MediaType.VIDEO,
             -1,
             -1,
             null,
@@ -355,7 +355,7 @@ private class QSVTranscodeApplication : GLib.Application {
         switch (
             video.codecpar.codec_id
         ) {
-            case AV_CODEC_ID_H264: {
+            case LibAVCodec.CodecID.H264: {
                 decoder = avcodec_find_decoder_by_name (
                     "h264_qsv"
                 );
@@ -363,7 +363,7 @@ private class QSVTranscodeApplication : GLib.Application {
                 break;
             }
 
-            case AV_CODEC_ID_HEVC: {
+            case LibAVCodec.CodecID.HEVC: {
                 decoder = avcodec_find_decoder_by_name (
                     "hevc_qsv"
                 );
@@ -371,7 +371,7 @@ private class QSVTranscodeApplication : GLib.Application {
                 break;
             }
 
-            case AV_CODEC_ID_VP9: {
+            case LibAVCodec.CodecID.VP9: {
                 decoder = avcodec_find_decoder_by_name (
                     "vp9_qsv"
                 );
@@ -379,7 +379,7 @@ private class QSVTranscodeApplication : GLib.Application {
                 break;
             }
 
-            case AV_CODEC_ID_VP8: {
+            case LibAVCodec.CodecID.VP8: {
                 decoder = avcodec_find_decoder_by_name (
                     "vp8_qsv"
                 );
@@ -387,7 +387,7 @@ private class QSVTranscodeApplication : GLib.Application {
                 break;
             }
 
-            case AV_CODEC_ID_AV1: {
+            case LibAVCodec.CodecID.AV1: {
                 decoder = avcodec_find_decoder_by_name (
                     "av1_qsv"
                 );
@@ -395,7 +395,7 @@ private class QSVTranscodeApplication : GLib.Application {
                 break;
             }
 
-            case AV_CODEC_ID_MPEG2VIDEO: {
+            case LibAVCodec.CodecID.MPEG2VIDEO: {
                 decoder = avcodec_find_decoder_by_name (
                     "mpeg2_qsv"
                 );
@@ -403,7 +403,7 @@ private class QSVTranscodeApplication : GLib.Application {
                 break;
             }
 
-            case AV_CODEC_ID_MJPEG: {
+            case LibAVCodec.CodecID.MJPEG: {
                 decoder = avcodec_find_decoder_by_name (
                     "mjpeg_qsv"
                 );
@@ -710,7 +710,7 @@ private class QSVTranscodeApplication : GLib.Application {
                 }
 
                 /***********************************************************
-                set AVCodecContext Parameters for encoder, here we keep them stay
+                set LibAVCodec.CodecContext Parameters for encoder, here we keep them stay
                 the same as decoder.
 
                 ***********************************************************/

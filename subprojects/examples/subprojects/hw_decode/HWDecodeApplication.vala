@@ -49,7 +49,7 @@ private class HWDecodeApplication : GLib.Application {
     private static FILE? output_file = null;
 
     private static int hw_decoder_init (
-        AVCodecContext? ctx,
+        LibAVCodec.CodecContext? ctx,
         AVHWDeviceType type
     ) {
         int err = av_hwdevice_ctx_create (
@@ -79,7 +79,7 @@ private class HWDecodeApplication : GLib.Application {
     }
 
     private static AVPixelFormat get_hw_format (
-        AVCodecContext? ctx,
+        LibAVCodec.CodecContext? ctx,
         AVPixelFormat[] pix_fmts
     ) {
         AVPixelFormat[] p;
@@ -106,7 +106,7 @@ private class HWDecodeApplication : GLib.Application {
     }
 
     private static int decode_write (
-        AVCodecContext? avctx,
+        LibAVCodec.CodecContext? avctx,
         LibAVCodec.Packet? packet
     ) {
         LibAVFormat.Frame? frame = null;
@@ -326,7 +326,7 @@ private class HWDecodeApplication : GLib.Application {
         int video_stream;
         int ret;
         LibAVFormat.Stream? video = null;
-        AVCodecContext? decoder_ctx = null;
+        LibAVCodec.CodecContext? decoder_ctx = null;
         AVCodec? decoder = null;
         LibAVCodec.Packet? packet = null;
         AVHWDeviceType type;
@@ -438,7 +438,7 @@ private class HWDecodeApplication : GLib.Application {
         ***********************************************************/
         ret = av_find_best_stream (
             input_ctx,
-            AVMEDIA_TYPE_VIDEO,
+            LibAVUtil.MediaType.VIDEO,
             -1,
             -1,
             &decoder,

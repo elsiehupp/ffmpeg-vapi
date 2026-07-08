@@ -162,7 +162,7 @@ private class ApiBandTest : GLib.TestCase {
 
         video_stream = av_find_best_stream (
             format_context,
-            AVMEDIA_TYPE_VIDEO,
+            LibAVUtil.MediaType.VIDEO,
             -1,
             -1,
             null,

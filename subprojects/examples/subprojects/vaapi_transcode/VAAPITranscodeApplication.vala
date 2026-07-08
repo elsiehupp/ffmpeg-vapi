@@ -40,14 +40,14 @@ private class VAAPITranscodeApplication : GLib.Application {
     private static LibAVFormat.FormatContext? ifmt_ctx = null;
     private static LibAVFormat.FormatContext? ofmt_ctx = null;
     private static AVBufferRef? hw_device_ctx = null;
-    private static AVCodecContext? decoder_ctx = null;
-    private static AVCodecContext? encoder_ctx = null;
+    private static LibAVCodec.CodecContext? decoder_ctx = null;
+    private static LibAVCodec.CodecContext? encoder_ctx = null;
     private static int video_stream = -1;
     private static LibAVFormat.Stream? ost;
     private static int initialized = 0;
 
     private static AVPixelFormat get_vaapi_format (
-        AVCodecContext? ctx,
+        LibAVCodec.CodecContext? ctx,
         AVPixelFormat[] pix_fmts
     ) {
         AVPixelFormat? p;
@@ -122,7 +122,7 @@ private class VAAPITranscodeApplication : GLib.Application {
 
         ret = av_find_best_stream (
             ifmt_ctx,
-            AVMEDIA_TYPE_VIDEO,
+            LibAVUtil.MediaType.VIDEO,
             -1,
             -1,
             &decoder,
@@ -400,7 +400,7 @@ private class VAAPITranscodeApplication : GLib.Application {
                 }
 
                 /***********************************************************
-                set AVCodecContext Parameters for encoder, here we keep them stay
+                set LibAVCodec.CodecContext Parameters for encoder, here we keep them stay
                 the same as decoder.
                 xxx: now the sample can't handle resolution change case.
                 ***********************************************************/

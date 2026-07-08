@@ -218,9 +218,9 @@ private class RemuxApplication : GLib.Application {
             LibAVCodec.CodecParameters? in_codecpar = in_stream.codecpar;
 
             if (
-                in_codecpar.codec_type != AVMEDIA_TYPE_AUDIO &&
-                in_codecpar.codec_type != AVMEDIA_TYPE_VIDEO &&
-                in_codecpar.codec_type != AVMEDIA_TYPE_SUBTITLE
+                in_codecpar.codec_type != LibAVUtil.MediaType.AUDIO &&
+                in_codecpar.codec_type != LibAVUtil.MediaType.VIDEO &&
+                in_codecpar.codec_type != LibAVUtil.MediaType.SUBTITLE
             ) {
                 stream_mapping[i] = -1;
                 continue;

@@ -6,56 +6,51 @@ srcs += ([
 
 deps = [
     # meson.get_compiler ('vala').find_library ('posix'),
-    dependency ('glib-2.0'),
+    # dependency ('glib-2.0'),
     # subproject(
     #     'glib'
     # ).get_variable (
     #     'glib-2.0'
     # ),
     # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
-    #     'declared_dep'
-    # )
-    # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
     #     'libavcodec'
+    # ).get_variable (
+    #     'libavcodec_dep'
     # ),
     # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
     #     'libavformat'
+    # ).get_variable (
+    #     'libavformat_dep'
     # ),
     # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
     #     'libavutil'
+    # ).get_variable (
+    #     'libavutil_dep'
     # ),
     # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
     #     'libavfilter'
+    # ).get_variable (
+    #     'libavfilter_dep'
     # ),
     # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
     #     'libavdevice'
+    # ).get_variable (
+    #     'libavdevice_dep'
     # ),
     # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
     #     'libswresample'
+    # ).get_variable (
+    #     'libswresample_dep'
     # ),
     # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
     #     'libswscale'
+    # ).get_variable (
+    #     'libswscale_dep'
     # )
 ]
 
 executable(
     'transcode_aac',
     srcs,
-    link_with : deps
+    dependencies : deps
 )

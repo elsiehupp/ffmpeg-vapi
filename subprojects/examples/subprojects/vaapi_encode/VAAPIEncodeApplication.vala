@@ -42,7 +42,7 @@ private class VAAPIEncodeApplication : GLib.Application {
     private static AVBufferRef? hw_device_ctx = null;
 
     private static int set_hwframe_ctx (
-        AVCodecContext? ctx,
+        LibAVCodec.CodecContext? ctx,
         AVBufferRef? hw_device_ctx
     ) {
         AVBufferRef? hw_frames_ref;
@@ -116,7 +116,7 @@ private class VAAPIEncodeApplication : GLib.Application {
     }
 
     private static int encode_write (
-        AVCodecContext? avctx,
+        LibAVCodec.CodecContext? avctx,
         LibAVFormat.Frame? frame,
         FILE? fout
     ) {
@@ -215,7 +215,7 @@ private class VAAPIEncodeApplication : GLib.Application {
         FILE? fout = null;
         LibAVFormat.Frame? sw_frame = null;
         LibAVFormat.Frame? hw_frame = null;
-        AVCodecContext? avctx = null;
+        LibAVCodec.CodecContext? avctx = null;
         AVCodec? codec = null;
         string enc_name = "h264_vaapi";
 
@@ -361,7 +361,7 @@ private class VAAPIEncodeApplication : GLib.Application {
         avctx.pix_fmt = LibAVUtil.PixelFormat.VAAPI;
 
         /***********************************************************
-        set hw_frames_ctx for encoder's AVCodecContext
+        set hw_frames_ctx for encoder's LibAVCodec.CodecContext
         ***********************************************************/
         err = set_hwframe_ctx (
             avctx,

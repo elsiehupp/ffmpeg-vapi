@@ -19,10 +19,10 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 ***********************************************************/
 
 private const int codec_ids[4] = {
-    AV_CODEC_ID_H264,
-    AV_CODEC_ID_VP8,
-    AV_CODEC_ID_RV40,
-    AV_CODEC_ID_SVQ3
+    LibAVCodec.CodecID.H264,
+    LibAVCodec.CodecID.VP8,
+    LibAVCodec.CodecID.RV40,
+    LibAVCodec.CodecID.SVQ3
 };
 
 //  private const string pred4x4_modes[4][15] = {
@@ -170,7 +170,7 @@ private static bool check_pred_func (
     return (
         mode_name &&
         (
-            codec_ids[codec] == AV_CODEC_ID_H264
+            codec_ids[codec] == LibAVCodec.CodecID.H264
             ? check_func (
             func,
             "pred%s_%s_%d",
@@ -438,7 +438,7 @@ private static void check_pred8x8l (
 ) {
     if (
         chroma_format == 1 &&
-        codec_ids[codec] == AV_CODEC_ID_H264
+        codec_ids[codec] == LibAVCodec.CodecID.H264
     ) {
         int pred_mode;
 
@@ -592,13 +592,13 @@ private static void checkasm_check_h264pred () {
             for (
                 bit_depth = 8;
                 bit_depth <= (
-                    codec_id == AV_CODEC_ID_H264 ? 10 : 8);
+                    codec_id == LibAVCodec.CodecID.H264 ? 10 : 8);
                 bit_depth++
             ) {
                 for (
                     chroma_format = 1;
                     chroma_format <= (
-                        codec_id == AV_CODEC_ID_H264
+                        codec_id == LibAVCodec.CodecID.H264
                         ? 2
                         : 1
                     );

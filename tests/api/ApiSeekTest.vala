@@ -185,7 +185,7 @@ private class ApiSeekTest : GLib.TestCase {
                 format_context,
                 video_stream,
                 ts_start,
-                AVSEEK_FLAG_ANY
+                LibAVFormat.FormatSeekFlags.ANY
             );
 
             GLib.print (
@@ -513,7 +513,7 @@ private class ApiSeekTest : GLib.TestCase {
             //TODO: add ability to work with audio format
             video_stream = av_find_best_stream (
                 format_context,
-                AVMEDIA_TYPE_VIDEO,
+                LibAVUtil.MediaType.VIDEO,
                 -1,
                 -1,
                 null,

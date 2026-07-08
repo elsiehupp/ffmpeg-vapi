@@ -1,0 +1,4 @@
+
+srcs += ([
+    './common/common.vapi'
+])

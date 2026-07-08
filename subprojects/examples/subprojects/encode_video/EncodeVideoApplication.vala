@@ -39,7 +39,7 @@ Generate synthetic video data and encode it to an output file.
 private class EncodeVideoApplication : GLib.Application {
 
     private static void encode (
-        AVCodecContext? enc_ctx,
+        LibAVCodec.CodecContext? enc_ctx,
         LibAVFormat.Frame? frame,
         LibAVCodec.Packet? pkt,
         FILE? outfile
@@ -135,7 +135,7 @@ private class EncodeVideoApplication : GLib.Application {
         string filename;
         string codec_name;
         AVCodec? codec;
-        AVCodecContext? codec_context = null;
+        LibAVCodec.CodecContext? codec_context = null;
         int i;
         int ret;
         int x;
@@ -252,7 +252,7 @@ private class EncodeVideoApplication : GLib.Application {
         codec_context.pix_fmt = LibAVUtil.PixelFormat.YUV420P;
 
         if (
-            codec.id == AV_CODEC_ID_H264
+            codec.id == LibAVCodec.CodecID.H264
         ) {
             av_opt_set (
                 codec_context.priv_data,
@@ -457,8 +457,8 @@ private class EncodeVideoApplication : GLib.Application {
         into a proper file format or protocol; see mux.c.
         ***********************************************************/
         if (
-            codec.id == AV_CODEC_ID_MPEG1VIDEO ||
-            codec.id == AV_CODEC_ID_MPEG2VIDEO
+            codec.id == LibAVCodec.CodecID.MPEG1VIDEO ||
+            codec.id == LibAVCodec.CodecID.MPEG2VIDEO
         ) {
             fwrite (
                 endcode,

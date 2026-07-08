@@ -47,7 +47,7 @@ private class DecodeFilterVideoApplication : GLib.Application {
     ***********************************************************/
 
     private static LibAVFormat.FormatContext? fmt_ctx;
-    private static AVCodecContext? dec_ctx;
+    private static LibAVCodec.CodecContext? dec_ctx;
     private static AVFilterContext? buffersink_ctx;
     private static AVFilterContext? buffersrc_ctx;
     private static AVFilterGraph? filter_graph;
@@ -101,7 +101,7 @@ private class DecodeFilterVideoApplication : GLib.Application {
         ***********************************************************/
         ret = av_find_best_stream (
             fmt_ctx,
-            AVMEDIA_TYPE_VIDEO,
+            LibAVUtil.MediaType.VIDEO,
             -1,
             -1,
             &dec,

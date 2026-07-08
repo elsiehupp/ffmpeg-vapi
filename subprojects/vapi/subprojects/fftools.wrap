@@ -1,0 +1,5 @@
+[wrap-file]
+directory = fftools
+
+[provide]
+dependency_names = fftools_dep

@@ -1,0 +1,5 @@
+[wrap-file]
+directory = libswscale
+
+[provide]
+dependency_names = libswscale_dep

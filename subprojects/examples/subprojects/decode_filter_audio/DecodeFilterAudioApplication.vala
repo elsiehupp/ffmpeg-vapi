@@ -44,7 +44,7 @@ private class DecodeFilterAudioApplication : GLib.Application {
     private const string player = "ffplay -f s16le -ar 8000 -ac 1 -";
 
     private static LibAVFormat.FormatContext? fmt_ctx;
-    private static AVCodecContext? dec_ctx;
+    private static LibAVCodec.CodecContext? dec_ctx;
     private static AVFilterContext? buffersink_ctx;
     private static AVFilterContext? buffersrc_ctx;
     private static AVFilterGraph? filter_graph;
@@ -97,7 +97,7 @@ private class DecodeFilterAudioApplication : GLib.Application {
         ***********************************************************/
         ret = av_find_best_stream (
             fmt_ctx,
-            AVMEDIA_TYPE_AUDIO,
+            LibAVUtil.MediaType.AUDIO,
             -1,
             -1,
             &dec,

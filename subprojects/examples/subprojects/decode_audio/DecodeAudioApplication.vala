@@ -114,7 +114,7 @@ private class DecodeAudioApplication : GLib.Application {
     }
 
     private static void decode (
-        AVCodecContext? dec_ctx,
+        LibAVCodec.CodecContext? dec_ctx,
         LibAVCodec.Packet? pkt,
         LibAVFormat.Frame? frame,
         FILE? outfile
@@ -232,8 +232,8 @@ private class DecodeAudioApplication : GLib.Application {
         string outfilename;
         string filename;
         AVCodec? codec;
-        AVCodecContext? codec_context = null;
-        AVCodecParserContext? parser = null;
+        LibAVCodec.CodecContext? codec_context = null;
+        LibAVCodec.CodecParserContext? parser = null;
         int len;
         int ret;
         FILE? file;
@@ -287,7 +287,7 @@ private class DecodeAudioApplication : GLib.Application {
         find the MPEG audio decoder
         ***********************************************************/
         codec = avcodec_find_decoder (
-            AV_CODEC_ID_MP2
+            LibAVCodec.CodecID.MP2
         );
 
         if (

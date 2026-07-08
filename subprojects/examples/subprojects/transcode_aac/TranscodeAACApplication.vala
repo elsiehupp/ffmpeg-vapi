@@ -66,9 +66,9 @@ private class TranscodeAACApplication : GLib.Application {
     private static int open_input_file (
         string filename,
         out LibAVFormat.FormatContext? input_format_context_out,
-        out AVCodecContext? input_codec_context_out
+        out LibAVCodec.CodecContext? input_codec_context_out
     ) {
-        AVCodecContext? avctx;
+        LibAVCodec.CodecContext? avctx;
         AVCodec? input_codec;
         LibAVFormat.Stream? stream;
         int error;
@@ -273,11 +273,11 @@ private class TranscodeAACApplication : GLib.Application {
     ***********************************************************/
     private static int open_output_file (
         string filename,
-        AVCodecContext? input_codec_context,
+        LibAVCodec.CodecContext? input_codec_context,
         out LibAVFormat.FormatContext? output_format_context_out,
-        out AVCodecContext? output_codec_context_out
+        out LibAVCodec.CodecContext? output_codec_context_out
     ) {
-        AVCodecContext? avctx = null;
+        LibAVCodec.CodecContext? avctx = null;
         LibAVFormat.IOContext? output_io_context = null;
         LibAVFormat.Stream? stream = null;
         AVCodec? output_codec = null;
@@ -380,7 +380,7 @@ private class TranscodeAACApplication : GLib.Application {
         Find the encoder to be used by its name.
         ***********************************************************/
         output_codec = avcodec_find_encoder (
-            AV_CODEC_ID_AAC
+            LibAVCodec.CodecID.AAC
         );
 
         if (
@@ -607,8 +607,8 @@ private class TranscodeAACApplication : GLib.Application {
         0 if successful)
     ***********************************************************/
     private static int init_resampler (
-        AVCodecContext? input_codec_context,
-        AVCodecContext? output_codec_context,
+        LibAVCodec.CodecContext? input_codec_context,
+        LibAVCodec.CodecContext? output_codec_context,
         SwrContext? resample_context
     ) {
             int error;
@@ -683,7 +683,7 @@ private class TranscodeAACApplication : GLib.Application {
     ***********************************************************/
     private static int init_fifo (
         ref AVAudioFifo? fifo,
-        AVCodecContext? output_codec_context
+        LibAVCodec.CodecContext? output_codec_context
     ) {
         /***********************************************************
         Create the FIFO buffer based on the specified output sample format.
@@ -759,7 +759,7 @@ private class TranscodeAACApplication : GLib.Application {
     private static int decode_audio_frame (
         LibAVFormat.Frame? frame,
         LibAVFormat.FormatContext? input_format_context,
-        AVCodecContext? input_codec_context,
+        LibAVCodec.CodecContext? input_codec_context,
         out bool data_present_out,
         out bool finished_out
     ) {
@@ -925,7 +925,7 @@ private class TranscodeAACApplication : GLib.Application {
     ***********************************************************/
     private static int init_converted_samples (
         out uint8[][] converted_input_samples,
-        AVCodecContext? output_codec_context,
+        LibAVCodec.CodecContext? output_codec_context,
         int frame_size
     ) {
         int error;
@@ -1093,8 +1093,8 @@ private class TranscodeAACApplication : GLib.Application {
     private static int read_decode_convert_and_store (
         AVAudioFifo? fifo,
         LibAVFormat.FormatContext? input_format_context,
-        AVCodecContext? input_codec_context,
-        AVCodecContext? output_codec_context,
+        LibAVCodec.CodecContext? input_codec_context,
+        LibAVCodec.CodecContext? output_codec_context,
         SwrContext? resampler_context,
         out bool finished_out
     ) {
@@ -1248,7 +1248,7 @@ private class TranscodeAACApplication : GLib.Application {
     ***********************************************************/
     private static int init_output_frame (
         out LibAVFormat.Frame? frame_out,
-        AVCodecContext? output_codec_context,
+        LibAVCodec.CodecContext? output_codec_context,
         int frame_size
     ) {
         int error;
@@ -1332,7 +1332,7 @@ private class TranscodeAACApplication : GLib.Application {
     private static int encode_audio_frame (
         LibAVFormat.Frame? frame,
         LibAVFormat.FormatContext? output_format_context,
-        AVCodecContext? output_codec_context,
+        LibAVCodec.CodecContext? output_codec_context,
         out bool data_present_out
     ) {
         /***********************************************************
@@ -1493,7 +1493,7 @@ private class TranscodeAACApplication : GLib.Application {
     private static int load_encode_and_write (
         AVAudioFifo? fifo,
         LibAVFormat.FormatContext? output_format_context,
-        AVCodecContext? output_codec_context
+        LibAVCodec.CodecContext? output_codec_context
     ) {
         /***********************************************************
         Temporary storage of the output samples of the frame written to the file.
@@ -1607,8 +1607,8 @@ private class TranscodeAACApplication : GLib.Application {
     ) {
         LibAVFormat.FormatContext? input_format_context = null;
         LibAVFormat.FormatContext? output_format_context = null;
-        AVCodecContext? input_codec_context = null;
-        AVCodecContext? output_codec_context = null;
+        LibAVCodec.CodecContext? input_codec_context = null;
+        LibAVCodec.CodecContext? output_codec_context = null;
         SwrContext? resample_context = null;
         AVAudioFifo? fifo = null;
         int ret = AVERROR_EXIT;

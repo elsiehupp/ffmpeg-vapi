@@ -155,7 +155,7 @@ private class ApiCodecParameterTest : GLib.TestCase {
                 !done
             ) {
                 LibAVCodec.CodecContext codec_context = null;
-                LibAVFormat.Stream st;
+                LibAVFormat.Stream stream;
 
                 ret = av_read_frame (
                     format_context,
@@ -177,8 +177,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
 
                 }
 
-                st = format_context.streams[packet.stream_index];
-                codec_context = st.codec;
+                stream = format_context.streams[packet.stream_index];
+                codec_context = stream.codec;
 
                 /***********************************************************
                 Writing to LibAVFormat.Stream.codec_info_nb_frames must not be done by
@@ -188,8 +188,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
                 ***********************************************************/
 
                 if (
-                    codec_context.codec_type != AVMEDIA_TYPE_VIDEO ||
-                    st.codec_info_nb_frames++ > 0
+                    codec_context.codec_type != LibAVUtil.MediaType.VIDEO ||
+                    stream.codec_info_nb_frames++ > 0
                 ) {
                     av_packet_unref (
                         out packet
@@ -233,16 +233,16 @@ private class ApiCodecParameterTest : GLib.TestCase {
                     i < format_context.nb_streams;
                     i++
                 ) {
-                    st = format_context.streams[i];
-                    codec_context = st.codec;
+                    stream = format_context.streams[i];
+                    codec_context = stream.codec;
 
                     if (
-                        codec_context.codec_type != AVMEDIA_TYPE_VIDEO
+                        codec_context.codec_type != LibAVUtil.MediaType.VIDEO
                     ) {
                         continue;
                     }
 
-                    done &= st.codec_info_nb_frames > 0;
+                    done &= stream.codec_info_nb_frames > 0;
                 }
 
             }
@@ -264,9 +264,9 @@ private class ApiCodecParameterTest : GLib.TestCase {
             i < format_context.nb_streams;
             i++
         ) {
-            LibAVFormat.Stream st = format_context.streams[i];
+            LibAVFormat.Stream stream = format_context.streams[i];
             avcodec_close (
-                st.codec
+                stream.codec
             );
 
         }
@@ -285,8 +285,8 @@ private class ApiCodecParameterTest : GLib.TestCase {
             i++
         ) {
             LibAVUtil.Option opt = null;
-            LibAVFormat.Stream st = format_context.streams[i];
-            LibAVCodec.CodecContext codec_context = st.codec;
+            LibAVFormat.Stream stream = format_context.streams[i];
+            LibAVCodec.CodecContext codec_context = stream.codec;
 
             GLib.print (
                 "stream=%d,
@@ -423,7 +423,7 @@ private class ApiCodecParameterTest : GLib.TestCase {
             LibAVCodec.CodecContext codec_ctx2 = st2.codec;
 
             if (
-                codec_ctx1.codec_type != AVMEDIA_TYPE_VIDEO
+                codec_ctx1.codec_type != LibAVUtil.MediaType.VIDEO
             ) {
                 continue;
             }

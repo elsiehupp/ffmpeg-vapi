@@ -64,7 +64,7 @@ private static void checkasm_check_nlmeans () {
     );
 
     /***********************************************************
-    See the filter's code for the explanations on the variables
+    @see the filter's code for the explanations on the variables
     ***********************************************************/
     if (
         check_func (

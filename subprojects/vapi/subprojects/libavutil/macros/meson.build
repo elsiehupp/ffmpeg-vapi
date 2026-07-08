@@ -1,0 +1,4 @@
+
+srcs += ([
+    './macros/macros.vapi'
+])

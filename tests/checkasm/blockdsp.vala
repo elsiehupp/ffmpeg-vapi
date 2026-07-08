@@ -103,7 +103,7 @@ private static void checkasm_check_blockdsp () {
     //      [6 * 8 * 8]
     //  );
 
-    AVCodecContext avctx = { 0 };
+    LibAVCodec.CodecContext avctx = { 0 };
     BlockDSPContext block_dsp_context;
 
     ff_blockdsp_init (

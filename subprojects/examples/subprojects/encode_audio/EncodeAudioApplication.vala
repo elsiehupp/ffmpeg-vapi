@@ -145,7 +145,7 @@ private class EncodeAudioApplication : GLib.Application {
     }
 
     private static void encode (
-        AVCodecContext? ctx,
+        LibAVCodec.CodecContext? ctx,
         LibAVFormat.Frame? frame,
         LibAVCodec.Packet? pkt,
         FILE? output
@@ -228,7 +228,7 @@ private class EncodeAudioApplication : GLib.Application {
     ) {
         string filename;
         AVCodec? codec;
-        AVCodecContext? codec_context= null;
+        LibAVCodec.CodecContext? codec_context= null;
         LibAVFormat.Frame? frame;
         LibAVCodec.Packet? pkt;
         int i;
@@ -258,7 +258,7 @@ private class EncodeAudioApplication : GLib.Application {
         find the MP2 encoder
         ***********************************************************/
         codec = avcodec_find_encoder (
-            AV_CODEC_ID_MP2
+            LibAVCodec.CodecID.MP2
         );
 
         if (

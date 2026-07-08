@@ -253,7 +253,7 @@ private static void checkasm_check_pixblockdsp () {
     uint16[] dst1 = (
         uint16[] )dst1_;
     PixblockDSPContext pixblock_dsp_context;
-    AVCodecContext avctx = new AVCodecContext () {
+    LibAVCodec.CodecContext avctx = new LibAVCodec.CodecContext () {
         bits_per_raw_sample = 8
     };
 

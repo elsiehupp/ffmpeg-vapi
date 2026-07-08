@@ -1,0 +1,5 @@
+[wrap-file]
+directory = libavutil
+
+[provide]
+dependency_names = libavutil_dep

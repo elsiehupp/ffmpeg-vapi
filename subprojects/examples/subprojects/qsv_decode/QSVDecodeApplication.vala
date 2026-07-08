@@ -44,7 +44,7 @@ GPU video surfaces, write the decoded frames to an output file.
 private class QSVDecodeApplication : GLib.Application {
 
     private static int get_format (
-        AVCodecContext? avctx,
+        LibAVCodec.CodecContext? avctx,
         AVPixelFormat[] pix_fmts
     ) {
         while (
@@ -68,7 +68,7 @@ private class QSVDecodeApplication : GLib.Application {
     }
 
     private static int decode_packet (
-        AVCodecContext? decoder_ctx,
+        LibAVCodec.CodecContext? decoder_ctx,
         LibAVFormat.Frame? frame,
         LibAVFormat.Frame? sw_frame,
         LibAVCodec.Packet? pkt,
@@ -201,7 +201,7 @@ private class QSVDecodeApplication : GLib.Application {
     ) {
         LibAVFormat.FormatContext? input_ctx = null;
         LibAVFormat.Stream? video_st = null;
-        AVCodecContext? decoder_ctx = null;
+        LibAVCodec.CodecContext? decoder_ctx = null;
         AVCodec? decoder;
 
         LibAVCodec.Packet? pkt = null;
@@ -263,7 +263,7 @@ private class QSVDecodeApplication : GLib.Application {
             LibAVFormat.Stream? st = input_ctx.streams[i];
 
             if (
-                st.codecpar.codec_id == AV_CODEC_ID_H264 &&
+                st.codecpar.codec_id == LibAVCodec.CodecID.H264 &&
                 !video_st
             ) {
                 video_st = st;
@@ -350,7 +350,7 @@ private class QSVDecodeApplication : GLib.Application {
 
         }
 
-        decoder_ctx.codec_id = AV_CODEC_ID_H264;
+        decoder_ctx.codec_id = LibAVCodec.CodecID.H264;
         if (
             video_st.codecpar.extradata_size
         ) {

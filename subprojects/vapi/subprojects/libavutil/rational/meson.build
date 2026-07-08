@@ -1,0 +1,4 @@
+
+srcs += ([
+    './rational/rational.vapi'
+])

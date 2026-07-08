@@ -4,8 +4,6 @@ srcs = files ([
     './main.vala'
 ])
 
-subdir ('vapi')
-
 deps = [
     # meson.get_compiler ('vala').find_library ('posix'),
     # dependency ('glib-2.0'),
@@ -14,48 +12,41 @@ deps = [
     # ).get_variable (
     #     'glib-2.0'
     # ),
-    # dependency ('gtk+-3.0'),
-    # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
-    #     'declared_dep'
-    # )
-    # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
-    #     'libavcodec'
-    # ),
-    # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
-    #     'libavformat'
-    # ),
-    # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
-    #     'libavutil'
-    # ),
-    # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
-    #     'libavfilter'
-    # ),
-    # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
-    #     'libavdevice'
-    # ),
-    # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
-    #     'libswresample'
-    # ),
-    # subproject(
-    #     'ffmpeg'
-    # ).get_variable (
-    #     'libswscale'
-    # )
-    # libavcodec-dev
+    subproject(
+        'vapi'
+    ).get_variable (
+        'libavcodec_dep'
+    ),
+    subproject(
+        'vapi'
+    ).get_variable (
+        'libavformat_dep'
+    ),
+    subproject(
+        'vapi'
+    ).get_variable (
+        'libavutil_dep'
+    ),
+    subproject(
+        'vapi'
+    ).get_variable (
+        'libavfilter_dep'
+    ),
+    subproject(
+        'vapi'
+    ).get_variable (
+        'libavdevice_dep'
+    ),
+    subproject(
+        'vapi'
+    ).get_variable (
+        'libswresample_dep'
+    ),
+    subproject(
+        'vapi'
+    ).get_variable (
+        'libswscale_dep'
+    )
 ]
 
 ffmpeg_lib = library(

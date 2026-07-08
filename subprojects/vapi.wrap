@@ -1,0 +1,5 @@
+[wrap-file]
+directory = vapi
+
+; [provide]
+; dependency_names = libavcodec_dep, libavdevice_dep, libavfilter_dep, libavformat_dep, libavresample_dep, libavutil_dep, libpostproc_dep, libswresample_dep, libswscale_dep

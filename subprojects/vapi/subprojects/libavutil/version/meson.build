@@ -1,0 +1,4 @@
+
+srcs += ([
+    './version/Version.vapi'
+])

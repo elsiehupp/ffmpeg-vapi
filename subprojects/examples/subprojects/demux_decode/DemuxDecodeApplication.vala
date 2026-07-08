@@ -38,8 +38,8 @@ ffplay.
 private class DemuxDecodeApplication : GLib.Application {
 
     private static LibAVFormat.FormatContext? fmt_ctx = null;
-    private static AVCodecContext? video_dec_ctx = null;
-    private static AVCodecContext? audio_dec_ctx;
+    private static LibAVCodec.CodecContext? video_dec_ctx = null;
+    private static LibAVCodec.CodecContext? audio_dec_ctx;
     private static int width;
     private static int height;
     private static AVPixelFormat pix_fmt;
@@ -167,7 +167,7 @@ private class DemuxDecodeApplication : GLib.Application {
     }
 
     private static int decode_packet (
-        AVCodecContext? dec,
+        LibAVCodec.CodecContext? dec,
         LibAVCodec.Packet? pkt
     ) {
         int ret = 0;
@@ -238,7 +238,7 @@ private class DemuxDecodeApplication : GLib.Application {
             write the frame data to output file
             ***********************************************************/
             if (
-                dec.codec.type == AVMEDIA_TYPE_VIDEO
+                dec.codec.type == LibAVUtil.MediaType.VIDEO
             ) {
                 ret = output_video_frame (
                 frame
@@ -262,7 +262,7 @@ private class DemuxDecodeApplication : GLib.Application {
 
     private static int open_codec_context (
         out int stream_idx_out,
-        out AVCodecContext dec_ctx_out,
+        out LibAVCodec.CodecContext dec_ctx_out,
         LibAVFormat.FormatContext? fmt_ctx,
         AVMediaType type
     ) {
@@ -541,7 +541,7 @@ private class DemuxDecodeApplication : GLib.Application {
                 &video_stream_idx,
                 &video_dec_ctx,
                 fmt_ctx,
-                AVMEDIA_TYPE_VIDEO
+                LibAVUtil.MediaType.VIDEO
             ) >= 0
         ) {
             video_stream = fmt_ctx.streams[video_stream_idx];
@@ -604,7 +604,7 @@ private class DemuxDecodeApplication : GLib.Application {
                 &audio_stream_idx,
                 &audio_dec_ctx,
                 fmt_ctx,
-                AVMEDIA_TYPE_AUDIO
+                LibAVUtil.MediaType.AUDIO
             ) >= 0
         ) {
             audio_stream = fmt_ctx.streams[audio_stream_idx];

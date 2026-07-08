@@ -55,8 +55,8 @@ private class TranscodeApplication : GLib.Application {
     private static FilteringContext? filter_ctx;
 
     private struct StreamContext {
-        AVCodecContext? dec_ctx;
-        AVCodecContext? enc_ctx;
+        LibAVCodec.CodecContext? dec_ctx;
+        LibAVCodec.CodecContext? enc_ctx;
 
         LibAVFormat.Frame? dec_frame;
     }
@@ -131,7 +131,7 @@ private class TranscodeApplication : GLib.Application {
             stream.codecpar.codec_id
             );
 
-            AVCodecContext? codec_ctx;
+            LibAVCodec.CodecContext? codec_ctx;
             if (
                 !dec
             ) {
@@ -194,11 +194,11 @@ private class TranscodeApplication : GLib.Application {
             Reencode video & audio and remux subtitles etc.
             ***********************************************************/
             if (
-                codec_ctx.codec_type == AVMEDIA_TYPE_VIDEO ||
-                codec_ctx.codec_type == AVMEDIA_TYPE_AUDIO
+                codec_ctx.codec_type == LibAVUtil.MediaType.VIDEO ||
+                codec_ctx.codec_type == LibAVUtil.MediaType.AUDIO
             ) {
                 if (
-                    codec_ctx.codec_type == AVMEDIA_TYPE_VIDEO
+                    codec_ctx.codec_type == LibAVUtil.MediaType.VIDEO
                 ) {
                     codec_ctx.framerate = av_guess_frame_rate (
                     ifmt_ctx,
@@ -261,8 +261,8 @@ private class TranscodeApplication : GLib.Application {
     ) {
         LibAVFormat.Stream? out_stream;
         LibAVFormat.Stream? in_stream;
-        AVCodecContext? dec_ctx;
-        AVCodecContext? enc_ctx;
+        LibAVCodec.CodecContext? dec_ctx;
+        LibAVCodec.CodecContext? enc_ctx;
         AVCodec? encoder;
         int ret;
         uint i;
@@ -314,8 +314,8 @@ private class TranscodeApplication : GLib.Application {
             dec_ctx = stream_ctx[i].dec_ctx;
 
             if (
-                dec_ctx.codec_type == AVMEDIA_TYPE_VIDEO ||
-                dec_ctx.codec_type == AVMEDIA_TYPE_AUDIO
+                dec_ctx.codec_type == LibAVUtil.MediaType.VIDEO ||
+                dec_ctx.codec_type == LibAVUtil.MediaType.AUDIO
             ) {
                 /***********************************************************
                 in this example, we choose transcoding to same codec
@@ -362,7 +362,7 @@ private class TranscodeApplication : GLib.Application {
                 streams easily using filters
                 ***********************************************************/
                 if (
-                    dec_ctx.codec_type == AVMEDIA_TYPE_VIDEO
+                    dec_ctx.codec_type == LibAVUtil.MediaType.VIDEO
                 ) {
                     AVPixelFormat[] pix_fmts = null;
 
@@ -491,7 +491,7 @@ private class TranscodeApplication : GLib.Application {
                 out_stream.time_base = enc_ctx.time_base;
                 stream_ctx[i].enc_ctx = enc_ctx;
             } else if (
-                dec_ctx.codec_type == AVMEDIA_TYPE_UNKNOWN
+                dec_ctx.codec_type == LibAVUtil.MediaType.UNKNOWN
             ) {
                 av_log (
                     null,
@@ -583,8 +583,8 @@ private class TranscodeApplication : GLib.Application {
 
     private static int init_filter (
         FilteringContext? fctx,
-        AVCodecContext? dec_ctx,
-        AVCodecContext? enc_ctx,
+        LibAVCodec.CodecContext? dec_ctx,
+        LibAVCodec.CodecContext? enc_ctx,
         string filter_spec
     ) {
         char args[512];
@@ -613,7 +613,7 @@ private class TranscodeApplication : GLib.Application {
         }
 
         if (
-            dec_ctx.codec_type == AVMEDIA_TYPE_VIDEO
+            dec_ctx.codec_type == LibAVUtil.MediaType.VIDEO
         ) {
             buffersrc = avfilter_get_by_name (
             "buffer"
@@ -749,7 +749,7 @@ private class TranscodeApplication : GLib.Application {
             }
 
         } else if (
-            dec_ctx.codec_type == AVMEDIA_TYPE_AUDIO
+            dec_ctx.codec_type == LibAVUtil.MediaType.AUDIO
         ) {
             char buf[64];
             buffersrc = avfilter_get_by_name (
@@ -1084,15 +1084,15 @@ private class TranscodeApplication : GLib.Application {
             filter_ctx[i].buffersink_ctx = null;
             filter_ctx[i].filter_graph = null;
             if (
-                ifmt_ctx.streams[i].codecpar.codec_type != AVMEDIA_TYPE_AUDIO &&
-                ifmt_ctx.streams[i].codecpar.codec_type != AVMEDIA_TYPE_VIDEO
+                ifmt_ctx.streams[i].codecpar.codec_type != LibAVUtil.MediaType.AUDIO &&
+                ifmt_ctx.streams[i].codecpar.codec_type != LibAVUtil.MediaType.VIDEO
             ) {
                 continue;
             }
 
 
             if (
-                ifmt_ctx.streams[i].codecpar.codec_type == AVMEDIA_TYPE_VIDEO
+                ifmt_ctx.streams[i].codecpar.codec_type == LibAVUtil.MediaType.VIDEO
             ) {
                 /***********************************************************
                 passthrough (

@@ -81,7 +81,7 @@ private class DecodeVideoApplication : GLib.Application {
     }
 
     private static void decode (
-        AVCodecContext? dec_ctx,
+        LibAVCodec.CodecContext? dec_ctx,
         LibAVFormat.Frame? frame,
         LibAVCodec.Packet? pkt,
         string filename
@@ -177,8 +177,8 @@ private class DecodeVideoApplication : GLib.Application {
         string filename;
         string outfilename;
         AVCodec? codec;
-        AVCodecParserContext? parser;
-        AVCodecContext? codec_context = null;
+        LibAVCodec.CodecParserContext? parser;
+        LibAVCodec.CodecContext? codec_context = null;
         FILE? file;
         LibAVFormat.Frame? frame;
         uint8 inbuf[INBUF_SIZE + AV_INPUT_BUFFER_PADDING_SIZE];
@@ -231,7 +231,7 @@ private class DecodeVideoApplication : GLib.Application {
         find the MPEG-1 video decoder
         ***********************************************************/
         codec = avcodec_find_decoder (
-            AV_CODEC_ID_MPEG1VIDEO
+            LibAVCodec.CodecID.MPEG1VIDEO
         );
 
         if (

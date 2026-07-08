@@ -36,7 +36,7 @@ representation to stdout.
 private class ExtractMVsApplication : GLib.Application {
 
     private static LibAVFormat.FormatContext? fmt_ctx = null;
-    private static AVCodecContext? video_dec_ctx = null;
+    private static LibAVCodec.CodecContext? video_dec_ctx = null;
     private static LibAVFormat.Stream? video_stream = null;
     private static string src_filename = null;
 
@@ -154,7 +154,7 @@ private class ExtractMVsApplication : GLib.Application {
     ) {
         int ret;
         LibAVFormat.Stream? st;
-        AVCodecContext? dec_ctx = null;
+        LibAVCodec.CodecContext? dec_ctx = null;
         AVCodec? dec = null;
         LibAVUtil.Dictionary? opts = null;
 
@@ -325,7 +325,7 @@ private class ExtractMVsApplication : GLib.Application {
 
         open_codec_context (
             fmt_ctx,
-            AVMEDIA_TYPE_VIDEO
+            LibAVUtil.MediaType.VIDEO
         );
 
         av_dump_format (
