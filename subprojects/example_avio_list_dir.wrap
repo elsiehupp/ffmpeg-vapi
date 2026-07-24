@@ -1,0 +1,5 @@
+[wrap-file]
+directory = example_avio_list_dir
+
+[provide]
+program_names = avio_list_dir

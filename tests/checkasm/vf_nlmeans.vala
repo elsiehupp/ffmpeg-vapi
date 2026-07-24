@@ -60,7 +60,7 @@ private static void checkasm_check_nlmeans () {
     NLMeansDSPContext dsp = {0};
 
     ff_nlmeans_init (
-        &dsp
+        ref dsp
     );
 
     /***********************************************************
@@ -84,17 +84,13 @@ private static void checkasm_check_nlmeans () {
 
         uint32[] ii_orig_ref = av_mallocz_array (
             ii_h + 1,
-            ii_lz_32 * sizeof (
-                ii_orig_ref
-            )
+            ii_lz_32 * ii_orig_ref.length
         );
 
         uint32[] ii_ref = ii_orig_ref + ii_lz_32 + 1;
         uint32[] ii_orig_new = av_mallocz_array (
             ii_h + 1,
-            ii_lz_32 * sizeof (
-                ii_orig_new
-            )
+            ii_lz_32 * ii_orig_new.length
         );
 
         uint32[] ii_new = ii_orig_new + ii_lz_32 + 1;
@@ -136,8 +132,8 @@ private static void checkasm_check_nlmeans () {
                 offx++
             ) {
                 if (
-                    offx ||
-                    offy
+                    offx != 0 ||
+                    offy != 0
                 ) {
                     int s1x = e;
                     int s1y = e;
@@ -210,9 +206,7 @@ private static void checkasm_check_nlmeans () {
                         0,
                         (
                             ii_lz_32 * ii_h - 1
-                        ) * sizeof (
-                            ii_ref
-                        )
+                        ) * ii_ref.length
                     );
 
                     memset (
@@ -220,9 +214,7 @@ private static void checkasm_check_nlmeans () {
                         0,
                         (
                             ii_lz_32 * ii_h - 1
-                        ) * sizeof (
-                            ii_new
-                        )
+                        ) * ii_new.length
                     );
 
                     call_ref (
@@ -269,9 +261,7 @@ private static void checkasm_check_nlmeans () {
                             ii_new,
                             (
                                 ii_lz_32 * ii_h - 1
-                            ) * sizeof (
-                                ii_ref
-                            )
+                            ) * ii_ref.length
                         )
                     ) {
                         fail ();
@@ -282,9 +272,7 @@ private static void checkasm_check_nlmeans () {
                         0,
                         (
                             ii_lz_32 * ii_h - 1
-                        ) * sizeof (
-                            ii_new
-                        )
+                        ) * ii_new.length
                     );
 
                     bench_new (
@@ -313,15 +301,15 @@ private static void checkasm_check_nlmeans () {
         }
 
         av_freep (
-            &ii_orig_ref
+            ref ii_orig_ref
         );
 
         av_freep (
-            &ii_orig_new
+            ref ii_orig_new
         );
 
         av_freep (
-            &src
+            ref src
         );
 
     }

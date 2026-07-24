@@ -1,5 +1,0 @@
-[wrap-file]
-directory = show_metadata
-
-[provide]
-program_names = show_metadata

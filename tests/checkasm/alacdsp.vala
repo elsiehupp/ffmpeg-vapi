@@ -53,19 +53,19 @@ private static void check_decorrelate_stereo () {
     //  );
 
     int32[] ref[2] = {
-        &ref_buf[BUF_SIZE * 0],
-        &ref_buf[BUF_SIZE * 1]
+        ref ref_buf[BUF_SIZE * 0],
+        ref ref_buf[BUF_SIZE * 1]
     };
 
     int32[] new[2] = {
-        &new_buf[BUF_SIZE * 0],
-        &new_buf[BUF_SIZE * 1]
+        ref new_buf[BUF_SIZE * 0],
+        ref new_buf[BUF_SIZE * 1]
     };
 
     ALACDSPContext alac_dsp_context;
 
     ff_alacdsp_init (
-        &alac_dsp_context
+        ref alac_dsp_context
     );
 
     if (
@@ -181,23 +181,23 @@ private static void check_append_extra_bits () {
     //  );
 
     int32[] ref[2] = {
-        &ref_buf[BUF_SIZE * 0],
-        &ref_buf[BUF_SIZE * 1]
+        ref ref_buf[BUF_SIZE * 0],
+        ref ref_buf[BUF_SIZE * 1]
     };
 
     int32[] new[2] = {
-        &new_buf[BUF_SIZE * 0],
-        &new_buf[BUF_SIZE * 1]
+        ref new_buf[BUF_SIZE * 0],
+        ref new_buf[BUF_SIZE * 1]
     };
 
     int32[] ref_ebb[2] = {
-        &ref_buf[BUF_SIZE * 2],
-        &ref_buf[BUF_SIZE * 3]
+        ref ref_buf[BUF_SIZE * 2],
+        ref ref_buf[BUF_SIZE * 3]
     };
 
     int32[] new_ebb[2] = {
-        &new_buf[BUF_SIZE * 2],
-        &new_buf[BUF_SIZE * 3]
+        ref new_buf[BUF_SIZE * 2],
+        ref new_buf[BUF_SIZE * 3]
     };
 
     ALACDSPContext alac_dsp_context;
@@ -209,7 +209,7 @@ private static void check_append_extra_bits () {
     int ch;
 
     ff_alacdsp_init (
-        &alac_dsp_context
+        ref alac_dsp_context
     );
 
     for (

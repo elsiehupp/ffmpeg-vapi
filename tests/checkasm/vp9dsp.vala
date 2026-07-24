@@ -133,7 +133,7 @@ private static void check_ipred () {
         bit_depth += 2
     ) {
         ff_vp9dsp_init (
-            &vp9_dsp_context,
+            ref vp9_dsp_context,
             bit_depth,
             0
         );
@@ -526,7 +526,7 @@ private static void ftx_2d (
 
         ftx1d_tbl[tx][txtp][0](
             temp_out,
-            &double_array_in[i * sz],
+            ref double_array_in[i * sz],
             sz
         );
 
@@ -552,8 +552,8 @@ private static void ftx_2d (
         i++
     ) {
         ftx1d_tbl[tx][txtp][1](
-            &double_array_out[i * sz],
-            &temp[i * sz],
+            ref double_array_out[i * sz],
+            ref temp[i * sz],
             sz
         );
 
@@ -673,8 +673,8 @@ private static int copy_subcoefs (
             int16_array_out[rc] = int16_array_in[rc];
         } else {
             AV_COPY32 (
-                &int16_array_out[rc * 2],
-                &int16_array_in[rc * 2]
+                ref int16_array_out[rc * 2],
+                ref int16_array_in[rc * 2]
             );
 
         }
@@ -699,7 +699,7 @@ private static int copy_subcoefs (
             int16_array_out[rc] = 0;
         } else {
             AV_ZERO32 (
-                &int16_array_out[rc * 2]
+                ref int16_array_out[rc * 2]
             );
 
         }
@@ -718,12 +718,13 @@ private static bool iszero (
     for (
         n = 0;
         n < sz / sizeof (
-            int16);
+            int16
+        );
         n += 2
     ) {
         if (
             AV_RN32A (
-                &c[n]
+                ref c[n]
             )
         ) {
             return false;
@@ -815,7 +816,7 @@ private static void check_itxfm () {
         bit_depth += 2
     ) {
         ff_vp9dsp_init (
-            &vp9_dsp_context,
+            ref vp9_dsp_context,
             bit_depth,
             0
         );
@@ -1393,7 +1394,7 @@ private static void check_loopfilter () {
         bit_depth += 2
     ) {
         ff_vp9dsp_init (
-            &vp9_dsp_context,
+            ref vp9_dsp_context,
             bit_depth,
             0
         );
@@ -1813,7 +1814,7 @@ private static void check_mc () {
             bit_depth += 2
         ) {
             ff_vp9dsp_init (
-                &vp9_dsp_context,
+                ref vp9_dsp_context,
                 bit_depth,
                 0
             );
@@ -1846,9 +1847,7 @@ private static void check_mc () {
                             ) {
                                 snprintf (
                                     str,
-                                    sizeof (
-                                        str
-                                    ),
+                                    str.length,
                                     "%s_%s_%d%s",
                                     op_names[op],
                                     filter_names[filter],
@@ -1859,9 +1858,7 @@ private static void check_mc () {
                             } else {
                                 snprintf (
                                     str,
-                                    sizeof (
-                                        str
-                                    ),
+                                    str.length,
                                     "%s%d",
                                     op_names[op],
                                     size

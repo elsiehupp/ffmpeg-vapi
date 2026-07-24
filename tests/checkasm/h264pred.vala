@@ -606,14 +606,14 @@ private static void checkasm_check_h264pred () {
                     chroma_format++
                 ) {
                     ff_h264_pred_init (
-                        &h264_pred_context,
+                        ref h264_pred_context,
                         codec_id,
                         bit_depth,
                         chroma_format
                     );
 
                     tests[test].func (
-                        &h264_pred_context,
+                        ref h264_pred_context,
                         buf0,
                         buf1,
                         codec,

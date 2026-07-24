@@ -224,21 +224,24 @@ private static void CHECK_RESTORE (
         src_r0,
         src_r1,
         sizeof (
-            type)
+            type
+        )
     );
 
     cmp_plane (
         src_g0,
         src_g1,
         sizeof (
-            type)
+            type
+        )
     );
 
     cmp_plane (
         src_b0,
         src_b1,
         sizeof (
-            type)
+            type
+        )
     );
 
     bench_new (
@@ -272,7 +275,7 @@ private static void checkasm_check_utvideodsp () {
     UTVideoDSPContext ut_video_dsp_context;
 
     ff_utvideodsp_init (
-        &ut_video_dsp_context
+        ref ut_video_dsp_context
     );
 
     if (

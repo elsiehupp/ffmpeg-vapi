@@ -1,0 +1,5 @@
+[wrap-file]
+directory = example_transcode
+
+[provide]
+program_names = transcode

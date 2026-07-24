@@ -1,2 +1,5 @@
-[wrap-redirect]
-filename = vapi/subprojects/libavcodec.wrap
+[wrap-file]
+directory = libavcodec
+
+[provide]
+dependency_names = libavcodec_dep

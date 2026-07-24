@@ -51,14 +51,16 @@ private static void init_buffer (
     randomize_buffers (
         a0,
         width * sizeof (
-            type)
+            type
+        )
     );
 
     memcpy (
         a1,
         a0,
-        width*sizeof (
-            type)
+        width * sizeof (
+            type
+        )
     );
 
 }
@@ -85,13 +87,15 @@ private static void check_add_bytes (
     uint8[] src0 = av_mallocz_array (
         width,
         sizeof (
-            uint8)
+            uint8
+        )
     );
 
     uint8[] src1 = av_mallocz_array (
         width,
         sizeof (
-            uint8)
+            uint8
+        )
     );
 
     init_buffer (
@@ -193,25 +197,29 @@ private static void check_add_median_pred (
     uint8[] src0 = av_mallocz_array (
         width,
         sizeof (
-            uint8)
+            uint8
+        )
     );
 
     uint8[] src1 = av_mallocz_array (
         width,
         sizeof (
-            uint8)
+            uint8
+        )
     );
 
     uint8[] diff0 = av_mallocz_array (
         width,
         sizeof (
-            uint8)
+            uint8
+        )
     );
 
     uint8[] diff1 = av_mallocz_array (
         width,
         sizeof (
-            uint8)
+            uint8
+        )
     );
 
     init_buffer (
@@ -245,8 +253,8 @@ private static void check_add_median_pred (
             src0,
             diff0,
             width,
-            &A0,
-            &B0
+            ref A0,
+            ref B0
         );
 
         call_new (
@@ -254,8 +262,8 @@ private static void check_add_median_pred (
             src1,
             diff1,
             width,
-            &A1,
-            &B1
+            ref A1,
+            ref B1
         );
 
         if (
@@ -275,8 +283,8 @@ private static void check_add_median_pred (
             src1,
             diff1,
             width,
-            &A1,
-            &B1
+            ref A1,
+            ref B1
         );
 
     }
@@ -336,13 +344,15 @@ private static void check_add_left_pred (
     uint8[] src0 = av_mallocz_array (
         width,
         sizeof (
-            uint8)
+            uint8
+        )
     );
 
     uint8[] src1 = av_mallocz_array (
         width,
         sizeof (
-            uint8)
+            uint8
+        )
     );
 
     init_buffer (
@@ -644,7 +654,7 @@ private static void checkasm_check_llviddsp () {
     int accRnd = rnd () & 0xFF;
 
     ff_llviddsp_init (
-        &llvid_dsp_context
+        ref llvid_dsp_context
     );
 
     check_add_bytes (

@@ -102,7 +102,7 @@ private static void checkasm_check_audiodsp () {
     AudioDSPContext adsp;
 
     ff_audiodsp_init (
-        &adsp
+        ref adsp
     );
 
     if (
@@ -299,8 +299,8 @@ private static void checkasm_check_audiodsp () {
             memcmp (
                 dst0,
                 dst1,
-                len * sizeof (
-                    dst0))
+                len * dst0.length
+            )
         ) {
             fail ();
         }

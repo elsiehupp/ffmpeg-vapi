@@ -1,2 +1,5 @@
-[wrap-redirect]
-filename = vapi/subprojects/libavutil.wrap
+[wrap-file]
+directory = libavutil
+
+[provide]
+dependency_names = libavutil_dep

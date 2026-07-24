@@ -77,7 +77,8 @@ private static void check_bswap (
     ) {
         int offset = (
         BUF_SIZE / sizeof (
-            type) - w) & 15;
+            type) - w
+        ) & 15;
         /***********************************************************
         Test various alignments
         ***********************************************************/
@@ -148,7 +149,7 @@ private static void checkasm_check_bswapdsp () {
     BswapDSPContext bswap_dsp_context;
 
     ff_bswapdsp_init (
-        &bswap_dsp_context
+        ref bswap_dsp_context
     );
 
     if (

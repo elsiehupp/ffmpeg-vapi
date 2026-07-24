@@ -97,7 +97,7 @@ private static void check_threshold (
     ThresholdContext threshold_context;
     threshold_context.depth = depth;
     ff_threshold_init (
-        &threshold_context
+        ref threshold_context
     );
 
     memset (

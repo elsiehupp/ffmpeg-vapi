@@ -1,5 +1,0 @@
-[wrap-file]
-directory = hw_decode
-
-[provide]
-program_names = hw_decode

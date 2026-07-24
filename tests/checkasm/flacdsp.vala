@@ -170,25 +170,25 @@ private static void checkasm_check_flacdsp () {
     //  );
 
     uint8[] ref_src[] = {
-        &ref_buf[BUF_SIZE * 0],
-        &ref_buf[BUF_SIZE * 1],
-        &ref_buf[BUF_SIZE * 2],
-        &ref_buf[BUF_SIZE * 3],
-        &ref_buf[BUF_SIZE * 4],
-        &ref_buf[BUF_SIZE * 5],
-        &ref_buf[BUF_SIZE * 6],
-        &ref_buf[BUF_SIZE * 7]
+        ref ref_buf[BUF_SIZE * 0],
+        ref ref_buf[BUF_SIZE * 1],
+        ref ref_buf[BUF_SIZE * 2],
+        ref ref_buf[BUF_SIZE * 3],
+        ref ref_buf[BUF_SIZE * 4],
+        ref ref_buf[BUF_SIZE * 5],
+        ref ref_buf[BUF_SIZE * 6],
+        ref ref_buf[BUF_SIZE * 7]
     };
 
     uint8[] new_src[] = {
-        &new_buf[BUF_SIZE * 0],
-        &new_buf[BUF_SIZE * 1],
-        &new_buf[BUF_SIZE * 2],
-        &new_buf[BUF_SIZE * 3],
-        &new_buf[BUF_SIZE * 4],
-        &new_buf[BUF_SIZE * 5],
-        &new_buf[BUF_SIZE * 6],
-        &new_buf[BUF_SIZE * 7]
+        ref new_buf[BUF_SIZE * 0],
+        ref new_buf[BUF_SIZE * 1],
+        ref new_buf[BUF_SIZE * 2],
+        ref new_buf[BUF_SIZE * 3],
+        ref new_buf[BUF_SIZE * 4],
+        ref new_buf[BUF_SIZE * 5],
+        ref new_buf[BUF_SIZE * 6],
+        ref new_buf[BUF_SIZE * 7]
     };
 
     FLACDSPContext flac_dsp_context;
@@ -201,7 +201,7 @@ private static void checkasm_check_flacdsp () {
         i++
     ) {
         ff_flacdsp_init (
-            &flac_dsp_context,
+            ref flac_dsp_context,
             fmts[i].fmt,
             2,
             0
@@ -220,9 +220,9 @@ private static void checkasm_check_flacdsp () {
                     fmts[i].bits)
             ) {
                 check_decorrelate (
-                    &ref_dst,
+                    ref ref_dst,
                     ref_src,
-                    &new_dst,
+                    ref new_dst,
                     new_src,
                     2,
                     fmts[i].bits
@@ -238,7 +238,7 @@ private static void checkasm_check_flacdsp () {
             j += 2
         ) {
             ff_flacdsp_init (
-                &flac_dsp_context,
+                ref flac_dsp_context,
                 fmts[i].fmt,
                 j,
                 0
@@ -252,9 +252,9 @@ private static void checkasm_check_flacdsp () {
                     fmts[i].bits)
             ) {
                 check_decorrelate (
-                    &ref_dst,
+                    ref ref_dst,
                     ref_src,
-                    &new_dst,
+                    ref new_dst,
                     new_src,
                     j,
                     fmts[i].bits

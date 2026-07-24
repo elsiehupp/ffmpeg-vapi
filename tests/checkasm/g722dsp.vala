@@ -68,8 +68,8 @@ private static void check_qmf () {
             memcmp (
                 dst0,
                 dst1,
-                sizeof (
-                    dst0))
+                dst0.length
+            )
         ) {
             fail ();
         }
@@ -87,7 +87,7 @@ private static void checkasm_check_g722dsp () {
     G722DSPContext g722_dsp_context;
 
     ff_g722dsp_init (
-        &g722_dsp_context
+        ref g722_dsp_context
     );
 
     if (

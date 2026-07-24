@@ -1,5 +1,0 @@
-[wrap-file]
-directory = extract_mvs
-
-[provide]
-program_names = extract_mvs

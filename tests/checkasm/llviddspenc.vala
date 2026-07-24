@@ -301,11 +301,11 @@ private static void check_sub_left_pred (
 private static void checkasm_check_llviddspenc () {
     LLVidEncDSPContext llvid_enc_dsp_context;
     ff_llvidencdsp_init (
-        &llvid_enc_dsp_context
+        ref llvid_enc_dsp_context
     );
 
     check_diff_bytes (
-        &llvid_enc_dsp_context
+        ref llvid_enc_dsp_context
     );
 
     report (
@@ -313,7 +313,7 @@ private static void checkasm_check_llviddspenc () {
     );
 
     check_sub_left_pred (
-        &llvid_enc_dsp_context
+        ref llvid_enc_dsp_context
     );
 
     report (

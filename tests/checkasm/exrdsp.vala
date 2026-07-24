@@ -190,7 +190,7 @@ private static void checkasm_check_exrdsp () {
     ExrDSPContext exr_dsp_context;
 
     ff_exrdsp_init (
-        &exr_dsp_context
+        ref exr_dsp_context
     );
 
     if (

@@ -81,8 +81,7 @@ private static void check_idct (
         memcpy (
             coeffs1,
             coeffs0,
-            sizeof (
-                coeffs0) * size
+            coeffs0.length * size
         );
 
         if (
@@ -108,9 +107,7 @@ private static void check_idct (
                 memcmp (
                     coeffs0,
                     coeffs1,
-                    sizeof (
-                        coeffs0
-                    ) * size
+                    coeffs0.length * size
                 )
             ) {
                 fail ();
@@ -169,8 +166,7 @@ private static void check_idct_dc (
         memcpy (
             coeffs1,
             coeffs0,
-            sizeof (
-                coeffs0) * size
+            coeffs0.length * size
         );
 
         if (
@@ -194,9 +190,7 @@ private static void check_idct_dc (
                 memcmp (
                     coeffs0,
                     coeffs1,
-                    sizeof (
-                        coeffs0
-                    ) * size
+                    coeffs0.length * size
                 )
             ) {
                 fail ();
@@ -223,7 +217,7 @@ private static void checkasm_check_hevc_idct () {
         HEVCDSPContext hevc_dsp_context;
 
         ff_hevc_dsp_init (
-            &hevc_dsp_context,
+            ref hevc_dsp_context,
             bit_depth
         );
 
@@ -246,7 +240,7 @@ private static void checkasm_check_hevc_idct () {
         HEVCDSPContext hevc_dsp_context;
 
         ff_hevc_dsp_init (
-            &hevc_dsp_context,
+            ref hevc_dsp_context,
             bit_depth
         );
 

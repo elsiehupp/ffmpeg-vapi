@@ -21,7 +21,7 @@ with FFmpeg; if not, write to the Free Software Foundation, Inc.,
 private const size_t BUF_SIZE = 1024;
 
 private static void randomize_input (
-    void *len
+    size_t len
 ) {
     int k;
     for (
@@ -96,24 +96,20 @@ private static void checkasm_check_fmtconvert () {
     }
 
     ff_fmt_convert_init (
-        &format_convert_context,
+        ref format_convert_context,
         null
     );
 
     memset (
         dst0,
         0,
-        sizeof (
-            dst0
-        ) * BUF_SIZE
+        dst0.length * BUF_SIZE
     );
 
     memset (
         dst1,
         0,
-        sizeof (
-            dst1
-        ) * BUF_SIZE
+        dst1.length * BUF_SIZE
     );
 
     if (
@@ -218,7 +214,7 @@ private static void checkasm_check_fmtconvert () {
                 );
 
                 call_ref (
-                    &format_convert_context,
+                    ref format_convert_context,
                     dst0,
                     in,
                     scale_arr,
@@ -226,7 +222,7 @@ private static void checkasm_check_fmtconvert () {
                 );
 
                 call_new (
-                    &format_convert_context,
+                    ref format_convert_context,
                     dst1,
                     in,
                     scale_arr,
@@ -252,7 +248,7 @@ private static void checkasm_check_fmtconvert () {
                 }
 
                 bench_new (
-                    &format_convert_context,
+                    ref format_convert_context,
                     dst1,
                     in,
                     scale_arr,

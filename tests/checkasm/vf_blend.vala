@@ -162,7 +162,7 @@ private static void check_blend_func (
             w,
             w,
             HEIGHT,
-            &param,
+            ref param,
             null
         );
 
@@ -175,7 +175,7 @@ private static void check_blend_func (
             w,
             w,
             HEIGHT,
-            &param,
+            ref param,
             null
         );
 
@@ -210,7 +210,7 @@ private static void check_blend_func (
         w / 4,
         w / 4,
         HEIGHT / 4,
-        &param,
+        ref param,
         null
     );
 
@@ -254,7 +254,7 @@ private static void checkasm_check_blend () {
 //  ) {
 //      param.mode = val;
 //      ff_blend_init (
-//          &param,
+//          ref param,
 //          depth - 1
 //      );
 
@@ -465,27 +465,27 @@ private static void checkasm_check_blend () {
 //      );
 
 //      av_freep (
-//          &top1
+//          ref top1
 //      );
 
 //      av_freep (
-//          &top2
+//          ref top2
 //      );
 
 //      av_freep (
-//          &bot1
+//          ref bot1
 //      );
 
 //      av_freep (
-//          &bot2
+//          ref bot2
 //      );
 
 //      av_freep (
-//          &dst1
+//          ref dst1
 //      );
 
 //      av_freep (
-//          &dst2
+//          ref dst2
 //      );
 
 //  }

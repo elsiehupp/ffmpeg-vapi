@@ -556,15 +556,12 @@ private class ApiThreadMessageTest : GLib.TestCase {
 
         SenderData.instance_array = av_mallocz_array (
             SenderData.count,
-            sizeof (
-                SenderData.instance_array)
+            SenderData.instance_array.length
         );
 
         ReceiverData.instance_array = av_mallocz_array (
             ReceiverData.count,
-            sizeof (
-                ReceiverData.instance_array
-            )
+            ReceiverData.instance_array.length
         );
 
         if (
@@ -582,7 +579,8 @@ private class ApiThreadMessageTest : GLib.TestCase {
             out queue,
             max_queue_size,
             sizeof (
-                ThreadMessage)
+                ThreadMessage
+            )
         );
 
         if (

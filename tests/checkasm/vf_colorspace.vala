@@ -36,7 +36,12 @@ private static void randomize_buffers () {
         m < 3;
         m++
     ) {
-        int ss = m ? ss_w + ss_h : 0;
+        int ss = (
+            m != 0
+            ? ss_w + ss_h
+            : 0
+        );
+
         int plane_sz = buf_size >> ss;
         for (
             n = 0;
@@ -45,7 +50,7 @@ private static void randomize_buffers () {
         ) {
             uint r = rnd () & mask;
             AV_WN32A (
-                &src[m][n],
+                ref src[m][n],
                 r
             );
 
@@ -178,7 +183,7 @@ private static void check_yuv2yuv () {
             int16[][3][8]) coeff_buf;
 
     ff_colorspacedsp_init (
-        &colorspace_dsp_context
+        ref colorspace_dsp_context
     );
 
     for (
@@ -429,7 +434,7 @@ private static void check_yuv2rgb () {
             int16[][3][8]) coeff_buf;
 
     ff_colorspacedsp_init (
-        &colorspace_dsp_context
+        ref colorspace_dsp_context
     );
 
     for (
@@ -684,7 +689,7 @@ private static void check_rgb2yuv () {
             int16[][3][8]) coeff_buf;
 
     ff_colorspacedsp_init (
-        &colorspace_dsp_context
+        ref colorspace_dsp_context
     );
 
     for (
@@ -905,7 +910,7 @@ private static void check_multiply3x3 () {
     int n;
 
     ff_colorspacedsp_init (
-        &colorspace_dsp_context
+        ref colorspace_dsp_context
     );
 
     for (
@@ -970,22 +975,19 @@ private static void check_multiply3x3 () {
         memcpy (
             dst1_y,
             dst0_y,
-            W * H * sizeof (
-                dst1_y)
+            W * H * dst1_y.length
         );
 
         memcpy (
             dst1_u,
             dst0_u,
-            W * H * sizeof (
-                dst1_u)
+            W * H * dst1_u.length
         );
 
         memcpy (
             dst1_v,
             dst0_v,
-            W * H * sizeof (
-                dst1_v)
+            W * H * dst1_v.length
         );
 
         call_ref (
@@ -1008,18 +1010,18 @@ private static void check_multiply3x3 () {
             memcmp (
                 dst0[0],
                 dst1[0],
-                H * W * sizeof (
-                    dst0_y)) ||
+                H * W * dst0_y.length
+            ) ||
             memcmp (
                 dst0[1],
                 dst1[1],
-                H * W * sizeof (
-                    dst0_u)) ||
+                H * W * dst0_u.length
+            ) ||
             memcmp (
                 dst0[2],
                 dst1[2],
-                H * W * sizeof (
-                    dst0_v))
+                H * W * dst0_v.length
+            )
         ) {
             fail ();
         }

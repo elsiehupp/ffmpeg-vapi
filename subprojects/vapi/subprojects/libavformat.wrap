@@ -1,5 +1,0 @@
-[wrap-file]
-directory = libavformat
-
-[provide]
-dependency_names = libavformat_dep

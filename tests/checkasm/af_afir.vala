@@ -32,7 +32,7 @@ private static void randomize_buffer (
         i += 2
     ) {
         av_bmg_get (
-            &checkasm_lfg,
+            ref checkasm_lfg,
             bmg
         );
 
@@ -73,16 +73,20 @@ private static void test_fcmul_add (
         cdst,
         src0,
         (
-            LEN * 2 + 8) * sizeof (
-            float)
+            LEN * 2 + 8
+        ) * sizeof (
+            float
+        )
     );
 
     memcpy (
         odst,
         src0,
         (
-            LEN * 2 + 8) * sizeof (
-            float)
+            LEN * 2 + 8
+        ) * sizeof (
+            float
+        )
     );
 
     call_ref (
@@ -129,8 +133,10 @@ private static void test_fcmul_add (
         odst,
         src0,
         (
-            LEN * 2 + 8) * sizeof (
-                float)
+            LEN * 2 + 8
+        ) * sizeof (
+            float
+        )
     );
 
     bench_new (
@@ -164,7 +170,7 @@ private static void checkasm_check_afir () {
     AudioFIRDSPContext fir = { 0 };
 
     ff_afir_init (
-        &fir
+        ref fir
     );
 
     randomize_buffer (

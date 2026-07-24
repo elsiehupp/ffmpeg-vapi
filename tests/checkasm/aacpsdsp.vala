@@ -634,21 +634,24 @@ private static void test_stereo_interpolate (
                 l0,
                 l,
                 BUF_SIZE * 2 * sizeof (
-                    INTFLOAT)
+                    INTFLOAT
+                )
             );
 
             memcpy (
                 l1,
                 l,
                 BUF_SIZE * 2 * sizeof (
-                    INTFLOAT)
+                    INTFLOAT
+                )
             );
 
             memcpy (
                 r0,
                 r,
                 BUF_SIZE * 2 * sizeof (
-                    INTFLOAT)
+                    INTFLOAT
+                )
             );
 
             memcpy (
@@ -706,14 +709,16 @@ private static void test_stereo_interpolate (
                 l1,
                 l,
                 BUF_SIZE * 2 * sizeof (
-                    INTFLOAT)
+                    INTFLOAT
+                )
             );
 
             memcpy (
                 r1,
                 r,
                 BUF_SIZE * 2 * sizeof (
-                    INTFLOAT)
+                    INTFLOAT
+                )
             );
 
             bench_new (
@@ -734,7 +739,7 @@ private static void checkasm_check_aacpsdsp () {
     PSDSPContext psdsp;
 
     ff_psdsp_init (
-        &psdsp
+        ref psdsp
     );
 
     if (
@@ -803,7 +808,7 @@ private static void checkasm_check_aacpsdsp () {
     );
 
     test_stereo_interpolate (
-        &psdsp
+        ref psdsp
     );
 
     report (

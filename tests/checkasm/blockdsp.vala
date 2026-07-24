@@ -74,9 +74,7 @@ private static void randomize_buffers (
 //              memcmp (
 //                  buf0,
 //                  buf1,
-//                  sizeof (
-//                      buf0
-//                  ) * size
+//                  buf0.length * size
 //              )
 //          ) {
 //              fail ();
@@ -107,8 +105,8 @@ private static void checkasm_check_blockdsp () {
     BlockDSPContext block_dsp_context;
 
     ff_blockdsp_init (
-        &block_dsp_context,
-        &avctx
+        ref block_dsp_context,
+        ref avctx
     );
 
     check_clear (

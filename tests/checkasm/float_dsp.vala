@@ -32,7 +32,7 @@ private static void randomize_buffer (
         i += 2
     ) {
         av_bmg_get (
-            &checkasm_lfg,
+            ref checkasm_lfg,
             bmg
         );
 
@@ -462,15 +462,13 @@ private static void test_vector_fmac_scalar (
     memcpy (
         cdst,
         src2,
-        LEN * sizeof (
-            src2)
+        LEN * src2.length
     );
 
     memcpy (
         odst,
         src2,
-        LEN * sizeof (
-            src2)
+        LEN * src2.length
     );
 
     call_ref (
@@ -516,8 +514,7 @@ private static void test_vector_fmac_scalar (
     memcpy (
         odst,
         src2,
-        LEN * sizeof (
-            src2)
+        LEN * src2.length
     );
 
     bench_new (
@@ -640,15 +637,13 @@ private static void test_vector_dmac_scalar (
     memcpy (
         cdst,
         src2,
-        LEN * sizeof (
-            src2)
+        LEN * src2.length
     );
 
     memcpy (
         odst,
         src2,
-        LEN * sizeof (
-            src2)
+        LEN * src2.length
     );
 
     call_ref (
@@ -694,8 +689,7 @@ private static void test_vector_dmac_scalar (
     memcpy (
         odst,
         src2,
-        LEN * sizeof (
-            src2)
+        LEN * src2.length
     );
 
     bench_new (
@@ -747,29 +741,25 @@ private static void test_butterflies_float (
     memcpy (
         cdst,
         src0,
-        LEN * sizeof (
-            src0)
+        LEN * src0.length
     );
 
     memcpy (
         cdst1,
         src1,
-        LEN * sizeof (
-            src1)
+        LEN * src1.length
     );
 
     memcpy (
         odst,
         src0,
-        LEN * sizeof (
-            src0)
+        LEN * src0.length
     );
 
     memcpy (
         odst1,
         src1,
-        LEN * sizeof (
-            src1)
+        LEN * src1.length
     );
 
     call_ref (
@@ -826,15 +816,13 @@ private static void test_butterflies_float (
     memcpy (
         odst,
         src0,
-        LEN * sizeof (
-            src0)
+        LEN * src0.length
     );
 
     memcpy (
         odst1,
         src1,
-        LEN * sizeof (
-            src1)
+        LEN * src1.length
     );
 
     bench_new (
@@ -1176,7 +1164,7 @@ private static void checkasm_check_float_dsp () {
     );
 
     av_freep (
-        &fdsp
+        ref fdsp
     );
 
 }

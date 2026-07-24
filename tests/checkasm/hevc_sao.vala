@@ -397,7 +397,7 @@ private static void checkasm_check_hevc_sao () {
         HEVCDSPContext hevc_dsp_context;
 
         ff_hevc_dsp_init (
-            &hevc_dsp_context,
+            ref hevc_dsp_context,
             bit_depth
         );
 
@@ -420,7 +420,7 @@ private static void checkasm_check_hevc_sao () {
         HEVCDSPContext hevc_dsp_context;
 
         ff_hevc_dsp_init (
-            &hevc_dsp_context,
+            ref hevc_dsp_context,
             bit_depth
         );
 

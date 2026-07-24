@@ -1,2 +1,5 @@
-[wrap-redirect]
-filename = vapi/subprojects/libswscale.wrap
+[wrap-file]
+directory = libswscale
+
+[provide]
+dependency_names = libswscale_dep

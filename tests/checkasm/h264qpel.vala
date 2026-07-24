@@ -124,8 +124,18 @@ private static void checkasm_check_h264qpel () {
         op++
     ) {
         qpel_mc_func (
-        *tab)[16] = op ? h264_qpel_context.avg_h264_qpel_pixels_tab : h264_qpel_context.put_h264_qpel_pixels_tab;
-        string op_name = op ? "avg" : "put";
+            *tab
+        )[16] = (
+            op
+            ? h264_qpel_context.avg_h264_qpel_pixels_tab
+            : h264_qpel_context.put_h264_qpel_pixels_tab
+        );
+
+        string op_name = (
+            op != 0
+            ? "avg"
+            : "put"
+        );
 
         for (
             bit_depth = 8;
@@ -133,14 +143,17 @@ private static void checkasm_check_h264qpel () {
             bit_depth++
         ) {
             ff_h264qpel_init (
-                &h264_qpel_context,
+                ref h264_qpel_context,
                 bit_depth
             );
 
             for (
                 i = 0;
                 i < (
-                    op ? 3 : 4);
+                    op != 0
+                    ? 3
+                    : 4
+                );
                 i++
             ) {
                 int size = 16 >> i;

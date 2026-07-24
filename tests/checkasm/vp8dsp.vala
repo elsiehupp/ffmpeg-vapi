@@ -229,7 +229,7 @@ private static void check_idct () {
     int dc;
 
     ff_vp8dsp_init (
-        &vp8_dsp_context
+        ref vp8_dsp_context
     );
 
     randomize_buffers (
@@ -296,7 +296,8 @@ private static void check_idct () {
                 subcoef1,
                 subcoef0,
                 4 * 4 * sizeof (
-                    int16)
+                    int16
+                )
             );
 
             /***********************************************************
@@ -406,7 +407,7 @@ private static void check_idct_dc4 () {
     int chroma;
 
     ff_vp8dsp_init (
-        &vp8_dsp_context
+        ref vp8_dsp_context
     );
 
     for (
@@ -414,22 +415,37 @@ private static void check_idct_dc4 () {
         chroma <= 1;
         chroma++
     ) {
-        //  void (*idct4dc)(uint8[], int16[4][16], size_t) = chroma ? vp8_dsp_context.vp8_idct_dc_add4uv : vp8_dsp_context.vp8_idct_dc_add4y;
+        //  void (*idct4dc)(uint8[], int16[4][16], size_t) = chroma != 0 ? vp8_dsp_context.vp8_idct_dc_add4uv : vp8_dsp_context.vp8_idct_dc_add4y;
         if (
             check_func (
                 idct4dc,
                 "vp8_idct_dc_add4%s",
-                chroma ? "uv" : "y")
+                (
+                    chroma != 0
+                    ? "uv"
+                    : "y"
+                )
+            )
         ) {
-            size_t stride = chroma ? 8 : 16;
-            int w = chroma ? 2 : 4;
+            size_t stride = (
+                chroma != 0
+                ? 8
+                : 16
+            );
+
+            int w = (
+                chroma != 0
+                ? 2
+                : 4
+            );
+
             for (
                 i = 0;
                 i < 4;
                 i++
             ) {
                 int blockx = 4 * (
-                i % w
+                    i % w
                 );
 
                 int blocky = 4 * (
@@ -448,7 +464,7 @@ private static void check_idct_dc4 () {
                 );
 
                 memset (
-                    &coef[i][1],
+                    ref coef[i][1],
                     0,
                     15 * sizeof (
                         int16
@@ -473,14 +489,16 @@ private static void check_idct_dc4 () {
                 subcoef0,
                 coef,
                 4 * 4 * 4 * sizeof (
-                    int16)
+                    int16
+                )
             );
 
             memcpy (
                 subcoef1,
                 coef,
                 4 * 4 * 4 * sizeof (
-                    int16)
+                    int16
+                )
             );
 
             call_ref (
@@ -572,7 +590,7 @@ private static void check_luma_dc_wht () {
     int blocky;
 
     ff_vp8dsp_init (
-        &vp8_dsp_context
+        ref vp8_dsp_context
     );
 
     for (
@@ -649,21 +667,24 @@ private static void check_luma_dc_wht () {
                 dc1,
                 dc0,
                 16 * sizeof (
-                    int16)
+                    int16
+                )
             );
 
             memcpy (
                 block0,
                 block,
                 4 * 4 * 16 * sizeof (
-                    int16)
+                    int16
+                )
             );
 
             memcpy (
                 block1,
                 block,
                 4 * 4 * 16 * sizeof (
-                    int16)
+                    int16
+                )
             );
 
             call_ref (
@@ -793,7 +814,7 @@ private static void check_mc () {
     int dy;
 
     ff_vp78dsp_init (
-        &vp8_dsp_context
+        ref vp8_dsp_context
     );
 
     for (
@@ -811,7 +832,8 @@ private static void check_mc () {
             int hsize = k / 3;
             int size = 16 >> hsize;
             int height = (
-            size << 1) >> (
+                size << 1
+            ) >> (
                 k % 3
             );
 
@@ -835,9 +857,7 @@ private static void check_mc () {
                         ) {
                             snprintf (
                                 str,
-                                sizeof (
-                                    str
-                                ),
+                                str.length,
                                 "epel%d_%s%s",
                                 size,
                                 dx_names[dx],
@@ -847,9 +867,7 @@ private static void check_mc () {
                         } else {
                             snprintf (
                                 str,
-                                sizeof (
-                                    str
-                                ),
+                                str.length,
                                 "bilin%d_%s%s",
                                 size,
                                 (
@@ -869,9 +887,7 @@ private static void check_mc () {
                     } else {
                         snprintf (
                             str,
-                            sizeof (
-                                str
-                            ),
+                            str.length,
                             "pixels%vp8_dsp_context",
                             size
                         );
@@ -1300,7 +1316,7 @@ private static void check_loopfilter_16y () {
     int hev_thresh = 7;
 
     ff_vp8dsp_init (
-        &vp8_dsp_context
+        ref vp8_dsp_context
     );
 
     for (
@@ -1510,7 +1526,7 @@ private static void check_loopfilter_8uv () {
     int hev_thresh = 7;
 
     ff_vp8dsp_init (
-        &vp8_dsp_context
+        ref vp8_dsp_context
     );
 
     for (
@@ -1732,7 +1748,7 @@ private static void check_loopfilter_simple () {
     int hev_thresh = 0;
 
     ff_vp8dsp_init (
-        &vp8_dsp_context
+        ref vp8_dsp_context
     );
 
     for (

@@ -58,7 +58,7 @@ private static void checkasm_check_v210dec () {
 
     v210_dec_context.aligned_input = 0;
     ff_v210dec_init (
-        &v210_dec_context
+        ref v210_dec_context
     );
 
     if (
@@ -113,23 +113,23 @@ private static void checkasm_check_v210dec () {
             memcmp (
                 src0,
                 src1,
-                NUM_SAMPLES/3 * sizeof (
-                    src0[0])) ||
+                NUM_SAMPLES / 3 * src0[0].length
+            ) ||
             memcmp (
                 y0,
                 y1,
-                pixels * sizeof (
-                    y0[0])) ||
+                pixels * y0[0].length
+            ) ||
             memcmp (
                 u0,
                 u1,
-                pixels/2 * sizeof (
-                    u0[0])) ||
+                pixels / 2 * u0[0].length
+            ) ||
             memcmp (
                 v0,
                 v1,
-                pixels/2 * sizeof (
-                    v0[0]))
+                pixels / 2 * v0[0].length
+            )
         ) {
             fail ();
         }

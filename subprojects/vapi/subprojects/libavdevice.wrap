@@ -1,5 +1,0 @@
-[wrap-file]
-directory = libavdevice
-
-[provide]
-dependency_names = libavdevice_dep

@@ -1,5 +1,0 @@
-[wrap-file]
-directory = encode_video
-
-[provide]
-program_names = encode_video

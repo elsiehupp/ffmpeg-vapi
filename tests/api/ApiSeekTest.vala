@@ -52,14 +52,16 @@ private class ApiSeekTest : GLib.TestCase {
                 crc_array,
                 size_of_array,
                 sizeof (
-                    uint32)
+                    uint32
+                )
             );
 
             pts_array = av_realloc_f (
                 pts_array,
                 size_of_array,
                 sizeof (
-                    int64)
+                    int64
+                )
             );
 
             if (
@@ -577,7 +579,7 @@ private class ApiSeekTest : GLib.TestCase {
 
                 throw new Goto.END (
                     ""
-            );
+                );
 
             }
 
@@ -587,7 +589,7 @@ private class ApiSeekTest : GLib.TestCase {
             );
 
             if (
-                result
+                result != 0
             ) {
                 av_log (
                     null,

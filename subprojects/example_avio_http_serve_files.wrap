@@ -1,0 +1,5 @@
+[wrap-file]
+directory = example_avio_http_serve_files
+
+[provide]
+program_names = avio_http_serve_files

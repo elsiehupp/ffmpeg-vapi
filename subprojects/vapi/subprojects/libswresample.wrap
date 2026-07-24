@@ -1,5 +1,0 @@
-[wrap-file]
-directory = libswresample
-
-[provide]
-dependency_names = libswresample_dep

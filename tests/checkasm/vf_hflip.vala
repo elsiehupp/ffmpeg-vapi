@@ -114,7 +114,7 @@ private static void check_hflip (
     }
 
     ff_hflip_init (
-        &flip_context,
+        ref flip_context,
         step_array,
         4
     );

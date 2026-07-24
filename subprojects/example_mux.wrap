@@ -1,0 +1,5 @@
+[wrap-file]
+directory = example_mux
+
+[provide]
+program_names = mux

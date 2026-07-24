@@ -1,2 +1,5 @@
-[wrap-redirect]
-filename = vapi/subprojects/libswresample.wrap
+[wrap-file]
+directory = libswresample
+
+[provide]
+dependency_names = libswresample_dep

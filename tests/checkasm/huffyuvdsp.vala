@@ -50,22 +50,26 @@ private static void check_add_int16 (
 ) {
     uint16[] src0 = av_mallocz (
         width * sizeof (
-            uint16)
+            uint16
+        )
     );
 
     uint16[] src1 = av_mallocz (
         width * sizeof (
-            uint16)
+            uint16
+        )
     );
 
     uint16[] dst0 = av_mallocz (
         width * sizeof (
-            uint16)
+            uint16
+        )
     );
 
     uint16[] dst1 = av_mallocz (
         width * sizeof (
-            uint16)
+            uint16
+        )
     );
 
     if (
@@ -86,7 +90,8 @@ private static void check_add_int16 (
         src1,
         src0,
         width * sizeof (
-            uint16)
+            uint16
+        )
     );
 
     if (
@@ -115,7 +120,9 @@ private static void check_add_int16 (
                 dst0,
                 dst1,
                 width * sizeof (
-                    uint16))
+                    uint16
+                )
+            )
         ) {
             fail ();
         }
@@ -156,7 +163,7 @@ private static void checkasm_check_huffyuvdsp () {
     );
 
     ff_huffyuvdsp_init (
-        &huff_yuv_dsp_context,
+        ref huff_yuv_dsp_context,
         LibAVUtil.PixelFormat.YUV422P
     );
 

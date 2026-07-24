@@ -1,5 +1,0 @@
-[wrap-file]
-directory = examples
-
-[provide]
-program_names = avio_http_serve_files, avio_list_dir, avio_read_callback, decode_audio, decode_filter_audio, decode_filter_video, decode_video, demux_decode, encode_audio, encode_video, extract_mvs, filter_audio, hw_decode, mux, qsv_decode, qsv_transcode, remux, resample_audio, scale_video, show_metadata, transcode, transcode_aac, vaapi_encode, vaapi_transcode

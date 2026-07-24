@@ -370,7 +370,8 @@ private class ApiH264SliceTest : GLib.TestCase {
 
             if (
                 ret != sizeof (
-                    uint16)
+                    uint16
+                )
             ) {
                 break;
             }
@@ -435,7 +436,7 @@ private class ApiH264SliceTest : GLib.TestCase {
         }
 
         if (
-            nals
+            nals != 0
         ) {
             packet.data = nal;
             packet.size = p - nal;
@@ -522,7 +523,7 @@ private class ApiH264SliceTest : GLib.TestCase {
         }
 
         if (
-            nal
+            nal != null
         ) {
             av_free (
                 nal
@@ -531,7 +532,7 @@ private class ApiH264SliceTest : GLib.TestCase {
         }
 
         if (
-            file
+            file != null
         ) {
             fclose (
                 file

@@ -25,10 +25,7 @@ private static void randomize_buffers (
     int i;
     for (
         i = 0;
-        i < w * h * sizeof (
-            src0
-        );
-
+        i < w * h * src0.length;
         i += 4
     ) {
         AV_WN32A (
@@ -79,11 +76,16 @@ private static void iter_1d (
         call_new (
             (type[])dst1,
             (
-                type[])(src1 + y * pw + x),
+                type[]
+            )(
+                src1 + y * pw + x
+            ),
             bw * sizeof (
-                type),
-                pw * sizeof (
-                    type),
+                type
+            ),
+            pw * sizeof (
+                type
+            ),
             bw,
             bh,
             x,
@@ -97,7 +99,9 @@ private static void iter_1d (
                 dst0,
                 dst1,
                 bw * bh * sizeof (
-                    type))
+                    type
+                )
+            )
         ) {
             fail ();
         }
@@ -160,7 +164,8 @@ private static void check_emu_edge_size (
         src1,
         src0,
         pw * ph * sizeof (
-            type)
+            type
+        )
     );
 
     iter_1d (
@@ -261,7 +266,7 @@ private static void checkasm_check_videodsp () {
     VideoDSPContext vdsp;
 
     ff_videodsp_init (
-        &vdsp,
+        ref vdsp,
         8
     );
 

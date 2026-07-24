@@ -1,2 +1,5 @@
-[wrap-redirect]
-filename = vapi/subprojects/libpostproc.wrap
+[wrap-file]
+directory = libpostproc
+
+[provide]
+dependency_names = libpostproc_dep

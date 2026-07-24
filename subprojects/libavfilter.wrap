@@ -1,2 +1,5 @@
-[wrap-redirect]
-filename = vapi/subprojects/libavfilter.wrap
+[wrap-file]
+directory = libavfilter
+
+[provide]
+dependency_names = libavfilter_dep

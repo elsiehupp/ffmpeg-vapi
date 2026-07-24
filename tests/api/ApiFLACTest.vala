@@ -323,8 +323,8 @@ private class ApiFLACTest : GLib.TestCase {
                 (uint16[])(in_frame.data[0]),
                 i,
                 enc_ctx.sample_rate,
-                            enc_ctx.channels,
-                            enc_ctx.frame_size
+                enc_ctx.channels,
+                enc_ctx.frame_size
             );
 
             in_frame_bytes = in_frame.nb_samples * in_frame.channels * sizeof (

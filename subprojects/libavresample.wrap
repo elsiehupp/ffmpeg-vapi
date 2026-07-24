@@ -1,2 +1,5 @@
-[wrap-redirect]
-filename = vapi/subprojects/libavresample.wrap
+[wrap-file]
+directory = libavresample
+
+[provide]
+dependency_names = libavresample_dep

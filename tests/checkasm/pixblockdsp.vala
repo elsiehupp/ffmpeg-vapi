@@ -92,7 +92,8 @@ private static void check_get_pixels (
         Test various alignments
         ***********************************************************/
         int src_offset = i * 64 * sizeof (
-            type) + 8 * i;
+            type
+        ) + 8 * i;
         /***********************************************************
         dst must be aligned
         ***********************************************************/
@@ -159,7 +160,8 @@ private static void check_diff_pixels (
         Test various alignments
         ***********************************************************/
         int src_offset = i * 64 * sizeof (
-            type) + 8 * i;
+            type
+        ) + 8 * i;
         /***********************************************************
         dst must be aligned
         ***********************************************************/
@@ -258,8 +260,8 @@ private static void checkasm_check_pixblockdsp () {
     };
 
     ff_pixblockdsp_init (
-        &pixblock_dsp_context,
-        &avctx
+        ref pixblock_dsp_context,
+        ref avctx
     );
 
     if (

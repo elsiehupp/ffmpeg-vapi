@@ -62,8 +62,10 @@ private static void test_sum64x5 () {
         dst1,
         dst0,
         (
-            64 + 256) * sizeof (
-                INTFLOAT)
+            64 + 256
+        ) * sizeof (
+            INTFLOAT
+        )
     );
 
     call_ref (
@@ -897,7 +899,7 @@ private static void checkasm_check_sbrdsp () {
     SBRDSPContext sbrdsp;
 
     ff_sbrdsp_init (
-        &sbrdsp
+        ref sbrdsp
     );
 
     if (
@@ -1031,7 +1033,7 @@ private static void checkasm_check_sbrdsp () {
     );
 
     test_hf_apply_noise (
-        &sbrdsp
+        ref sbrdsp
     );
 
     report (

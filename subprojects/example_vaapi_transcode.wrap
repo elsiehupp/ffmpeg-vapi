@@ -1,0 +1,5 @@
+[wrap-file]
+directory = example_vaapi_transcode
+
+[provide]
+program_names = vaapi_transcode

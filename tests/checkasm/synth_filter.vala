@@ -41,14 +41,14 @@ private static void checkasm_check_synth_filter () {
     SynthFilterContext synth;
 
     ff_mdct_init (
-        &imdct,
+        ref imdct,
         6,
         1,
         1.0
     );
 
     ff_synth_filter_init (
-        &synth
+        ref synth
     );
 
     if (
@@ -148,43 +148,37 @@ private static void checkasm_check_synth_filter () {
         memset (
             buf2_0,
             0,
-            sizeof (
-                buf2_0) * BUF_SIZE
+            buf2_0.length * BUF_SIZE
         );
 
         memset (
             buf2_1,
             0,
-            sizeof (
-                buf2_1) * BUF_SIZE
+            buf2_1.length * BUF_SIZE
         );
 
         memset (
             buf2_b,
             0,
-            sizeof (
-                buf2_b) * BUF_SIZE
+            buf2_b.length * BUF_SIZE
         );
 
         memset (
             buf0,
             0,
-            sizeof (
-                buf2_0) * 512
+            buf2_0.length * 512
         );
 
         memset (
             buf1,
             0,
-            sizeof (
-                buf2_1) * 512
+            buf2_1.length * 512
         );
 
         memset (
             buf_b,
             0,
-            sizeof (
-                buf2_b) * 512
+            buf2_b.length * 512
         );
 
         /***********************************************************
@@ -197,35 +191,37 @@ private static void checkasm_check_synth_filter () {
         ) {
             int j;
             float[] window = (
-            i & 1) ? ff_dca_fir_32bands_perfect : ff_dca_fir_32bands_nonperfect;
+                (
+                    i & 1
+                ) != 0
+                ? ff_dca_fir_32bands_perfect
+                : ff_dca_fir_32bands_nonperfect
+            );
 
             memset (
                 out0,
                 0,
-                sizeof (
-                    out0) * BUF_SIZE
+                out0.length * BUF_SIZE
             );
 
             memset (
                 out1,
                 0,
-                sizeof (
-                    out1) * BUF_SIZE
+                out1.length * BUF_SIZE
             );
 
             memset (
                 out_b,
                 0,
-                sizeof (
-                    out_b) * BUF_SIZE
+                out_b.length * BUF_SIZE
             );
 
             randomize_input ();
 
             call_ref (
-                &imdct,
+                ref imdct,
                 buf0,
-                &offset0,
+                ref offset0,
                 buf2_0,
                 window,
                 out0,
@@ -234,9 +230,9 @@ private static void checkasm_check_synth_filter () {
             );
 
             call_new (
-                &imdct,
+                ref imdct,
                 buf1,
-                &offset1,
+                ref offset1,
                 buf2_1,
                 window,
                 out1,
@@ -317,9 +313,9 @@ private static void checkasm_check_synth_filter () {
             }
 
             bench_new (
-                &imdct,
+                ref imdct,
                 buf_b,
-                &offset_b,
+                ref offset_b,
                 buf2_b,
                 window,
                 out_b,
@@ -332,7 +328,7 @@ private static void checkasm_check_synth_filter () {
     }
 
     ff_mdct_end (
-        &imdct
+        ref imdct
     );
 
     report (

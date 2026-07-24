@@ -86,17 +86,13 @@ private static void check_rct_int () {
     //  memcpy (
     //      ref,
     //      src,
-    //      BUF_SIZE * 3 * sizeof (
-    //          src
-    //      )
+    //      BUF_SIZE * 3 * src.length
     //  );
 
     //  memcpy (
     //      new,
     //      src,
-    //      BUF_SIZE * 3 * sizeof (
-    //          src
-    //      )
+    //      BUF_SIZE * 3 * src.length
     //  );
 
     call_ref (
@@ -117,23 +113,17 @@ private static void check_rct_int () {
         memcmp (
             ref0,
             new0,
-            BUF_SIZE * sizeof (
-                src
-            )
+            BUF_SIZE * src.length
         ) ||
         memcmp (
             ref1,
             new1,
-            BUF_SIZE * sizeof (
-                src
-            )
+            BUF_SIZE * src.length
         ) ||
         memcmp (
             ref2,
             new2,
-            BUF_SIZE * sizeof (
-                src
-            )
+            BUF_SIZE * src.length
         )
     ) {
         fail ();
@@ -142,9 +132,7 @@ private static void check_rct_int () {
     //  memcpy (
     //      new,
     //      src,
-    //      UF_SIZE * 3 * sizeof (
-    //          src
-    //      )
+    //      UF_SIZE * 3 * src.length
     //  );
 
     bench_new (
@@ -195,17 +183,13 @@ private static void check_ict_float () {
     //  memcpy (
     //      ref,
     //      src,
-    //      BUF_SIZE * 3 * sizeof (
-    //          src
-    //      )
+    //      BUF_SIZE * 3 * src.length
     //  );
 
     //  memcpy (
     //      new,
     //      src,
-    //      BUF_SIZE * 3 * sizeof (
-    //          src
-    //      )
+    //      BUF_SIZE * 3 * src.length
     //  );
 
     call_ref (
@@ -245,9 +229,7 @@ private static void check_ict_float () {
     //  memcpy (
     //      new,
     //      src,
-    //      BUF_SIZE * 3 * sizeof (
-    //          src
-    //      )
+    //      BUF_SIZE * 3 * src.length
     //  );
 
     bench_new (
@@ -263,7 +245,7 @@ private static void checkasm_check_jpeg2000dsp () {
     Jpeg2000DSPContext jpeg_2000_dsp_context;
 
     ff_jpeg2000dsp_init (
-        &jpeg_2000_dsp_context
+        ref jpeg_2000_dsp_context
     );
 
     if (

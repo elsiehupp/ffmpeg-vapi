@@ -585,7 +585,7 @@ private static void checkasm_check_fixed_dsp () {
     );
 
     av_freep (
-        &fdsp
+        ref fdsp
     );
 
 }

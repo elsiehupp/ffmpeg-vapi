@@ -24,9 +24,7 @@ private static void randomize_buffers (
     void *mask
 ) {
     int i;
-    int size = sizeof (
-        y0
-    );
+    int size = y0.length;
 
     for (
         i = 0;
@@ -233,7 +231,7 @@ private static void checkasm_check_v210enc () {
     V210EncContext v210_enc_context;
 
     ff_v210enc_init (
-        &v210_enc_context
+        ref v210_enc_context
     );
 
     if (

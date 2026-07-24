@@ -1,5 +1,0 @@
-[wrap-file]
-directory = transcode_aac
-
-[provide]
-program_names = transcode_aac

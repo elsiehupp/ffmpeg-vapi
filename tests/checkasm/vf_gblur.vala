@@ -39,7 +39,9 @@ private static void randomize_buffers (
         j++
     ) {
         tmp_buf[j] = (
-        float)(rnd () & 0xFF
+            float
+        )(
+            rnd () & 0xFF
         );
 
     }
@@ -84,7 +86,7 @@ private static void checkasm_check_vf_gblur () {
     );
 
     ff_gblur_init (
-        &gblur_context
+        ref gblur_context
     );
 
     if (
@@ -137,11 +139,11 @@ private static void checkasm_check_vf_gblur () {
     );
 
     av_freep (
-        &dst_ref
+        ref dst_ref
     );
 
     av_freep (
-        &dst_new
+        ref dst_new
     );
 
 }

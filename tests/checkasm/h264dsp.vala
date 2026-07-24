@@ -609,7 +609,7 @@ private static void check_idct () {
         bit_depth++
     ) {
         ff_h264dsp_init (
-            &h264_dsp_context,
+            ref h264_dsp_context,
             bit_depth,
             1
         );
@@ -682,7 +682,7 @@ private static void check_idct () {
                         "h264_idct%d_add%s_%dbpp",
                         sz,
                         (
-                            dc
+                            dc != 0
                             ? "_dc"
                             : ""
                         ),
@@ -696,7 +696,7 @@ private static void check_idct () {
                     ) {
                         uint8[] dst1 = dst1_base + align;
                         if (
-                            dc
+                            dc != 0
                         ) {
                             memset (
                                 subcoef0,
@@ -847,7 +847,7 @@ private static void check_idct_multiple () {
         bit_depth++
     ) {
         ff_h264dsp_init (
-            &h264_dsp_context,
+            ref h264_dsp_context,
             bit_depth,
             1
         );
@@ -860,7 +860,7 @@ private static void check_idct_multiple () {
             //  void (*idct)(uint8[], int[], int16[], int, uint8[]) = null;
             string name;
             int sz = 4;
-            int intra = 0;
+            bool intra = false;
             int block_offset[16] = {
                 0
             };
@@ -875,7 +875,7 @@ private static void check_idct_multiple () {
             case 1:
                 idct = h264_dsp_context.h264_idct_add16intra;
                 name = "h264_idct_add16intra";
-                intra = 1;
+                intra = true;
                 break;
             case 2:
                 idct = h264_dsp_context.h264_idct8_add4;
@@ -935,8 +935,8 @@ private static void check_idct_multiple () {
                     y++
                 ) {
                     memcpy (
-                        &dst_full[offset + y * 16 * SIZEOF_PIXEL],
-                        &dst[PIXEL_STRIDE * y],
+                        ref dst_full[offset + y * 16 * SIZEOF_PIXEL],
+                        ref dst[PIXEL_STRIDE * y],
                         sz * SIZEOF_PIXEL
                     );
 
@@ -949,9 +949,7 @@ private static void check_idct_multiple () {
                 }
 
                 memcpy (
-                    &coef_full[i * SIZEOF_COEF / sizeof (
-                        coef[0]
-                    )],
+                    ref coef_full[i * SIZEOF_COEF / coef[0].length],
                     coef,
                     nnz * SIZEOF_COEF
                 );
@@ -1189,7 +1187,7 @@ private static void check_loop_filter () {
         int c;
         uint32 mask = pixel_mask_lf[bit_depth - 8];
         ff_h264dsp_init (
-            &h264_dsp_context,
+            ref h264_dsp_context,
             bit_depth,
             1
         );
@@ -1251,7 +1249,7 @@ private static void check_loop_filter () {
         //  );
 
         ff_h264dsp_init (
-            &h264_dsp_context,
+            ref h264_dsp_context,
             bit_depth,
             2
         );
@@ -1406,7 +1404,7 @@ private static void check_loop_filter_intra () {
         int a;
         uint32 mask = pixel_mask_lf[bit_depth - 8];
         ff_h264dsp_init (
-            &h264_dsp_context,
+            ref h264_dsp_context,
             bit_depth,
             1
         );
@@ -1460,7 +1458,7 @@ private static void check_loop_filter_intra () {
         //  );
 
         ff_h264dsp_init (
-            &h264_dsp_context,
+            ref h264_dsp_context,
             bit_depth,
             2
         );

@@ -1,5 +1,0 @@
-[wrap-file]
-directory = libavresample
-
-[provide]
-dependency_names = libavresample_dep

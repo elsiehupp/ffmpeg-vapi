@@ -119,15 +119,15 @@ private static void check_add_res (
         memcpy (
             res1,
             res0,
-            sizeof (
-                res0) * size
+            res0.length * size
         );
 
         memcpy (
             dst1,
             dst0,
             sizeof (
-                int16) * size
+                int16
+            ) * size
         );
 
         if (
@@ -183,7 +183,7 @@ private static void checkasm_check_hevc_add_res () {
         HEVCDSPContext hevc_dsp_context;
 
         ff_hevc_dsp_init (
-            &hevc_dsp_context,
+            ref hevc_dsp_context,
             bit_depth
         );
 
